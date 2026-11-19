@@ -4,6 +4,9 @@ import {mkdirSync} from 'node:fs';
 const evidence=`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/walnut-library`;
 test('phone search closes its panel and leaves the matching book usable',async({page})=>{
  await page.setViewportSize({width:360,height:677});await page.goto('/');await enterLibrary(page);
+ const own=page.getByRole('button',{name:'내 작품',exact:true});await own.click();
+ await expect(own).toHaveAttribute('aria-pressed','true');await expect(page.getByRole('link',{name:'그림책 보관함',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'모든 작품',exact:true}).click();
  const tools=page.getByTestId('library-tools');await tools.locator(':scope>summary').click();
  const search=page.getByRole('searchbox',{name:'책 찾기',exact:true});await search.fill('별주부전');
  await search.dispatchEvent('keydown',{key:'Enter',isComposing:true});await expect(tools).toHaveAttribute('open','');await expect(search).toHaveValue('별주부전');
@@ -32,6 +35,6 @@ for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]
 test('cabinet keeps two shelf rows with four books, a single match or an empty collection',async({page})=>{
  await page.setViewportSize({width:1365,height:900});await page.goto('/');await enterLibrary(page);
  const shelf=page.locator('[data-shelf-room]');await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
- await page.getByLabel('책 분류',{exact:true}).selectOption('own');await expect(page.locator('[data-shelf-book]')).toHaveCount(0);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
- await page.getByLabel('책 분류',{exact:true}).selectOption('all');await page.getByTestId('library-tools').locator('summary').click();await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill('별주부전');await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');await expect(page.locator('[data-shelf-book]')).toHaveCount(1);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
+ await page.getByRole('button',{name:'내 작품',exact:true}).click();await expect(page.locator('[data-shelf-book]')).toHaveCount(0);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
+ await page.getByRole('button',{name:'모든 작품',exact:true}).click();await page.getByTestId('library-tools').locator('summary').click();await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill('별주부전');await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');await expect(page.locator('[data-shelf-book]')).toHaveCount(1);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
 });

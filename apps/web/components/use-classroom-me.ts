@@ -37,5 +37,6 @@ export function useClassroomMeFor(session:AccountSession|null,sessionLoading:boo
 /** For the editor: `{loading, role, permissions}`. Permissions are ALL_EDITING_ALLOWED unless the signed-in account is a student. */
 export function useClassroomMe():ClassroomMeState{
  const account=useAccountSession();
- return useClassroomMeFor(account.session,account.loading);
+ const state=useClassroomMeFor(account.session,account.loading);
+ return account.error?{...state,error:account.error}:state;
 }

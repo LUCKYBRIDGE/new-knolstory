@@ -1,0 +1,6 @@
+.resume{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1200px;margin:0 auto .75rem;padding:.35rem .55rem .35rem 1rem;border:1px solid #c6bda9;border-radius:.75rem;background:#fff9ec;color:#183331}
+.title{min-width:0;display:grid;gap:.15rem}
+.title small{font-size:var(--text-caption);color:#52605a}
+.title strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.resume button{flex:none;min-height:44px;padding:.4rem .85rem;border:1px solid #41665f;border-radius:.5rem;background:#fffdf6;color:#244d45;font:inherit;font-weight:650;cursor:pointer}
+.resume button:focus-visible{outline:3px solid #267266;outline-offset:2px}

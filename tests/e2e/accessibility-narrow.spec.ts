@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 for(const width of [320,390,1440])test(`library header controls remain reachable at ${width}px`,async({page})=>{
  await page.setViewportSize({width,height:740});await page.goto('/?view=library');
- const tools=page.getByText('책 찾기·추가',{exact:true});await expect(tools).toBeVisible();
+ const tools=page.getByText('책 검색',{exact:true});await expect(tools).toBeVisible();
  const bounds=await tools.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
  await tools.click();await expect(page.getByRole('searchbox',{name:'책 찾기',exact:true})).toBeVisible();await page.keyboard.press('Escape');
  await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('region',{name:'놀스토리 계정',exact:true})).toBeVisible();await page.keyboard.press('Escape');

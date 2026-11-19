@@ -29,6 +29,10 @@ test('signed-in account popover and online trash dialog coordinate and preserve 
  });
  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await expect.poll(()=>activeReads).toBeGreaterThanOrEqual(1);
  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project),account=page.locator('[data-account-menu]'),trashButton=page.getByRole('button',{name:'온라인 휴지통',exact:true});
+ const storage=page.locator('[data-storage-tools]'),toggle=storage.locator('summary');
+ await expect(toggle).toBeVisible();await expect(storage).not.toHaveAttribute('open','');
+ await expect(trashButton).toBeHidden();const collapsed=await storage.boundingBox();expect(collapsed!.height).toBeLessThanOrEqual(48);
+ await toggle.focus();await toggle.press('Enter');await expect(trashButton).toBeVisible();
  await expect(trashButton).toBeEnabled();await account.locator('summary').click();await expect(account).toHaveAttribute('open','');await expect(account.getByText('로그인됨',{exact:true})).toBeVisible();
  await page.keyboard.press('Escape');await expect(account).not.toHaveAttribute('open','');
  await trashButton.click();const dialog=page.getByRole('dialog',{name:'온라인 휴지통',exact:true});await expect(dialog).toBeVisible();await expect(account).not.toHaveAttribute('open','');await expect.poll(()=>trashReads).toBe(1);
