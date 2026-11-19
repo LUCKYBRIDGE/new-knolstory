@@ -592,7 +592,7 @@ test('teacher navigation separates tasks, students and settings and shares the a
  await page.screenshot({path:info.outputPath('teacher-settings-phone.png'),fullPage:true});
  await nav.getByRole('link',{name:'서재',exact:true}).click();
  await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('all');
- await page.getByLabel('책 분류',{exact:true}).selectOption('own');
+ await page.getByRole('button',{name:'내 작품',exact:true}).click();
  await nav.getByRole('link',{name:'과제',exact:true}).click();
  await nav.getByRole('link',{name:'서재',exact:true}).click();
  await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('own');
@@ -632,7 +632,7 @@ test('a regular member manages a created work in the shared all-works library',a
  await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('all');
  await expect(page.getByRole('article',{name:'내 작품 · 내가 만든 첫 이야기',exact:true})).toBeVisible();
  await expect(page.getByRole('article',{name:'기본 작품 · 별주부전',exact:true})).toBeVisible();
- await page.getByLabel('책 분류',{exact:true}).selectOption('own');
+ await page.getByRole('button',{name:'내 작품',exact:true}).click();
  await expect(page.locator('[data-shelf-book]')).toHaveCount(1);
  await page.screenshot({path:info.outputPath('member-own-work-library.png'),fullPage:true});
 });

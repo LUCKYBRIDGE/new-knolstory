@@ -1,4 +1,5 @@
 'use client';
+import recentStyles from './recent-writing.module.css';
 import {NumberedTitle} from './numbered-title';
 import {useEffect,useRef,useState,type CSSProperties,type ReactNode} from 'react';
 import {findLibraryBooks,libraryPage,parseLibraryView,LIBRARY_VIEW_KEY,shelfLayoutForWidth,isPersonalLibraryKind} from '../lib/library-catalog';
@@ -8,7 +9,7 @@ import {LibraryBookFocus} from './library-book-focus';
 import {BookCover} from './book-cover';
 import {shelfCoverAccessibleLabel} from '../lib/shelf-cover-label';
 import type {StoryProject} from '@knolstory/story-domain';
-import {NewStoryForm} from './new-story-form';
+import {LibraryBrowseTools} from './library-browse-tools';
 import styles from './local-bookshelf.module.css';
 import type {OnlineDocumentMetadata} from '../lib/document-api';
 import type {OnlineShelfStatus} from '../lib/unified-library';
@@ -25,11 +26,10 @@ export type BookshelfOnline={records:readonly OnlineDocumentMetadata[];byLocalKe
 export type BookshelfWork={key:string;project:StoryProject;kind:'own'|'imported'|'example'|'original';canResume:boolean};
 export type BookshelfBook=GroupedBuiltinWork<BookshelfWork>;
 export type BookshelfIntent='edit'|'start'|'resume'|'prepare'|'cover';
-export type LocalBookshelfProps={online?:BookshelfOnline;accountMenu?:ReactNode;navigation?:ReactNode;works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onExport?:(key:string)=>void;onDelete?:(key:string)=>void;onDuplicate?:(key:string)=>void;onIntroduction?:()=>void;deleted?:{title:string};onRestore?:()=>void};
+export type LocalBookshelfProps={recentWriting?:{title:string;location:string;open:()=>void};online?:BookshelfOnline;accountMenu?:ReactNode;navigation?:ReactNode;works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onExport?:(key:string)=>void;onDelete?:(key:string)=>void;onDuplicate?:(key:string)=>void;onIntroduction?:()=>void;deleted?:{title:string};onRestore?:()=>void};
 const sections=[{kind:'builtin',title:'기본 작품'},{kind:'own',title:'내 작품'}] as const;
-export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction,onExport,onDelete,onDuplicate,deleted,onRestore}:LocalBookshelfProps){
- const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null),tools=useRef<HTMLDetailsElement>(null),composing=useRef(false);
- useEffect(()=>{const dismiss=(event:PointerEvent)=>{if(tools.current?.open&&event.target instanceof Node&&!tools.current.contains(event.target))tools.current.open=false;};const escape=(event:KeyboardEvent)=>{if(event.key==='Escape'&&!event.isComposing&&event.keyCode!==229&&!composing.current&&tools.current?.open){tools.current.open=false;tools.current.querySelector<HTMLElement>('summary')?.focus();}};document.addEventListener('pointerdown',dismiss);document.addEventListener('keydown',escape);return()=>{document.removeEventListener('pointerdown',dismiss);document.removeEventListener('keydown',escape);};},[]);
+export function LocalBookshelf({recentWriting,online,accountMenu,navigation,works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction,onExport,onDelete,onDuplicate,deleted,onRestore}:LocalBookshelfProps){
+ const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null),tools=useRef<HTMLDetailsElement>(null);
  const [layout,setLayout]=useState(()=>shelfLayoutForWidth(1000));
  const [initialView]=useState(()=>{try{return parseLibraryView(typeof window==='undefined'?null:sessionStorage.getItem(LIBRARY_VIEW_KEY));}catch{return parseLibraryView(null);}});
  const [filter,setFilter]=useState(initialView.filter),[query,setQuery]=useState(initialView.query),[pages,setPages]=useState(initialView.pages),[selected,setSelected]=useState<string|null>(null),[selectedRemote,setSelectedRemote]=useState<string|null>(null);
@@ -59,16 +59,14 @@ export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCre
    <div className={styles.headerTools}>
     {accountMenu}
     {onIntroduction&&<button className={styles.introLink} onClick={onIntroduction}>책 소개</button>}
-    <label className={styles.classification}><span className={styles.semantic}>책 분류</span><select aria-label="책 분류" value={filter} onChange={event=>{setFilter(event.target.value);if(tools.current)tools.current.open=false;}}><option value="all">모든 작품</option>{sections.map(section=><option key={section.kind} value={section.kind}>{section.title}</option>)}{onRestore&&<option value="deleted">삭제한 작품</option>}</select></label>
-    <details ref={tools} onBlurCapture={()=>{composing.current=false;}} onCompositionStart={()=>{composing.current=true;}} onCompositionEnd={()=>{composing.current=false;}} onToggle={event=>{if(!event.currentTarget.open)composing.current=false;}} className={styles.tools} data-testid="library-tools"><summary>책 찾기·추가</summary><div className={styles.toolsPanel}>
-     <label className={styles.search}>책 찾기<input type="search" maxLength={200} placeholder="제목이나 지은이" value={query} onKeyDown={event=>{if(event.key==='Enter'&&!event.nativeEvent.isComposing&&event.nativeEvent.keyCode!==229){event.preventDefault();if(tools.current)tools.current.open=false;tools.current?.querySelector<HTMLElement>('summary')?.focus();}}} onChange={event=>setQuery(event.target.value)}/></label>
-     <NewStoryForm disabled={disabled} onCreate={title=>onCreate(title)!==false}/>
-     <label className={styles.import}>작품 파일 가져오기<input type="file" accept=".knolstory" aria-label="서재 작품 파일 가져오기" disabled={disabled} onChange={event=>{const file=event.target.files?.[0];if(file)onImport(file);event.target.value='';}}/></label>
-     <a href="/shortstory?mode=library">숏스토리 그림책 열기</a><p>다른 기기에서 보려면 작품을 작품 파일로 저장해 두세요.</p>
-    </div></details>
    </div>
   </header>
+  <LibraryBrowseTools filter={filter} query={query} onFilter={setFilter} onQuery={setQuery} createMenu={tools} disabled={disabled} canRestore={!!onRestore} onCreate={title=>onCreate(title)!==false} onImport={onImport}/>
   {online?.header}
+  {recentWriting&&(filter==='all'||filter==='own')&&!query.trim()&&<section className={recentStyles.resume} aria-label="최근 편집한 작품">
+   <div className={recentStyles.title}><small>최근 편집 · {recentWriting.location}</small><strong><NumberedTitle title={recentWriting.title}/></strong></div>
+   <button type="button" disabled={disabled} onClick={recentWriting.open}>이어서 쓰기</button>
+  </section>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
   <div ref={cases} className={styles.bookcases} style={{'--shelf-columns':layout.columns,'--shelf-rows':occupiedRows,'--shelf-capacity-rows':layout.rows} as CSSProperties}>
    <span className={styles.topPlant} aria-hidden="true"/><span className={`${styles.upright} ${styles.uprightLeft}`} data-cabinet-upright aria-hidden="true"/><span className={`${styles.upright} ${styles.uprightRight}`} data-cabinet-upright aria-hidden="true"/>
@@ -90,7 +88,7 @@ export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCre
      {filter==='deleted'?<><p>{deleted?`최근 삭제한 작품 · ${deleted.title}`:'삭제한 작품이 없어요.'}</p><small>가장 최근에 삭제한 내 작품 한 권을 되살릴 수 있어요.</small>{deleted&&<button type="button" disabled={disabled} onClick={()=>{onRestore?.();setFilter('own');}}>{deleted.title} 복구</button>}</>:<>
      <p>{query.trim()?'찾는 제목의 책이 없어요.':filter==='own'?'아직 내 작품이 없어요.':'이 자리는 새로운 이야기를 기다리고 있어요.'}</p>
      {query.trim()?<button type="button" onClick={()=>setQuery('')}>검색 지우기</button>
-      :filter==='own'?<button type="button" disabled={disabled} onClick={()=>{if(tools.current){tools.current.open=true;tools.current.querySelector<HTMLButtonElement>('button[aria-expanded]')?.focus();}}}>새 이야기 만들기</button>
+      :filter==='own'?<button type="button" disabled={disabled} onClick={()=>{if(tools.current){tools.current.open=true;}}}>새 이야기 만들기</button>
       :null}
      </>}
      {filter!=='all'&&!query.trim()&&<button type="button" onClick={()=>setFilter('all')}>모든 작품 보기</button>}

@@ -25,17 +25,17 @@ export async function openShelfAction(page:Page,book:import('@playwright/test').
  await dialog.getByRole('button',{name:intent==='작품 준비'?'작품 정보·기획':intent==='파일로 보관'?'작품 파일 내보내기':intent,exact:true}).click();
 }
 
-export async function openLibraryTools(page:Page){
- const tools=page.getByTestId('library-tools');
+export async function openLibraryTools(page:Page,id='library-tools'){
+ const tools=page.getByTestId(id);
  if(await tools.isVisible()&&!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator('summary').click();
 }
 export async function importShelfFile(page:Page,...args:Parameters<import('@playwright/test').Locator['setInputFiles']>){
- await openLibraryTools(page);await page.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(...args);await confirmAuthoringImport(page);
+ await openLibraryTools(page,'library-create');await page.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(...args);await confirmAuthoringImport(page);
 }
 export async function startShelfCreation(page:Page){
- await openLibraryTools(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();
+ await openLibraryTools(page,'library-create');
 }
-export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind==='imported'?'own':kind);}
+export async function selectShelfCollection(page:Page,kind:string){await openLibraryTools(page);await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind==='imported'?'own':kind);}
 export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
 
 export const builtinEditions = (['seonnyeo','heungbu','onggojib','rabbit'] as const).flatMap(id=>[[id,'original'],[id,'knolstory']] as const);

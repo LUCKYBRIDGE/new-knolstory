@@ -45,9 +45,15 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  const feedback=(key:string)=>target?.key===key?{notice:online.notice,error:online.error}:{};
  const stateAction=(record:OnlineDocumentMetadata,action:'trash'|'restore',key=`remote:${record.recordId}`)=>{setTarget({key,title:record.title});void online.changeState(record,action);};
  const header=<div className={styles.statusBar} aria-label="작품 보관 안내">
-  {owner&&<div className={styles.legend}><StorageIcon online/><span>구름 표시 책은 온라인에도 있어요. 기기에는 자동으로 보관되고, 온라인에는 ‘온라인에 업로드’를 누를 때 올라가요.</span></div>}
-  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<div className={styles.controls}><button aria-label="온라인 목록 다시 확인" disabled={unavailable} onClick={()=>void online.list(false,'active')}>새로 고침</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}} aria-label="온라인 휴지통">휴지통</button></div>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 위의 ‘내 과제’에서 해요.':'작품은 이 기기에 저장돼요.'}</span>:<span>{online.account.error||'작품은 이 기기에 저장돼요. 로그인하면 온라인에도 보관할 수 있어요.'}</span>}
-  {owner&&summary&&<p className={styles.storageUsage} data-warn={summary.warn} role={summary.warn?'status':undefined}>{summary.text}{summary.full?(storage?.classroom&&storage.classroom.bytes>=storage.classroom.limit&&classroom.role==='student'?' · 학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요.':' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.'):summary.warn?' · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.':''}</p>}
+  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<details key={owner} className={styles.storageTools} data-storage-tools>
+   <summary><StorageIcon online/><span>{storage?`온라인 ${storage.works}권`:'온라인 보관'}</span><span className={styles.manage}>보관 관리</span></summary>
+   <div className={styles.storageDetails}>
+    <p>구름 표시가 있는 책은 온라인에도 있어요. 이 기기에서 고친 작품은 ‘온라인에 업로드’를 눌러 올려 주세요.</p>
+    {summary&&!summary.warn&&<p className={styles.storageUsage}>{summary.text}</p>}
+    <div className={styles.controls}><button aria-label="온라인 목록 다시 확인" disabled={unavailable} onClick={()=>void online.list(false,'active')}>새로 고침</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}} aria-label="온라인 휴지통">휴지통</button></div>
+   </div>
+  </details>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 위의 ‘내 과제’에서 해요.':'작품은 이 기기에 저장돼요.'}</span>:<span>{online.account.error||'작품은 이 기기에 저장돼요. 로그인하면 온라인에도 보관할 수 있어요.'}</span>}
+  {owner&&summary?.warn&&<p className={styles.storageUsage} data-warn={summary.warn} role={summary.warn?'status':undefined}>{summary.text}{summary.full?(storage?.classroom&&storage.classroom.bytes>=storage.classroom.limit&&classroom.role==='student'?' · 학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요.':' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.'):summary.warn?' · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.':''}</p>}
   {online.busy&&<p role="status">온라인 작품을 확인하고 있어요.</p>}
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}
  </div>;

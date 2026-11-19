@@ -447,3 +447,14 @@
 .legacyFace .art:not(:has(img)) .ornament{font-size:11cqw;opacity:.75}
 .book[data-preset="oval"] .legacyFace .art{border-radius:50%}
 .book[data-preset="arch"] .legacyFace .art{border-radius:50% 50% 2px 2px}
+
+/* A grouped classic opens several editions. On a small shelf its title and illustration
+   identify the book; the full-size cover in the introduction retains the printed copy. */
+@media (max-width:600px) {
+  [data-work-id] .book[data-compact] .tagline,
+  [data-work-id] .book[data-compact] .edition,
+  [data-work-id] .book[data-compact] .bottomAuthor { display:none }
+  [data-work-id] .book[data-compact] .titleBox { top:6%!important;height:31%!important;padding:2% }
+  [data-work-id] .book[data-compact] .title { font-size:clamp(13px,14cqw,18px);line-height:1.18;text-wrap:balance }
+  [data-work-id] .book[data-compact] .art { top:39%!important;height:51%!important }
+}

@@ -14,3 +14,37 @@ test('same cut ids in independent works do not carry open direction details or d
  await row.getByText('1컷 연출 수정',{exact:true}).click();await expect(row.getByLabel('화면 전환',{exact:true})).toHaveValue('');
  const data=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));expect(data.document.project.lines[0].presentation).toBeUndefined();expect(data.works[`import:${first.id}`].project).toEqual(first);
 });
+
+test('the bookshelf continues writing at the saved personal cut, scoped to the same account',async({page})=>{
+ const first='11111111-1111-4111-8111-111111111111',other='22222222-2222-4222-8222-222222222222';
+ let account=first;
+ await page.route('**/api/v1/**',route=>{
+  const path=new URL(route.request().url()).pathname;
+  const data=path.endsWith('/auth/config')?{signupProvider:'kakao',providers:{kakao:true,google:false}}
+   :path.endsWith('/class/me')?{role:'member',account:{id:account}}
+   :path.endsWith('/me')?{accountId:account,csrf:'csrf'}:{documents:[]};
+  return route.fulfill({json:{success:true,data}});
+ });
+ await page.goto('/?view=editor');
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await load(page,'나의 이어쓰기');
+ await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();
+ await page.getByLabel('2컷 글',{exact:true}).fill('두 번째 컷에서 이어 써요.');
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const cut=await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();
+ await page.goto('/?view=library');
+ const recent=page.getByRole('region',{name:'최근 편집한 작품',exact:true});
+ await expect(recent).toContainText('나의 이어쓰기');
+ await expect(recent).toContainText('2컷');
+ await recent.getByRole('button',{name:'이어서 쓰기',exact:true}).click();
+ await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(cut);
+ await expect(page.getByLabel('2컷 글',{exact:true})).toHaveValue('두 번째 컷에서 이어 써요.');
+ await page.goto('/?view=library');
+ await expect(recent).toBeVisible();
+ account=other;
+ await page.evaluate(()=>window.dispatchEvent(new Event('knolstory-account-session-changed')));
+ await expect(recent).toHaveCount(0);
+ await page.reload();
+ await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
+ await expect(recent).toHaveCount(0);
+});

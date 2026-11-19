@@ -80,3 +80,15 @@
 @media(max-width:480px){.emptyMessage{padding:14px 12px;gap:8px}}
 /* Phone: account and introduction on the first row, filter and tools sharing the second. */
 @media(max-width:600px){.headerTools{width:100%;justify-content:flex-start;row-gap:8px}.classification{flex:1 1 55%;min-width:0}.classification select{width:100%}.tools{flex:none}}
+
+@media (max-width:600px) {
+ .bookcases {margin-top:30px}
+ .topPlant {--plant-height:66px}
+}
+
+.browse{position:relative;z-index:5;display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;max-width:1200px;margin:8px auto 12px}
+.switcher,.browseActions{display:flex;align-items:center;gap:4px}.switcher{padding:2px;background:#fff9ebd9;border:1px solid #bca47d;border-radius:13px}
+.switcher button{border:0;border-radius:10px;background:transparent;color:var(--ink);min-height:44px;padding:0 14px;font-size:var(--text-small);white-space:nowrap}.switcher button[aria-pressed=true]{background:#254e44;color:white}
+.browseActions{margin-left:auto}.browseActions .tools summary{display:grid;place-items:center;min-height:44px}.browseActions .tools:last-child summary{color:white;background:#254e44;border-color:#254e44}
+.browse .scope{display:grid;gap:6px;font-size:var(--text-small)}.pictureShelf,.filterSummary{font-size:var(--text-small);color:var(--ink)}.pictureShelf{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}.filterSummary{flex-basis:100%;overflow-wrap:anywhere}.filterSummary button{max-width:100%;overflow-wrap:anywhere;min-height:44px}
+@media(max-width:600px){.header{justify-content:space-between;gap:4px}.headerTools{width:auto;margin-left:auto}.browse{gap:4px}.browse .tools{position:static}.browse .toolsPanel{top:100%;margin-top:4px;width:min(360px,100%)}.switcher button{padding:0 9px}.browseActions .tools summary{padding-inline:9px}.pictureShelf{flex-basis:100%}}
