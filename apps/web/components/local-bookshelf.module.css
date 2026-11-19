@@ -92,3 +92,8 @@
 .browseActions{margin-left:auto}.browseActions .tools summary{display:grid;place-items:center;min-height:44px}.browseActions .tools:last-child summary{color:white;background:#254e44;border-color:#254e44}
 .browse .scope{display:grid;gap:6px;font-size:var(--text-small)}.pictureShelf,.filterSummary{font-size:var(--text-small);color:var(--ink)}.pictureShelf{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}.filterSummary{flex-basis:100%;overflow-wrap:anywhere}.filterSummary button{max-width:100%;overflow-wrap:anywhere;min-height:44px}
 @media(max-width:600px){.header{justify-content:space-between;gap:4px}.headerTools{width:auto;margin-left:auto}.browse{gap:4px}.browse .tools{position:static}.browse .toolsPanel{top:100%;margin-top:4px;width:min(360px,100%)}.switcher button{padding:0 9px}.browseActions .tools summary{padding-inline:9px}.pictureShelf{flex-basis:100%}}
+
+@media (min-width:601px) {
+ .bookcases {margin-top:42px}
+ .topPlant {--plant-height:90px}
+}
