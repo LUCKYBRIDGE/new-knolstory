@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>뉴놀스토리 · CC0 음원 확보 목록</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;background:#f6f5f0;color:#24302d;margin:0}main{max-width:1040px;margin:40px auto;padding:0 24px}h1{font-size:30px;margin-bottom:8px}.intro{color:#52635a}input,select,button{font:inherit;border:1px solid #c5d2c9;border-radius:8px;padding:10px;background:white}input{flex:1;min-width:140px}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}article{border:1px solid #d9e0db;border-radius:12px;padding:18px;margin:12px 0;background:white}h2{font-size:18px;margin:0 0 8px}.meta{font-size:14px;color:#637367}audio{width:100%;margin-top:12px}a{color:#136848}.id{overflow-wrap:anywhere;font-size:12px}button{cursor:pointer}small{color:#596a60}
+</style>
+<style>.mixer{background:#eaf1e9;border:1px solid #c4d3c3;border-radius:14px;padding:20px;margin:24px 0}.mix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.mix-track select{width:100%;margin:8px 0}.mix-track input[type=range]{width:100%;padding:0;min-width:0}.mix-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.mix-buttons button[aria-pressed=true]{background:#205a3c;color:white;border-color:#205a3c}.mix-track label{display:block}.mixer h2{font-size:22px}.mix-status{min-height:26px}@media(max-width:640px){.mix-grid{grid-template-columns:1fr}}</style>
+<main><h1>뉴놀스토리 CC0 음원</h1><p class="intro">배경음 · 환경음 · 동작 효과음 · 전환 음악. 목록에서 직접 듣고 장면에 맞는 소리를 골라 보세요.</p>
+<p><small>공식 배포 페이지의 CC0 표기를 확인한 확보본입니다. 장면 적합성과 반복 연결부 청취는 별도 검토가 필요합니다.</small></p>
+<section class="mixer" aria-labelledby="mix-title"><h2 id="mix-title">배경음 + 환경음 함께 듣기</h2>
+<p>장면을 고르고 두 소리를 함께 들어 보세요. 환경음이 음악을 가리거나 서로 다른 장소처럼 느껴지는지 비교해 보세요.</p>
+<div class="mix-buttons" id="presets"><button data-preset="village">마을 음악 + 새소리</button><button data-preset="rain">잔잔한 음악 + 비</button><button data-preset="night">달밤 음악 + 폭풍우</button></div>
+<div class="mix-grid">
+<div class="mix-track"><label for="mix-bgm">배경음악</label><select id="mix-bgm"></select><label for="bgm-volume">배경음 볼륨 <output id="bgm-level">25%</output></label><input id="bgm-volume" type="range" min="0" max="100" value="25"><audio id="bgm-player" controls preload="none" loop></audio></div>
+<div class="mix-track"><label for="mix-ambience">환경음</label><select id="mix-ambience"></select><label for="amb-volume">환경음 볼륨 <output id="amb-level">10%</output></label><input id="amb-volume" type="range" min="0" max="100" value="10"><audio id="amb-player" controls preload="none" loop></audio></div>
+</div>
+<div class="mix-buttons"><button id="mix-play">두 소리 재생</button><button id="mix-stop">두 소리 정지</button><button id="mix-bgm-only" aria-pressed="false">배경음만 듣기</button><button id="mix-amb-only" aria-pressed="false">환경음만 듣기</button><button id="mix-together" aria-pressed="true">함께 듣기</button></div>
+<p class="mix-status" id="mix-status" role="status">마을 음악 + 새소리 · 재생 버튼을 눌러 시작하세요.</p>
+<small>볼륨은 비교를 위한 시작값입니다. 원본 음량이 달라 직접 조절해 보세요. 두 소리는 각각 반복하므로 반복 연결부도 함께 확인하세요.</small></section>
+<div class="controls"><input id="search" aria-label="음원 검색" placeholder="제목, 태그, 제작자 검색"><select id="category" aria-label="음원 분류"><option value="">전체 분류</option value="bgm">배경음악</option><option value="ambience">환경음</option><option value="foley">동작·물체 효과음</option><option value="sfx">기타 효과음</option><option value="ui">선택·버튼 효과음</option><option value="jingle">전환·엔딩 음악</option></select><button id="stop">모두 정지</button></div>
+<p id="count" role="status"></p><div id="list"></div></main>
+<script>
+const assets=__AUDIO_DATA__;
+const labels={bgm:'배경음악',ambience:'환경음',foley:'동작·물체',sfx:'효과음',ui:'버튼·선택',jingle:'전환·엔딩'};
+const search=document.querySelector('#search'), category=document.querySelector('#category'), list=document.querySelector('#list');
+const bgm=document.querySelector('#bgm-player'), ambience=document.querySelector('#amb-player'), bgmSelect=document.querySelector('#mix-bgm'), ambSelect=document.querySelector('#mix-ambience');
+const mixStatus=document.querySelector('#mix-status');let mixMode='together', playToken=0;
+function stopList(){list.querySelectorAll('audio').forEach(a=>a.pause())}
+function stopMix(){playToken++;[bgm,ambience].forEach(a=>a.pause());mixStatus.textContent='함께 듣기 정지됨';}
+function stop(){stopList();stopMix()}
+function volumes(){const b=Number(document.querySelector('#bgm-volume').value),a=Number(document.querySelector('#amb-volume').value);bgm.volume=b/100;ambience.volume=a/100;document.querySelector('#bgm-level').textContent=b+'%';document.querySelector('#amb-level').textContent=a+'%';bgm.muted=mixMode==='ambience';ambience.muted=mixMode==='bgm';}
+function sources(){stopMix();[ [bgm,bgmSelect],[ambience,ambSelect] ].forEach(([player,select])=>{const asset=assets.find(a=>a.id===select.value);player.src=asset.runtimePath.replace(/^assets\//,'');});mixStatus.textContent='조합 선택됨 · 재생 버튼을 눌러 시작하세요.';}
+for(const [select,cat] of [[bgmSelect,'bgm'],[ambSelect,'ambience']]){assets.filter(a=>a.category===cat).forEach(a=>{const option=document.createElement('option');option.value=a.id;option.textContent=a.titleKo;select.append(option)});select.addEventListener('change',()=>{sources();document.querySelectorAll('[data-preset]').forEach(b=>b.setAttribute('aria-pressed','false'));});}
+const presets={village:['oga-bards-tale','oga-park','birds',25,10],rain:['oga-jrpg-calm','oga-rain','',25,12],night:['oga-rising-moon','oga-rain-thunder','',22,8]};
+function preset(key){const [b,a,h,bv,av]=presets[key];bgmSelect.value=assets.find(x=>x.sourcePack===b).id;ambSelect.value=assets.find(x=>x.sourcePack===a&&(!h||x.originalFilename.includes(h))).id;document.querySelector('#bgm-volume').value=bv;document.querySelector('#amb-volume').value=av;mode('together');volumes();sources();document.querySelectorAll('[data-preset]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.preset===key)));}
+function mode(value){mixMode=value;volumes();document.querySelector('#mix-bgm-only').setAttribute('aria-pressed',String(value==='bgm'));document.querySelector('#mix-amb-only').setAttribute('aria-pressed',String(value==='ambience'));document.querySelector('#mix-together').setAttribute('aria-pressed',String(value==='together'));}
+document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>preset(b.dataset.preset)));
+document.querySelector('#mix-play').addEventListener('click',async(event)=>{const button=event.currentTarget;button.disabled=true;stopList();const token=++playToken;bgm.currentTime=0;ambience.currentTime=0;mixStatus.textContent='두 소리를 불러오는 중…';try{const results=await Promise.allSettled([bgm.play(),ambience.play()]);if(token!==playToken){bgm.pause();ambience.pause();return;}if(results.some(r=>r.status==='rejected'))throw new Error('playback');mixStatus.textContent='두 소리 재생 중 · 볼륨과 단독 듣기로 비교하세요.';}catch{if(token===playToken){stopMix();mixStatus.textContent='소리를 재생하지 못했습니다. 파일 연결을 확인하고 다시 눌러 주세요.';}}finally{button.disabled=false;}});
+document.querySelector('#mix-stop').addEventListener('click',stopMix);
+document.querySelector('#mix-bgm-only').addEventListener('click',()=>mode('bgm'));document.querySelector('#mix-amb-only').addEventListener('click',()=>mode('ambience'));document.querySelector('#mix-together').addEventListener('click',()=>mode('together'));
+document.querySelector('#bgm-volume').addEventListener('input',volumes);document.querySelector('#amb-volume').addEventListener('input',volumes);
+for(const player of [bgm,ambience])player.addEventListener('play',stopList);
+preset('village');
+function render(){
+  stopList(); list.replaceChildren();
+  const q=search.value.toLocaleLowerCase();
+  const shown=assets.filter(a=>(!category.value||a.category===category.value)&&[a.titleKo,a.author,a.id,...a.tagsKo].join(' ').toLocaleLowerCase().includes(q));
+  document.querySelector('#count').textContent=`${assets.length}개 확보 · ${shown.length}개 표시`;
+  shown.forEach(a=>{
+    const card=document.createElement('article'), title=document.createElement('h2'), meta=document.createElement('div'), audio=document.createElement('audio'), link=document.createElement('a'), id=document.createElement('div');
+    const duration=a.durationSeconds<1?`${Math.round(a.durationSeconds*1000)}ms`:`${a.durationSeconds.toFixed(1)}초`;
+    title.textContent=a.titleKo; meta.className='meta'; meta.textContent=`${labels[a.category]} · ${duration} · ${a.author} · CC0 · ${a.tagsKo.join(' / ')}`;
+    audio.controls=true;audio.preload='none';audio.volume=.35;audio.src=a.runtimePath.replace(/^assets\//,'');
+    audio.addEventListener('play',()=>{stopMix();list.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause()});});
+    link.href=a.sourceUrl;link.target='_blank';link.rel='noopener';link.textContent='출처와 CC0 표시 확인';
+    id.className='id';id.textContent=a.id;
+    const description=document.createElement('p');description.textContent=a.descriptionKo||'';
+    card.append(title,meta,id,description,audio,link);list.append(card);
+  });
+}
+search.addEventListener('input',render);category.addEventListener('change',render);document.querySelector('#stop').addEventListener('click',stop);render();
+</script></html>

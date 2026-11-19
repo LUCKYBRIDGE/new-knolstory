@@ -1,0 +1,12 @@
+{
+  "redactions": [
+    {
+      "path": "assets/licenses/audio/audit-2026-10-13/oga-editor-beach/original-freesound-page.html",
+      "originalSha256": "914554b34b9ea888d92df82c9321d3d638521100bc59d5b4748da1d96255a6d9",
+      "publishedSha256": "f64b3dbac76667ba88a546325231fec1b22de7d26449cf81b78f9bedc335e4bb",
+      "replacements": 1,
+      "reason": "Third-party website Mapbox token removed from publication; local acquisition HTML retained."
+    }
+  ],
+  "scope": "Only public export HTML is sanitized. Catalog audio and license declarations are unchanged."
+}
