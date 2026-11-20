@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-20",
+  "scope": "옹고집전 8쪽·선녀와 나무꾼 10쪽·흥부와 놀부 8쪽 원화를 기존 자료로 조립한 첫 무대 조합 검토",
+  "method": "작품별 원화·배경·인물 대조표로 후보를 고른 뒤, 정적 기기 전용 빌드의 /picturebook?review=recipes(만들기 불가)로 실제 Ren’Py 가로 16:9 무대를 쪽마다 확인. 세로 9:16은 흥부 3쪽 등 일부를 확인했고 해설 컷은 첫 인물 한 명에 집중하는 기존 세로 읽기 규칙을 따름",
+  "approved": 24,
+  "notApproved": {
+    "seonnyeo.scene.shortstory-classic-01": "사슴과 나무꾼이 나란히 서 있을 뿐이라 원화의 핵심인 ‘사슴을 숨겨 주기’가 보이지 않아 승인하지 않았어요. 몸을 숙여 사슴을 감싸 숨기는 나무꾼(제작 요청 5)을 기다려요.",
+    "seonnyeo.scene.shortstory-classic-05": "두 아이를 안은 선녀가 땅에 서 있어 ‘하늘로 떠나는’ 장면이 읽히지 않아 승인하지 않았어요. 발이 땅에서 떨어져 날아오르는 선녀와 두 아이(제작 요청 6)를 기다려요."
+  },
+  "adjusted": {
+    "seonnyeo.scene.shortstory-classic-10": "수탉이 작아 대사창에 가려 1.4배로 키움",
+    "heungbu.scene.shortstory-classic-04": "박씨를 문 제비가 사람만큼 커서 0.6배로 줄임"
+  },
+  "notes": {
+    "onggojib": "진짜·가짜 옹고집은 같은 얼굴이라 자세로 구분(4쪽: 화내는 진짜와 앉아 장부 보는 가짜, 5쪽: 사또 앞에 나란히 선 두 사람)",
+    "heungbu.scene.shortstory-classic-02": "빈 쌀독 소품은 무대에 따로 없지만 눈 덮인 초가의 슬픈 가족으로 끼니 걱정이 읽혀 승인",
+    "seonnyeo.scene.shortstory-classic-06": "두레박이 하늘나라 난간 위에 놓여 보이지만 밧줄 달린 두레박에 탄 나무꾼으로 사건이 읽혀 승인"
+  },
+  "rights": "packages/asset-registry/tests/picturebook-recipes.test.ts — 승인 조합의 모든 자료가 같은 sha256의 출처 기록(상업 이용 permitted, service-only)을 가짐",
+  "notCovered": [
+    "모든 쪽의 세로 9:16 개별 확인",
+    "실기기 확인"
+  ]
+}
