@@ -1,0 +1,35 @@
+{
+  "id": "seonnyeo.character.picturebook-woodcutter-sheltering-deer-v1",
+  "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-woodcutter-sheltering-deer.png",
+  "sourceSha256": "c6be63c6e9456af72ea346a241e9cc99a7b97a60e8e4759ecc16200a0896bc67",
+  "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-woodcutter-sheltering-deer.webp",
+  "outputSha256": "1c3d1c63aaf0fb9da1a622822a584d8e54fed8c4c75159a7e9e547d286a67fa5",
+  "referenceRevisions": {
+    "seonnyeo.character.M02-concerned": "67ebad2c4d75d95a9e3949533170606b5e5f6588903fd54d49c9aee0d6e98bf9",
+    "seonnyeo.character.classic-deer": "d8f5f11837d0667183625805dca02f689022b9765fec4a415099f21adff6eb75",
+    "seonnyeo.scene.shortstory-classic-01": "88e2b3756295e61ae1c58644c616f1894ad6ba87a04ffc5a494fdff88d1f4e08"
+  },
+  "normalization": {
+    "alphaNoiseThreshold": 8,
+    "crop": [
+      138,
+      11,
+      1384,
+      996
+    ],
+    "size": [
+      898,
+      710
+    ],
+    "offset": [
+      151,
+      442
+    ],
+    "alphaBounds": [
+      151,
+      442,
+      1049,
+      1152
+    ]
+  }
+}

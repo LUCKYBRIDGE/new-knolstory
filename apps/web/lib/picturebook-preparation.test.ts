@@ -21,17 +21,27 @@ describe('preparing a picture book for KnolStory',()=>{
   expect(preparationSummary(plans,{})).toEqual({pages:8,staged:0,reference:8});
  });
  it('preselects only approved recipes; reviewed-but-unapproved and production-needed pages stay reference only',()=>{
-  const service=planPicturebook(book(),all);
-  expect(service.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual(PICTUREBOOK_RECIPES.recipes.filter(recipe=>recipe.review==='approved').map(recipe=>Number(recipe.sourceAssetId.slice(-2))));
-  const plans=planPicturebook(book(),all,approved);
-  expect(plans.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual([1,2,3,4,5,6,7,8]);
-  // Pages whose recipe is not approved start as reference only, with the reason shown.
-  for(const recipe of PICTUREBOOK_RECIPES.recipes.filter(item=>item.review!=='approved')){
-   const plan=service[Number(recipe.sourceAssetId.slice(-2))-1]!;
-   expect(plan.kind).toBe('reference');
-   expect(plan.reason).toContain(recipe.review==='assembly-review'?'검토 중':'삽화만 참고');
+  const original=book(),service=planPicturebook(original,all);
+  const recipesByIllustration=new Map(PICTUREBOOK_RECIPES.recipes.map(recipe=>[recipe.sourceAssetId,recipe]));
+  for(const [index,originalPage] of original.pages.entries()){
+   const plan=service[index]!,recipe=recipesByIllustration.get(originalPage.backgroundId)!;
+   expect(plan.kind).toBe(recipe.review==='approved'?'recipe':'reference');
+   if(recipe.review!=='approved')expect(plan.reason).toContain(recipe.review==='assembly-review'?'검토 중':'삽화만 참고');
   }
+  const plans=planPicturebook(original,all,approved);
+  expect(plans.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual([1,2,3,4,5,6,7,8]);
   expect(plans[5]).toMatchObject({kind:'recipe',recipe:{stage:{left:[{slot:'rabbit'}],right:[{slot:'turtle'},{slot:'dragonking'}]}}});
+ });
+ it('preselects approved stages in the three additional books and keeps pages under review on reference',()=>{
+  for(const key of ['heungbu','seonnyeo','onggojib'] as const){
+   const original=getShortStoryOriginal(key);
+   const student=planPicturebook(original,all),reviewer=planPicturebook(original,all,reviewRecipeSource());
+   expect(student).toHaveLength(original.pages.length);
+   // Approved after the real-stage review (2026-11-20); 선녀와 나무꾼 5쪽 waits for a new picture.
+   for(const plan of student)expect(plan.kind).toBe(plan.recipe?.review==='approved'?'recipe':'reference');
+   expect(student.filter(plan=>plan.kind==='reference').length).toBe(key==='seonnyeo'?1:0);
+   expect(reviewer.every(plan=>plan.kind==='recipe'&&plan.recipe?.stage)).toBe(true);
+  }
  });
  it('swaps one role on one page and keeps every other page’s choice; revert restores only that page',()=>{
   const plans=planPicturebook(book(),all,approved),third=plans[2]!,fifth=plans[4]!;

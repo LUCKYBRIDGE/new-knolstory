@@ -1,0 +1,14 @@
+{
+  "id": "seonnyeo.background.picturebook-cloud-ascent-v1",
+  "method": "imagegen reference edit, RGB crop and resize, WebP quality 94",
+  "sourceFile": "assets/source/backgrounds/picturebook-v1/seonnyeo-cloud-ascent.png",
+  "sourceSha256": "652ed28f6df9d647214d421ed1fc63b2a550dcba343b29f6842cf183f43bcc5f",
+  "output": "apps/web/public/assets/backgrounds/picturebook-v1/seonnyeo-cloud-ascent.webp",
+  "outputSha256": "9c320814e8856a14e62e93e8f1892028b1661d5af818ca85255cd1f83624b3f3",
+  "referenceRevisions": {
+    "seonnyeo.scene.shortstory-classic-06": "93ea7810810ac88640e6b2abe3e1ee918571088d60159168550ca309213557d7",
+    "seonnyeo.background.classic-sky-realm": "d2a7949ff942432aba02b48ccd79ac2e9f1feec8753afa87ebd85ed6cb7ebe05"
+  },
+  "width": 1280,
+  "height": 720
+}

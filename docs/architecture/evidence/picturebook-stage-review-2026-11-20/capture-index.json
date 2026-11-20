@@ -1,0 +1,926 @@
+{
+  "aspectModes": {
+    "landscape": "1280×720 Ren’Py 편집",
+    "portrait": "720×1280 Ren’Py 읽기"
+  },
+  "status": "assembly-review",
+  "captures": [
+    {
+      "book": "heungbu",
+      "page": 1,
+      "orientation": "landscape",
+      "file": "heungbu-01-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.nolbu-mansion.webp",
+      "actors": [
+        "L1",
+        "L2",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 4,
+      "sha256": "46efb624c7b7905f5000d050bc35325d65eca048701e6a62bb2c8c4aaf3b636f",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 1,
+      "orientation": "portrait",
+      "file": "heungbu-01-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.nolbu-mansion.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 14,
+      "sha256": "0c5d4841a9502543e9d9b2baa0aa33791d9dcc2ce240f76a4ea6efc0cfeda190",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 2,
+      "orientation": "landscape",
+      "file": "heungbu-02-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.family-room.webp",
+      "actors": [
+        "L1",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 5,
+      "sha256": "b122073299c2febea758bd879ebaef3db0f2353bcb00c9b89fba4230a31e4f25",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 2,
+      "orientation": "portrait",
+      "file": "heungbu-02-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.family-room.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 15,
+      "sha256": "c7fbae420e595219bda2336dd5160474f37a6fd42e63d640194c1a5d7e4e1579",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 3,
+      "orientation": "landscape",
+      "file": "heungbu-03-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.heungbu-swallow-eaves.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 6,
+      "sha256": "14a9b956d6da7a5f188595fd0ec350f97e5b3a3daf145a1ed8ab24712bc85e6c",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 3,
+      "orientation": "portrait",
+      "file": "heungbu-03-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.heungbu-swallow-eaves.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 16,
+      "sha256": "53c5a6e3af1ea7f665e867b4047776d23bad19e0d6b410f1ba88620f237b16b9",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 4,
+      "orientation": "landscape",
+      "file": "heungbu-04-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.spring-field.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 7,
+      "sha256": "6b550435a53ee8bee2bc38f0b5b73458bf691c9bcff3df3fb2a973c9737b8fa0",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 4,
+      "orientation": "portrait",
+      "file": "heungbu-04-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.spring-field.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 17,
+      "sha256": "1bc9101fd73398536455048d6f752f7112ada9bde0af0e23c8d2161e2aeb7f4a",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 5,
+      "orientation": "landscape",
+      "file": "heungbu-05-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.scene.gourd-treasure-burst.webp",
+      "actors": [
+        "L1",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 8,
+      "sha256": "9df339ac495209409c15f602a8d75477915dfed33b27e48fed22ed56e28faf1e",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 5,
+      "orientation": "portrait",
+      "file": "heungbu-05-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.scene.gourd-treasure-burst.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 18,
+      "sha256": "5d0a2777957b0212ba31247c4cbdf093f970220c8c93014dcb0e14e357f66004",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 6,
+      "orientation": "landscape",
+      "file": "heungbu-06-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.nolbu-swallow-eaves.webp",
+      "actors": [
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 9,
+      "sha256": "f7936b2f6a9c5714bc7dbae603e431aaac235901481f5e8f5cacbc7bd0ba2b8d",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 6,
+      "orientation": "portrait",
+      "file": "heungbu-06-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.nolbu-swallow-eaves.webp",
+      "actors": [
+        "R1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 19,
+      "sha256": "00f961bb22e30b9be1fb41ef96d261733dee1f2e6081a559823aca2d6e8a67b4",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 7,
+      "orientation": "landscape",
+      "file": "heungbu-07-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.nolbu-ruined-yard.webp",
+      "actors": [
+        "L1",
+        "L2",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 10,
+      "sha256": "d8ea5b49342be0d611623606442b779ac200dee76f1d4ddc400e969d6baf8f32",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 7,
+      "orientation": "portrait",
+      "file": "heungbu-07-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.nolbu-ruined-yard.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 20,
+      "sha256": "c986d0fdb5c836797d9cc7da3d18fe01cc35d365da4bc38459a576539a995365",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 8,
+      "orientation": "landscape",
+      "file": "heungbu-08-landscape.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.two-houses-path.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 11,
+      "sha256": "8a0c9f430a0d2f199639cbcc5e599d913a7fdb909d76fe8106e419c0f9eb294e",
+      "recipeVersion": 1
+    },
+    {
+      "book": "heungbu",
+      "page": 8,
+      "orientation": "portrait",
+      "file": "heungbu-08-portrait.png",
+      "background": "assets/legacy-18da4fc/heungbu.background.two-houses-path.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 21,
+      "sha256": "693e9a98eec94fd20d79a2244157866adf70fa1b2e2a487eb94ded0733eb5718",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 1,
+      "orientation": "landscape",
+      "file": "seonnyeo-01-landscape.png",
+      "background": "assets/legacy-18da4fc/BG-forest-roots.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 4,
+      "sha256": "b4da4966591adce3793d814256660debe3be6dcec456bc373b632e3a5d729c5e",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 1,
+      "orientation": "portrait",
+      "file": "seonnyeo-01-portrait.png",
+      "background": "assets/legacy-18da4fc/BG-forest-roots.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 16,
+      "sha256": "1c300fee019fb9e67a6563a90b9c51a99d92207ca3b82409d6907c60981c10a2",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 2,
+      "orientation": "landscape",
+      "file": "seonnyeo-02-landscape.png",
+      "background": "assets/legacy-18da4fc/BG-roots-robe.webp",
+      "actors": [
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 5,
+      "sha256": "c98d89aab318dfe45506e770f1814d9996ba99547aa6043069459a39ca8abbc3",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 2,
+      "orientation": "portrait",
+      "file": "seonnyeo-02-portrait.png",
+      "background": "assets/legacy-18da4fc/BG-roots-robe.webp",
+      "actors": [
+        "R1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 17,
+      "sha256": "a36582f0f669363fe74962aa02ba6f755d29e48d4648183ffb6e7e937a1d24f2",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 3,
+      "orientation": "landscape",
+      "file": "seonnyeo-03-landscape.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 6,
+      "sha256": "d1f3d406bd3899c490ef826b0a0bd31d82db08593401dbecb811234daf0b8306",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 3,
+      "orientation": "portrait",
+      "file": "seonnyeo-03-portrait.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 18,
+      "sha256": "f2bc22b5ed83da6f3a3bd0b25e2abfb775ece619f4b797344eac9b986a4f9132",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 4,
+      "orientation": "landscape",
+      "file": "seonnyeo-04-landscape.png",
+      "background": "assets/legacy-18da4fc/BG09-room-day.webp",
+      "actors": [
+        "L1",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 7,
+      "sha256": "24deb50e7a95cb27e4f04358c81c76b9e37beb8520db11ae28ede699b9fff3ae",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 4,
+      "orientation": "portrait",
+      "file": "seonnyeo-04-portrait.png",
+      "background": "assets/legacy-18da4fc/BG09-room-day.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 19,
+      "sha256": "ae81e5fa1bc1eaa5e907004efc50eba3ad8761ca0214a91d4ca667b2aee8e1da",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 5,
+      "orientation": "landscape",
+      "file": "seonnyeo-05-landscape.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 8,
+      "sha256": "8e8cb885b015706cd3f51c29925a45dd937d4d285316e20f6779ab5de4a3da7f",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 5,
+      "orientation": "portrait",
+      "file": "seonnyeo-05-portrait.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 20,
+      "sha256": "7e1692f1c58647f4bb156e09e1ec8d85d31259b903b763346ea1a18f1d7179a1",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 6,
+      "orientation": "landscape",
+      "file": "seonnyeo-06-landscape.png",
+      "background": "assets/backgrounds/picturebook-v1/seonnyeo-cloud-ascent.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 5,
+      "sha256": "3ab978b5c53f98691ff7caadde76ecd7c97d4ee4b9399812370caaf27908e94c",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 6,
+      "orientation": "portrait",
+      "file": "seonnyeo-06-portrait.png",
+      "background": "assets/backgrounds/picturebook-v1/seonnyeo-cloud-ascent.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 7,
+      "sha256": "f56660efc3a2f7ce3e67e68bf4369af2217457590e931582c4e7e30b757b78c5",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 7,
+      "orientation": "landscape",
+      "file": "seonnyeo-07-landscape.png",
+      "background": "assets/legacy-18da4fc/seonnyeo.background.classic-sky-realm.webp",
+      "actors": [
+        "L1",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 10,
+      "sha256": "d1053bec7d4ea8945ea8882cd63de55ad1b380bf6f170ff28193adae85eb7310",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 7,
+      "orientation": "portrait",
+      "file": "seonnyeo-07-portrait.png",
+      "background": "assets/legacy-18da4fc/seonnyeo.background.classic-sky-realm.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 22,
+      "sha256": "1f687a3fac4d3ff7a3200b00c04a86967447e2a025090b03b895f3e1920c4f4d",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 8,
+      "orientation": "landscape",
+      "file": "seonnyeo-08-landscape.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 11,
+      "sha256": "e0b8bdb17f74ffde19d9f0a770fe4d0fad730fd417b056ba0e52012111510eef",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 8,
+      "orientation": "portrait",
+      "file": "seonnyeo-08-portrait.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 23,
+      "sha256": "34e9cc4ca67db95e36a75e9212c6bbca62710c5f1a520f17e4800c5671ed37f8",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 9,
+      "orientation": "landscape",
+      "file": "seonnyeo-09-landscape.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 12,
+      "sha256": "0a7fa32b263ad819dad91ef0bae217fd68956d55ea1522952d9c5a323d50411e",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 9,
+      "orientation": "portrait",
+      "file": "seonnyeo-09-portrait.png",
+      "background": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 24,
+      "sha256": "be155ba23b924b23efe384898e576666e9fe901f4f7a88e754989a4e54660bf0",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 10,
+      "orientation": "landscape",
+      "file": "seonnyeo-10-landscape.png",
+      "background": "assets/legacy-18da4fc/BG06-cottage-autumn.webp",
+      "actors": [
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 13,
+      "sha256": "3bcfa4fe66f416f61b7240ed016e2162ea2faac2f5ac20b3ba689c2903d00521",
+      "recipeVersion": 1
+    },
+    {
+      "book": "seonnyeo",
+      "page": 10,
+      "orientation": "portrait",
+      "file": "seonnyeo-10-portrait.png",
+      "background": "assets/legacy-18da4fc/BG06-cottage-autumn.webp",
+      "actors": [
+        "R1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 25,
+      "sha256": "43af346d03295d2c58621a0de5577a05feabd266d903e21e36acde6321ba2a45",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 1,
+      "orientation": "landscape",
+      "file": "onggojib-01-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-gate-threshold.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 4,
+      "sha256": "288e95b40705668f1b23e7031175dd8e96100c92230e90af8486d48846c6eb98",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 1,
+      "orientation": "portrait",
+      "file": "onggojib-01-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-gate-threshold.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 16,
+      "sha256": "8ab2639930908277fae105d096c64150f045c5baa18cbbfb2805bee8419450d0",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 2,
+      "orientation": "landscape",
+      "file": "onggojib-02-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-gate-threshold.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 7,
+      "sha256": "433ab9479617b11074d498e427d189cca6ea49ef643cc52e1e2be4dc2f280d91",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 2,
+      "orientation": "portrait",
+      "file": "onggojib-02-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-gate-threshold.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 17,
+      "sha256": "8ab2639930908277fae105d096c64150f045c5baa18cbbfb2805bee8419450d0",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 3,
+      "orientation": "landscape",
+      "file": "onggojib-03-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-hermitage.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 8,
+      "sha256": "1662fe56458a25af5b61be0b9fb56a91c60d60a868affaf16730d7d81d485cec",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 3,
+      "orientation": "portrait",
+      "file": "onggojib-03-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-hermitage.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 18,
+      "sha256": "1da73bee3cdffcb47027a79216d20fba0b60fe8aa1b601680a91d790039e3afd",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 4,
+      "orientation": "landscape",
+      "file": "onggojib-04-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.spring-room-pixel.webp",
+      "actors": [
+        "L1",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 9,
+      "sha256": "78a4a05f0bd57501a27a458d875b2c0ce993d416bf1a1e32ca343bbc1215015f",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 4,
+      "orientation": "portrait",
+      "file": "onggojib-04-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.spring-room-pixel.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 19,
+      "sha256": "75606de0d83ada686e0ece602ddcf118fa1f206106df386d532daf265be0dc11",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 5,
+      "orientation": "landscape",
+      "file": "onggojib-05-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-court-records.webp",
+      "actors": [
+        "L1",
+        "L2",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 10,
+      "sha256": "e4f644c938847799d4156b587757447eb04eb1a876377b659b7afba120aa8e96",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 5,
+      "orientation": "portrait",
+      "file": "onggojib-05-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-court-records.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 20,
+      "sha256": "9a2a27f35a8973e37324dad0921c980623efc4bac9256ab0fa2ffe01996791d7",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 6,
+      "orientation": "landscape",
+      "file": "onggojib-06-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-poor-threshold.webp",
+      "actors": [
+        "L1",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 11,
+      "sha256": "5114c01db2781bbab8f4a06fe5b5ddf76316b7c4f8f1f40d467dc0785014b695",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 6,
+      "orientation": "portrait",
+      "file": "onggojib-06-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-poor-threshold.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 21,
+      "sha256": "9a4317cf7e7f058db5dc690a25a67db9bc464f35d9af589da431afb9ca2f586e",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 7,
+      "orientation": "landscape",
+      "file": "onggojib-07-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.spring-room-pixel.webp",
+      "actors": [
+        "L1",
+        "R1",
+        "R2"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 12,
+      "sha256": "bb157d9e7fdcaf8ba6bcf7f717ea2ad5145c83f4a597dbf14fadc182fa40591c",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 7,
+      "orientation": "portrait",
+      "file": "onggojib-07-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.spring-room-pixel.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 22,
+      "sha256": "9ca966a5deda7f406f265d257bb45ecad0bed7e7fa9054231a57c91b2f036337",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 8,
+      "orientation": "landscape",
+      "file": "onggojib-08-landscape.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-open-house-empty.webp",
+      "actors": [
+        "L1",
+        "L2",
+        "R1"
+      ],
+      "canvas": [
+        1280,
+        720
+      ],
+      "renderedRevision": 5,
+      "sha256": "63886c52aa7ff3fcc94486743a262c7efe4b7f37fe38460bc6f96261d1f7e4dc",
+      "recipeVersion": 1
+    },
+    {
+      "book": "onggojib",
+      "page": 8,
+      "orientation": "portrait",
+      "file": "onggojib-08-portrait.png",
+      "background": "assets/legacy-18da4fc/onggojib.background.classic-open-house-empty.webp",
+      "actors": [
+        "L1"
+      ],
+      "canvas": [
+        720,
+        1280
+      ],
+      "renderedRevision": 7,
+      "sha256": "4b5ea1e25d306dd4735ad8f488933399f143bb04dd31a8b656cd6d34b9a306f6",
+      "recipeVersion": 1
+    }
+  ]
+}

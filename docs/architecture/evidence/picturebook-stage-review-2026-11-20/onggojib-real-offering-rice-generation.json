@@ -1,0 +1,34 @@
+{
+  "id": "onggojib.character.picturebook-real-offering-rice-v1",
+  "sourceFile": "assets/source/characters/picturebook-v1/onggojib-real-offering-rice.png",
+  "sourceSha256": "a926b008f1054e3bc5247aee73992d664bfe0f2241130082a9b07caee33eecf2",
+  "output": "apps/web/public/assets/characters/picturebook-v1/onggojib-real-offering-rice.webp",
+  "outputSha256": "1d9ac2364fc7ddaf5d192a378a735c1c460c342f2a22193a77e788b1709fd5e0",
+  "referenceRevisions": {
+    "onggojib.character.real-remorse-consistent-pixel": "6d899e4cc9e8d582793bcf5253a7ec952e6b29ceabb2fee3f950d3d9dc6b0c31",
+    "onggojib.scene.shortstory-classic-08": "36b3aeefcc07f9111764f8007d9d7a3cb04fb216ad318ca5cb6e0d70553f1562"
+  },
+  "normalization": {
+    "alphaNoiseThreshold": 8,
+    "crop": [
+      86,
+      84,
+      923,
+      1481
+    ],
+    "size": [
+      533,
+      890
+    ],
+    "offset": [
+      133,
+      262
+    ],
+    "alphaBounds": [
+      133,
+      262,
+      666,
+      1152
+    ]
+  }
+}

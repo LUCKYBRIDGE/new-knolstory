@@ -1,0 +1,34 @@
+{
+  "id": "heungbu.character.picturebook-empty-grain-bowl-v1",
+  "sourceFile": "assets/source/characters/picturebook-v1/heungbu-empty-grain-bowl.png",
+  "sourceSha256": "e313a6b9b80857dfb8b4b8ec49b7f9eb143d84cb8bb1fa3eed956978c08b4ccd",
+  "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-empty-grain-bowl.webp",
+  "outputSha256": "c067d26c908c7062449d7225b0eae39c99a0243f2aff7f51c46c11e90c1facbf",
+  "referenceRevisions": {
+    "heungbu.character.wife-heungbu-worried": "e47f176597b59a8650991784e178fcb6b122fbeb7dc153512fe4e9256fcfc039",
+    "heungbu.scene.shortstory-classic-02": "8553543d226fc858bd8150de43b33e52603b4a0e6b84483462552e97e7561927"
+  },
+  "normalization": {
+    "alphaNoiseThreshold": 8,
+    "crop": [
+      224,
+      83,
+      812,
+      1499
+    ],
+    "size": [
+      394,
+      950
+    ],
+    "offset": [
+      203,
+      202
+    ],
+    "alphaBounds": [
+      203,
+      202,
+      597,
+      1152
+    ]
+  }
+}

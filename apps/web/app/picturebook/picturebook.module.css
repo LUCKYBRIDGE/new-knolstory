@@ -14,7 +14,7 @@
 .pickTools{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .pickTools strong{flex:1 1 100%;font-size:var(--text-small)}
 .pickTools button{min-height:44px;font-size:var(--text-small)}
-.pages{display:grid;gap:8px;max-height:calc(100dvh - 240px);overflow:auto;padding:0 4px 0 0;margin:0;list-style:none}
+.pages{display:grid;gap:8px;padding:0 4px 0 0;margin:0;list-style:none}
 .pages li{display:grid;grid-template-columns:40px minmax(0,1fr);align-items:stretch;border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:hidden}
 .pages li[data-picked=true]{border-color:var(--mint-strong)}
 .pages li[data-picked=false] button{opacity:.6}

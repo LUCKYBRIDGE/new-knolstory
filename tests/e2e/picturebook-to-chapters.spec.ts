@@ -192,3 +192,20 @@ test('선생님이 새 작품 만들기를 막으면 새 놀스토리로는 보�
  await expect(blocked.getByRole('button',{name:'놀스토리로 보내기',exact:true})).toBeDisabled();
  expect(await workspace(blocked)).toBeNull();
 });
+
+test('PC의 쪽 목록 맨 아래를 보내기 버튼줄 위에서 선택할 수 있다', async ({ page }) => {
+ await page.setViewportSize({ width: 1280, height: 720 });
+ await account(page);
+ await ownRabbitAtPage4(page);
+ await prepare(page);
+ const panel = page.getByRole('region', { name: '보낼 쪽 고르기' });
+ const list = panel.getByRole('list');
+ const last = panel.getByRole('button', { name: /^8쪽 ·/ });
+ await expect(list).toHaveCSS('overflow-y', 'visible');
+ await last.evaluate(node => node.scrollIntoView({ block: 'center' }));
+ const bottom = await last.boundingBox();
+ const footer = await page.locator('main > footer').boundingBox();
+ expect(bottom!.y + bottom!.height).toBeLessThanOrEqual(footer!.y);
+ await last.click();
+ await expect(last).toHaveAttribute('aria-current', 'page');
+});

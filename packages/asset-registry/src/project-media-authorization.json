@@ -10103,6 +10103,58 @@
         "docs/architecture/picturebook-image-production-requests.md"
       ],
       "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
+    },
+    {
+      "file": "apps/web/public/assets/backgrounds/picturebook-v1/seonnyeo-cloud-ascent.webp",
+      "sha256": "9c320814e8856a14e62e93e8f1892028b1661d5af818ca85255cd1f83624b3f3",
+      "assetIds": [
+        "seonnyeo.background.picturebook-cloud-ascent-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-stage-review-2026-11-20/seonnyeo-aerial-generation.json",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/heungbu-empty-grain-bowl.webp",
+      "sha256": "c067d26c908c7062449d7225b0eae39c99a0243f2aff7f51c46c11e90c1facbf",
+      "assetIds": [
+        "heungbu.character.picturebook-empty-grain-bowl-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-stage-review-2026-11-20/heungbu-empty-grain-bowl-generation.json",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-woodcutter-sheltering-deer.webp",
+      "sha256": "1c3d1c63aaf0fb9da1a622822a584d8e54fed8c4c75159a7e9e547d286a67fa5",
+      "assetIds": [
+        "seonnyeo.character.picturebook-woodcutter-sheltering-deer-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-stage-review-2026-11-20/seonnyeo-woodcutter-sheltering-deer-generation.json",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/onggojib-real-offering-rice.webp",
+      "sha256": "1d9ac2364fc7ddaf5d192a378a735c1c460c342f2a22193a77e788b1709fd5e0",
+      "assetIds": [
+        "onggojib.character.picturebook-real-offering-rice-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-stage-review-2026-11-20/onggojib-real-offering-rice-generation.json",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
     }
   ]
 }
