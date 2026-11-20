@@ -3,12 +3,13 @@ import {audioPreviewPaths,compileStoryScene,createPlayback,orderedLines,restoreP
 import {workFingerprint} from './workspace-checks';
 import {normalizeEditingPath} from './editor-navigation';
 import {normalizePreviewProfile,type PreviewProfile} from './story-viewport';
+import {parsePicturebookLinks,type PicturebookLinks} from './picturebook-links';
 export const WORKSPACE_KEY='knolstory-next-workspace-v1';
 export type WorkspaceView='home'|'library'|'prepare'|'editor'|'book'|'cover';
 export type EditorTool='text'|'assets'|'flow'|'presentation'|'cuts'|'writer'|null;
 export type WorkContext=Readonly<{lineId:string;editingPath?:readonly string[];editorView:'cut'|'writer';activeTool:EditorTool;writerChapterId:string|null;previewProfile:PreviewProfile;playback?:PlaybackState;hasRead:boolean}>;
 export type WorkspaceDeletedWork=Readonly<{key:string;project:StoryProject;context?:WorkContext}>;
-export type WorkspaceState=Readonly<{deletedWork?:WorkspaceDeletedWork;storyId:string;lineId:string;editingPath?:readonly string[];mode:'edit'|'play';playback:PlaybackState;editorView:'cut'|'writer';activeTool:EditorTool;writerChapterId:string|null;previewProfile:PreviewProfile;view:WorkspaceView}>;
+export type WorkspaceState=Readonly<{deletedWork?:WorkspaceDeletedWork;picturebookLinks?:PicturebookLinks;storyId:string;lineId:string;editingPath?:readonly string[];mode:'edit'|'play';playback:PlaybackState;editorView:'cut'|'writer';activeTool:EditorTool;writerChapterId:string|null;previewProfile:PreviewProfile;view:WorkspaceView}>;
 export type WorkContexts=Readonly<Record<string,WorkContext>>;
 export function preflight(project:StoryProject){
  const cuts=orderedLines(project);if(!cuts.length)throw Error('편집할 컷이 없는 작품이에요.');
@@ -38,11 +39,12 @@ export function writeWorkspace(storage:Pick<Storage,'setItem'>,project:StoryProj
  // The top-level document is the active work. Existing v2 readers merge it into works on read,
  // so store only other works here instead of spending the browser quota on the same manuscript twice.
  const otherDocuments=Object.fromEntries(Object.entries(nextWorks).filter(([id])=>id!==state.storyId).map(([id,work])=>[id,documentFor(work)]));
- const data={workspaceVersion:2,...state,deletedWork:state.deletedWork?{key:state.deletedWork.key,context:state.deletedWork.context,document:documentFor(state.deletedWork.project)}:undefined,document:documentFor(project),works:otherDocuments,contexts:nextContexts};
+ // Picture-book links travel in this same write, so a work and its link are kept or lost together.
+ const data={workspaceVersion:2,...state,picturebookLinks:state.picturebookLinks&&Object.keys(state.picturebookLinks).length?state.picturebookLinks:undefined,deletedWork:state.deletedWork?{key:state.deletedWork.key,context:state.deletedWork.context,document:documentFor(state.deletedWork.project)}:undefined,document:documentFor(project),works:otherDocuments,contexts:nextContexts};
  storage.setItem(WORKSPACE_KEY,JSON.stringify(data));return {works:nextWorks,contexts:nextContexts};
 }
 /** Additive reader: the original key and document envelope remain readable by older hosts. */
-export function readWorkspace(raw:string,options:WorkspaceCheckOptions={}):{deletedWork?:WorkspaceDeletedWork;project:StoryProject;storyId:string;works:Record<string,StoryProject>;contexts:Record<string,WorkContext>;view:WorkspaceView;playback:PlaybackState;mode:'play'|'edit';warning:string;checked:string[]}{
+export function readWorkspace(raw:string,options:WorkspaceCheckOptions={}):{picturebookLinks:PicturebookLinks;deletedWork?:WorkspaceDeletedWork;project:StoryProject;storyId:string;works:Record<string,StoryProject>;contexts:Record<string,WorkContext>;view:WorkspaceView;playback:PlaybackState;mode:'play'|'edit';warning:string;checked:string[]}{
  const value:unknown=JSON.parse(raw);if(!value||typeof value!=='object'||Array.isArray(value))throw Error('기기 저장 형식을 확인해 주세요. 원본은 보존해요.');
  const stored=value as Record<string,unknown>;
  if(stored.workspaceVersion!==undefined&&stored.workspaceVersion!==2)throw Error('이 기기 저장은 다른 버전에서 만들어졌어요. 원본은 보존해요.');
@@ -72,5 +74,6 @@ export function readWorkspace(raw:string,options:WorkspaceCheckOptions={}):{dele
   for(const fingerprint of recovery.checked)checked.add(fingerprint);
   deletedWork={key:entry.key,project:recovery.project,context:entry.context===undefined?undefined:recovery.contexts[entry.key]};
  }
- return {deletedWork,project,storyId,works:allWorks,contexts,view,playback,mode:stored.mode==='play'?'play' as const:'edit' as const,warning,checked:[...checked]};
+ const picturebookLinks=parsePicturebookLinks(stored.picturebookLinks);
+ return {picturebookLinks,deletedWork,project,storyId,works:allWorks,contexts,view,playback,mode:stored.mode==='play'?'play' as const:'edit' as const,warning,checked:[...checked]};
 }

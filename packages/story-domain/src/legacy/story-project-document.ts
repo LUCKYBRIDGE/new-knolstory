@@ -9,7 +9,7 @@ import {
 export type { StoryDocumentIssue } from "./story-project-validation";
 
 export const STORY_DOCUMENT_TYPE = "story-maker-project" as const;
-export const CURRENT_SCHEMA_VERSION = 8 as const;
+export const CURRENT_SCHEMA_VERSION = 9 as const;
 
 export type StoryDocumentEnvelope = {
   documentType: typeof STORY_DOCUMENT_TYPE;
@@ -120,7 +120,7 @@ function hasBranchCondition(project: unknown): boolean {
   });
 }
 
-function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8): StoryDocumentLoadResult {
+function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9): StoryDocumentLoadResult {
   const issues: StoryDocumentIssue[] = [];
   if (value.documentType !== STORY_DOCUMENT_TYPE) {
     issues.push({
@@ -176,6 +176,10 @@ function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 |
     const nodes=[...(Array.isArray(rawProject.lines)?rawProject.lines:[]),...(Array.isArray(chapters)?chapters:[])];
     if(nodes.some(node=>{if(!node||typeof node!=='object')return false;const audio=(node as {audio?:{music?:{action?:unknown};ambience?:{action?:unknown}}}).audio;return audio?.music?.action==='sequence'||audio?.ambience?.action==='sequence';}))issues.push({code:'invalid-value',path:'$.project',message:'소리를 순서대로 재생하는 설정은 작품 문서 버전8에서 지원해요.'});
   }
+  if(version<9&&rawProject){
+    const chapters=(rawProject as {chapters?:unknown}).chapters;
+    if(Array.isArray(chapters)&&chapters.some(chapter=>chapter&&typeof chapter==='object'&&Object.hasOwn(chapter,'picturebookSketch')))issues.push({code:'invalid-value',path:'$.project.chapters',message:'장의 출발 그림은 작품 문서 버전9에서 지원해요.'});
+  }
   if (version < 8 && hasBranchCondition(value.project)) {
     issues.push({code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원해요.'});
   }
@@ -210,7 +214,8 @@ export function parseStoryDocument(
     switch(value.schemaVersion) {
       case 1: return parseVersionedDocument(value, 1); // Strict v1 fields, then migrate through normalization.
       case 4: return parseVersionedDocument(value, 4);
-      case 8: return parseVersionedDocument(value, 8);
+      case 9: return parseVersionedDocument(value, 9);
+      case 8: return parseVersionedDocument(value, 8); // v8 has no chapter sketches; it reads unchanged as v9.
       case 7: return parseVersionedDocument(value, 7);
       case 6: return parseVersionedDocument(value, 6);
       case 5: return parseVersionedDocument(value, 5);
@@ -222,6 +227,7 @@ export function parseStoryDocument(
 
   if(Array.isArray(value.lines)&&value.lines.some(line=>line&&typeof line==='object'&&(Object.hasOwn(line,'textVariants')||Object.hasOwn(line,'visibility'))))return failure([{code:'invalid-value',path:'$.project.lines',message:'조건별 글은 작품 문서 버전8에서 지원해요.'}]);
   if (hasBranchCondition(value)) return failure([{code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원해요.'}]);
+  if(Array.isArray(value.chapters)&&value.chapters.some(chapter=>chapter&&typeof chapter==='object'&&Object.hasOwn(chapter,'picturebookSketch')))return failure([{code:'invalid-value',path:'$.project.chapters',message:'장의 출발 그림은 작품 문서 버전9에서 지원해요.'}]);
 
   // Unversioned legacy projects cannot opt into a v5-only interpretation.
   if (Array.isArray(value.lines) && value.lines.some(line => line && typeof line === "object" && "backgroundMode" in line)) {

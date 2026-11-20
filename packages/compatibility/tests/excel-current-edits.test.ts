@@ -9,7 +9,9 @@ it('preserves the entire archive after native Excel text and visibility-score ed
   const workbook = new Uint8Array(readFileSync(`${evidenceFolder}/edited.xlsx`));
   const actual = await importAuthoringExcel(workbook);
 
-  expect(actual).toEqual(expected);
+  // The recorded evidence is a document v8 archive; v8 reads unchanged as v9 (no chapter sketches).
+  expect(expected.document.schemaVersion).toBe(8);
+  expect(actual).toEqual({ ...expected, document: { ...expected.document, schemaVersion: 9 } });
   if (actual.format !== 'knolstory') throw new Error('Expected a KnolStory archive');
   expect(actual.document.project.lines[0].text).toBe('Excel에서 고친 본문 001 🌳');
   expect(actual.document.project.lines[1].visibility?.scores?.terms[0].value).toBe(5);

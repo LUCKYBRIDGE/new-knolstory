@@ -22,7 +22,7 @@ it('preserves separate ordered click cues, IDs, exact choice conditions and the 
  const {original,document,effects}=fixture(),before=JSON.stringify(original),authored=JSON.stringify(document);
  const parsed=parseStoryDocument(document);expect(parsed.ok).toBe(true);
  const archive=await createAuthoringArchive({format:'knolstory',document});
- expect(archive.formatVersion).toBe(2);expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(8);
+ expect(archive.formatVersion).toBe(2);expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(9);
  expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
  const workbook=await exportAuthoringWorkbook(archive),table=workbook.tables.presentationEffects;
  expect(workbook.formatVersion).toBe(9);

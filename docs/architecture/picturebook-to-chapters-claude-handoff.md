@@ -32,3 +32,20 @@ Claude는 변환·저장·파일 형식·권한·추천/미리보기 UI·기존 
 ## 후속 정책
 
 교사가 두 과제를 연결하는 절차, 다른 기기에서 원본과 새로 연결하는 절차, 네 작품 동시 출시 여부와 신규 그림 수량은 1차 구현의 선결 조건이 아니다. 이 항목은 사용자 결정과 검증 근거를 남긴 뒤 확장한다.
+
+## 구현 현황 — 2026-11-20
+
+1차 시스템(이미지 제작 제외)을 구현했다. 검증 근거는 [checkpoint](evidence/picturebook-chapters-2026-11-20/checkpoint.json).
+
+| 영역 | 구현 | 검사 |
+|---|---|---|
+| 파일 형식 | StoryDocument v9 `chapter.picturebookSketch`, v8 읽기, 표 ‘장 출발 그림’ 탭, 자료 검사, 분할·갈래 시 원래 장에만 보존. [저장 계약](authoring-storage-contract.md#장-출발-그림과-그림책-연결--2026-11-20) | `packages/compatibility/tests/picturebook-sketch-format.test.ts`, `picturebook-browser-reopen.test.ts`, 전체 필드 변형 |
+| 쪽→장 변환 | `packages/runtime-core/src/picturebook-chapters.ts` — 주입 ID, 쪽 순서, 빈 첫 컷, 명시적 빈 무대, 한도 초과는 쪽별 안내, Runtime Core 순차 재생·종료 검사 | `packages/runtime-core/tests/picturebook-chapters.test.ts` |
+| 추천 | `packages/asset-registry/src/picturebook-stage-recipes.json`(원화 ID+revision 키) · `picturebook-recipes.ts`. 승인 1·3·4·5·7·8쪽, 조립 검토 2쪽(제작 요청 4 대기), 참고 전용 6쪽. 검토자는 `/picturebook?review=recipes`로 승인 전 조합을 실제 무대에서 볼 수 있다(만들기 불가) | `packages/asset-registry/tests/picturebook-recipes.test.ts`(리비전·권리) |
+| 준비 화면 | `/picturebook` — 쪽 목록, 원화와 Ren’Py 첫 컷 미리보기(가로 편집·세로 읽기), 추천/직접 꾸민 무대/원화 참고, 다른 그림(역할별 3개), 복합 자세 중복 방지, 이 쪽만 되돌리기. 선택은 탭 안에서 쪽 ID로 보관 | `apps/web/lib/picturebook-preparation.test.ts` |
+| 생성·재열기 | 그림책 보관 → 요청 → 작업 공간 writer 확보 → 최신 색인 재확인 → 원고+색인 한 번에 저장 → 해당 장 첫 컷. 재진입은 마지막 집필 컷 | `apps/web/lib/picturebook-create.test.ts`, `tests/e2e/picturebook-to-chapters.spec.ts` |
+| 계정·권한 | 소유 범위별 색인, 계정·학급 확인 실패 시 생성 차단, 새 작품 금지·지정 작품·그림/인물 권한 변경 시 차단, 제출·과제 분량 미변경 | 위 두 검사 |
+| 편집기 | 현재 장의 ‘그림책 구상’(원래 글·출발 그림, 누락 자료 안내) | e2e 1280 |
+
+남은 이미지 제작은 [이미지 제작 요청](picturebook-image-production-requests.md)에 있다. 다른 세 작품의 조합 검토, 교사 과제 연결, 기기 간 출처 재연결은 후속 결정이다.
+

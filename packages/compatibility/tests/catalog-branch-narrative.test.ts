@@ -56,7 +56,7 @@ describe('reviewed catalog choice memory',()=>{
   let changed=0;for(const entry of [...representativeStories,...classicStories]){
    const before=prior(entry.project),after=resolveProvidedCatalogStory(entry.project,before);changed+=after.lines.filter((l,i)=>l.text!==before.lines[i].text).length;
    const edited={...before,title:before.title+' 내가 편집함'};expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);
-   const document={documentType:'story-maker-project' as const,schemaVersion:8 as const,savedAt:'2026-11-01T00:00:00.000Z',appVersion:'test',project:after};
+   const document={documentType:'story-maker-project' as const,schemaVersion:9 as const,savedAt:'2026-11-01T00:00:00.000Z',appVersion:'test',project:after};
    const archive=await createAuthoringArchive({format:'knolstory',document});expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
   }expect(changed).toBe(9);
  },60000);

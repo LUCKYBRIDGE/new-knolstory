@@ -75,6 +75,12 @@ workbook의 연출 효과 표에는 ‘클릭 순서’ 열을 추가한다. 이
 
 2026-10-29 웹 연결 후속: 파일 확인의 원고 비교는 객체 키 삽입 순서를 작성 내용으로 취급하지 않는다. 실제 값·배열 순서·현재 원고와 늦은 저장의 차이는 유지한다. 같은 문서 뒤로가기를 승인하면 새 URL을 쌓지 않고 원래 방문 이력 항목으로 돌아가며, 완료 후 다음 변경도 다시 보호한다. 승인된 이동을 기다릴 때 버튼·Escape는 잠가 늦은 이동을 취소로 오해하지 않도록 한다. [구현·검증](evidence/web-editor-connections-2026-10-29/checkpoint.json).
 
+## 장 출발 그림과 그림책 연결 — 2026-11-20
+
+StoryDocument v9는 장에 선택 항목 `picturebookSketch`(`backgroundId`·`leftAssetId`·`rightAssetId`, 선택적 `recipeVersion`)를 더한다. 그림책 쪽에서 만든 장의 출발 그림이며 등록 자료 ID만 담고 이미지·계정·기기 정보는 담지 않는다. 편집에서만 펼쳐 보고 읽기·재생과 Ren’Py 장면에는 내보내지 않는다. 세 ID가 모두 비었거나 알 수 없는 항목이 있으면 거부한다. v8 이하 문서에 이 항목이 있으면 버리지 않고 가져오기를 멈추며, 항목 없는 v8 문서는 의미 그대로 v9로 읽는다. 파일·표(‘장 출발 그림’ 탭, 이전 표에는 빈 탭으로 보충)·Excel·JSONB가 같은 값을 왕복하고, 출발 그림 ID는 서비스 등록 자료 검사(`assertCatalogOnlyMedia`)를 받는다. 갈래·선택 장·분할로 새로 생긴 장은 출발 그림을 물려받지 않고 원래 장에만 남는다.
+
+그림책→놀스토리 연결 색인은 작업 공간 스냅샷(`knolstory-next-workspace-v1`)의 `picturebookLinks`에 둔다. 키는 `소유 범위|그림책 ID`(소유 범위는 `account:<계정>` 또는 `device`)이고 값은 대상 작품 키와 쪽 ID→장·첫 컷 ID다. 원고와 색인은 한 번의 저장으로 함께 쓰이므로 둘 중 하나만 남지 않는다. 그림책 화면의 ‘이대로 놀스토리 만들기’ 요청은 `knolstory-picturebook-requests-v1`에 하루 동안 두고 주소에는 짧은 요청 ID만 싣는다. 요청마다 예정 작품 ID가 정해져 있어 재시도는 같은 작품을 열고, 다른 요청이 같은 그림책을 가리키면 이미 연결된 작품을 연다. 연결된 작품이 삭제됐거나 이 기기에 없으면 자동으로 다시 만들지 않는다. 손상된 색인은 다른 작업 공간 손상과 같이 원본을 보존하고 읽기를 멈춘다. 외부 작품 파일에는 연결 색인을 넣지 않는다. 동작·검증은 [전환 구현 인계](picturebook-to-chapters-claude-handoff.md#구현-현황--2026-11-20)에 있다.
+
 ## 하나의 저작 문서
 
 놀스토리의 콘텐츠 SSOT는 StoryDocument이고 숏스토리는 ShortStoryProject이다. 도메인 문서 schemaVersion, 공식 교환 formatVersion, 향후 API payloadVersion, 서버 저장 revision은 서로 다른 버전이다. 표 행은 독립 서버 저장 모델이 아니며 같은 저작 문서를 편집하는 표현이다. 서버가 Flow·StageComposition·연출을 다시 해석하지 않는다. Core→Ren’Py 재생과 숏스토리 Web/CSS 경계는 유지한다.
@@ -85,7 +91,7 @@ workbook의 연출 효과 표에는 ‘클릭 순서’ 열을 추가한다. 이
 {
   "format": "knolstory",
   "formatVersion": 2,
-  "document": { "documentType": "story-maker-project", "schemaVersion": 8, "savedAt": "…", "appVersion": "…", "project": {} },
+  "document": { "documentType": "story-maker-project", "schemaVersion": 9, "savedAt": "…", "appVersion": "…", "project": {} },
   "audioResources": []
 }
 ```
@@ -100,7 +106,7 @@ workbook의 연출 효과 표에는 ‘클릭 순서’ 열을 추가한다. 이
 
 ## 현재 Next 작품 보호
 
-`decodeAuthoringArchive`는 현재 Next의 plain StoryDocument(+선택적 audioResources)를 v2 envelope로 감싸는 명시적인 adapter를 제공한다. 문서 v1–v4는 도메인 parser의 기존 schema migration을 사용한다. v5–v7의 명시한 값은 정확히 보존해 현행 v8로 올린다. 이전/현행 plain v5–v8은 명시적인 StageComposition이 있고 인물 상속을 쓰지 않는 컷의 중복된 좌우 Asset ID만 해당 composition에서 다시 계산한 뒤 검증한다. 이는 이전 Next plain 파일의 파생 필드 adapter이며 StageComposition과 저작 데이터는 바꾸지 않는다. 새 공식 v2는 파생 필드를 포함한 명시한 값이 정규화로 바뀌면 계속 거부한다. 원본 인자·브라우저 저장소는 변경하지 않는다. `createAuthoringArchive`는 도메인 constructor가 반환하는 타입상 선택적 object 항목의 명시적 `undefined`를 먼저 스키마와 허용 key로 확인한 뒤 JSON의 누락 항목으로 변환한다. 정의되지 않은 array 항목·빈 array 슬롯은 거부하며, 알 수 없는 key를 `undefined`로 숨겨 제거하지 않는다. 파일 decoder와 직접 JSON validator는 JSON 값만 받는다.
+`decodeAuthoringArchive`는 현재 Next의 plain StoryDocument(+선택적 audioResources)를 v2 envelope로 감싸는 명시적인 adapter를 제공한다. 문서 v1–v4는 도메인 parser의 기존 schema migration을 사용한다. v5–v8의 명시한 값은 정확히 보존해 현행 v9로 올린다. 이전/현행 plain v5–v9는 명시적인 StageComposition이 있고 인물 상속을 쓰지 않는 컷의 중복된 좌우 Asset ID만 해당 composition에서 다시 계산한 뒤 검증한다. 이는 이전 Next plain 파일의 파생 필드 adapter이며 StageComposition과 저작 데이터는 바꾸지 않는다. 새 공식 v2는 파생 필드를 포함한 명시한 값이 정규화로 바뀌면 계속 거부한다. 원본 인자·브라우저 저장소는 변경하지 않는다. `createAuthoringArchive`는 도메인 constructor가 반환하는 타입상 선택적 object 항목의 명시적 `undefined`를 먼저 스키마와 허용 key로 확인한 뒤 JSON의 누락 항목으로 변환한다. 정의되지 않은 array 항목·빈 array 슬롯은 거부하며, 알 수 없는 key를 `undefined`로 숨겨 제거하지 않는다. 파일 decoder와 직접 JSON validator는 JSON 값만 받는다.
 
 현재 Next 숏스토리의 `{manifest:{format:'shortstory',version:1,kind:'project'},project}`는 동일 프로젝트를 v2 envelope로 감싼다. 구형 story-maker의 manifest/draft/playback/sharing 파일은 이번 decoder에서 지원하지 않는다. 미래 formatVersion·미래 schemaVersion·알 수 없는 파일 항목·손상 JSON은 가져오기를 중단한다.
 

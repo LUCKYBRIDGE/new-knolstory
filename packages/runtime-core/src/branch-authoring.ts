@@ -1,4 +1,4 @@
-import {createStoryDocument,normalizeChapterTitle,orderedStoryFlowLines,parseStoryDocument,resolveStageComposition,stageProjection,type Chapter,type StoryLine,type StoryProject} from '@knolstory/story-domain';
+import {withoutPicturebookSketch,createStoryDocument,normalizeChapterTitle,orderedStoryFlowLines,parseStoryDocument,resolveStageComposition,stageProjection,type Chapter,type StoryLine,type StoryProject} from '@knolstory/story-domain';
 import {duplicateStoryCut} from './editor-authoring';
 
 /**
@@ -79,7 +79,7 @@ export function splitStoryHere(project:StoryProject,lineId:string,input:{labels:
  // Cuts after the fork in the same chapter are the story that follows it: they get their own chapter,
  // so chapters read fork → paths → what follows, never back into the fork's chapter.
  const trailing=project.lines.filter(line=>line.chapterId===chapter.id&&line.order>source.order).sort((a,b)=>a.order-b.order);
- const {branchLabel:_sourceBranch,...plainChapter}=chapter;
+ const {branchLabel:_sourceBranch,...plainChapter}=withoutPicturebookSketch(chapter);
  const following=trailing.length?{...plainChapter,id:fresh(),title:keepFirst?paths[0]!.label:'다시 만나는 이야기',order:chapter.order,chapterNumber:number+(keepFirst?0:1),...(keepFirst?{branchLabel:'A'}:{}),summary:'',purpose:'',mood:'',keyEvents:'',nextChapterIdea:'',storyStageKeys:[]} satisfies Chapter:null;
  const moved=new Map(trailing.map((line,index)=>{
   const fields:Partial<StoryLine>={chapterId:following!.id,order:index+1};
@@ -89,7 +89,7 @@ export function splitStoryHere(project:StoryProject,lineId:string,input:{labels:
  }));
  for(const path of paths){
   if(!path.chapterId||!path.lineId)continue;
-  newChapters.push({...chapter,id:path.chapterId,title:path.label,order:chapter.order,chapterNumber:number,branchLabel:String.fromCharCode(65+path.index),summary:'',purpose:'',mood:'',keyEvents:'',nextChapterIdea:'',storyStageKeys:[]});
+  newChapters.push({...withoutPicturebookSketch(chapter),id:path.chapterId,title:path.label,order:chapter.order,chapterNumber:number,branchLabel:String.fromCharCode(65+path.index),summary:'',purpose:'',mood:'',keyEvents:'',nextChapterIdea:'',storyStageKeys:[]});
   newLines.push({...source,...actorFields,id:path.lineId,chapterId:path.chapterId,order:1,type:'narration',speaker:'narration',speakerName:'해설',text:'',textVariants:undefined,visibility:undefined,workingTitle:'',coSpeakerNames:[],purposeNote:'',emotionNote:'',directionNote:'',ending:undefined,audio:undefined,
    presentation:source.presentation?.actors?{actors:structuredClone(source.presentation.actors)}:undefined,
    flow:{type:'goto',targetLineId:input.mode==='rejoin'?next:null}});

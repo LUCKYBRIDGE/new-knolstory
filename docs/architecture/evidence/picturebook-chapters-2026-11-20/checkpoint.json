@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-20",
+  "scope": "그림책 한 쪽 → 놀스토리 한 장 1차 시스템. 별주부전 8쪽 수직 검증.",
+  "environment": "apps/web 정적 기기 전용 빌드(NEXT_PUBLIC_KNOL_ONLINE 미설정), 내장 브라우저 1024×768·375×812; Playwright host 1280·390(온라인 모드, 계정 API 모의)",
+  "studentFlow": {
+    "steps": [
+      "원본 별주부전 → 내 사본",
+      "4쪽 글에 문장 추가",
+      "놀스토리로 펼쳐 쓰기",
+      "준비 화면: 8쪽→8장, 지금 열 장 4장, Ren’Py 첫 컷 미리보기",
+      "이대로 놀스토리 만들기",
+      "편집기 4장 1컷에서 첫 대사 작성",
+      "2장에 2컷 추가·작성",
+      "그림책 2쪽 글 수정",
+      "그림책에서 ‘쓰던 놀스토리 열기’"
+    ],
+    "results": {
+      "chapters": 8,
+      "firstCutsBlankAtCreation": true,
+      "schemaVersion": 9,
+      "sketches": 8,
+      "links": 1,
+      "ownWorksAfterReopen": 1,
+      "reopenedCut": "2장 2컷(마지막 집필 위치)",
+      "chapter2SummaryChangedByBookEdit": false,
+      "requestsLeft": 0
+    },
+    "work": "browser-rabbit-work.json"
+  },
+  "fileReopen": "packages/compatibility/tests/picturebook-browser-reopen.test.ts — 브라우저에서 만든 작품을 작품 파일·편집 표·Excel·JSONB로 저장 후 다시 열어 동일, 출발 그림 8개와 두 대사 보존",
+  "stageReview": {
+    "method": "검토용 그림책에 후보 배경·인물을 학생 직접 꾸미기로 놓고 준비 화면의 실제 Ren’Py 무대(가로 편집 16:9, 세로 읽기 9:16)로 확인",
+    "approved": {
+      "rabbit-turtle.scene.shortstory-classic-03": "가로: 의심하는 토끼(왼쪽)·손짓하는 자라(오른쪽)가 마주 봄, 대사창에 얼굴·손 가림 없음. 세로: 해설 컷은 토끼 한 명 집중(기존 세로 읽기 규칙)",
+      "rabbit-turtle.scene.shortstory-classic-04": "가로·세로 모두 탑승 자세 한 장으로 토끼·자라 얼굴이 보임, 같은 인물 중복 없음",
+      "rabbit-turtle.scene.shortstory-classic-07": "가로: 왼쪽으로 뛰는 토끼와 물가의 자라. 세로: 도약하는 토끼 집중"
+    },
+    "notApproved": {
+      "02": "제작 요청 4(몸을 숙여 살피는 자라) 대기",
+      "06": "듣는 상대 배치 재검토(원화 참고만)"
+    },
+    "rights": "packages/asset-registry/tests/picturebook-recipes.test.ts — 승인 조합의 모든 자료가 media-provenance의 같은 sha256 기록(상업 이용 permitted, service-only)을 가짐",
+    "secondRound": {
+      "date": "2026-11-20",
+      "method": "준비 화면 검토용 미리보기(/picturebook?review=recipes, 만들기 불가)로 조합 그대로(방향·크기 포함) 실제 Ren’Py 가로 16:9·세로 9:16 확인",
+      "newAssets": [
+        "rabbit-turtle.character.picturebook-turtle-pleading-v1",
+        "rabbit-turtle.character.picturebook-rabbit-walking-away-v1",
+        "rabbit-turtle.background.picturebook-shore-reeds-v1"
+      ],
+      "approved": {
+        "rabbit-turtle.scene.shortstory-classic-01": "가로: 무릎 꿇은 자라(왼쪽)가 위독한 용왕(오른쪽)을 향해 손을 모음, 얼굴·손이 대사창 위. 세로: 간청 자세가 크게 보임",
+        "rabbit-turtle.scene.shortstory-classic-05": "가로: 놀란 토끼와 손을 뻗어 명령하는 용왕이 마주 봄. 왕좌 높이는 무대에서 표현할 수 없지만 사건은 읽힘",
+        "rabbit-turtle.scene.shortstory-classic-08": "v3: 0.7배에서는 가로 무대의 토끼가 너무 작아 원래 크기로 바꿈. 가로: 떠나는 뒷모습과 물가의 자라, 세로: 물가를 떠나는 뒷모습"
+      },
+      "notApproved": {
+        "rabbit-turtle.scene.shortstory-classic-02": "갈대 배경은 맞지만 서 있는 결심 자세로는 살피는 사건이 읽히지 않음 → 제작 요청 4"
+      }
+    }
+  },
+  "bugsFoundAndFixed": [
+    "쪽을 바꿔도 미리보기 revision이 같아 Ren’Py가 이전 쪽을 계속 표시",
+    "세로 미리보기 폭 0",
+    "쪽 목록 썸네일이 글자를 덮음"
+  ],
+  "notCovered": [
+    "실기기(iOS/Android) 확인",
+    "운영 서버·실제 학급 계정",
+    "한글 IME 조합 중 클릭(코드 경로: 조합 중 생성 거부)",
+    "저장 공간 부족은 단위 테스트로만 재현"
+  ],
+  "failureScenarios": {
+    "deletedLinkedWork": "서재에서 연결된 작품 삭제 → 준비 화면: ‘삭제한 작품에 있어요’ 안내, 자동 만들기 버튼 숨김, 명시적 ‘복구하지 않고 새 놀스토리로 만들기’만 제공. 서재 ‘삭제한 작품’에서 복구 → ‘쓰던 놀스토리 열기’ 복귀",
+    "corruptedWorkspace": "작업 공간 JSON을 반쯤 자른 상태 → 준비 화면 만들기 비활성(‘보관함을 읽지 못해…새로 만들지 않았어요’), 편집기 요청 진입 시 ‘기기 보관함을 읽지 못해 새 작품을 만들지 않았어요’ 안내, 손상 원본은 덮어쓰지 않음. 시험 뒤 원본 복원",
+    "reusedWorkIdAfterDeletion": "코드 리뷰에서 발견·수정: 같은 탭의 재시도용 예정 작품 ID가 삭제한 작품 키와 같아질 수 있었음 → 명시적 새로 만들기는 항상 새 ID, 생성 판단에서도 삭제한 작품 키와 같으면 거부 (picturebook-create.test.ts)",
+    "accountAndPermissions": "e2e 모의 계정: 새 작품 금지 학생·계정 확인 실패 시 버튼 비활성, 작업 공간 미생성. 소유 범위 불일치는 단위 테스트",
+    "imeComposition": "코드 경로만 확인(조합 중 생성 거부·버튼 비활성). 실제 IME 입력 재현은 하지 않음"
+  },
+  "reviewPreview": "/picturebook?review=recipes — 승인 전 조합을 실제 무대에 보여 주는 검토용 미리보기. 만들기 불가, 조합 목록은 바꾸지 않음 (picturebook-preparation.test.ts)"
+}

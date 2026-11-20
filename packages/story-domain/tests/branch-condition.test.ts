@@ -15,14 +15,14 @@ function conditionalProject() {
 describe('branch condition domain contract',()=>{
   it('stores schema8 and preserves all cue locations without score or reachability requirements',()=>{
     const p=conditionalProject(); const loaded=parseStoryDocument({...document(),schemaVersion:8,project:p});
-    expect(loaded.ok).toBe(true); if(loaded.ok){expect(loaded.document.schemaVersion).toBe(8);expect(loaded.document.project).toEqual(p);}
-    expect(document().schemaVersion).toBe(8);
+    expect(loaded.ok).toBe(true); if(loaded.ok){expect(loaded.document.schemaVersion).toBe(9);expect(loaded.document.project).toEqual(p);}
+    expect(document().schemaVersion).toBe(9);
     expect(isStoryBranchCondition(branchCondition)).toBe(true);
   });
   it('migrates an unchanged schema7 project and rejects branch data declared under old versions',()=>{
     const d=document();for(const schemaVersion of [1,2,3,4,5,6,7]) {const loaded=parseStoryDocument({...d,schemaVersion});expect(loaded.ok).toBe(true);if(loaded.ok)expect(loaded.document.project).toEqual(d.project);}
     for(const schemaVersion of [1,2,3,4,5,6,7])expect(parseStoryDocument({...d,schemaVersion,project:conditionalProject()}).ok).toBe(false);
-    expect(parseStoryDocument({...d,schemaVersion:9}).ok).toBe(false);
+    expect(parseStoryDocument({...d,schemaVersion:10}).ok).toBe(false);
   });
   it('migrates all schema7 range/audio/presentation values without changing the complete project',()=>{
     const authored=conditionalProject();

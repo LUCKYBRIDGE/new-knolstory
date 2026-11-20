@@ -1,0 +1,327 @@
+{
+ "version": 1,
+ "policy": "승인(approved) 조합만 기본 추천으로 미리 선택해요. 조립 검토·참고 전용은 학생 원고에 자동으로 놓지 않아요. 모든 ID는 원화·자료의 revision과 함께 검사해요.",
+ "recipes": [
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-01",
+   "recipeVersion": 2,
+   "review": "approved",
+   "note": "무릎 꿇고 간청하는 자라와 위독한 용왕. 낮은 자세의 얼굴·손이 대사창 위로 남는지 확인해요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.picturebook-turtle-pleading-v1",
+      "slot": "turtle",
+      "label": "자라 · 무릎 꿇고 간청하기",
+      "subjects": [
+       "rabbit-turtle.turtle"
+      ],
+      "facing": "original"
+     }
+    ],
+    "right": [
+     {
+      "assetId": "rabbit-turtle.character.dragonking-critical-attached",
+      "slot": "dragonking",
+      "label": "용왕 · 위독",
+      "subjects": [
+       "rabbit-turtle.dragonking"
+      ]
+     }
+    ]
+   },
+   "alternatives": [
+    {
+     "assetId": "rabbit-turtle.character.turtle-ashamed",
+     "slot": "turtle",
+     "label": "자라 · 고개 숙이기",
+     "subjects": [
+      "rabbit-turtle.turtle"
+     ]
+    }
+   ],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-01": "4adf840ee2d32aff1a9a3f461413ab1c3ec4aff523ac0d31a9268d3884ec1800",
+    "rabbit-turtle.background.rabbit-turtle-bg-palace": "e607c64f3a8caab1ec9f3bba5972c7edeea98081ed72574ddb96d9f90bbc70cb",
+    "rabbit-turtle.character.picturebook-turtle-pleading-v1": "50f9774f60861037cc8db8db7e211b6c59684067051301d4f2eb9f152fe58061",
+    "rabbit-turtle.character.dragonking-critical-attached": "122fb63fcca1ef529330cee98bd26e86cca2a85f0ed0b963cfb26081f02b7dd6",
+    "rabbit-turtle.character.turtle-ashamed": "4c19dca390788303b506d509c4a0b9766c75dc9645cf5a8d9585be83ff877d48"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-02",
+   "recipeVersion": 2,
+   "review": "assembly-review",
+   "note": "노을 갈대 물가 배경은 원화와 맞아요. 서 있는 결심 자세로는 갈대 사이를 살피는 사건이 읽히지 않아 승인하지 않았어요. 몸을 숙여 살피는 자라(제작 요청 4)를 기다려요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.picturebook-shore-reeds-v1",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.turtle-resolve",
+      "slot": "turtle",
+      "label": "자라 · 결심",
+      "subjects": [
+       "rabbit-turtle.turtle"
+      ]
+     }
+    ],
+    "right": []
+   },
+   "alternatives": [
+    {
+     "assetId": "rabbit-turtle.background.rabbit-turtle-bg-shore",
+     "slot": "background",
+     "label": "물가 · 기본"
+    }
+   ],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-02": "40e7c87935fab0d0d2bd0df33c1ed6126eba544362ae0122327022bd111fff6a",
+    "rabbit-turtle.background.picturebook-shore-reeds-v1": "2b20b98d53435bf5f62a79514d64412b9a121be41b4f800915c70d904c310bb6",
+    "rabbit-turtle.character.turtle-resolve": "8ac6204430465772fca17ec6d8f989d79cbc7e68e462819aa48e84476b9246ef",
+    "rabbit-turtle.background.rabbit-turtle-bg-shore": "7ec4ac4dd351c84c31dce343bd3c07a9d091d269e6d1d1bf1860c53df3e0d4b3"
+   }
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-03",
+   "recipeVersion": 1,
+   "review": "approved",
+   "note": "노을 물가에서 의심하는 토끼(왼쪽)와 손짓하는 자라(오른쪽)가 서로 마주 봐요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-discussion",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.rabbit-suspicious",
+      "slot": "rabbit",
+      "label": "토끼 · 의심하는 자세",
+      "subjects": [
+       "rabbit-turtle.rabbit"
+      ]
+     }
+    ],
+    "right": [
+     {
+      "assetId": "rabbit-turtle.character.turtle-offer",
+      "slot": "turtle",
+      "label": "자라 · 손짓하며 권하는 자세",
+      "subjects": [
+       "rabbit-turtle.turtle"
+      ]
+     }
+    ]
+   },
+   "alternatives": [
+    {
+     "assetId": "rabbit-turtle.character.rabbit-shocked",
+     "slot": "rabbit",
+     "label": "토끼 · 놀란 자세",
+     "subjects": [
+      "rabbit-turtle.rabbit"
+     ]
+    },
+    {
+     "assetId": "rabbit-turtle.character.classic-rabbit-laugh",
+     "slot": "rabbit",
+     "label": "토끼 · 웃으며 말하는 자세",
+     "subjects": [
+      "rabbit-turtle.rabbit"
+     ]
+    },
+    {
+     "assetId": "rabbit-turtle.background.rabbit-turtle-bg-shore",
+     "slot": "background",
+     "label": "물가 · 기본"
+    }
+   ],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-03": "93559cd230bd5f572eb3016fa70194d50b8c8cd6f8bea13a1f1e723862358f1f",
+    "rabbit-turtle.background.rabbit-turtle-bg-shore-discussion": "a37fb695cb1f64cc143c72bcc3b4b1f1109468d09a082008622ce57ca8781370",
+    "rabbit-turtle.character.rabbit-suspicious": "b36de5f404d4292c69e05dc32b17ed4128e78e9ecd23d6ffb986a21a2475c615",
+    "rabbit-turtle.character.turtle-offer": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+    "rabbit-turtle.character.rabbit-shocked": "fd1aa772c6f736d7a1dc6be8c52e4b424e12a35e4ff0fbed920009aabb19823b",
+    "rabbit-turtle.character.classic-rabbit-laugh": "00c6cc3f6fbe8221dd46f88d6dd22e3d488866af8e15d54b5c8701f4954f766e",
+    "rabbit-turtle.background.rabbit-turtle-bg-shore": "7ec4ac4dd351c84c31dce343bd3c07a9d091d269e6d1d1bf1860c53df3e0d4b3"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-04",
+   "recipeVersion": 1,
+   "review": "approved",
+   "note": "먼 육지가 보이는 바다에서 토끼가 자라 등에 탄 그림 한 장을 한 번만 놓아요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.classic-sea",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.classic-riding",
+      "slot": "riding",
+      "label": "함께 그린 토끼와 자라 · 등에 타고 건너기",
+      "subjects": [
+       "rabbit-turtle.rabbit",
+       "rabbit-turtle.turtle"
+      ]
+     }
+    ],
+    "right": []
+   },
+   "alternatives": [],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-04": "39d7a6bd1e6bf4f4fb74fff56ab2d799abd80a6b2aaf58c6bc2b96e04dd558e8",
+    "rabbit-turtle.background.classic-sea": "3651afb997a4ab3ee9d29f0fb0da439b5fcb7616a6c148548144a9d3c8ffcdce",
+    "rabbit-turtle.character.classic-riding": "98b134afd6584b3eb22568a732c2f6412342eced461ca5ac56f88c2b35fa4e99"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-05",
+   "recipeVersion": 1,
+   "review": "approved",
+   "note": "용궁 위기 장면에서 놀란 토끼(왼쪽)에게 용왕(오른쪽)이 손을 뻗어 명령해요. 왕좌 높이는 무대에서 따로 표현되지 않아요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace-trap",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.rabbit-shocked",
+      "slot": "rabbit",
+      "label": "토끼 · 놀란 자세",
+      "subjects": [
+       "rabbit-turtle.rabbit"
+      ]
+     }
+    ],
+    "right": [
+     {
+      "assetId": "rabbit-turtle.character.dragonking-command",
+      "slot": "dragonking",
+      "label": "용왕 · 명령하는 자세",
+      "subjects": [
+       "rabbit-turtle.dragonking"
+      ]
+     }
+    ]
+   },
+   "alternatives": [
+    {
+     "assetId": "rabbit-turtle.character.rabbit-suspicious",
+     "slot": "rabbit",
+     "label": "토끼 · 의심하는 자세",
+     "subjects": [
+      "rabbit-turtle.rabbit"
+     ]
+    }
+   ],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-05": "9b4ac9b76e668513deab27073248b42074a2698f3bc0247888f1d5cf1c004c59",
+    "rabbit-turtle.background.rabbit-turtle-bg-palace-trap": "13fe6edf8d2505f58749dc18d7f7c15443714651a0c97d1df3dc7d5ee2f58439",
+    "rabbit-turtle.character.rabbit-shocked": "fd1aa772c6f736d7a1dc6be8c52e4b424e12a35e4ff0fbed920009aabb19823b",
+    "rabbit-turtle.character.dragonking-command": "1421c73504e586097f53a86ca6173d595425f721f337d335fb8e87781a46a391",
+    "rabbit-turtle.character.rabbit-suspicious": "b36de5f404d4292c69e05dc32b17ed4128e78e9ecd23d6ffb986a21a2475c615"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-06",
+   "recipeVersion": 1,
+   "review": "reference-only",
+   "note": "토끼가 꾀를 설명하는 상대(용왕)가 함께 보여야 해요. 기존 후보만으로는 듣는 방향이 드러나지 않아 원화 참고만 제공해요.",
+   "stage": null,
+   "alternatives": [],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-06": "7628df79b4eb0ed64dfdbea78a59e9b9bebeba9560cd232283531f6936be2670",
+    "rabbit-turtle.background.rabbit-turtle-bg-palace-confession": "75623e3d57f08994a6149d35b2f7f790ef9214000c89688de3ae918936bcee83"
+   }
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-07",
+   "recipeVersion": 1,
+   "review": "approved",
+   "note": "물가에서 토끼(왼쪽)가 왼쪽으로 뛰어 달아나고 자라(오른쪽)가 물속에서 올려다봐요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.classic-rabbit-leap",
+      "slot": "rabbit",
+      "label": "토끼 · 뛰어 달아나는 자세",
+      "subjects": [
+       "rabbit-turtle.rabbit"
+      ]
+     }
+    ],
+    "right": [
+     {
+      "assetId": "rabbit-turtle.character.classic-turtle-water",
+      "slot": "turtle",
+      "label": "자라 · 물가에서 올려다보는 자세",
+      "subjects": [
+       "rabbit-turtle.turtle"
+      ]
+     }
+    ]
+   },
+   "alternatives": [],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-07": "e9a498d6e905af8a18a2a21daaade61099474e101abf633b641af2f3b39445f7",
+    "rabbit-turtle.background.rabbit-turtle-bg-shore-escape": "bd5dabf41f740fcf0fc53e48d70f0b4c79d2f65334c4f0b1410419d859b5ff2a",
+    "rabbit-turtle.character.classic-rabbit-leap": "8fb1e54c259f631441a967b828b64c0e5a270ffe38e9a1c37777e979fcb1f4c3",
+    "rabbit-turtle.character.classic-turtle-water": "bc0e4ebf8e7f0a014fd672033b1126daff19c90e3143a318e823a6697a431834"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
+  },
+  {
+   "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-08",
+   "recipeVersion": 3,
+   "review": "approved",
+   "note": "숲 쪽으로 떠나는 토끼의 뒷모습(왼쪽)과 물가에 남은 자라(오른쪽). 0.7배로 줄이면 가로 무대에서 토끼가 너무 작아 원래 크기로 둬요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.picturebook-rabbit-walking-away-v1",
+      "slot": "rabbit",
+      "label": "토끼 · 숲으로 돌아가는 뒷모습",
+      "subjects": [
+       "rabbit-turtle.rabbit"
+      ],
+      "facing": "original"
+     }
+    ],
+    "right": [
+     {
+      "assetId": "rabbit-turtle.character.classic-turtle-water",
+      "slot": "turtle",
+      "label": "자라 · 물가에서 올려다보기",
+      "subjects": [
+       "rabbit-turtle.turtle"
+      ]
+     }
+    ]
+   },
+   "alternatives": [
+    {
+     "assetId": "rabbit-turtle.character.classic-rabbit-leap",
+     "slot": "rabbit",
+     "label": "토끼 · 뛰어 달아나기",
+     "subjects": [
+      "rabbit-turtle.rabbit"
+     ]
+    }
+   ],
+   "revisions": {
+    "rabbit-turtle.scene.shortstory-classic-08": "2302d024c772d71f1cd445a60c111d9d9e4b2ff2603845e52b3afbf68df3ae04",
+    "rabbit-turtle.background.rabbit-turtle-bg-shore": "7ec4ac4dd351c84c31dce343bd3c07a9d091d269e6d1d1bf1860c53df3e0d4b3",
+    "rabbit-turtle.character.picturebook-rabbit-walking-away-v1": "e5164dff2ec44923ec1cebd330c5faca5257db4b74af063a2158cdbdf9fcc953",
+    "rabbit-turtle.character.classic-turtle-water": "bc0e4ebf8e7f0a014fd672033b1126daff19c90e3143a318e823a6697a431834",
+    "rabbit-turtle.character.classic-rabbit-leap": "8fb1e54c259f631441a967b828b64c0e5a270ffe38e9a1c37777e979fcb1f4c3"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
+  }
+ ]
+}

@@ -40,6 +40,7 @@ function fieldMapping(path:string,format:'knolstory'|'shortstory'){
  else if(path.includes('.ending.')){ownerModule='flow';tables=['endings'];}
  else if(path.startsWith('$.planning.')){ownerModule='preparation';tables=['planning'];}
  else if(path.startsWith('$.creativeMemos[]')){ownerModule='preparation';tables=[path.includes('.fields[]')?'memoFields':/linked(ChapterIds|LineIds|CharacterNames)\[\]/.test(path)?'memoLinks':'memos'];}
+ else if(path.startsWith('$.chapters[].picturebookSketch.')){ownerModule='sketch';tables=['chapterSketches'];}
  else if(path.startsWith('$.chapters[]'))tables=[/storyStageKeys|chapterSpeakerNames|characterAssetIds|backgroundAssetIds/.test(path)?'projectLists':'chapters'];
  else if(path.startsWith('$.lines[]'))tables=[path.includes('.coSpeakerNames[]')?'projectLists':'cuts'];
  else if(path.startsWith('$.characters[]'))tables=['characters'];

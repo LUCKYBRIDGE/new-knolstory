@@ -79,7 +79,7 @@ describe('official authoring archive and future JSONB snapshot',()=>{
   await expect(createAuthoringArchive({format:'knolstory',document:input})).rejects.toThrow();
  });
  it('rejects broken document and snapshot references with concrete failures',async()=>{
-  for(const bad of [null,[],{format:'unknown',formatVersion:2},{format:'knolstory',formatVersion:2,document:null,audioResources:[]},{format:'knolstory',formatVersion:2,document:{...document(),schemaVersion:9},audioResources:[]}])await expect(validateAuthoringArchive(bad)).rejects.toThrow();
+  for(const bad of [null,[],{format:'unknown',formatVersion:2},{format:'knolstory',formatVersion:2,document:null,audioResources:[]},{format:'knolstory',formatVersion:2,document:{...document(),schemaVersion:10},audioResources:[]}])await expect(validateAuthoringArchive(bad)).rejects.toThrow();
   await expect(decodeAuthoringArchive(JSON.stringify({manifest:{format:'shortstory',version:1,kind:'shared'},project:newShortStory()}))).rejects.toThrow();
   await expect(restoreJsonbSnapshot(null)).rejects.toThrow();
   const snapshot=await prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:newShortStory()}));

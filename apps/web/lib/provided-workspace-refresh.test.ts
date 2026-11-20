@@ -9,7 +9,7 @@ const stories=[...representativeStories,...classicStories];
 function workspace(key:string,project:StoryProject):ReturnType<typeof readWorkspace>{
  const playback=createPlayback(project),lineId=project.lines[0].id;
  const context={lineId,editingPath:[lineId],playback,hasRead:true,editorView:'writer' as const,activeTool:'writer' as const,writerChapterId:project.chapters[0].id,previewProfile:'portrait' as const};
- return {project,storyId:key,works:{[key]:project},contexts:{[key]:context},playback,mode:'play',view:'editor',warning:'kept warning',checked:['kept check'],deletedWork:{key:'new:deleted',project,context}};
+ return {picturebookLinks:{},project,storyId:key,works:{[key]:project},contexts:{[key]:context},playback,mode:'play',view:'editor',warning:'kept warning',checked:['kept check'],deletedWork:{key:'new:deleted',project,context}};
 }
 it('refreshes exact previous published versions of every builtin and preserves all navigation and recovery state',()=>{
  for(const story of stories){
