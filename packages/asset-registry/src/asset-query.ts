@@ -154,3 +154,45 @@ export function searchAssets(options: AssetSearchOptions): Asset[] {
   const withCurrent = current?.type === options.type && !assets.includes(current) ? [current, ...assets] : assets;
   return rankAssets(withCurrent, { ...options, currentCharacterIds: options.currentCharacterIds ?? (current ? assetCharacterIds(current) : undefined) }, options.view === 'recent');
 }
+
+/**
+ * The short ‘추천’ shelf above all pictures: a few pictures with the reason each was suggested.
+ * It only ever picks from `found` (what the search and filters already allow), so filters narrow the
+ * suggestions too. The order of reasons is fixed and explained, not a hidden score over every picture.
+ */
+export type AssetSuggestion = Readonly<{ asset: Asset; reason: string }>;
+export type AssetSuggestionContext = Readonly<{
+  picturebookIds?: readonly string[]; chapterAssetIds?: readonly string[]; currentAssetId?: string;
+  recentIds?: readonly string[]; favoriteIds?: readonly string[];
+}>;
+export const ASSET_SUGGESTION_LIMIT = 8;
+const PICTUREBOOK_REASON = '그림책 쪽에 맞아요';
+export function suggestAssets(found: readonly Asset[], context: AssetSuggestionContext, limit = ASSET_SUGGESTION_LIMIT): AssetSuggestion[] {
+  const current = resolveAsset(context.currentAssetId ?? '');
+  const sameCharacter = current?.type === 'character' ? assetCharacterIds(current) : [];
+  const allowed = new Map(found.map(asset => [asset.id, asset]));
+  // The saved picture shows only when it is what the picture-book page suggests: the student sees it fits.
+  const skipCurrent = (id: string, reason: string) => id === context.currentAssetId && reason !== PICTUREBOOK_REASON;
+  const picked: AssetSuggestion[] = [];
+  const add = (ids: readonly string[], reason: string) => {
+    for (const id of ids) {
+      const asset = allowed.get(id);
+      if (!asset || skipCurrent(id, reason) || picked.length >= limit || picked.some(item => item.asset.id === id)) continue;
+      picked.push({ asset, reason });
+    }
+  };
+  add(context.picturebookIds ?? [], PICTUREBOOK_REASON);
+  add(context.chapterAssetIds ?? [], '이 장에서 쓰는 그림');
+  if (sameCharacter.length) add([...allowed.values()].filter(asset => assetCharacterIds(asset).some(id => sameCharacter.includes(id))).map(asset => asset.id), '같은 인물의 다른 모습');
+  add(context.recentIds ?? [], '최근에 쓴 그림');
+  add(context.favoriteIds ?? [], '별표한 그림');
+  return picked;
+}
+/**
+ * ‘모든 그림’ in an order that does not move while the student looks: the picture saved now first,
+ * then by work, by who or where it is, and by name. Suggestions never reorder this list.
+ */
+export function stableAssetOrder(assets: readonly Asset[], currentAssetId?: string): Asset[] {
+  const key = (asset: Asset) => [asset.story, assetCharacterIds(asset)[0] ?? facetValues(asset, 'locations')[0] ?? '', assetDisplayName(asset) ?? asset.label, asset.id].join('\u0000');
+  return assets.slice().sort((a, b) => Number(b.id === currentAssetId) - Number(a.id === currentAssetId) || key(a).localeCompare(key(b), 'ko'));
+}

@@ -129,3 +129,7 @@
 .dialog[data-keyboard-occluded=true] .grid .thumbnail { height:64px; }
 /* Field names match the other editor labels. */
 .field>span:first-child { font-size:var(--text-small); font-weight:600; }
+
+.suggestions{display:grid;gap:8px;margin:0 0 12px;padding:10px;border:1px solid var(--story-menu-accent,currentColor);border-radius:10px}
+.suggestions h3{margin:0;font-size:var(--text-small)}
+.reason{display:block;font-weight:700;color:var(--story-menu-accent,inherit)}
