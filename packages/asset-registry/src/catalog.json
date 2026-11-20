@@ -47575,5 +47575,213 @@
         }
       ]
     }
+  },
+  {
+    "id": "rabbit-turtle.character.picturebook-turtle-pleading-v1",
+    "displayName": "자라 · 무릎 꿇고 간청하기",
+    "label": "자라 · 무릎 꿇고 간청하기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "자라",
+    "tags": [
+      "별주부전",
+      "간청하기",
+      "그림책"
+    ],
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-turtle-pleading.webp",
+    "sourcePath": "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.character.picturebook-turtle-pleading-v1",
+    "copyright": "놀퀴즈",
+    "revision": "50f9774f60861037cc8db8db7e211b6c59684067051301d4f2eb9f152fe58061",
+    "geometry": {
+      "left": 0.10875,
+      "top": 0.44333333333333336,
+      "right": 0.89125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "characterIds": [
+        "rabbit-turtle.turtle"
+      ],
+      "primaryCharacterId": "rabbit-turtle.turtle",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "actions": [
+        "간청하기"
+      ],
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-resolve",
+        "referenceRevision": "8ac6204430465772fca17ec6d8f989d79cbc7e68e462819aa48e84476b9246ef",
+        "heightRatio": 0.602,
+        "reason": "무릎을 꿇는 높이를 유지한다."
+      },
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "자라 · 무릎 꿇고 간청하기",
+        "간청하기",
+        "별주부전"
+      ]
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.picturebook-rabbit-walking-away-v1",
+    "displayName": "토끼 · 숲으로 돌아가는 뒷모습",
+    "label": "토끼 · 숲으로 돌아가는 뒷모습",
+    "story": "별주부전",
+    "type": "character",
+    "group": "토끼",
+    "tags": [
+      "별주부전",
+      "떠나기",
+      "그림책"
+    ],
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-rabbit-walking-away.webp",
+    "sourcePath": "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.character.picturebook-rabbit-walking-away-v1",
+    "copyright": "놀퀴즈",
+    "revision": "e5164dff2ec44923ec1cebd330c5faca5257db4b74af063a2158cdbdf9fcc953",
+    "geometry": {
+      "left": 0.195,
+      "top": 0.19333333333333333,
+      "right": 0.80375,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "characterIds": [
+        "rabbit-turtle.rabbit"
+      ],
+      "primaryCharacterId": "rabbit-turtle.rabbit",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "actions": [
+        "떠나기"
+      ],
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.rabbit-suspicious",
+        "referenceRevision": "b36de5f404d4292c69e05dc32b17ed4128e78e9ecd23d6ffb986a21a2475c615",
+        "heightRatio": 0.893,
+        "reason": "한 발을 들고 앞으로 기울인 전신 자세의 높이를 유지한다."
+      },
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "토끼 · 숲으로 돌아가는 뒷모습",
+        "떠나기",
+        "별주부전"
+      ]
+    }
+  },
+  {
+    "id": "rabbit-turtle.background.picturebook-shore-reeds-v1",
+    "displayName": "물가 · 노을과 갈대",
+    "label": "물가 · 노을과 갈대",
+    "story": "별주부전",
+    "type": "background",
+    "group": "물가",
+    "tags": [
+      "별주부전",
+      "갈대",
+      "그림책"
+    ],
+    "src": "/assets/backgrounds/picturebook-v1/rabbit-turtle-shore-reeds.webp",
+    "sourcePath": "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.background.picturebook-shore-reeds-v1",
+    "copyright": "놀퀴즈",
+    "revision": "2b20b98d53435bf5f62a79514d64412b9a121be41b4f800915c70d904c310bb6",
+    "geometry": null,
+    "metadata": {
+      "kind": "background",
+      "placementRole": "background-slot",
+      "containsCharacters": false,
+      "background": {
+        "location": "물가",
+        "space": "outdoor",
+        "time": "저녁"
+      },
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "물가 · 노을과 갈대",
+        "갈대",
+        "별주부전"
+      ]
+    },
+    "backgroundRole": "scenery"
+  },
+  {
+    "id": "rabbit-turtle.character.picturebook-turtle-searching-reeds-v1",
+    "displayName": "자라 · 갈대를 헤치며 살피기",
+    "label": "자라 · 갈대를 헤치며 살피기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "자라",
+    "tags": [
+      "별주부전",
+      "살피기",
+      "그림책"
+    ],
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-turtle-searching-reeds.webp",
+    "sourcePath": "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.character.picturebook-turtle-searching-reeds-v1",
+    "copyright": "놀퀴즈",
+    "revision": "04fadbb2e3e0396958b82286fec86979bda1870517241513379497561b123010",
+    "geometry": {
+      "left": 0.035,
+      "top": 0.45416666666666666,
+      "right": 0.965,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "characterIds": [
+        "rabbit-turtle.turtle"
+      ],
+      "primaryCharacterId": "rabbit-turtle.turtle",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "actions": [
+        "살피기"
+      ],
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-resolve",
+        "referenceRevision": "8ac6204430465772fca17ec6d8f989d79cbc7e68e462819aa48e84476b9246ef",
+        "heightRatio": 0.589,
+        "reason": "허리를 굽히고 손을 내민 자세의 높이를 유지한다."
+      },
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "자라 · 갈대를 헤치며 살피기",
+        "갈대를 헤치기",
+        "별주부전"
+      ]
+    }
   }
 ]

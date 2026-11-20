@@ -42,6 +42,8 @@ import {EditorTermGuide} from '../../components/editor-term-guide';
 import {TaskAction} from '../../components/task-action';
 import { AuthoringImportDialog } from '../../components/authoring-import-dialog';
 import { ShortStoryIllustrationPicker } from './shortstory-illustration-picker';
+import {peekPicturebookLinks,picturebookLinkState,picturebookOwnerScope} from '../../lib/picturebook-links';
+import {WORKSPACE_KEY} from '../../lib/workspace-storage';
 import styles from './shortstory.module.css';
 type Project=ShortStoryProject;
 type Page=Project['pages'][number];
@@ -300,6 +302,25 @@ export function ShortStoryWorkspace() {
   setLibraryView(false);setPrintPreview(false);setProject(copy);setIndex(0);setEditing(true);setDeletedPage(null);setDeleteTarget(null);window.history.replaceState(null,'',window.location.pathname);
   if(bindingFailed)setError('그림책 사본은 기기에 보관했지만 온라인 연결 정보를 저장하지 못했어요. 새 온라인 작품으로 다시 올리기 전에 기기 저장을 확인해 주세요.');
  };
+ // ‘놀스토리로 펼쳐 쓰기’: a KnolStory already made from this book on this device opens instead of a new one.
+ const [knolstoryWork,setKnolstoryWork]=useState<string|null>(null);
+ const accountSettled=!classroom.loading&&!classroom.error,ownerScope=picturebookOwnerScope(classroom.session?.accountId??null);
+ useEffect(()=>{
+  if(!accountSettled||!loadedProject)return;
+  const timer=window.setTimeout(()=>{
+   try{const peek=peekPicturebookLinks(localStorage.getItem(WORKSPACE_KEY));const state=picturebookLinkState(peek.links,peek.workKeys,peek.deletedKey,ownerScope,project.id);setKnolstoryWork(state.kind==='open'?state.link.workKey:null);}
+   catch{setKnolstoryWork(null);}
+  },0);
+  return()=>window.clearTimeout(timer);
+ },[accountSettled,ownerScope,project.id,loadedProject]);
+ const toKnolstory=()=>{
+  if(composing.current){setError('한글 입력을 마친 뒤 놀스토리로 펼쳐 주세요.');return;}
+  // The picture book is kept first; the KnolStory side only ever reads it.
+  if(dirty.current&&!commit(latest.current??library))return;
+  if(dirty.current){setError('그림책을 아직 임시 보관하지 못했어요. 잠시 뒤 다시 눌러 주세요.');return;}
+  if(knolstoryWork){location.assign(`/?picturebookWork=${encodeURIComponent(knolstoryWork.slice('new:'.length))}`);return;}
+  location.assign(`/picturebook?book=${encodeURIComponent(project.id)}&page=${encodeURIComponent(current.id)}`);
+ };
  const positionRef=useRef<(target:number)=>void>(()=>{});
  // Reading: ←·→ turn pages unless a field, list or dialog has the keyboard.
  const pageCount=project.pages.length;
@@ -360,6 +381,7 @@ export function ShortStoryWorkspace() {
   <header className={styles.header}><div><Link href="/?view=library">놀스토리 서재로 돌아가기</Link>{fromMission&&onlineEnabled&&<> <Link href="/student" data-mission-return="true">과제로 돌아가기</Link></>}<p className={styles.eyebrow}>숏스토리 그림책</p><h1 className={styles.bookTitle}>{libraryView?'그림책 보관함':project.title||'제목 없는 그림책'}</h1><p>{libraryView?'그림책을 고르거나 새 이야기를 시작해요.':original?'원본 그림책을 읽고 내 사본으로 글을 써요.':'그림과 글을 구성하고 내 그림책으로 보관해요.'}</p></div><div className={styles.actions}>{editing&&!libraryView&&<EditorTermGuide/>}
    {editing&&!original&&!libraryView&&!coverOpen&&onlineEnabled&&classroom.role==='student'&&classroom.session&&<TaskAction key={`${classroom.session.accountId}:${project.id}`} className={styles.taskAction} accountId={classroom.session.accountId} workKey={`shortstory:${project.id}`} project={project} beforeNavigate={beforeServiceNavigation}/>}
    {!coverOpen&&<><AccountMenu account={online.account} returnTo="shortstory" disabled={compositionActive||blocked||conflict} beforeNavigate={beforeAccount}/>{onlineAllowed&&<OnlineWorksPanelView online={online} usage={classroom.me?.storage} acceptedFormat="shortstory" works={library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}))} disabled={compositionActive||blocked||conflict} onSaveNew={saveOnline} onOpen={openOnline}/>}</>}{libraryView?<><button disabled={blocked||!canCreate} onClick={()=>accept(newShortStory())}>새 그림책</button><button disabled={busy||blocked||!canCreate} onClick={()=>file.current?.click()}>파일 가져오기</button></>:<>
+   {!original&&<button className={styles.toKnolstory} data-testid="picturebook-to-knolstory" disabled={blocked||compositionActive||!accountSettled||!knolstoryWork&&!canCreate} title={!knolstoryWork&&!canCreate?'선생님이 새 작품 만들기를 막아 두었어요.':undefined} onClick={toKnolstory}>{knolstoryWork?'쓰던 놀스토리 열기':'놀스토리로 펼쳐 쓰기'}</button>}
    <button disabled={blocked} onClick={()=>{if(original)accept(project,true);else if(!editing){focusWriting.current=true;setEditing(true);}}} aria-pressed={editing}>{original?'내 사본으로 쓰기':'쓰기'}</button><button onClick={()=>setEditing(false)} aria-pressed={!editing}>읽기</button><button disabled={compositionActive} onClick={()=>{if(dirty.current&&!commit(latest.current??library))return;onlineGeneration.current++;setPrintPreview(false);setLibraryView(true);window.history.replaceState(null,'','?mode=library');}} aria-label="그림책 보관함 열기"><span className={styles.longLabel}>그림책 보관함 열기</span><span className={styles.shortLabel} aria-hidden="true">보관함</span></button>
   </>}</div></header>
   {error&&<p role="alert" className={styles.error}>{error}</p>}{/* Reserved line: saving messages never push the page down while writing. */}<p role="status" className={styles.statusLine}>{notice}</p>

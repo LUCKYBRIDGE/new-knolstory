@@ -1,0 +1,4 @@
+.reference{display:grid;gap:6px;min-width:0;font-size:var(--text-caption)}
+.reference>strong{font-size:var(--text-caption)}
+.summary{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;max-height:12em;overflow:auto}
+.missing{margin:0;color:var(--ink);font-weight:600}

@@ -122,6 +122,9 @@ import {StoryRecoveryPanel} from './story-recovery-panel';
 import {createStoryCheckpoint,recordBeforeCutDeletion,type StoryCheckpoint} from '../lib/story-checkpoints';
 import {scheduleWorkspaceAutosave} from '../lib/workspace-autosave';
 import {mergeWorkspaceProjects,assertTakeoverCollectionExists} from '../lib/workspace-takeover';
+import {forgetPicturebookRequest,isPicturebookRequestId,picturebookOwnerScope,readPicturebookRequest,type PicturebookLinks} from '../lib/picturebook-links';
+import {planPicturebookCreation} from '../lib/picturebook-create';
+import {PicturebookChapterReference} from './picturebook-chapter-reference';
 const FIRST = representativeStories[0]!;
 const builtInStories=[...representativeStories,...classicStories];
 
@@ -166,6 +169,10 @@ export function StoryWorkspace() {
   const retryAfterTakeover=writer.retryAfterTakeover;
   const [checkpointRefresh,setCheckpointRefresh]=useState(0);
   const contexts = useRef<WorkContexts>({});
+  /** Which works were made from which picture books (kept in the same workspace write). */
+  const picturebookLinks=useRef<PicturebookLinks>({});
+  const [picturebookIssue,setPicturebookIssue]=useState<{requestId:string;message:string}|null>(null);
+  const [picturebookBusy,setPicturebookBusy]=useState(false);
   const [editingPaths,setEditingPaths]=useState<Readonly<Record<string,readonly string[]>>>({});
   const [view,setView]=useState<WorkspaceView>('home');
   const [runtimeMounted,setRuntimeMounted]=useState(false);
@@ -311,7 +318,7 @@ export function StoryWorkspace() {
         let storedDeletedWork:ReturnType<typeof readWorkspace>['deletedWork'];
         if(raw){
           // Works that already passed in this build skip the whole-work scene check; parsing still runs.
-          const loaded=refreshProvidedWorkspace(readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)}));writeWorkspaceChecks(localStorage,workspaceCheckBuild,loaded.checked);storedDeletedWork=loaded.deletedWork;contexts.current=loaded.contexts;savedProjects.current=loaded.works;setEditingPaths(Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])));
+          const loaded=refreshProvidedWorkspace(readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)}));writeWorkspaceChecks(localStorage,workspaceCheckBuild,loaded.checked);storedDeletedWork=loaded.deletedWork;contexts.current=loaded.contexts;picturebookLinks.current=loaded.picturebookLinks;savedProjects.current=loaded.works;setEditingPaths(Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])));
           setImportedWorks(Object.fromEntries(Object.entries(loaded.works).filter(([id])=>id.startsWith('new:')||id.startsWith('import:')).map(([id,work])=>[id,work.title])));
           setProject(loaded.project);setStoryId(loaded.storyId);
           const context=loaded.contexts[loaded.storyId]!;setLineId(context.lineId);setEditorView(context.editorView);setActiveTool(context.activeTool);setWriterChapterId(context.writerChapterId);setPreviewProfile(context.previewProfile);
@@ -353,7 +360,7 @@ export function StoryWorkspace() {
       // Another tab may have taken the writer over a moment ago; this tab saves after it takes it back.
       if(!writer.guard.current?.isOwned())return;
       try {
-        const next=writeWorkspaceSnapshot(writer.guard.current!,project,savedProjects.current,contexts.current,{deletedWork,storyId,lineId,editingPath,mode,playback,editorView,activeTool,writerChapterId,previewProfile,view});savedProjects.current=next.works;contexts.current=next.contexts;
+        const next=writeWorkspaceSnapshot(writer.guard.current!,project,savedProjects.current,contexts.current,{deletedWork,picturebookLinks:picturebookLinks.current,storyId,lineId,editingPath,mode,playback,editorView,activeTool,writerChapterId,previewProfile,view});savedProjects.current=next.works;contexts.current=next.contexts;
         if(writingOwner!==undefined&&writingVisit.current?.owner===writingOwner&&writingVisit.current.key===storyId)rememberWriting(localStorage,writingOwner,storyId,lineId);
         setSaveStatus("임시 보관됨");
       } catch (issue) {
@@ -396,7 +403,7 @@ export function StoryWorkspace() {
       setError('전체 화면을 전환하지 못했어요. 현재 화면에서 계속하거나 다시 눌러 주세요.');
     } finally { fullscreenSwitchPending.current=false; }
   }
-  function snapshot(){return {deletedWork,storyId,lineId,editingPath,mode,playback,editorView,activeTool,writerChapterId,previewProfile,view};}
+  function snapshot(){return {deletedWork,picturebookLinks:picturebookLinks.current,storyId,lineId,editingPath,mode,playback,editorView,activeTool,writerChapterId,previewProfile,view};}
   function rememberCurrent(){
     savedProjects.current={...savedProjects.current,[storyId]:project};
     contexts.current={...contexts.current,[storyId]:captureContext(project,contexts.current[storyId],snapshot())};
@@ -420,6 +427,7 @@ export function StoryWorkspace() {
       throw issue;
     }
     savedProjects.current=merged;
+    picturebookLinks.current={...picturebookLinks.current,...loaded.picturebookLinks};
     contexts.current={...loaded.contexts,...(contexts.current[storyId]?{[storyId]:contexts.current[storyId]}:{})};
     setEditingPaths(current=>({...Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])),...(current[storyId]?{[storyId]:current[storyId]}:{})}));
     setImportedWorks(Object.fromEntries(Object.entries(merged).filter(([id])=>id.startsWith('new:')||id.startsWith('import:')).map(([id,work])=>[id,work.title])));
@@ -994,6 +1002,57 @@ export function StoryWorkspace() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[loadComplete,editorLimits.accountId,editorLimits.loading,editorLimits.role]);
 
+  /** ‘이대로 놀스토리 만들기’ from a picture book (lib/picturebook-links.ts). One book makes at most one work per owner. */
+  async function createFromPicturebook(requestId:string){
+    setPicturebookBusy(true);setPicturebookIssue(null);
+    try{
+      if(!hydrated)throw Error('기기 보관함을 읽지 못해 새 작품을 만들지 않았어요. 보관함을 복구한 뒤 다시 시도해 주세요. 그림책은 그대로 있어요.');
+      // A failed account or class check is never treated as permission to make a guest work.
+      if(!editorLimits.accountKnown)throw Error('계정과 학급 정보를 확인하지 못해 새 작품을 만들지 않았어요. 연결을 확인하고 다시 시도해 주세요.');
+      const request=readPicturebookRequest(localStorage,requestId);
+      if(composing||hasUnappliedAuthoringInput())throw Error('한글 입력을 마친 뒤 다시 시도해 주세요.');
+      // Becoming the writer first adopts what any other tab saved, so the links and works below are the latest.
+      if(!await writer.claim())throw Error('이 탭에서 기기 보관함을 쓸 수 없어요. 다른 탭을 닫고 다시 시도해 주세요.');
+      saveBeforeImport();
+      const plan=planPicturebookCreation({request,ownerScope:picturebookOwnerScope(editorLimits.accountId),permissions:editorLimits.permissions,
+        workKeys:new Set([...Object.keys(savedProjects.current),storyId]),deletedKey:deletedWork?.key,links:picturebookLinks.current,
+        createId:()=>crypto.randomUUID(),now:new Date().toISOString()});
+      if(plan.kind==='create'){
+        // The manuscript and its link are one storage write: both are kept, or neither is.
+        const stored=writeWorkspaceSnapshot(writer.guard.current!,plan.project,{...savedProjects.current,[storyId]:project,[plan.workKey]:plan.project},contexts.current,
+          {...snapshot(),picturebookLinks:plan.links,storyId:plan.workKey,lineId:plan.lineId,editingPath:[plan.lineId],playback:createPlayback(plan.project,plan.lineId),mode:'edit',view:'editor',editorView:'cut',activeTool:'text',writerChapterId:null,previewProfile:'auto'});
+        savedProjects.current=stored.works;contexts.current=stored.contexts;picturebookLinks.current=plan.links;
+        setImportedWorks(current=>({...current,[plan.workKey]:plan.project.title}));
+      }
+      forgetPicturebookRequest(localStorage,requestId);
+      await openLibraryWork(plan.workKey,'edit',plan.kind==='create'?plan.lineId:plan.lineId);
+      setError(plan.notice);
+    }catch(issue){
+      setPicturebookIssue({requestId,message:retryAfterTakeover()?'다른 탭에서 보관함을 바꾸는 중이었어요. 작품을 만들지 않았어요. 다시 시도해 주세요.':issueText(issue)});
+    }finally{setPicturebookBusy(false);}
+  }
+  // Arriving from the picture book (/picturebook): make or reopen the work once the account has settled.
+  useEffect(()=>{
+    if(!loadComplete||editorLimits.loading)return;
+    const url=new URL(location.href),requestId=url.searchParams.get('picturebook'),openId=url.searchParams.get('picturebookWork');
+    if(requestId===null&&openId===null)return;
+    const timer=window.setTimeout(()=>{
+      url.searchParams.delete('picturebook');url.searchParams.delete('picturebookWork');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);
+      if(openId!==null){
+        const key=`new:${openId}`;
+        // ‘쓰던 놀스토리 열기’: the work's own last writing cut wins.
+        if(isPicturebookRequestId(openId)&&savedProjects.current[key])void openLibraryWork(key,'edit');
+        else setPicturebookIssue({requestId:'',message:'쓰던 놀스토리를 이 기기에서 찾지 못했어요. 서재에서 작품을 확인해 주세요.'});
+        return;
+      }
+      if(!isPicturebookRequestId(requestId)){setPicturebookIssue({requestId:'',message:'그림책에서 만들기 주소를 확인해 주세요.'});return;}
+      void createFromPicturebook(requestId);
+    },0);
+    return ()=>window.clearTimeout(timer);
+  // Runs once when storage and the account have settled; the request itself guards against repeats.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[loadComplete,editorLimits.loading]);
+
   async function importFile(file?: File) {
     if (!file) return;
     if(stopForUnappliedInput())return;
@@ -1277,6 +1336,8 @@ export function StoryWorkspace() {
     {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관이 안 된 원고가 이 탭에 있어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
     <MobileFullscreenOffer enabled={['editor','prepare'].includes(view)&&!composing} onEnter={()=>void toggleFullscreen()}/>
     {['editor','prepare','book','cover'].includes(view)&&excludedAudio.length>0&&<p role="alert" className={styles.error}>이 작품에 서비스에서 제외한 기본 소리가 있어요: {excludedAudio.map(asset=>asset.name).join(', ')}. 해당 소리는 재생하지 않으며 원고의 소리 지정은 보존해요. 음향 편집에서 사용할 소리로 교체해 주세요.</p>}
+    {picturebookBusy&&<p role='status' className={styles.status}>그림책으로 놀스토리를 만들고 있어요.</p>}
+    {picturebookIssue&&<section role="alert" aria-label="그림책에서 놀스토리 만들기" className={`${styles.error} ${styles.storageWarning}`} data-testid="picturebook-issue"><p>{picturebookIssue.message}</p>{picturebookIssue.requestId&&<button disabled={picturebookBusy} onClick={()=>void createFromPicturebook(picturebookIssue.requestId)}>다시 시도</button>}<button onClick={()=>{if(beforeServiceNavigation())location.assign('/shortstory');}}>그림책으로 돌아가기</button><button onClick={()=>setPicturebookIssue(null)}>닫기</button></section>}
     {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일을 살펴보고 있어요. 긴 작품은 조금 걸릴 수 있어요.</p>}
     {pendingArchive&&(!submissionAccount.current||submissionAccount.current===editorLimits.accountId)&&pendingArchive.format==='knolstory'&&<AuthoringImportDialog title={pendingArchive.document.project.title} kind='knolstory' chapterCount={pendingArchive.document.project.chapters.length} cutCount={pendingArchive.document.project.lines.length} resourceCount={pendingArchive.audioResources.length} busy={importBusy} error={error} onCancel={()=>setPendingArchive(null)} onApply={applyPendingArchive}/>}
     {view!=='editor'&&storageWarning}
@@ -1325,7 +1386,7 @@ export function StoryWorkspace() {
       <div className={`${styles.grid} ${mode==='edit'?styles.workbenchGrid:''}`} data-editing-screen={mode==='edit'?editingScreen:undefined}>
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
-          <StoryEditingWorkbench onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editorLimits.permissions} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
+          <StoryEditingWorkbench chapterReference={chapter.picturebookSketch||Object.values(picturebookLinks.current).some(link=>link.workKey===storyId&&Object.values(link.pages).some(page=>page.chapterId===chapter.id))?<PicturebookChapterReference key={`${project.id}/${chapter.id}`} chapter={chapter}/>:undefined} onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editorLimits.permissions} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
             onScreenChange={screen=>{if(composing||stopForUnappliedInput())return false;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${issueText(issue)}`);return false;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');return true;}}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}

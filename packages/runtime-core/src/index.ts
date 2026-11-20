@@ -99,3 +99,4 @@ export * from './branch-condition-references';
 export * from './scene-visits';
 export * from './image-preload';
 export * from './branch-authoring';
+export * from './picturebook-chapters';

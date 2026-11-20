@@ -10051,6 +10051,58 @@
         "scripts/prepare-shortstory-illustrations.py"
       ],
       "creationMethodEvidence": "built-in image_gen; project owner approved KnolStory service publication 2026-11-13 (\"권한 다 줄테니 웹의 완성을 부탁해\")"
+    },
+    {
+      "file": "apps/web/public/assets/backgrounds/picturebook-v1/rabbit-turtle-shore-reeds.webp",
+      "sha256": "2b20b98d53435bf5f62a79514d64412b9a121be41b4f800915c70d904c310bb6",
+      "assetIds": [
+        "rabbit-turtle.background.picturebook-shore-reeds-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.background.picturebook-shore-reeds-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-rabbit-walking-away.webp",
+      "sha256": "e5164dff2ec44923ec1cebd330c5faca5257db4b74af063a2158cdbdf9fcc953",
+      "assetIds": [
+        "rabbit-turtle.character.picturebook-rabbit-walking-away-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.character.picturebook-rabbit-walking-away-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-turtle-pleading.webp",
+      "sha256": "50f9774f60861037cc8db8db7e211b6c59684067051301d4f2eb9f152fe58061",
+      "assetIds": [
+        "rabbit-turtle.character.picturebook-turtle-pleading-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.character.picturebook-turtle-pleading-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-turtle-searching-reeds.webp",
+      "sha256": "04fadbb2e3e0396958b82286fec86979bda1870517241513379497561b123010",
+      "assetIds": [
+        "rabbit-turtle.character.picturebook-turtle-searching-reeds-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-chapters-2026-11-20/image-generation.json#rabbit-turtle.character.picturebook-turtle-searching-reeds-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
     }
   ]
 }

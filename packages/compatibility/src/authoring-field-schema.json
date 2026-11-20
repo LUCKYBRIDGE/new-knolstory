@@ -3206,6 +3206,44 @@
             },
             "rightAssetId": {
               "kind": "string"
+            },
+            "picturebookSketch": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "undefined"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "backgroundId": {
+                      "kind": "string"
+                    },
+                    "leftAssetId": {
+                      "kind": "string"
+                    },
+                    "rightAssetId": {
+                      "kind": "string"
+                    },
+                    "recipeVersion": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "undefined"
+                        },
+                        {
+                          "kind": "number"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "backgroundId",
+                    "leftAssetId",
+                    "rightAssetId"
+                  ]
+                }
+              ]
             }
           },
           "required": [

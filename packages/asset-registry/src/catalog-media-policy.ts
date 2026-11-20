@@ -24,6 +24,8 @@ export function assertCatalogOnlyMedia(value:unknown):void{
  for(const character of list(project.characters))image(record(character).defaultImageId,'character');
  for(const value of [...list(project.chapters),...list(project.lines)]){
   const source=record(value);stage(source);audio(source.audio);
+  // A chapter's starting picture (v9) is an asset reference like any stage slot.
+  stage(source.picturebookSketch);
   for(const id of list(source.backgroundAssetIds))image(id,'background');
   for(const id of list(source.characterAssetIds))image(id,'character');
   const composition=record(source.stageComposition);

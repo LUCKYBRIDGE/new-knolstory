@@ -107,6 +107,8 @@ function assertPreservedValues(original:unknown,parsed:unknown,path:string):void
  }
  if(original!==parsed)throw Error(`${path}: 작성한 값을 그대로 보존할 수 없어요. 형식과 허용 값을 확인해 주세요.`);
 }
+/** Next-authored document versions whose values must survive exactly (v5–v9). */
+const currentAuthored=(version:unknown)=>version===5||version===6||version===7||version===8||version===CURRENT_SCHEMA_VERSION;
 function validatedDocument(input:unknown):StoryDocumentEnvelope{
  if(!record(input))throw Error('document: 작품 문서를 확인해 주세요.');
  let value=input;
@@ -114,13 +116,13 @@ function validatedDocument(input:unknown):StoryDocumentEnvelope{
  // Explicit title-only correction also applies to exact-value archive/workbook checks.
  // Keep every other authored field and the caller's original object unchanged.
  if(record(value.project)&&Array.isArray(value.project.chapters))value={...value,project:{...value.project,chapters:value.project.chapters.map(chapter=>record(chapter)&&typeof chapter.title==='string'?{...chapter,title:normalizeChapterTitle(chapter.title)}:chapter)}};
- if((value.schemaVersion===5||value.schemaVersion===6||value.schemaVersion===7||value.schemaVersion===CURRENT_SCHEMA_VERSION))assertAuthoringFields('knolstory',value.project);
+ if(currentAuthored(value.schemaVersion))assertAuthoringFields('knolstory',value.project);
  const parsed=parseStoryDocument(value);
  if(!parsed.ok)throw Error(parsed.issues.map(issue=>`${issue.path}: ${issue.message}`).join('\n'));
- if((value.schemaVersion!==5&&value.schemaVersion!==6&&value.schemaVersion!==7&&value.schemaVersion!==CURRENT_SCHEMA_VERSION))assertAuthoringFields('knolstory',parsed.document.project);
- if((value.schemaVersion===5||value.schemaVersion===6||value.schemaVersion===7||value.schemaVersion===CURRENT_SCHEMA_VERSION))assertPreservedValues(value.project,parsed.document.project,'document.project');
+ if(!currentAuthored(value.schemaVersion))assertAuthoringFields('knolstory',parsed.document.project);
+ if(currentAuthored(value.schemaVersion))assertPreservedValues(value.project,parsed.document.project,'document.project');
  // Current authored values must survive exactly. Explicit Next schema migrations use the domain normalizer.
- return structuredClone((value.schemaVersion===5||value.schemaVersion===6||value.schemaVersion===7||value.schemaVersion===CURRENT_SCHEMA_VERSION)?{...value,schemaVersion:CURRENT_SCHEMA_VERSION}:parsed.document) as StoryDocumentEnvelope;
+ return structuredClone(currentAuthored(value.schemaVersion)?{...value,schemaVersion:CURRENT_SCHEMA_VERSION}:parsed.document) as StoryDocumentEnvelope;
 }
 /** Object optional `undefined` means absent; arrays and actual authored values never disappear. */
 function constructorJson(value:unknown,path='$'):unknown{
@@ -169,7 +171,7 @@ export async function encodeAuthoringArchive(value:AuthoringArchive):Promise<str
 }
 /** Earlier Next files stored side IDs redundantly; an explicit composition already owns those IDs. */
 function adaptNextDocumentProjections(document:Record<string,unknown>):Record<string,unknown>{
- if(document.schemaVersion!==5&&document.schemaVersion!==6&&document.schemaVersion!==7&&document.schemaVersion!==8)return document;
+ if(!currentAuthored(document.schemaVersion))return document;
  // Check unknown keys/types before adapting; malformed authored data must still fail atomically.
  assertAuthoringFields('knolstory',document.project);
  const project=document.project as StoryProject;

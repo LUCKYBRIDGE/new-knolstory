@@ -13,3 +13,6 @@ export {EXCLUDED_AUDIO_ASSETS,resolveExcludedAudioAsset,resolveApprovedAudioUsag
 export type {ExcludedAudioAsset,AudioUsagePolicy} from './audio-service-policy';
 
 export {assertCatalogOnlyMedia} from './catalog-media-policy';
+
+export {PICTUREBOOK_RECIPES,SERVICE_RECIPE_SOURCE,MAX_ALTERNATIVES_PER_SLOT,stageRecipeProblems,lookupStageRecipe,isFinishedIllustration} from './picturebook-recipes';
+export type {RecipeReview,RecipeActor,RecipeAlternative,StageRecipe,RecipeList,RecipeLookup,RecipeSource} from './picturebook-recipes';

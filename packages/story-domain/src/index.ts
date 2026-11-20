@@ -35,3 +35,5 @@ export * from './legacy/story-branch-condition';
 export * from './legacy/story-text-variants';
 
 export * from './legacy/story-scene-visibility';
+
+export * from './legacy/picturebook-sketch';

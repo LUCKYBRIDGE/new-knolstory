@@ -8,7 +8,7 @@ it('preserves a full work with independent effect and music cut ends in every fo
  const original=getRepresentativeStory('rabbit').project,first=original.lines[0],end=original.lines[2].id;
  const project={...original,lines:original.lines.map(line=>line.id===first.id?{...line,presentation:{...line.presentation,effects:[{id:'bounded',type:'shake' as const,scope:'following' as const,endLineId:end},{id:'unbounded',type:'flash' as const,scope:'following' as const}]},audio:{...line.audio,music:{action:'play' as const,assetId:'audio:music:forest',endLineId:end}}}:line)};
  const archive=await createAuthoringArchive({format:'knolstory',document:createStoryDocument({project,savedAt:'2026-10-11T00:00:00.000Z',appVersion:'test'})});
- expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(8);
+ expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(9);
  expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
  const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(9);
  expect(workbook.tables.presentationEffects.headers).toContain('endLineId');expect(workbook.tables.audioTracks.headers).toContain('endLineId');

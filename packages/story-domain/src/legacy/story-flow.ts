@@ -1,3 +1,4 @@
+import { withoutPicturebookSketch } from "./picturebook-sketch";
 import { hasOnlyStoryKeys, isStoryScoreCondition, isStoryScoreEffects, isStoryScoreRoutes, type StoryScoreCondition, type StoryScoreEffect, type StoryScoreRoute } from "./story-scores";
 import { resolveStageComposition, stageProjection } from "./story-stage-composition";
 import type { StoryLine, StoryProject } from "./story-data";
@@ -136,7 +137,7 @@ export function createStoryBranches(project: StoryProject, lineId: string, count
   const oldLast = ordered.at(-1);
   const baseOrder = Math.max(0, ...project.chapters.map(chapter => chapter.order));
   const nextNumber = (chapter.chapterNumber ?? chapter.order) + 1;
-  const newChapter = (id: string, title: string, order: number, chapterNumber: number, branchLabel?: string) => ({ ...chapter, id, title, order, chapterNumber, branchLabel, summary: "", purpose: "", mood: "", keyEvents: "", nextChapterIdea: "", storyStageKeys: [] });
+  const newChapter = (id: string, title: string, order: number, chapterNumber: number, branchLabel?: string) => ({ ...withoutPicturebookSketch(chapter), id, title, order, chapterNumber, branchLabel, summary: "", purpose: "", mood: "", keyEvents: "", nextChapterIdea: "", storyStageKeys: [] });
   const composition = resolveStageComposition(chapter,source,project);
   const actorFields = source.inheritActors
     ? {stageComposition:undefined,leftAssetId:'',rightAssetId:''}
@@ -165,7 +166,7 @@ export function createStoryChoiceChapter(project: StoryProject, lineId: string, 
   if (!chapterId || !cutId || chapterId === cutId || usedIds.has(chapterId) || usedIds.has(cutId)) throw new Error("새 장 ID가 중복됐어요. 다시 시도해 주세요.");
   const composition = resolveStageComposition(chapter, source, project);
   const nextChapter = {
-    ...chapter, id: chapterId, chapterNumber: (chapter.chapterNumber ?? chapter.order) + 1, branchLabel: String.fromCharCode(65 + (source.flow?.type === "choice" ? source.flow.options.findIndex(item => item.id === optionId) : 0)), order: Math.max(0, ...project.chapters.map(item => item.order)) + 1,
+    ...withoutPicturebookSketch(chapter), id: chapterId, chapterNumber: (chapter.chapterNumber ?? chapter.order) + 1, branchLabel: String.fromCharCode(65 + (source.flow?.type === "choice" ? source.flow.options.findIndex(item => item.id === optionId) : 0)), order: Math.max(0, ...project.chapters.map(item => item.order)) + 1,
     title: option.label.trim() || "새 갈래", summary: "", purpose: "", mood: "", keyEvents: "", nextChapterIdea: "", storyStageKeys: [],
   };
   const nextLine: StoryLine = {

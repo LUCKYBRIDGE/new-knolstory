@@ -31,6 +31,8 @@ export type Chapter = {
   backgroundId: string;
   leftAssetId: string;
   rightAssetId: string;
+  /** Starting picture from the picture-book page this chapter was made from (v9). */
+  picturebookSketch?: import("./picturebook-sketch").PicturebookSketch;
 };
 
 export type StoryLine = {
