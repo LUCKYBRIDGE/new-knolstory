@@ -10103,6 +10103,32 @@
         "docs/architecture/picturebook-image-production-requests.md"
       ],
       "creationMethodEvidence": "built-in image_gen; requested continuation of the registered KnolStory picture-book stage assets"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-woodcutter-hiding-deer.webp",
+      "sha256": "662e6d1706b0cb91e70dc45efe53bf90607c1c8958c0c263e49fdb241e03b30f",
+      "assetIds": [
+        "seonnyeo.character.picturebook-woodcutter-hiding-deer-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-three-works-2026-11-20/image-generation.json#seonnyeo.character.picturebook-woodcutter-hiding-deer-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children.webp",
+      "sha256": "72f1483a4ed90abcf19fabb96ef61182859fd9583e785b505199eb95145ac2c8",
+      "assetIds": [
+        "seonnyeo.character.picturebook-fairy-ascending-with-children-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-three-works-2026-11-20/image-generation.json#seonnyeo.character.picturebook-fairy-ascending-with-children-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
     }
   ]
 }
