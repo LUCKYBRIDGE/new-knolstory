@@ -721,8 +721,8 @@
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-01",
    "recipeVersion": 2,
-   "review": "assembly-review",
-   "note": "왼쪽에서 나무꾼이 몸을 낮춰 사슴을 등 뒤로 감싸고 오른쪽 사냥꾼을 살펴요.",
+   "review": "approved",
+   "note": "왼쪽에서 나무꾼이 몸을 낮춰 사슴을 감싸 숨기고 오른쪽 사냥꾼을 살펴요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG01-valley-day",
     "left": [
@@ -764,7 +764,9 @@
     "creative.character.seonnyeo-hunter-look": "46b8bc010369188d05e888a46086aeb12e2ab9717c1c50e384fa8cf6d1c40d4d",
     "seonnyeo.character.classic-hunter": "9a5c8d4407f5902d4b8a223c606346b8efae2230b7ea233ecdd058bdaa47da34",
     "seonnyeo.character.picturebook-woodcutter-hiding-deer-v1": "662e6d1706b0cb91e70dc45efe53bf90607c1c8958c0c263e49fdb241e03b30f"
-   }
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-02",
@@ -883,7 +885,7 @@
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-05",
    "recipeVersion": 2,
    "review": "assembly-review",
-   "note": "오른쪽 선녀가 두 아이를 안고 비스듬히 하늘로 올라요. 발 아래 투명 여백이 실제 무대에서 떠 있는 구도로 보이는지 검토해요.",
+   "note": "무대는 그림에서 보이는 부분의 맨 아래를 바닥선에 맞춰서, 아래를 투명하게 비운 선녀가 다시 땅에 붙어 보여 승인하지 않았어요. 구름·빛 자락이 바닥선까지 닿는 그림(제작 요청 6 보완)을 기다려요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [

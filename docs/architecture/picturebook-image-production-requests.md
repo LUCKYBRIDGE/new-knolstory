@@ -1,6 +1,6 @@
 # 그림책→놀스토리 · 이미지 제작 요청
 
-**진행 상황 (2026-11-20):** 옹고집전·선녀와 나무꾼·흥부와 놀부는 26쪽 중 24쪽을 기존 자료로 승인했고, 선녀와 나무꾼 1·5쪽은 요청 5·6의 새 자료를 등록해 조립 검토 중이다. [기존 무대 검토](evidence/picturebook-three-works-2026-11-20/checkpoint.json) · [제작 기록](evidence/picturebook-three-works-2026-11-20/image-generation.json). 별주부전: 요청 1·2·3 완성·등록(`picturebook-turtle-pleading-v1`, `picturebook-rabbit-walking-away-v1`, `picturebook-shore-reeds-v1`). 실제 무대 검토 뒤 1·5·8쪽 조합 승인. 요청 4의 자라를 2쪽에 등록했고, 6쪽은 기존 자산으로 조합했다. 2·6쪽도 실제 무대 검토 뒤 승인했다. [검토 근거](evidence/picturebook-chapters-2026-11-20/checkpoint.json)
+**진행 상황 (2026-11-20):** 옹고집전·선녀와 나무꾼·흥부와 놀부는 26쪽 중 25쪽을 승인했다(선녀 1쪽은 요청 5의 새 자료). 선녀와 나무꾼 5쪽은 요청 6의 1차 그림이 무대에서 바닥에 붙어 보여 요청 6 보완을 기다린다. [기존 무대 검토](evidence/picturebook-three-works-2026-11-20/checkpoint.json) · [제작 기록](evidence/picturebook-three-works-2026-11-20/image-generation.json). 별주부전: 요청 1·2·3 완성·등록(`picturebook-turtle-pleading-v1`, `picturebook-rabbit-walking-away-v1`, `picturebook-shore-reeds-v1`). 실제 무대 검토 뒤 1·5·8쪽 조합 승인. 요청 4의 자라를 2쪽에 등록했고, 6쪽은 기존 자산으로 조합했다. 2·6쪽도 실제 무대 검토 뒤 승인했다. [검토 근거](evidence/picturebook-chapters-2026-11-20/checkpoint.json)
 
 2026-11-20 · 별주부전 8쪽 수직 검증에서 나온 요청이다. 제품 동작은 [전환 설계](picturebook-to-chapters-design.md), 작업 순서는 [구현 인계](picturebook-to-chapters-claude-handoff.md), 검토한 조합은 [장면 조합 목록](../../packages/asset-registry/src/picturebook-stage-recipes.json)이 소유한다. 이 문서는 새 그림이 필요한 장면만 다룬다. 요청한 그림이 등록되기 전까지 해당 쪽은 ‘삽화만 참고’로 동작하며 학생의 쓰기는 막히지 않는다.
 
@@ -92,6 +92,19 @@
 | 함께 쓰는 자료 | 배경 `seonnyeo.background.BG04-cottage-day`, 왼쪽 `seonnyeo.character.M02-surprised` |
 | 구도 | 무대 오른쪽 묶음, 1200×1200. 세로 읽기에서도 하늘로 오르는 방향(왼쪽 위 또는 오른쪽 위)이 읽히는지 확인. |
 | 재사용 | 하늘로 오르거나 날아가는 장면 |
+
+## 요청 6 보완 · 구름 자락이 바닥까지 이어지는 날아오르는 선녀 (선녀와 나무꾼, 우선 1)
+
+| 항목 | 내용 |
+|---|---|
+| 원화 | `seonnyeo.scene.shortstory-classic-05` 하늘로 떠난 가족 |
+| 1차 결과 | `seonnyeo.character.picturebook-fairy-ascending-with-children-v1`. 그림 자체는 원화와 맞지만 실제 무대에서 바닥에 붙어 보였다. |
+| 원인 | 무대 배치(Runtime Core `stage-layout.ts`)는 카탈로그 `geometry.bottom`, 즉 **보이는 부분의 맨 아래**를 바닥선에 맞춘다. 아래를 투명하게 비우면 그 여백은 무시된다. |
+| 필요한 그림 | 같은 선녀와 두 아이를 그림 위쪽 55% 안에 두고, 원화처럼 **빛나는 구름·날개옷 자락이 그림 맨 아래(바닥선)까지** 이어지게 그린다. 자락은 반투명이어도 되지만, 알파 경계가 아래 여백 4% 안까지 내려와야 한다. 그러면 자락 끝이 바닥선에 놓이고 선녀는 높이 떠 보인다. |
+| 기준 ID | `seonnyeo.character.picturebook-fairy-ascending-with-children-v1`(인물·의상·두 아이) |
+| 함께 쓰는 자료 | 배경 `seonnyeo.background.BG04-cottage-day`, 왼쪽 `seonnyeo.character.M02-surprised` |
+| 구도 | 1200×1200, 무대 오른쪽. 가로에서 선녀의 얼굴이 무대 위쪽 절반에, 세로에서 대사창 위에 오는지 확인. |
+| 등록 | 새 ID(`…-v2`)로 등록하고 v1은 그대로 둔다. 05 조합을 v3으로 올리고 조립 검토 상태를 유지한다. |
 
 ## 완료 후 등록 절차
 
