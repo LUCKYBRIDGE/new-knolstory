@@ -34,7 +34,7 @@ describe('sending picture-book pages to a new KnolStory',()=>{
   expect(sends).toHaveLength(1);
   expect(sends[0]).toMatchObject({workKey:'new:work-aaaa-1111',requestId:'request-aaaa-1111'});
   expect(Object.keys(sends[0]!.pages)).toEqual(book.pages.map(page=>page.id));
-  expect(plan.notice).toContain('8쪽을 새 놀스토리 8장으로');
+  expect(plan.notice).toContain('1~8쪽을 새 놀스토리 1~8장으로');
   // The cover the student made for the picture book is carried over as cover data.
   expect(plan.project.cover?.author).toBe(book.authorDisplayName);
  });
@@ -98,7 +98,7 @@ describe('putting picture-book pages between the chapters of a work being writte
   expect(chapters.slice(2,4).map(chapter=>chapter.title)).toEqual([book.pages[6]!.title,book.pages[7]!.title]);
   expect(chapterLabel(chapters[4]!)).toMatch(/^5장/);
   expect(plan.project.lines.find(line=>line.id===plan.lineId)!.chapterId).toBe(chapters[2]!.id);
-  expect(plan.notice).toContain('2장 뒤에 3·4장으로');
+  expect(plan.notice).toBe(`그림책 7·8쪽을 ‘${first.project.title}’ 2장 뒤에 3·4장으로 넣었어요.`);
   // Chapters written before keep their IDs and cuts.
   for(const chapter of first.project.chapters)expect(plan.project.chapters.some(item=>item.id===chapter.id)).toBe(true);
   expect(picturebookSends(plan.links,'device',book.id).map(send=>send.workKey)).toEqual([first.workKey,first.workKey]);

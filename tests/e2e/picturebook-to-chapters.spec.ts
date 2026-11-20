@@ -60,7 +60,7 @@ for(const width of [1280,390])test(`그림책 4쪽에서 보내 4장 첫 컷을 
  await expect(page.getByTestId('picturebook-stage-status')).toHaveAttribute('data-rendered-revision',/^(?!-1$)\d+$/,{timeout:90_000});
  await send(page);
  const reference=page.getByTestId('picturebook-chapter-reference').first();
- await expect(page.getByTestId('workspace-error')).toContainText('4장 첫 컷');
+ await expect(page.getByTestId('picturebook-notice')).toContainText('4장 첫 컷');
  const first=await workspace(page);
  const key=first.storyId as string,work=first.document.project;
  expect(key).toMatch(/^new:/);
@@ -70,6 +70,14 @@ for(const width of [1280,390])test(`그림책 4쪽에서 보내 4장 첫 컷을 
  expect(work.lines.find((line:{id:string})=>line.id===first.lineId).chapterId).toBe(chapter4.id);
  expect(Object.values(first.picturebookLinks)).toHaveLength(1);
  if(width>=1000)await expect(reference).toContainText('토끼는 파도 소리에');
+ // Every image picker of this chapter starts with the pictures that fit its picture-book page.
+ if(width>=1000){
+  await page.getByRole('button',{name:/^1컷 배경 이미지 찾기/}).click();
+  const picker=page.getByRole('dialog',{name:/이미지 선택/});
+  await expect(picker.getByRole('button',{name:'숏스토리 추천',exact:true})).toHaveAttribute('aria-pressed','true');
+  await expect(picker.locator('[data-asset-id]').first()).toBeVisible();
+  await picker.getByRole('button',{name:'취소',exact:true}).click();
+ }
  // The student writes the first line of chapter 4.
  const offer=page.getByRole('button',{name:'지금은 그대로',exact:true});
  if(await offer.isVisible())await offer.click();
@@ -110,6 +118,8 @@ test('고른 쪽만 새 놀스토리로 보내고, 다른 쪽은 쓰던 놀스�
  await place.selectOption({label:(await place.locator('option').nth(1).textContent())!});
  await expect(page.getByTestId('picturebook-summary')).toContainText('1장 뒤에 2·3장으로 들어가요. 원래 2장부터는 4장부터로 번호가 바뀌어요.');
  await send(page,'1장 뒤에 2·3장으로 넣었어요');
+ // The stage of the work being written is shown again right away.
+ await expect(page.locator('section[aria-label="이야기 무대"] iframe')).toBeVisible();
  const after=await workspace(page);
  expect(after.storyId).toBe(key);
  const now=titles(after.document.project);
@@ -155,12 +165,12 @@ test('같은 요청은 두 번 눌러도 한 번만 보내고, 다른 탭에서 
  const bookUrl=page.url();
  const second=await context.newPage();await account(second);await second.goto(bookUrl);
  await page.locator('main > footer').getByRole('button',{name:'놀스토리로 보내기',exact:true}).dblclick();
- await expect(page.getByTestId('workspace-error')).toContainText('첫 컷',{timeout:60_000});
+ await expect(page.getByTestId('picturebook-notice')).toContainText('첫 컷',{timeout:60_000});
  const one=await workspace(page);
  expect([one.storyId,...Object.keys(one.works)].filter((item:string)=>item.startsWith('new:'))).toHaveLength(1);
  // The other tab's own press is a separate send the student chose.
  await second.locator('main > footer').getByRole('button',{name:'놀스토리로 보내기',exact:true}).click();
- await expect(second.getByTestId('workspace-error')).toContainText('첫 컷',{timeout:60_000});
+ await expect(second.getByTestId('picturebook-notice')).toContainText('첫 컷',{timeout:60_000});
  const stored=await workspace(second);
  expect(new Set([stored.storyId,...Object.keys(stored.works)].filter((item:string)=>item.startsWith('new:'))).size).toBe(2);
  expect((Object.values(stored.picturebookLinks)[0] as {sends:unknown[]}).sends).toHaveLength(2);

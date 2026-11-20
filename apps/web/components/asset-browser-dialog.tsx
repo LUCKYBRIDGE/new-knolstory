@@ -6,10 +6,14 @@ import { readAssetPreferences, recordRecentAsset, toggleAssetFavorite, writeAsse
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './asset-browser-dialog.module.css';
 import {useEditorKeyboard} from './use-editor-keyboard';
+import {usePicturebookRecommendations} from './picturebook-recommendation-context';
 type EmptyOption=Readonly<{value:string;label:string}>;
 type Props = { allowSceneIllustrations?:boolean; emptyOptions?:readonly EmptyOption[];label: string; type: Asset['type']; value: string; chapterAssetIds?: readonly string[]; onSelect: (id: string) => void; onClose: () => void };
 type Filters = Partial<Record<FacetKey, readonly string[]>>;
 const VIEWS = [['all', '전체'], ['chapter', '장 자료'], ['favorites', '즐겨찾기'], ['recent', '최근 사용']] as const;
+/** Shown first when the current chapter came from a picture-book page. */
+const PICTUREBOOK_VIEW = ['picturebook', '숏스토리 추천'] as const;
+type View = (typeof VIEWS)[number][0] | typeof PICTUREBOOK_VIEW[0];
 function Thumbnail({ asset }: { asset: Asset }) {
   return <span className={`${styles.thumbnail} ${asset.type === 'background' ? styles.background : ''}`}><img src={asset.src} alt="" loading="lazy" decoding="async" /></span>;
 }
@@ -25,7 +29,9 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
   const searchInput = useRef<HTMLInputElement>(null);
   const titleId = useId();
   const [search, setSearch] = useState('');
-  const [view, setView] = useState<(typeof VIEWS)[number][0]>('all');
+  const recommended = usePicturebookRecommendations()[type];
+  const views = recommended.length ? [PICTUREBOOK_VIEW, ...VIEWS] : VIEWS;
+  const [view, setView] = useState<View>(recommended.length ? 'picturebook' : 'all');
   const [filters, setFilters] = useState<Filters>({});
   const [pending, setPending] = useState(value);
   const [sameCharacter, setSameCharacter] = useState(false);
@@ -44,9 +50,9 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
     searchInput.current?.focus();
     return () => { element?.close(); if (opener?.isConnected) opener.focus(); };
   }, []);
-  const options = useMemo(() => ({ type, allowSceneIllustrations, search, filters, view, currentAssetId: value, chapterAssetIds,
+  const options = useMemo(() => ({ type, allowSceneIllustrations, search, filters, view: view === 'picturebook' ? 'chapter' as const : view, currentAssetId: value, chapterAssetIds: view === 'picturebook' ? recommended : chapterAssetIds,
     favoriteIds: preferences.favoriteIds, recentIds: preferences.recentIds, sameCharacterAssetId: sameCharacter ? value : undefined,
-  }), [type, allowSceneIllustrations, search, filters, view, value, chapterAssetIds, preferences, sameCharacter]);
+  }), [type, allowSceneIllustrations, search, filters, view, value, chapterAssetIds, recommended, preferences, sameCharacter]);
   const found = useMemo(() => searchAssets(options), [options]);
   const visibleFacets = ASSET_FACETS.filter(facet => type === 'character'
     ? !['locations', 'spaces', 'times', 'seasons', 'weather', 'moods', 'states', 'framings'].includes(facet.key)
@@ -71,7 +77,7 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
         <div>{preview && <Thumbnail asset={preview} />}<span><small>선택 미리보기</small><strong>{(preview?assetDisplayName(preview):undefined) ?? empty?.label ?? '그림을 선택하세요'}</strong></span></div>
       </div>
       <div className={styles.findbar}><input ref={searchInput} type="search" aria-label="이미지 검색" placeholder="흥부 일하기, 겨울 집처럼 찾아보세요" value={search} onChange={event => setSearch(event.target.value)} />{type === 'character' && current && assetCharacterIds(current).length > 0 && <button type="button" aria-pressed={sameCharacter} onClick={() => setSameCharacter(v => !v)}>같은 인물의 다른 모습</button>}</div>
-      <div className={styles.tabs} role="group" aria-label="이미지 보기">{VIEWS.map(([mode, text]) => <button type="button" key={mode} aria-pressed={view === mode} onClick={() => setView(mode)}>{text}</button>)}</div>
+      <div className={styles.tabs} role="group" aria-label="이미지 보기">{views.map(([mode, text]) => <button type="button" key={mode} aria-pressed={view === mode} onClick={() => setView(mode)}>{text}</button>)}</div>
       <div className={styles.body}>
         {emptyOptions.length>0&&<div className={styles.emptyOptions} role="group" aria-label={`${label} 기본 표시`}>{emptyOptions.map(option=><button type="button" key={option.value} aria-pressed={pending===option.value} onClick={()=>setPending(option.value)}>{option.label}</button>)}</div>}
         <details className={styles.advanced}><summary>상세 조건으로 찾기{chips.length?` · ${chips.length}개 적용`:""}</summary><section className={styles.facets} aria-label="찾는 조건 고르기">{visibleFacets.map(facet => {
