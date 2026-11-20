@@ -76,5 +76,77 @@
     "accountAndPermissions": "e2e 모의 계정: 새 작품 금지 학생·계정 확인 실패 시 버튼 비활성, 작업 공간 미생성. 소유 범위 불일치는 단위 테스트",
     "imeComposition": "코드 경로만 확인(조합 중 생성 거부·버튼 비활성). 실제 IME 입력 재현은 하지 않음"
   },
-  "reviewPreview": "/picturebook?review=recipes — 승인 전 조합을 실제 무대에 보여 주는 검토용 미리보기. 만들기 불가, 조합 목록은 바꾸지 않음 (picturebook-preparation.test.ts)"
+  "reviewPreview": "/picturebook?review=recipes — 승인 전 조합을 실제 무대에 보여 주는 검토용 미리보기. 만들기 불가, 조합 목록은 바꾸지 않음 (picturebook-preparation.test.ts)",
+  "assetAndStageFollowUp": {
+    "method": "로컬 그림책 사본에서 /picturebook?review=recipes 검토용 미리보기. Ren’Py 장면 응답 리비전과 캔버스를 확인했다.",
+    "02": {
+      "recipeVersion": 3,
+      "state": "approved",
+      "assetId": "rabbit-turtle.character.picturebook-turtle-searching-reeds-v1",
+      "landscape": {
+        "file": "stage-2-landscape.png",
+        "sha256": "95b0a8429f482a89f5edfdece998f380a9b807d3ab7b8ab4ee1fb20e5e762c95",
+        "sceneRevision": 4,
+        "actors": [
+          "L1"
+        ],
+        "width": 1280,
+        "height": 720
+      },
+      "portrait": {
+        "file": "stage-2-portrait.png",
+        "sha256": "b75c26ef0678a257f72085be18160bdb87d0d3bfad44a4865a1b1f367a9474ce",
+        "sceneRevision": 7,
+        "actors": [
+          "L1"
+        ],
+        "width": 720,
+        "height": 1280
+      },
+      "visualResult": "가로에 갈대와 물가가 함께 보인다. 두 화면에서 자라의 얼굴·손·갈대 접촉 지점이 대사창 위에 있고, 세로 배경은 왼쪽 갈대와 흙길 중심이라 수면이 거의 보이지 않는다."
+    },
+    "06": {
+      "recipeVersion": 2,
+      "state": "approved",
+      "landscape": {
+        "file": "stage-6-landscape.png",
+        "sha256": "69727653b0827678cfbaee2848ee75314e2506a5f4258b4ce1de6f90bbfbf2cd",
+        "sceneRevision": 5,
+        "actors": [
+          "L1",
+          "R1",
+          "R2"
+        ],
+        "width": 1280,
+        "height": 720
+      },
+      "portrait": {
+        "file": "stage-6-portrait.png",
+        "sha256": "eeb554abea7f4c0aee8dab9e793d5d0168c75cab1172fa4ce5304aa4d4dedab6",
+        "sceneRevision": 8,
+        "actors": [
+          "L1"
+        ],
+        "width": 720,
+        "height": 1280
+      },
+      "visualResult": "가로에서 왼쪽 토끼의 설명 손짓과 오른쪽 용왕·자라의 방향을 확인했다. 세로 첫 해설 컷에는 토끼만 표시된다. 상대를 보여주는 별도 컷 판단이 필요하다."
+    },
+    "validation": {
+      "vitestPassed": 2690,
+      "vitestSkipped": 2,
+      "picturebookHostE2EPassed": 4,
+      "mediaRecordsVerified": 2701,
+      "typecheck": "pass",
+      "onlineWebBuild": "pass",
+      "renpyBuild": "pass"
+    },
+    "screenshots": "캡처는 저장소 기존 규칙에 따라 로컬 증거 디렉터리에 있다.",
+    "humanReview": {
+      "date": "2026-11-20",
+      "decision": "02·06 승인",
+      "02": "갈대를 헤치며 살피는 사건이 가로·세로 모두에서 읽힌다. 세로에서 수면이 덜 보이는 것은 ‘낯선 육지’ 장면에 문제가 되지 않는다.",
+      "06": "가로에서 설명하는 토끼와 듣는 자라·용왕의 방향이 읽힌다. 세로 한 명 표시는 승인된 1·3·5·7·8쪽과 같은 규칙이고 첫 해설 컷에 말하는 토끼가 먼저 보이는 것이 맞다."
+    }
+  }
 }

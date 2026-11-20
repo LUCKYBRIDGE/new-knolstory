@@ -41,11 +41,17 @@ Claude는 변환·저장·파일 형식·권한·추천/미리보기 UI·기존 
 |---|---|---|
 | 파일 형식 | StoryDocument v9 `chapter.picturebookSketch`, v8 읽기, 표 ‘장 출발 그림’ 탭, 자료 검사, 분할·갈래 시 원래 장에만 보존. [저장 계약](authoring-storage-contract.md#장-출발-그림과-그림책-연결--2026-11-20) | `packages/compatibility/tests/picturebook-sketch-format.test.ts`, `picturebook-browser-reopen.test.ts`, 전체 필드 변형 |
 | 쪽→장 변환 | `packages/runtime-core/src/picturebook-chapters.ts` — 주입 ID, 쪽 순서, 빈 첫 컷, 명시적 빈 무대, 한도 초과는 쪽별 안내, Runtime Core 순차 재생·종료 검사 | `packages/runtime-core/tests/picturebook-chapters.test.ts` |
-| 추천 | `packages/asset-registry/src/picturebook-stage-recipes.json`(원화 ID+revision 키) · `picturebook-recipes.ts`. 승인 1·3·4·5·7·8쪽, 조립 검토 2쪽(제작 요청 4 대기), 참고 전용 6쪽. 검토자는 `/picturebook?review=recipes`로 승인 전 조합을 실제 무대에서 볼 수 있다(만들기 불가) | `packages/asset-registry/tests/picturebook-recipes.test.ts`(리비전·권리) |
+| 추천 | `packages/asset-registry/src/picturebook-stage-recipes.json`(원화 ID+revision 키) · `picturebook-recipes.ts`. 별주부전 1~8쪽 모두 승인(2·6쪽은 2026-11-20 실제 무대 검토 뒤 승인). 2쪽의 새 자라와 6쪽 조합의 근거는 [제작 요청서](picturebook-image-production-requests.md)에 있다. 검토자는 `/picturebook?review=recipes`로 승인 전 조합을 실제 무대에서 볼 수 있다(만들기 불가) | `packages/asset-registry/tests/picturebook-recipes.test.ts`(리비전·권리) |
 | 준비 화면 | `/picturebook` — 쪽 목록, 원화와 Ren’Py 첫 컷 미리보기(가로 편집·세로 읽기), 추천/직접 꾸민 무대/원화 참고, 다른 그림(역할별 3개), 복합 자세 중복 방지, 이 쪽만 되돌리기. 선택은 탭 안에서 쪽 ID로 보관 | `apps/web/lib/picturebook-preparation.test.ts` |
 | 생성·재열기 | 그림책 보관 → 요청 → 작업 공간 writer 확보 → 최신 색인 재확인 → 원고+색인 한 번에 저장 → 해당 장 첫 컷. 재진입은 마지막 집필 컷 | `apps/web/lib/picturebook-create.test.ts`, `tests/e2e/picturebook-to-chapters.spec.ts` |
 | 계정·권한 | 소유 범위별 색인, 계정·학급 확인 실패 시 생성 차단, 새 작품 금지·지정 작품·그림/인물 권한 변경 시 차단, 제출·과제 분량 미변경 | 위 두 검사 |
 | 편집기 | 현재 장의 ‘그림책 구상’(원래 글·출발 그림, 누락 자료 안내) | e2e 1280 |
 
-남은 이미지 제작은 [이미지 제작 요청](picturebook-image-production-requests.md)에 있다. 다른 세 작품의 조합 검토, 교사 과제 연결, 기기 간 출처 재연결은 후속 결정이다.
+다른 세 작품의 조합 검토, 교사 과제 연결, 기기 간 출처 재연결은 후속 결정이다.
 
+## 자료 제작 후 인계 — 2026-11-20
+
+- 별주부전 02는 요청 4의 새 자라를 등록한 3차 조합, 06은 기존 그림으로 조립한 2차 조합이다. 실제 무대 캡처 검토 뒤 둘 다 `approved`로 올렸다. 이제 8쪽 모두 학생 기본 추천에 미리 선택된다.
+- 로컬 그림책 사본에서 ‘놀스토리로 펼쳐 쓰기’를 열고 주소에 `&review=recipes`를 붙여 02·06의 가로와 세로를 확인할 수 있다. 02는 자라의 동작이 대사창 위에 남으나 세로 배경에서 수면이 거의 보이지 않는다. 06 세로 첫 해설 컷에는 토끼만 표시된다. 검토 판단: 02는 ‘낯선 육지에서 갈대를 헤치며 살피는’ 사건이 두 화면에서 읽히므로 수면이 덜 보여도 승인한다. 06의 세로 한 명 표시는 승인된 1·3·5·7·8쪽과 같은 기존 인물 선택 규칙이며, 말하는 토끼가 먼저 보이는 것이 첫 해설 컷에 맞다. 학생이 다음 컷에서 용왕·자라를 보여 줄 수 있다. [실제 무대 기록](evidence/picturebook-chapters-2026-11-20/checkpoint.json)
+- 전환 회귀 검사는 PC·휴대폰 4쪽→4장 작성·재열기, 같은 원고 중복 생성 차단, 학급 제한과 계정 오류를 포함한다. 등록 자산은 Ren’Py Web 런타임과 정적 Web 빌드까지 확인했다.
+- `codex/picturebook-to-chapters`의 기존 커밋 위에 이번 작업을 미커밋 상태로 두었다. PR에는 새 원본 PNG·배포 WebP와 레지스트리 변경을 함께 포함한다. 운영 반영 시 Web과 API의 자산 카탈로그가 같은 빌드인지 확인한다.

@@ -53,19 +53,20 @@
   },
   {
    "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-02",
-   "recipeVersion": 2,
-   "review": "assembly-review",
-   "note": "노을 갈대 물가 배경은 원화와 맞아요. 서 있는 결심 자세로는 갈대 사이를 살피는 사건이 읽히지 않아 승인하지 않았어요. 몸을 숙여 살피는 자라(제작 요청 4)를 기다려요.",
+   "recipeVersion": 3,
+   "review": "approved",
+   "note": "노을 갈대 물가에서 몸을 숙인 자라가 한 손으로 갈대를 헤치며 앞을 살펴요. 세로 읽기에서는 갈대와 흙길 쪽이 보여요.",
    "stage": {
     "backgroundId": "rabbit-turtle.background.picturebook-shore-reeds-v1",
     "left": [
      {
-      "assetId": "rabbit-turtle.character.turtle-resolve",
+      "assetId": "rabbit-turtle.character.picturebook-turtle-searching-reeds-v1",
       "slot": "turtle",
-      "label": "자라 · 결심",
+      "label": "자라 · 갈대를 헤치며 살피기",
       "subjects": [
        "rabbit-turtle.turtle"
-      ]
+      ],
+      "facing": "original"
      }
     ],
     "right": []
@@ -80,9 +81,11 @@
    "revisions": {
     "rabbit-turtle.scene.shortstory-classic-02": "40e7c87935fab0d0d2bd0df33c1ed6126eba544362ae0122327022bd111fff6a",
     "rabbit-turtle.background.picturebook-shore-reeds-v1": "2b20b98d53435bf5f62a79514d64412b9a121be41b4f800915c70d904c310bb6",
-    "rabbit-turtle.character.turtle-resolve": "8ac6204430465772fca17ec6d8f989d79cbc7e68e462819aa48e84476b9246ef",
+    "rabbit-turtle.character.picturebook-turtle-searching-reeds-v1": "04fadbb2e3e0396958b82286fec86979bda1870517241513379497561b123010",
     "rabbit-turtle.background.rabbit-turtle-bg-shore": "7ec4ac4dd351c84c31dce343bd3c07a9d091d269e6d1d1bf1860c53df3e0d4b3"
-   }
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
   },
   {
    "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-03",
@@ -226,15 +229,54 @@
   },
   {
    "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-06",
-   "recipeVersion": 1,
-   "review": "reference-only",
-   "note": "토끼가 꾀를 설명하는 상대(용왕)가 함께 보여야 해요. 기존 후보만으로는 듣는 방향이 드러나지 않아 원화 참고만 제공해요.",
-   "stage": null,
+   "recipeVersion": 2,
+   "review": "approved",
+   "note": "왼쪽 토끼가 손을 펴며 오른쪽 자라·용왕에게 꾀를 설명해요. 세로 첫 컷에는 말하는 토끼가 먼저 보여요.",
+   "stage": {
+    "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace-confession",
+    "left": [
+     {
+      "assetId": "rabbit-turtle.character.classic-rabbit-laugh",
+      "slot": "rabbit",
+      "label": "토끼 · 손을 펴며 설명하기",
+      "subjects": [
+       "rabbit-turtle.rabbit"
+      ],
+      "facing": "original"
+     }
+    ],
+    "right": [
+     {
+      "assetId": "rabbit-turtle.character.turtle-ashamed",
+      "slot": "turtle",
+      "label": "자라 · 고개를 숙여 듣기",
+      "subjects": [
+       "rabbit-turtle.turtle"
+      ],
+      "facing": "original",
+      "scaleMultiplier": 0.82
+     },
+     {
+      "assetId": "rabbit-turtle.character.dragonking-critical-attached",
+      "slot": "dragonking",
+      "label": "용왕 · 토끼의 말을 듣기",
+      "subjects": [
+       "rabbit-turtle.dragonking"
+      ],
+      "facing": "original"
+     }
+    ]
+   },
    "alternatives": [],
    "revisions": {
     "rabbit-turtle.scene.shortstory-classic-06": "7628df79b4eb0ed64dfdbea78a59e9b9bebeba9560cd232283531f6936be2670",
-    "rabbit-turtle.background.rabbit-turtle-bg-palace-confession": "75623e3d57f08994a6149d35b2f7f790ef9214000c89688de3ae918936bcee83"
-   }
+    "rabbit-turtle.background.rabbit-turtle-bg-palace-confession": "75623e3d57f08994a6149d35b2f7f790ef9214000c89688de3ae918936bcee83",
+    "rabbit-turtle.character.classic-rabbit-laugh": "00c6cc3f6fbe8221dd46f88d6dd22e3d488866af8e15d54b5c8701f4954f766e",
+    "rabbit-turtle.character.turtle-ashamed": "4c19dca390788303b506d509c4a0b9766c75dc9645cf5a8d9585be83ff877d48",
+    "rabbit-turtle.character.dragonking-critical-attached": "122fb63fcca1ef529330cee98bd26e86cca2a85f0ed0b963cfb26081f02b7dd6"
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-chapters-2026-11-20/checkpoint.json"
   },
   {
    "sourceAssetId": "rabbit-turtle.scene.shortstory-classic-07",

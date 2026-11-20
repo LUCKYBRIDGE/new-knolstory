@@ -24,14 +24,14 @@ describe('preparing a picture book for KnolStory',()=>{
   const service=planPicturebook(book(),all);
   expect(service.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual(PICTUREBOOK_RECIPES.recipes.filter(recipe=>recipe.review==='approved').map(recipe=>Number(recipe.sourceAssetId.slice(-2))));
   const plans=planPicturebook(book(),all,approved);
-  expect(plans.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual([1,2,3,4,5,7,8]);
+  expect(plans.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual([1,2,3,4,5,6,7,8]);
   // Pages whose recipe is not approved start as reference only, with the reason shown.
   for(const recipe of PICTUREBOOK_RECIPES.recipes.filter(item=>item.review!=='approved')){
    const plan=service[Number(recipe.sourceAssetId.slice(-2))-1]!;
    expect(plan.kind).toBe('reference');
    expect(plan.reason).toContain(recipe.review==='assembly-review'?'검토 중':'원화를 참고만');
   }
-  expect(plans[5]!.kind).toBe('reference');expect(plans[5]!.reason).toContain('원화');
+  expect(plans[5]).toMatchObject({kind:'recipe',recipe:{stage:{left:[{slot:'rabbit'}],right:[{slot:'turtle'},{slot:'dragonking'}]}}});
  });
  it('swaps one role on one page and keeps every other page’s choice; revert restores only that page',()=>{
   const plans=planPicturebook(book(),all,approved),third=plans[2]!,fifth=plans[4]!;
@@ -101,13 +101,13 @@ describe('preparing a picture book for KnolStory',()=>{
   expect(readPreparationDraft(storage,'book')).toEqual({selections:{},pageId:null});
  });
  it('previews recipes under review only through the reviewer source, without changing the service list',()=>{
+  // Fixture: one staged page sent back to review, so the check holds even when every service recipe is approved.
+  const sixth='rabbit-turtle.scene.shortstory-classic-06';
+  const pending:RecipeSource={recipes:PICTUREBOOK_RECIPES.recipes.map(recipe=>recipe.sourceAssetId===sixth?{...recipe,review:'assembly-review'} as StageRecipe:recipe),resolve:resolveAsset};
   const before=JSON.stringify(PICTUREBOOK_RECIPES);
-  const review=planPicturebook(book(),all,reviewRecipeSource());
-  const service=planPicturebook(book(),all);
-  const underReview=PICTUREBOOK_RECIPES.recipes.filter(recipe=>recipe.review==='assembly-review').map(recipe=>Number(recipe.sourceAssetId.slice(-2)));
-  expect(underReview.length).toBeGreaterThan(0);
-  for(const number of underReview){expect(review[number-1]!.kind).toBe('recipe');expect(service[number-1]!.kind).toBe('reference');}
-  expect(review.filter(plan=>PICTUREBOOK_RECIPES.recipes.find(recipe=>recipe.sourceAssetId===plan.sketch?.backgroundId)?.review==='reference-only').every(plan=>plan.kind==='reference')).toBe(true);
+  const review=planPicturebook(book(),all,reviewRecipeSource(pending));
+  const service=planPicturebook(book(),all,pending);
+  expect(review[5]!.kind).toBe('recipe');expect(service[5]!.kind).toBe('reference');
+  expect(review.filter(plan=>pending.recipes.find(recipe=>recipe.sourceAssetId===plan.sketch?.backgroundId)?.review==='reference-only').every(plan=>plan.kind==='reference')).toBe(true);
   expect(JSON.stringify(PICTUREBOOK_RECIPES)).toBe(before);
- });
-});
+ });});
