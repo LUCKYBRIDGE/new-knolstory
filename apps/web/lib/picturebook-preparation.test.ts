@@ -2,7 +2,7 @@ import {describe,expect,it} from 'vitest';
 import {getShortStoryOriginal} from '@knolstory/compatibility';
 import {PICTUREBOOK_RECIPES,resolveAsset,type RecipeSource,type StageRecipe} from '@knolstory/asset-registry';
 import {convertPicturebookToChapters} from '@knolstory/runtime-core';
-import {reviewRecipeSource,chooseAlternative,confirmedStages,effectiveMode,pageStage,planPicturebook,preparationSummary,readPreparationDraft,recipeSlots,revertPage,writePreparationDraft,type Selections} from './picturebook-preparation';
+import {numberList,sendSummary,reviewRecipeSource,chooseAlternative,confirmedStages,effectiveMode,pageStage,planPicturebook,preparationSummary,readPreparationDraft,recipeSlots,revertPage,writePreparationDraft,type Selections} from './picturebook-preparation';
 
 /**
  * Test-only approval: the service list keeps pages under review until a person checks the real stage.
@@ -29,7 +29,7 @@ describe('preparing a picture book for KnolStory',()=>{
   for(const recipe of PICTUREBOOK_RECIPES.recipes.filter(item=>item.review!=='approved')){
    const plan=service[Number(recipe.sourceAssetId.slice(-2))-1]!;
    expect(plan.kind).toBe('reference');
-   expect(plan.reason).toContain(recipe.review==='assembly-review'?'검토 중':'원화를 참고만');
+   expect(plan.reason).toContain(recipe.review==='assembly-review'?'검토 중':'삽화만 참고');
   }
   expect(plans[5]).toMatchObject({kind:'recipe',recipe:{stage:{left:[{slot:'rabbit'}],right:[{slot:'turtle'},{slot:'dragonking'}]}}});
  });
@@ -96,9 +96,11 @@ describe('preparing a picture book for KnolStory',()=>{
  it('keeps unconfirmed choices in this tab only and ignores damaged drafts',()=>{
   const memory=new Map<string,string>();const storage={getItem:(key:string)=>memory.get(key)??null,setItem:(key:string,value:string)=>void memory.set(key,value)};
   writePreparationDraft(storage,'book',{a:{mode:'reference'}},'a');
-  expect(readPreparationDraft(storage,'book')).toEqual({selections:{a:{mode:'reference'}},pageId:'a'});
+  expect(readPreparationDraft(storage,'book')).toEqual({selections:{a:{mode:'reference'}},pageId:'a',chosen:null});
+  writePreparationDraft(storage,'book',{},'a',['a','c']);
+  expect(readPreparationDraft(storage,'book').chosen).toEqual(['a','c']);
   memory.set('knolstory-picturebook-preparation-v1:book','{broken');
-  expect(readPreparationDraft(storage,'book')).toEqual({selections:{},pageId:null});
+  expect(readPreparationDraft(storage,'book')).toEqual({selections:{},pageId:null,chosen:null});
  });
  it('previews recipes under review only through the reviewer source, without changing the service list',()=>{
   // Fixture: one staged page sent back to review, so the check holds even when every service recipe is approved.
@@ -110,4 +112,17 @@ describe('preparing a picture book for KnolStory',()=>{
   expect(review[5]!.kind).toBe('recipe');expect(service[5]!.kind).toBe('reference');
   expect(review.filter(plan=>pending.recipes.find(recipe=>recipe.sourceAssetId===plan.sketch?.backgroundId)?.review==='reference-only').every(plan=>plan.kind==='reference')).toBe(true);
   expect(JSON.stringify(PICTUREBOOK_RECIPES)).toBe(before);
- });});
+ }); it('says in one sentence what sending will do',()=>{
+  expect(numberList([2,5,7],'쪽')).toBe('2·5·7쪽');
+  expect(numberList([1,2,3],'장')).toBe('1~3장');
+  expect(numberList([3,4],'장')).toBe('3·4장');
+  expect(sendSummary([],8,{kind:'new'})).toBe('보낼 쪽을 하나 이상 골라 주세요.');
+  expect(sendSummary([1,2,3,4,5,6,7,8],8,{kind:'new'})).toBe('8쪽 모두가 새 놀스토리의 1~8장이 돼요.');
+  expect(sendSummary([2,5,7],8,{kind:'new'})).toBe('고른 2·5·7쪽이 새 놀스토리의 1~3장이 돼요.');
+  expect(sendSummary([4,5],8,{kind:'existing',title:'토끼의 꾀',afterLabel:'1장',index:1,chapterCount:3,renumbers:true}))
+   .toBe('고른 4·5쪽이 ‘토끼의 꾀’ 1장 뒤에 2·3장으로 들어가요. 원래 2장부터는 4장부터로 번호가 바뀌어요.');
+  // At the end, or when the writer set the numbers, nothing else is renumbered.
+  expect(sendSummary([4],8,{kind:'existing',title:'토끼의 꾀',afterLabel:'3장',index:3,chapterCount:3,renumbers:true})).toBe('고른 4쪽이 ‘토끼의 꾀’ 3장 뒤에 4장으로 들어가요.');
+  expect(sendSummary([4],8,{kind:'existing',title:'갈래 이야기',afterLabel:null,index:0,chapterCount:3,renumbers:false})).toBe('고른 4쪽이 ‘갈래 이야기’ 맨 앞에 1장으로 들어가요.');
+ });
+});

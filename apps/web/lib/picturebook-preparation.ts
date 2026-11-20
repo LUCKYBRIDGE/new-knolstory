@@ -52,12 +52,12 @@ export function planPicturebookPage(page:PicturebookPage,pageNumber:number,permi
  }
  const found=lookupStageRecipe(page.backgroundId,source);
  if(found.status==='approved'){
-  if(!permissions.images)return {...base,kind:'reference',recipe:found.recipe,approved:true,reason:'그림 고르기가 제한되어 있어 원화를 참고만 해요.'};
-  return {...base,kind:'recipe',recipe:found.recipe,approved:true,reason:'원화에 맞춰 검토한 무대 재료를 준비했어요.'};
+  if(!permissions.images)return {...base,kind:'reference',recipe:found.recipe,approved:true,reason:'그림 고르기가 제한되어 있어 삽화만 참고해요.'};
+  return {...base,kind:'recipe',recipe:found.recipe,approved:true,reason:'이 삽화에 맞춰 검토한 숏스토리 추천 무대가 있어요.'};
  }
  if(found.status==='unapproved')return {...base,kind:'reference',recipe:found.recipe,approved:false,reason:found.reason};
- if(found.status==='broken')return {...base,kind:'reference',approved:false,reason:'이 그림의 무대 재료를 지금 확인할 수 없어 원화를 참고만 해요.'};
- return {...base,kind:'reference',approved:false,reason:'이 그림에 맞춘 무대 재료가 아직 없어 원화를 참고만 해요.'};
+ if(found.status==='broken')return {...base,kind:'reference',approved:false,reason:'이 삽화의 추천 무대를 지금 확인할 수 없어 삽화만 참고해요.'};
+ return {...base,kind:'reference',approved:false,reason:'이 삽화에 맞춘 추천 무대가 아직 없어 삽화만 참고해요.'};
 }
 
 export function planPicturebook(book:PicturebookBook,permissions:PicturebookPermissions,source:RecipeSource=SERVICE_RECIPE_SOURCE):PagePlan[]{
@@ -140,12 +140,12 @@ export function confirmedStages(book:PicturebookBook,selections:Selections,permi
  for(const plan of plans){
   const selection=selections[plan.pageId];
   if(selection?.mode==='recipe'){
-   if(!plan.approved||!plan.recipe?.stage||!permissions.images)throw Error(`${plan.pageNumber}쪽의 추천 무대를 더 이상 쓸 수 없어요. 그 쪽을 다시 확인해 주세요.`);
+   if(!plan.approved||!plan.recipe?.stage||!permissions.images)throw Error(`${plan.pageNumber}쪽의 숏스토리 추천 무대를 더 이상 쓸 수 없어요. 그 쪽을 다시 확인해 주세요.`);
    // Re-apply each swap through the same checks the screen used.
    let checked:PageSelection={mode:'recipe',overrides:{}};
    for(const [slot,assetId] of Object.entries(selection.overrides))checked=chooseAlternative(plan,checked,slot,assetId);
   }
-  if(selection?.mode==='student'&&!plan.student)throw Error(`${plan.pageNumber}쪽의 직접 꾸민 무대를 쓸 수 없어요. 그 쪽을 다시 확인해 주세요.`);
+  if(selection?.mode==='student'&&!plan.student)throw Error(`${plan.pageNumber}쪽에 내가 고른 배경·인물을 쓸 수 없어요. 그 쪽을 다시 확인해 주세요.`);
   stages[plan.pageId]=pageStage(plan,selection);
  }
  return stages;
@@ -157,21 +157,25 @@ export function preparationSummary(plans:readonly PagePlan[],selections:Selectio
  return {pages:plans.length,staged,reference:plans.length-staged};
 }
 
-/** Choices are kept per book in this tab only, until ‘이대로 놀스토리 만들기’ confirms them. */
+/** Choices are kept per book in this tab only, until ‘놀스토리로 보내기’ confirms them. */
 const DRAFT_PREFIX='knolstory-picturebook-preparation-v1:';
-export function readPreparationDraft(storage:Pick<Storage,'getItem'>,bookId:string):{selections:Selections;pageId:string|null}{
+export type PreparationDraft={selections:Selections;pageId:string|null;
+ /** Pages chosen to send; null means every page (the default). */
+ chosen:string[]|null};
+export function readPreparationDraft(storage:Pick<Storage,'getItem'>,bookId:string):PreparationDraft{
  try{
-  const value=JSON.parse(storage.getItem(DRAFT_PREFIX+bookId)??'null') as {selections?:unknown;pageId?:unknown}|null;
-  if(!value||typeof value!=='object'||!value.selections||typeof value.selections!=='object')return {selections:{},pageId:null};
+  const value=JSON.parse(storage.getItem(DRAFT_PREFIX+bookId)??'null') as {selections?:unknown;pageId?:unknown;chosen?:unknown}|null;
+  if(!value||typeof value!=='object'||!value.selections||typeof value.selections!=='object')return {selections:{},pageId:null,chosen:null};
   const selections=Object.fromEntries(Object.entries(value.selections as Record<string,unknown>).filter(([,item])=>{
    const selection=item as PageSelection|null;
    return !!selection&&typeof selection==='object'&&(['default','reference','student'].includes(selection.mode)||selection.mode==='recipe'&&!!selection.overrides&&typeof selection.overrides==='object'&&Object.values(selection.overrides).every(id=>typeof id==='string'));
   })) as Selections;
-  return {selections,pageId:typeof value.pageId==='string'?value.pageId:null};
- }catch{return {selections:{},pageId:null};}
+  const chosen=Array.isArray(value.chosen)&&value.chosen.every(id=>typeof id==='string')?value.chosen as string[]:null;
+  return {selections,pageId:typeof value.pageId==='string'?value.pageId:null,chosen};
+ }catch{return {selections:{},pageId:null,chosen:null};}
 }
-export function writePreparationDraft(storage:Pick<Storage,'setItem'>,bookId:string,selections:Selections,pageId:string){
- try{storage.setItem(DRAFT_PREFIX+bookId,JSON.stringify({selections,pageId}));}catch{/* Choices stay on screen; only the tab memory is lost. */}
+export function writePreparationDraft(storage:Pick<Storage,'setItem'>,bookId:string,selections:Selections,pageId:string,chosen:readonly string[]|null=null){
+ try{storage.setItem(DRAFT_PREFIX+bookId,JSON.stringify({selections,pageId,chosen}));}catch{/* Choices stay on screen; only the tab memory is lost. */}
 }
 export function clearPreparationDraft(storage:Pick<Storage,'removeItem'>,bookId:string){try{storage.removeItem(DRAFT_PREFIX+bookId);}catch{/* Nothing to keep. */}}
 
@@ -182,4 +186,24 @@ export function clearPreparationDraft(storage:Pick<Storage,'removeItem'>,bookId:
  */
 export function reviewRecipeSource(source:RecipeSource=SERVICE_RECIPE_SOURCE):RecipeSource{
  return {...source,recipes:source.recipes.map(recipe=>recipe.review==='assembly-review'&&recipe.stage?{...recipe,review:'approved',reviewedAt:'review-preview',evidence:'review-preview'}:recipe)};
+}
+
+/** Numbers as the student reads them: “2·5·7쪽”, “1~3장”. */
+export function numberList(numbers:readonly number[],unit:string):string{
+ if(!numbers.length)return '';
+ const runs=numbers.every((n,i)=>i===0||n===numbers[i-1]!+1);
+ return runs&&numbers.length>2?`${numbers[0]}~${numbers.at(-1)}${unit}`:`${numbers.join('·')}${unit}`;
+}
+export type SendDestination=Readonly<{kind:'new'}>|Readonly<{kind:'existing';title:string;afterLabel:string|null;
+ /** Position of the place: 0 is before the first chapter. */
+ index:number;chapterCount:number;renumbers:boolean}>;
+/** One sentence that says exactly what ‘놀스토리로 보내기’ will do, before the student presses it. */
+export function sendSummary(pageNumbers:readonly number[],totalPages:number,destination:SendDestination):string{
+ if(!pageNumbers.length)return '보낼 쪽을 하나 이상 골라 주세요.';
+ const count=pageNumbers.length,pages=count===totalPages?`${totalPages}쪽 모두가`:`고른 ${numberList(pageNumbers,'쪽')}이`;
+ if(destination.kind==='new')return `${pages} 새 놀스토리의 ${numberList(Array.from({length:count},(_,i)=>i+1),'장')}이 돼요.`;
+ const numbers=Array.from({length:count},(_,i)=>destination.index+i+1);
+ const where=destination.afterLabel===null?'맨 앞':`${destination.afterLabel} 뒤`;
+ const shifted=destination.renumbers&&destination.index<destination.chapterCount?` 원래 ${destination.index+1}장부터는 ${destination.index+1+count}장부터로 번호가 바뀌어요.`:'';
+ return `${pages} ‘${destination.title}’ ${where}에 ${numberList(numbers,'장')}으로 들어가요.${shifted}`;
 }
