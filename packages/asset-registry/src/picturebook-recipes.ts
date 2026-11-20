@@ -74,7 +74,7 @@ export function lookupStageRecipe(sourceAssetId:string,source:RecipeSource=SERVI
  const problems=stageRecipeProblems(recipe,source.resolve);
  if(problems.length)return {status:'broken',reason:problems.join(' ')};
  if(recipe.review==='approved')return {status:'approved',recipe};
- return {status:'unapproved',recipe,reason:recipe.review==='reference-only'?'이 그림은 아직 무대 재료가 준비되지 않아 원화를 참고만 해요.':'이 그림의 무대 조합은 아직 검토 중이에요.'};
+ return {status:'unapproved',recipe,reason:recipe.review==='reference-only'?'이 삽화는 아직 추천 무대가 없어 삽화만 참고해요.':'이 삽화의 추천 무대는 아직 검토 중이에요.'};
 }
 
 /** Is this background a finished picture-book illustration (characters drawn in)? */

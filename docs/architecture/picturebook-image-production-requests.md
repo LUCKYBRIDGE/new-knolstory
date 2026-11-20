@@ -2,7 +2,7 @@
 
 **진행 상황 (2026-11-20):** 요청 1·2·3 완성·등록(`picturebook-turtle-pleading-v1`, `picturebook-rabbit-walking-away-v1`, `picturebook-shore-reeds-v1`). 실제 무대 검토 뒤 1·5·8쪽 조합 승인. 요청 4의 자라를 2쪽에 등록했고, 6쪽은 기존 자산으로 조합했다. 2·6쪽도 실제 무대 검토 뒤 승인했다. [검토 근거](evidence/picturebook-chapters-2026-11-20/checkpoint.json)
 
-2026-11-20 · 별주부전 8쪽 수직 검증에서 나온 요청이다. 제품 동작은 [전환 설계](picturebook-to-chapters-design.md), 작업 순서는 [구현 인계](picturebook-to-chapters-claude-handoff.md), 검토한 조합은 [장면 조합 목록](../../packages/asset-registry/src/picturebook-stage-recipes.json)이 소유한다. 이 문서는 새 그림이 필요한 장면만 다룬다. 요청한 그림이 등록되기 전까지 해당 쪽은 ‘원화 참고만’으로 동작하며 학생의 쓰기는 막히지 않는다.
+2026-11-20 · 별주부전 8쪽 수직 검증에서 나온 요청이다. 제품 동작은 [전환 설계](picturebook-to-chapters-design.md), 작업 순서는 [구현 인계](picturebook-to-chapters-claude-handoff.md), 검토한 조합은 [장면 조합 목록](../../packages/asset-registry/src/picturebook-stage-recipes.json)이 소유한다. 이 문서는 새 그림이 필요한 장면만 다룬다. 요청한 그림이 등록되기 전까지 해당 쪽은 ‘삽화만 참고’로 동작하며 학생의 쓰기는 막히지 않는다.
 
 ## 공통 조건
 
