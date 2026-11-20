@@ -10,6 +10,8 @@ For white-matte character repairs follow the [reviewed replacement receipt](../.
 
 Use for Asset IDs, metadata, source media, geometry, derivatives or audio delivery.
 
+그림책→놀스토리의 숏스토리 추천 무대는 [조합 목록](../../../packages/asset-registry/src/picturebook-stage-recipes.json)이 소유한다(원화 ID+revision 키, 작품 파일과 분리). 새 조합은 `assembly-review`로 넣고, `/picturebook?review=recipes`에서 가로 16:9·세로 9:16 실제 무대를 본 뒤 `pnpm exec vitest run packages/asset-registry/tests/picturebook-recipes.test.ts`(리비전·권리·중복 인물)를 통과해야 `approved`와 `reviewedAt`·`evidence`를 쓴다. 그림을 만드는 쪽은 자산 등록과 조합 갱신까지만 하고 승인하지 않는다. 세로 화면의 주인공은 `subject`로 지정하고, 공중의 인물은 바닥까지 이어진 자락으로 높이를 만든다(배치는 `geometry.bottom`을 바닥선에 맞춤). 새 그림이 필요한 쪽은 [제작 요청](../../../docs/architecture/picturebook-image-production-requests.md)에 원화 ID·검토한 후보와 탈락 이유·필요한 행동·기준 ID·구도를 남긴다. [설계](../../../docs/architecture/picturebook-to-chapters-design.md#조합-레코드-예시와-우선순위)
+
 1. Read the [layout ownership ADR](../../../docs/decisions/0004-stage-layout-owned-by-runtime-core.md) and [authoring storage contract](../../../docs/architecture/authoring-storage-contract.md); inspect the resolver and provenance implementation before editing.
 2. StoryDocument stores stable IDs; archives carry portable user-audio attachments. Keep source bytes, runtime derivatives and thumbnails distinct. Never replace a master with a runtime optimization.
 3. Preserve existing IDs and resolve them to versioned runtime paths. Share common bytes rather than generating one asset package per work/student.

@@ -10,7 +10,8 @@ Use for official work files, authoring fields, Excel/Google adapters or existing
 6. Reject unknown fields, duplicate JSON keys, invalid values and required execution/asset references and lossy normalization before storage writes. Preserve unset/empty/null/zero distinctions, IDs, array order and authored text. Memo links intentionally retain free character names and unresolved/deleted chapter/cut targets; do not apply Flow/asset existence rules to those planning references.
 7. Keep Korean headings, notes, enum choices and stable hidden keys synchronized. Explain units and parent-ID connections; never translate free text or IDs.
 8. Add meaningful RED→GREEN tests for changed behavior, whole-document/archive/workbook/xlsx/jsonb parity and representative existing works. Check actual external-app save/export for changes affecting those paths; programmatic xlsx parity alone is insufficient.
-9. For schema changes run `node scripts/generate-authoring-schema.mjs --check`; regenerate through the generator when intentional, never hand-edit its output.
+9. Document v9 adds the optional chapter `picturebookSketch` (그림책 구상 삽화: registered background/left/right IDs and an optional recipe version). v8 reads unchanged; a sketch under v8 or older is rejected, never dropped. The workbook carries it in the 그림책 구상 삽화 tab (`chapterSketches`); splits, branches and choice chapters never inherit it. See [storage contract](../../../docs/architecture/authoring-storage-contract.md#그림책-구상-삽화와-그림책-연결--2026-11-20).
+10. For schema changes run `node scripts/generate-authoring-schema.mjs --check`; regenerate through the generator when intentional, never hand-edit its output.
 
 Apply [documentation governance](../../../docs/architecture/documentation-governance.md) when scope/contracts change. Completed evidence proves its recorded scope/date, not future edits.
 
