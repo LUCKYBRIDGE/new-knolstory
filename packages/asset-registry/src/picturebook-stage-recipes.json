@@ -798,9 +798,9 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-03",
-   "recipeVersion": 1,
+   "recipeVersion": 2,
    "review": "approved",
-   "note": "작은 집 마당에서 나무꾼(왼쪽)이 반기고, 돌아가지 못한 선녀(오른쪽)가 하늘을 그리워해요.",
+   "note": "작은 집 마당에서 나무꾼(왼쪽)이 반기고, 돌아가지 못한 선녀(오른쪽)가 하늘을 그리워해요. 세로 읽기는 중심 인물인 선녀를 보여 줘요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
@@ -820,7 +820,8 @@
       "label": "선녀 · 하늘을 그리워하기",
       "subjects": [
        "seonnyeo.fairy"
-      ]
+      ],
+      "subject": true
      }
     ]
    },
@@ -883,12 +884,22 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-05",
-   "recipeVersion": 4,
+   "recipeVersion": 5,
    "review": "approved",
-   "note": "구름 자락이 바닥에 닿고 선녀가 두 아이를 안은 채 왼쪽 위로 날아올라요. 놀란 나무꾼(오른쪽)이 바라봐요. 세로 읽기의 첫 인물이 선녀가 되도록 선녀를 왼쪽에 둬요.",
+   "note": "구름 자락이 바닥에 닿고 선녀(오른쪽)가 두 아이를 안은 채 날아올라요. 놀란 나무꾼(왼쪽)이 바라봐요. 세로 읽기는 중심 인물인 선녀를 보여 줘요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
+     {
+      "assetId": "seonnyeo.character.M02-surprised",
+      "slot": "woodcutter",
+      "label": "나무꾼 · 놀라 바라보기",
+      "subjects": [
+       "seonnyeo.woodcutter"
+      ]
+     }
+    ],
+    "right": [
      {
       "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
       "slot": "fairy-children",
@@ -899,17 +910,8 @@
        "seonnyeo.first-child",
        "seonnyeo.second-child"
       ],
-      "facing": "original"
-     }
-    ],
-    "right": [
-     {
-      "assetId": "seonnyeo.character.M02-surprised",
-      "slot": "woodcutter",
-      "label": "나무꾼 · 놀라 바라보기",
-      "subjects": [
-       "seonnyeo.woodcutter"
-      ]
+      "facing": "original",
+      "subject": true
      }
     ]
    },
@@ -1243,9 +1245,9 @@
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-04",
-   "recipeVersion": 1,
+   "recipeVersion": 2,
    "review": "approved",
-   "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요.",
+   "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요. 세로 읽기는 박씨를 문 제비를 보여 줘요.",
    "stage": {
     "backgroundId": "heungbu.background.spring-field",
     "left": [
@@ -1266,7 +1268,8 @@
       "subjects": [
        "heungbu.swallow"
       ],
-      "scaleMultiplier": 0.6
+      "scaleMultiplier": 0.6,
+      "subject": true
      }
     ]
    },

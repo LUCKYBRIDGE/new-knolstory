@@ -44,10 +44,10 @@ export function planPicturebookPage(page:PicturebookPage,pageNumber:number,permi
  const finished=!!page.backgroundId&&isFinishedIllustration(page.backgroundId);
  if(finished&&(page.leftAssetId||page.rightAssetId))
   // Characters drawn into the illustration may also be among the added ones: never merge them.
-  return {...base,kind:'reference',approved:false,reason:'완성 삽화 위에 인물을 더한 쪽이라 원래 구성을 출발 그림으로만 보관해요.'};
+  return {...base,kind:'reference',approved:false,reason:'완성 삽화 위에 인물을 더한 쪽이라 원래 구성을 그림책 구상 삽화로만 보관해요.'};
  if(!finished){
   const student=studentStage(page,permissions);
-  if(!student)return {...base,kind:'reference',approved:false,reason:'그림 고르기가 제한되어 있어 출발 그림으로만 보관해요.'};
+  if(!student)return {...base,kind:'reference',approved:false,reason:'그림 고르기가 제한되어 있어 그림책 구상 삽화로만 보관해요.'};
   return {...base,kind:'student',approved:false,student,reason:'이 쪽에 직접 고른 배경과 인물로 첫 무대를 꾸며요.'};
  }
  const found=lookupStageRecipe(page.backgroundId,source);
@@ -120,7 +120,7 @@ export function revertPage(selections:Selections,pageId:string):Selections{
 function actorFrom(actor:RecipeActor,assetId:string):PicturebookStageActor{
  // A swapped picture keeps the reviewed side and size but not a pose-specific facing.
  const swapped=assetId!==actor.assetId;
- return {assetId,...(!swapped&&actor.facing?{facing:actor.facing}:{}),...(actor.placementPreset?{placementPreset:actor.placementPreset}:{}),...(actor.xAnchor!==undefined?{xAnchor:actor.xAnchor}:{}),...(!swapped&&actor.scaleMultiplier!==undefined?{scaleMultiplier:actor.scaleMultiplier}:{})};
+ return {assetId,...(!swapped&&actor.facing?{facing:actor.facing}:{}),...(actor.placementPreset?{placementPreset:actor.placementPreset}:{}),...(actor.xAnchor!==undefined?{xAnchor:actor.xAnchor}:{}),...(!swapped&&actor.scaleMultiplier!==undefined?{scaleMultiplier:actor.scaleMultiplier}:{}),...(actor.subject?{subject:true}:{})};
 }
 /** The first stage this page's chapter starts with: the same value for the preview and for creation. */
 export function pageStage(plan:PagePlan,selection:PageSelection|undefined):PicturebookPageStage{

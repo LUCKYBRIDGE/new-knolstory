@@ -295,7 +295,7 @@ function normalizeChapters(value: unknown, issues: StoryDocumentIssue[]): Chapte
     if (record.chapterNumber !== undefined && (!Number.isSafeInteger(record.chapterNumber) || (record.chapterNumber as number) < 1)) addIssue(issues, "invalid-value", `${path}.chapterNumber`, "장 번호는 1 이상의 정수로 입력해 주세요.");
     if (record.branchLabel !== undefined && (typeof record.branchLabel !== "string" || record.branchLabel.length > 20)) addIssue(issues, "invalid-value", `${path}.branchLabel`, "갈래 표시는 20자 이내로 입력해 주세요.");
     if (record.audio !== undefined && !isStoryAudio(record.audio)) addIssue(issues, "invalid-value", `${path}.audio`, "장 오디오 설정을 확인해 주세요.");
-    if (record.picturebookSketch !== undefined && !isPicturebookSketch(record.picturebookSketch)) addIssue(issues, "invalid-value", `${path}.picturebookSketch`, "장의 출발 그림은 등록된 배경·인물 ID와 1 이상의 검토 버전으로 저장해 주세요.");
+    if (record.picturebookSketch !== undefined && !isPicturebookSketch(record.picturebookSketch)) addIssue(issues, "invalid-value", `${path}.picturebookSketch`, "장의 그림책 구상 삽화는 등록된 배경·인물 ID와 1 이상의 검토 버전으로 저장해 주세요.");
     return {
       ...(typeof record.chapterNumber === "number" ? { chapterNumber: record.chapterNumber } : {}),
       ...(typeof record.branchLabel === "string" ? { branchLabel: record.branchLabel } : {}),

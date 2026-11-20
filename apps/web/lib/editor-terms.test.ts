@@ -69,3 +69,9 @@ it('keeps distinct meanings for reader autosave, temporary authoring retention a
  expect(term('말하는 인물의 역할').description).toContain('배치 위치와는 달라요');
  expect(term('사본으로 열기').description).toContain('덮어쓰지');
 });
+it('explains the picture-book to KnolStory names students meet in both editors',()=>{
+ expect(findEditorTerms('그림책 옮기기','원고').map(item=>item.name)).toContain('놀스토리로 보내기');
+ for(const name of ['놀스토리로 보내기','그림책 구상','숏스토리 추천','삽화만 참고','장 순서 바꾸기','이 자리로 옮기기'])expect(findEditorTerms(name,'전체').map(item=>item.name)).toContain(name);
+ expect(findEditorTerms('그림책 구상','원고')[0]!.description).toContain('읽기 화면에는 나오지 않아요');
+});
+

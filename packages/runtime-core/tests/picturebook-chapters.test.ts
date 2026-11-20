@@ -99,4 +99,18 @@ describe('picture book page → KnolStory chapter',()=>{
   expect(original.picturebookSketch).toBeDefined();
   for(const chapter of split.chapters.filter(item=>!project.chapters.some(old=>old.id===item.id)))expect(chapter.picturebookSketch).toBeUndefined();
  });
+
+ it('names the page’s subject so portrait reading shows who the event is about, not just the left actor',()=>{
+  const book=studentRabbit(),page=book.pages[2]!;
+  const stage:PicturebookPageStage={kind:'stage',origin:'approved',backgroundId:'rabbit-turtle.background.rabbit-turtle-bg-shore-discussion',left:[{assetId:'rabbit-turtle.character.rabbit-suspicious'}],right:[{assetId:'rabbit-turtle.character.turtle-offer',subject:true}]};
+  const {project,chapters}=convert(book,{[page.id]:stage});
+  const cut=project.lines.find(line=>line.id===chapters[2]!.lineId)!;
+  expect(cut.stageComposition).toMatchObject({speakerActorKey:'R1'});
+  expect(cut).toMatchObject({type:'narration',speaker:'narration',text:''});
+  const portrait=compileStoryScene(project,cut.id,1,{mode:'play',viewport:{width:720,height:1280},displaySize:{width:720,height:1280}});
+  expect(portrait.actors.map(actor=>actor.id)).toEqual(['R1']);
+  expect(compileStoryScene(project,cut.id,2,{mode:'edit'}).actors).toHaveLength(2);
+  const two:PicturebookPageStage={...stage,left:[{assetId:'rabbit-turtle.character.rabbit-suspicious',subject:true}]};
+  expect(()=>convert(book,{[page.id]:two})).toThrow(PicturebookConversionError);
+ });
 });

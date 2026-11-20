@@ -1,7 +1,7 @@
 import {readFileSync,readdirSync,existsSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-export const retiredTerms=[['놀스토리로 펼쳐 쓰기','놀스토리로 보내기'],['이대로 놀스토리 만들기','놀스토리로 보내기'],['원화 참고만','삽화만 참고'],['그림책 삽화만 참고하기','삽화만 참고하고 빈 무대로 시작하기'],['다른 작업파일로 저장','다른 파일로 저장'],['작업파일','작품 파일'],['브라우저에 복구본 보관됨','임시 보관됨'],['브라우저 복구본','임시 보관'],['기기에 저장됨','임시 보관됨'],['전체 그림 보이기','전체 이미지 보기']];
+export const retiredTerms=[['출발 그림','그림책 구상 삽화'],['출발 스케치','그림책 구상 삽화'],['놀스토리로 펼쳐 쓰기','놀스토리로 보내기'],['이대로 놀스토리 만들기','놀스토리로 보내기'],['원화 참고만','삽화만 참고'],['그림책 삽화만 참고하기','삽화만 참고하고 빈 무대로 시작하기'],['다른 작업파일로 저장','다른 파일로 저장'],['작업파일','작품 파일'],['브라우저에 복구본 보관됨','임시 보관됨'],['브라우저 복구본','임시 보관'],['기기에 저장됨','임시 보관됨'],['전체 그림 보이기','전체 이미지 보기']];
 export function isHistoricalDocument(path){return /\/(evidence|archive|decisions|reference)\//.test(path)||/(-validation|-verification|-audit|-evidence|-reference|-spike|mockup|editor-redesign|approved-ui|next-session-goal-2026)/.test(path);}
 function currentLines(source,visit,markdown=true){
  let fence=null,history=false;
