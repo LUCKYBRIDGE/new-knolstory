@@ -47974,5 +47974,2335 @@
         "reason": "인물은 캔버스 위쪽에 두고 구름·날개옷 자락을 바닥선까지 잇는다. 비교 높이에는 구름이 포함된다."
       }
     }
+  },
+  {
+    "id": "seonnyeo.character.picturebook-fairy-ascending-with-children-v3",
+    "displayName": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+    "label": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "group": "선녀",
+    "tags": [
+      "선녀와 나무꾼",
+      "그림책",
+      "안기",
+      "날아오르기",
+      "구름"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-picturebook-fairy-ascending-with-children-v3.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.picturebook-fairy-ascending-with-children-v3",
+    "copyright": "놀퀴즈",
+    "revision": "42275687c1e38a16c4bb1900ed4c3fde8c82c1718480661c47421ffb22f7a572",
+    "geometry": {
+      "left": 0.15833333333333333,
+      "top": 0.09333333333333334,
+      "right": 0.8408333333333333,
+      "bottom": 0.96,
+      "width": 1200,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "characterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.children",
+        "seonnyeo.first-child",
+        "seonnyeo.second-child"
+      ],
+      "primaryCharacterId": "seonnyeo.fairy",
+      "framing": "group",
+      "bodyFraming": "obscured",
+      "composition": "multiple",
+      "actions": [
+        "안기",
+        "날아오르기"
+      ],
+      "expressions": [],
+      "variantId": "선녀복",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+        "안기",
+        "날아오르기",
+        "구름 자락"
+      ],
+      "placementReview": {
+        "referenceId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+        "referenceRevision": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+        "heightRatio": 1.0,
+        "reason": "선녀와 두 아이의 얼굴과 아이를 받치는 손을 가운데로 모아 x 180~1020 및 y 800 위에 두었다. 구름 자락은 바닥선까지 이어지며 키 비율에는 구름이 포함된다."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.classic-woodcutter-riding-horse-staged-v1",
+    "displayName": "나무꾼 · 용마에 탐",
+    "label": "나무꾼 · 용마에 탐",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "여러 인물",
+    "group": "나무꾼",
+    "pose": "용마에 탐",
+    "usage": "원작 사용",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "선녀와 나무꾼",
+      "원작 읽기",
+      "나무꾼",
+      "용마에 탐"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-classic-woodcutter-riding-horse-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.classic-woodcutter-riding-horse-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "cc5cf73a6bf6db1bdc7e440053da9e59dc60a63d454d26e56199e4ef78a408dc",
+    "geometry": {
+      "left": 0.16416666666666666,
+      "top": 0.08,
+      "right": 0.875,
+      "bottom": 0.96,
+      "width": 1200,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.woodcutter",
+        "seonnyeo.horse"
+      ],
+      "primaryCharacterId": "seonnyeo.woodcutter",
+      "framing": "group",
+      "expressions": [],
+      "actions": [],
+      "variantId": "기본 모습",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.character.classic-woodcutter-riding-horse",
+      "pairingStatus": "exception",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 1.054,
+        "reason": "나무꾼과 용마를 함께 그렸다. 얼굴·말 머리·고삐와 안장 접점은 x 180~1020 및 y 800 위에 있으며 말굽은 기준선에 맞춘다. 키 비율은 두 인물의 전체 알파 경계로 재고 말은 기존 용마와 대조했다."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.classic-horse-startled-by-porridge-staged-v1",
+    "displayName": "나무꾼 · 놀란 용마에 탐",
+    "label": "나무꾼 · 놀란 용마에 탐",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "여러 인물",
+    "group": "나무꾼",
+    "pose": "놀란 용마에 탐",
+    "usage": "원작 사용",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "선녀와 나무꾼",
+      "원작 읽기",
+      "나무꾼",
+      "놀란 용마에 탐"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-classic-horse-startled-by-porridge-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.classic-horse-startled-by-porridge-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "8f3d95a24a65a0c9cfb8373d5791e149a209e57f5153ade2197e032b087ba322",
+    "geometry": {
+      "left": 0.1475,
+      "top": 0.08,
+      "right": 0.8525,
+      "bottom": 0.96,
+      "width": 1200,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.woodcutter",
+        "seonnyeo.horse"
+      ],
+      "primaryCharacterId": "seonnyeo.woodcutter",
+      "framing": "group",
+      "expressions": [
+        "놀람"
+      ],
+      "actions": [],
+      "variantId": "기본 모습",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.character.classic-horse-startled-by-porridge",
+      "pairingStatus": "exception",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 1.054,
+        "reason": "나무꾼과 용마를 함께 그렸다. 얼굴·말 머리·고삐와 안장 접점은 x 180~1020 및 y 800 위에 있으며 말굽은 기준선에 맞춘다. 키 비율은 두 인물의 전체 알파 경계로 재고 말은 기존 용마와 대조했다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.swallow-staged-v1",
+    "displayName": "제비",
+    "label": "제비",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "pose": "박씨",
+    "usage": "원작 사용",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "흥부와 놀부",
+      "원작 읽기",
+      "제비",
+      "박씨"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-swallow-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.swallow-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "38bcad79b5682da31af38d3dc3fe57b79e62238dca58000440487af6e1eb6871",
+    "geometry": {
+      "left": 0.26375,
+      "top": 0.7516666666666667,
+      "right": 0.735,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [],
+      "actions": [
+        "건네기"
+      ],
+      "variantId": "기본 모습",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.character.swallow",
+      "pairingStatus": "missing-upper",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "들보 없이 박씨를 문 제비가 발을 디딘다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.supporting-swallow-fly-staged-v1",
+    "displayName": "제비 · 날개 펴고 날기",
+    "label": "제비 · 날개 펴고 날기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "tags": [
+      "흥부와 놀부",
+      "제비",
+      "날개 펴고 날기",
+      "날기",
+      "날개 펴기",
+      "활기",
+      "조연",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-supporting-swallow-fly-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.supporting-swallow-fly-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "c05b60f19281593f715f08f9d99742dafca0877495e057f068d8468ddc0c0aaf",
+    "geometry": {
+      "left": 0.3825,
+      "top": 0.7516666666666667,
+      "right": 0.61625,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [
+        "활기"
+      ],
+      "actions": [
+        "날기",
+        "날개 펴기"
+      ],
+      "variantId": "날개 펴고 날기",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.swallow.supporting-v2",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "제비",
+        "날개 펴고 날기",
+        "날기",
+        "날개 펴기",
+        "활기",
+        "조연",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "날개와 꼬리 전체를 살린 이륙 자세다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.supporting-swallow-injured-staged-v1",
+    "displayName": "제비 · 다친 날개를 감싸기",
+    "label": "제비 · 다친 날개를 감싸기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "tags": [
+      "흥부와 놀부",
+      "제비",
+      "다친 날개를 감싸기",
+      "쉬기",
+      "날개 접기",
+      "아픔",
+      "조연",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-supporting-swallow-injured-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.supporting-swallow-injured-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "f9bb1f9382aa023df072faa10395643d743df152fe39a34b5cd45477e896c5be",
+    "geometry": {
+      "left": 0.385,
+      "top": 0.7516666666666667,
+      "right": 0.61375,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [
+        "아픔"
+      ],
+      "actions": [
+        "쉬기",
+        "날개 접기"
+      ],
+      "variantId": "다친 날개를 감싸기",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.swallow.supporting-v2",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "제비",
+        "다친 날개를 감싸기",
+        "쉬기",
+        "날개 접기",
+        "아픔",
+        "조연",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-swallow-joy-v4",
+    "displayName": "제비 · 기쁜 미소",
+    "label": "제비 · 기쁜 미소",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "tags": [
+      "흥부와 놀부",
+      "제비",
+      "기쁜 미소",
+      "감정 표현",
+      "기쁨",
+      "희",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-swallow-joy-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-swallow-joy-v4",
+    "copyright": "놀퀴즈",
+    "revision": "46a06bd53d5ef749d3c0f03f4c82c430fa810c8545c2093b5754b134dc8ce50a",
+    "geometry": {
+      "left": 0.38625,
+      "top": 0.7516666666666667,
+      "right": 0.6125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [
+        "기쁨"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "기쁜 미소",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.swallow.emotions-v3",
+      "emotionRole": "joy",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "제비",
+        "기쁜 미소",
+        "감정 표현",
+        "기쁨",
+        "희",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-swallow-anger-v4",
+    "displayName": "제비 · 화난 표정",
+    "label": "제비 · 화난 표정",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "tags": [
+      "흥부와 놀부",
+      "제비",
+      "화난 표정",
+      "감정 표현",
+      "분노",
+      "노",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-swallow-anger-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-swallow-anger-v4",
+    "copyright": "놀퀴즈",
+    "revision": "c228090b8e8396209022788da378d47aab17e1bde8d3d9d2e2d5c826c334ce05",
+    "geometry": {
+      "left": 0.37125,
+      "top": 0.7516666666666667,
+      "right": 0.6275,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [
+        "분노"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "화난 표정",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.swallow.emotions-v3",
+      "emotionRole": "anger",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "제비",
+        "화난 표정",
+        "감정 표현",
+        "분노",
+        "노",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-swallow-sorrow-v4",
+    "displayName": "제비 · 슬퍼하는 모습",
+    "label": "제비 · 슬퍼하는 모습",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "tags": [
+      "흥부와 놀부",
+      "제비",
+      "슬퍼하는 모습",
+      "울기",
+      "눈물 닦기",
+      "슬픔",
+      "애",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-swallow-sorrow-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-swallow-sorrow-v4",
+    "copyright": "놀퀴즈",
+    "revision": "7c31048faf83561e4f826bd3bc63375a2e5902fdaf00b7e6cdc3ef82a378960f",
+    "geometry": {
+      "left": 0.39375,
+      "top": 0.7516666666666667,
+      "right": 0.605,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [
+        "슬픔"
+      ],
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "variantId": "슬퍼하는 모습",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.swallow.emotions-v3",
+      "emotionRole": "sorrow",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "제비",
+        "슬퍼하는 모습",
+        "울기",
+        "눈물 닦기",
+        "슬픔",
+        "애",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-swallow-mirth-v4",
+    "displayName": "제비 · 즐거운 몸짓",
+    "label": "제비 · 즐거운 몸짓",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "제비",
+    "tags": [
+      "흥부와 놀부",
+      "제비",
+      "즐거운 몸짓",
+      "활기차게 움직이기",
+      "즐거움",
+      "락",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-swallow-mirth-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-swallow-mirth-v4",
+    "copyright": "놀퀴즈",
+    "revision": "ea1b8096a7c35670d380bc76f22705609126778ed4687f6d86fe217bf199240c",
+    "geometry": {
+      "left": 0.375,
+      "top": 0.7516666666666667,
+      "right": 0.625,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.swallow",
+      "framing": "full",
+      "expressions": [
+        "즐거움"
+      ],
+      "actions": [
+        "활기차게 움직이기"
+      ],
+      "variantId": "즐거운 몸짓",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.swallow.emotions-v3",
+      "emotionRole": "mirth",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "제비",
+        "즐거운 몸짓",
+        "활기차게 움직이기",
+        "즐거움",
+        "락",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.25,
+        "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.classic-rooster-calling-sky-staged-v1",
+    "displayName": "수탉 · 하늘을 향해 욺",
+    "label": "수탉 · 하늘을 향해 욺",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "수탉",
+    "pose": "하늘을 향해 욺",
+    "usage": "원작 사용",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "선녀와 나무꾼",
+      "원작 읽기",
+      "수탉",
+      "하늘을 향해 욺"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-classic-rooster-calling-sky-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.classic-rooster-calling-sky-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "2dd8bc34bc130eab9b4fe5e6ae7193d6f7f9c799a7873b4e2bed7ae3cd5ca43f",
+    "geometry": {
+      "left": 0.32125,
+      "top": 0.615,
+      "right": 0.67875,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.rooster"
+      ],
+      "primaryCharacterId": "seonnyeo.rooster",
+      "framing": "full",
+      "expressions": [],
+      "actions": [],
+      "variantId": "기본 모습",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.character.classic-rooster-calling-sky",
+      "pairingStatus": "missing-upper",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.4,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·울음 부리 아래, 최대 y796)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-rooster-joy-v4",
+    "displayName": "수탉 · 기쁜 미소",
+    "label": "수탉 · 기쁜 미소",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "수탉",
+    "tags": [
+      "선녀와 나무꾼",
+      "수탉",
+      "기쁜 미소",
+      "감정 표현",
+      "기쁨",
+      "희",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-joy-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-rooster-joy-v4",
+    "copyright": "놀퀴즈",
+    "revision": "a4b1d89d484967d20aeec5c351377732c0d007b2834a4261a56bfb2a23197c04",
+    "geometry": {
+      "left": 0.315,
+      "top": 0.615,
+      "right": 0.685,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.rooster"
+      ],
+      "primaryCharacterId": "seonnyeo.rooster",
+      "framing": "full",
+      "expressions": [
+        "기쁨"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "기쁜 미소",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.rooster.emotions-v3",
+      "emotionRole": "joy",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "수탉",
+        "기쁜 미소",
+        "감정 표현",
+        "기쁨",
+        "희",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.4,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(웃는 눈·부리 아래, 최대 y796)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-rooster-anger-v4",
+    "displayName": "수탉 · 화난 표정",
+    "label": "수탉 · 화난 표정",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "수탉",
+    "tags": [
+      "선녀와 나무꾼",
+      "수탉",
+      "화난 표정",
+      "감정 표현",
+      "분노",
+      "노",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-anger-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-rooster-anger-v4",
+    "copyright": "놀퀴즈",
+    "revision": "dd6ef67116ecd5156eea396aa055d870f45acd896a6f900cdbba4c6da97720f9",
+    "geometry": {
+      "left": 0.29125,
+      "top": 0.6008333333333333,
+      "right": 0.7075,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.rooster"
+      ],
+      "primaryCharacterId": "seonnyeo.rooster",
+      "framing": "full",
+      "expressions": [
+        "분노"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "화난 표정",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.rooster.emotions-v3",
+      "emotionRole": "anger",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "수탉",
+        "화난 표정",
+        "감정 표현",
+        "분노",
+        "노",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.4,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(화난 눈·부리 아래, 최대 y797)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-rooster-sorrow-v4",
+    "displayName": "수탉 · 슬퍼하는 모습",
+    "label": "수탉 · 슬퍼하는 모습",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "수탉",
+    "tags": [
+      "선녀와 나무꾼",
+      "수탉",
+      "슬퍼하는 모습",
+      "울기",
+      "눈물 닦기",
+      "슬픔",
+      "애",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-sorrow-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-rooster-sorrow-v4",
+    "copyright": "놀퀴즈",
+    "revision": "686a9a70e1bc1fc1972b33044e79b8d3d3b3bfbf1ca7d024492b98b998214c99",
+    "geometry": {
+      "left": 0.31375,
+      "top": 0.6008333333333333,
+      "right": 0.68625,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.rooster"
+      ],
+      "primaryCharacterId": "seonnyeo.rooster",
+      "framing": "full",
+      "expressions": [
+        "슬픔"
+      ],
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "variantId": "슬퍼하는 모습",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.rooster.emotions-v3",
+      "emotionRole": "sorrow",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "수탉",
+        "슬퍼하는 모습",
+        "울기",
+        "눈물 닦기",
+        "슬픔",
+        "애",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.4,
+        "reason": "같은 인물의 표정과 색을 바탕으로 자세를 조정했다. 눈과 사건 표현 위치를 확인했다(슬픈 눈·눈물 끝·아래 부리 끝, 최대 y791)."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-rooster-mirth-v4",
+    "displayName": "수탉 · 즐거운 몸짓",
+    "label": "수탉 · 즐거운 몸짓",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "수탉",
+    "tags": [
+      "선녀와 나무꾼",
+      "수탉",
+      "즐거운 몸짓",
+      "활기차게 움직이기",
+      "즐거움",
+      "락",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-mirth-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-rooster-mirth-v4",
+    "copyright": "놀퀴즈",
+    "revision": "46174589826752dd4b5d2becda5feabb90dda0f2f93425428d3a72753fe49463",
+    "geometry": {
+      "left": 0.305,
+      "top": 0.5975,
+      "right": 0.69375,
+      "bottom": 0.9566666666666667,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.rooster"
+      ],
+      "primaryCharacterId": "seonnyeo.rooster",
+      "framing": "full",
+      "expressions": [
+        "즐거움"
+      ],
+      "actions": [
+        "활기차게 움직이기"
+      ],
+      "variantId": "즐거운 몸짓",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.rooster.emotions-v3",
+      "emotionRole": "mirth",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "수탉",
+        "즐거운 몸짓",
+        "활기차게 움직이기",
+        "즐거움",
+        "락",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.4,
+        "reason": "같은 인물의 표정과 색을 바탕으로 자세를 조정했다. 눈과 사건 표현 위치를 확인했다(웃는 눈·열린 부리 아래·왼쪽 날개 끝·오른쪽 날개 끝, 최대 y798)."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.classic-deer-staged-v1",
+    "displayName": "사슴 · 도움을 청함",
+    "label": "사슴 · 도움을 청함",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "사슴",
+    "pose": "도움을 청함",
+    "usage": "원작 사용",
+    "selectionTier": "기본 추천",
+    "tags": [
+      "선녀와 나무꾼",
+      "원작 읽기",
+      "사슴",
+      "도움을 청함"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-classic-deer-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.classic-deer-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "3375f0cf301b88667936ffbb300a4551df47a32f98b732649357466f729c6e82",
+    "geometry": {
+      "left": 0.2875,
+      "top": 0.45916666666666667,
+      "right": 0.71125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.deer"
+      ],
+      "primaryCharacterId": "seonnyeo.deer",
+      "framing": "full",
+      "expressions": [],
+      "actions": [
+        "부탁"
+      ],
+      "variantId": "기본 모습",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.character.classic-deer",
+      "pairingStatus": "missing-upper",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.6,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·입, 최대 y721)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "creative.character.seonnyeo-deer-listen-staged-v1",
+    "displayName": "사슴 귀 기울이기.webp",
+    "label": "사슴 귀 기울이기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "사슴",
+    "pose": "귀 기울이기",
+    "usage": "추가 연출",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "선녀와 나무꾼",
+      "사슴",
+      "귀 기울이기",
+      "추가 자료"
+    ],
+    "src": "/assets/characters/picturebook-v1/creative-seonnyeo-deer-listen-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#creative.character.seonnyeo-deer-listen-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "ff04aba7b376b72d66b212db975a5ff4684591c089901ae0682bdce45498b9d5",
+    "geometry": {
+      "left": 0.28375,
+      "top": 0.45916666666666667,
+      "right": 0.71625,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.deer"
+      ],
+      "primaryCharacterId": "seonnyeo.deer",
+      "framing": "full",
+      "expressions": [
+        "조심"
+      ],
+      "actions": [],
+      "variantId": "기본 모습",
+      "designVersionId": "classic",
+      "poseSetId": "creative.character.seonnyeo-deer-listen",
+      "pairingStatus": "missing-upper",
+      "composition": "single",
+      "bodyFraming": "full",
+      "subjects": [
+        "사슴",
+        "귀 기울이기"
+      ],
+      "searchTerms": [
+        "사슴",
+        "귀 기울이기"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.6,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·입·기울인 귀 끝, 최대 y734)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-deer-joy-v4",
+    "displayName": "사슴 · 기쁜 미소",
+    "label": "사슴 · 기쁜 미소",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "사슴",
+    "tags": [
+      "선녀와 나무꾼",
+      "사슴",
+      "기쁜 미소",
+      "감정 표현",
+      "기쁨",
+      "희",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-deer-joy-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-deer-joy-v4",
+    "copyright": "놀퀴즈",
+    "revision": "f0bf473b3144444533faadd5c54a1ef27b201baf3f1530ab8e4da71f193a1cf4",
+    "geometry": {
+      "left": 0.27625,
+      "top": 0.42,
+      "right": 0.72375,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.deer"
+      ],
+      "primaryCharacterId": "seonnyeo.deer",
+      "framing": "full",
+      "expressions": [
+        "기쁨"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "기쁜 미소",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.deer.emotions-v3",
+      "emotionRole": "joy",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "사슴",
+        "기쁜 미소",
+        "감정 표현",
+        "기쁨",
+        "희",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.6,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·웃는 입·가슴 앞 발굽, 최대 y797)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-deer-anger-v4",
+    "displayName": "사슴 · 화난 표정",
+    "label": "사슴 · 화난 표정",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "사슴",
+    "tags": [
+      "선녀와 나무꾼",
+      "사슴",
+      "화난 표정",
+      "감정 표현",
+      "분노",
+      "노",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-deer-anger-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-deer-anger-v4",
+    "copyright": "놀퀴즈",
+    "revision": "c97673820db952fb30d131f15dc6703c136a1b2d87a293e94ca03bef4da1beed",
+    "geometry": {
+      "left": 0.27375,
+      "top": 0.45916666666666667,
+      "right": 0.72625,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.deer"
+      ],
+      "primaryCharacterId": "seonnyeo.deer",
+      "framing": "full",
+      "expressions": [
+        "분노"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "화난 표정",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.deer.emotions-v3",
+      "emotionRole": "anger",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "사슴",
+        "화난 표정",
+        "감정 표현",
+        "분노",
+        "노",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.6,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(화난 눈·입, 최대 y716)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-deer-sorrow-v4",
+    "displayName": "사슴 · 슬퍼하는 모습",
+    "label": "사슴 · 슬퍼하는 모습",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "사슴",
+    "tags": [
+      "선녀와 나무꾼",
+      "사슴",
+      "슬퍼하는 모습",
+      "울기",
+      "눈물 닦기",
+      "슬픔",
+      "애",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-deer-sorrow-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-deer-sorrow-v4",
+    "copyright": "놀퀴즈",
+    "revision": "3e6e944b901ad51657688b9aa18ec8a390435689249b08deafc2f4d6d446f18a",
+    "geometry": {
+      "left": 0.25375,
+      "top": 0.45916666666666667,
+      "right": 0.745,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.deer"
+      ],
+      "primaryCharacterId": "seonnyeo.deer",
+      "framing": "full",
+      "expressions": [
+        "슬픔"
+      ],
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "variantId": "슬퍼하는 모습",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.deer.emotions-v3",
+      "emotionRole": "sorrow",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "사슴",
+        "슬퍼하는 모습",
+        "울기",
+        "눈물 닦기",
+        "슬픔",
+        "애",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.6,
+        "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(숙인 눈·입·뺨을 닦는 발굽과 얼굴 접촉, 최대 y782)."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "seonnyeo.character.emotion-deer-mirth-v4",
+    "displayName": "사슴 · 즐거운 몸짓",
+    "label": "사슴 · 즐거운 몸짓",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "사슴",
+    "tags": [
+      "선녀와 나무꾼",
+      "사슴",
+      "즐거운 몸짓",
+      "활기차게 움직이기",
+      "즐거움",
+      "락",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-emotion-deer-mirth-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.emotion-deer-mirth-v4",
+    "copyright": "놀퀴즈",
+    "revision": "7acdc388b164920ad9ce3332a9524dd6b662d6df558e7a52239ab6638d4f5684",
+    "geometry": {
+      "left": 0.26125,
+      "top": 0.45916666666666667,
+      "right": 0.7375,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "seonnyeo.deer"
+      ],
+      "primaryCharacterId": "seonnyeo.deer",
+      "framing": "full",
+      "expressions": [
+        "즐거움"
+      ],
+      "actions": [
+        "활기차게 움직이기"
+      ],
+      "variantId": "즐거운 몸짓",
+      "designVersionId": "classic",
+      "poseSetId": "seonnyeo.deer.emotions-v3",
+      "emotionRole": "mirth",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "사슴",
+        "즐거운 몸짓",
+        "활기차게 움직이기",
+        "즐거움",
+        "락",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.6,
+        "reason": "같은 인물의 표정과 색을 바탕으로 자세를 조정했다. 눈과 사건 표현 위치를 확인했다(웃는 눈·웃는 입 아래·높인 앞발 끝, 최대 y751)."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v4",
+    "displayName": "게 신하 · 기쁜 미소",
+    "label": "게 신하 · 기쁜 미소",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-joy-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v4",
+    "copyright": "놀퀴즈",
+    "revision": "41c045fcefe6a36405e6ec8f9237037c8ee756ddfb0dff2a64b3a2b615c1fa78",
+    "geometry": {
+      "left": 0.27625,
+      "top": 0.3591666666666667,
+      "right": 0.72375,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "별주부전",
+      "게 신하",
+      "기쁜 미소",
+      "감정 표현",
+      "기쁨",
+      "희",
+      "전신",
+      "투명 배경"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "기쁨"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "기쁜 미소",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.emotions-v3",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "기쁜 미소",
+        "감정 표현",
+        "기쁨",
+        "희",
+        "표정"
+      ],
+      "emotionRole": "joy",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=615로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.child-06-staged-v1",
+    "displayName": "아이 6 · 길거리 여자아이",
+    "label": "아이 6 · 길거리 여자아이",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "아이 6 · 길거리 여자아이",
+    "pose": "쭈그려 앉음",
+    "usage": "추가 연출",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "아이",
+      "길거리 여자아이",
+      "개별 인물",
+      "흥부와 놀부"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-child-06-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.child-06-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "7bc50772236beec927312a8f46b8e0c4980a4a88ff1a0fb91bede45ef116b297",
+    "geometry": {
+      "left": 0.3325,
+      "top": 0.39916666666666667,
+      "right": 0.66625,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.street-girl"
+      ],
+      "primaryCharacterId": "heungbu.street-girl",
+      "framing": "full",
+      "expressions": [],
+      "actions": [],
+      "variantId": "기본 모습",
+      "designVersionId": "iq01-distinct-children",
+      "poseSetId": "heungbu.street-girl",
+      "pairingStatus": "missing-upper",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+        "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+        "heightRatio": 1,
+        "reason": "기존 여자아이의 복색과 체형을 유지해 서 있는 자세로 다시 그렸다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=767로 확인해 y=800 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-street-girl-joy-v4",
+    "displayName": "아이 6 · 길거리 여자아이 · 기쁜 미소",
+    "label": "아이 6 · 길거리 여자아이 · 기쁜 미소",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "아이 6 · 길거리 여자아이",
+    "tags": [
+      "흥부와 놀부",
+      "아이 6 · 길거리 여자아이",
+      "기쁜 미소",
+      "감정 표현",
+      "기쁨",
+      "희",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-street-girl-joy-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-street-girl-joy-v4",
+    "copyright": "놀퀴즈",
+    "revision": "a3dd780de1efc02e73a0e00a4440655585b8e8527ce400158123eb42ca586a29",
+    "geometry": {
+      "left": 0.31625,
+      "top": 0.39916666666666667,
+      "right": 0.68375,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.street-girl"
+      ],
+      "primaryCharacterId": "heungbu.street-girl",
+      "framing": "full",
+      "expressions": [
+        "기쁨"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "기쁜 미소",
+      "designVersionId": "iq01-distinct-children",
+      "poseSetId": "heungbu.street-girl.emotions-v3",
+      "emotionRole": "joy",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "아이 6 · 길거리 여자아이",
+        "기쁜 미소",
+        "감정 표현",
+        "기쁨",
+        "희",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+        "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+        "heightRatio": 1,
+        "reason": "기존 여자아이의 복색과 체형을 유지해 서 있는 자세로 다시 그렸다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=770로 확인해 y=800 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-street-girl-sorrow-v4",
+    "displayName": "아이 6 · 길거리 여자아이 · 슬퍼하는 모습",
+    "label": "아이 6 · 길거리 여자아이 · 슬퍼하는 모습",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "아이 6 · 길거리 여자아이",
+    "tags": [
+      "흥부와 놀부",
+      "아이 6 · 길거리 여자아이",
+      "슬퍼하는 모습",
+      "울기",
+      "눈물 닦기",
+      "슬픔",
+      "애",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-street-girl-sorrow-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-street-girl-sorrow-v4",
+    "copyright": "놀퀴즈",
+    "revision": "bb216a85f9d4c1c74576931327e626824010613688540f47e6d3b7cc263ad563",
+    "geometry": {
+      "left": 0.32875,
+      "top": 0.39916666666666667,
+      "right": 0.67125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.street-girl"
+      ],
+      "primaryCharacterId": "heungbu.street-girl",
+      "framing": "full",
+      "expressions": [
+        "슬픔"
+      ],
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "variantId": "슬퍼하는 모습",
+      "designVersionId": "iq01-distinct-children",
+      "poseSetId": "heungbu.street-girl.emotions-v3",
+      "emotionRole": "sorrow",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "아이 6 · 길거리 여자아이",
+        "슬퍼하는 모습",
+        "울기",
+        "눈물 닦기",
+        "슬픔",
+        "애",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+        "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+        "heightRatio": 1,
+        "reason": "기존 여자아이의 복색과 체형을 유지해 서 있는 자세로 다시 그렸다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=776로 확인해 y=800 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.emotion-street-girl-mirth-v4",
+    "displayName": "아이 6 · 길거리 여자아이 · 즐겁게 웃기",
+    "label": "아이 6 · 길거리 여자아이 · 즐겁게 웃기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "아이 6 · 길거리 여자아이",
+    "tags": [
+      "흥부와 놀부",
+      "아이 6 · 길거리 여자아이",
+      "즐겁게 웃기",
+      "웃기",
+      "즐거움",
+      "락",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-emotion-street-girl-mirth-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.emotion-street-girl-mirth-v4",
+    "copyright": "놀퀴즈",
+    "revision": "8649b55a701b6f36710abaf110803e33f966a576eb01ee1adeb16ad6ba033d81",
+    "geometry": {
+      "left": 0.11875,
+      "top": 0.3725,
+      "right": 0.88125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "heungbu.street-girl"
+      ],
+      "primaryCharacterId": "heungbu.street-girl",
+      "framing": "full",
+      "expressions": [
+        "즐거움"
+      ],
+      "actions": [
+        "웃기"
+      ],
+      "variantId": "즐겁게 웃기",
+      "designVersionId": "iq01-distinct-children",
+      "poseSetId": "heungbu.street-girl.emotions-v3",
+      "emotionRole": "mirth",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "아이 6 · 길거리 여자아이",
+        "즐겁게 웃기",
+        "웃기",
+        "즐거움",
+        "락",
+        "표정"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+        "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+        "heightRatio": 1.048,
+        "reason": "같은 여자아이의 서서 웃는 원본을 기준 높이의 허용 범위 안에서 균일 확대했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=794로 확인해 y=800 위에 둔다."
+      },
+      "picturebookStageDerivative": true
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.layered-crab-courtier-staged-v1",
+    "displayName": "게 신하 · 갈색 관복 · 공손히 서기",
+    "label": "게 신하 · 갈색 관복 · 공손히 서기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-layered-crab-courtier-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.layered-crab-courtier-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "a23239dbfc2fbe11c4872844db1235366c576a652675d7b6f847f6a68e65ac96",
+    "geometry": {
+      "left": 0.27625,
+      "top": 0.3591666666666667,
+      "right": 0.7225,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "게 신하",
+      "갈색 관복",
+      "공손히 서기",
+      "머뭇거리기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "기본"
+      ],
+      "actions": [
+        "공손히 서기",
+        "머뭇거리기"
+      ],
+      "variantId": "갈색 관복",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.layered-v1",
+      "pairingStatus": "missing-upper",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "갈색 관복",
+        "공손히 서기",
+        "머뭇거리기",
+        "개별 인물",
+        "투명 배경"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=578로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.supporting-crab-courtier-apology-staged-v1",
+    "displayName": "게 신하 · 집게 모아 사과하기",
+    "label": "게 신하 · 집게 모아 사과하기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-supporting-crab-courtier-apology-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.supporting-crab-courtier-apology-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "85f8b746521f0fbbfdf47846077dff4f7a2d8d3f75285e6e1530a9dc32f42e09",
+    "geometry": {
+      "left": 0.26875,
+      "top": 0.3591666666666667,
+      "right": 0.73125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "별주부전",
+      "게 신하",
+      "집게 모아 사과하기",
+      "사과하기",
+      "인사하기",
+      "미안함",
+      "조연",
+      "전신",
+      "투명 배경"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "미안함"
+      ],
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "variantId": "집게 모아 사과하기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.supporting-v2",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "집게 모아 사과하기",
+        "사과하기",
+        "인사하기",
+        "미안함",
+        "조연",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=658로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.supporting-crab-courtier-argue-staged-v1",
+    "displayName": "게 신하 · 집게 들어 의견 내기",
+    "label": "게 신하 · 집게 들어 의견 내기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-supporting-crab-courtier-argue-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.supporting-crab-courtier-argue-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "e0889310c2af2e4acddeef3c0cfd5b2f30204080204d2c3cda4475606bd4777a",
+    "geometry": {
+      "left": 0.2575,
+      "top": 0.3591666666666667,
+      "right": 0.7425,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "별주부전",
+      "게 신하",
+      "집게 들어 의견 내기",
+      "말하기",
+      "집게 들기",
+      "결심",
+      "조연",
+      "전신",
+      "투명 배경"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "결심"
+      ],
+      "actions": [
+        "말하기",
+        "집게 들기"
+      ],
+      "variantId": "집게 들어 의견 내기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.supporting-v2",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "집게 들어 의견 내기",
+        "말하기",
+        "집게 들기",
+        "결심",
+        "조연",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=632로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v4",
+    "displayName": "게 신하 · 화난 표정",
+    "label": "게 신하 · 화난 표정",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-anger-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v4",
+    "copyright": "놀퀴즈",
+    "revision": "58de5631437d6781ebe182e2d9ee4c150bc9f096fa8889527647ef05154bdbf5",
+    "geometry": {
+      "left": 0.2275,
+      "top": 0.3591666666666667,
+      "right": 0.77125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "별주부전",
+      "게 신하",
+      "화난 표정",
+      "감정 표현",
+      "분노",
+      "노",
+      "전신",
+      "투명 배경"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "분노"
+      ],
+      "actions": [
+        "감정 표현"
+      ],
+      "variantId": "화난 표정",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.emotions-v3",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "화난 표정",
+        "감정 표현",
+        "분노",
+        "노",
+        "표정"
+      ],
+      "emotionRole": "anger",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=608로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v4",
+    "displayName": "게 신하 · 슬퍼하는 모습",
+    "label": "게 신하 · 슬퍼하는 모습",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-sorrow-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v4",
+    "copyright": "놀퀴즈",
+    "revision": "e6f75be764cbd471f84bc60c6c32b0546c21c1d2d1358b8988224cf1a6b87db5",
+    "geometry": {
+      "left": 0.25,
+      "top": 0.3591666666666667,
+      "right": 0.74875,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "별주부전",
+      "게 신하",
+      "슬퍼하는 모습",
+      "울기",
+      "눈물 닦기",
+      "슬픔",
+      "애",
+      "전신",
+      "투명 배경"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "슬픔"
+      ],
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "variantId": "슬퍼하는 모습",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.emotions-v3",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "슬퍼하는 모습",
+        "울기",
+        "눈물 닦기",
+        "슬픔",
+        "애",
+        "표정"
+      ],
+      "emotionRole": "sorrow",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=638로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v4",
+    "displayName": "게 신하 · 즐겁게 웃기",
+    "label": "게 신하 · 즐겁게 웃기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-mirth-v4.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v4",
+    "copyright": "놀퀴즈",
+    "revision": "c83c401304aabb2a14f7edf6c1312e353e7bd5697c6025b6b5857c695b9922a2",
+    "geometry": {
+      "left": 0.1975,
+      "top": 0.3591666666666667,
+      "right": 0.8025,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "별주부전",
+      "게 신하",
+      "즐겁게 웃기",
+      "웃기",
+      "즐거움",
+      "락",
+      "전신",
+      "투명 배경"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "즐거움"
+      ],
+      "actions": [
+        "웃기"
+      ],
+      "variantId": "즐겁게 웃기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.emotions-v3",
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "게 신하",
+        "즐겁게 웃기",
+        "웃기",
+        "즐거움",
+        "락",
+        "표정"
+      ],
+      "emotionRole": "mirth",
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "rabbit-turtle.character.turtle-offer",
+        "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+        "heightRatio": 0.7,
+        "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=600로 확인해 y=760 위에 둔다."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.classic-wing-robe-staged-v1",
+    "displayName": "날개옷 · 펼친 날개옷",
+    "label": "날개옷 · 펼친 날개옷",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "날개옷",
+    "pose": "펼친 날개옷",
+    "usage": "원작 사용",
+    "selectionTier": "추가 자료",
+    "tags": [
+      "선녀와 나무꾼",
+      "원작 읽기",
+      "날개옷",
+      "펼친 날개옷"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-classic-wing-robe-staged-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#seonnyeo.character.classic-wing-robe-staged-v1",
+    "copyright": "놀퀴즈",
+    "revision": "32e3937b0f73f741b7d56519315a9bd42eecf4edf046540e9422040b211e2d5e",
+    "geometry": {
+      "left": 0.25875,
+      "top": 0.5841666666666666,
+      "right": 0.74125,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "prop",
+      "placementRole": "prop-layer",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "propId": "seonnyeo.wing-robe",
+      "subjects": [
+        "날개옷"
+      ],
+      "generatedPicturebookStageAsset": true,
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M02-honest",
+        "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+        "heightRatio": 0.45,
+        "reason": "소품. 나무꾼 품에 들어갈 크기로 원본을 균일 축소했다. 얼굴과 손은 없고, 옷깃과 녹색 매듭 일부는 y 800 아래에 놓인다. 사람이 옷을 잡는 접촉점은 함께 그린 그림에서 검토해야 한다."
+      },
+      "picturebookStageDerivative": true
+    }
   }
 ]
