@@ -100,3 +100,4 @@ export * from './scene-visits';
 export * from './image-preload';
 export * from './branch-authoring';
 export * from './picturebook-chapters';
+export * from './story-structure';

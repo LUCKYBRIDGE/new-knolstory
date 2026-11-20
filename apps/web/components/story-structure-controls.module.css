@@ -1,0 +1,17 @@
+.dialog{width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+.chapterList{display:grid;gap:6px;margin:0 0 12px;padding:0;list-style:none;max-height:min(42dvh,420px);overflow:auto}
+.chapterList li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px;padding:4px;border:1px solid var(--line);border-radius:12px}
+.chapterList li[aria-current=true]{border-color:var(--mint-strong);background:var(--mint)}
+.chapterList .pickChapter{display:grid;gap:2px;text-align:left;min-height:44px;height:auto;padding:6px 10px;border:0!important;background:transparent!important;min-width:0}
+.pickChapter b{overflow-wrap:anywhere;font-size:var(--text-small)}
+.pickChapter small{font-size:var(--text-caption);color:var(--ink-soft)}
+.steps{display:flex;gap:4px}
+.steps button{min-height:44px;font-size:var(--text-small)}
+.steps button:disabled{opacity:.35}
+.placeRow{display:flex;flex-wrap:wrap;align-items:end;gap:8px}
+.placeRow label{display:grid;gap:4px;flex:1 1 220px;font-size:var(--text-small);font-weight:700}
+.placeRow select,.placeRow button{min-height:44px}
+.message{margin:0;min-height:1.4em;font-size:var(--text-small);overflow-wrap:anywhere}
+.moveCut{display:flex;flex-wrap:wrap;align-items:end;gap:8px}
+.moveCut label{display:grid;gap:4px;flex:1 1 160px;min-width:0}
+.moveCut select,.moveCut button{min-height:44px;max-width:100%}
