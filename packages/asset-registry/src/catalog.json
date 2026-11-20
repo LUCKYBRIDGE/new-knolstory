@@ -47909,5 +47909,70 @@
         "reason": "선녀와 두 아이의 신체 비율을 유지하며 날아오르는 자세 아래에 캔버스 높이의 30% 이상을 비운다."
       }
     }
+  },
+  {
+    "id": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+    "displayName": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+    "label": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "group": "선녀",
+    "tags": [
+      "선녀와 나무꾼",
+      "그림책",
+      "안기",
+      "날아오르기",
+      "구름"
+    ],
+    "src": "/assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.webp",
+    "sourcePath": "docs/architecture/evidence/picturebook-three-works-2026-11-20/image-generation.json#seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+    "copyright": "놀퀴즈",
+    "revision": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+    "geometry": {
+      "left": 0.0575,
+      "top": 0.09333333333333334,
+      "right": 0.9425,
+      "bottom": 0.96,
+      "width": 1200,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "characterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.children",
+        "seonnyeo.first-child",
+        "seonnyeo.second-child"
+      ],
+      "primaryCharacterId": "seonnyeo.fairy",
+      "framing": "group",
+      "bodyFraming": "obscured",
+      "composition": "multiple",
+      "actions": [
+        "안기",
+        "날아오르기"
+      ],
+      "expressions": [],
+      "variantId": "선녀복",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+        "안기",
+        "날아오르기",
+        "구름 자락"
+      ],
+      "placementReview": {
+        "referenceId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v1",
+        "referenceRevision": "72f1483a4ed90abcf19fabb96ef61182859fd9583e785b505199eb95145ac2c8",
+        "heightRatio": 1.496,
+        "reason": "인물은 캔버스 위쪽에 두고 구름·날개옷 자락을 바닥선까지 잇는다. 비교 높이에는 구름이 포함된다."
+      }
+    }
   }
 ]

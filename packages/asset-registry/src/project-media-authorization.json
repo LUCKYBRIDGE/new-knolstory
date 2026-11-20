@@ -10129,6 +10129,19 @@
         "docs/architecture/picturebook-image-production-requests.md"
       ],
       "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.webp",
+      "sha256": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+      "assetIds": [
+        "seonnyeo.character.picturebook-fairy-ascending-with-children-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/picturebook-three-works-2026-11-20/image-generation.json#seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen; user requested service assets from existing project references"
     }
   ]
 }

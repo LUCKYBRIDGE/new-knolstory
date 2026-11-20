@@ -883,9 +883,9 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-05",
-   "recipeVersion": 2,
+   "recipeVersion": 3,
    "review": "assembly-review",
-   "note": "무대는 그림에서 보이는 부분의 맨 아래를 바닥선에 맞춰서, 아래를 투명하게 비운 선녀가 다시 땅에 붙어 보여 승인하지 않았어요. 구름·빛 자락이 바닥선까지 닿는 그림(제작 요청 6 보완)을 기다려요.",
+   "note": "오른쪽 선녀와 두 아이가 비스듬히 오르고 구름과 날개옷 자락이 바닥선까지 이어져요. 가로와 세로 무대에서 인물과 자락이 어떻게 보이는지 확인해요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
@@ -900,9 +900,9 @@
     ],
     "right": [
      {
-      "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v1",
+      "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
       "slot": "fairy-children",
-      "label": "선녀와 두 아이 · 안고 하늘로 오르기",
+      "label": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
       "subjects": [
        "seonnyeo.fairy",
        "seonnyeo.children",
@@ -918,7 +918,7 @@
     "seonnyeo.scene.shortstory-classic-05": "2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d",
     "seonnyeo.background.BG04-cottage-day": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
     "seonnyeo.character.M02-surprised": "1972925f6e0a3723e635eb6f5ad1b6adf859306752e0dc34cb0dda0cec413f5f",
-    "seonnyeo.character.picturebook-fairy-ascending-with-children-v1": "72f1483a4ed90abcf19fabb96ef61182859fd9583e785b505199eb95145ac2c8"
+    "seonnyeo.character.picturebook-fairy-ascending-with-children-v2": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234"
    }
   },
   {

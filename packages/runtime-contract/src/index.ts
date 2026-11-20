@@ -93,6 +93,7 @@ const REVIEWED_IMAGE_PATHS: ReadonlySet<string> = new Set([
   "assets/characters/picturebook-v1/rabbit-turtle-turtle-pleading.webp",
   "assets/characters/picturebook-v1/rabbit-turtle-turtle-searching-reeds.webp",
   "assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children.webp",
+  "assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.webp",
   "assets/characters/picturebook-v1/seonnyeo-woodcutter-hiding-deer.webp",
   "assets/characters/picturebook-v1/rabbit-turtle-rabbit-walking-away.webp",
   "assets/backgrounds/picturebook-v1/rabbit-turtle-shore-reeds.webp",

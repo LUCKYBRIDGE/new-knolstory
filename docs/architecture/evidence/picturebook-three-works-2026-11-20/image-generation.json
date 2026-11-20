@@ -96,6 +96,57 @@
         "transparentBottomPixels": 370
       },
       "comparisonSha256": "a87533bf9d0a553f7fbe13c63ed90e66208cb794914a2825c8662ba09aad9a05"
+    },
+    {
+      "id": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+      "request": "6 보완",
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.png",
+      "sourceSha256": "1e658f841e52c853209b660c511820b1d39fea6c43b5580afb4adb1989afbacf",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.webp",
+      "outputSha256": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+      "comparison": "docs/architecture/evidence/picturebook-three-works-2026-11-20/asset-comparison-seonnyeo-05b.jpg",
+      "comparisonSha256": "183110de852d9eb7d1b2295dcdfe90726103d37a8cc3147026e98b636371efec",
+      "referenceIds": [
+        "seonnyeo.character.picturebook-fairy-ascending-with-children-v1",
+        "seonnyeo.scene.shortstory-classic-05"
+      ],
+      "referenceRevisions": {
+        "seonnyeo.character.picturebook-fairy-ascending-with-children-v1": "72f1483a4ed90abcf19fabb96ef61182859fd9583e785b505199eb95145ac2c8",
+        "seonnyeo.scene.shortstory-classic-05": "2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d"
+      },
+      "normalization": {
+        "alphaNoiseThreshold": 5,
+        "crop": [
+          45,
+          90,
+          1213,
+          1234
+        ],
+        "size": [
+          1062,
+          1040
+        ],
+        "offset": [
+          69,
+          112
+        ],
+        "alphaBounds": [
+          69,
+          112,
+          1131,
+          1152
+        ],
+        "canvas": [
+          1200,
+          1200
+        ],
+        "transparentBottomPixels": 48
+      },
+      "review": {
+        "characterGroupBottomApproxPx": 652,
+        "groupInspection": "구름과 늘어진 자락을 제외하고 선녀와 아이들의 보이는 부분을 눈으로 확인했다.",
+        "stage": "가로·세로 Ren’Py 무대 확인과 승인은 후속으로 남아 있다."
+      }
     }
   ],
   "stageReviewNotes": {
