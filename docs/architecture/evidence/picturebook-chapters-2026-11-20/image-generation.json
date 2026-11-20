@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-20",
+  "method": "built-in image_gen referenced edits; uniform resize, transparent canvas and WebP derivatives",
+  "reviewScope": "Visual comparison and geometry only. Runtime stage review remains pending.",
+  "assets": [
+    {
+      "id": "rabbit-turtle.character.picturebook-turtle-pleading-v1",
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-turtle-pleading.png",
+      "sourceSha256": "f1d81ff273498908a0242d3370d5c79537d59cf0365b03552fb9860f9d6e1708",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-turtle-pleading.webp",
+      "outputSha256": "50f9774f60861037cc8db8db7e211b6c59684067051301d4f2eb9f152fe58061",
+      "referenceIds": [
+        "rabbit-turtle.character.turtle-resolve",
+        "rabbit-turtle.scene.shortstory-classic-01"
+      ],
+      "referenceRevisions": {
+        "rabbit-turtle.character.turtle-resolve": "8ac6204430465772fca17ec6d8f989d79cbc7e68e462819aa48e84476b9246ef",
+        "rabbit-turtle.scene.shortstory-classic-01": "4adf840ee2d32aff1a9a3f461413ab1c3ec4aff523ac0d31a9268d3884ec1800"
+      },
+      "normalization": {
+        "crop": [
+          252,
+          54,
+          1180,
+          973
+        ],
+        "size": [
+          626,
+          620
+        ],
+        "offset": [
+          87,
+          532
+        ],
+        "alphaBounds": [
+          87,
+          532,
+          713,
+          1152
+        ]
+      }
+    },
+    {
+      "id": "rabbit-turtle.character.picturebook-rabbit-walking-away-v1",
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-rabbit-walking-away.png",
+      "sourceSha256": "d9626053d1e52585333f06da4d14993ffe31ab18712c02f73578ba5298140d81",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-rabbit-walking-away.webp",
+      "outputSha256": "e5164dff2ec44923ec1cebd330c5faca5257db4b74af063a2158cdbdf9fcc953",
+      "referenceIds": [
+        "rabbit-turtle.character.rabbit-suspicious",
+        "rabbit-turtle.scene.shortstory-classic-08"
+      ],
+      "referenceRevisions": {
+        "rabbit-turtle.character.rabbit-suspicious": "b36de5f404d4292c69e05dc32b17ed4128e78e9ecd23d6ffb986a21a2475c615",
+        "rabbit-turtle.scene.shortstory-classic-08": "2302d024c772d71f1cd445a60c111d9d9e4b2ff2603845e52b3afbf68df3ae04"
+      },
+      "normalization": {
+        "crop": [
+          206,
+          278,
+          717,
+          1243
+        ],
+        "size": [
+          487,
+          920
+        ],
+        "offset": [
+          156,
+          232
+        ],
+        "alphaBounds": [
+          156,
+          232,
+          643,
+          1152
+        ]
+      }
+    },
+    {
+      "id": "rabbit-turtle.background.picturebook-shore-reeds-v1",
+      "sourceFile": "assets/source/backgrounds/picturebook-v1/rabbit-turtle-shore-reeds.png",
+      "sourceSha256": "33a51fe0723dd1e1ecc06c12196283a1e9bc696659949b09a8218b5f37021024",
+      "output": "apps/web/public/assets/backgrounds/picturebook-v1/rabbit-turtle-shore-reeds.webp",
+      "outputSha256": "2b20b98d53435bf5f62a79514d64412b9a121be41b4f800915c70d904c310bb6",
+      "referenceIds": [
+        "rabbit-turtle.scene.shortstory-classic-02"
+      ],
+      "referenceRevisions": {
+        "rabbit-turtle.scene.shortstory-classic-02": "40e7c87935fab0d0d2bd0df33c1ed6126eba544362ae0122327022bd111fff6a"
+      },
+      "normalization": {
+        "method": "center fit to 16:9",
+        "size": [
+          1280,
+          720
+        ]
+      }
+    }
+  ]
+}

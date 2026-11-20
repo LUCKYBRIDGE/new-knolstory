@@ -90,6 +90,9 @@ function optionalChoice(value: unknown, values: readonly unknown[]): boolean {
 // Reviewed canvas-padding derivatives keep stable asset IDs without replacing
 // fixed-baseline source files. This is an allowlist, not an arbitrary URL root.
 const REVIEWED_IMAGE_PATHS: ReadonlySet<string> = new Set([
+  "assets/characters/picturebook-v1/rabbit-turtle-turtle-pleading.webp",
+  "assets/characters/picturebook-v1/rabbit-turtle-rabbit-walking-away.webp",
+  "assets/backgrounds/picturebook-v1/rabbit-turtle-shore-reeds.webp",
   "assets/characters/emotions-v3/rabbit-turtle-dragonking-joy.webp",
   "assets/characters/emotions-v3/rabbit-turtle-dragonking-sorrow.webp",
   "assets/characters/emotions-v3/rabbit-turtle-physician-anger.webp",
