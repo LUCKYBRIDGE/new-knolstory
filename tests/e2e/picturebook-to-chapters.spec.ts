@@ -70,12 +70,14 @@ for(const width of [1280,390])test(`그림책 4쪽에서 보내 4장 첫 컷을 
  expect(work.lines.find((line:{id:string})=>line.id===first.lineId).chapterId).toBe(chapter4.id);
  expect(Object.values(first.picturebookLinks)).toHaveLength(1);
  if(width>=1000)await expect(reference).toContainText('토끼는 파도 소리에');
- // Every image picker of this chapter starts with the pictures that fit its picture-book page.
+ // Every image picker of this chapter shows the pictures that fit its picture-book page on the 추천 shelf.
  if(width>=1000){
   await page.getByRole('button',{name:/^1컷 배경 이미지 찾기/}).click();
   const picker=page.getByRole('dialog',{name:/이미지 선택/});
-  await expect(picker.getByRole('button',{name:'숏스토리 추천',exact:true})).toHaveAttribute('aria-pressed','true');
-  await expect(picker.locator('[data-asset-id]').first()).toBeVisible();
+  const shelf=picker.getByRole('region',{name:'추천',exact:true});
+  await expect(shelf).toContainText('그림책 쪽에 맞아요');
+  await expect(shelf.locator('[data-asset-id]').first()).toBeVisible();
+  await expect(picker.getByText(/^다른 그림 · \d+개/)).toBeVisible();
   await picker.getByRole('button',{name:'취소',exact:true}).click();
  }
  // The student writes the first line of chapter 4.

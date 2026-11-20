@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- catalog thumbnail previews */
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
-import { ASSET_FACETS, assetDisplayName, assetCharacterIds, facetLabel, facetValues, isSelectableAsset, resolveAsset, searchAssets, type Asset, type FacetKey } from '@knolstory/asset-registry';
+import { ASSET_FACETS, stableAssetOrder, suggestAssets, assetDisplayName, assetCharacterIds, facetLabel, facetValues, isSelectableAsset, resolveAsset, searchAssets, type Asset, type FacetKey } from '@knolstory/asset-registry';
 import { readAssetPreferences, recordRecentAsset, toggleAssetFavorite, writeAssetPreferences, type AssetPreferences } from '../lib/asset-preferences';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './asset-browser-dialog.module.css';
@@ -11,9 +11,7 @@ type EmptyOption=Readonly<{value:string;label:string}>;
 type Props = { allowSceneIllustrations?:boolean; emptyOptions?:readonly EmptyOption[];label: string; type: Asset['type']; value: string; chapterAssetIds?: readonly string[]; onSelect: (id: string) => void; onClose: () => void };
 type Filters = Partial<Record<FacetKey, readonly string[]>>;
 const VIEWS = [['all', '전체'], ['chapter', '장 자료'], ['favorites', '즐겨찾기'], ['recent', '최근 사용']] as const;
-/** Shown first when the current chapter came from a picture-book page. */
-const PICTUREBOOK_VIEW = ['picturebook', '숏스토리 추천'] as const;
-type View = (typeof VIEWS)[number][0] | typeof PICTUREBOOK_VIEW[0];
+type View = (typeof VIEWS)[number][0];
 function Thumbnail({ asset }: { asset: Asset }) {
   return <span className={`${styles.thumbnail} ${asset.type === 'background' ? styles.background : ''}`}><img src={asset.src} alt="" loading="lazy" decoding="async" /></span>;
 }
@@ -29,9 +27,9 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
   const searchInput = useRef<HTMLInputElement>(null);
   const titleId = useId();
   const [search, setSearch] = useState('');
+  // ‘숏스토리 추천’ for a chapter sent from a picture-book page: first on the 추천 shelf.
   const recommended = usePicturebookRecommendations()[type];
-  const views = recommended.length ? [PICTUREBOOK_VIEW, ...VIEWS] : VIEWS;
-  const [view, setView] = useState<View>(recommended.length ? 'picturebook' : 'all');
+  const [view, setView] = useState<View>('all');
   const [filters, setFilters] = useState<Filters>({});
   const [pending, setPending] = useState(value);
   const [sameCharacter, setSameCharacter] = useState(false);
@@ -50,10 +48,14 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
     searchInput.current?.focus();
     return () => { element?.close(); if (opener?.isConnected) opener.focus(); };
   }, []);
-  const options = useMemo(() => ({ type, allowSceneIllustrations, search, filters, view: view === 'picturebook' ? 'chapter' as const : view, currentAssetId: value, chapterAssetIds: view === 'picturebook' ? recommended : chapterAssetIds,
+  const options = useMemo(() => ({ type, allowSceneIllustrations, search, filters, view, currentAssetId: value, chapterAssetIds,
     favoriteIds: preferences.favoriteIds, recentIds: preferences.recentIds, sameCharacterAssetId: sameCharacter ? value : undefined,
-  }), [type, allowSceneIllustrations, search, filters, view, value, chapterAssetIds, recommended, preferences, sameCharacter]);
+  }), [type, allowSceneIllustrations, search, filters, view, value, chapterAssetIds, preferences, sameCharacter]);
   const found = useMemo(() => searchAssets(options), [options]);
+  // 전체: a short explained 추천 shelf (filters apply to it too), then every picture in a steady order.
+  const suggestions = useMemo(() => view === 'all' ? suggestAssets(found, { picturebookIds: recommended, chapterAssetIds, currentAssetId: value, recentIds: preferences.recentIds, favoriteIds: preferences.favoriteIds }) : [], [view, found, recommended, chapterAssetIds, value, preferences]);
+  // A suggested picture is shown once, on the shelf; the list below holds every other picture.
+  const listed = useMemo(() => view === 'all' ? stableAssetOrder(found, value).filter(asset => !suggestions.some(item => item.asset.id === asset.id)) : found, [view, found, value, suggestions]);
   const visibleFacets = ASSET_FACETS.filter(facet => type === 'character'
     ? !['locations', 'spaces', 'times', 'seasons', 'weather', 'moods', 'states', 'framings'].includes(facet.key)
     : !['expressions', 'actions', 'variants', 'bodyFramings', 'companionCharacterIds', 'framings'].includes(facet.key));
@@ -69,6 +71,10 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
   const chips = ASSET_FACETS.flatMap(f => (filters[f.key] ?? []).map(entry => ({ key: f.key, entry })));
   const empty=emptyOptions.find(option=>option.value===pending);
   const canApply = !!empty || (isSelectableAsset(preview,allowSceneIllustrations) && preview.type === type);
+  const card = (asset: Asset, reason?: string) => <article key={`${reason ? 'suggested-' : ''}${asset.id}`} className={pending === asset.id ? styles.selected : styles.card}>
+          <button type="button" className={styles.option} data-asset-id={asset.id} aria-pressed={pending === asset.id} onClick={() => setPending(asset.id)}><Thumbnail asset={asset} /><strong>{assetDisplayName(asset)}</strong><small>{reason ? <b className={styles.reason}>{reason}</b> : null}{asset.story}{asset.id === value ? ' · 현재 이미지' : ''}{!isSelectableAsset(asset,allowSceneIllustrations) ? ' · 이전 이미지 (확인용)' : ''}</small></button>
+          <button type="button" className={styles.favorite} aria-label={`즐겨찾기 ${asset.label}`} aria-pressed={preferences.favoriteIds.includes(asset.id)} onClick={() => persist(toggleAssetFavorite(preferences, asset.id))}>{preferences.favoriteIds.includes(asset.id) ? '★' : '☆'} 즐겨찾기</button>
+        </article>;
   return <dialog ref={dialog} data-keyboard-dialog="assets" data-keyboard-occluded={keyboard.occluded} className={styles.dialog} aria-labelledby={titleId} onCompositionStart={()=>{composing.current=true;}} onCompositionEnd={()=>{composing.current=false;}} onKeyDown={event=>{if(event.nativeEvent.isComposing||event.nativeEvent.keyCode===229||composing.current){if(event.key==='Escape'){event.preventDefault();event.stopPropagation();}return;}trapDialogTab(event,dialog.current);}} onCancel={event => { event.preventDefault(); event.stopPropagation(); if(!composing.current)onClose(); }}>
     <div className={styles.shell}>
       <header className={styles.header}><div><small>이야기 그림 자료실</small><h2 id={titleId}>이미지 선택 · {label}</h2><p>적용 대상: {label}. 그림을 미리 본 뒤 적용하세요.</p></div><button type="button" aria-label="이미지 선택 닫기" onClick={onClose}>닫기</button></header>
@@ -77,7 +83,7 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
         <div>{preview && <Thumbnail asset={preview} />}<span><small>선택 미리보기</small><strong>{(preview?assetDisplayName(preview):undefined) ?? empty?.label ?? '그림을 선택하세요'}</strong></span></div>
       </div>
       <div className={styles.findbar}><input ref={searchInput} type="search" aria-label="이미지 검색" placeholder="흥부 일하기, 겨울 집처럼 찾아보세요" value={search} onChange={event => setSearch(event.target.value)} />{type === 'character' && current && assetCharacterIds(current).length > 0 && <button type="button" aria-pressed={sameCharacter} onClick={() => setSameCharacter(v => !v)}>같은 인물의 다른 모습</button>}</div>
-      <div className={styles.tabs} role="group" aria-label="이미지 보기">{views.map(([mode, text]) => <button type="button" key={mode} aria-pressed={view === mode} onClick={() => setView(mode)}>{text}</button>)}</div>
+      <div className={styles.tabs} role="group" aria-label="이미지 보기">{VIEWS.map(([mode, text]) => <button type="button" key={mode} aria-pressed={view === mode} onClick={() => setView(mode)}>{text}</button>)}</div>
       <div className={styles.body}>
         {emptyOptions.length>0&&<div className={styles.emptyOptions} role="group" aria-label={`${label} 기본 표시`}>{emptyOptions.map(option=><button type="button" key={option.value} aria-pressed={pending===option.value} onClick={()=>setPending(option.value)}>{option.label}</button>)}</div>}
         <details className={styles.advanced}><summary>상세 조건으로 찾기{chips.length?` · ${chips.length}개 적용`:""}</summary><section className={styles.facets} aria-label="찾는 조건 고르기">{visibleFacets.map(facet => {
@@ -87,11 +93,9 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
           return <details key={facet.key}><summary>{facet.label}{filters[facet.key]?.length ? ` (${filters[facet.key]!.length})` : ''}</summary><div role="group" aria-label={`${facet.label} 조건`}>{values.map(entry => <button type="button" key={entry} aria-pressed={filters[facet.key]?.includes(entry) ?? false} onClick={() => toggle(facet.key, entry)}>{facetLabel(facet.key, entry)} <small>{base.filter(a => facetValues(a, facet.key).includes(entry)).length}</small></button>)}</div></details>;
         })}</section></details>
         {(chips.length > 0 || search || sameCharacter || view !== 'all') && <div className={styles.chips} data-only-search={chips.length===0&&!sameCharacter&&view==='all'} aria-label="현재 찾는 조건">{chips.map(chip => <button type="button" key={`${chip.key}:${chip.entry}`} aria-label={`${facetLabel(chip.key, chip.entry)} 조건 해제`} onClick={() => toggle(chip.key, chip.entry)}>{facetLabel(chip.key, chip.entry)} ×</button>)}<button type="button" onClick={clear}>모두 지우기</button></div>}
-        <p aria-live="polite">{found.length}개의 이미지 · 현재 저장된 이미지는 조건과 관계없이 확인할 수 있어요.</p>
-        <div className={styles.grid}>{found.map(asset => <article key={asset.id} className={pending === asset.id ? styles.selected : styles.card}>
-          <button type="button" className={styles.option} data-asset-id={asset.id} aria-pressed={pending === asset.id} onClick={() => setPending(asset.id)}><Thumbnail asset={asset} /><strong>{assetDisplayName(asset)}</strong><small>{asset.story}{asset.id === value ? ' · 현재 이미지' : ''}{!isSelectableAsset(asset,allowSceneIllustrations) ? ' · 이전 이미지 (확인용)' : ''}</small></button>
-          <button type="button" className={styles.favorite} aria-label={`즐겨찾기 ${asset.label}`} aria-pressed={preferences.favoriteIds.includes(asset.id)} onClick={() => persist(toggleAssetFavorite(preferences, asset.id))}>{preferences.favoriteIds.includes(asset.id) ? '★' : '☆'} 즐겨찾기</button>
-        </article>)}</div>
+        {suggestions.length > 0 && <section className={styles.suggestions} aria-label="추천"><h3>추천</h3><div className={styles.grid}>{suggestions.map(({ asset, reason }) => card(asset, reason))}</div></section>}
+        <p aria-live="polite">{suggestions.length > 0 ? `다른 그림 · ${listed.length}개` : `${listed.length}개의 이미지`} · 현재 저장된 이미지는 조건과 관계없이 확인할 수 있어요.</p>
+        <div className={styles.grid}>{listed.map(asset => card(asset))}</div>
         {!found.length && <div className={styles.empty}><strong>찾은 이미지가 없어요.</strong><p>조건을 해제하거나 다른 보기에서 찾아보세요.</p><button type="button" onClick={clear}>모두 지우기</button></div>}
       </div>
       <footer className={styles.footer}>{storageError && <p role="status">{storageError}</p>}<p>적용 전에는 현재 컷이나 장 자료를 바꾸지 않아요.</p><div><button type="button" onClick={onClose}>취소</button><button type="button" className={styles.apply} disabled={!canApply} onClick={() => { if (canApply) { if(!empty)persist(recordRecentAsset(preferences, pending)); onSelect(pending); onClose(); } }}>선택한 이미지 적용</button></div></footer>
