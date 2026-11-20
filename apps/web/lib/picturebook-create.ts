@@ -3,6 +3,7 @@ import {convertPicturebookToChapters,insertStoryChapters,type PicturebookBook} f
 import type {ShortStoryProject} from '@knolstory/compatibility';
 import {assertCatalogOnlyMedia} from './catalog-only-authoring';
 import {shortStoryCoverProject} from './shortstory-cover';
+import {numberList} from './picturebook-preparation';
 import {picturebookSends,withPicturebookSend,type PicturebookLinks,type PicturebookRequest} from './picturebook-links';
 import type {EditingPermissions} from './editing-permissions';
 
@@ -52,6 +53,8 @@ export function planPicturebookCreation(input:PicturebookCreateInput):Pictureboo
  if(!permissions.characters&&staged.some(stage=>stage.kind==='stage'&&(stage.left.length||stage.right.length)))throw Error('인물 배치 권한이 바뀌었어요. 그림책 화면에서 다시 준비해 주세요.');
  const book=chosenPages(request.book,request.pageIds);
  const startIndex=book.pages.findIndex(page=>page.id===request.startPageId);
+ // “4·5쪽” as numbered in the picture book, not how many pages were chosen.
+ const sentPages=numberList(request.book.pages.flatMap((page,index)=>request.pageIds.includes(page.id)?[index+1]:[]),'쪽');
  if(startIndex<0)throw Error('시작할 쪽을 고른 쪽에서 찾지 못했어요.');
 
  if(request.target.kind==='new'){
@@ -68,7 +71,7 @@ export function planPicturebookCreation(input:PicturebookCreateInput):Pictureboo
   const start=conversion.chapters[startIndex]!;
   return {kind:'create',workKey,project:conversion.project,lineId:start.lineId,
    links:withPicturebookSend(input.links,input.ownerScope,request.book.id,{workKey,requestId:request.requestId,createdAt:input.now,pages}),
-   notice:`그림책 ${book.pages.length}쪽을 새 놀스토리 ${book.pages.length}장으로 보냈어요. ${startIndex+1}장 첫 컷에서 써 보세요.`};
+   notice:`그림책 ${sentPages}을 새 놀스토리 ${numberList(book.pages.map((_,index)=>index+1),'장')}으로 보냈어요. ${startIndex+1}장 첫 컷에서 써 보세요.`};
  }
 
  const {workKey,afterChapterId}=request.target;
@@ -88,5 +91,5 @@ export function planPicturebookCreation(input:PicturebookCreateInput):Pictureboo
  const where=afterChapterId===null?'맨 앞':`${chapterLabel(work.chapters.find(chapter=>chapter.id===afterChapterId)!).split(' · ')[0]} 뒤`;
  return {kind:'insert',workKey,project,lineId:start.lineId,
   links:withPicturebookSend(input.links,input.ownerScope,request.book.id,{workKey,requestId:request.requestId,createdAt:input.now,pages}),
-  notice:`그림책 ${book.pages.length}쪽을 ‘${work.title||'제목 없는 작품'}’ ${where}에 ${chapterNames(project,conversion.chapters.map(item=>item.chapterId))}으로 넣었어요.`};
+  notice:`그림책 ${sentPages}을 ‘${work.title||'제목 없는 작품'}’ ${where}에 ${chapterNames(project,conversion.chapters.map(item=>item.chapterId))}으로 넣었어요.`};
 }

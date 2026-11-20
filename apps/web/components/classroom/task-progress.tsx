@@ -26,6 +26,7 @@ export function TaskProgress({item,rows,csrf,run,review,onChanged}:{item:Assignm
    {(['notStarted','writing','submitted','revise','passed'] as const).map(stage=><li key={stage} data-stage={stage}><b>{counts[stage]}</b> {STAGE_LABEL[stage]}</li>)}
    {late>0&&<li data-stage="late"><b>{late}</b> 늦게 냄</li>}
   </ul>
+  <p className={styles.hint}>학생이 ‘선생님께 중간 저장’을 누르면 ‘작성 중’으로 보여요. 기기에서만 쓰고 있으면 ‘시작 전’으로 보여요.</p>
   {waiting.length>0&&<p className={styles.hint}>시작 전 · {waiting.map(row=>`${row.number}번${row.name?` ${row.name}`:''}`).join(', ')}</p>}
   <ul className={styles.reviewList}>{rows.filter(row=>progressStage(row)!=='notStarted').map(row=><li key={row.number}>
    {row.submission?review(row.number,<span className={styles.progressLine}><span>{amount(row.submission)}</span>{item.dueAt&&row.submission.submittedAt>item.dueAt&&<span className={styles.lateChip}>늦게 냄</span>}</span>):<DraftRow item={item} row={row} csrf={csrf} run={run} amount={amount} onChanged={onChanged}/>}

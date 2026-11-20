@@ -15,7 +15,8 @@ export function MobileFullscreenOffer({enabled,onEnter}:{enabled:boolean;onEnter
   const schedule=()=>{
    cancelAnimationFrame(frame);
    frame=requestAnimationFrame(()=>{
-    if(document.querySelector('dialog[open]'))return;
+    // Never on top of another dialog or the open ‘과제’ guide: ask once they are closed.
+    if(document.querySelector('dialog[open],details[data-task-action][open]'))return;
     seen.current=true;observer.disconnect();
     if(document.fullscreenElement)return;
     try{if(sessionStorage.getItem(FULLSCREEN_OFFER_KEY))return;sessionStorage.setItem(FULLSCREEN_OFFER_KEY,'1');}catch{/* This visit still asks only once when session storage is unavailable. */}

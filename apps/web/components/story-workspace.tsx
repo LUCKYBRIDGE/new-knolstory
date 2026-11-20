@@ -126,6 +126,8 @@ import {forgetPicturebookRequest,isPicturebookRequestId,picturebookOwnerScope,re
 import {planPicturebookCreation} from '../lib/picturebook-create';
 import {PicturebookChapterReference} from './picturebook-chapter-reference';
 import {ChapterOrderDialog,MoveCutControl} from './story-structure-controls';
+import {PicturebookRecommendationContext} from './picturebook-recommendation-context';
+import {NO_RECOMMENDATIONS,picturebookRecommendations} from '../lib/picturebook-recommendations';
 const FIRST = representativeStories[0]!;
 const builtInStories=[...representativeStories,...classicStories];
 
@@ -171,6 +173,9 @@ export function StoryWorkspace() {
   const picturebookLinks=useRef<PicturebookLinks>({});
   const [picturebookIssue,setPicturebookIssue]=useState<{requestId:string;message:string}|null>(null);
   const [picturebookBusy,setPicturebookBusy]=useState(false);
+  /** What ‘놀스토리로 보내기’ did: a passing notice, not an error. */
+  const [picturebookNotice,setPicturebookNotice]=useState('');
+  useEffect(()=>{if(!picturebookNotice)return;const timer=window.setTimeout(()=>setPicturebookNotice(''),8000);return()=>window.clearTimeout(timer);},[picturebookNotice]);
   const [editingPaths,setEditingPaths]=useState<Readonly<Record<string,readonly string[]>>>({});
   const [view,setView]=useState<WorkspaceView>('home');
   const [runtimeMounted,setRuntimeMounted]=useState(false);
@@ -257,6 +262,8 @@ export function StoryWorkspace() {
     orderedLines(project)[0]!;
   const previewEditor=usePreviewEditorContext(mode,`${project.id}/${line.id}/${editorView}/${activeTool}/${soundTool}`,view==='editor');
   const chapter = project.chapters.find((item) => item.id === line.chapterId)!;
+  // ‘숏스토리 추천’ in every image picker of a chapter sent from a picture-book page.
+  const pictureRecommendations=useMemo(()=>picturebookRecommendations(chapter.picturebookSketch),[chapter.picturebookSketch]);
   const chapterCuts = orderedLines(project).filter(cut => cut.chapterId === chapter.id);
   const chapterCutIndex = chapterCuts.findIndex(cut => cut.id === line.id);
   const ordered = useMemo(() => orderedLines(project), [project]);
@@ -1025,11 +1032,11 @@ export function StoryWorkspace() {
       }
       forgetPicturebookRequest(localStorage,requestId);
       // The work open now is updated in place: reopening it would first remember the version before the insert.
-      if(plan.kind==='insert'&&plan.workKey===storyId){applyProject(plan.project,plan.lineId);setMode('edit');setView('editor');}
+      if(plan.kind==='insert'&&plan.workKey===storyId){applyProject(plan.project,plan.lineId);setMode('edit');setView('editor');setRuntimeMounted(true);setEditorView('cut');}
       else await openLibraryWork(plan.workKey,'edit',plan.lineId);
       // Putting chapters into a work being written keeps a one-step undo, like other structure edits.
       if(before&&plan.kind==='insert'){const back=contexts.current[plan.workKey]?.lineId;setUndoStructure({before,after:plan.project,lineId:back&&before.lines.some(cut=>cut.id===back)?back:orderedLines(before)[0]!.id,done:plan.notice});}
-      else setError(plan.notice);
+      else setPicturebookNotice(plan.notice);
     }catch(issue){
       setPicturebookIssue({requestId,message:retryAfterTakeover()?'다른 탭에서 보관함을 바꾸는 중이었어요. 놀스토리로 보내지 않았어요. 다시 시도해 주세요.':issueText(issue)});
     }finally{setPicturebookBusy(false);}
@@ -1334,7 +1341,7 @@ export function StoryWorkspace() {
   // interrupted, and other open tabs are handled by the automatic writer handover.
   const storageWarning = writer.status==='unavailable'&&(view==='prepare'||view==='editor'&&mode==='edit')&&<section role="alert" className={`${styles.error} ${styles.storageWarning}`}><p>브라우저에 현재 원고를 임시 보관할 수 없어요. 현재 작품을 작품 파일로 저장해 주세요.</p><button onClick={()=>void exportFile()}>현재 초안 파일 내보내기</button><button disabled={composing} onClick={()=>{if(!composing)setConfirmStorageReload(true);}}>저장된 보관함 다시 열기</button></section>;
   const storageRecovery = storageError&&<section aria-label="기기 보관함 복구" className={`${styles.error} ${styles.storageWarning}`}><p>{storageError}</p><button onClick={()=>{try{const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)downloadArtifact(raw,'놀스토리-복구원본.json','application/json');}catch(issue){setError(String(issue));}}}>복구용 원본 보관</button><button onClick={()=>setConfirmStorageRestart(true)} disabled={!storageWritable}>손상 원본 보존하고 새 보관함 시작</button></section>;
-  return (<StoryBranchEditingContext.Provider value={logic.branches}>
+  return (<PicturebookRecommendationContext.Provider value={view==='editor'?pictureRecommendations:NO_RECOMMENDATIONS}><StoryBranchEditingContext.Provider value={logic.branches}>
     <WorkLeaveGuard tracker={leaveTracker} work={project} ready={loadComplete}/>
     {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관이 안 된 원고가 이 탭에 있어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
     <MobileFullscreenOffer enabled={['editor','prepare'].includes(view)&&!composing} onEnter={()=>void toggleFullscreen()}/>
@@ -1375,6 +1382,7 @@ export function StoryWorkspace() {
       {(logic.branches||hasBranches(project)) && flowMapOpen && <StoryFlowMap project={project} currentLineId={line.id} onSelectCut={editFromFlow} onClose={() => setFlowMapOpen(false)} onArrange={mode==='edit'&&loadComplete&&storageWritable?arrangeChapters:undefined} />}
       {chapterOrder&&<ChapterOrderDialog project={project} currentChapterId={line.chapterId} onChange={next=>{try{preflight(next);applyProject(next,line.id);}catch(issue){setError(issueText(issue));}}} onClose={()=>{const before=chapterOrder;setChapterOrder(null);if(before!==project)setUndoStructure({before,after:project,lineId:line.id,done:'장 순서를 바꿨어요.'});}}/>}
       {splitRequest&&<StorySplitDialog sourceLabel={(()=>{const cut=project.lines.find(item=>item.id===splitRequest.lineId);const owner=project.chapters.find(item=>item.id===cut?.chapterId);return cut&&owner?cutLabel(owner,cut):'이 컷';})()} nextChapterNumber={(()=>{const owner=project.chapters.find(item=>item.id===project.lines.find(cut=>cut.id===splitRequest.lineId)?.chapterId);return (owner?.chapterNumber??owner?.order??0)+1;})()} continuationLabel={(()=>{const cut=splitRequest.continuationLineId?project.lines.find(item=>item.id===splitRequest.continuationLineId):undefined;const owner=project.chapters.find(item=>item.id===cut?.chapterId);return cut&&owner?cutLabel(owner,cut):null;})()} error={splitError} onCancel={()=>{setSplitRequest(null);setSplitError('');}} onSplit={confirmSplit}/>}
+      {picturebookNotice&&!(undoStructure?.after===project)&&<p role="status" className={styles.structureUndo} data-testid="picturebook-notice"><span>{picturebookNotice}</span><button type="button" aria-label="알림 닫기" onClick={()=>setPicturebookNotice('')}>×</button></p>}
       {undoStructure?.after===project&&<p role="status" className={styles.structureUndo}><span>{undoStructure.done}</span><button type="button" disabled={composing} onClick={()=>{applyProject(undoStructure.before,undoStructure.lineId);setUndoStructure(null);}}>되돌리기</button><button type="button" aria-label="알림 닫기" onClick={()=>setUndoStructure(null)}>×</button></p>}
       {deleteId && <CutDeleteDialog connections={incomingStoryConnections(project,deleteId)} text={project.lines.find(cut=>cut.id===deleteId)?.text??''} incomingLinks={getStoryCutDeletionImpact(project,deleteId).incomingLinks} rangeEnds={getStoryCutDeletionImpact(project,deleteId).rangeEnds} branchConditions={getStoryCutDeletionImpact(project,deleteId).branchConditions} onCancel={()=>setDeleteId(null)} onDelete={confirmDelete}/>}
       {undoDelete?.after===project && <button onClick={()=>{applyProject(undoDelete.before,undoDelete.lineId);setUndoDelete(null);}}>삭제 되돌리기</button>}
@@ -1405,5 +1413,5 @@ export function StoryWorkspace() {
         {storageError ? "이전에 보관한 내용을 지키려고 브라우저 자동 보관을 멈췄어요. 지금 편집한 작품은 작품 파일로 저장해 주세요." : "작품은 작품 파일로 저장해 주세요. 임시 보관은 작품 파일 저장을 대신하지 않아요."}
       </p>
     </main>
-    </StoryBranchEditingContext.Provider>);
+    </StoryBranchEditingContext.Provider></PicturebookRecommendationContext.Provider>);
 }
