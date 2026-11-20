@@ -96,6 +96,46 @@
           720
         ]
       }
+    },
+    {
+      "id": "rabbit-turtle.character.picturebook-turtle-searching-reeds-v1",
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-turtle-searching-reeds.png",
+      "sourceSha256": "13094926152a87cbee13a1a83c6729f0cb4abc6e7705398b3fdae79c922ba4cf",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-turtle-searching-reeds.webp",
+      "outputSha256": "04fadbb2e3e0396958b82286fec86979bda1870517241513379497561b123010",
+      "referenceIds": [
+        "rabbit-turtle.character.turtle-resolve",
+        "rabbit-turtle.character.picturebook-turtle-pleading-v1",
+        "rabbit-turtle.scene.shortstory-classic-02"
+      ],
+      "referenceRevisions": {
+        "rabbit-turtle.character.turtle-resolve": "8ac6204430465772fca17ec6d8f989d79cbc7e68e462819aa48e84476b9246ef",
+        "rabbit-turtle.character.picturebook-turtle-pleading-v1": "50f9774f60861037cc8db8db7e211b6c59684067051301d4f2eb9f152fe58061",
+        "rabbit-turtle.scene.shortstory-classic-02": "40e7c87935fab0d0d2bd0df33c1ed6126eba544362ae0122327022bd111fff6a"
+      },
+      "normalization": {
+        "alphaNoiseThreshold": 3,
+        "crop": [
+          34,
+          156,
+          1219,
+          1123
+        ],
+        "size": [
+          744,
+          607
+        ],
+        "offset": [
+          28,
+          545
+        ],
+        "alphaBounds": [
+          28,
+          545,
+          772,
+          1152
+        ]
+      }
     }
   ]
 }
