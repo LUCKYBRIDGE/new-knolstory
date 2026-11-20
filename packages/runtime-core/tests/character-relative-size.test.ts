@@ -1,7 +1,7 @@
 import {describe,expect,it} from 'vitest';
 import {resolveAsset} from '@knolstory/asset-registry';
 import {compileStoryScene,createBlankStoryProject,patchStoryLine} from '../src';
-import {stageCharacterScale,stageReadableCharacterScale} from '../src/stage-view';
+import {stageCharacterScale,stagePlacementClass,stageReadableCharacterScale,stageSharedActor} from '../src/stage-view';
 
 const adult='heungbu.character.heungbu-default';
 const first='heungbu.character.child-01',second='heungbu.character.child-02';
@@ -64,6 +64,12 @@ describe('default character stature shared by reading and editing',()=>{
   for(const [id,scale] of [['seonnyeo.character.classic-woodcutter-riding-horse',1.4],['seonnyeo.character.classic-deer',.72],['seonnyeo.character.classic-rooster-calling-sky',.48],['seonnyeo.character.classic-wing-robe',.65]] as const){
    expect(resolveAsset(id)).toBeDefined();expect(stageCharacterScale(id)).toBe(scale);expect(stageReadableCharacterScale(id)).toBe(scale);
   }
+  for(const id of ['seonnyeo.character.classic-woodcutter-riding-horse-staged-v1','seonnyeo.character.classic-deer-staged-v1','seonnyeo.character.emotion-deer-joy-v4','seonnyeo.character.classic-rooster-calling-sky-staged-v1','seonnyeo.character.emotion-rooster-mirth-v4','seonnyeo.character.classic-wing-robe-staged-v1']){
+   // Remade on the standard canvas at true stature: the legacy group correction must not apply twice.
+   expect(resolveAsset(id)!.metadata.placementReview).toBeDefined();expect(stageCharacterScale(id)).toBe(1);
+  }
+  expect(stageSharedActor('seonnyeo.character.classic-woodcutter-riding-horse-staged-v1')).toBe(true);
+  expect(stagePlacementClass('seonnyeo.character.classic-horse-startled-by-porridge-staged-v1')).toBe('framing-full');
   const upper='rabbit-turtle.character.classic-turtle-water';expect(resolveAsset(upper)!.framing).toBe('상반신');
   expect(stageReadableCharacterScale(upper)*fraction(upper)).toBeCloseTo(.82,6);
   expect(stageReadableCharacterScale('unknown')).toBe(1);
