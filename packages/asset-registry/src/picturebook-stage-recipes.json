@@ -883,22 +883,12 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-05",
-   "recipeVersion": 3,
-   "review": "assembly-review",
-   "note": "오른쪽 선녀와 두 아이가 비스듬히 오르고 구름과 날개옷 자락이 바닥선까지 이어져요. 가로와 세로 무대에서 인물과 자락이 어떻게 보이는지 확인해요.",
+   "recipeVersion": 4,
+   "review": "approved",
+   "note": "구름 자락이 바닥에 닿고 선녀가 두 아이를 안은 채 왼쪽 위로 날아올라요. 놀란 나무꾼(오른쪽)이 바라봐요. 세로 읽기의 첫 인물이 선녀가 되도록 선녀를 왼쪽에 둬요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
-     {
-      "assetId": "seonnyeo.character.M02-surprised",
-      "slot": "woodcutter",
-      "label": "나무꾼 · 놀라 바라보기",
-      "subjects": [
-       "seonnyeo.woodcutter"
-      ]
-     }
-    ],
-    "right": [
      {
       "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
       "slot": "fairy-children",
@@ -911,6 +901,16 @@
       ],
       "facing": "original"
      }
+    ],
+    "right": [
+     {
+      "assetId": "seonnyeo.character.M02-surprised",
+      "slot": "woodcutter",
+      "label": "나무꾼 · 놀라 바라보기",
+      "subjects": [
+       "seonnyeo.woodcutter"
+      ]
+     }
     ]
    },
    "alternatives": [],
@@ -919,7 +919,9 @@
     "seonnyeo.background.BG04-cottage-day": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
     "seonnyeo.character.M02-surprised": "1972925f6e0a3723e635eb6f5ad1b6adf859306752e0dc34cb0dda0cec413f5f",
     "seonnyeo.character.picturebook-fairy-ascending-with-children-v2": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234"
-   }
+   },
+   "reviewedAt": "2026-11-20",
+   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-06",

@@ -2,10 +2,8 @@
   "date": "2026-11-20",
   "scope": "옹고집전 8쪽·선녀와 나무꾼 10쪽·흥부와 놀부 8쪽 원화를 기존 자료로 조립한 첫 무대 조합 검토",
   "method": "작품별 원화·배경·인물 대조표로 후보를 고른 뒤, 정적 기기 전용 빌드의 /picturebook?review=recipes(만들기 불가)로 실제 Ren’Py 가로 16:9 무대를 쪽마다 확인. 세로 9:16은 흥부 3쪽 등 일부를 확인했고 해설 컷은 첫 인물 한 명에 집중하는 기존 세로 읽기 규칙을 따름",
-  "approved": 25,
-  "notApproved": {
-    "seonnyeo.scene.shortstory-classic-05": "두 아이를 안은 선녀가 땅에 서 있어 ‘하늘로 떠나는’ 장면이 읽히지 않아 승인하지 않았어요. 발이 땅에서 떨어져 날아오르는 선녀와 두 아이(제작 요청 6)를 기다려요."
-  },
+  "approved": 26,
+  "notApproved": {},
   "adjusted": {
     "seonnyeo.scene.shortstory-classic-10": "수탉이 작아 대사창에 가려 1.4배로 키움",
     "heungbu.scene.shortstory-classic-04": "박씨를 문 제비가 사람만큼 커서 0.6배로 줄임"
@@ -28,5 +26,11 @@
     ],
     "seonnyeo.scene.shortstory-classic-01": "승인. 가로: 몸을 낮춰 사슴을 감싼 나무꾼이 오른쪽 사냥꾼을 살핌, 얼굴이 대사창 위. 세로: 숨겨 주는 자세가 크게 보임",
     "seonnyeo.scene.shortstory-classic-05": "보류. 가로 무대에서 선녀가 바닥에 붙어 보임. 원인: Runtime Core 배치(stage-layout.ts)가 카탈로그 geometry.bottom(보이는 부분의 맨 아래)을 바닥선에 맞추므로 그림 아래의 투명 여백은 무시됨(geometry.bottom 0.69). 그림만으로 띄우려면 구름·빛 자락이 바닥선까지 이어져야 함 → 제작 요청 6 보완"
-  }
+  },
+  "thirdRound": {
+    "date": "2026-11-20",
+    "newAsset": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2 (geometry.bottom 0.96, 구름 자락이 바닥선까지)",
+    "seonnyeo.scene.shortstory-classic-05": "승인(v4). v3(선녀 오른쪽): 가로는 떠오르는 선녀가 읽혔지만 세로는 첫 인물인 놀란 나무꾼만 보여 사건이 빠짐. v4에서 좌우를 바꿔 선녀를 왼쪽에 두자 가로는 왼쪽 위로 날아가는 선녀와 바라보는 나무꾼, 세로는 구름을 타고 오르는 선녀와 두 아이가 보임"
+  },
+  "summary": "옹고집전 8쪽·선녀와 나무꾼 10쪽·흥부와 놀부 8쪽 모두 승인. 별주부전과 합쳐 기본 네 작품 34쪽 모두 승인 조합을 가짐"
 }
