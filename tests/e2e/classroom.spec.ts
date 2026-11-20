@@ -4,6 +4,19 @@ import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 import {readFile} from 'node:fs/promises';
 import {startShelfCreation} from './library-entry';
 import {classroomSeason} from '../../apps/web/lib/classroom-season';
+import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
+import {createStoryDocument} from '../../packages/story-domain/src';
+/**
+ * A work in the current format, stored online the way the app stores it: the archive, and the same
+ * content fingerprint the app computes (canonical JSON without savedAt/appVersion). No old file to upgrade.
+ */
+async function currentOnlineSnapshot(project:ReturnType<typeof createBlankStoryProject>){
+ const content=JSON.parse(JSON.stringify({format:'knolstory',formatVersion:2,document:createStoryDocument({project,savedAt:'2026-11-20T09:00:00.000Z',appVersion:'knolstory-next'}),audioResources:[]}));
+ const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
+ const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
+ const {createHash}=await import('node:crypto');
+ return {payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[] as unknown[]};
+}
 // Fullscreen prompting has its own coverage.
 test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 
@@ -1057,12 +1070,7 @@ test('teacher gives a task to chosen students and changes who gets a mission',as
 
 test('a student hands in a personal online work as a copy and sees both spaces',async({page})=>{
  const MB=1024*1024,recordId='22222222-2222-4222-8222-222222222222';
- const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
- content.document.project.title='집에서 쓴 이야기';
- const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
- const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
- const {createHash}=await import('node:crypto');
- const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+ const snapshot=await currentOnlineSnapshot(createBlankStoryProject({id:'home-story',chapterId:'home-chapter',lineId:'home-line',title:'집에서 쓴 이야기'})),content=snapshot.content;
  const metadata={recordId,revision:1,format:'knolstory',clientProjectId:content.document.project.id,title:'집에서 쓴 이야기',contentSha256:snapshot.contentSha256,createdAt:1,updatedAt:1,stateVersion:1,deletedAt:null};
  const state=await mockClassroom(page,'student');state.signedIn=true;
  await page.route('**/api/v1/class/me',route=>route.fulfill({json:{success:true,data:{role:'student',account:{id:'s'},student:{number:2,name:'하늘',classId:'c1',className:'3반',permissions:all},storage:{works:1,worksLimit:5,bytes:1.2*MB,bytesLimit:10*MB,workBytesLimit:16*MB,submissions:{bytes:0.5*MB,limit:10*MB}}}}}));
@@ -1095,12 +1103,7 @@ test('a student\'s new work title keeps the class number fixed in front',async({
 });
 
 test('a student brings a handed-in work into personal online works and chooses on a name clash',async({page})=>{
- const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
- content.document.project.title='02_바다 이야기';
- const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
- const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
- const {createHash}=await import('node:crypto');
- const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+ const snapshot=await currentOnlineSnapshot(createBlankStoryProject({id:'sea-story',chapterId:'sea-chapter',lineId:'sea-line',title:'02_바다 이야기'}));
  const state=await mockClassroom(page,'student');state.signedIn=true;
  state.assignments[0].submittedAt=1_760_000_000_000;state.submissions.a1=snapshot;
  const existing={recordId:'33333333-3333-4333-8333-333333333333',revision:4,format:'knolstory',clientProjectId:'kept-id',title:'02_바다 이야기',contentSha256:'b'.repeat(64),createdAt:1,updatedAt:1,stateVersion:1,deletedAt:null};
@@ -1131,13 +1134,8 @@ test('a student brings a handed-in work into personal online works and chooses o
 });
 
 async function templateSnapshot(title:string,firstText:string){
- const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
- content.document.project.title=title;
- const first=content.document.project.lines.find((line:{id:string})=>line.id===content.document.project.chapters[0].lineIds?.[0])??content.document.project.lines[0];first.text=firstText;
- const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
- const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
- const {createHash}=await import('node:crypto');
- return {payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+ const project=createBlankStoryProject({id:'template-story',chapterId:'template-chapter',lineId:'template-line',title});
+ return currentOnlineSnapshot({...project,lines:project.lines.map((line,index)=>index===0?{...line,text:firstText}:line)});
 }
 test('a student starts a writing task from the teacher template and keeps writing in the same copy',async({page})=>{
  const template=await templateSnapshot('선생님이 준 이야기 틀','옛날 옛적에, 선생님이 시작한 문장.');

@@ -1,5 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
-import {readFileSync} from 'node:fs';
+import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
+import {createStoryDocument} from '../../packages/story-domain/src';
 import {createHash} from 'node:crypto';
 import {startShelfCreation,shelfCoverButton} from './library-entry';
 // Fullscreen prompting has its own coverage. Keep these account flows on the current page.
@@ -9,7 +10,8 @@ test.beforeEach(async({page})=>{
 
 const recordId='22222222-2222-4222-8222-222222222222';
 async function onlineHarness(page:Page,me:Record<string,unknown>={role:'teacher'},createStatus?:{status:number;code:string}){
- const content=JSON.parse(readFileSync('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));const project=content.document.project;project.title='온라인에 보관한 원고';
+ // A work in the current format (no old file to upgrade), stored online the way the app stores it.
+ const content=JSON.parse(JSON.stringify({format:'knolstory',formatVersion:2,document:createStoryDocument({project:createBlankStoryProject({id:'online-story',chapterId:'online-chapter',lineId:'online-line',title:'온라인에 보관한 원고'}),savedAt:'2026-11-20T09:00:00.000Z',appVersion:'knolstory-next'}),audioResources:[]}));const project=content.document.project;
  const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
  const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
  const metadata={recordId,revision:1,format:'knolstory',clientProjectId:project.id,title:project.title,contentSha256:snapshot.contentSha256,createdAt:1,updatedAt:1};let created:unknown;
