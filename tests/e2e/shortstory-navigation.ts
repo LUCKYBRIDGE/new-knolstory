@@ -13,8 +13,18 @@ export async function openShortStoryDetails(page: Page, name: string | RegExp) {
  if (!open) await summary.click();
 }
 
-/** Adding, moving and deleting pages sit under the page in ‘쪽 추가·순서·삭제’. */
+/** Adding, moving and deleting pages are the page's ‘쪽’ tab (글 · 그림 · 쪽). */
 export async function openPageTools(scope: Page | Locator) {
- const summary = scope.locator('summary').filter({hasText: '쪽 추가·순서·삭제'});
- if (!await summary.evaluate(element => (element.parentElement as HTMLDetailsElement).open)) await summary.click();
+ const tab = scope.getByRole('tab', {name: '쪽', exact: true});
+ if (await tab.getAttribute('aria-selected') !== 'true') await tab.click();
+}
+/** The page's background and characters are its ‘그림’ tab. */
+export async function openPictureTools(scope: Page | Locator) {
+ const tab = scope.getByRole('tab', {name: '그림', exact: true});
+ if (await tab.getAttribute('aria-selected') !== 'true') await tab.click();
+}
+/** The page title and story text are its ‘글’ tab. */
+export async function openTextTools(scope: Page | Locator) {
+ const tab = scope.getByRole('tab', {name: '글', exact: true});
+ if (await tab.getAttribute('aria-selected') !== 'true') await tab.click();
 }

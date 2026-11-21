@@ -1,4 +1,4 @@
-import {openShortStoryDetails,openPageTools} from './shortstory-navigation';
+import {openShortStoryDetails,openPageTools,openTextTools} from './shortstory-navigation';
 import {confirmAuthoringImport} from './authoring-file';
 import { test,expect } from '@playwright/test';
 import { mkdir,readFile,writeFile } from 'node:fs/promises';
@@ -34,9 +34,9 @@ test('original copy, three-face cover, multiple books, page operations, reload a
  await page.goto('/shortstory/?work=rabbit&mode=read');await page.getByRole('button',{name:'내 사본으로 쓰기',exact:true}).click();
  await page.getByLabel('이야기 제목',{exact:true}).fill('토끼의 새 그림책');await page.getByLabel('이 쪽의 이야기').fill('내가 직접 고쳐 쓴 첫 쪽');
  await openPageTools(page);
- await page.getByRole('button',{name:'현재 쪽 복제',exact:true}).click();await page.getByLabel('이 쪽 제목').fill('복제한 쪽');await page.getByRole('button',{name:'쪽 앞으로 이동',exact:true}).click();
- await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
- await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await page.getByRole('button',{name:'쪽 삭제 되돌리기',exact:true}).click();await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
+ await page.getByRole('button',{name:'현재 쪽 복제',exact:true}).click();await page.getByLabel('이 쪽 제목').fill('복제한 쪽');await openPageTools(page);await page.getByRole('button',{name:'쪽 앞으로 이동',exact:true}).click();
+ await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'취소',exact:true}).click();await openTextTools(page);await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
+ await openPageTools(page);await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await page.getByRole('button',{name:'쪽 삭제 되돌리기',exact:true}).click();await openTextTools(page);await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
  await openShortStoryDetails(page, '소개·마지막 인사·표지 그림');await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await dialog.getByLabel('작품 제목',{exact:true}).fill('사본의 표지 초안');await dialog.getByRole('button',{name:'닫기',exact:true}).click();await page.getByRole('dialog',{name:'표지 변경을 적용하지 않고 닫을까요?'}).getByRole('button',{name:'변경 버리고 닫기',exact:true}).click();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('토끼의 새 그림책');
  await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();await dialog.getByRole('button',{name:'책등',exact:true}).click();await dialog.getByRole('button',{name:'뒤표지',exact:true}).click();await dialog.getByRole('button',{name:'앞표지',exact:true}).click();await dialog.getByLabel('작품 제목',{exact:true}).fill('표지를 꾸민 토끼 그림책');await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();
