@@ -1,35 +1,16 @@
 'use client';
-import {useEffect,useMemo,useState} from 'react';
+import {useMemo} from 'react';
 import styles from './task-action.module.css';
-import {assignmentList,type Assignment} from '../lib/classroom-api';
+import {editScopeLabel} from '../lib/classroom-api';
+import {useTaskForWork} from './use-task-for-work';
 import {dueDateLabel,dueState} from '../lib/due-date';
 import {readTaskBaseline,workItems,writtenAmount} from '../lib/task-baseline';
 import {TaskBrief} from './classroom/task-brief';
 
-const PREFIX='knolstory-class-task:';
-/** The task this device's work belongs to, if the student started it from a task. */
-function boundTask(accountId:string,workKey:string):string|null{
- try{
-  for(let i=0;i<localStorage.length;i++){
-   const name=localStorage.key(i);
-   if(name?.startsWith(`${PREFIX}${accountId}:`)&&localStorage.getItem(name)===workKey)return name.slice(`${PREFIX}${accountId}:`.length);
-  }
- }catch{/* No binding without device storage. */}
- return null;
-}
 /** A "과제" button in the editor's top bar for a student writing a task copy: what to do, the
  * checklist, how much they have written so far, and the way back to the task to share or hand in. */
 export function TaskAction({className,accountId,workKey,project,beforeNavigate}:{className:string;accountId:string;workKey:string;project:Parameters<typeof workItems>[0];beforeNavigate?:()=>boolean}){
- const [task,setTask]=useState<Assignment|null>(null);
- useEffect(()=>{
-  let live=true;
-  const timer=window.setTimeout(async()=>{
-   const id=boundTask(accountId,workKey);
-   if(!id){if(live)setTask(null);return;}
-   try{const found=(await assignmentList()).find(item=>item.id===id)??null;if(live)setTask(found);}catch{if(live)setTask(null);}
-  },0);
-  return()=>{live=false;window.clearTimeout(timer);};
- },[accountId,workKey]);
+ const task=useTaskForWork(accountId,workKey);
  const written=useMemo(()=>task?writtenAmount(workItems(project),readTaskBaseline(accountId,task.id)):null,[task,project,accountId]);
  if(!task)return null;
  const due=dueState(task.dueAt);
@@ -42,6 +23,7 @@ export function TaskAction({className,accountId,workKey,project,beforeNavigate}:
    <strong>{task.title}</strong>
    {task.dueAt&&due&&<p data-tone={due.tone}>{due.label} · {dueDateLabel(task.dueAt)}</p>}
    <TaskBrief description={task.description} checks={task.checks} targetAmount={task.targetAmount??null} format={task.format} current={written?.amount??null} selfCheckKey={`knolstory-task-check:${accountId}:${task.id}`}/>
+   {task.editScope&&<p data-task-scope><b>이 과제에서 고칠 수 있는 것</b> {editScopeLabel(task.editScope)}</p>}
    {task.draftComment&&<p><b>선생님 한마디</b> {task.draftComment}</p>}
    <a href="/student" onClick={event=>{if(beforeNavigate&&!beforeNavigate())event.preventDefault();}}>과제 화면에서 중간 저장·제출하기</a>
   </div>

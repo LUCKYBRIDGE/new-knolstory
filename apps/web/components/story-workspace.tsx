@@ -114,7 +114,8 @@ import {BookStart} from './book-start';
 import {EditorRelatedMemos} from './editor-related-memos';
 import {useEditorLimits} from './use-editor-limits';
 import {BUILTIN_WORKS} from '../lib/builtin-works';
-import {restrictEditorPreferences} from '../lib/editing-permissions';
+import {restrictEditorPreferences,taskPermissions} from '../lib/editing-permissions';
+import {useTaskForWork} from './use-task-for-work';
 import {BookCoverEditor} from './book-cover-editor';
 import {loadLandingVisit,markLandingVisited,resolveEntryView} from '../lib/landing-visit';
 import {useStorageWriter} from './use-storage-writer';
@@ -226,7 +227,10 @@ export function StoryWorkspace() {
   const [storedEditorPreferences,setEditorPreferences]=useEditorPreferences(project.id);
   const editorLimits=useEditorLimits();
   // Teacher limits apply on top of the author's own choices; the stored choices are kept for when limits lift.
-  const editorPreferences=restrictEditorPreferences(storedEditorPreferences,editorLimits.permissions);
+  // A task can narrow or widen the editing tools for the work started from it (class task edit scope).
+  const workTask=useTaskForWork(editorLimits.role==='student'?editorLimits.accountId:null,isPersonalWork(storyId)?storyId:null);
+  const editPermissions=taskPermissions(editorLimits.permissions,workTask?.editScope);
+  const editorPreferences=restrictEditorPreferences(storedEditorPreferences,editPermissions);
   /** Why a new personal work cannot be made right now, or null. */
   function newWorkBlocked(){
     if(!editorLimits.permissions.newWorks)return '선생님이 새 작품 만들기를 막아 두었어요.';
@@ -701,7 +705,7 @@ export function StoryWorkspace() {
     const id = crypto.randomUUID();
     return editStructure(() => addStoryChapter(project, { chapterId, lineId: id }), id) ? id : undefined;
   }
-  const ruleToggle=(key:'choices'|'scores'|'branches',label:string)=><label key={key}><input type="checkbox" checked={logic[key]} disabled={!editorLimits.permissions.choices} onChange={event=>setEditorPreferences(current=>({...current,logic:{...current.logic,[key]:event.target.checked}}))}/>{label} 편집 사용</label>;
+  const ruleToggle=(key:'choices'|'scores'|'branches',label:string)=><label key={key}><input type="checkbox" checked={logic[key]} disabled={!editPermissions.choices} onChange={event=>setEditorPreferences(current=>({...current,logic:{...current.logic,[key]:event.target.checked}}))}/>{label} 편집 사용</label>;
   /** Whole-structure branch edits: each keeps a one-step undo while the result is still the current manuscript. */
   function structureEdit(done:string,change:()=>{project:StoryProject;lineId?:string}){
     if(stopForUnappliedInput())return false;
@@ -952,6 +956,7 @@ export function StoryWorkspace() {
         const task=tasks.find(item=>item.id===taskId);
         if(task?.format==='shortstory')throw Error('숏스토리 과제는 그림책 화면에서 시작해 주세요.');
         if(!task?.open)throw Error('열린 과제에서 쓰기를 시작해 주세요.');
+        if(task.after&&!task.after.passed)throw Error(`앞 단계 ‘${task.after.title}’를 선생님이 통과시킨 뒤에 쓸 수 있어요.`);
         const forced=editorLimits.permissions.forcedStoryKey;
         if(forced&&task.storyKey&&forced!==task.storyKey)throw Error('과제의 바탕 작품과 현재 편집 허용 작품이 달라요. 선생님께 확인해 주세요.');
         const bindingKey=`knolstory-class-task:${editorLimits.accountId}:${taskId}`;
@@ -964,7 +969,8 @@ export function StoryWorkspace() {
           return;
         }
         // A teacher template wins over a base work: the student continues the teacher's own work.
-        const fromTemplate=await taskStartArchive(task,from,(input,init)=>fetch(input,{...init,signal:controller.signal}));
+        const scoped=taskPermissions(editorLimits.permissions,task.editScope);
+        const fromTemplate=await taskStartArchive(task,from,(input,init)=>fetch(input,{...init,signal:controller.signal}),{images:scoped.images,characters:scoped.characters});
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
         if(fromTemplate&&fromTemplate.format!=='knolstory')throw Error('고른 작품이 놀스토리가 아니에요. 과제와 같은 종류의 작품을 골라 주세요.');
         const storyKey=fromTemplate?null:forced??task.storyKey;
@@ -1398,7 +1404,7 @@ export function StoryWorkspace() {
       <div className={`${styles.grid} ${mode==='edit'?styles.workbenchGrid:''}`} data-editing-screen={mode==='edit'?editingScreen:undefined}>
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
-          <StoryEditingWorkbench chapterReference={chapter.picturebookSketch||Object.values(picturebookLinks.current).some(link=>link.sends.some(send=>send.workKey===storyId&&Object.values(send.pages).some(page=>page.chapterId===chapter.id)))?<PicturebookChapterReference key={`${project.id}/${chapter.id}`} chapter={chapter}/>:undefined} onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editorLimits.permissions} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
+          <StoryEditingWorkbench chapterReference={chapter.picturebookSketch||Object.values(picturebookLinks.current).some(link=>link.sends.some(send=>send.workKey===storyId&&Object.values(send.pages).some(page=>page.chapterId===chapter.id)))?<PicturebookChapterReference key={`${project.id}/${chapter.id}`} chapter={chapter}/>:undefined} onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editPermissions} finishHint={workTask?'다 쓰면 위의 ‘과제’에서 선생님께 중간 저장하거나 내요.':undefined} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
             onScreenChange={screen=>{if(composing||stopForUnappliedInput())return false;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${issueText(issue)}`);return false;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');return true;}}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}

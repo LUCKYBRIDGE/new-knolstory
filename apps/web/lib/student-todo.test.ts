@@ -22,4 +22,8 @@ describe('student todo',()=>{
   const groups=groupTodos([task('later',{dueAt:300}),task('none',{createdAt:9}),task('soon',{dueAt:100})],[mission('mid',{dueAt:200})]);
   expect(groups.todo.map(e=>e.item.id)).toEqual(['soon','mid','later','none']);
  });
+ it('puts a later stage that waits for the teacher after what can be done now',()=>{
+  const groups=groupTodos([task('stage',{dueAt:50,after:{id:'book',title:'그림책',passed:false}}),task('book',{format:'shortstory',dueAt:100}),task('open stage',{dueAt:200,after:{id:'x',title:'x',passed:true}})],[]);
+  expect(groups.todo.map(e=>e.item.id)).toEqual(['book','open stage','stage']);
+ });
 });

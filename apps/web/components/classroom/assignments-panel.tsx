@@ -5,7 +5,8 @@ import {ChecksEditor,TaskBrief,amountUnit,cleanChecks} from './task-brief';
 import {SubmissionPreview} from './submission-preview';
 import {TaskTemplate} from './task-template';
 import {useCallback,useEffect,useRef,useState,type FormEvent,type ReactNode} from 'react';
-import {assignmentCreate,assignmentDelete,assignmentList,assignmentUpdate,progressList,type ProgressRow,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
+import {assignmentCreate,assignmentDelete,assignmentList,assignmentUpdate,editScopeLabel,progressList,type ProgressRow,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type EditScope,type SubmissionRow} from '../../lib/classroom-api';
+import {EditScopePicker} from './edit-scope-picker';
 import {downloadSubmissionFile,formatSubmittedAt} from '../../lib/classroom-local';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
@@ -26,6 +27,12 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory'),[start,setStart]=useState<{value:string;label:string}>({value:'',label:''}),[checks,setChecks]=useState<string[]>(['']),[amount,setAmount]=useState(''),[amountError,setAmountError]=useState('');
  const formRef=useRef<HTMLDetailsElement>(null);
  const [format,setFormat]=useState<AssignmentFormat>('knolstory'),[filter,setFilter]=useState<AssignmentFormat>('knolstory');
+ // Task-level rules: the editing tools this task allows, and the ShortStory task a KnolStory task follows.
+ const [scope,setScope]=useState<EditScope|null>(null),[after,setAfter]=useState('');
+ const stageChoices=items?.filter(item=>item.format==='shortstory'&&!item.archived)??[];
+ const staged=format==='knolstory'&&!!after;
+ /** Opens the form for a KnolStory task that follows this ShortStory task. */
+ const continueFrom=useCallback((item:Assignment)=>{setFormat('knolstory');setAfter(item.id);setStoryKey('');setStart({value:'',label:''});setTitle(current=>current||`${item.title} · 놀스토리로 이어 쓰기`);setFormOpen(true);requestAnimationFrame(()=>{formRef.current?.scrollIntoView({block:'start',behavior:'smooth'});formRef.current?.querySelector<HTMLInputElement>('input[name="task-title"]')?.focus({preventScroll:true});});},[]);
  const [creating,setCreating]=useState(false),[loadFailed,setLoadFailed]=useState(false);
  const createLock=useRef(false);
  const currentCount=items?.filter(item=>!item.archived).length??0;
@@ -41,23 +48,34 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
   const problem=recipientProblem(recipients);if(problem){setRecipientError(problem);return;}setRecipientError('');
   createLock.current=true;setCreating(true);
   try{
-  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{}),...(storyKey&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{}),...(recipients!==null?{recipients}:{}),...(cleanChecks(checks).length?{checks:cleanChecks(checks)}:{}),...(targetAmount!==null?{targetAmount}:{})},csrf));
-  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setRecipients(null);setChecks(['']);setAmount('');setFormOpen(false);await load();}
+  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(scope?{editScope:scope}:{}),...(staged?{afterAssignmentId:after}:{}),...(storyKey&&!staged?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&!staged&&format==='knolstory'?{edition}:{}),...(storyKey&&!staged&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{}),...(recipients!==null?{recipients}:{}),...(cleanChecks(checks).length?{checks:cleanChecks(checks)}:{}),...(targetAmount!==null?{targetAmount}:{})},csrf));
+  if(made){setFilter(format);setScope(null);setAfter('');setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setRecipients(null);setChecks(['']);setAmount('');setFormOpen(false);await load();}
   }finally{createLock.current=false;setCreating(false);}
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
   <div className={styles.sectionHeading}><div><span className={styles.eyebrow}>쓰고, 그리고, 내는</span><h2>작품 쓰기 과제</h2>{items&&<span className={styles.taskCount}>작품 과제 {currentCount}/{TASK_LIMIT}개</span>}</div><ClassroomBook small/></div>
   <details ref={formRef} className={styles.assignmentCreate} open={formOpen||items?.length===0} onToggle={event=>setFormOpen(event.currentTarget.open)}><summary>작품 쓰기 과제 만들기</summary>{items&&currentCount>=TASK_LIMIT&&<p className={styles.error} role="status">작품을 내는 과제는 {TASK_LIMIT}개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.</p>}<form onSubmit={event=>void create(event)}><fieldset disabled={creating}>
    <label className={styles.field}>과제 유형<select aria-label="과제 유형" value={format} onChange={event=>setFormat(event.target.value as AssignmentFormat)}><option value="knolstory">놀스토리</option><option value="shortstory">숏스토리</option></select></label>
+   {format==='knolstory'&&<fieldset className={styles.editScope} data-task-stage>
+    <legend>시작 방법</legend>
+    <div className={styles.scopeChoices} role="radiogroup" aria-label="시작 방법">
+     <label><input type="radio" name="task-stage" checked={!after} onChange={()=>setAfter('')}/>바로 놀스토리로 써요</label>
+     <label><input type="radio" name="task-stage" checked={!!after} disabled={!stageChoices.length} onChange={()=>setAfter(stageChoices[0]?.id??'')}/>숏스토리 과제를 통과한 뒤 이어 써요</label>
+    </div>
+    {after?<><label className={styles.field}>먼저 할 숏스토리 과제<select aria-label="먼저 할 숏스토리 과제" value={after} onChange={event=>setAfter(event.target.value)}>{stageChoices.map(item=><option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+     <p className={styles.hint}>학생은 그 숏스토리 과제를 선생님이 ‘통과’시키면 이 과제를 열 수 있어요. 통과한 그림책의 쪽마다 놀스토리 장이 하나씩 만들어지고, 그림책 글과 삽화는 장 옆에 ‘그림책 구상’으로 보여요.</p></>
+     :!stageChoices.length&&<p className={styles.hint}>숏스토리 과제를 먼저 만들면 ‘통과한 뒤 이어 쓰기’를 고를 수 있어요.</p>}
+   </fieldset>}
    <div className={styles.row}>
     <label className={styles.field}>과제 제목<input name="task-title" value={title} onChange={event=>setTitle(event.target.value)} maxLength={60}/></label>
-    <label className={styles.field}>바탕 작품 (선택)<select aria-label="바탕 작품 (선택)" value={storyKey} onChange={event=>{setStoryKey(event.target.value);setStart({value:'',label:''});}}><option value="">정하지 않아요</option>{BUILTIN_WORKS.map(work=><option key={work.id} value={work.id}>{work.title}</option>)}</select></label>
-    {storyKey&&format==='knolstory'&&<label className={styles.field}>바탕 판본<select aria-label="바탕 판본" value={edition} onChange={event=>{setEdition(event.target.value as 'original'|'knolstory');setStart({value:'',label:''});}}><option value="knolstory">각색 · 선택지가 있는 놀스토리</option><option value="original">원작 · 옛이야기 그대로</option></select></label>}
+    {!staged&&<label className={styles.field}>바탕 작품 (선택)<select aria-label="바탕 작품 (선택)" value={storyKey} onChange={event=>{setStoryKey(event.target.value);setStart({value:'',label:''});}}><option value="">정하지 않아요</option>{BUILTIN_WORKS.map(work=><option key={work.id} value={work.id}>{work.title}</option>)}</select></label>}
+    {storyKey&&!staged&&format==='knolstory'&&<label className={styles.field}>바탕 판본<select aria-label="바탕 판본" value={edition} onChange={event=>{setEdition(event.target.value as 'original'|'knolstory');setStart({value:'',label:''});}}><option value="knolstory">각색 · 선택지가 있는 놀스토리</option><option value="original">원작 · 옛이야기 그대로</option></select></label>}
    </div>
-   {storyKey&&format==='knolstory'&&<StartPointPicker key={`${storyKey}:${edition}`} storyKey={storyKey as BuiltinWorkId} edition={edition} value={start.value} onChange={(value,label)=>setStart({value,label})}/>}
+   {storyKey&&!staged&&format==='knolstory'&&<StartPointPicker key={`${storyKey}:${edition}`} storyKey={storyKey as BuiltinWorkId} edition={edition} value={start.value} onChange={(value,label)=>setStart({value,label})}/>}
    <label className={styles.field} style={{marginTop:8}}>무엇을 하나요<textarea aria-label="무엇을 하나요" value={description} onChange={event=>setDescription(event.target.value)} maxLength={600} rows={3}
     placeholder={format==='shortstory'?'예: 별주부전의 한 장면을 골라 세 쪽짜리 그림책으로 다시 써요.':'예: 별주부전 3장 뒤를 내 생각대로 이어 써요. 토끼가 어떤 꾀를 낼지 상상해 봐요.'}/></label>
    <ChecksEditor value={checks} onChange={setChecks} format={format}/>
+   <EditScopePicker value={scope} onChange={setScope} format={format}/>
    <label className={styles.field} style={{marginTop:8}}>분량 (선택)<span className={styles.row}><input aria-label="분량" type="number" inputMode="numeric" min={1} max={500} value={amount} onChange={event=>setAmount(event.target.value.replace(/[^0-9]/g,''))} style={{width:'6em'}}/><span>{amountUnit(format)} 이상</span></span></label>
    {amountError&&<p className={styles.error} role="alert">{amountError}</p>}
    <label className={styles.field} style={{marginTop:8}}>마감일 (선택)<input type="date" value={due} onChange={event=>setDue(event.target.value)}/></label>
@@ -73,10 +91,10 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
   </fieldset></form></details>
   <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}</button>)}</div>
   {loadFailed?<p className={styles.error} role="alert">과제를 불러오지 못했어요. <button className={styles.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>:items===null?<p className={styles.hint} role="status">과제를 불러오고 있어요.</p>:items.filter(item=>item.format===filter).length===0?<p className={styles.hint}>이 유형의 과제가 없어요.</p>
-   :<SeasonItems items={items.filter(item=>item.format===filter)} render={group=><ul className={styles.list}>{group.map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students}/></li>)}</ul>}/>}
+   :<SeasonItems items={items.filter(item=>item.format===filter)} render={group=><ul className={styles.list}>{group.map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students} onContinue={continueFrom} followers={items.filter(other=>other.after?.id===item.id)}/></li>)}</ul>}/>}
  </section>;
 }
-function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;students:readonly RecipientStudent[]}){
+function AssignmentRow({item,csrf,run,onChanged,students,onContinue,followers}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;students:readonly RecipientStudent[];onContinue:(item:Assignment)=>void;followers:readonly Assignment[]}){
  const studentCount=item.recipients?item.recipients.length:students.length;
  const [rows,setRows]=useState<SubmissionRow[]|null>(null),[progress,setProgress]=useState<ProgressRow[]|null>(null),[guideOpen,setGuideOpen]=useState(false),[notice,setNotice]=useState(''),[loading,setLoading]=useState(false),[confirmDelete,setConfirmDelete]=useState(false);
  async function remove(){const removed=await run(()=>assignmentDelete(item.id,csrf));if(removed!==undefined){setConfirmDelete(false);await onChanged();}}
@@ -91,7 +109,7 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
  }
  return <>
   <div className={styles.taskHeading}><h3>{item.title}</h3><span className={item.open?styles.badge:`${styles.badge} ${styles.off}`}>{item.open?'열림':'닫힘'}</span></div>
-  <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}{item.startLabel&&<li>시작 · {item.startLabel}</li>}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
+  <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}{item.startLabel&&<li>시작 · {item.startLabel}</li>}{item.after&&<li data-stage>앞 단계 · {item.after.title} 통과 뒤</li>}{followers.map(next=><li key={next.id} data-stage>다음 단계 · {next.title}</li>)}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
   {item.archived?<>
    <TaskBrief description={item.description} checks={item.checks} targetAmount={item.targetAmount??null} format={item.format}/>
    <p className={styles.hint}>{item.dueAt?`제출 마감 · ${dueDateLabel(item.dueAt)}`:'제출 마감일 없음'}</p>
@@ -100,7 +118,9 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
   </>:<><TaskGuide item={item} csrf={csrf} run={run} onChanged={onChanged} open={guideOpen} onToggle={setGuideOpen}/>
   <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
   <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>
-  <TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>
+  <ScopeRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
+  {!item.after&&<TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>}
+  {item.format==='shortstory'&&item.open&&!followers.length&&<p className={styles.shareLine}><button className={styles.linkBtn} aria-label={`${item.title} 통과 뒤 놀스토리로 이어 쓰는 과제 만들기`} onClick={()=>onContinue(item)}>+ 통과하면 놀스토리로 이어 쓰는 과제 만들기</button></p>}
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/></>}
   <div className={styles.taskActions}>
    <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':progress?'진행 새로고침':`진행 보기 · 작성 중 ${item.draftCount??0} · 냈어요 ${item.submittedCount??0}`}</button>
@@ -112,6 +132,15 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
    review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
  </>;
+}
+
+/** The task's edit scope, changeable in place; it applies the next time a student opens the task's work. */
+function ScopeRow({item,csrf,run,onChanged}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>}){
+ const [editing,setEditing]=useState(false),[value,setValue]=useState<EditScope|null>(item.editScope??null),[busy,setBusy]=useState(false);
+ async function save(){setBusy(true);try{const done=await run(()=>assignmentUpdate(item.id,{editScope:value},csrf));if(done){setEditing(false);await onChanged();}}finally{setBusy(false);}}
+ if(editing)return <div className={styles.shareEdit}><EditScopePicker value={value} onChange={setValue} format={item.format}/>
+  <div className={styles.row}><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>void save()}>저장</button><button type="button" className={styles.btn} disabled={busy} onClick={()=>{setEditing(false);setValue(item.editScope??null);}}>취소</button></div></div>;
+ return <p className={styles.shareLine}><span>고칠 수 있는 것 · <strong>{editScopeLabel(item.editScope)}</strong></span><button className={styles.linkBtn} aria-label={`${item.title} 편집 범위 바꾸기`} onClick={()=>{setValue(item.editScope??null);setEditing(true);}}>바꾸기</button></p>;
 }
 
 /** The teacher's hand-in link: open it, change it or remove it. Only the link is stored. */
@@ -128,7 +157,7 @@ function ShareLinkRow({item,csrf,run,onChanged}:{item:Assignment;csrf:string;run
   {error&&<p className={styles.error} role="alert">{error}</p>}
  </form>;
  return <p className={styles.shareLine}>{item.shareUrl?<><span>제출 링크 · <a href={item.shareUrl} target="_blank" rel="noopener noreferrer">{shareLinkHost(item.shareUrl)} 열기 ↗</a></span><button className={styles.linkBtn} onClick={()=>setEditing(true)} aria-label={`${item.title} 제출 링크 바꾸기`}>바꾸기</button></>
-  :<button className={styles.linkBtn} onClick={()=>setEditing(true)} aria-label={`${item.title} 제출 링크 넣기`}>+ 제출 링크 넣기</button>}</p>;
+  :<button className={styles.linkBtn} onClick={()=>setEditing(true)} aria-label={`${item.title} 제출 링크 넣기`}>+ 외부 제출 링크 넣기 (드라이브 등)</button>}</p>;
 }
 
 /** Submission count and the due date, changeable in place. */

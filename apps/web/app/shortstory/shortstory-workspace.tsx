@@ -44,6 +44,8 @@ import { AuthoringImportDialog } from '../../components/authoring-import-dialog'
 import { ShortStoryIllustrationPicker } from './shortstory-illustration-picker';
 import {WORKSPACE_KEY} from '../../lib/workspace-storage';
 import styles from './shortstory.module.css';
+import {useTaskForWork} from '../../components/use-task-for-work';
+import {taskPermissions} from '../../lib/editing-permissions';
 type Project=ShortStoryProject;
 type Page=Project['pages'][number];
 const loadingProject=getShortStoryOriginal('rabbit');
@@ -79,9 +81,12 @@ export function ShortStoryWorkspace() {
  useEffect(()=>{const timer=window.setTimeout(()=>setFromMission(new URLSearchParams(window.location.search).get('from')==='mission'),0);return()=>window.clearTimeout(timer);},[]);
  const [index,setIndex]=useState(0),[editing,setEditing]=useState(true),[coverOpen,setCoverOpen]=useState(false);
  const classroom=useClassroomMe();
+ // A task's own edit scope applies to the picture book started from it.
+ const workTask=useTaskForWork(classroom.role==='student'?classroom.session?.accountId??null:null,loadedProject?`shortstory:${loadedProject.id}`:null);
+ const permissions=taskPermissions(classroom.permissions,workTask?.editScope);
  const canCreate=classroom.permissions.newWorks&&!classroom.permissions.forcedStoryKey;
- const canChooseImages=classroom.permissions.images;
- const canPlaceCharacters=canChooseImages&&classroom.permissions.characters;
+ const canChooseImages=permissions.images;
+ const canPlaceCharacters=canChooseImages&&permissions.characters;
  const [illustrationPage,setIllustrationPage]=useState<string|null>(null),[printPreview,setPrintPreview]=useState(false);
  const writingHeading=useRef<HTMLHeadingElement>(null),focusWriting=useRef(false);
  const printHeading=useRef<HTMLHeadingElement>(null),printLauncher=useRef<HTMLButtonElement>(null);

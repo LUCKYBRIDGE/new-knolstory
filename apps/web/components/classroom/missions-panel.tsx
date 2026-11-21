@@ -54,7 +54,7 @@ export function MissionsPanel({csrf,request=null,students=[]}:{csrf:string;reque
   <div className={shared.sectionHeading}><div><span className={shared.eyebrow}>읽고, 생각하고, 확인받는</span><h2>읽기·활동 과제</h2></div><MissionSeal small/></div>
   <p className={shared.hint}>학생이 읽거나 활동지를 내면 선생님이 확인해요. 통과시키면 학생 화면에 ‘과제 통과’가 표시돼요.</p>
   {!draft&&<div className={styles.starters}>
-   <button className={`${shared.btn} ${shared.primary}`} aria-expanded={picker} onClick={()=>setPicker(value=>!value)}>놀스토리 제공 과제 가져오기</button>
+   <button className={`${shared.btn} ${shared.primary}`} aria-expanded={picker} onClick={()=>setPicker(value=>!value)}>제공 과제 가져오기</button>
    <button className={shared.btn} onClick={()=>begin({...BLANK,questions:[{id:'q1',prompt:''}]},'own')}>직접 만들기</button>
   </div>}
   {picker&&!draft&&<ProvidedPicker onPick={mission=>begin(mission,'provided')} onClose={()=>setPicker(false)}/>}

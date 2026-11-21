@@ -26,7 +26,7 @@ type Student={number:number;name:string;password:string;permissions:typeof all|n
 type Mission={recipients?:number[]|null;id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:string|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number};
 type MissionRow={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
 const blankRow=():MissionRow=>({answers:{},note:'',submittedAt:null,reviewStatus:null,feedback:'',reviewedAt:null});
-type Assignment={targetAmount?:number;recipients?:number[]|null;submittedCount?:number;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+type Assignment={editScope?:Record<string,boolean>|null;after?:{id:string;title:string;passed?:boolean}|null;targetAmount?:number;recipients?:number[]|null;submittedCount?:number;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
 const ok=(data:unknown)=>({json:{success:true,data}});
 const fail=(status:number,code:string)=>({status,json:{success:false,error:{code}}});
 
@@ -68,7 +68,7 @@ async function mockClassroom(page:Page,role:'teacher'|'student'){
   const student=path.match(/^class\/classroom\/students\/(\d+)$/);
   if(student&&method==='PATCH'){const target=state.classroom!.students.find(item=>item.number===Number(student[1]))!;Object.assign(target,body);return route.fulfill(ok(target));}
   if(path==='class/classroom/assignments'){
-   if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,edition:body.edition??null,startPoint:body.startPoint??null,startLabel:body.startLabel??null,recipients:body.recipients??null,submittedCount:0,open:true,createdAt:Date.now()} as Assignment;state.assignments.push(item);return route.fulfill(ok(item));}
+   if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,edition:body.edition??null,startPoint:body.startPoint??null,startLabel:body.startLabel??null,recipients:body.recipients??null,submittedCount:0,open:true,createdAt:Date.now(),editScope:body.editScope??null,after:body.afterAssignmentId?{id:body.afterAssignmentId,title:state.assignments.find(entry=>entry.id===body.afterAssignmentId)?.title??''}:null} as Assignment;state.assignments.push(item);return route.fulfill(ok(item));}
    return route.fulfill(ok(state.assignments));
   }
   const review=path.match(/^class\/classroom\/assignments\/(\w+)\/submissions\/2\/review$/);
@@ -857,7 +857,7 @@ test('teacher imports a provided mission, edits it and assigns it',async({page})
  await page.goto('/teacher');
  const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
  await expect(panel.getByText('아직 낸 과제가 없어요.',{exact:false})).toBeVisible();
- await panel.getByRole('button',{name:'놀스토리 제공 과제 가져오기'}).click();
+ await panel.getByRole('button',{name:'제공 과제 가져오기'}).click();
  await panel.getByRole('button',{name:'별주부전 독후 활동지 가져와서 고치기'}).click();
  const title=panel.getByLabel('과제 제목');await expect(title).toHaveValue('별주부전 독후 활동지');await title.fill('별주부전 독후 활동지 · 우리 반');
  await panel.getByRole('button',{name:'과제 내기'}).click();
@@ -1253,5 +1253,53 @@ test('a student sees the due date, the steps and the checklist, and shares a mid
   await teacher.getByRole('button',{name:'남기기',exact:true}).click();
   await expect(teacher.getByText('바다 장면을 조금 더 그려 보자')).toBeVisible();
  }finally{await teacherContext.close();}
+});
+
+test('a KnolStory task opens after the picture book passes and starts from it, with the task edit scope',async({page,browser})=>{
+ const teacher=await mockClassroom(page,'teacher');
+ teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ teacher.assignments=[{format:'shortstory',id:'a1',title:'나의 그림책',description:'네 쪽을 써요.',storyKey:'rabbit',open:true,createdAt:1,submittedCount:0}];
+ await page.goto('/teacher');
+ await page.locator('[data-kind="knolstory"]').click();
+ await page.getByRole('radio',{name:'숏스토리 과제를 통과한 뒤 이어 써요',exact:true}).check();
+ await expect(page.getByLabel('먼저 할 숏스토리 과제',{exact:true})).toHaveValue('a1');
+ // A stage task starts from the student's own picture book, so there is no base work to choose.
+ await expect(page.getByLabel('바탕 작품 (선택)',{exact:true})).toHaveCount(0);
+ await page.getByLabel('과제 제목',{exact:true}).fill('그림책을 놀스토리로');
+ await page.getByLabel('무엇을 하나요',{exact:true}).fill('쪽마다 대사를 넣어 써요.');
+ await page.getByRole('radio',{name:'글만',exact:true}).check();
+ await page.getByRole('button',{name:'과제 만들기',exact:true}).click();
+ expect(teacher.bodies).toContainEqual(expect.objectContaining({format:'knolstory',afterAssignmentId:'a1',editScope:{images:false,characters:false,audio:false,direction:false,choices:false}}));
+ const row=page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'그림책을 놀스토리로',exact:true})});
+ await expect(row).toContainText('앞 단계 · 나의 그림책 통과 뒤');await expect(row).toContainText('고칠 수 있는 것 · 글만');
+ const context=await browser.newContext({viewport:{width:1280,height:860}});
+ try{
+  const studentPage=await context.newPage();
+  await studentPage.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});
+  const student=await mockClassroom(studentPage,'student');student.signedIn=true;student.permissions=all;
+  student.assignments=[teacher.assignments[0]!,{...teacher.assignments[1]!,after:{id:'a1',title:'나의 그림책',passed:false}}];
+  await studentPage.goto('/student');
+  const stage=studentPage.getByRole('listitem').filter({has:studentPage.getByRole('heading',{name:'그림책을 놀스토리로',exact:true})});
+  await expect(stage).toContainText('앞 단계를 통과하면 열려요');
+  await expect(stage.getByRole('link',{name:/시작|쓰기/})).toHaveCount(0);
+  // Hand in the picture book, then the teacher passes it.
+  await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).click();
+  await expect(studentPage.getByLabel('이 쪽의 이야기',{exact:true})).toBeVisible();
+  await studentPage.goto('/student');
+  await studentPage.getByRole('listitem').filter({has:studentPage.getByRole('heading',{name:'나의 그림책',exact:true})}).getByRole('button',{name:'제출',exact:true}).click();
+  await expect(studentPage.getByText('제출했어요.')).toBeVisible();
+  student.assignments[1]={...student.assignments[1]!,after:{id:'a1',title:'나의 그림책',passed:true}};
+  await studentPage.reload();
+  await expect(stage).toContainText('이 과제에서 고칠 수 있는 것 · 글만');
+  await stage.getByRole('link',{name:'통과한 그림책으로 시작',exact:true}).click();
+  // One chapter per page, each with the page kept as its 그림책 구상.
+  await expect(studentPage.getByTestId('picturebook-chapter-reference').first()).toBeVisible({timeout:30000});
+  // 별주부전 그림책 8쪽 → 8장.
+  await expect(studentPage.getByRole('combobox',{name:'현재 장과 컷 이동'}).locator('option',{hasText:/^8장/})).not.toHaveCount(0);
+  await expect(studentPage.getByText(/다 쓰면 위의 ‘과제’에서/)).toBeVisible();
+  await expect(studentPage.locator('[data-task-action] summary')).toContainText('과제');
+  await studentPage.locator('[data-task-action] summary').click();
+  await expect(studentPage.locator('[data-task-scope]')).toContainText('글만');
+ }finally{await context.close();}
 });
 
