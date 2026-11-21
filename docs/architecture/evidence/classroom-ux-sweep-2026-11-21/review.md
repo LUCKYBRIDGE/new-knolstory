@@ -41,3 +41,33 @@
 - 과제 연결(기기 키) 저장과 편집기의 과제 확인 순서를 맞추기 위해 연결을 저장할 때 편집기에 알린다(`bindTaskWork`).
 
 점검은 위 표의 모든 화면을 두 크기에서 마쳤다. 고친 화면은 고친 뒤 다시 찍어 확인했고, 해당 동작은 `tests/e2e/classroom.spec.ts`에 회귀 검사로 남겼다(53개).
+
+## 코드 기준 화면 목록 대조
+
+학급 화면 코드(`apps/web/components/classroom/`, `apps/web/app/{teacher,student,admin}`, 과제 편집기 연결)를 모두 나열하고 위 표의 어느 항목에서 확인했는지 맞춰 보았다. 화면을 그리지 않는 도우미(`classroom-art`·`classroom-dialog`·`classroom-shell`·`phone-fold`·`qr-code`·`use-task-for-work`)는 각 화면 안에서 함께 확인했다.
+
+| 코드 | 확인한 항목 |
+|---|---|
+| `teacher-page`·`teacher-dashboard` | 학급 만들기, 과제 탭, 학생 탭, 학급 설정 |
+| `task-composer` | 과제 탭(새 과제 내기) |
+| `assignments-panel` | 작품 쓰기 과제 만들기·과제 카드·진행 보기 |
+| `edit-scope-picker`·`start-point-picker`·`recipient-picker`·`task-brief` | 과제 만들기(고칠 수 있는 것·시작 지점·받는 학생·확인할 점) |
+| `task-template` | 시작 작품 정하기 창 |
+| `task-progress`·`submission-preview` | 진행 보기·제출물 바로 보기 |
+| `missions-panel` | 제공 과제·가져온 과제 고치기·미션 학생 확인 |
+| `student-table`·`permission-editor` | 학생 탭과 학생별 창·학급 기본 편집 허용 |
+| `student-qr-print` | 학생 로그인 QR |
+| `class-storage` | 학급 저장 공간(80% 경고와 많이 쓰는 학생) |
+| `season-note`·`season-items` | 학년도 정리 안내·지난 학년 접힌 목록 |
+| `teacher-upgrade-dialog` | 교사 등록 창 |
+| `admin-page`·`admin-panel` | 관리 화면 |
+| `student-page`·`student-login-form` | 학생 로그인 |
+| `class-login-gate` | QR 바로 로그인(성공·실패) |
+| `student-dashboard` | 할 일·작품 쓰기 카드·다른 방법·내가 고칠 수 있는 것 |
+| `submission-import` | 다른 방법(내 온라인 작품으로 가져오기) |
+| `student-missions` | 미션 카드(제출·다시 쓰기·통과) |
+| `task-action`·`picturebook-chapter-reference` | 놀스토리 과제 편집기(과제 메뉴·그림책 구상) |
+| `app/shortstory/shortstory-workspace` | 숏스토리 과제 편집기 |
+
+마지막으로 확인한 네 화면(학급 저장 공간·지난 학년 접힘·제출물 바로 보기·시작 지점 고르기): [remaining-screens.jpg](remaining-screens.jpg). 지난 학년 과제의 `받는 학생 · 모든 학생`을 다른 곳과 같은 `우리 반 모두`로 맞췄다.
+
