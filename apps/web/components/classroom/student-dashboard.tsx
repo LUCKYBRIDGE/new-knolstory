@@ -145,6 +145,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
     <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
      <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div></div>}
    {!assignment.archived&&assignment.shareUrl&&<div className={styles.shareBox}><strong>선생님이 정한 제출 링크로 내기</strong>
+    {works.length===0&&online.length===0&&<p className={styles.hint}>아직 이 기기에 낼 작품이 없어요. 먼저 ‘과제 쓰기’로 작품을 만든 뒤 여기서 파일로 저장해요.</p>}
     <ol><li>위에서 낼 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
     <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
     <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small></div>}

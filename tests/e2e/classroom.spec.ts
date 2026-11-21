@@ -1325,3 +1325,21 @@ test('a picture book task that allows text only blocks picture choosing from the
  // The class allows everything, but this task's own scope wins for the work started from it.
  await expect(page.getByRole('button',{name:'삽화 고르기',exact:true})).toBeDisabled();
 });
+
+test('a failed QR login offers the class code login and a retry for passing problems',async({page})=>{
+ let calls=0;
+ await page.route('**/api/v1/**',route=>{
+  const path=new URL(route.request().url()).pathname.replace('/api/v1/','');
+  if(path==='auth/config')return route.fulfill(ok({signupProvider:'kakao',providers:{kakao:true,google:false}}));
+  if(path==='class/qr-login'){calls++;return route.fulfill(calls===1?fail(503,'CLASSROOM_UNAVAILABLE'):fail(401,'INVALID_LOGIN'));}
+  return route.fulfill(fail(401,'SESSION_REQUIRED'));
+ });
+ await page.goto(`/?q=F02${'A'.repeat(24)}`);
+ const gate=page.getByRole('alertdialog',{name:'학생 QR 로그인'});
+ await expect(gate.getByRole('link',{name:'학급 코드로 들어가기'})).toHaveAttribute('href','/student');
+ await gate.getByRole('button',{name:'다시 시도'}).click();
+ // A card that no longer works cannot be retried; the class code still can.
+ await expect(gate).toContainText('선생님께 새 QR을 받아 주세요.');
+ await expect(gate.getByRole('button',{name:'다시 시도'})).toHaveCount(0);
+ await expect(gate.getByRole('link',{name:'학급 코드로 들어가기'})).toBeVisible();
+});
