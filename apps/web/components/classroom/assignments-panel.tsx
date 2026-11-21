@@ -138,7 +138,7 @@ function AssignmentRow({item,csrf,run,onChanged,students,onContinue,followers}:{
   </div>
   {confirmDelete&&<div className={styles.notice} role="group" aria-label={`${item.title} 과제 지우기 확인`}><p>‘{item.title}’ 과제와 학생들이 낸 작품을 모두 지울까요? 지운 뒤에는 되돌릴 수 없어요. 남겨 둘 작품은 먼저 ‘진행 보기’에서 내려받아 두세요.</p><div className={styles.row}><button className={styles.btn} onClick={()=>setConfirmDelete(false)}>취소</button><button className={`${styles.btn} ${styles.danger}`} onClick={()=>void remove()}>과제와 제출 작품 지우기</button></div></div>}
   {progress&&<TaskProgress item={item} rows={progress} csrf={csrf} run={run} onChanged={async()=>{await showSubmissions();}}
-   review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} unlocks={followers.map(next=>next.title)} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
+   review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} unlocks={followers.map(next=>next.title)} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>{setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null);/* The progress counts and the task's 통과 count follow the decision at once. */void showSubmissions().then(onChanged);}} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
  </>;
 }

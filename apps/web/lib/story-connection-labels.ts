@@ -1,5 +1,6 @@
 import {chapterLabel,type StoryProject,type StoryScoreCondition} from '@knolstory/story-domain';
 import {analyzeStoryFlow,type FlowEdge} from '@knolstory/runtime-core';
+import {quoted} from './korean-particle';
 const comparisons={eq:'같음',ne:'다름',gt:'초과',gte:'이상',lt:'미만',lte:'이하'} as const;
 /** Describe authored rules only; this does not evaluate a reader's score or path. */
 export function describeScoreCondition(project:StoryProject,condition:StoryScoreCondition):string{
@@ -12,7 +13,7 @@ export function describeStoryEdge(project:StoryProject,edge:FlowEdge):string{
  const location=source&&chapter?`${chapterLabel(chapter)} · ${source.order}컷에서`:'위치를 확인해야 하는 컷에서';
  if(edge.choiceId){
   const choice=source?.flow?.type==='choice'?source.flow.options.find(option=>option.id===edge.choiceId):undefined;
-  return choice?`${location} ‘${choice.label||'아직 이름 없는 선택지'}’를 선택하면${choice.condition?` · ${describeScoreCondition(project,choice.condition)}일 때`:''}`:`${location} · 선택 내용을 확인해 주세요`;
+  return choice?`${location} ${quoted(choice.label||'아직 이름 없는 선택지','을/를')} 선택하면${choice.condition?` · ${describeScoreCondition(project,choice.condition)}일 때`:''}`:`${location} · 선택 내용을 확인해 주세요`;
  }
  if(edge.routeId){
   const route=source?.flow?.type==='goto'?source.flow.routes?.find(item=>item.id===edge.routeId):undefined;
