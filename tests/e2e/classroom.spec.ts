@@ -1351,6 +1351,18 @@ test('a picture book task that allows text only blocks picture choosing from the
  await expect(page.getByRole('button',{name:'삽화 고르기',exact:true})).toBeDisabled();
 });
 
+test('a teacher opening the student screen can log out and reach the student login in one step',async({page})=>{
+ // Found on production (2026-11-22): the notice only pointed to the teacher's student tab, with no way into the student view.
+ const state=await mockClassroom(page,'teacher');
+ let loggedOut=false;
+ await page.route('**/api/v1/auth/logout',route=>{loggedOut=route.request().headers()['x-csrf-token']==='csrf-1';state.signedIn=false;return route.fulfill({json:{success:true,data:{loggedOut:true}}});});
+ await page.goto('/student');
+ await expect(page.getByRole('heading',{name:'교사 계정으로 로그인되어 있어요',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'로그아웃하고 학생으로 들어가기',exact:true}).click();
+ await expect(page.getByLabel('학급 코드',{exact:true})).toBeVisible();
+ expect(loggedOut).toBe(true);
+});
+
 test('a failed QR login offers the class code login and a retry for passing problems',async({page})=>{
  let calls=0;
  await page.route('**/api/v1/**',route=>{
