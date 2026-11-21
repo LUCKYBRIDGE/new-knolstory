@@ -64,6 +64,7 @@ type EditingPermissions = {
 
 - "이미지와 글만"은 `images:true, characters:false, audio:false, direction:false, choices:false` 같은 조합이다. 웹은 대시보드에서 자주 쓰는 묶음(글만 / 글·이미지 / 전체)을 버튼으로 제공한다.
 - 웹 편집기는 허용되지 않은 편집화면을 목록에서 빼고, 해당 편집 설정 개방을 막는다. 이미 원고에 들어 있는 음향·연출은 지우지 않고 그대로 재생된다.
+- 작품 쓰기 과제는 자기 편집 범위를 따로 가질 수 있다([과제 단계와 과제별 편집 범위](#과제-단계와-과제별-편집-범위--2026-11-21)). 과제에서 시작한 작품에는 과제 범위가 학급·학생 설정 대신 적용된다.
 
 ## 5. 과제와 제출
 
@@ -200,3 +201,21 @@ type MissionStudentProgress = MissionProgress & {number:number; name:string};
 `GET /api/v1/class/classroom/archive/:year.zip`은 로그인한 교사·관리자의 자기 학급만 제공한다. ZIP에는 그해 과제 안내와 양식, 학생 번호별 중간본·제출본과 피드백, 미션 질문·답변·확인 기록을 넣는다. 작품 파일은 기존 파일 열기로 다시 열 수 있다. 접속 코드·비밀번호·QR·계정 ID·개인 온라인 작품은 넣지 않는다. 한 worker에서 동시에 한 건만 만들며 DB 읽기 스냅샷과 커서, ZIP 스트림을 사용하고 연결이 끊기거나 제한 시간(5분)이 지나면 중단한다.
 
 4월 1일 한국 시각부터 지난 학년 과제·미션을 자동 삭제한다. 연결된 제출본·중간본·답변·피드백도 FK cascade로 함께 지운다. 학급·학생 계정과 개인 온라인 작품은 남긴다. API 시작 때와 매시 정각에 한 maintenance worker가 실행하고, 실패하면 다음 시간에 재시도한다. 애플리케이션과 DB의 날짜 경계를 비교하여 더 이른 삭제 기준만 적용한다. 운영 배포 전에는 삭제 대상 건수를 읽기로 확인하며, 실제 운영 삭제는 사용자 확인을 따른다.
+
+## 과제 단계와 과제별 편집 범위 — 2026-11-21
+
+작품 쓰기 과제는 두 가지 규칙을 더 가질 수 있다. migration `021-task-stage-and-edit-scope.sql`(`assignments.edit_scope jsonb NULL`, `assignments.after_assignment_id uuid NULL → assignments ON DELETE SET NULL`).
+
+**숏스토리 → 놀스토리 단계 과제.** 교사는 놀스토리 과제를 만들 때 ‘시작 방법’에서 `바로 놀스토리로 써요` 또는 `숏스토리 과제를 통과한 뒤 이어 써요`를 고른다. 뒤를 고르면 같은 학급·올해의 열린 숏스토리 과제 하나를 앞 단계로 정한다(다른 유형·다른 학급·지난 학년은 `422 STAGE_NOT_ALLOWED`/`404 ASSIGNMENT_NOT_FOUND`). 숏스토리 과제 카드의 `+ 통과하면 놀스토리로 이어 쓰는 과제 만들기`도 같은 양식을 연다. 단계 과제는 바탕 작품·양식을 쓰지 않는다.
+
+- 학생 목록의 과제에는 `after:{id,title,passed}`가 붙는다. `passed`는 그 학생의 앞 단계 제출이 교사 `통과` 상태인지다. 교사 목록에는 `after:{id,title}`만 있다.
+- 통과 전에는 카드가 ‘앞 단계를 통과하면 열려요’로 잠기고, 할 일 목록에서 지금 할 수 있는 일 뒤에 놓인다. 서버도 중간 저장·제출을 `409 STAGE_LOCKED`로 거절한다. 학생이 앞 단계를 다시 내면 통과가 풀리므로 다시 잠긴다(이미 쓴 기기 작성본은 남는다). 앞 단계 과제를 지우면 연결만 풀린다.
+- 통과 뒤 `통과한 그림책으로 시작`을 누르면, 통과한 제출본(숏스토리)을 [놀스토리로 보내기](picturebook-to-chapters-design.md)와 같은 변환으로 새 놀스토리로 만든다(`apps/web/lib/task-continue.ts` `picturebookTaskArchive`). 쪽마다 장 하나, 첫 컷은 숏스토리 추천 무대(또는 학생이 고른 배경·인물)이며, 쪽의 글과 삽화는 장 옆 ‘그림책 구상’으로 보인다. 과제의 편집 범위가 그림을 막으면 첫 컷은 그림 없이 시작한다.
+
+**과제별 편집 범위.** 과제마다 `학생이 고칠 수 있는 것`을 `학급 설정대로`(null) · `글만` · `글과 그림` · `모든 편집` · `직접 고르기`(그림 고르기·인물 배치·소리·연출·선택지·점수) 중에서 정한다. 글은 늘 쓸 수 있고, 인물 배치는 그림 고르기가 있어야 한다. 값은 `{images,characters,audio,direction,choices}` 모두를 boolean으로 받으며 다른 키는 거절한다. 저장된 값이 깨졌으면 ‘글만’으로 읽는다(더 넓게 열지 않는다).
+
+- 과제에서 시작한 작품(기기의 과제 연결 키로 찾음)을 열면 놀스토리·숏스토리 편집기가 과제 범위를 쓴다(`taskPermissions`). 새 작품 만들기·지정 작품 같은 계정 제한은 과제가 넓히지 않는다. 과제 범위는 교사가 과제 카드에서 바꿀 수 있고, 다음에 작품을 열 때 적용된다.
+- 학생 카드와 편집기의 ‘과제’ 메뉴에 `이 과제에서 고칠 수 있는 것`을 보여 준다. 편집 범위는 웹 편집기의 제한이며, 제출 원고의 음향·연출을 서버가 지우거나 거절하지는 않는다(§4와 같음).
+
+API: `POST /classroom/assignments`에 `editScope?`·`afterAssignmentId?`, `PATCH /classroom/assignments/{id}`에 `editScope?`(null은 학급 설정대로). 오류 코드 `STAGE_LOCKED`·`STAGE_NOT_ALLOWED`. 검사: `server/classroom/task-stage.integration.ts`, `apps/web/lib/task-scope.test.ts`, `tests/e2e/classroom.spec.ts`의 단계 과제 시나리오.
+
