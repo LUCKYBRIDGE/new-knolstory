@@ -1,0 +1,11 @@
+/* Work tabs sit in the editor's top row next to the cut picker: no extra row on tablets and desktops. */
+.tabs{display:flex;flex:none;gap:2px;padding:2px;border-radius:10px;background:color-mix(in srgb,var(--line) 45%,transparent)}
+.tabs button{flex:none;min-height:40px;min-width:48px;padding:6px 12px;margin:0;border:0;border-radius:8px;background:transparent;color:var(--ink-soft);font-size:var(--text-small);font-weight:600;cursor:pointer;box-shadow:none}
+.tabs button:hover:not(:disabled){color:var(--ink);background:color-mix(in srgb,var(--white) 70%,transparent)}
+.tabs button[aria-current=page]{color:var(--ink);background:var(--white);box-shadow:0 1px 2px #18333133}
+.tabs button:focus-visible{outline:3px solid var(--mint-strong);outline-offset:-3px}
+.tabs button:disabled{opacity:.5;cursor:default}
+/* Phones keep the one-row top bar (the screen is mostly 기본 there); the kind of work changes from 설정 as before. */
+@media (max-width:699px){.tabs{display:none}}
+/* Short landscape phones review on 기본 only (the workbench locks it), so the tabs would only take height. */
+@media (orientation:landscape) and (max-height:440px){.tabs{display:none}}
