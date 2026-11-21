@@ -26,3 +26,14 @@
 ## 남은 것
 
 - 놀스토리 편집기는 이미 한 화면 구성이라 이번에는 글씨 단계만 바뀌었다. 태블릿에서 컷 상세 줄의 배치는 다음 점검 대상이다.
+
+## 배포 (2026-11-21 22:53)
+
+- 소스: main `bca6e449` (#64, #65). API·DB 변경 없음, 웹만 교체.
+- 백업: `/Volumes/Toshiba/knolstory-backups/predeploy-20261121-225325/db.dump` (19개 테이블).
+- 빌드: `NEXT_PUBLIC_KNOL_ONLINE=1` 웹 빌드, 런타임은 다시 빌드하지 않음(봉인된 game.zip 유지).
+- 후보: 2172개 파일, blocker 0, static e2e 5개 통과, 후보 `/student`에 오프라인 안내 없음.
+- ingress: `knolstory-next-ingress:release-20261121-bca6e44` → production (healthy). 롤백 태그 `rollback-20261121-225325`, `rollback-20261121-171724`.
+- Pages: `new-knolstory` 배포 `59214476`.
+- 운영 확인: `/`·`/teacher`·`/student`·`/shortstory`·`/picturebook` 200, `/api/v1/auth/config` 200, `/api/v1/me` 401. 운영 index = 후보 index. 폰 390px에서 `‹ 서재로`·`작품 도구`가 보이고 `--text-caption` 13px.
+- 정리: 오래된 ingress 롤백 이미지 2개와 빌드 캐시 21GB 삭제.
