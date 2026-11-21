@@ -470,3 +470,16 @@ test('four actor cards retain independent controls and fit narrow editing widths
  expect(newStage.leftActors).toEqual(oldStage.leftActors);expect(newStage.rightActors[0]).toEqual(oldStage.rightActors[0]);expect(newStage.rightActors[1]).toEqual({...oldStage.rightActors[1],scaleMultiplier:.5});expect(newStage.speakerActorKey).toBe('density-left-1');expect(after.lines.slice(1)).toEqual(before.lines.slice(1));
  await mode(page,'인물 편집');await first.getByRole('slider',{name:'1컷 인물 4 크기',exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('four-actor-narrow.png')});
 });
+
+test('the kinds of work stay in view as tabs and switch the editing screen',async({page})=>{
+ // Focus plan step 2 (docs/architecture/focus-reading-editing-plan.md): no trip into 설정 to change the kind of work.
+ await page.goto('/?view=editor');
+ const tabs=page.getByRole('navigation',{name:'편집 작업',exact:true});
+ await expect(tabs.getByRole('button')).toHaveText(['기본','글','배경']);
+ await expect(tabs.getByRole('button',{name:'기본',exact:true})).toHaveAttribute('aria-current','page');
+ await tabs.getByRole('button',{name:'글',exact:true}).click();
+ await expect(page.locator('[data-editing-screen]')).toHaveAttribute('data-editing-screen','text');
+ await expect(tabs.getByRole('button',{name:'글',exact:true})).toHaveAttribute('aria-current','page');
+ await tabs.getByRole('button',{name:'기본',exact:true}).click();
+ await expect(page.locator('[data-editing-screen]')).toHaveAttribute('data-editing-screen','basic');
+});

@@ -23,7 +23,7 @@ import {StoryWorkspaceInspector} from './story-workspace-inspector';
 import {StoryEditingWorkbench} from './story-editing-workbench';
 import {useAdjacentSceneThumbnails} from './use-adjacent-scene-thumbnails';
 import {StoryChapterSettings} from './story-chapter-settings';
-import {useEditorPreferences} from '../lib/editor-preferences';
+import {useEditorPreferences,type EditingScreen} from '../lib/editor-preferences';
 import {LocalWorkFileActions} from './local-work-file-actions';
 import {createLocalWorkFileSession} from '../lib/local-work-file';
 import {useReaderDisplayViewport} from './use-reader-display-viewport';
@@ -114,7 +114,8 @@ import {BookStart} from './book-start';
 import {EditorRelatedMemos} from './editor-related-memos';
 import {useEditorLimits} from './use-editor-limits';
 import {BUILTIN_WORKS} from '../lib/builtin-works';
-import {restrictEditorPreferences,taskPermissions} from '../lib/editing-permissions';
+import {allowedEditingScreen,restrictEditorPreferences,taskPermissions} from '../lib/editing-permissions';
+import {EditorWorkTabs} from './editor-work-tabs';
 import {bindTaskWork,useTaskForWork} from './use-task-for-work';
 import {BookCoverEditor} from './book-cover-editor';
 import {loadLandingVisit,markLandingVisited,resolveEntryView} from '../lib/landing-visit';
@@ -238,6 +239,8 @@ export function StoryWorkspace() {
     return null;
   }
   const editingScreen=editorPreferences.screen;
+  /** Work tabs: the screens this writer may use and has turned on (인물·음향·연출 appear once enabled in 편집 설정). */
+  const workTabs=(['basic','text','background','characters','audio','direction'] as const).filter(id=>allowedEditingScreen(id,editPermissions)&&(id!=='characters'&&id!=='audio'&&id!=='direction'||editorPreferences.enabled[id]));
   const logic=editorPreferences.logic;
   const [soundTool,setSoundTool]=useState(false);
   const [flowMapOpen, setFlowMapOpen] = useState(false);
@@ -525,6 +528,8 @@ export function StoryWorkspace() {
     completeLibraryReturn();
   }
   function stopForUnappliedInput(){if(!hasUnappliedAuthoringInput()){setError(current=>current===UNAPPLIED_AUTHORING_NOTICE?'':current);return false;}setError(UNAPPLIED_AUTHORING_NOTICE);return true;}
+  /** One way to change the kind of work, from the tabs or the settings drawer: keep the draft first, then switch. */
+  function changeEditingScreen(screen:EditingScreen){if(composing||stopForUnappliedInput())return false;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${issueText(issue)}`);return false;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');return true;}
   function prepareWork(memoId?:string,section?:WorkSection){if(stopForUnappliedInput())return;if(composing){setError('한글 입력을 마친 뒤 작품 설정을 열어 주세요.');return;}const id=typeof memoId==='string'?memoId:undefined;const origin=document.activeElement;settingsReturnFocus.current=section==='scores'&&view==='editor'&&origin instanceof HTMLElement&&shell.current?.contains(origin)?{projectId:project.id,lineId:line.id,field:origin}:null;if(id!==undefined){try{persistWorkspace();}catch(issue){setError(`지금 원고를 임시 보관하지 못해 작품 설정을 열지 않았어요. ${issueText(issue)}`);return;}}setMemoRequest(id!==undefined?{projectId:project.id,memoId:id,lineId:line.id,section,returnToEditor:true,editorContext:view==='editor'&&mode==='edit'?{editorView,activeTool,writerChapterId,soundTool}:undefined}:null);if(protectAuthoring('prepare'))return;rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
   async function preserveCopyAudio(source:StoryProject,target:StoryProject){
     try{await copyAudioWorkMetadata(source.id,target.id);return true;}
@@ -1380,7 +1385,8 @@ export function StoryWorkspace() {
           <p data-testid="save-status" data-save-attention={displayedSaveStatus!=='임시 보관됨'} role="status">{displayedSaveStatus}</p>
         </div>
         <div className={styles.controls}>
-          {mode==='edit'&&<><StoryCutPosition project={project} line={line} ordered={ordered} onSelect={selectCut} disabled={composing}/></>}
+          {/* The kinds of work stay in view as tabs in the top row instead of inside the settings drawer (focus plan step 2). */}
+          {mode==='edit'&&<>{view==='editor'&&<EditorWorkTabs current={editingScreen} disabled={composing||!loadComplete} tabs={workTabs} onChange={changeEditingScreen}/>}<StoryCutPosition project={project} line={line} ordered={ordered} onSelect={selectCut} disabled={composing}/></>}
 
         </div>
       </section>)}
@@ -1406,7 +1412,7 @@ export function StoryWorkspace() {
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
           <StoryEditingWorkbench chapterReference={chapter.picturebookSketch||(workTask?.after&&chapter.summary.trim())||Object.values(picturebookLinks.current).some(link=>link.sends.some(send=>send.workKey===storyId&&Object.values(send.pages).some(page=>page.chapterId===chapter.id)))?<PicturebookChapterReference key={`${project.id}/${chapter.id}`} chapter={chapter}/>:undefined} onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editPermissions} finishHint={workTask?'다 쓰면 위의 ‘과제’에서 선생님께 중간 저장하거나 내요.':undefined} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
-            onScreenChange={screen=>{if(composing||stopForUnappliedInput())return false;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${issueText(issue)}`);return false;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');return true;}}
+            onScreenChange={changeEditingScreen}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}
             disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing}
