@@ -41,7 +41,9 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  const currentCount=items?.filter(item=>!item.archived).length??0;
  // The composer opens this form for writing tasks with the chosen format.
  useEffect(()=>{if(!request||(request.kind!=='knolstory'&&request.kind!=='shortstory'))return;const timer=window.setTimeout(()=>{setFormat(request.kind as AssignmentFormat);if(request.kind==='shortstory')setAfter('');setFormOpen(true);setFocusForm(Date.now());},0);return()=>window.clearTimeout(timer);},[request]);
- const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list)setItems(list);else setLoadFailed(true);},[run]);
+ // First load opens the tab that has tasks, so a class with only picture book tasks does not land on an empty list.
+ const firstList=useRef(true);
+ const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list){setItems(list);if(firstList.current){firstList.current=false;if(!list.some(item=>item.format==='knolstory')&&list.some(item=>item.format==='shortstory'))setFilter('shortstory');}}else setLoadFailed(true);},[run]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(timer);},[load]);
  async function create(event:FormEvent){
   event.preventDefault();if(!title.trim()||!description.trim()||createLock.current)return;

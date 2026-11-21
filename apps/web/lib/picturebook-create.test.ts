@@ -157,7 +157,7 @@ describe('the device link index',()=>{
  it('keeps a confirmed request until the workspace has used it, and only for a day',()=>{
   const storage=memoryStorage();
   savePicturebookRequest(storage,request());
-  expect(readPicturebookRequest(storage,'request-aaaa-1111').book.id).toBe(book.id);
+  expect(readPicturebookRequest(storage,'request-aaaa-1111',Date.parse(NOW)).book.id).toBe(book.id);
   expect(()=>readPicturebookRequest(storage,'request-aaaa-1111',Date.parse(NOW)+25*60*60*1000)).toThrow('오래되었어요');
   forgetPicturebookRequest(storage,'request-aaaa-1111');
   expect(()=>readPicturebookRequest(storage,'request-aaaa-1111')).toThrow('찾지 못했어요');

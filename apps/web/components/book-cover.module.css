@@ -150,7 +150,8 @@
   letter-spacing:-.03em;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
-  word-break:normal;
+  /* Korean titles break between words (흥부와 / 놀부), never inside one (흥부 / 와). */
+  word-break:keep-all;
   text-wrap:balance;
 }
 .title[data-font="rounded"],.title[data-font="handwriting"] {

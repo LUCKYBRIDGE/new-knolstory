@@ -97,3 +97,5 @@
  .bookcases {margin-top:42px}
  .topPlant {--plant-height:90px}
 }
+/* An open search or new-work panel sits above the storage notice that follows it (2026-11-21). */
+.browse:has(details[open]){z-index:7}
