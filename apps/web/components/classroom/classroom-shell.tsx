@@ -8,6 +8,7 @@ import type {ServiceSection} from '../../lib/service-navigation';
 import {ClassroomBook} from './classroom-art';
 import {TeacherUpgradeDialog} from './teacher-upgrade-dialog';
 import styles from './classroom.module.css';
+import {accountLogout} from '../../lib/account-api';
 type Props={active?:ServiceSection|null;title:string;roles:readonly ClassroomRoleState[];guest?:ReactNode;children:(state:ClassroomMeState)=>ReactNode};
 /** Shared frame for /teacher, /student and /admin: online switch, role gate and the way back to the library. */
 export function ClassroomShell({title,roles,guest,children,active='assignments'}:Props){
@@ -32,6 +33,14 @@ function Gate({roles,guest,children,active='assignments'}:Omit<Props,'title'>){
 /** A page the account cannot open still says what to do next, with the action right there. */
 function NextStep({state,roles}:{state:ClassroomMeState;roles:readonly ClassroomRoleState[]}){
  const [upgrading,setUpgrading]=useState(false),[upgraded,setUpgraded]=useState(false);
+ const [switching,setSwitching]=useState(false),[switchError,setSwitchError]=useState('');
+ async function switchToStudent(){
+  if(!state.session||switching)return;
+  setSwitching(true);setSwitchError('');
+  try{await accountLogout(state.session.csrf);window.dispatchEvent(new Event('knolstory-account-session-changed'));state.refresh();}
+  catch{setSwitchError('로그아웃하지 못했어요. 잠시 뒤 다시 눌러 주세요.');}
+  finally{setSwitching(false);}
+ }
  const forTeachers=roles.includes('teacher'),forAdmins=!forTeachers&&roles.includes('admin');
  let title='',body='',action:ReactNode=null;
  if(state.role==='guest'){
@@ -48,8 +57,9 @@ function NextStep({state,roles}:{state:ClassroomMeState;roles:readonly Classroom
   action=<Link className={`${styles.btn} ${styles.primary}`} href="/student">내 과제로 가기</Link>;
  }else if((state.role==='teacher'||state.role==='admin')&&!forTeachers&&!forAdmins){
   title='교사 계정으로 로그인되어 있어요';
-  body='학생 화면은 학생 계정으로 들어가요. 학생 계정과 접속 QR은 학생 탭에서 만들 수 있어요.';
-  action=<Link className={`${styles.btn} ${styles.primary}`} href="/teacher?tab=students">학생 탭으로 가기</Link>;
+  body='학생 화면은 학생 계정으로 들어가요. 이 기기에서 학생으로 들어가려면 교사 계정을 먼저 로그아웃해요. 학생 계정과 접속 QR은 학생 탭에서 만들 수 있어요.';
+  // A teacher trying the student view on this device: one step to the student login, no hunting for the account menu.
+  action=<><button className={`${styles.btn} ${styles.primary}`} disabled={switching} onClick={()=>void switchToStudent()}>{switching?'로그아웃하는 중이에요':'로그아웃하고 학생으로 들어가기'}</button><Link className={styles.btn} href="/teacher?tab=students">학생 탭으로 가기</Link>{switchError&&<p className={styles.error} role="alert">{switchError}</p>}</>;
  }else{
   title='관리자만 열 수 있는 화면이에요';
   body=state.role==='teacher'?'교사 대시보드에서 학급을 관리할 수 있어요.':'이 계정으로는 열 수 없어요. 서재로 돌아가 주세요.';
