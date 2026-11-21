@@ -39,7 +39,7 @@ export function editScopeLabel(scope: EditScope | null | undefined): string {
   if (!scope) return '학급 설정대로';
   const preset = EDIT_SCOPE_PRESETS.find(item => sameScope(item.scope, scope));
   if (preset) return preset.label;
-  const tools = [scope.images && '그림', scope.images && scope.characters && '인물 배치', scope.audio && '소리', scope.direction && '연출', scope.choices && '선택지'].filter(Boolean);
+  const tools = [scope.images && '그림', scope.images && scope.characters && '인물 배치', scope.audio && '음향', scope.direction && '연출', scope.choices && '선택지'].filter(Boolean);
   return ['글', ...tools].join('·');
 }
 /** What a student may edit in one task's work: the task's own scope when it has one, else the class/student setting.

@@ -8,7 +8,7 @@ describe('classroom permissions helpers',()=>{
   expect(effectivePermissions(images,text)).toBe(images);expect(effectivePermissions(null,text)).toBe(text);expect(effectivePermissions(undefined,null)).toBe(ALL_EDITING_ALLOWED);
  });
  it('names presets and labels custom mixes',()=>{
-  expect(PERMISSION_PRESETS.map(item=>item.label)).toEqual(['글만','글·이미지','전체']);
+  expect(PERMISSION_PRESETS.map(item=>item.label)).toEqual(['글만','글과 그림','모든 편집']);
   expect(presetLabel(PERMISSION_PRESETS[0]!.permissions)).toBe('글만');expect(presetLabel({...ALL_EDITING_ALLOWED,audio:false})).toBe('직접 고름');
  });
 });

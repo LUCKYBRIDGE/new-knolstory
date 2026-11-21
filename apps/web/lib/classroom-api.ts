@@ -19,11 +19,11 @@ export type ClassroomMe=Readonly<{role:ClassroomRole;account:Readonly<{id:string
 /** Buttons for the teacher dashboard, in display order. */
 export const PERMISSION_PRESETS:readonly Readonly<{id:keyof typeof EDITING_PRESETS;label:string;permissions:EditingPermissions}>[]=[
  {id:'textOnly',label:'글만',permissions:EDITING_PRESETS.textOnly},
- {id:'textAndImages',label:'글·이미지',permissions:EDITING_PRESETS.textAndImages},
- {id:'all',label:'전체',permissions:EDITING_PRESETS.all},
+ {id:'textAndImages',label:'글과 그림',permissions:EDITING_PRESETS.textAndImages},
+ {id:'all',label:'모든 편집',permissions:EDITING_PRESETS.all},
 ];
 export const PERMISSION_FIELDS:readonly Readonly<{key:'images'|'characters'|'audio'|'direction'|'choices'|'newWorks';label:string}>[]=[
- {key:'images',label:'이미지 고르기'},{key:'characters',label:'인물 배치'},{key:'audio',label:'음향'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},{key:'newWorks',label:'새 작품 만들기·가져오기'},
+ {key:'images',label:'그림 고르기 (배경·인물)'},{key:'characters',label:'인물 배치'},{key:'audio',label:'음향'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},{key:'newWorks',label:'새 작품 만들기·가져오기'},
 ];
 export const effectivePermissions=resolveEditingPermissions;
 export function samePermissions(a:EditingPermissions,b:EditingPermissions){return a.images===b.images&&a.characters===b.characters&&a.audio===b.audio&&a.direction===b.direction&&a.choices===b.choices&&a.newWorks===b.newWorks&&a.forcedStoryKey===b.forcedStoryKey;}

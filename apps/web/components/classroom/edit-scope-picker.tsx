@@ -4,7 +4,7 @@ import {EDIT_SCOPE_PRESETS,editScopeLabel,type EditScope} from '../../lib/classr
 import styles from './classroom.module.css';
 
 const TOOLS:readonly {key:keyof EditScope;label:string}[]=[
- {key:'images',label:'그림 고르기 (배경·인물)'},{key:'characters',label:'인물 배치'},{key:'audio',label:'소리'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},
+ {key:'images',label:'그림 고르기 (배경·인물)'},{key:'characters',label:'인물 배치'},{key:'audio',label:'음향'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},
 ];
 type Mode='class'|'textOnly'|'textAndImages'|'all'|'custom';
 const sameScope=(a:EditScope,b:EditScope)=>TOOLS.every(tool=>a[tool.key]===b[tool.key]);

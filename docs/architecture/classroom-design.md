@@ -62,7 +62,7 @@ type EditingPermissions = {
 };
 ```
 
-- "이미지와 글만"은 `images:true, characters:false, audio:false, direction:false, choices:false` 같은 조합이다. 웹은 대시보드에서 자주 쓰는 묶음(글만 / 글·이미지 / 전체)을 버튼으로 제공한다.
+- "이미지와 글만"은 `images:true, characters:false, audio:false, direction:false, choices:false` 같은 조합이다. 웹은 대시보드에서 자주 쓰는 묶음(글만 / 글과 그림 / 모든 편집)을 버튼으로 제공한다.
 - 웹 편집기는 허용되지 않은 편집화면을 목록에서 빼고, 해당 편집 설정 개방을 막는다. 이미 원고에 들어 있는 음향·연출은 지우지 않고 그대로 재생된다.
 - 작품 쓰기 과제는 자기 편집 범위를 따로 가질 수 있다([과제 단계와 과제별 편집 범위](#과제-단계와-과제별-편집-범위--2026-11-21)). 과제에서 시작한 작품에는 과제 범위가 학급·학생 설정 대신 적용된다.
 

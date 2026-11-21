@@ -151,7 +151,7 @@ test('teacher builds a class, edits students, bulk-applies 글만 and runs an as
  await page.getByLabel('1번 선택').check();await page.getByLabel('3번 선택').check();
  await page.getByRole('button',{name:'글만으로 적용'}).click();
  expect(state.classroom!.students.map(item=>item.permissions?.images)).toEqual([false,undefined,false]);
- await expect(page.locator('tr[data-student="1"]')).toContainText('글만');await expect(page.locator('tr[data-student="2"]')).toContainText('기본값');
+ await expect(page.locator('tr[data-student="1"]')).toContainText('글만');await expect(page.locator('tr[data-student="2"]')).toContainText('학급 기본');
  // Assignment: create, see it open, close it, open a submission as a file.
  await page.getByRole('navigation',{name:'주 메뉴',exact:true}).getByRole('link',{name:'과제',exact:true}).click();
  await page.getByLabel('과제 제목').fill('내 이야기 쓰기');await page.getByLabel('무엇을 하나요',{exact:true}).fill('이야기를 내 생각대로 써요.');await page.getByRole('button',{name:'과제 만들기'}).click();
