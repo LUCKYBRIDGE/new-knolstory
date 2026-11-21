@@ -56,6 +56,14 @@
       "notApproved": {
         "rabbit-turtle.scene.shortstory-classic-02": "갈대 배경은 맞지만 서 있는 결심 자세로는 살피는 사건이 읽히지 않음 → 제작 요청 4"
       }
+    },
+    "independentConfirmation": {
+      "date": "2026-11-20",
+      "by": "Claude (코덱스 승인과 별도로 정적 기기 전용 빌드에서 재확인)",
+      "rabbit-turtle.scene.shortstory-classic-02": "세로: 갈대 사이를 몸을 숙여 살피는 자라가 분명함. 가로: 숙인 자세라 얼굴·뻗은 손이 대사창 바로 위에 걸치지만 가려지지 않음 → 승인 유지",
+      "rabbit-turtle.scene.shortstory-classic-06": "가로: 왼쪽 토끼가 손짓하며 오른쪽 자라·용왕에게 말하는 구도, 같은 인물 중복 없음 → 승인 유지",
+      "summary": "별주부전 8쪽 모두 승인 조합으로 첫 무대를 가짐(준비 화면 요약: 첫 무대 8장 · 원화 참고 0장)",
+      "checks": "vitest 325 files / 2690 tests, media provenance 2701 files, docs:check 통과"
     }
   },
   "bugsFoundAndFixed": [
