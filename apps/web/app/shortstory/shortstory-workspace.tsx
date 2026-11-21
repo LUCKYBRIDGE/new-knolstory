@@ -318,6 +318,7 @@ export function ShortStoryWorkspace() {
  const positionRef=useRef<(target:number)=>void>(()=>{});
  // Reading: ←·→ turn pages unless a field, list or dialog has the keyboard.
  const pageCount=project.pages.length;
+ const [readTools,setReadTools]=useState(false);
  useEffect(()=>{
   if(editing)return;
   const onKey=(event:KeyboardEvent)=>{
@@ -375,10 +376,10 @@ export function ShortStoryWorkspace() {
   <header className={styles.header}><div><Link href="/?view=library">놀스토리 서재로 돌아가기</Link>{fromMission&&onlineEnabled&&<> <Link href="/student" data-mission-return="true">과제로 돌아가기</Link></>}<p className={styles.eyebrow}>숏스토리 그림책</p><h1 className={styles.bookTitle}>{libraryView?'그림책 보관함':project.title||'제목 없는 그림책'}</h1><p>{libraryView?'그림책을 고르거나 새 이야기를 시작해요.':original?'원본 그림책을 읽고 내 사본으로 글을 써요.':'그림과 글을 구성하고 내 그림책으로 보관해요.'}</p></div><div className={styles.actions}>{editing&&!libraryView&&<EditorTermGuide/>}
    {editing&&!original&&!libraryView&&!coverOpen&&onlineEnabled&&classroom.role==='student'&&classroom.session&&<TaskAction key={`${classroom.session.accountId}:${project.id}`} className={styles.taskAction} accountId={classroom.session.accountId} workKey={`shortstory:${project.id}`} project={project} beforeNavigate={beforeServiceNavigation}/>}
    {!coverOpen&&<><AccountMenu account={online.account} returnTo="shortstory" disabled={compositionActive||blocked||conflict} beforeNavigate={beforeAccount}/>{onlineAllowed&&<OnlineWorksPanelView online={online} usage={classroom.me?.storage} acceptedFormat="shortstory" works={library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}))} disabled={compositionActive||blocked||conflict} onSaveNew={saveOnline} onOpen={openOnline}/>}</>}{libraryView?<><button disabled={blocked||!canCreate} onClick={()=>accept(newShortStory())}>새 그림책</button><button disabled={busy||blocked||!canCreate} onClick={()=>file.current?.click()}>파일 가져오기</button></>:<>
-   {!original&&<button className={styles.toKnolstory} data-testid="picturebook-to-knolstory" disabled={blocked||compositionActive||!accountSettled} onClick={toKnolstory}>놀스토리로 보내기</button>}
-   <button disabled={blocked} onClick={()=>{if(original)accept(project,true);else if(!editing){focusWriting.current=true;setEditing(true);}}} aria-pressed={editing}>{original?'내 사본으로 쓰기':'쓰기'}</button><button onClick={()=>setEditing(false)} aria-pressed={!editing}>읽기</button><button disabled={compositionActive} onClick={()=>{if(dirty.current&&!commit(latest.current??library))return;onlineGeneration.current++;setPrintPreview(false);setLibraryView(true);window.history.replaceState(null,'','?mode=library');}} aria-label="그림책 보관함 열기"><span className={styles.longLabel}>그림책 보관함 열기</span><span className={styles.shortLabel} aria-hidden="true">보관함</span></button>
+   {!original&&editing&&<button className={styles.toKnolstory} data-testid="picturebook-to-knolstory" disabled={blocked||compositionActive||!accountSettled} onClick={toKnolstory}>놀스토리로 보내기</button>}
+   {original?<button className={styles.copyToWrite} disabled={blocked} onClick={()=>accept(project,true)}>내 사본으로 쓰기</button>:<div className={styles.modeSwitch} role="group" aria-label="보기 방식"><button disabled={blocked} onClick={()=>{if(!editing){focusWriting.current=true;setEditing(true);}}} aria-pressed={editing}>쓰기</button><button onClick={()=>setEditing(false)} aria-pressed={!editing}>읽기</button></div>}<button disabled={compositionActive} onClick={()=>{if(dirty.current&&!commit(latest.current??library))return;onlineGeneration.current++;setPrintPreview(false);setLibraryView(true);window.history.replaceState(null,'','?mode=library');}} aria-label="그림책 보관함 열기"><span className={styles.longLabel}>그림책 보관함 열기</span><span className={styles.shortLabel} aria-hidden="true">보관함</span></button>
   </>}</div></header>
-  {error&&<p role="alert" className={styles.error}>{error}</p>}{/* Reserved line: saving messages never push the page down while writing. */}<p role="status" className={styles.statusLine}>{notice}</p>
+  {error&&<p role="alert" className={styles.error}>{error}</p>}{/* Reserved line: saving messages never push the page down while writing. */}<p role="status" className={styles.statusLine}>{editing||libraryView?notice:''}</p>
   {/* Only while writing: reading is never interrupted by the browser storage. */}
   {conflict&&editing&&<div role="alert" className={styles.error}><p>그림책을 자동으로 임시 보관하지 못했어요. 지금 화면의 그림책은 그대로 있어요. 작품 파일로 저장해 두세요.</p><button onClick={()=>void run(exportFile)}>현재 초안 파일로 보관</button><button onClick={()=>{if(dirty.current){setRecoveryConfirmation('reload');return;}window.location.reload();}}>저장된 보관함 다시 열기</button></div>}
   {!libraryView&&workspace}
@@ -387,13 +388,18 @@ export function ShortStoryWorkspace() {
    onClose={()=>setIllustrationPage(null)}
    onSelect={id=>{if(!canChooseImages)return;if(id!==current.backgroundId)patch({backgroundId:id,leftAssetId:'',rightAssetId:''});setIllustrationPage(null);}}/>}
   {blocked&&<div className={styles.actions}><button onClick={()=>{const raw=localStorage.getItem(SHORTSTORY_LIBRARY_KEY)??localStorage.getItem(SHORTSTORY_LEGACY_KEY);if(raw)download(raw,'그림책-복구원본.json','application/json');}}>복구용 원본 보관</button><button onClick={()=>setRecoveryConfirmation('restart')}>보관함 새로 시작</button></div>}
-  <details className={styles.library} open={libraryView}><summary>그림책 보관함 · 내 그림책 {library.books.length}권</summary><div className={styles.bookList}>
+  <details className={libraryView?`${styles.library} ${styles.libraryPage}`:styles.library} open={libraryView}><summary>그림책 보관함 · 내 그림책 {library.books.length}권</summary><div className={styles.bookList}>
    <section aria-label="기본 그림책"><h2>기본 그림책 {shortStoryOriginals.length}권</h2>{shortStoryOriginals.map(book=><button key={book.id} disabled={blocked} aria-pressed={project.id===book.id} onClick={()=>switchBook(book.id,true)}><span className={styles.libraryCover} aria-hidden="true"><BookCover project={shortStoryCoverProject(getShortStoryOriginal(book.key))} edition="original"/></span><span>{book.title} · 원본 읽기</span></button>)}</section>
    <section aria-label="내 그림책 목록"><h2>내 그림책</h2>{library.books.length?library.books.map(book=><div key={book.id} className={styles.libraryEntry}><button disabled={blocked} aria-pressed={project.id===book.id} onClick={()=>switchBook(book.id)}><span className={styles.libraryCover} aria-hidden="true"><BookCover project={shortStoryCoverProject(book)} edition="own"/></span><span>{book.title}</span></button><LibraryStorageBadge status={onlineShelf.byLocalKey[`shortstory:${book.id}`]??{kind:'local',label:'이 기기에 있음'}}/>{onlineAllowed&&online.account.session&&<button disabled={online.busy||compositionActive||blocked||conflict} onClick={()=>void online.save(`shortstory:${book.id}`)}>온라인에 업로드 · {book.title}</button>}</div>):<p>원본에서 사본을 만들거나 새 그림책을 시작해요.</p>}{onlineShelf.remoteOnly.map(record=><div key={record.recordId} className={styles.libraryEntry}><LibraryStorageBadge status={{kind:'remote',label:'온라인에 있음',record}}/><button disabled={online.busy||compositionActive||blocked||conflict} onClick={()=>void online.open(record)}>{record.title} · 기기에 사본으로 열기</button></div>)}{online.activeCursor&&<button disabled={online.busy} onClick={()=>void online.list(true,'active')}>온라인 그림책 더 보기</button>}{online.error&&<p role="alert">{online.error}</p>}{online.notice&&<p role="status">{online.notice}</p>}</section>
    {!!library.deleted.length&&<section aria-label="삭제한 그림책 복구"><h2>삭제한 그림책</h2>{library.deleted.map(book=><button disabled={blocked} key={book.id} onClick={()=>{const next=restoreShortStoryBook(library,book.id);if(commit(next)){setLibraryView(false);setProject(book);setIndex(Math.min(next.positions[book.id]??0,book.pages.length-1));setEditing(true);window.history.replaceState(null,'',window.location.pathname);}}}>{book.title} 복구</button>)}</section>}
   </div></details>
-  <section className={styles.tools} aria-label="그림책 파일과 이름" hidden={libraryView}>
-   <div className={styles.toolCard} role="group" aria-label="작품 정보">
+  {!libraryView&&!editing&&<section className={styles.readInfo} aria-label="이 그림책">
+   <div className={styles.readCover} aria-hidden="true"><BookCover compact project={coverProject} edition={original?'original':'own'}/></div>
+   <div><h2>{project.title||'제목 없는 그림책'}</h2>{project.authorDisplayName&&<p>{project.authorDisplayName} 지음</p>}{project.description&&<p className={styles.readDescription}>{project.description}</p>}{original&&credit&&<p className={styles.readCredit}>{credit}</p>}
+    <div className={styles.actions}><button ref={editing?undefined:printLauncher} onClick={()=>setPrintPreview(true)} aria-expanded={printPreview} aria-controls="shortstory-print">A4 미리보기</button><button onClick={()=>setReadTools(open=>!open)} aria-expanded={readTools} aria-controls="shortstory-tools">파일·관리 더 보기</button></div></div>
+  </section>}
+  <section id="shortstory-tools" className={styles.tools} aria-label="그림책 파일과 이름" hidden={libraryView||!editing&&!readTools}>
+   <div className={styles.toolCard} role="group" aria-label="작품 정보" hidden={!editing}>
     <h2 className={styles.toolTitle}>작품 정보</h2>
     <div className={styles.infoRow}><div className={styles.coverPreview} aria-hidden="true"><BookCover project={coverProject} edition={original?'original':'own'}/></div><div className={styles.infoFields}>
      <label>이야기 제목{original||!editing?<input value={project.title} readOnly disabled={blocked}/>:<TitleInput value={project.title} disabled={blocked} onChange={title=>update({...project,title})}/>}</label>
@@ -414,7 +420,7 @@ export function ShortStoryWorkspace() {
    </div>
    <div className={styles.toolCard} role="group" aria-label="인쇄와 그림책 관리">
     <h2 className={styles.toolTitle}>인쇄와 관리</h2>
-    <div className={styles.actions}><button ref={printLauncher} onClick={()=>setPrintPreview(true)} aria-expanded={printPreview} aria-controls="shortstory-print">A4 미리보기</button></div>
+    <div className={styles.actions}><button ref={editing?printLauncher:undefined} hidden={!editing} onClick={()=>setPrintPreview(true)} aria-expanded={printPreview} aria-controls="shortstory-print">A4 미리보기</button></div>
     <details><summary>그림책 관리</summary><div className={styles.actions}><button disabled={blocked||!canCreate} onClick={()=>accept(newShortStory())}>새 그림책</button><button disabled={blocked} onClick={()=>accept(project,true)}>내 사본 만들기</button>{!original&&<button className={styles.danger} disabled={blocked} onClick={()=>setDeleteTarget('book')}>이 그림책 삭제</button>}</div></details>
    </div>
   </section>

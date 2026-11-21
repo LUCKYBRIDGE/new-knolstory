@@ -9,8 +9,10 @@ const evidence=`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EV
 const works=['rabbit','onggojib','seonnyeo','heungbu'] as const;
 for(const work of works)test(`actual ${work} picture book read, isolated position and complete A4 print`,async({page})=>{
  const original=getShortStoryOriginal(work);await page.goto(`/shortstory/?work=${work}&mode=read`);
- await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue(original.title);
- await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveAttribute('readonly','');
+ // Reading an original shows a book card, not read-only editing fields.
+ const bookCard=page.getByRole('region',{name:'이 그림책',exact:true});
+ await expect(bookCard.getByRole('heading',{name:original.title,exact:true})).toBeVisible();
+ await expect(page.getByLabel('이야기 제목',{exact:true})).toBeHidden();
  const reading=page.getByRole('region',{name:'숏스토리 읽기'});
  for(const [i,chapter] of original.pages.entries()){
   await expect(reading).toContainText(chapter.text);const art=reading.getByRole('img',{name:`${i+1}쪽 삽화`,exact:true}).locator('img');await expect(art).toHaveCount(1);
@@ -19,7 +21,7 @@ for(const work of works)test(`actual ${work} picture book read, isolated positio
  }
  await page.reload();await expect(reading).toContainText(original.pages.at(-1)!.text);
  await mkdir(evidence,{recursive:true});await page.screenshot({path:`${evidence}/${work}-reader.png`,fullPage:true});
- await openShortStoryDetails(page, '소개·마지막 인사·표지 그림');await expect(page.getByRole('region',{name:'그림책 파일과 이름'}).getByText(original.title,{exact:true})).toBeVisible();
+ await expect(bookCard).toContainText(original.description);
  await page.emulateMedia({media:'print'});await expect(page.locator('[data-shortstory-print] article')).toHaveCount(original.pages.length+2);
  const pdf=await page.pdf({format:'A4',preferCSSPageSize:true,printBackground:true,path:`${evidence}/${work}-a4.pdf`});
  const pageCount=[...pdf.toString('latin1').matchAll(/\/Type \/Page\b/g)].length;
@@ -146,7 +148,8 @@ test('ShortStory keeps the current page in its copy and moves illustrated text t
  await expect.poll(() => movedArt.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
 
  const imageSrc = await movedArt.getAttribute('src');
- await openShortStoryDetails(page, '그림책 관리');
+ // Reading keeps only the book card; its A4 preview is right there.
+ await expect(page.getByRole('group', {name: '저장과 파일'})).toBeHidden();
  await page.getByRole('button', {name: 'A4 미리보기', exact: true}).click();
  const print = page.getByRole('region', {name: 'A4 그림책 인쇄'});
  await expect(print).toBeVisible();

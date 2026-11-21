@@ -170,3 +170,34 @@
 .scopeNote{margin:6px 0 0;padding:8px 12px;border-radius:8px;background:#fff4dd;color:#6b4a10;font-size:var(--text-small,.9rem);line-height:1.5}
 .chooseIllustration:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
 :is(.artEmpty,.artChange):disabled{cursor:not-allowed}
+
+/* Mode switch (2026-11-21): 쓰기·읽기 are one control, not two loose buttons. */
+.modeSwitch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--white)}
+.header .actions .modeSwitch button{border:0;border-radius:0;min-width:56px;margin:0;background:transparent}
+.header .actions .modeSwitch button[aria-pressed=true]{background:var(--mint-strong);color:var(--white);font-weight:700}
+.copyToWrite{font-weight:700;border-color:var(--mint-strong)}
+/* Reading: book details as a quiet card; the editing tools stay out of the way. */
+.readInfo{display:flex;gap:18px;align-items:flex-start;margin-top:20px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.readInfo h2{margin:0 0 4px;font-size:var(--text-lead)}
+.readInfo p{margin:0 0 6px;color:var(--ink-soft);font-size:var(--text-small);line-height:1.6;word-break:keep-all}
+.readInfo .readCredit{font-size:var(--text-caption)}
+.readInfo .actions{margin-top:10px}
+.readCover{flex:0 0 96px;width:96px;aspect-ratio:300/435}
+.readCover>div{width:100%;height:100%}
+/* Page turns never break onto two lines, and the unavailable side reads as unavailable. */
+.readNav button{white-space:nowrap}
+.readNav button:disabled{opacity:.4;cursor:default;box-shadow:none}
+@media(max-width:600px){.readInfo{gap:12px;padding:14px}.readCover{flex-basis:72px;width:72px}.readNav button{padding:8px 12px}}
+
+/* 그림책 보관함 as its own page: the heading names it, so no folded summary and no box-in-a-box scroll;
+   books stand as cover cards, two to a row on phones. */
+.libraryPage>summary{display:none}
+.libraryPage .bookList{max-height:none!important;overflow:visible!important}
+.libraryPage section[aria-label="기본 그림책"]{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;align-content:start}
+.libraryPage section[aria-label="기본 그림책"]>h2{grid-column:1/-1;margin:0}
+.libraryPage section[aria-label="기본 그림책"]>button{flex-direction:column;align-items:stretch;gap:8px;margin:0;padding:12px;text-align:center;word-break:keep-all}
+.libraryPage section[aria-label="기본 그림책"] .libraryCover{width:100%;flex-basis:auto}
+.pageNav button:disabled{opacity:.4;cursor:default;box-shadow:none}
+.pageNav button{white-space:nowrap}
+.contents button span{word-break:keep-all}
+.toolCard[hidden],.tools button[hidden]{display:none}
