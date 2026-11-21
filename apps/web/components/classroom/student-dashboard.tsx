@@ -1,6 +1,6 @@
 'use client';
 import {useCallback,useEffect,useState} from 'react';
-import {assignmentList,draftPut,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
+import {assignmentList,draftPut,editScopeLabel,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
 import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWrittenAmount,localWorkSnapshot,snapshotWritten,type LocalWorkChoice} from '../../lib/classroom-local';
 import {TaskBrief} from './task-brief';
 import {documentList,documentRead} from '../../lib/document-api';
@@ -43,6 +43,7 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
   {/* What to do comes first; the rules and the season's end date follow the tasks. */}
   <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
   <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것</summary>
+   <p className={styles.hint}>과제마다 선생님이 따로 정했으면 그 과제 카드에 적혀 있어요. 그 밖의 작품에서는 아래와 같아요.</p>
    {limits.length?<ul className={styles.rowsList}>{limits.map(line=><li key={line}>{line}</li>)}</ul>:<p className={styles.hint}>모두 고칠 수 있어요.</p>}</details>
  </>;
 }
@@ -97,15 +98,17 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  }
  const review=assignment.reviewStatus??null;
  // One phase decides what the card leads with: the work to do, the wait, a rewrite, or a pass.
- const phase=!assignment.open?'closed':review==='passed'?'passed':review==='revise'?'revise':submitted?'waiting':'working';
- const status=<span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{!assignment.open?'닫힘':review==='passed'?'통과':review==='revise'?'다시 써 주세요':submitted?'냈어요':assignment.draftSavedAt?'작성 중':'아직 안 냈어요'}</span>;
+ // A KnolStory task after a ShortStory task waits until the teacher passes that picture book.
+ const locked=!!assignment.after&&!assignment.after.passed;
+ const phase=review==='passed'?'passed':!assignment.open?'closed':locked?'locked':review==='revise'?'revise':submitted?'waiting':'working';
+ const status=<span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{review==='passed'?'통과':!assignment.open?'닫힘':locked?'앞 단계 먼저':review==='revise'?'다시 써 주세요':submitted?'냈어요':assignment.draftSavedAt?'작성 중':'아직 안 냈어요'}</span>;
  const due=dueState(assignment.dueAt);
  const amountKey=draftKey||(key&&!key.startsWith('online:')?key:'');
  const written=amountKey?localWrittenAmount(amountKey,accountId,assignment.id):null;
- const stage=submitted?3:assignment.draftSavedAt?2:draftKey?1:0;
+ const stage=review==='revise'?1:submitted?3:assignment.draftSavedAt?2:draftKey?1:0;
  const steps=['시작하기','쓰기','선생님께 중간 저장','내기'];
- const canStart=!!(draftKey||canCreate||assignment.storyKey||assignment.template||forcedStoryKey);
- const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.template?'선생님 양식으로 시작':'과제 쓰기';
+ const canStart=!locked&&!!(draftKey||canCreate||assignment.storyKey||assignment.template||assignment.after||forcedStoryKey);
+ const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.after?'통과한 그림책으로 시작':assignment.template?'선생님이 준 작품으로 시작':'과제 쓰기';
  const brief=<TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={written?.amount??null} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>;
  const elsewhere=assignment.open&&!draftKey&&(!!submitted||online.length>0);
  const moreWays=!!submitted||elsewhere||(!assignment.archived&&!!assignment.shareUrl);
@@ -115,14 +118,18 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {phase==='revise'&&<div className={styles.taskStatus} data-tone="revise" role="status"><strong>선생님이 다시 써 달래요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}<small>고친 뒤 아래에서 ‘다시 제출’을 눌러요.</small></div>}
   {phase==='waiting'&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>냈어요 · 선생님 확인을 기다려요</strong><small>{formatSubmittedAt(submitted)}에 냈어요. 더 고치고 싶으면 이어서 쓴 뒤 다시 낼 수 있어요.</small></div>}
   {phase==='passed'&&<div className={styles.taskStatus} data-tone="passed" role="status"><strong>과제 통과! 잘했어요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}</div>}
+  {phase==='locked'&&assignment.after&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>앞 단계를 통과하면 열려요</strong><small>숏스토리 과제 ‘{assignment.after.title}’를 선생님이 통과시키면, 그 그림책으로 이 놀스토리를 시작해요. 쪽마다 장이 하나씩 생겨요.</small></div>}
+  {phase==='passed'&&!assignment.open&&submitted&&<p className={styles.hint}>{formatSubmittedAt(submitted)}에 낸 작품이에요.</p>}
   {phase==='closed'&&<div className={styles.taskStatus} data-tone="closed" role="status"><strong>제출이 마감됐어요</strong>{submitted?<small>{formatSubmittedAt(submitted)}에 낸 작품이 선생님께 있어요.</small>:<small>선생님께 확인해 주세요.</small>}</div>}
   {assignment.archived&&assignment.feedback&&<p className={styles.reviewFeedback}><b>선생님 피드백</b> {assignment.feedback}</p>}
   {assignment.draftComment&&phase!=='passed'&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
   {(phase==='working'||phase==='revise')&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage?'done':index===stage?'current':'todo'} aria-current={index===stage?'step':undefined}>{step}</li>)}</ol>}
-  {phase==='working'||phase==='revise'?brief:<details className={styles.taskGuide}><summary>과제 안내 다시 보기</summary>{brief}</details>}
+  {phase==='working'||phase==='revise'||phase==='locked'?brief:<details className={styles.taskGuide}><summary>과제 안내 다시 보기</summary>{brief}</details>}
+  {assignment.editScope&&<p className={styles.hint} data-task-scope>이 과제에서 고칠 수 있는 것 · <b>{editScopeLabel(assignment.editScope)}</b></p>}
+  {assignment.after&&!locked&&phase==='working'&&!draftKey&&<p className={styles.hint}>통과한 그림책 ‘{assignment.after.title}’의 쪽마다 놀스토리 장이 하나씩 만들어져요. 장마다 ‘그림책 구상’(그 쪽의 글과 삽화)을 펼쳐 보며 대사와 장면을 써요.</p>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
   {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
-  {assignment.open&&phase!=='passed'&&(works.length===0&&online.length===0?<p className={styles.hint}>{canStart?'쓰기 화면에서 작품을 만든 뒤 이곳에서 제출해요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
+  {assignment.open&&phase!=='passed'&&phase!=='locked'&&(works.length===0&&online.length===0?<p className={styles.hint}>{canStart?'쓰기 화면에서 작품을 만든 뒤 이곳에서 제출해요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
    :<div className={styles.handIn}>
     <label className={styles.field}>낼 작품<select aria-label="제출할 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
     <div className={styles.handInActions}>
@@ -138,6 +145,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
     <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
      <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div></div>}
    {!assignment.archived&&assignment.shareUrl&&<div className={styles.shareBox}><strong>선생님이 정한 제출 링크로 내기</strong>
+    {works.length===0&&online.length===0&&<p className={styles.hint}>아직 이 기기에 낼 작품이 없어요. 먼저 ‘과제 쓰기’로 작품을 만든 뒤 여기서 파일로 저장해요.</p>}
     <ol><li>위에서 낼 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
     <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
     <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small></div>}
@@ -164,7 +172,7 @@ function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:
  </li>;};
  return <section className={styles.todo} aria-label="할 일">
   <div className={styles.todoHead}><div><span className={styles.eyebrow}>오늘의 이야기 숙제</span><h2 className={styles.studentTasksTitle}>할 일</h2></div>
-   {total>0&&<span className={styles.todoCount} aria-label={`할 일 ${total}개 가운데 ${finished}개 끝냄`}><MissionSeal small earned={finished>0&&finished===total}/><span><b>{finished}</b> / {total} 끝</span></span>}</div>
+   {total>0&&<span className={styles.todoCount} aria-label={`할 일 ${total}개 가운데 ${finished}개 끝냄`}><MissionSeal small earned={finished>0&&finished===total}/><span><b>{finished}</b> / {total}개 끝냈어요</span></span>}</div>
   {assignmentError&&<div role="alert"><p className={styles.error}>{assignmentError}</p><button className={styles.btn} onClick={()=>void onReload()}>다시 불러오기</button></div>}
   {missions.error&&<div role="alert"><p className={styles.error}>{missions.error}</p><button className={styles.btn} disabled={missions.loading} onClick={()=>void missions.load()}>과제 다시 불러오기</button></div>}
   {loading?<p className={styles.hint} role="status">할 일을 불러오고 있어요.</p>:total===0&&!groups.archived.length?<p className={styles.card}>아직 선생님이 낸 할 일이 없어요.</p>

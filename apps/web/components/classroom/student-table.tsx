@@ -26,7 +26,7 @@ export function StudentTable({classroom,csrf,run,onChanged}:Props){
   {chosen.length>0&&<div className={styles.bulk} role="region" aria-label="선택한 학생에게 적용">
    <strong>{chosen.length}명 선택</strong><button className={styles.btn} onClick={()=>setPrintNumbers(chosen)}>선택한 학생 QR 보기</button>
    {PERMISSION_PRESETS.map(preset=><button key={preset.id} className={styles.btn} onClick={()=>void bulk(preset.permissions)}>{preset.label}으로 적용</button>)}
-   <button className={styles.btn} onClick={()=>void bulk(null)}>기본값 사용</button>
+   <button className={styles.btn} onClick={()=>void bulk(null)}>학급 기본으로</button>
    <button className={styles.btn} onClick={()=>setSelected(new Set())}>선택 해제</button>
   </div>}
   {namesOpen&&<BulkNamesDialog students={classroom.students} csrf={csrf} onClose={changed=>{setNamesOpen(false);if(changed)onChanged();}}/>}
@@ -46,12 +46,12 @@ function StudentRow({student,classroom,checked,onToggle,csrf,run,onChanged,open}
  const label=`${student.number}번`;
  return <tr data-student={student.number} data-more={more}>
   <td data-label="선택"><button type="button" className={styles.rowMore} aria-expanded={more} aria-label={`${label} 관리 ${more?'접기':'펼치기'}`} onClick={()=>setMore(!more)}>관리</button><input type="checkbox" className={styles.check} checked={checked} onChange={onToggle} aria-label={`${label} 선택`}/></td>
-  <td data-label="번호">{student.number}번</td>
+  <td data-label="번호">{student.number}번{student.permissions&&<small className={styles.permChip} aria-hidden="true">{presetLabel(effective)}</small>}</td>
   <td data-label="이름"><div className={styles.row} style={{flexWrap:'nowrap'}}><input className={styles.cellInput} value={name} maxLength={20} size={8} aria-label={`${label} 이름`} onChange={event=>setName(event.target.value)}/>
    <button className={styles.btn} disabled={name===student.name} aria-label={`${label} 이름 저장`} onClick={()=>void run(()=>studentUpdate(student.number,{name:name.trim()},csrf)).then(done=>{if(done)onChanged();})}>수정</button></div></td>
   <td data-label="비밀번호"><span className={styles.pw} aria-label={`${label} 비밀번호`}>{shown?student.password:'••••'}</span> <button className={styles.btn} aria-pressed={shown} aria-label={`${label} 비밀번호 ${shown?'가리기':'보기'}`} onClick={()=>setShown(!shown)}>{shown?'가리기':'보기'}</button> <button className={styles.btn} aria-label={`${label} 비밀번호 바꾸기`} onClick={()=>open('password')}>바꾸기</button></td>
   <td data-label="학생 접속"><button className={styles.btn} aria-label={`${label} QR 보기`} onClick={()=>open('qr')}>QR 보기</button></td>
-  <td data-label="편집 허용">{student.permissions?presetLabel(effective):`기본값 (${presetLabel(effective)})`} <button className={styles.btn} aria-label={`${label} 편집 허용 바꾸기`} onClick={()=>open('permissions')}>편집</button></td>
+  <td data-label="편집 허용">{student.permissions?presetLabel(effective):`학급 기본 (${presetLabel(effective)})`} <button className={styles.btn} aria-label={`${label} 편집 허용 바꾸기`} onClick={()=>open('permissions')}>바꾸기</button></td>
   <td data-label="계정 관리"><button className={`${styles.btn} ${styles.danger}`} aria-label={`${label} 지우기`} onClick={()=>open('delete')}>지우기</button></td>
  </tr>;
 }
@@ -81,9 +81,9 @@ function QrDialog({student,csrf,onClose}:{student:ClassroomStudent;csrf:string;o
 function PermissionDialog({student,classDefault,onClose,onSave}:{student:ClassroomStudent;classDefault:EditingPermissions;onClose:()=>void;onSave:(value:EditingPermissions|null)=>Promise<void>}){
  const [draft,setDraft]=useState<EditingPermissions>(effectivePermissions(student.permissions,classDefault));
  return <ClassroomDialog title={`${student.number}번 편집 허용`} onClose={onClose}>
-  <p>이 학생에게만 다르게 정해요.</p>
+  <p>이 학생에게만 다르게 정해요. 과제마다 ‘학생이 고칠 수 있는 것’을 정했다면, 그 과제의 작품에서는 과제 설정이 먼저예요.</p>
   <PermissionEditor value={draft} onChange={setDraft}/>
-  <div className={styles.dialogActions}><button className={styles.btn} onClick={onClose}>닫기</button><button className={styles.btn} onClick={()=>void onSave(null)}>기본값 사용</button><button className={`${styles.btn} ${styles.primary}`} onClick={()=>void onSave(draft)}>저장</button></div>
+  <div className={styles.dialogActions}><button className={styles.btn} onClick={onClose}>닫기</button><button className={styles.btn} onClick={()=>void onSave(null)}>학급 기본으로</button><button className={`${styles.btn} ${styles.primary}`} onClick={()=>void onSave(draft)}>저장</button></div>
  </ClassroomDialog>;
 }
 /** Paste a class list (one name per line, in number order); only changed names are saved, one student at a time. */

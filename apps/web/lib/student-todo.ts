@@ -12,10 +12,12 @@ export function todoGroup(entry:TodoEntry):TodoGroup{
  return 'todo';
 }
 const due=(entry:TodoEntry)=>entry.item.dueAt??Number.MAX_SAFE_INTEGER;
+/** A later stage that waits for the teacher's pass is not something to do yet: it goes after what can be done now. */
+const locked=(entry:TodoEntry)=>entry.type==='assignment'&&!!entry.item.after&&!entry.item.after.passed?1:0;
 export function groupTodos(assignments:readonly Assignment[],missions:readonly Mission[]):Record<TodoGroup,TodoEntry[]>{
  const entries:TodoEntry[]=[...assignments.map(item=>({type:'assignment' as const,item})),...missions.map(item=>({type:'mission' as const,item}))];
  const groups:Record<TodoGroup,TodoEntry[]>={todo:[],waiting:[],done:[],archived:[]};
  for(const entry of entries)groups[todoGroup(entry)].push(entry);
- for(const list of Object.values(groups))list.sort((a,b)=>due(a)-due(b)||b.item.createdAt-a.item.createdAt);
+ for(const list of Object.values(groups))list.sort((a,b)=>locked(a)-locked(b)||due(a)-due(b)||b.item.createdAt-a.item.createdAt);
  return groups;
 }

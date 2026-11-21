@@ -1,14 +1,15 @@
 /** Typed client for /api/v1/class (docs/architecture/classroom-design.md §6). Credentials stay in the session cookie; CSRF comes from the account session. */
 import type {AuthoringJsonbSnapshot} from '@knolstory/compatibility';
 export type ClassroomRole='member'|'teacher'|'student'|'admin';
-import {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,type EditingPermissions} from './editing-permissions';
+import {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,type EditingPermissions,type EditScope} from './editing-permissions';
 import {assertUploadSize,type StorageUsage} from './online-storage';
-export {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,describeEditingPermissions,type EditingPermissions} from './editing-permissions';
+export {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,describeEditingPermissions,taskPermissions,editScopeLabel,EDIT_SCOPE_PRESETS,type EditingPermissions,type EditScope} from './editing-permissions';
 export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;studentCount:number;createdAt?:number}>;
 export type ClassroomStudent=Readonly<{number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean;storageBytes?:number}>;
 export type Classroom=ClassroomSummary&Readonly<{defaultPermissions:EditingPermissions;students:readonly ClassroomStudent[];storage?:Readonly<{bytes:number;limit:number;studentLimit:number}>}>;
 export type AssignmentFormat='knolstory'|'shortstory';
-export type Assignment=Readonly<{archived?:true;format:AssignmentFormat;template?:Readonly<{title:string}>|null;checks?:readonly string[];targetAmount?:number|null;draftCount?:number;draftSavedAt?:number|null;draftComment?:string;draftCommentedAt?:number|null;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:readonly number[]|null;reviewStatus?:ReviewStatus;feedback?:string}>;
+export type TaskStage=Readonly<{id:string;title:string;passed?:boolean}>;
+export type Assignment=Readonly<{archived?:true;editScope?:EditScope|null;after?:TaskStage|null;format:AssignmentFormat;template?:Readonly<{title:string}>|null;checks?:readonly string[];targetAmount?:number|null;draftCount?:number;draftSavedAt?:number|null;draftComment?:string;draftCommentedAt?:number|null;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:readonly number[]|null;reviewStatus?:ReviewStatus;feedback?:string}>;
 export type ReviewStatus='passed'|'revise'|null;
 export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number;reviewStatus?:ReviewStatus;feedback?:string;reviewedAt?:number|null}>;
 export type SubmissionDocument=Readonly<{document:AuthoringJsonbSnapshot;submittedAt:number}>;
@@ -18,11 +19,11 @@ export type ClassroomMe=Readonly<{role:ClassroomRole;account:Readonly<{id:string
 /** Buttons for the teacher dashboard, in display order. */
 export const PERMISSION_PRESETS:readonly Readonly<{id:keyof typeof EDITING_PRESETS;label:string;permissions:EditingPermissions}>[]=[
  {id:'textOnly',label:'글만',permissions:EDITING_PRESETS.textOnly},
- {id:'textAndImages',label:'글·이미지',permissions:EDITING_PRESETS.textAndImages},
- {id:'all',label:'전체',permissions:EDITING_PRESETS.all},
+ {id:'textAndImages',label:'글과 그림',permissions:EDITING_PRESETS.textAndImages},
+ {id:'all',label:'모든 편집',permissions:EDITING_PRESETS.all},
 ];
 export const PERMISSION_FIELDS:readonly Readonly<{key:'images'|'characters'|'audio'|'direction'|'choices'|'newWorks';label:string}>[]=[
- {key:'images',label:'이미지 고르기'},{key:'characters',label:'인물 배치'},{key:'audio',label:'음향'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},{key:'newWorks',label:'새 작품 만들기·가져오기'},
+ {key:'images',label:'그림 고르기 (배경·인물)'},{key:'characters',label:'인물 배치'},{key:'audio',label:'음향'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},{key:'newWorks',label:'새 작품 만들기·가져오기'},
 ];
 export const effectivePermissions=resolveEditingPermissions;
 export function samePermissions(a:EditingPermissions,b:EditingPermissions){return a.images===b.images&&a.characters===b.characters&&a.audio===b.audio&&a.direction===b.direction&&a.choices===b.choices&&a.newWorks===b.newWorks&&a.forcedStoryKey===b.forcedStoryKey;}
@@ -46,7 +47,8 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['CLASSROOM_STORAGE_FULL','학급 저장 공간이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
  ['STUDENT_NUMBER_TITLE','작품 이름 앞에 내 번호가 없어요. 화면을 새로 고친 뒤 다시 제출해 주세요.'],
  ['DRAFT_NOT_FOUND','중간 저장한 작품이 없어요.'],
- ['TEMPLATE_NOT_FOUND','선생님 양식을 찾지 못했어요. 선생님께 확인해 주세요.'],
+ ['TEMPLATE_NOT_FOUND','선생님이 준 시작 작품을 찾지 못했어요. 선생님께 확인해 주세요.'],
+ ['STAGE_LOCKED','앞 단계 숏스토리 과제를 선생님이 통과시킨 뒤에 열려요.'],['STAGE_NOT_ALLOWED','놀스토리 과제는 올해의 숏스토리 과제 뒤에만 이어 줄 수 있어요.'],
  ['ASSIGNMENT_LIMIT','작품을 내는 과제는 20개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.'],
  ['SUBMISSION_STORAGE_FULL','과제 제출 공간(10MB)이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
  ['REQUEST_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
@@ -140,8 +142,8 @@ export async function studentQr(number:number,csrf:string,fetcher:Fetcher=fetch)
 export const studentLogin=(input:Readonly<{classCode:string;number:number;password:string}>,fetcher:Fetcher=fetch)=>obj('/student-login',fetcher,{method:'POST',body:input});
 export const qrLogin=(token:string,fetcher:Fetcher=fetch)=>obj('/qr-login',fetcher,{method:'POST',body:{token}});
 export async function assignmentList(fetcher:Fetcher=fetch):Promise<Assignment[]>{const data=await call('/classroom/assignments',fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data.map(item=>asAssignment(item as Record<string,unknown>)).map(item=>item);}
-export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string;format?:AssignmentFormat;shareUrl?:string;dueAt?:number;edition?:'original'|'knolstory';startPoint?:string;startLabel?:string;recipients?:readonly number[]|null;checks?:readonly string[];targetAmount?:number|null}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
-export const assignmentUpdate=async(id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null;recipients?:readonly number[]|null;checks?:readonly string[];targetAmount?:number|null}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj(`/classroom/assignments/${seg(id)}`,fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:patch}));
+export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string;format?:AssignmentFormat;shareUrl?:string;dueAt?:number;edition?:'original'|'knolstory';startPoint?:string;startLabel?:string;recipients?:readonly number[]|null;checks?:readonly string[];targetAmount?:number|null;editScope?:EditScope|null;afterAssignmentId?:string}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
+export const assignmentUpdate=async(id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null;recipients?:readonly number[]|null;checks?:readonly string[];targetAmount?:number|null;editScope?:EditScope|null}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj(`/classroom/assignments/${seg(id)}`,fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:patch}));
 /** Teacher: pass, ask for a rewrite (feedback required) or clear; `expectedSubmittedAt` is the version the teacher looked at. */
 export async function submissionReview(id:string,number:number,review:Readonly<{reviewStatus:ReviewStatus;feedback:string;expectedSubmittedAt:number}>,csrf:string,fetcher:Fetcher=fetch):Promise<SubmissionRow>{const data=await obj(`/classroom/assignments/${seg(id)}/submissions/${seg(number)}/review`,fetcher,{method:'PUT',csrf:csrfOf(csrf),body:review});return data as unknown as SubmissionRow;}
 export async function submissionList(id:string,fetcher:Fetcher=fetch):Promise<SubmissionRow[]>{const data=await call(`/classroom/assignments/${seg(id)}/submissions`,fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data as SubmissionRow[];}

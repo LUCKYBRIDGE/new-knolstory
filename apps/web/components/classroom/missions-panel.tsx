@@ -53,17 +53,14 @@ export function MissionsPanel({csrf,request=null,students=[]}:{csrf:string;reque
  return <section ref={panel} className={`${shared.card} ${styles.panel}`} aria-label="읽기·활동 과제">
   <div className={shared.sectionHeading}><div><span className={shared.eyebrow}>읽고, 생각하고, 확인받는</span><h2>읽기·활동 과제</h2></div><MissionSeal small/></div>
   <p className={shared.hint}>학생이 읽거나 활동지를 내면 선생님이 확인해요. 통과시키면 학생 화면에 ‘과제 통과’가 표시돼요.</p>
-  {!draft&&<div className={styles.starters}>
-   <button className={`${shared.btn} ${shared.primary}`} aria-expanded={picker} onClick={()=>setPicker(value=>!value)}>놀스토리 제공 과제 가져오기</button>
-   <button className={shared.btn} onClick={()=>begin({...BLANK,questions:[{id:'q1',prompt:''}]},'own')}>직접 만들기</button>
-  </div>}
+  {!draft&&!picker&&!!missions?.length&&<p className={shared.hint}>새 읽기·활동 과제는 위의 ‘새 과제 내기’에서 골라요.</p>}
   {picker&&!draft&&<ProvidedPicker onPick={mission=>begin(mission,'provided')} onClose={()=>setPicker(false)}/>}
   {draft&&<div ref={editor}><MissionEditor key={origin+draft.title} initial={draft} origin={origin} csrf={csrf} students={students} onCancel={()=>setDraft(null)}
    onCreated={mission=>{setDraft(null);setMissions(current=>[mission,...(current??[])]);setNotice(mission.recipients?`‘${mission.title}’ 과제를 ${mission.recipients.length}명에게 냈어요. 고른 학생의 ‘할 일’에 바로 보여요.`:`‘${mission.title}’ 과제를 냈어요. 학생의 ‘할 일’에 바로 보여요.`);}}/></div>}
   {notice&&<p className={shared.notice} role="status">{notice}</p>}
   {loadError?<p className={shared.error} role="alert">{loadError} <button className={shared.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>
    :missions===null?<p className={shared.hint} role="status">과제를 불러오고 있어요.</p>
-   :missions.length===0?(!draft&&!picker&&<p className={styles.empty}>아직 낸 과제가 없어요. 제공 과제를 가져오면 바로 시작할 수 있어요.</p>)
+   :missions.length===0?(!draft&&!picker&&<p className={styles.empty}>아직 낸 읽기·활동 과제가 없어요. 위의 ‘새 과제 내기’에서 ‘제공 과제 가져오기’를 고르면 바로 시작할 수 있어요.</p>)
    :<SeasonItems items={missions} render={group=><ul className={`${shared.list} ${styles.missions}`}>{group.map(mission=><li key={mission.id} className={styles.mission} data-kind={mission.kind}>
      <MissionRow mission={mission} csrf={csrf} students={students} onChanged={next=>setMissions(current=>current?.map(item=>item.id===next.id?next:item)??null)}/></li>)}</ul>}/>}
  </section>;

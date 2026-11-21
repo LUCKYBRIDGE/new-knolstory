@@ -327,11 +327,13 @@
 .composerFold>:not(summary)+:not(summary){margin-top:10px}
 /* Student rows: the per-student tools fold away on phones; wide screens show the whole table. */
 .rowMore{display:none}
+.permChip{display:none}
 @media(max-width:720px){
  .rowMore{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid #c7cbbc;border-radius:10px;background:#fffefa;color:#2c4b42;font:inherit;font-size:var(--text-small);font-weight:600;cursor:pointer}
  .rowMore::after{content:'';width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
  .rowMore[aria-expanded=true]::after{transform:translateY(2px) rotate(-135deg)}
  .table tr[data-more=false] td:nth-child(n+4){display:none}
+ .permChip{display:block;margin-top:2px;padding:0 6px;border-radius:999px;background:#fff4dd;color:#7a5410;font-size:var(--text-caption);font-weight:600;white-space:nowrap;width:max-content}
  .table td:first-child{align-self:center;display:flex;align-items:center;gap:4px}
  .table td:first-child .check{margin:8px 4px}
 }
@@ -447,3 +449,14 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
 .moreWays{margin-top:10px;border-top:1px dashed var(--class-line)}
 .moreWays>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:var(--text-small);color:var(--class-muted)}
 .moreWays>*+*{margin-top:8px}
+/* Task rules (2026-11-21): how a writing task starts and which editing tools it allows. */
+.editScope{margin:12px 0 0;padding:12px 14px;border:1px solid var(--class-line,#d9d2c3);border-radius:12px;background:#fffdf8;min-width:0}
+.editScope>legend{padding:0 4px;font-weight:700;font-size:var(--text-small)}
+.scopeChoices,.scopeTools{display:flex;flex-wrap:wrap;gap:4px 16px}
+.scopeChoices label,.scopeTools label{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:var(--text-small)}
+.scopeTools{margin-top:4px;padding-top:6px;border-top:1px dashed var(--class-line,#d9d2c3)}
+.scopeChoices input,.scopeTools input{flex:none;width:20px;height:20px;min-height:0;margin:0;padding:0;accent-color:#2f6b5d}
+.scopeChoices label,.scopeTools label{white-space:nowrap}
+
+.formHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0}
+.assignmentCreate{padding-bottom:16px}

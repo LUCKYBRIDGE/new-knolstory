@@ -1,7 +1,7 @@
 'use client';
 import {PERMISSION_FIELDS,PERMISSION_PRESETS,presetLabel,type EditingPermissions} from '../../lib/classroom-api';
 import styles from './classroom.module.css';
-/** Preset buttons (글만 / 글·이미지 / 전체) plus one checkbox per limit. */
+/** Preset buttons (글만 / 글과 그림 / 모든 편집) plus one checkbox per limit. */
 export function PermissionEditor({value,onChange,disabled=false}:{value:EditingPermissions;onChange:(next:EditingPermissions)=>void;disabled?:boolean}){
  const current=presetLabel(value);
  return <div>

@@ -130,6 +130,8 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
   await expect(page.locator('[data-work-menu]')).toHaveAttribute('open', '');
   await expect(page.getByRole('combobox', { name: '편집화면 선택', exact: true })).toBeVisible();
   await page.keyboard.press('Tab');
+  // Escape closes the menu from inside it: wait until Tab has moved focus into the open menu.
+  await expect(page.locator('[data-work-menu] :focus')).toHaveCount(1);
   await page.keyboard.press('Escape');
   await expect(page.locator('[data-work-menu]')).not.toHaveAttribute('open', '');
   await expect(page.getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false})).toBeVisible();
