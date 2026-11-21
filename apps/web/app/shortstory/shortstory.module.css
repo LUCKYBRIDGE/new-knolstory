@@ -242,3 +242,10 @@
 .shell[data-reading] .readNav{margin-top:12px}
 .shell[data-reading] .reading{touch-action:pan-y}
 @media(max-width:600px){.shell[data-reading]{padding:10px 12px}.shell[data-reading] .reading .art{width:100%;border-radius:8px}}
+/* Page writing tabs (focus plan step 6): 글 · 그림 · 쪽, one at a time under the picture. */
+.writeTabs{display:flex;gap:2px;padding:2px;margin:4px 0 12px;border-radius:10px;background:color-mix(in srgb,var(--line) 45%,transparent);width:fit-content;max-width:100%}
+.writeTabs button{min-height:40px;min-width:64px;padding:6px 16px;margin:0;border:0;border-radius:8px;background:transparent;color:var(--ink-soft);font-weight:600;box-shadow:none}
+.writeTabs button[aria-selected=true]{background:var(--white);color:var(--ink);box-shadow:0 1px 2px #18333133}
+.writeTabs button:focus-visible{outline:3px solid var(--mint-strong);outline-offset:-3px}
+.pageTools[hidden]{display:none}
+@media(max-width:600px){.writeTabs{width:100%}.writeTabs button{flex:1}}
