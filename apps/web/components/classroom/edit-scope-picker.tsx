@@ -7,6 +7,8 @@ const TOOLS:readonly {key:keyof EditScope;label:string}[]=[
  {key:'images',label:'그림 고르기 (배경·인물)'},{key:'characters',label:'인물 배치'},{key:'audio',label:'음향'},{key:'direction',label:'연출'},{key:'choices',label:'선택지·점수'},
 ];
 type Mode='class'|'textOnly'|'textAndImages'|'all'|'custom';
+/** ‘글만’ already says “only”; other labels get 만 once (‘글과 그림’만), never ‘글만’만. */
+const onlyLabel=(label:string)=>label.endsWith('만')?`‘${label}’`:`‘${label}’만`;
 const sameScope=(a:EditScope,b:EditScope)=>TOOLS.every(tool=>a[tool.key]===b[tool.key]);
 const modeOf=(value:EditScope|null):Mode=>value===null?'class':EDIT_SCOPE_PRESETS.find(item=>sameScope(item.scope,value))?.key??'custom';
 
@@ -27,6 +29,6 @@ export function EditScopePicker({value,onChange,format,legend='학생이 고칠 
    {tools.map(tool=><label key={tool.key}><input type="checkbox" checked={custom[tool.key]&&(tool.key!=='characters'||custom.images)} disabled={tool.key==='characters'&&!custom.images}
     onChange={event=>onChange({...custom,[tool.key]:event.target.checked,...(tool.key==='images'&&!event.target.checked?{characters:false}:{})})}/>{tool.label}</label>)}
   </div>}
-  <p className={styles.hint}>{mode==='class'?'학급 설정·학생별 설정을 그대로 따라요.':`이 과제의 작품에서는 ‘${editScopeLabel(value)}’만 고칠 수 있어요. 막힌 편집 화면은 학생에게 보이지 않아요.`}</p>
+  <p className={styles.hint}>{mode==='class'?'학급 설정·학생별 설정을 그대로 따라요.':`이 과제의 작품에서는 ${onlyLabel(editScopeLabel(value))} 고칠 수 있어요. 막힌 편집 화면은 학생에게 보이지 않아요.`}</p>
  </fieldset>;
 }
