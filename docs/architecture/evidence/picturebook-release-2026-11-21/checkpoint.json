@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-21",
+  "source": "main d9f18b73 (PR #55–#57 병합)",
+  "runtimeReview": {
+    "file": "docs/architecture/evidence/picturebook-release-2026-11-21/runtime-review.json",
+    "supersedes": "docs/architecture/evidence/classroom-release-2026-11-13/runtime-review.json",
+    "newPlaceholders": 41,
+    "newDirectories": 2,
+    "changedProjectMembers": 9,
+    "sdkEngineTransportNotices": "unchanged"
+  },
+  "pagesCandidate": {
+    "command": "pnpm delivery:prepare --pages-only",
+    "localPath": ".cache/pages-candidate-picturebook-20261121 (이 Mac 전용)",
+    "excluded": [
+      "runtime.zip (개발용 전체 다운로드)"
+    ],
+    "check": {
+      "files": 2171,
+      "bytes": 809643626,
+      "blockers": 0,
+      "passesPreflight": true
+    },
+    "blockers": []
+  },
+  "staticE2E": {
+    "command": "KNOL_STATIC_CANDIDATE=.cache/pages-candidate-picturebook-20261121 pnpm test:e2e:static",
+    "result": "5 passed"
+  },
+  "notDone": [
+    "운영 DB 백업",
+    "API(Mac mini Docker) 배포",
+    "Pages 배포",
+    "운영 주소 확인"
+  ],
+  "boundary": "로컬 빌드·검사만 했다. 호스팅·DB·비밀값은 바꾸지 않았다."
+}
