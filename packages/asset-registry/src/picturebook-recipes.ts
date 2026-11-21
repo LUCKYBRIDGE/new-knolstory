@@ -8,7 +8,9 @@ import {resolveAsset,type Asset} from './image-catalog';
  * Only `approved` recipes are preselected for students; nothing here is ever written back by a student.
  */
 export type RecipeReview='approved'|'assembly-review'|'reference-only';
-export type RecipeActor=Readonly<{assetId:string;slot:string;label:string;subjects:readonly string[];facing?:'left'|'right'|'original';placementPreset?:'single-left'|'single-right'|'double-left'|'double-right';xAnchor?:number;scaleMultiplier?:number}>;
+export type RecipeActor=Readonly<{assetId:string;slot:string;label:string;subjects:readonly string[];facing?:'left'|'right'|'original';placementPreset?:'single-left'|'single-right'|'double-left'|'double-right';xAnchor?:number;scaleMultiplier?:number;
+ /** The actor the page's event is about: portrait reading shows this one in the first (narration) cut. */
+ subject?:boolean}>;
 export type RecipeAlternative=Readonly<{assetId:string;slot:string;label:string;subjects?:readonly string[]}>;
 export type StageRecipe=Readonly<{
  sourceAssetId:string;recipeVersion:number;review:RecipeReview;note:string;
@@ -53,6 +55,7 @@ export function stageRecipeProblems(recipe:StageRecipe,resolve:RecipeSource['res
   for(const actor of [...left,...right])check(actor.assetId,'character','인물');
   const subjects=[...left,...right].flatMap(actor=>actor.subjects);
   if(new Set(subjects).size!==subjects.length)problems.push('같은 인물이 무대에 두 번 나와요.');
+  if([...left,...right].filter(actor=>actor.subject).length>1)problems.push('중심 인물은 한 명만 정할 수 있어요.');
   const slots=[...left,...right].map(actor=>actor.slot);
   if(new Set(slots).size!==slots.length||slots.includes('background'))problems.push('인물 자리 이름이 겹쳐요.');
  }

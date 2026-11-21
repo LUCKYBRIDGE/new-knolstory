@@ -1,6 +1,7 @@
 import type {Column,TableSpec} from './model';
 /** User-facing meaning; IDs stay stable and are never replaced with display names. */
 export function columnApplication(spec:TableSpec,column:Column):string{
+ if(spec.key==='chapterSketches')return column.key==='chapterId'?'그림책에서 보낸 장의 장 ID예요. 장마다 한 행만 써요.':column.key==='recipeVersion'?'보낼 때 쓴 숏스토리 추천 무대의 검토 버전이에요. 직접 꾸민 쪽이나 삽화만 참고한 쪽은 미설정이에요.':'그 장이 시작된 그림책 쪽의 삽화 ID예요. 편집의 그림책 구상에만 보이고 읽기에는 나오지 않아요. 등록된 그림 ID만 쓸 수 있어요.';
  if(spec.key==='sceneVisibility')return '컷 표시 조건 있음으로 정한 컷마다 한 행을 써요. 점수와 선택 조건을 함께 정하면 둘 다 맞아야 보여요. 단일 선택은 묶음을 미설정으로, 여러 선택은 모두 만족 또는 하나라도 만족으로 정해요.';
  if(spec.key==='sceneVisibilityScores')return '컷 ID로 연결하고 조건 순서는0부터 연속으로 써요. 같은 컷의 조건 묶음은 같아야 해요. 점수 ID는 점수 항목 탭에서 확인하세요.';
  if(spec.key==='sceneVisibilityChoices')return '선택지가 있는 컷 ID와 선택지 ID를 함께 써요. 같은 도착 컷이라도 어떤 선택을 골랐는지 구분해요. 조건 순서는0부터 연속으로 써요.';

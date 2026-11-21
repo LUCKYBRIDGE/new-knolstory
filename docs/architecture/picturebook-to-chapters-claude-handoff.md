@@ -10,7 +10,7 @@ Claude는 변환·저장·파일 형식·권한·추천/미리보기 UI·기존 
 
 ## 순서와 코드 출발점
 
-1. **파일 계약부터 검증한다.** 현재 [문서 버전](../../packages/story-domain/src/legacy/story-project-document.ts)과 [필드 스키마](../../packages/compatibility/src/authoring-field-schema.json), [파일 코덱](../../packages/compatibility/src/authoring-archive.ts), [표 코덱](../../packages/compatibility/src/authoring-workbook)을 함께 확인한다. 장별 개요와 선택적 출발 스케치의 왕복 fixture를 먼저 작성한다. 이전 버전 읽기와 마이그레이션, 서버의 중첩 자산 검증, 장 복제·분할의 참조 정책을 함께 검사한다. 장 참고 필드를 버리는 경로가 남아 있으면 UI 공개 전에 해결한다.
+1. **파일 계약부터 검증한다.** 현재 [문서 버전](../../packages/story-domain/src/legacy/story-project-document.ts)과 [필드 스키마](../../packages/compatibility/src/authoring-field-schema.json), [파일 코덱](../../packages/compatibility/src/authoring-archive.ts), [표 코덱](../../packages/compatibility/src/authoring-workbook)을 함께 확인한다. 장별 개요와 선택적 그림책 구상 삽화의 왕복 fixture를 먼저 작성한다. 이전 버전 읽기와 마이그레이션, 서버의 중첩 자산 검증, 장 복제·분할의 참조 정책을 함께 검사한다. 장 참고 필드를 버리는 경로가 남아 있으면 UI 공개 전에 해결한다.
 2. **결정적인 변환 함수를 만든다.** 검증된 숏스토리와 쪽별 선택, 주입된 ID 발급기를 입력으로 삼는다. 결과는 독립 프로젝트와 쪽 ID→장·첫 컷 ID 대응표다. 쪽 순서만으로 앞뒤를 잇고, 그림·제목이 같아도 각 장은 독립시킨다. [기존 생성 규칙](../../packages/runtime-core/src/authoring.ts)과 Runtime Core의 장면 컴파일을 사용한다. 학생의 문장을 수정하거나 대사를 자동으로 생성하지 않는다.
 3. **추천을 작품과 분리한다.** 원화 ID·리비전에 맞는 검토된 조합과 대안만 읽는다. 학생 직접 조합 / 승인 조합 / 참고 전용을 구별한다. 준비 화면의 변경은 쪽 ID로 임시 보관하고 ‘놀스토리로 보내기’에서 확정한다. 새 이미지 없이도 테스트 전용 승인 fixture로 후보 선택·되돌리기·복합 자세 중복 방지를 검사한다. 운영 목록으로 승격하려면 실제 기존 자료로 가로·세로 첫 무대와 권리를 대조한다.
 4. **재시도해도 하나의 원고만 생성한다.** [작업 공간](../../apps/web/lib/workspace-storage.ts)과 [탭 인계](../../apps/web/lib/workspace-takeover.ts)의 현행 쓰기 경로를 따른다. 생성 키는 소유 범위+원본 그림책 ID로 찾고, 전송 요청 ID는 재시도용으로 별도 사용한다. 원본 그림책을 보관한 뒤 변환한다. 대상 writer를 확보한 뒤 최신 인덱스를 다시 읽고 원고와 연결을 한 번에 확정한다. 두 탭의 서로 다른 요청 ID가 같은 원본을 가리키는 경우까지 검증한다. 생성 실패 시 새 편집기로 이동하지 않는다. 링크만 남거나 대상이 휴지통에 있으면 자동 재생성하지 않는다.
@@ -20,7 +20,7 @@ Claude는 변환·저장·파일 형식·권한·추천/미리보기 UI·기존 
 ## 시연으로 인수하는 기준
 
 - 별주부전 8쪽을 8장으로 만들고, 4쪽에서 시작하면 4장이 열린다. 각 장에 첫 컷 하나, 장 개요에 원문, 첫 대사는 비어 있다. 학생이 수정한 텍스트와 재배열한 쪽 순서로도 검사한다.
-- 추천이 있는 한 쪽만 바꿔도 다른 쪽의 선택은 유지된다. 같은 원화를 두 쪽에 써도 독립적이다. 첫 무대에 없는 자세·권리 미확인 자료는 추천에서 빠지고 학생은 출발 스케치를 확인할 수 있다.
+- 추천이 있는 한 쪽만 바꿔도 다른 쪽의 선택은 유지된다. 같은 원화를 두 쪽에 써도 독립적이다. 첫 무대에 없는 자세·권리 미확인 자료는 추천에서 빠지고 학생은 그림책 구상 삽화를 확인할 수 있다.
 - 2장에 컷과 대사를 추가한 뒤 그림책으로 돌아가 재진입해도 같은 작품·집필 위치가 복구된다. 원본 그림책을 수정해도 이전 놀스토리의 대사는 보존된다.
 - 한글 조합 중 확정, 취소, 연속 클릭, 두 탭, 저장 공간 부족, 손상 보관함, 권한 변경, 연결된 작품 삭제·복구를 재현한다. 실패한 생성이 원본이나 기존 원고를 바꾸지 않는지 비교한다.
 - 파일·Excel·온라인 저장 후 재열기, 자료가 누락된 기기에서의 안내, 390px/1280px 미리보기·편집·재생을 검사한다. 서버나 DB 계약을 변경한 경우 전용 테스트 PostgreSQL에서만 통합 검사를 추가한다. E2E 등록 검사, 문서 검사와 제품 용어 검사도 수행한다.
@@ -39,13 +39,13 @@ Claude는 변환·저장·파일 형식·권한·추천/미리보기 UI·기존 
 
 | 영역 | 구현 | 검사 |
 |---|---|---|
-| 파일 형식 | StoryDocument v9 `chapter.picturebookSketch`, v8 읽기, 표 ‘장 출발 그림’ 탭, 자료 검사, 분할·갈래 시 원래 장에만 보존. [저장 계약](authoring-storage-contract.md#장-출발-그림과-그림책-연결--2026-11-20) | `packages/compatibility/tests/picturebook-sketch-format.test.ts`, `picturebook-browser-reopen.test.ts`, 전체 필드 변형 |
+| 파일 형식 | StoryDocument v9 `chapter.picturebookSketch`, v8 읽기, 표 ‘그림책 구상 삽화’ 탭, 자료 검사, 분할·갈래 시 원래 장에만 보존. [저장 계약](authoring-storage-contract.md#그림책-구상-삽화와-그림책-연결--2026-11-20) | `packages/compatibility/tests/picturebook-sketch-format.test.ts`, `picturebook-browser-reopen.test.ts`, 전체 필드 변형 |
 | 쪽→장 변환 | `packages/runtime-core/src/picturebook-chapters.ts` — 주입 ID, 쪽 순서, 빈 첫 컷, 명시적 빈 무대, 한도 초과는 쪽별 안내, Runtime Core 순차 재생·종료 검사 | `packages/runtime-core/tests/picturebook-chapters.test.ts` |
 | 추천 | `packages/asset-registry/src/picturebook-stage-recipes.json`(원화 ID+revision 키) · `picturebook-recipes.ts`. 별주부전 1~8쪽 모두 승인(2·6쪽은 2026-11-20 실제 무대 검토 뒤 승인). 2쪽의 새 자라와 6쪽 조합의 근거는 [제작 요청서](picturebook-image-production-requests.md)에 있다. 검토자는 `/picturebook?review=recipes`로 승인 전 조합을 실제 무대에서 볼 수 있다(만들기 불가) | `packages/asset-registry/tests/picturebook-recipes.test.ts`(리비전·권리) |
 | 준비 화면 | `/picturebook` — 쪽 목록, 원화와 Ren’Py 첫 컷 미리보기(가로 편집·세로 읽기), 추천/직접 꾸민 무대/원화 참고, 다른 그림(역할별 3개), 복합 자세 중복 방지, 이 쪽만 되돌리기. 선택은 탭 안에서 쪽 ID로 보관 | `apps/web/lib/picturebook-preparation.test.ts` |
 | 생성·재열기 | 그림책 보관 → 요청 → 작업 공간 writer 확보 → 최신 색인 재확인 → 원고+색인 한 번에 저장 → 해당 장 첫 컷. 재진입은 마지막 집필 컷 | `apps/web/lib/picturebook-create.test.ts`, `tests/e2e/picturebook-to-chapters.spec.ts` |
 | 계정·권한 | 소유 범위별 색인, 계정·학급 확인 실패 시 생성 차단, 새 작품 금지·지정 작품·그림/인물 권한 변경 시 차단, 제출·과제 분량 미변경 | 위 두 검사 |
-| 편집기 | 현재 장의 ‘그림책 구상’(원래 글·출발 그림, 누락 자료 안내) | e2e 1280 |
+| 편집기 | 현재 장의 ‘그림책 구상’(원래 글·그림책 구상 삽화, 누락 자료 안내) | e2e 1280 |
 
 다른 세 작품의 조합 검토, 교사 과제 연결, 기기 간 출처 재연결은 후속 결정이다.
 
@@ -57,3 +57,15 @@ Claude는 변환·저장·파일 형식·권한·추천/미리보기 UI·기존 
 - `codex/picturebook-to-chapters`의 기존 커밋 위에 이번 작업을 미커밋 상태로 두었다. PR에는 새 원본 PNG·배포 WebP와 레지스트리 변경을 함께 포함한다. 운영 반영 시 Web과 API의 자산 카탈로그가 같은 빌드인지 확인한다.
 
 - 2026-11-20 후속: 옹고집전·선녀와 나무꾼·흥부와 놀부 26쪽을 실제 무대에서 검토해 모두 승인했다(선녀 1·5쪽은 제작 요청 5·6의 새 그림). 별주부전과 합쳐 기본 네 작품 34쪽이 모두 승인 조합을 가진다. 무대는 보이는 부분의 맨 아래를 바닥선에 맞추므로, 공중에 뜬 인물은 투명 여백이 아니라 바닥까지 이어진 자락으로 높이를 만든다. 세로 읽기의 해설 컷은 첫 인물(왼쪽 첫째)에 집중하므로 사건의 주인공을 왼쪽 첫째에 둔다. [검토 근거](evidence/picturebook-three-works-2026-11-20/checkpoint.json)
+
+## 병합·배포 확인 목록 — 2026-11-21
+
+그림책→놀스토리 체제를 운영에 내보내기 전의 순서다. 일반 출시 기준은 [출시 점검 스킬](../../.agents/skills/release-gate/SKILL.md)과 [정적 전달 검사](reproducible-test-environment.md#정적-전달-후보-검사--2026-10-29)를 따른다.
+
+**병합 순서.** PR #55(별주부전 2·6쪽 재확인 근거, 문서 1개) → #56(세 작품 첫 무대 조합) → #57(#56 위에 쌓임: 세로 중심 인물·용어·재제작 그림 34점·안전 영역 검사). 세 PR은 서로 겹치는 파일이 없고 현재 main 위에서 충돌 없이 합쳐진다. #57은 #56이 main에 들어간 뒤 base를 main으로 바꿔 병합한다.
+
+**늘어나는 용량 (#56+#57).** 배포되는 웹 그림 37개 3.8MB, 저장소에만 있는 원본 그림 37개 55.6MB와 검토 근거 이미지 80개 12.2MB, 코드·데이터·문서 11.1MB(카탈로그·출처 기록 포함). Pages 파일당 한도(25MiB)에 걸리는 파일은 없다. 운영 Mac mini는 디스크가 찬 적이 있으므로 배포 뒤 오래된 이미지·빌드 캐시를 정리한다.
+
+**배포 전에 막히는 것.** 이 브랜치에서 `pnpm delivery:check`는 `Runtime changed; renew source review: runtime/game.zip`으로 멈춘다. Ren’Py 실행 묶음(`game.zip`)에 그림책 새 그림의 자리표시(PR #50부터, main에도 해당)가 늘고 프로젝트 스크립트 바이트코드 9개가 바뀌어, [2026-11-13 런타임 출처 검토](evidence/classroom-release-2026-11-13/runtime-review.json) 이후 다시 봉인해야 한다. SDK·엔진·전송 사본(`renpy.wasm`·`renpy.data`와 `.br`)은 그대로다. 11-13과 같은 방식(새 자리표시는 원본 그림 해시가 `project-media-authorization.json`에 있을 때만 받아들임)으로 병합 뒤 main에서 갱신한다.
+
+**배포 순서.** ① main에서 `pnpm runtime:build` → 웹 정적 빌드 → 런타임 출처 검토 갱신 → `pnpm delivery:check` 통과 ② `pnpm delivery:prepare --pages-only`와 `test:e2e:static` ③ 운영 DB 백업(Toshiba) 뒤 API(Mac mini Docker)와 Pages를 **같은 빌드로 함께** 올린다. 서버도 같은 작품 형식 검사를 쓰므로, 웹만 올리면 작품 문서 v9(그림책 구상 삽화)의 온라인 저장·제출이 서버에서 거부된다 ④ 배포 뒤 그림책에서 놀스토리로 보내기, v9 작품 온라인 저장·다시 열기, 새 그림(사슴·수탉·제비) 무대 크기를 운영 주소에서 확인한다.

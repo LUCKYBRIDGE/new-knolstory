@@ -9,6 +9,10 @@ description: "KnolStory Next 숏스토리의 서재 진입, 그림책 읽기·�
 2. [숏스토리 화면](../../../apps/web/app/shortstory/shortstory-workspace.tsx), [보관함](../../../apps/web/lib/shortstory-library.ts), [쪽 모델](../../../packages/compatibility/src/shortstory.ts)을 역할별로 확인한다. 화면 정리는 기존 모델로 먼저 구현한다. 저장·복구·화면 전환·온라인을 바꿀 때는 [저장 계약](../../../docs/architecture/authoring-storage-contract.md)을, 파일·시트 왕복을 바꿀 때는 [현재 양식](../../../docs/architecture/authoring-workbook-v2.md)을 확인한다. 읽기와 인쇄의 Web/CSS 범위는 [ADR 0009](../../../docs/decisions/0009-product-scope-shortstory-and-exports.md)를 따른다.
 3. 정상 진입점에서 세로로 한 흐름을 끝낸다. 화면 전환에 앞서 현재 쪽과 작성 중인 입력을 보존한다. 원본에서 사본으로 넘어갈 때는 원본의 현재 쪽을 새 사본의 같은 순서에 대응시킨다. 원본과 사본의 쪽 ID는 서로 다르다. 원본에서 쓴 내용은 독립 사본에만 저장하고, 기존 개인 원고·표지·쪽 ID·Asset ID를 보존한다. 같은 사본을 다시 열거나 로그인에서 복귀할 때 새 사본을 만들지 않는다. 기존 계정·권한·온라인 기록은 화면 표시와 분리해 다룬다.
 
+## 놀스토리로 보내기
+
+그림책 쪽을 놀스토리 장으로 옮기는 일은 [전환 설계](../../../docs/architecture/picturebook-to-chapters-design.md#놀스토리로-보내기--2026-11-20-개정)와 [DESIGN](../../../DESIGN.md#그림책에서-놀스토리로-보내기--2026-11-20)을 따른다. 그림책은 보내기 전에 보관하고 놀스토리 쪽이 원고와 보낸 기록을 한 번에 저장한다. 회귀 검사는 `tests/e2e/picturebook-to-chapters.spec.ts`와 그림책 관련 E2E, 변환·형식·추천 단위 테스트(`packages/runtime-core/tests/picturebook-chapters.test.ts`, `packages/compatibility/tests/picturebook-*.test.ts`, `apps/web/lib/picturebook-*.test.ts`)다. 추천 무대 조합은 [자산 작업 스킬](../asset-pipeline/SKILL.md)을 따른다.
+
 ## 삽화 작업
 
 - [화면 설계](../../../DESIGN.md#숏스토리-작업-화면-개선-기준)의 삽화 기준에 따라 자료 준비와 쪽 편집을 함께 확인한다. 화면에서 기존 삽화를 배경 목록 안에 노출하는 것만으로 삽화 중심 편집을 완성했다고 판정하지 않는다.

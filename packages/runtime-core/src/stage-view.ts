@@ -43,6 +43,8 @@ const SEONNYEO_ADULT_COMPOSITES = new Set([
   "seonnyeo.character.classic-woodcutter-in-bucket",
   "seonnyeo.character.classic-woodcutter-riding-horse",
   "seonnyeo.character.classic-horse-startled-by-porridge",
+  "seonnyeo.character.classic-woodcutter-riding-horse-staged-v1",
+  "seonnyeo.character.classic-horse-startled-by-porridge-staged-v1",
 ]);
 const SEONNYEO_MOUNTED = new Set([
   "seonnyeo.character.classic-woodcutter-riding-horse",
@@ -67,14 +69,23 @@ export function stageSharedActor(id: string) {
         "seonnyeo.character.classic-woodcutter-in-bucket",
         "seonnyeo.character.classic-woodcutter-riding-horse",
         "seonnyeo.character.classic-horse-startled-by-porridge",
+        "seonnyeo.character.classic-woodcutter-riding-horse-staged-v1",
+        "seonnyeo.character.classic-horse-startled-by-porridge-staged-v1",
       ].includes(id);
 }
 
 // Full-body source canvases retain intrinsic stature and pose, including
 // transparent padding in the prepared child artwork. Never expand silhouettes
 // to equal height or apply the source artwork reduction a second time.
+// Art registered with a placement review is drawn at true stature on the
+// standard canvas; the legacy group corrections below must not shrink it again.
+function placedToStandard(id: string) {
+  return Boolean(assets.get(id)?.metadata.placementReview);
+}
+
 export function stageCharacterScale(id: string) {
   const asset = assets.get(id);
+  if (placedToStandard(id)) return 1;
   return SEONNYEO_MOUNTED.has(id) ? 1.4
         : asset?.story === "선녀와 나무꾼" && asset.group === "사슴" ? 0.72
         : asset?.story === "선녀와 나무꾼" && asset.group === "수탉" ? 0.48

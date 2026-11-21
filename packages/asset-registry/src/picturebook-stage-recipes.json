@@ -798,9 +798,9 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-03",
-   "recipeVersion": 1,
+   "recipeVersion": 2,
    "review": "approved",
-   "note": "작은 집 마당에서 나무꾼(왼쪽)이 반기고, 돌아가지 못한 선녀(오른쪽)가 하늘을 그리워해요.",
+   "note": "작은 집 마당에서 나무꾼(왼쪽)이 반기고, 돌아가지 못한 선녀(오른쪽)가 하늘을 그리워해요. 세로 읽기는 중심 인물인 선녀를 보여 줘요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
@@ -820,7 +820,8 @@
       "label": "선녀 · 하늘을 그리워하기",
       "subjects": [
        "seonnyeo.fairy"
-      ]
+      ],
+      "subject": true
      }
     ]
    },
@@ -883,26 +884,12 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-05",
-   "recipeVersion": 4,
+   "recipeVersion": 6,
    "review": "approved",
-   "note": "구름 자락이 바닥에 닿고 선녀가 두 아이를 안은 채 왼쪽 위로 날아올라요. 놀란 나무꾼(오른쪽)이 바라봐요. 세로 읽기의 첫 인물이 선녀가 되도록 선녀를 왼쪽에 둬요.",
+   "note": "구름 자락이 바닥에 닿고 선녀(오른쪽)가 두 아이를 안은 채 날아올라요. 놀란 나무꾼(왼쪽)이 바라봐요. 세로 읽기는 중심 인물인 선녀와 두 아이의 얼굴을 모두 보여 줘요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
-     {
-      "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
-      "slot": "fairy-children",
-      "label": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
-      "subjects": [
-       "seonnyeo.fairy",
-       "seonnyeo.children",
-       "seonnyeo.first-child",
-       "seonnyeo.second-child"
-      ],
-      "facing": "original"
-     }
-    ],
-    "right": [
      {
       "assetId": "seonnyeo.character.M02-surprised",
       "slot": "woodcutter",
@@ -911,6 +898,21 @@
        "seonnyeo.woodcutter"
       ]
      }
+    ],
+    "right": [
+     {
+      "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v3",
+      "slot": "fairy-children",
+      "label": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+      "subjects": [
+       "seonnyeo.fairy",
+       "seonnyeo.children",
+       "seonnyeo.first-child",
+       "seonnyeo.second-child"
+      ],
+      "facing": "original",
+      "subject": true
+     }
     ]
    },
    "alternatives": [],
@@ -918,10 +920,10 @@
     "seonnyeo.scene.shortstory-classic-05": "2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d",
     "seonnyeo.background.BG04-cottage-day": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
     "seonnyeo.character.M02-surprised": "1972925f6e0a3723e635eb6f5ad1b6adf859306752e0dc34cb0dda0cec413f5f",
-    "seonnyeo.character.picturebook-fairy-ascending-with-children-v2": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234"
+    "seonnyeo.character.picturebook-fairy-ascending-with-children-v3": "42275687c1e38a16c4bb1900ed4c3fde8c82c1718480661c47421ffb22f7a572"
    },
-   "reviewedAt": "2026-11-20",
-   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+   "reviewedAt": "2026-11-21",
+   "evidence": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/review.md"
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-06",
@@ -1000,9 +1002,9 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-08",
-   "recipeVersion": 1,
+   "recipeVersion": 2,
    "review": "approved",
-   "note": "마당에서 어머니(왼쪽)가 호박죽을 권하고, 나무꾼(오른쪽)은 용마에 탄 채 받아요.",
+   "note": "마당에서 어머니(왼쪽)가 호박죽을 권하고, 나무꾼(오른쪽)은 용마에 탄 채 받아요. 용마는 어머니 쪽을 보고, 탄 나무꾼은 혼자 선 나무꾼과 같은 키예요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG04-cottage-day",
     "left": [
@@ -1017,13 +1019,15 @@
     ],
     "right": [
      {
-      "assetId": "seonnyeo.character.classic-woodcutter-riding-horse",
+      "assetId": "seonnyeo.character.classic-woodcutter-riding-horse-staged-v1",
       "slot": "woodcutter-horse",
       "label": "함께 그린 나무꾼과 용마 · 말에 타기",
       "subjects": [
        "seonnyeo.woodcutter",
        "seonnyeo.horse"
-      ]
+      ],
+      "facing": "original",
+      "subject": true
      }
     ]
    },
@@ -1032,10 +1036,10 @@
     "seonnyeo.scene.shortstory-classic-08": "fe3bce81935b180b5fe4528e0296c382c98cf5de6180203ba62f0540bd09e194",
     "seonnyeo.background.BG04-cottage-day": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
     "seonnyeo.character.classic-mother-offering-porridge": "6f491ce46936b6655e598165e68c70618f7fbb53d9fe32fa6e05fe1e9f4c2b6c",
-    "seonnyeo.character.classic-woodcutter-riding-horse": "de4df86cde16fd3a75a01d556e5cd75aa4bc2cdd2be3b2c31889ea5ae0eb7035"
+    "seonnyeo.character.classic-woodcutter-riding-horse-staged-v1": "cc5cf73a6bf6db1bdc7e440053da9e59dc60a63d454d26e56199e4ef78a408dc"
    },
-   "reviewedAt": "2026-11-20",
-   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+   "reviewedAt": "2026-11-21",
+   "evidence": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/review.md"
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-09",
@@ -1077,15 +1081,15 @@
   },
   {
    "sourceAssetId": "seonnyeo.scene.shortstory-classic-10",
-   "recipeVersion": 1,
+   "recipeVersion": 2,
    "review": "approved",
-   "note": "가을의 작은 집 마당에서 수탉이 하늘을 향해 울어요.",
+   "note": "가을의 작은 집 마당에서 수탉이 하늘을 향해 울어요. 실제 키로 다시 그린 수탉이 이 쪽의 주인공이라 무대에서 1.4배로 키워 대사창 위로 보이게 해요.",
    "stage": {
     "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
     "left": [],
     "right": [
      {
-      "assetId": "seonnyeo.character.classic-rooster-calling-sky",
+      "assetId": "seonnyeo.character.classic-rooster-calling-sky-staged-v1",
       "slot": "rooster",
       "label": "수탉 · 하늘을 향해 울기",
       "subjects": [
@@ -1099,10 +1103,10 @@
    "revisions": {
     "seonnyeo.scene.shortstory-classic-10": "4d251f0233e4a71c15cb16d59576541f042917b5c45dbceed397b05ccf64907b",
     "seonnyeo.background.BG06-cottage-autumn": "c5215cfc01087ea7cef25ac08935a8538be00d1b77c678c24dc6d8ad1cc4bb67",
-    "seonnyeo.character.classic-rooster-calling-sky": "7dd1ce42ed82f1d3c544c7c1c5befccfeacae699d4fc7c5b8c282d732148eac0"
+    "seonnyeo.character.classic-rooster-calling-sky-staged-v1": "2dd8bc34bc130eab9b4fe5e6ae7193d6f7f9c799a7873b4e2bed7ae3cd5ca43f"
    },
-   "reviewedAt": "2026-11-20",
-   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+   "reviewedAt": "2026-11-21",
+   "evidence": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/review.md"
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-01",
@@ -1243,42 +1247,34 @@
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-04",
-   "recipeVersion": 1,
+   "recipeVersion": 3,
    "review": "approved",
-   "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요.",
+   "note": "봄 밭에서 쪼그려 앉은 흥부가 손을 내밀고, 작은 제비가 날아들어 박씨를 건네요. 세로 읽기는 두 인물과 박씨를 함께 보여 줘요.",
    "stage": {
     "backgroundId": "heungbu.background.spring-field",
     "left": [
      {
-      "assetId": "heungbu.character.heungbu-happy",
-      "slot": "heungbu",
-      "label": "흥부 · 기뻐하기",
+      "assetId": "heungbu.character.picturebook-heungbu-swallow-seed-v1",
+      "slot": "heungbu-swallow",
+      "label": "흥부와 제비 · 박씨 건네기",
       "subjects": [
-       "heungbu.heungbu"
-      ]
-     }
-    ],
-    "right": [
-     {
-      "assetId": "heungbu.character.swallow",
-      "slot": "swallow",
-      "label": "제비 · 박씨를 물고 오기",
-      "subjects": [
+       "heungbu.heungbu",
        "heungbu.swallow"
       ],
-      "scaleMultiplier": 0.6
+      "facing": "original",
+      "subject": true
      }
-    ]
+    ],
+    "right": []
    },
    "alternatives": [],
    "revisions": {
     "heungbu.scene.shortstory-classic-04": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
     "heungbu.background.spring-field": "73375600caec4fe75815f1886ad1859f76a603c5c76616cf97fadb6844542ed4",
-    "heungbu.character.heungbu-happy": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
-    "heungbu.character.swallow": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8"
+    "heungbu.character.picturebook-heungbu-swallow-seed-v1": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730"
    },
-   "reviewedAt": "2026-11-20",
-   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+   "reviewedAt": "2026-11-21",
+   "evidence": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/review.md"
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-05",

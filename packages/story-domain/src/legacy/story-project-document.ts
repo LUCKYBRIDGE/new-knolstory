@@ -178,7 +178,7 @@ function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 |
   }
   if(version<9&&rawProject){
     const chapters=(rawProject as {chapters?:unknown}).chapters;
-    if(Array.isArray(chapters)&&chapters.some(chapter=>chapter&&typeof chapter==='object'&&Object.hasOwn(chapter,'picturebookSketch')))issues.push({code:'invalid-value',path:'$.project.chapters',message:'장의 출발 그림은 작품 문서 버전9에서 지원해요.'});
+    if(Array.isArray(chapters)&&chapters.some(chapter=>chapter&&typeof chapter==='object'&&Object.hasOwn(chapter,'picturebookSketch')))issues.push({code:'invalid-value',path:'$.project.chapters',message:'장의 그림책 구상 삽화는 작품 문서 버전9에서 지원해요.'});
   }
   if (version < 8 && hasBranchCondition(value.project)) {
     issues.push({code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원해요.'});
@@ -227,7 +227,7 @@ export function parseStoryDocument(
 
   if(Array.isArray(value.lines)&&value.lines.some(line=>line&&typeof line==='object'&&(Object.hasOwn(line,'textVariants')||Object.hasOwn(line,'visibility'))))return failure([{code:'invalid-value',path:'$.project.lines',message:'조건별 글은 작품 문서 버전8에서 지원해요.'}]);
   if (hasBranchCondition(value)) return failure([{code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원해요.'}]);
-  if(Array.isArray(value.chapters)&&value.chapters.some(chapter=>chapter&&typeof chapter==='object'&&Object.hasOwn(chapter,'picturebookSketch')))return failure([{code:'invalid-value',path:'$.project.chapters',message:'장의 출발 그림은 작품 문서 버전9에서 지원해요.'}]);
+  if(Array.isArray(value.chapters)&&value.chapters.some(chapter=>chapter&&typeof chapter==='object'&&Object.hasOwn(chapter,'picturebookSketch')))return failure([{code:'invalid-value',path:'$.project.chapters',message:'장의 그림책 구상 삽화는 작품 문서 버전9에서 지원해요.'}]);
 
   // Unversioned legacy projects cannot opt into a v5-only interpretation.
   if (Array.isArray(value.lines) && value.lines.some(line => line && typeof line === "object" && "backgroundMode" in line)) {

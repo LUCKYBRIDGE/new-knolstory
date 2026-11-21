@@ -5,7 +5,8 @@
 3. Reading uses only1280×720 and720×1280 stages, contained and centered by the host. Editor controls remain responsive but the cut preview always uses1280×720, regardless of old preview preferences. Product scene layout uses the selected logical size; browser resize scales the whole stage instead of changing native dialogue/tool reserve. Retired classic requests map to widescreen. Native dialogue overlays the scene and fits actual page height; source pagination uses referencefont32 independent of readerfont. Never shrink or shift actors/background to avoid the dialogue panel. Follow the latest [two-format/editor-preview rule](../../../DESIGN.md#읽기-두-양식과-편집-미리보기--2026-10-20-사용자-확정).
 4. Preserve authored manual position/scale, StageComposition meaning, speaker semantics and explicit inheritance. Do not alter content to conceal overlap.
 5. Test multi-actor/speaker, manual anchors, portrait/landscape, resize/DPR, textbox overlap and overlay alignment. Assert actual rendering acknowledgement/rects, not only CSS container dimensions.
-6. For runtime source changes build runtime then Web sequentially before static/native verification.
+6. Portrait reading shows one actor in a narrative cut: speaker → `stageComposition.speakerActorKey` (the action subject, not dialogue) → first left actor. Feet are placed by the catalogue `geometry.bottom` (the lowest visible pixel), so transparent padding never lifts an actor; airborne art reaches the baseline with its own trail.
+7. For runtime source changes build runtime then Web sequentially before static/native verification.
 
 Keep layout decisions and limits current via [documentation governance](../../../docs/architecture/documentation-governance.md).
 

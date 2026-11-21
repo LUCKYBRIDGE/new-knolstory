@@ -11,7 +11,8 @@ import { advancePlayback, compileStoryScene, createPlayback, orderedLines } from
  */
 export type PicturebookPage = Readonly<{ id: string; order: number; title: string; text: string; backgroundId: string; leftAssetId: string; rightAssetId: string }>;
 export type PicturebookBook = Readonly<{ id: string; title: string; description: string; authorDisplayName: string; pages: readonly PicturebookPage[] }>;
-export type PicturebookStageActor = Readonly<Pick<StageActorEntry, 'assetId' | 'facing' | 'placementPreset' | 'xAnchor' | 'scaleMultiplier'>>;
+/** `subject`: who the first (narration) cut is about. Portrait reading shows this actor, not just the left one. */
+export type PicturebookStageActor = Readonly<Pick<StageActorEntry, 'assetId' | 'facing' | 'placementPreset' | 'xAnchor' | 'scaleMultiplier'> & { subject?: boolean }>;
 /**
  * What the first cut of one page's chapter starts with.
  * - reference: the page picture is kept only as the chapter's starting picture; the stage is empty.
@@ -60,7 +61,11 @@ function firstCut(lineId: string, chapterId: string, stage: PicturebookPageStage
     ...(actor.facing ? { facing: actor.facing } : {}), ...(actor.placementPreset ? { placementPreset: actor.placementPreset } : {}),
     ...(actor.xAnchor !== undefined ? { xAnchor: actor.xAnchor } : {}), ...(actor.scaleMultiplier !== undefined ? { scaleMultiplier: actor.scaleMultiplier } : {}),
   }));
-  const stageComposition = { leftActors: actors('L', stage.left), rightActors: actors('R', stage.right) };
+  const leftActors = actors('L', stage.left), rightActors = actors('R', stage.right);
+  const subjectIndex = [...stage.left, ...stage.right].findIndex(actor => actor.subject);
+  const subjectKey = subjectIndex < 0 ? undefined : [...leftActors, ...rightActors][subjectIndex]!.key;
+  // A narrative cut names its action subject without becoming dialogue (Runtime Core portrait focus).
+  const stageComposition = { leftActors, rightActors, ...(subjectKey ? { speakerActorKey: subjectKey } : {}) };
   return { ...base, stageComposition, ...stageProjection(stageComposition), ...(stage.backgroundId ? { backgroundId: stage.backgroundId } : { backgroundId: '', backgroundMode: 'none' as const }) };
 }
 
@@ -79,6 +84,7 @@ export function picturebookConversionIssues(book: PicturebookBook, stages: Reado
     if (page.title.length > MAX_TITLE) issues.push({ pageId: page.id, pageNumber, message: `쪽 제목이 ${page.title.length}자예요. 장 제목은 ${MAX_TITLE}자 이내로 줄여 주세요.` });
     const stage = stages[page.id];
     if (stage?.kind === 'stage' && (stage.left.length > 2 || stage.right.length > 2)) issues.push({ pageId: page.id, pageNumber, message: '첫 무대에는 한쪽에 인물을 두 명까지 둘 수 있어요.' });
+    if (stage?.kind === 'stage' && [...stage.left, ...stage.right].filter(actor => actor.subject).length > 1) issues.push({ pageId: page.id, pageNumber, message: '첫 컷의 중심 인물은 한 명만 정할 수 있어요.' });
   });
   for (const pageId of Object.keys(stages)) if (!ids.has(pageId)) issues.push({ pageId, pageNumber: 0, message: '그림책에 없는 쪽의 선택이 있어요. 준비 화면을 다시 열어 주세요.' });
   return issues;

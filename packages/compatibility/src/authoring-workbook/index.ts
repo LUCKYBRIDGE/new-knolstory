@@ -168,7 +168,7 @@ export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<A
   let p:StoryProject=readProjectTables(workbook.tables);
   for(const apply of [validateBranchGroupOwners,readFlowTables,readScoreTables,readTextVariantTables,readVisibilityTables,readStageTables,readAudioTables,readPresentationTables,readCoverTables,readPreparationTables,readSketchTables])p=apply(workbook.tables,p);
   // Document v8 workbooks carry no chapter sketches; the document is written as v9.
-  if(m.schemaVersion===8&&p.chapters.some(chapter=>chapter.picturebookSketch))throw new WorkbookIssue(meta.title,3,'문서 버전','장 출발 그림은 문서 버전9에서 지원해요.');
+  if(m.schemaVersion===8&&p.chapters.some(chapter=>chapter.picturebookSketch))throw new WorkbookIssue(meta.title,3,'문서 버전','그림책 구상 삽화는 문서 버전9에서 지원해요.');
   return createAuthoringArchive({format:'knolstory',document:createStoryDocument({project:p,savedAt:String(m.savedAt),appVersion:String(m.appVersion),...(m.assetCatalogVersion===undefined?{}:{assetCatalogVersion:String(m.assetCatalogVersion)})}),audioResources:readResources(workbook.tables)});
  }
  const rows=readTable(workbook.tables,shortProject);if(rows.length!==1)throw new WorkbookIssue(shortProject.title,3,'행','작품 행은 한 개여야 해요.');const row=rows[0];

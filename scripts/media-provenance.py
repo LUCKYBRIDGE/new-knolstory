@@ -27,6 +27,8 @@ def asset_provenance(asset):
  """Describe byte lineage, never infer a license from a local image transform."""
  base={'assetIds':[asset['id']],'authorOrRightsHolder':asset.get('copyright','unknown')}
  if asset.get('metadata',{}).get('generatedPicturebookStageAsset'):
+  if asset['metadata'].get('picturebookStageDerivative'):
+   return {**base,'provider':'local-derived-image','source':asset['sourcePath'],'generationPlan':'uniform stage canvas normalization of registered artwork; source and output hashes in the stage asset receipt'}
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; source hash and stage art normalization receipt for the picture-book bridge'}
  if asset.get('metadata',{}).get('generatedExpressionAsset'):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; identity/pose/alpha review and uniform canvas conversion in scripts/prepare-expression-assets.py'}

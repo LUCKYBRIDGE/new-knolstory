@@ -1,0 +1,1791 @@
+{
+  "date": "2026-11-21",
+  "assets": [
+    {
+      "id": "seonnyeo.character.picturebook-fairy-ascending-with-children-v3",
+      "sourceId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+      "sourceRevision": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+      "referenceId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+      "referenceRevision": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+      "targetRatio": 1.0,
+      "actualRatio": 1.0,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-picturebook-fairy-ascending-with-children-v3.png",
+      "sourceSha256": "486d45d2387580a0ab3fe6e01abdf34dffe68d64d222862725ddffed44d6cf54",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-picturebook-fairy-ascending-with-children-v3.webp",
+      "outputSha256": "42275687c1e38a16c4bb1900ed4c3fde8c82c1718480661c47421ffb22f7a572",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-picturebook-fairy-ascending-with-children-v3-comparison.jpg",
+      "geometry": {
+        "left": 0.15833333333333333,
+        "top": 0.09333333333333334,
+        "right": 0.8408333333333333,
+        "bottom": 0.96,
+        "width": 1200,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        190,
+        112,
+        1009,
+        1152
+      ],
+      "reason": "선녀와 두 아이의 얼굴과 아이를 받치는 손을 가운데로 모아 x 180~1020 및 y 800 위에 두었다. 구름 자락은 바닥선까지 이어지며 키 비율에는 구름이 포함된다.",
+      "points": [
+        {
+          "label": "세 얼굴과 받치는 손의 바깥 경계 · 육안 추정",
+          "x": 462,
+          "y": 110
+        },
+        {
+          "label": "세 얼굴과 받치는 손의 바깥 경계 · 육안 추정",
+          "x": 815,
+          "y": 490
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "seonnyeo.character.classic-woodcutter-riding-horse-staged-v1",
+      "sourceId": "seonnyeo.character.classic-woodcutter-riding-horse",
+      "sourceRevision": "de4df86cde16fd3a75a01d556e5cd75aa4bc2cdd2be3b2c31889ea5ae0eb7035",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 1.054,
+      "actualRatio": 1.0539,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-classic-woodcutter-riding-horse-staged-v1.png",
+      "sourceSha256": "93013f27759a8992ed3e1f150eec6783d5e945c3b4859a8cbfa51850a502d0c4",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-classic-woodcutter-riding-horse-staged-v1.webp",
+      "outputSha256": "cc5cf73a6bf6db1bdc7e440053da9e59dc60a63d454d26e56199e4ef78a408dc",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-classic-woodcutter-riding-horse-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.16416666666666666,
+        "top": 0.08,
+        "right": 0.875,
+        "bottom": 0.96,
+        "width": 1200,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        197,
+        96,
+        1050,
+        1152
+      ],
+      "reason": "나무꾼과 용마를 함께 그렸다. 얼굴·말 머리·고삐와 안장 접점은 x 180~1020 및 y 800 위에 있으며 말굽은 기준선에 맞춘다. 키 비율은 두 인물의 전체 알파 경계로 재고 말은 기존 용마와 대조했다.",
+      "points": [
+        {
+          "label": "riderHead top left",
+          "x": 563,
+          "y": 95
+        },
+        {
+          "label": "riderHead bottom right",
+          "x": 743,
+          "y": 300
+        },
+        {
+          "label": "horseHead top left",
+          "x": 193,
+          "y": 230
+        },
+        {
+          "label": "horseHead bottom right",
+          "x": 444,
+          "y": 516
+        },
+        {
+          "label": "reinGrip top left",
+          "x": 527,
+          "y": 430
+        },
+        {
+          "label": "reinGrip bottom right",
+          "x": 658,
+          "y": 510
+        },
+        {
+          "label": "saddleContact top left",
+          "x": 573,
+          "y": 515
+        },
+        {
+          "label": "saddleContact bottom right",
+          "x": 767,
+          "y": 600
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "seonnyeo.character.classic-horse-startled-by-porridge-staged-v1",
+      "sourceId": "seonnyeo.character.classic-horse-startled-by-porridge",
+      "sourceRevision": "9b29342a9d9786a251e2e1f4fa1e85b215135823901585d03ecb858bdd8ef294",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 1.054,
+      "actualRatio": 1.0539,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-classic-horse-startled-by-porridge-staged-v1.png",
+      "sourceSha256": "00e8736eb5c8fbfe5a064fb6c3f8546523af74d30b71adce6838ddf7151616bc",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-classic-horse-startled-by-porridge-staged-v1.webp",
+      "outputSha256": "8f3d95a24a65a0c9cfb8373d5791e149a209e57f5153ade2197e032b087ba322",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-classic-horse-startled-by-porridge-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.1475,
+        "top": 0.08,
+        "right": 0.8525,
+        "bottom": 0.96,
+        "width": 1200,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        177,
+        96,
+        1023,
+        1152
+      ],
+      "reason": "나무꾼과 용마를 함께 그렸다. 얼굴·말 머리·고삐와 안장 접점은 x 180~1020 및 y 800 위에 있으며 말굽은 기준선에 맞춘다. 키 비율은 두 인물의 전체 알파 경계로 재고 말은 기존 용마와 대조했다.",
+      "points": [
+        {
+          "label": "riderHead top left",
+          "x": 716,
+          "y": 99
+        },
+        {
+          "label": "riderHead bottom right",
+          "x": 885,
+          "y": 295
+        },
+        {
+          "label": "horseHead top left",
+          "x": 260,
+          "y": 92
+        },
+        {
+          "label": "horseHead bottom right",
+          "x": 527,
+          "y": 355
+        },
+        {
+          "label": "reinGrip top left",
+          "x": 574,
+          "y": 288
+        },
+        {
+          "label": "reinGrip bottom right",
+          "x": 699,
+          "y": 399
+        },
+        {
+          "label": "bowlSpill top left",
+          "x": 737,
+          "y": 371
+        },
+        {
+          "label": "bowlSpill bottom right",
+          "x": 962,
+          "y": 541
+        },
+        {
+          "label": "saddleContact top left",
+          "x": 579,
+          "y": 463
+        },
+        {
+          "label": "saddleContact bottom right",
+          "x": 758,
+          "y": 589
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.swallow-staged-v1",
+      "sourceId": "heungbu.character.swallow",
+      "sourceRevision": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-swallow-staged-v1.png",
+      "sourceSha256": "8af608970d93f2fa5ae307ef85ca22d46f5ebcda7eb193af614ae844d045e0c5",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-swallow-staged-v1.webp",
+      "outputSha256": "38bcad79b5682da31af38d3dc3fe57b79e62238dca58000440487af6e1eb6871",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-swallow-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.26375,
+        "top": 0.7516666666666667,
+        "right": 0.735,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        211,
+        902,
+        588,
+        1152
+      ],
+      "reason": "들보 없이 박씨를 문 제비가 발을 디딘다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.supporting-swallow-fly-staged-v1",
+      "sourceId": "heungbu.character.supporting-swallow-fly-v2",
+      "sourceRevision": "4f64998cb301d6200cbd663bba4e0157f4eadcd4a5ffe232a5c1505bc1d80aab",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-supporting-swallow-fly-staged-v1.png",
+      "sourceSha256": "e18fbc5e30121a366e46a9f15686a4e178c3f02344e8e1e57384f8062f91b3b1",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-supporting-swallow-fly-staged-v1.webp",
+      "outputSha256": "c05b60f19281593f715f08f9d99742dafca0877495e057f068d8468ddc0c0aaf",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-supporting-swallow-fly-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.3825,
+        "top": 0.7516666666666667,
+        "right": 0.61625,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        306,
+        902,
+        493,
+        1152
+      ],
+      "reason": "날개와 꼬리 전체를 살린 이륙 자세다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.supporting-swallow-injured-staged-v1",
+      "sourceId": "heungbu.character.supporting-swallow-injured-v2",
+      "sourceRevision": "bd675cd0a998b128aaa932148dd0f3eb55c9db66b414a8f0eb5c68eb8c39dddb",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-supporting-swallow-injured-staged-v1.png",
+      "sourceSha256": "a54c3f9d1d5ea753c9d8513f88f03a622a11157f32f71cfd9580622dedfbb4dd",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-supporting-swallow-injured-staged-v1.webp",
+      "outputSha256": "f9bb1f9382aa023df072faa10395643d743df152fe39a34b5cd45477e896c5be",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-supporting-swallow-injured-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.385,
+        "top": 0.7516666666666667,
+        "right": 0.61375,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        308,
+        902,
+        491,
+        1152
+      ],
+      "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "heungbu.character.emotion-swallow-joy-v4",
+      "sourceId": "heungbu.character.emotion-swallow-joy-v3",
+      "sourceRevision": "4093844defbbb6ebbeb937ce0b117cf9468557b5b5e1e2e7ae989f4d0c50be4f",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-swallow-joy-v4.png",
+      "sourceSha256": "0bf9b78161343e5d24f3ff20ed00a5f773d0d4c7b432204d5315e070b9a782f0",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-swallow-joy-v4.webp",
+      "outputSha256": "46a06bd53d5ef749d3c0f03f4c82c430fa810c8545c2093b5754b134dc8ce50a",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-swallow-joy-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.38625,
+        "top": 0.7516666666666667,
+        "right": 0.6125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        309,
+        902,
+        490,
+        1152
+      ],
+      "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "heungbu.character.emotion-swallow-anger-v4",
+      "sourceId": "heungbu.character.emotion-swallow-anger-v3",
+      "sourceRevision": "5c862b7f33f113174539f19024c4f8cd3563f431361a09a53b0d8976ceb9d97f",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-swallow-anger-v4.png",
+      "sourceSha256": "1e7f559e94f55fc304ada82322e7612dad6002c37ddd2a16d90e8cc4577171bc",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-swallow-anger-v4.webp",
+      "outputSha256": "c228090b8e8396209022788da378d47aab17e1bde8d3d9d2e2d5c826c334ce05",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-swallow-anger-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.37125,
+        "top": 0.7516666666666667,
+        "right": 0.6275,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        297,
+        902,
+        502,
+        1152
+      ],
+      "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "heungbu.character.emotion-swallow-sorrow-v4",
+      "sourceId": "heungbu.character.emotion-swallow-sorrow-v3",
+      "sourceRevision": "e1d039d338dd0b2af149f28176df88c72f4c4b0933b3acab060a6e34c6f2c2d3",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-swallow-sorrow-v4.png",
+      "sourceSha256": "75eb131cb722e91882b255f0e4f71f91e1279d9fd06c22db6cc5cde251c6e417",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-swallow-sorrow-v4.webp",
+      "outputSha256": "7c31048faf83561e4f826bd3bc63375a2e5902fdaf00b7e6cdc3ef82a378960f",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-swallow-sorrow-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.39375,
+        "top": 0.7516666666666667,
+        "right": 0.605,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        315,
+        902,
+        484,
+        1152
+      ],
+      "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "heungbu.character.emotion-swallow-mirth-v4",
+      "sourceId": "heungbu.character.emotion-swallow-mirth-v3",
+      "sourceRevision": "61e451af0c3d0249fb4413e4b85298173c688d06aaaea23560950c9bc8d4e26f",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "targetRatio": 0.25,
+      "actualRatio": 0.25,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-swallow-mirth-v4.png",
+      "sourceSha256": "63a22fc614923c09bfa730deb3d88f8a3f1dc2670b6a7c352a718176dafc2d5d",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-swallow-mirth-v4.webp",
+      "outputSha256": "ea1b8096a7c35670d380bc76f22705609126778ed4687f6d86fe217bf199240c",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-swallow-mirth-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.375,
+        "top": 0.7516666666666667,
+        "right": 0.625,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        300,
+        902,
+        500,
+        1152
+      ],
+      "reason": "원본의 자세와 체형을 균일하게 줄였다. 흥부 키의 0.25배와 바닥선을 맞추면 몸 전체가 y 800 아래에 있어 얼굴·박씨·몸짓 기준과 충돌한다. 신체를 늘리지 않고 원래 비례를 유지했다.",
+      "points": [],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.classic-rooster-calling-sky-staged-v1",
+      "sourceId": "seonnyeo.character.classic-rooster-calling-sky",
+      "sourceRevision": "7dd1ce42ed82f1d3c544c7c1c5befccfeacae699d4fc7c5b8c282d732148eac0",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.4,
+      "actualRatio": 0.4132,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-classic-rooster-calling-sky-staged-v1.png",
+      "sourceSha256": "2954ed00c0a4980d0cd5cbf9f5dc9727c7323b07ae847c9ea4adae0d776b216a",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-classic-rooster-calling-sky-staged-v1.webp",
+      "outputSha256": "2dd8bc34bc130eab9b4fe5e6ae7193d6f7f9c799a7873b4e2bed7ae3cd5ca43f",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-classic-rooster-calling-sky-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.32125,
+        "top": 0.615,
+        "right": 0.67875,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        257,
+        738,
+        543,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·울음 부리 아래, 최대 y796).",
+      "points": [
+        {
+          "label": "눈",
+          "x": 311,
+          "y": 782
+        },
+        {
+          "label": "울음 부리 아래",
+          "x": 283,
+          "y": 796
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-rooster-joy-v4",
+      "sourceId": "seonnyeo.character.emotion-rooster-joy-v3",
+      "sourceRevision": "5c3e5e51c628c310ec56eb9f5d2b38f161b05bc1d82ed99b119d8906895d99ce",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.4,
+      "actualRatio": 0.4132,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-rooster-joy-v4.png",
+      "sourceSha256": "74dd82addff21f8e13ef1c6ecf29d97029f0f2c89c8ee76dc39e4504cfb7b953",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-joy-v4.webp",
+      "outputSha256": "a4b1d89d484967d20aeec5c351377732c0d007b2834a4261a56bfb2a23197c04",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-rooster-joy-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.315,
+        "top": 0.615,
+        "right": 0.685,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        252,
+        738,
+        548,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(웃는 눈·부리 아래, 최대 y796).",
+      "points": [
+        {
+          "label": "웃는 눈",
+          "x": 323,
+          "y": 784
+        },
+        {
+          "label": "부리 아래",
+          "x": 297,
+          "y": 796
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-rooster-anger-v4",
+      "sourceId": "seonnyeo.character.emotion-rooster-anger-v3",
+      "sourceRevision": "d38e493c6c32b55013c3577a4e091d9b20ee8b8cab6801dde6d09378a8ff4b7f",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.4,
+      "actualRatio": 0.4301,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-rooster-anger-v4.png",
+      "sourceSha256": "84770948f20fd5234e48a5adba2e7b745d999b3608b9b823cb6ee6580423b4f5",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-anger-v4.webp",
+      "outputSha256": "dd6ef67116ecd5156eea396aa055d870f45acd896a6f900cdbba4c6da97720f9",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-rooster-anger-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.29125,
+        "top": 0.6008333333333333,
+        "right": 0.7075,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        233,
+        721,
+        566,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(화난 눈·부리 아래, 최대 y797).",
+      "points": [
+        {
+          "label": "화난 눈",
+          "x": 322,
+          "y": 777
+        },
+        {
+          "label": "부리 아래",
+          "x": 294,
+          "y": 797
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-rooster-sorrow-v4",
+      "sourceId": "seonnyeo.character.emotion-rooster-sorrow-v3",
+      "sourceRevision": "8c52dff59c1c3fec78b00754506907c33cc578119b8024dc2481b52cb1ad31b0",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.4,
+      "actualRatio": 0.4301,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-rooster-sorrow-v4.png",
+      "sourceSha256": "9f11c16872dae35b3e64c8293bfd81f539a5eacfa94d673c2c9fca78a92c704f",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-sorrow-v4.webp",
+      "outputSha256": "686a9a70e1bc1fc1972b33044e79b8d3d3b3bfbf1ca7d024492b98b998214c99",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-rooster-sorrow-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.31375,
+        "top": 0.6008333333333333,
+        "right": 0.68625,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        251,
+        721,
+        549,
+        1152
+      ],
+      "reason": "같은 인물의 표정과 색을 바탕으로 자세를 조정했다. 눈과 사건 표현 위치를 확인했다(슬픈 눈·눈물 끝·아래 부리 끝, 최대 y791).",
+      "points": [
+        {
+          "label": "슬픈 눈",
+          "x": 304,
+          "y": 778
+        },
+        {
+          "label": "눈물 끝",
+          "x": 312,
+          "y": 791
+        },
+        {
+          "label": "아래 부리 끝",
+          "x": 295,
+          "y": 791
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "seonnyeo.character.emotion-rooster-mirth-v4",
+      "sourceId": "seonnyeo.character.emotion-rooster-mirth-v3",
+      "sourceRevision": "edc3e84f323fe685313e408aebdbdae2bfbf260600c14505a332d131aafd2521",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.4,
+      "actualRatio": 0.4301,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-rooster-mirth-v4.png",
+      "sourceSha256": "8d352b0273aabc82bd9fc7ae8d9dd8369474e7578f79d6d7b914b63fb5a1bf52",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-rooster-mirth-v4.webp",
+      "outputSha256": "46174589826752dd4b5d2becda5feabb90dda0f2f93425428d3a72753fe49463",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-rooster-mirth-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.305,
+        "top": 0.5975,
+        "right": 0.69375,
+        "bottom": 0.9566666666666667,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        244,
+        717,
+        555,
+        1148
+      ],
+      "reason": "같은 인물의 표정과 색을 바탕으로 자세를 조정했다. 눈과 사건 표현 위치를 확인했다(웃는 눈·열린 부리 아래·왼쪽 날개 끝·오른쪽 날개 끝, 최대 y798).",
+      "points": [
+        {
+          "label": "웃는 눈",
+          "x": 401,
+          "y": 771
+        },
+        {
+          "label": "열린 부리 아래",
+          "x": 368,
+          "y": 798
+        },
+        {
+          "label": "왼쪽 날개 끝",
+          "x": 273,
+          "y": 750
+        },
+        {
+          "label": "오른쪽 날개 끝",
+          "x": 513,
+          "y": 752
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "seonnyeo.character.classic-deer-staged-v1",
+      "sourceId": "seonnyeo.character.classic-deer",
+      "sourceRevision": "d8f5f11837d0667183625805dca02f689022b9765fec4a415099f21adff6eb75",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.6,
+      "actualRatio": 0.5998,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-classic-deer-staged-v1.png",
+      "sourceSha256": "740dc0af1d3ef3c53dfa04bb070d9fd26d24cb28a1dc51f376ad6a7d9d2771b7",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-classic-deer-staged-v1.webp",
+      "outputSha256": "3375f0cf301b88667936ffbb300a4551df47a32f98b732649357466f729c6e82",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-classic-deer-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.2875,
+        "top": 0.45916666666666667,
+        "right": 0.71125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        230,
+        551,
+        569,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·입, 최대 y721).",
+      "points": [
+        {
+          "label": "눈",
+          "x": 309,
+          "y": 683
+        },
+        {
+          "label": "입",
+          "x": 245,
+          "y": 721
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "creative.character.seonnyeo-deer-listen-staged-v1",
+      "sourceId": "creative.character.seonnyeo-deer-listen",
+      "sourceRevision": "9e7d52bbdafa02a26eca31a26a6710e73c4a6b3c9857dda9a83f811f3bb3eaa0",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.6,
+      "actualRatio": 0.5998,
+      "sourceFile": "assets/source/characters/picturebook-v1/creative-seonnyeo-deer-listen-staged-v1.png",
+      "sourceSha256": "9bbd055dc7cdea7a682089af65cc4a68d884147ddb32e43ce2b509e2a1cf8ff6",
+      "output": "apps/web/public/assets/characters/picturebook-v1/creative-seonnyeo-deer-listen-staged-v1.webp",
+      "outputSha256": "ff04aba7b376b72d66b212db975a5ff4684591c089901ae0682bdce45498b9d5",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/creative-seonnyeo-deer-listen-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.28375,
+        "top": 0.45916666666666667,
+        "right": 0.71625,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        227,
+        551,
+        573,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·입·기울인 귀 끝, 최대 y734).",
+      "points": [
+        {
+          "label": "눈",
+          "x": 321,
+          "y": 704
+        },
+        {
+          "label": "입",
+          "x": 267,
+          "y": 734
+        },
+        {
+          "label": "기울인 귀 끝",
+          "x": 420,
+          "y": 643
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-deer-joy-v4",
+      "sourceId": "seonnyeo.character.emotion-deer-joy-v3",
+      "sourceRevision": "82c17c8df54411480388aab4c1a9e6265d01a5ecacad10f7c1deeb31a1adc2c5",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.6,
+      "actualRatio": 0.6467,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-deer-joy-v4.png",
+      "sourceSha256": "99587ce48af5aeccfaf0c8bfcfe95f58777a1f99abbf3654673464a16b682f38",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-deer-joy-v4.webp",
+      "outputSha256": "f0bf473b3144444533faadd5c54a1ef27b201baf3f1530ab8e4da71f193a1cf4",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-deer-joy-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.27625,
+        "top": 0.42,
+        "right": 0.72375,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        221,
+        504,
+        579,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(눈·웃는 입·가슴 앞 발굽, 최대 y797).",
+      "points": [
+        {
+          "label": "눈",
+          "x": 289,
+          "y": 647
+        },
+        {
+          "label": "웃는 입",
+          "x": 245,
+          "y": 680
+        },
+        {
+          "label": "가슴 앞 발굽",
+          "x": 295,
+          "y": 797
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-deer-anger-v4",
+      "sourceId": "seonnyeo.character.emotion-deer-anger-v3",
+      "sourceRevision": "d5860d6ffb019924e576826a9c2f3eafea53d4cf486cba697555da004cedd68c",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.6,
+      "actualRatio": 0.5998,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-deer-anger-v4.png",
+      "sourceSha256": "af95657d6377a8cc56aaee510ef9434e0f6be89653ed4071bb82e0d133eea890",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-deer-anger-v4.webp",
+      "outputSha256": "c97673820db952fb30d131f15dc6703c136a1b2d87a293e94ca03bef4da1beed",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-deer-anger-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.27375,
+        "top": 0.45916666666666667,
+        "right": 0.72625,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        219,
+        551,
+        581,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(화난 눈·입, 최대 y716).",
+      "points": [
+        {
+          "label": "화난 눈",
+          "x": 299,
+          "y": 682
+        },
+        {
+          "label": "입",
+          "x": 253,
+          "y": 716
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-deer-sorrow-v4",
+      "sourceId": "seonnyeo.character.emotion-deer-sorrow-v3",
+      "sourceRevision": "be0cb2aaf3e528977204be4076ef760a12acedbe596a689d59fdefc25497a332",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.6,
+      "actualRatio": 0.5998,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-deer-sorrow-v4.png",
+      "sourceSha256": "7a60c2153bf6f589d5b5eae67b90d80d43681fe2d5a913f676b234dcaf04f477",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-deer-sorrow-v4.webp",
+      "outputSha256": "3e6e944b901ad51657688b9aa18ec8a390435689249b08deafc2f4d6d446f18a",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-deer-sorrow-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.25375,
+        "top": 0.45916666666666667,
+        "right": 0.745,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        203,
+        551,
+        596,
+        1152
+      ],
+      "reason": "원본의 가로·세로를 같은 배율로 조정해 얼굴과 체형을 유지했다. 눈과 사건 표현 위치를 확인했다(숙인 눈·입·뺨을 닦는 발굽과 얼굴 접촉, 최대 y782).",
+      "points": [
+        {
+          "label": "숙인 눈",
+          "x": 322,
+          "y": 738
+        },
+        {
+          "label": "입",
+          "x": 277,
+          "y": 782
+        },
+        {
+          "label": "뺨을 닦는 발굽과 얼굴 접촉",
+          "x": 309,
+          "y": 774
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "seonnyeo.character.emotion-deer-mirth-v4",
+      "sourceId": "seonnyeo.character.emotion-deer-mirth-v3",
+      "sourceRevision": "e9a010146d58467715db19c8c40845e3b22df60e37fe71d75b8dabc3076d4cf3",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.6,
+      "actualRatio": 0.5998,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-emotion-deer-mirth-v4.png",
+      "sourceSha256": "c5fdab3513ce0c586edbab343e8d458cdd5d6e04c76fd7ee2e3f7f4428b172d5",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-emotion-deer-mirth-v4.webp",
+      "outputSha256": "7acdc388b164920ad9ce3332a9524dd6b662d6df558e7a52239ab6638d4f5684",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-emotion-deer-mirth-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.26125,
+        "top": 0.45916666666666667,
+        "right": 0.7375,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        209,
+        551,
+        590,
+        1152
+      ],
+      "reason": "같은 인물의 표정과 색을 바탕으로 자세를 조정했다. 눈과 사건 표현 위치를 확인했다(웃는 눈·웃는 입 아래·높인 앞발 끝, 최대 y751).",
+      "points": [
+        {
+          "label": "웃는 눈",
+          "x": 349,
+          "y": 682
+        },
+        {
+          "label": "웃는 입 아래",
+          "x": 289,
+          "y": 732
+        },
+        {
+          "label": "높인 앞발 끝",
+          "x": 229,
+          "y": 751
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v4",
+      "sourceId": "rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v3",
+      "sourceRevision": "ff7d6aaa2cabc477e61ec5812ab70226ef22c5f6fc6be29411893eccd49c69af",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-joy-v4.png",
+      "sourceSha256": "774d9736e65fd5d10f6cd0d29062b4ff070b076b558345ab8aaca296feb19159",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-joy-v4.webp",
+      "outputSha256": "41c045fcefe6a36405e6ec8f9237037c8ee756ddfb0dff2a64b3a2b615c1fa78",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-emotion-turtle-crab-courtier-joy-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.27625,
+        "top": 0.3591666666666667,
+        "right": 0.72375,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        221,
+        431,
+        579,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=615로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "눈",
+          "x": 451,
+          "y": 458
+        },
+        {
+          "label": "웃는 입",
+          "x": 399,
+          "y": 548
+        },
+        {
+          "label": "왼쪽 집게 아래",
+          "x": 279,
+          "y": 612
+        },
+        {
+          "label": "오른쪽 집게 아래",
+          "x": 495,
+          "y": 615
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.child-06-staged-v1",
+      "sourceId": "heungbu.character.child-06",
+      "sourceRevision": "476ac78cb3c3269023cd05d9392a1950867f22b6462e6c2e849844a60449cd7e",
+      "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+      "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+      "targetRatio": 1,
+      "actualRatio": 1.0,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-child-06-staged-v1.png",
+      "sourceSha256": "dddf815116b7e6308f685bbff7e382553099e47eb04471ecada092e2df095c58",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-child-06-staged-v1.webp",
+      "outputSha256": "7bc50772236beec927312a8f46b8e0c4980a4a88ff1a0fb91bede45ef116b297",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-child-06-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.3325,
+        "top": 0.39916666666666667,
+        "right": 0.66625,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        266,
+        479,
+        533,
+        1152
+      ],
+      "reason": "기존 여자아이의 복색과 체형을 유지해 서 있는 자세로 다시 그렸다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=767로 확인해 y=800 위에 둔다.",
+      "points": [
+        {
+          "label": "입",
+          "x": 340,
+          "y": 622
+        },
+        {
+          "label": "모은 왼손 아래",
+          "x": 352,
+          "y": 767
+        },
+        {
+          "label": "모은 오른손 아래",
+          "x": 397,
+          "y": 762
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.emotion-street-girl-joy-v4",
+      "sourceId": "heungbu.character.emotion-street-girl-joy-v3",
+      "sourceRevision": "e89e345c409ad8a953098691f00915104194f6e15449aa19548148a5dcc4e6e4",
+      "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+      "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+      "targetRatio": 1,
+      "actualRatio": 1.0,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-street-girl-joy-v4.png",
+      "sourceSha256": "6ac5a2ddd2712b6f934f8255a774a74235b77bce5e20b09e974a2ac64bc311db",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-street-girl-joy-v4.webp",
+      "outputSha256": "a3dd780de1efc02e73a0e00a4440655585b8e8527ce400158123eb42ca586a29",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-street-girl-joy-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.31625,
+        "top": 0.39916666666666667,
+        "right": 0.68375,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        253,
+        479,
+        547,
+        1152
+      ],
+      "reason": "기존 여자아이의 복색과 체형을 유지해 서 있는 자세로 다시 그렸다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=770로 확인해 y=800 위에 둔다.",
+      "points": [
+        {
+          "label": "웃는 입",
+          "x": 345,
+          "y": 622
+        },
+        {
+          "label": "턱에 댄 손 아래",
+          "x": 303,
+          "y": 721
+        },
+        {
+          "label": "가슴에 모은 손 아래",
+          "x": 415,
+          "y": 770
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.emotion-street-girl-sorrow-v4",
+      "sourceId": "heungbu.character.emotion-street-girl-sorrow-v3",
+      "sourceRevision": "afddb2cb4395562f4466c0ea50082da8e363c53407a66cfc24a56ec6e202c64a",
+      "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+      "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+      "targetRatio": 1,
+      "actualRatio": 1.0,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-street-girl-sorrow-v4.png",
+      "sourceSha256": "5b1dc00c6fbb0d1bb3c7fc33b0f38600e3c6db314770b61cd3f04f3e5022f160",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-street-girl-sorrow-v4.webp",
+      "outputSha256": "bb216a85f9d4c1c74576931327e626824010613688540f47e6d3b7cc263ad563",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-street-girl-sorrow-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.32875,
+        "top": 0.39916666666666667,
+        "right": 0.67125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        263,
+        479,
+        537,
+        1152
+      ],
+      "reason": "기존 여자아이의 복색과 체형을 유지해 서 있는 자세로 다시 그렸다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=776로 확인해 y=800 위에 둔다.",
+      "points": [
+        {
+          "label": "눈물 닦는 손 아래",
+          "x": 300,
+          "y": 722
+        },
+        {
+          "label": "가슴에 모은 손 아래",
+          "x": 438,
+          "y": 776
+        },
+        {
+          "label": "슬픈 입",
+          "x": 375,
+          "y": 677
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "heungbu.character.emotion-street-girl-mirth-v4",
+      "sourceId": "heungbu.character.emotion-street-girl-mirth-v3",
+      "sourceRevision": "8fbafa4092f4e8b3093683aee60c58a71138437b8653924edf08be60fa5960bf",
+      "referenceId": "heungbu.character.emotion-street-girl-anger-v3",
+      "referenceRevision": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+      "targetRatio": 1.048,
+      "actualRatio": 1.0475,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-emotion-street-girl-mirth-v4.png",
+      "sourceSha256": "1a0fe89cc6e9279a113a0b018da588e8e1bbc2fdcba129d7600ba90e2a58273f",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-emotion-street-girl-mirth-v4.webp",
+      "outputSha256": "8649b55a701b6f36710abaf110803e33f966a576eb01ee1adeb16ad6ba033d81",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-emotion-street-girl-mirth-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.11875,
+        "top": 0.3725,
+        "right": 0.88125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        95,
+        447,
+        705,
+        1152
+      ],
+      "reason": "같은 여자아이의 서서 웃는 원본을 기준 높이의 허용 범위 안에서 균일 확대했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=794로 확인해 y=800 위에 둔다.",
+      "points": [
+        {
+          "label": "웃는 입",
+          "x": 358,
+          "y": 628
+        },
+        {
+          "label": "왼쪽 손가락 끝",
+          "x": 96,
+          "y": 591
+        },
+        {
+          "label": "오른쪽 손가락 끝",
+          "x": 659,
+          "y": 794
+        }
+      ],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "rabbit-turtle.character.layered-crab-courtier-staged-v1",
+      "sourceId": "rabbit-turtle.character.layered-crab-courtier-v1",
+      "sourceRevision": "d2982c3531c45ff8de9ccdedd561c1e28699cd65649a131c8f202df4841de41a",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-layered-crab-courtier-staged-v1.png",
+      "sourceSha256": "8f69c98de9a3de85c05f0181b5f260bc79db5b857d8cfdc31c8e65fe1fd92a8e",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-layered-crab-courtier-staged-v1.webp",
+      "outputSha256": "a23239dbfc2fbe11c4872844db1235366c576a652675d7b6f847f6a68e65ac96",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-layered-crab-courtier-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.27625,
+        "top": 0.3591666666666667,
+        "right": 0.7225,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        221,
+        431,
+        578,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=578로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "입",
+          "x": 396,
+          "y": 548
+        },
+        {
+          "label": "왼쪽 집게 아래",
+          "x": 292,
+          "y": 574
+        },
+        {
+          "label": "오른쪽 집게 아래",
+          "x": 508,
+          "y": 578
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-crab-courtier-apology-staged-v1",
+      "sourceId": "rabbit-turtle.character.supporting-crab-courtier-apology-v2",
+      "sourceRevision": "ce172de34706c40b8081db34f0be0048914711d688def29ba3ed557026f558a3",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-supporting-crab-courtier-apology-staged-v1.png",
+      "sourceSha256": "5b6542ed475d7eb4d1be33f0e4bbf602d2284eeb9c837f2c155dbb19c652f8a2",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-supporting-crab-courtier-apology-staged-v1.webp",
+      "outputSha256": "85f8b746521f0fbbfdf47846077dff4f7a2d8d3f75285e6e1530a9dc32f42e09",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-supporting-crab-courtier-apology-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.26875,
+        "top": 0.3591666666666667,
+        "right": 0.73125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        215,
+        431,
+        585,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=658로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "눈",
+          "x": 350,
+          "y": 456
+        },
+        {
+          "label": "모은 집게 접점",
+          "x": 402,
+          "y": 550
+        },
+        {
+          "label": "왼쪽·오른쪽 집게 아래",
+          "x": 446,
+          "y": 658
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-crab-courtier-argue-staged-v1",
+      "sourceId": "rabbit-turtle.character.supporting-crab-courtier-argue-v2",
+      "sourceRevision": "773bd24f278bda17d09184d35c68183f023aee38551c009d3f07826f6fa0c365",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-supporting-crab-courtier-argue-staged-v1.png",
+      "sourceSha256": "ccbee8f518d0a80ee5ff3c2fc6a92a407594030a3a7da6d8637b7784d80eeac2",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-supporting-crab-courtier-argue-staged-v1.webp",
+      "outputSha256": "e0889310c2af2e4acddeef3c0cfd5b2f30204080204d2c3cda4475606bd4777a",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-supporting-crab-courtier-argue-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.2575,
+        "top": 0.3591666666666667,
+        "right": 0.7425,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        206,
+        431,
+        594,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=632로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "말하는 입",
+          "x": 400,
+          "y": 586
+        },
+        {
+          "label": "왼쪽 집게 아래",
+          "x": 264,
+          "y": 594
+        },
+        {
+          "label": "오른쪽 집게 아래",
+          "x": 482,
+          "y": 632
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v4",
+      "sourceId": "rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v3",
+      "sourceRevision": "d5b5bb48b90d6caf3990994507e5976e9aacefe4db1a26a3f03de7606bff6389",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-anger-v4.png",
+      "sourceSha256": "c54143c35a91213218fc7338086f3fd3bf5654f6f21792fbb9d285f25b82d55e",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-anger-v4.webp",
+      "outputSha256": "58de5631437d6781ebe182e2d9ee4c150bc9f096fa8889527647ef05154bdbf5",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-emotion-turtle-crab-courtier-anger-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.2275,
+        "top": 0.3591666666666667,
+        "right": 0.77125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        182,
+        431,
+        617,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=608로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "화난 입",
+          "x": 400,
+          "y": 572
+        },
+        {
+          "label": "왼쪽 집게 아래",
+          "x": 250,
+          "y": 608
+        },
+        {
+          "label": "오른쪽 집게 아래",
+          "x": 554,
+          "y": 608
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v4",
+      "sourceId": "rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v3",
+      "sourceRevision": "52b3acfae19a77751d3aa818cb590f6cfdd5546d3aaa9483cd6b196a3af44940",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-sorrow-v4.png",
+      "sourceSha256": "29dc0ae1fa68edf312468083f938c6532f55a16014abf96880901a4f3c3350f1",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-sorrow-v4.webp",
+      "outputSha256": "e6f75be764cbd471f84bc60c6c32b0546c21c1d2d1358b8988224cf1a6b87db5",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-emotion-turtle-crab-courtier-sorrow-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.25,
+        "top": 0.3591666666666667,
+        "right": 0.74875,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        200,
+        431,
+        599,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=638로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "입",
+          "x": 400,
+          "y": 576
+        },
+        {
+          "label": "왼쪽 집게 아래",
+          "x": 312,
+          "y": 638
+        },
+        {
+          "label": "눈물 닦는 집게 아래",
+          "x": 482,
+          "y": 630
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v4",
+      "sourceId": "rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v3",
+      "sourceRevision": "2ce9511cf509f92ba178c906550913a51a9c8eecde768dacc3f40e4af5f81604",
+      "referenceId": "rabbit-turtle.character.turtle-offer",
+      "referenceRevision": "bbdc7e039d81699258abc4472f08620f8d484454a0eb2bb137ca9c3494d6d20c",
+      "targetRatio": 0.7,
+      "actualRatio": 0.7,
+      "sourceFile": "assets/source/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-mirth-v4.png",
+      "sourceSha256": "4cf61c4b8049ca155283a288a25fb466fbb99e33960c7615e7c0371967effcca",
+      "output": "apps/web/public/assets/characters/picturebook-v1/rabbit-turtle-emotion-turtle-crab-courtier-mirth-v4.webp",
+      "outputSha256": "c83c401304aabb2a14f7edf6c1312e353e7bd5697c6025b6b5857c695b9922a2",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/rabbit-turtle-emotion-turtle-crab-courtier-mirth-v4-comparison.jpg",
+      "geometry": {
+        "left": 0.1975,
+        "top": 0.3591666666666667,
+        "right": 0.8025,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        158,
+        431,
+        642,
+        1152
+      ],
+      "reason": "눈과 집게가 높이 놓이는 곧게 선 자세로 관복과 색을 유지했다. 비교판에서 얼굴과 제스처 아래 끝을 약 y=600로 확인해 y=760 위에 둔다.",
+      "points": [
+        {
+          "label": "웃는 입",
+          "x": 394,
+          "y": 600
+        },
+        {
+          "label": "왼쪽 집게 아래",
+          "x": 206,
+          "y": 594
+        },
+        {
+          "label": "오른쪽 집게 아래",
+          "x": 588,
+          "y": 594
+        }
+      ],
+      "method": "built-in image_gen reference edit and uniform stage canvas normalization"
+    },
+    {
+      "id": "seonnyeo.character.classic-wing-robe-staged-v1",
+      "sourceId": "seonnyeo.character.classic-wing-robe",
+      "sourceRevision": "6da9ffaa8769569923526a27058125efdf53760fa8d94d9304e47efbbf23e37b",
+      "referenceId": "seonnyeo.character.M02-honest",
+      "referenceRevision": "b0b163cdda03e312ddc120fca82fe733f1e1369286a6f97806957fa44fa4930c",
+      "targetRatio": 0.45,
+      "actualRatio": 0.4501,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-classic-wing-robe-staged-v1.png",
+      "sourceSha256": "292b911ecdef3eb6530ae45539d7d5b8cba3dab6aabb1940448a2cb3011e7edf",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-classic-wing-robe-staged-v1.webp",
+      "outputSha256": "32e3937b0f73f741b7d56519315a9bd42eecf4edf046540e9422040b211e2d5e",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/seonnyeo-classic-wing-robe-staged-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.25875,
+        "top": 0.5841666666666666,
+        "right": 0.74125,
+        "bottom": 0.96,
+        "width": 800,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        207,
+        701,
+        593,
+        1152
+      ],
+      "reason": "소품. 나무꾼 품에 들어갈 크기로 원본을 균일 축소했다. 얼굴과 손은 없고, 옷깃과 녹색 매듭 일부는 y 800 아래에 놓인다. 사람이 옷을 잡는 접촉점은 함께 그린 그림에서 검토해야 한다.",
+      "points": [],
+      "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "heungbu.character.picturebook-heungbu-swallow-seed-v1",
+      "sourceId": "heungbu.scene.shortstory-classic-04",
+      "sourceRevision": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "additionalReferenceRevisions": {
+        "heungbu.character.swallow-staged-v1": "38bcad79b5682da31af38d3dc3fe57b79e62238dca58000440487af6e1eb6871"
+      },
+      "targetRatio": 0.72,
+      "actualRatio": 0.72,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.png",
+      "sourceSha256": "f817b51e9d9e721c31cfd04bceae32e629ea139256a9d03c7e666e5f5aa4a67c",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
+      "outputSha256": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-picturebook-heungbu-swallow-seed-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.235,
+        "top": 0.36,
+        "right": 0.7641666666666667,
+        "bottom": 0.96,
+        "width": 1200,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        282,
+        432,
+        917,
+        1152
+      ],
+      "reason": "앉은 흥부의 얼굴과 내민 손, 작은 제비와 박씨 전체를 x 180~1020 및 y 800 위에서 확인했다. 키 비율에는 제비까지 함께 그린 묶음의 알파 경계를 썼다.",
+      "points": [
+        {
+          "label": "흥부 얼굴 왼쪽 위",
+          "x": 441,
+          "y": 551
+        },
+        {
+          "label": "흥부 턱",
+          "x": 589,
+          "y": 688
+        },
+        {
+          "label": "받는 손 끝",
+          "x": 778,
+          "y": 638
+        },
+        {
+          "label": "받는 손바닥 아래",
+          "x": 684,
+          "y": 690
+        },
+        {
+          "label": "제비 날개 위",
+          "x": 742,
+          "y": 433
+        },
+        {
+          "label": "제비 꼬리 끝",
+          "x": 915,
+          "y": 641
+        },
+        {
+          "label": "제비 눈",
+          "x": 725,
+          "y": 566
+        },
+        {
+          "label": "제비 부리 끝",
+          "x": 712,
+          "y": 589
+        },
+        {
+          "label": "박씨",
+          "x": 709,
+          "y": 612
+        }
+      ],
+      "method": "built-in image_gen and uniform stage canvas normalization"
+    }
+  ],
+  "recipeRevisions": [
+    {
+      "previous": {
+        "sourceAssetId": "seonnyeo.scene.shortstory-classic-05",
+        "recipeVersion": 5,
+        "review": "approved",
+        "note": "구름 자락이 바닥에 닿고 선녀(오른쪽)가 두 아이를 안은 채 날아올라요. 놀란 나무꾼(왼쪽)이 바라봐요. 세로 읽기는 중심 인물인 선녀를 보여 줘요.",
+        "stage": {
+          "backgroundId": "seonnyeo.background.BG04-cottage-day",
+          "left": [
+            {
+              "assetId": "seonnyeo.character.M02-surprised",
+              "slot": "woodcutter",
+              "label": "나무꾼 · 놀라 바라보기",
+              "subjects": [
+                "seonnyeo.woodcutter"
+              ]
+            }
+          ],
+          "right": [
+            {
+              "assetId": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+              "slot": "fairy-children",
+              "label": "선녀와 두 아이 · 구름을 타고 하늘로 오르기",
+              "subjects": [
+                "seonnyeo.fairy",
+                "seonnyeo.children",
+                "seonnyeo.first-child",
+                "seonnyeo.second-child"
+              ],
+              "facing": "original",
+              "subject": true
+            }
+          ]
+        },
+        "alternatives": [],
+        "revisions": {
+          "seonnyeo.scene.shortstory-classic-05": "2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d",
+          "seonnyeo.background.BG04-cottage-day": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
+          "seonnyeo.character.M02-surprised": "1972925f6e0a3723e635eb6f5ad1b6adf859306752e0dc34cb0dda0cec413f5f",
+          "seonnyeo.character.picturebook-fairy-ascending-with-children-v2": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234"
+        },
+        "reviewedAt": "2026-11-20",
+        "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+      },
+      "currentVersion": 6
+    },
+    {
+      "previous": {
+        "sourceAssetId": "seonnyeo.scene.shortstory-classic-08",
+        "recipeVersion": 1,
+        "review": "approved",
+        "note": "마당에서 어머니(왼쪽)가 호박죽을 권하고, 나무꾼(오른쪽)은 용마에 탄 채 받아요.",
+        "stage": {
+          "backgroundId": "seonnyeo.background.BG04-cottage-day",
+          "left": [
+            {
+              "assetId": "seonnyeo.character.classic-mother-offering-porridge",
+              "slot": "mother",
+              "label": "어머니 · 호박죽을 권하기",
+              "subjects": [
+                "seonnyeo.mother"
+              ]
+            }
+          ],
+          "right": [
+            {
+              "assetId": "seonnyeo.character.classic-woodcutter-riding-horse",
+              "slot": "woodcutter-horse",
+              "label": "함께 그린 나무꾼과 용마 · 말에 타기",
+              "subjects": [
+                "seonnyeo.woodcutter",
+                "seonnyeo.horse"
+              ]
+            }
+          ]
+        },
+        "alternatives": [],
+        "revisions": {
+          "seonnyeo.scene.shortstory-classic-08": "fe3bce81935b180b5fe4528e0296c382c98cf5de6180203ba62f0540bd09e194",
+          "seonnyeo.background.BG04-cottage-day": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
+          "seonnyeo.character.classic-mother-offering-porridge": "6f491ce46936b6655e598165e68c70618f7fbb53d9fe32fa6e05fe1e9f4c2b6c",
+          "seonnyeo.character.classic-woodcutter-riding-horse": "de4df86cde16fd3a75a01d556e5cd75aa4bc2cdd2be3b2c31889ea5ae0eb7035"
+        },
+        "reviewedAt": "2026-11-20",
+        "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+      },
+      "currentVersion": 2
+    },
+    {
+      "previous": {
+        "sourceAssetId": "heungbu.scene.shortstory-classic-04",
+        "recipeVersion": 2,
+        "review": "approved",
+        "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요. 세로 읽기는 박씨를 문 제비를 보여 줘요.",
+        "stage": {
+          "backgroundId": "heungbu.background.spring-field",
+          "left": [
+            {
+              "assetId": "heungbu.character.heungbu-happy",
+              "slot": "heungbu",
+              "label": "흥부 · 기뻐하기",
+              "subjects": [
+                "heungbu.heungbu"
+              ]
+            }
+          ],
+          "right": [
+            {
+              "assetId": "heungbu.character.swallow",
+              "slot": "swallow",
+              "label": "제비 · 박씨를 물고 오기",
+              "subjects": [
+                "heungbu.swallow"
+              ],
+              "scaleMultiplier": 0.6,
+              "subject": true
+            }
+          ]
+        },
+        "alternatives": [],
+        "revisions": {
+          "heungbu.scene.shortstory-classic-04": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
+          "heungbu.background.spring-field": "73375600caec4fe75815f1886ad1859f76a603c5c76616cf97fadb6844542ed4",
+          "heungbu.character.heungbu-happy": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+          "heungbu.character.swallow": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8"
+        },
+        "reviewedAt": "2026-11-20",
+        "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+      },
+      "currentVersion": 3
+    },
+    {
+      "previous": {
+        "sourceAssetId": "seonnyeo.scene.shortstory-classic-10",
+        "recipeVersion": 1,
+        "review": "approved",
+        "note": "가을의 작은 집 마당에서 수탉이 하늘을 향해 울어요.",
+        "stage": {
+          "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+          "left": [],
+          "right": [
+            {
+              "assetId": "seonnyeo.character.classic-rooster-calling-sky",
+              "slot": "rooster",
+              "label": "수탉 · 하늘을 향해 울기",
+              "subjects": [
+                "seonnyeo.rooster"
+              ],
+              "scaleMultiplier": 1.4
+            }
+          ]
+        },
+        "alternatives": [],
+        "revisions": {
+          "seonnyeo.scene.shortstory-classic-10": "4d251f0233e4a71c15cb16d59576541f042917b5c45dbceed397b05ccf64907b",
+          "seonnyeo.background.BG06-cottage-autumn": "c5215cfc01087ea7cef25ac08935a8538be00d1b77c678c24dc6d8ad1cc4bb67",
+          "seonnyeo.character.classic-rooster-calling-sky": "7dd1ce42ed82f1d3c544c7c1c5befccfeacae699d4fc7c5b8c282d732148eac0"
+        },
+        "reviewedAt": "2026-11-20",
+        "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+      },
+      "currentVersion": 2
+    },
+    {
+      "previous": {
+        "sourceAssetId": "heungbu.scene.shortstory-classic-04",
+        "recipeVersion": 2,
+        "review": "approved",
+        "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요. 세로 읽기는 박씨를 문 제비를 보여 줘요.",
+        "stage": {
+          "backgroundId": "heungbu.background.spring-field",
+          "left": [
+            {
+              "assetId": "heungbu.character.heungbu-happy",
+              "slot": "heungbu",
+              "label": "흥부 · 기뻐하기",
+              "subjects": [
+                "heungbu.heungbu"
+              ]
+            }
+          ],
+          "right": [
+            {
+              "assetId": "heungbu.character.swallow",
+              "slot": "swallow",
+              "label": "제비 · 박씨를 물고 오기",
+              "subjects": [
+                "heungbu.swallow"
+              ],
+              "scaleMultiplier": 0.6,
+              "subject": true
+            }
+          ]
+        },
+        "alternatives": [],
+        "revisions": {
+          "heungbu.scene.shortstory-classic-04": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
+          "heungbu.background.spring-field": "73375600caec4fe75815f1886ad1859f76a603c5c76616cf97fadb6844542ed4",
+          "heungbu.character.heungbu-happy": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+          "heungbu.character.swallow": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8"
+        },
+        "reviewedAt": "2026-11-20",
+        "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+      },
+      "currentVersion": 3
+    }
+  ],
+  "scope": "기존 인물·소품을 기준으로 한 무대용 새 ID의 제작과 배치 검토"
+}
