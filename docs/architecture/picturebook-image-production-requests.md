@@ -1,6 +1,6 @@
 # 그림책→놀스토리 · 이미지 제작 요청
 
-**진행 상황 (2026-11-20):** 요청 1·2·3 완성·등록(`picturebook-turtle-pleading-v1`, `picturebook-rabbit-walking-away-v1`, `picturebook-shore-reeds-v1`). 실제 무대 검토 뒤 1·5·8쪽 조합 승인. 요청 4의 자라를 2쪽에 등록했고, 6쪽은 기존 자산으로 조합했다. 2·6쪽도 실제 무대 검토 뒤 승인했다. [검토 근거](evidence/picturebook-chapters-2026-11-20/checkpoint.json)
+**진행 상황 (2026-11-20):** 요청 1~6과 보완(요청 6 v2)을 모두 등록했고, 실제 무대 검토 뒤 기본 네 작품 34쪽 모두 승인 조합을 가진다. [별주부전 검토](evidence/picturebook-chapters-2026-11-20/checkpoint.json) · [세 작품 검토](evidence/picturebook-three-works-2026-11-20/checkpoint.json)
 
 2026-11-20 · 별주부전 8쪽 수직 검증에서 나온 요청이다. 제품 동작은 [전환 설계](picturebook-to-chapters-design.md), 작업 순서는 [구현 인계](picturebook-to-chapters-claude-handoff.md), 검토한 조합은 [장면 조합 목록](../../packages/asset-registry/src/picturebook-stage-recipes.json)이 소유한다. 이 문서는 새 그림이 필요한 장면만 다룬다. 요청한 그림이 등록되기 전까지 해당 쪽은 ‘삽화만 참고’로 동작하며 학생의 쓰기는 막히지 않는다.
 
@@ -66,6 +66,45 @@
 
 - **5쪽 뜻밖의 위기**는 놀란 토끼와 명령하는 용왕 조합을 승인했다. 왕좌 높이는 재현하지 않았다.
 - **6쪽 위기를 뒤집는 꾀**의 2차 조합은 왼쪽 토끼, 오른쪽 자라·용왕을 배치한다. 가로 무대에서 토끼의 손짓과 세 인물의 방향이 읽힌다. 세로 첫 컷은 기존 인물 선택 규칙에 따라 토끼 한 명을 표시하므로, 승인된 다른 쪽과 같은 규칙이라 2026-11-20에 승인했다. 듣는 용왕은 학생이 다음 컷에서 보여 준다.
+
+## 요청 5 · 몸을 숙여 사슴을 감싸 숨기는 나무꾼 (선녀와 나무꾼, 우선 1)
+
+| 항목 | 내용 |
+|---|---|
+| 원화 | `seonnyeo.scene.shortstory-classic-01` 사슴을 숨겨 주다 |
+| 검토한 후보 | `seonnyeo.character.M02-concerned`(서서 걱정하기)와 `seonnyeo.character.classic-deer`(서 있는 사슴)를 나란히, 오른쪽에 `creative.character.seonnyeo-hunter-look` |
+| 부족한 이유 | 2026-11-20 실제 무대 검토에서 나무꾼과 사슴이 나란히 서 있을 뿐이라 ‘숨겨 주기’가 읽히지 않았다. |
+| 필요한 행동 | 나무꾼이 수풀 쪽으로 몸을 낮춰 한 팔로 사슴을 감싸 자기 뒤에 숨기고, 고개는 오른쪽(사냥꾼 쪽)을 경계하며 돌아봄. 나무꾼과 사슴을 **한 장으로 함께 그린** 묶음. |
+| 기준 ID | 나무꾼 `seonnyeo.character.M02-concerned`, 사슴 `seonnyeo.character.classic-deer` |
+| 함께 쓰는 자료 | 배경 `seonnyeo.background.BG01-valley-day`, 오른쪽 `creative.character.seonnyeo-hunter-look` |
+| 구도 | 무대 왼쪽 묶음, 1200×1200. 낮은 자세라 세로 읽기에서 얼굴이 대사창 위에 남는지 확인. |
+| 재사용 | 누군가를 숨겨 주거나 보호하는 장면 |
+
+## 요청 6 · 두 아이를 안고 하늘로 날아오르는 선녀 (선녀와 나무꾼, 우선 1)
+
+| 항목 | 내용 |
+|---|---|
+| 원화 | `seonnyeo.scene.shortstory-classic-05` 하늘로 떠난 가족 |
+| 검토한 후보 | `seonnyeo.character.classic-fairy-carrying-children`(두 아이를 안고 땅에 섬), 왼쪽 `seonnyeo.character.M02-surprised` |
+| 부족한 이유 | 무대의 인물은 바닥선에 서므로 기존 그림의 선녀가 땅에 서 있어 ‘하늘로 떠남’이 읽히지 않았다. |
+| 필요한 행동 | 날개옷 자락이 바람에 날리며 몸이 비스듬히 위로 떠오르는 선녀가 두 아이를 안음. 그림 안에서 발 아래로 빈 공간을 두어(아래 30% 이상 투명) 무대에서 떠 있는 것처럼 보이게 함. |
+| 기준 ID | `seonnyeo.character.classic-fairy-carrying-children`(얼굴·의상·두 아이) |
+| 함께 쓰는 자료 | 배경 `seonnyeo.background.BG04-cottage-day`, 왼쪽 `seonnyeo.character.M02-surprised` |
+| 구도 | 무대 오른쪽 묶음, 1200×1200. 세로 읽기에서도 하늘로 오르는 방향(왼쪽 위 또는 오른쪽 위)이 읽히는지 확인. |
+| 재사용 | 하늘로 오르거나 날아가는 장면 |
+
+## 요청 6 보완 · 구름 자락이 바닥까지 이어지는 날아오르는 선녀 (선녀와 나무꾼, 우선 1)
+
+| 항목 | 내용 |
+|---|---|
+| 원화 | `seonnyeo.scene.shortstory-classic-05` 하늘로 떠난 가족 |
+| 1차 결과 | `seonnyeo.character.picturebook-fairy-ascending-with-children-v1`. 그림 자체는 원화와 맞지만 실제 무대에서 바닥에 붙어 보였다. |
+| 원인 | 무대 배치(Runtime Core `stage-layout.ts`)는 카탈로그 `geometry.bottom`, 즉 **보이는 부분의 맨 아래**를 바닥선에 맞춘다. 아래를 투명하게 비우면 그 여백은 무시된다. |
+| 필요한 그림 | 같은 선녀와 두 아이를 그림 위쪽 55% 안에 두고, 원화처럼 **빛나는 구름·날개옷 자락이 그림 맨 아래(바닥선)까지** 이어지게 그린다. 자락은 반투명이어도 되지만, 알파 경계가 아래 여백 4% 안까지 내려와야 한다. 그러면 자락 끝이 바닥선에 놓이고 선녀는 높이 떠 보인다. |
+| 기준 ID | `seonnyeo.character.picturebook-fairy-ascending-with-children-v1`(인물·의상·두 아이) |
+| 함께 쓰는 자료 | 배경 `seonnyeo.background.BG04-cottage-day`, 왼쪽 `seonnyeo.character.M02-surprised` |
+| 구도 | 1200×1200, 무대 오른쪽. 가로에서 선녀의 얼굴이 무대 위쪽 절반에, 세로에서 대사창 위에 오는지 확인. |
+| 등록 | 새 ID(`…-v2`)로 등록하고 v1은 그대로 둔다. 05 조합을 v3으로 올리고 조립 검토 상태를 유지한다. |
 
 ## 완료 후 등록 절차
 

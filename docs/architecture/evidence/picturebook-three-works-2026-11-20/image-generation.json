@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-20",
+  "method": "built-in image_gen reference edits; uniform resize, transparent canvas and WebP derivatives",
+  "reviewScope": "Visual comparison and geometry only. Runtime stage review and approval remain pending.",
+  "assets": [
+    {
+      "id": "seonnyeo.character.picturebook-woodcutter-hiding-deer-v1",
+      "request": 5,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-woodcutter-hiding-deer.png",
+      "sourceSha256": "de3cfbd939677817f1596a3033aece38883692aead05a98d9efdea4e71dd0046",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-woodcutter-hiding-deer.webp",
+      "outputSha256": "662e6d1706b0cb91e70dc45efe53bf90607c1c8958c0c263e49fdb241e03b30f",
+      "comparison": "docs/architecture/evidence/picturebook-three-works-2026-11-20/asset-comparison-seonnyeo-01.jpg",
+      "referenceIds": [
+        "seonnyeo.character.M02-concerned",
+        "seonnyeo.character.classic-deer",
+        "seonnyeo.scene.shortstory-classic-01"
+      ],
+      "referenceRevisions": {
+        "seonnyeo.character.M02-concerned": "67ebad2c4d75d95a9e3949533170606b5e5f6588903fd54d49c9aee0d6e98bf9",
+        "seonnyeo.character.classic-deer": "d8f5f11837d0667183625805dca02f689022b9765fec4a415099f21adff6eb75",
+        "seonnyeo.scene.shortstory-classic-01": "88e2b3756295e61ae1c58644c616f1894ad6ba87a04ffc5a494fdff88d1f4e08"
+      },
+      "normalization": {
+        "alphaNoiseThreshold": 8,
+        "crop": [
+          39,
+          22,
+          1268,
+          1182
+        ],
+        "size": [
+          759,
+          716
+        ],
+        "offset": [
+          220,
+          436
+        ],
+        "alphaBounds": [
+          220,
+          436,
+          979,
+          1152
+        ],
+        "canvas": [
+          1200,
+          1200
+        ],
+        "transparentBottomPixels": 48
+      },
+      "comparisonSha256": "715e43fe567e64ae3bb837cfcb7ec7d038746f580eeb97dd34875e3c670dce49"
+    },
+    {
+      "id": "seonnyeo.character.picturebook-fairy-ascending-with-children-v1",
+      "request": 6,
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children.png",
+      "sourceSha256": "53bb84181a321f4b3b8b7430e1fcbf3c21ec8cac2cc26efcc1cb601a506e7c4a",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children.webp",
+      "outputSha256": "72f1483a4ed90abcf19fabb96ef61182859fd9583e785b505199eb95145ac2c8",
+      "comparison": "docs/architecture/evidence/picturebook-three-works-2026-11-20/asset-comparison-seonnyeo-05.jpg",
+      "referenceIds": [
+        "seonnyeo.character.classic-fairy-carrying-children",
+        "seonnyeo.scene.shortstory-classic-05"
+      ],
+      "referenceRevisions": {
+        "seonnyeo.character.classic-fairy-carrying-children": "69b24f42620c5db82e7e67909ec6bdba5c527ee2a8c4d4bc8b2ce27cc78e0ad6",
+        "seonnyeo.scene.shortstory-classic-05": "2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d"
+      },
+      "normalization": {
+        "alphaNoiseThreshold": 8,
+        "crop": [
+          64,
+          8,
+          1419,
+          1010
+        ],
+        "size": [
+          940,
+          695
+        ],
+        "offset": [
+          130,
+          135
+        ],
+        "alphaBounds": [
+          130,
+          135,
+          1070,
+          830
+        ],
+        "canvas": [
+          1200,
+          1200
+        ],
+        "transparentBottomPixels": 370
+      },
+      "comparisonSha256": "a87533bf9d0a553f7fbe13c63ed90e66208cb794914a2825c8662ba09aad9a05"
+    },
+    {
+      "id": "seonnyeo.character.picturebook-fairy-ascending-with-children-v2",
+      "request": "6 보완",
+      "sourceFile": "assets/source/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.png",
+      "sourceSha256": "1e658f841e52c853209b660c511820b1d39fea6c43b5580afb4adb1989afbacf",
+      "output": "apps/web/public/assets/characters/picturebook-v1/seonnyeo-fairy-ascending-with-children-v2.webp",
+      "outputSha256": "a6922d37d44766a733c3bff981cb6374eb520c09a90228931a18b3e017e1a234",
+      "comparison": "docs/architecture/evidence/picturebook-three-works-2026-11-20/asset-comparison-seonnyeo-05b.jpg",
+      "comparisonSha256": "183110de852d9eb7d1b2295dcdfe90726103d37a8cc3147026e98b636371efec",
+      "referenceIds": [
+        "seonnyeo.character.picturebook-fairy-ascending-with-children-v1",
+        "seonnyeo.scene.shortstory-classic-05"
+      ],
+      "referenceRevisions": {
+        "seonnyeo.character.picturebook-fairy-ascending-with-children-v1": "72f1483a4ed90abcf19fabb96ef61182859fd9583e785b505199eb95145ac2c8",
+        "seonnyeo.scene.shortstory-classic-05": "2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d"
+      },
+      "normalization": {
+        "alphaNoiseThreshold": 5,
+        "crop": [
+          45,
+          90,
+          1213,
+          1234
+        ],
+        "size": [
+          1062,
+          1040
+        ],
+        "offset": [
+          69,
+          112
+        ],
+        "alphaBounds": [
+          69,
+          112,
+          1131,
+          1152
+        ],
+        "canvas": [
+          1200,
+          1200
+        ],
+        "transparentBottomPixels": 48
+      },
+      "review": {
+        "characterGroupBottomApproxPx": 652,
+        "groupInspection": "구름과 늘어진 자락을 제외하고 선녀와 아이들의 보이는 부분을 눈으로 확인했다.",
+        "stage": "가로·세로 Ren’Py 무대 확인과 승인은 후속으로 남아 있다."
+      }
+    }
+  ],
+  "stageReviewNotes": {
+    "01": "두 인물의 얼굴과 팔이 가로·세로 대사창 위에서 읽히는지 확인한다.",
+    "05": "파일 하단 370px은 완전히 투명하다. 현재 무대의 그림 하단 정렬과 첫 해설 컷의 인물 선택에 따라, 실제로 화면에서 떠 보이는지와 세로에서 선녀 묶음이 보이는지를 확인한다."
+  }
+}

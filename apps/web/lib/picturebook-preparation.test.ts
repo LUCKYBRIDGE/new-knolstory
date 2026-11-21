@@ -9,6 +9,8 @@ import {numberList,sendSummary,reviewRecipeSource,chooseAlternative,confirmedSta
  * Approving copies here exercises choice, revert and combined-pose rules without new images.
  */
 const approved:RecipeSource={recipes:PICTUREBOOK_RECIPES.recipes.map(recipe=>recipe.stage?{...recipe,review:'approved',reviewedAt:'test',evidence:'test-only approval'} as StageRecipe:recipe),resolve:resolveAsset};
+/** The book under test is 별주부전: only its own recipes map to its page numbers. */
+const RABBIT_RECIPES=PICTUREBOOK_RECIPES.recipes.filter(recipe=>recipe.sourceAssetId.startsWith('rabbit-turtle.'));
 const empty:RecipeSource={recipes:[],resolve:resolveAsset};
 const all={images:true,characters:true};
 const book=()=>({...getShortStoryOriginal('rabbit'),id:'student-book'});
@@ -22,11 +24,11 @@ describe('preparing a picture book for KnolStory',()=>{
  });
  it('preselects only approved recipes; reviewed-but-unapproved and production-needed pages stay reference only',()=>{
   const service=planPicturebook(book(),all);
-  expect(service.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual(PICTUREBOOK_RECIPES.recipes.filter(recipe=>recipe.review==='approved').map(recipe=>Number(recipe.sourceAssetId.slice(-2))));
+  expect(service.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual(RABBIT_RECIPES.filter(recipe=>recipe.review==='approved').map(recipe=>Number(recipe.sourceAssetId.slice(-2))));
   const plans=planPicturebook(book(),all,approved);
   expect(plans.filter(plan=>plan.kind==='recipe').map(plan=>plan.pageNumber)).toEqual([1,2,3,4,5,6,7,8]);
   // Pages whose recipe is not approved start as reference only, with the reason shown.
-  for(const recipe of PICTUREBOOK_RECIPES.recipes.filter(item=>item.review!=='approved')){
+  for(const recipe of RABBIT_RECIPES.filter(item=>item.review!=='approved')){
    const plan=service[Number(recipe.sourceAssetId.slice(-2))-1]!;
    expect(plan.kind).toBe('reference');
    expect(plan.reason).toContain(recipe.review==='assembly-review'?'검토 중':'삽화만 참고');
