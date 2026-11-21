@@ -115,7 +115,7 @@ import {EditorRelatedMemos} from './editor-related-memos';
 import {useEditorLimits} from './use-editor-limits';
 import {BUILTIN_WORKS} from '../lib/builtin-works';
 import {restrictEditorPreferences,taskPermissions} from '../lib/editing-permissions';
-import {useTaskForWork} from './use-task-for-work';
+import {bindTaskWork,useTaskForWork} from './use-task-for-work';
 import {BookCoverEditor} from './book-cover-editor';
 import {loadLandingVisit,markLandingVisited,resolveEntryView} from '../lib/landing-visit';
 import {useStorageWriter} from './use-storage-writer';
@@ -996,7 +996,7 @@ export function StoryWorkspace() {
         const stored=writeWorkspaceSnapshot(writer.guard.current!,next,{...savedProjects.current,[storyId]:project,[key]:next},contexts.current,
           {...snapshot(),storyId:key,lineId:first.id,editingPath:[first.id],playback:createPlayback(next),mode:'edit',view:'editor'});
         savedProjects.current=stored.works;contexts.current=stored.contexts;
-        localStorage.setItem(bindingKey,key);
+        bindTaskWork(editorLimits.accountId!,taskId,key);
         // Only the student's own cuts count toward the task amount, not the copied base story.
         if(!from&&editorLimits.accountId)saveTaskBaseline(editorLimits.accountId,taskId,workItems(next));
         await openLibraryWork(key,'edit');

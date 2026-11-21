@@ -1150,7 +1150,7 @@ test('a student starts a writing task from the teacher template and keeps writin
  (state.assignments[0] as Record<string,unknown>).template={title:'선생님이 준 이야기 틀'};
  await page.route('**/api/v1/class/classroom/assignments/a1/template',route=>route.fulfill({json:{success:true,data:{document:template}}}));
  await page.goto('/student');
- await page.getByRole('link',{name:'선생님 양식으로 시작',exact:true}).click();
+ await page.getByRole('link',{name:'선생님이 준 작품으로 시작',exact:true}).click();
  await expect(page).not.toHaveURL(/classTask/);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
@@ -1171,15 +1171,15 @@ test('a teacher attaches one of their works as a task template and can remove it
  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('수업용 이야기 틀');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await page.goto('/teacher');
- await page.getByRole('button',{name:'내 이야기 쓰기 양식 정하기',exact:true}).click();
- const dialog=page.getByRole('dialog',{name:'과제 양식 정하기'});
- await dialog.getByLabel('양식으로 쓸 작품').selectOption({label:'수업용 이야기 틀'});
- await dialog.getByRole('button',{name:'양식으로 정하기',exact:true}).click();
+ await page.getByRole('button',{name:'내 이야기 쓰기 시작 작품 정하기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'시작 작품 정하기'});
+ await dialog.getByLabel('나눠 줄 작품').selectOption({label:'수업용 이야기 틀'});
+ await dialog.getByRole('button',{name:'시작 작품으로 정하기',exact:true}).click();
  await expect(dialog).toHaveCount(0);
  expect((puts[0] as {content:{document:{project:{title:string}}}}).content.document.project.title).toBe('수업용 이야기 틀');
- await expect(page.getByText('양식 · 수업용 이야기 틀')).toBeVisible();
- await page.getByRole('button',{name:'내 이야기 쓰기 양식 빼기',exact:true}).click();
- await expect(page.getByText('양식 없음 · 학생은 빈 작품으로 시작해요')).toBeVisible();
+ await expect(page.getByText('시작 작품 · 수업용 이야기 틀')).toBeVisible();
+ await page.getByRole('button',{name:'내 이야기 쓰기 시작 작품 빼기',exact:true}).click();
+ await expect(page.getByText('시작 작품 없음 · 학생은 빈 작품으로 시작해요')).toBeVisible();
  expect(puts[1]).toBeNull();
 });
 test('on another device a student continues a task from the work they handed in',async({page})=>{
@@ -1314,3 +1314,14 @@ test('a KnolStory task opens after the picture book passes and starts from it, w
  }finally{await context.close();}
 });
 
+
+test('a picture book task that allows text only blocks picture choosing from the first open',async({page})=>{
+ const state=await mockClassroom(page,'student');state.signedIn=true;state.permissions=all;
+ state.assignments=[{format:'shortstory',id:'a2',title:'나의 그림책',description:'글만 써요.',storyKey:null,open:true,createdAt:1,submittedAt:null,editScope:{images:false,characters:false,audio:false,direction:false,choices:false}}];
+ await page.goto('/student');
+ await expect(page.getByText('이 과제에서 고칠 수 있는 것 · 글만')).toBeVisible();
+ await page.getByRole('link',{name:'과제 쓰기',exact:true}).click();
+ await expect(page.getByLabel('이 쪽의 이야기',{exact:true})).toBeVisible();
+ // The class allows everything, but this task's own scope wins for the work started from it.
+ await expect(page.getByRole('button',{name:'삽화 고르기',exact:true})).toBeDisabled();
+});

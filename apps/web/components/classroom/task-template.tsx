@@ -30,17 +30,17 @@ export function TaskTemplate({item,csrf,run,onChanged}:{item:Assignment;csrf:str
  async function remove(){setBusy(true);try{const done=await run(()=>templatePut(item.id,null,csrf));if(done!==undefined)await onChanged();}finally{setBusy(false);}}
  const device=choices?.filter(choice=>!choice.online)??[],online=choices?.filter(choice=>choice.online)??[];
  return <div className={styles.templateRow}>
-  <span>{item.template?<>양식 · <strong>{item.template.title}</strong></>:item.storyKey?'양식 없음 · 학생은 바탕 작품으로 시작해요':'양식 없음 · 학생은 빈 작품으로 시작해요'}</span>
-  <button className={styles.btn} disabled={busy} aria-label={`${item.title} 양식 ${item.template?'바꾸기':'정하기'}`} onClick={()=>void start()}>{item.template?'양식 바꾸기':'양식 정하기'}</button>
-  {item.template&&<button className={`${styles.btn} ${styles.danger}`} disabled={busy} aria-label={`${item.title} 양식 빼기`} onClick={()=>void remove()}>양식 빼기</button>}
-  {open&&<ClassroomDialog title="과제 양식 정하기" onClose={()=>setOpen(false)}>
-   <p>학생은 이 작품의 사본으로 시작해서 이어서 써요. 나중에 양식을 바꿔도 이미 시작한 학생의 작품은 그대로예요.{item.storyKey&&' 양식을 정하면 바탕 작품 대신 양식으로 시작해요.'}</p>
-   {choices===null?<p role="status">작품을 불러오고 있어요.</p>:choices.length===0?<p>{shortstory?'숏스토리':'놀스토리'} 작품이 없어요. 서재에서 양식으로 쓸 작품을 먼저 만들어 주세요.</p>
-    :<label className={styles.field}>양식으로 쓸 작품<select aria-label="양식으로 쓸 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>
+  <span>{item.template?<>시작 작품 · <strong>{item.template.title}</strong></>:item.storyKey?'시작 작품 없음 · 학생은 바탕 작품으로 시작해요':'시작 작품 없음 · 학생은 빈 작품으로 시작해요'}</span>
+  <button className={styles.btn} disabled={busy} aria-label={`${item.title} 시작 작품 ${item.template?'바꾸기':'정하기'}`} onClick={()=>void start()}>{item.template?'시작 작품 바꾸기':'시작 작품 정하기'}</button>
+  {item.template&&<button className={`${styles.btn} ${styles.danger}`} disabled={busy} aria-label={`${item.title} 시작 작품 빼기`} onClick={()=>void remove()}>시작 작품 빼기</button>}
+  {open&&<ClassroomDialog title="시작 작품 정하기" onClose={()=>setOpen(false)}>
+   <p>선생님이 만든 작품을 학생마다 한 부씩 나눠 주고, 학생은 그 사본에 이어서 써요. 나중에 바꿔도 이미 시작한 학생의 작품은 그대로예요.{item.storyKey&&' 시작 작품을 정하면 바탕 작품 대신 이 작품으로 시작해요.'}</p>
+   {choices===null?<p role="status">작품을 불러오고 있어요.</p>:choices.length===0?<p>{shortstory?'숏스토리':'놀스토리'} 작품이 없어요. 서재에서 나눠 줄 작품을 먼저 만들어 주세요.</p>
+    :<label className={styles.field}>나눠 줄 작품<select aria-label="나눠 줄 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>
      {device.length>0&&<optgroup label="이 기기">{device.map(choice=><option key={choice.key} value={choice.key}>{choice.title}</option>)}</optgroup>}
      {online.length>0&&<optgroup label="내 온라인 작품">{online.map(choice=><option key={choice.key} value={choice.key}>{choice.title}</option>)}</optgroup>}
     </select></label>}
-   <div className={styles.dialogActions}><button className={styles.btn} onClick={()=>setOpen(false)}>취소</button><button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void choose()}>{busy?'올리는 중…':'양식으로 정하기'}</button></div>
+   <div className={styles.dialogActions}><button className={styles.btn} onClick={()=>setOpen(false)}>취소</button><button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void choose()}>{busy?'올리는 중…':'시작 작품으로 정하기'}</button></div>
   </ClassroomDialog>}
  </div>;
 }

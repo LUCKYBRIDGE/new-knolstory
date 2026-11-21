@@ -47,7 +47,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['CLASSROOM_STORAGE_FULL','학급 저장 공간이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
  ['STUDENT_NUMBER_TITLE','작품 이름 앞에 내 번호가 없어요. 화면을 새로 고친 뒤 다시 제출해 주세요.'],
  ['DRAFT_NOT_FOUND','중간 저장한 작품이 없어요.'],
- ['TEMPLATE_NOT_FOUND','선생님 양식을 찾지 못했어요. 선생님께 확인해 주세요.'],
+ ['TEMPLATE_NOT_FOUND','선생님이 준 시작 작품을 찾지 못했어요. 선생님께 확인해 주세요.'],
  ['STAGE_LOCKED','앞 단계 숏스토리 과제를 선생님이 통과시킨 뒤에 열려요.'],['STAGE_NOT_ALLOWED','놀스토리 과제는 올해의 숏스토리 과제 뒤에만 이어 줄 수 있어요.'],
  ['ASSIGNMENT_LIMIT','작품을 내는 과제는 20개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.'],
  ['SUBMISSION_STORAGE_FULL','과제 제출 공간(10MB)이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],

@@ -167,3 +167,6 @@
 
 .toKnolstory { background:var(--mint-strong); color:var(--white); border-color:var(--mint-strong); font-weight:700; }
 .toKnolstory:disabled { opacity:.55; }
+.scopeNote{margin:6px 0 0;padding:8px 12px;border-radius:8px;background:#fff4dd;color:#6b4a10;font-size:var(--text-small,.9rem);line-height:1.5}
+.chooseIllustration:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
+:is(.artEmpty,.artChange):disabled{cursor:not-allowed}

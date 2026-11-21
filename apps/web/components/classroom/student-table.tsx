@@ -46,7 +46,7 @@ function StudentRow({student,classroom,checked,onToggle,csrf,run,onChanged,open}
  const label=`${student.number}번`;
  return <tr data-student={student.number} data-more={more}>
   <td data-label="선택"><button type="button" className={styles.rowMore} aria-expanded={more} aria-label={`${label} 관리 ${more?'접기':'펼치기'}`} onClick={()=>setMore(!more)}>관리</button><input type="checkbox" className={styles.check} checked={checked} onChange={onToggle} aria-label={`${label} 선택`}/></td>
-  <td data-label="번호">{student.number}번</td>
+  <td data-label="번호">{student.number}번{student.permissions&&<small className={styles.permChip} aria-hidden="true">{presetLabel(effective)}</small>}</td>
   <td data-label="이름"><div className={styles.row} style={{flexWrap:'nowrap'}}><input className={styles.cellInput} value={name} maxLength={20} size={8} aria-label={`${label} 이름`} onChange={event=>setName(event.target.value)}/>
    <button className={styles.btn} disabled={name===student.name} aria-label={`${label} 이름 저장`} onClick={()=>void run(()=>studentUpdate(student.number,{name:name.trim()},csrf)).then(done=>{if(done)onChanged();})}>수정</button></div></td>
   <td data-label="비밀번호"><span className={styles.pw} aria-label={`${label} 비밀번호`}>{shown?student.password:'••••'}</span> <button className={styles.btn} aria-pressed={shown} aria-label={`${label} 비밀번호 ${shown?'가리기':'보기'}`} onClick={()=>setShown(!shown)}>{shown?'가리기':'보기'}</button> <button className={styles.btn} aria-label={`${label} 비밀번호 바꾸기`} onClick={()=>open('password')}>바꾸기</button></td>

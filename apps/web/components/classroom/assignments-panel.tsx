@@ -119,7 +119,7 @@ function AssignmentRow({item,csrf,run,onChanged,students,onContinue,followers}:{
    <TaskBrief description={item.description} checks={item.checks} targetAmount={item.targetAmount??null} format={item.format}/>
    <p className={styles.hint}>{item.dueAt?`제출 마감 · ${dueDateLabel(item.dueAt)}`:'제출 마감일 없음'}</p>
    <p className={styles.hint}>받는 학생 · {item.recipients==null?'모든 학생':item.recipients.map(number=>`${number}번`).join(', ')}</p>
-   {item.template&&<p className={styles.hint}>양식 · <strong>{item.template.title}</strong></p>}
+   {item.template&&<p className={styles.hint}>시작 작품 · <strong>{item.template.title}</strong></p>}
   </>:<><TaskGuide item={item} csrf={csrf} run={run} onChanged={onChanged} open={guideOpen} onToggle={setGuideOpen}/>
   <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
   <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>

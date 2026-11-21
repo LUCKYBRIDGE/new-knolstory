@@ -327,11 +327,13 @@
 .composerFold>:not(summary)+:not(summary){margin-top:10px}
 /* Student rows: the per-student tools fold away on phones; wide screens show the whole table. */
 .rowMore{display:none}
+.permChip{display:none}
 @media(max-width:720px){
  .rowMore{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid #c7cbbc;border-radius:10px;background:#fffefa;color:#2c4b42;font:inherit;font-size:var(--text-small);font-weight:600;cursor:pointer}
  .rowMore::after{content:'';width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
  .rowMore[aria-expanded=true]::after{transform:translateY(2px) rotate(-135deg)}
  .table tr[data-more=false] td:nth-child(n+4){display:none}
+ .permChip{display:block;margin-top:2px;padding:0 6px;border-radius:999px;background:#fff4dd;color:#7a5410;font-size:var(--text-caption);font-weight:600;white-space:nowrap;width:max-content}
  .table td:first-child{align-self:center;display:flex;align-items:center;gap:4px}
  .table td:first-child .check{margin:8px 4px}
 }

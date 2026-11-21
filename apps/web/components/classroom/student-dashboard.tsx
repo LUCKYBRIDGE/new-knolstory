@@ -108,7 +108,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  const stage=review==='revise'?1:submitted?3:assignment.draftSavedAt?2:draftKey?1:0;
  const steps=['시작하기','쓰기','선생님께 중간 저장','내기'];
  const canStart=!locked&&!!(draftKey||canCreate||assignment.storyKey||assignment.template||assignment.after||forcedStoryKey);
- const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.after?'통과한 그림책으로 시작':assignment.template?'선생님 양식으로 시작':'과제 쓰기';
+ const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.after?'통과한 그림책으로 시작':assignment.template?'선생님이 준 작품으로 시작':'과제 쓰기';
  const brief=<TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={written?.amount??null} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>;
  const elsewhere=assignment.open&&!draftKey&&(!!submitted||online.length>0);
  const moreWays=!!submitted||elsewhere||(!assignment.archived&&!!assignment.shareUrl);
