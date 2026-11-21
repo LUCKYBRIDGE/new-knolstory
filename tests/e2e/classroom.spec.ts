@@ -1277,6 +1277,11 @@ test('a KnolStory task opens after the picture book passes and starts from it, w
  await page.getByLabel('과제 제목',{exact:true}).fill('그림책을 놀스토리로');
  await page.getByLabel('무엇을 하나요',{exact:true}).fill('쪽마다 대사를 넣어 써요.');
  await page.getByRole('radio',{name:'글만',exact:true}).check();
+ // ‘글만’ already means “only”: the hint never says ‘글만’만 (seen on production 2026-11-22).
+ await expect(page.locator('fieldset[data-edit-scope]')).toContainText('이 과제의 작품에서는 ‘글만’ 고칠 수 있어요.');
+ await page.getByRole('radio',{name:'글과 그림',exact:true}).check();
+ await expect(page.locator('fieldset[data-edit-scope]')).toContainText('‘글과 그림’만 고칠 수 있어요.');
+ await page.getByRole('radio',{name:'글만',exact:true}).check();
  await page.getByRole('button',{name:'과제 만들기',exact:true}).click();
  expect(teacher.bodies).toContainEqual(expect.objectContaining({format:'knolstory',afterAssignmentId:'a1',editScope:{images:false,characters:false,audio:false,direction:false,choices:false}}));
  const row=page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'그림책을 놀스토리로',exact:true})});
