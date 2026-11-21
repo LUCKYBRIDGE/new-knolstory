@@ -1,4 +1,4 @@
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openPageTools} from './shortstory-navigation';
 import {confirmAuthoringImport} from './authoring-file';
 import { test,expect } from '@playwright/test';
 import { mkdir,readFile,writeFile } from 'node:fs/promises';
@@ -33,6 +33,7 @@ for(const work of works)test(`actual ${work} picture book read, isolated positio
 test('original copy, three-face cover, multiple books, page operations, reload and independent file import',async({page,browser})=>{
  await page.goto('/shortstory/?work=rabbit&mode=read');await page.getByRole('button',{name:'내 사본으로 쓰기',exact:true}).click();
  await page.getByLabel('이야기 제목',{exact:true}).fill('토끼의 새 그림책');await page.getByLabel('이 쪽의 이야기').fill('내가 직접 고쳐 쓴 첫 쪽');
+ await openPageTools(page);
  await page.getByRole('button',{name:'현재 쪽 복제',exact:true}).click();await page.getByLabel('이 쪽 제목').fill('복제한 쪽');await page.getByRole('button',{name:'쪽 앞으로 이동',exact:true}).click();
  await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
  await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await page.getByRole('button',{name:'쪽 삭제 되돌리기',exact:true}).click();await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
@@ -131,6 +132,7 @@ test('ShortStory keeps the current page in its copy and moves illustrated text t
  const creativeAssetId = await chooseIllustration(true);
  expect(creativeAssetId).not.toBe(originalPage.backgroundId);
  await writing.getByLabel('이 쪽의 이야기').fill(editedText);
+ await openPageTools(writing);
  const pagePosition = writing.getByLabel('이 쪽 옮기기');
  await pagePosition.selectOption({label: '4쪽'});
  await expect(writing.getByRole('heading', {name: /^4쪽/})).toBeVisible();

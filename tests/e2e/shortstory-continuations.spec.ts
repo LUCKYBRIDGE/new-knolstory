@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openPageTools} from './shortstory-navigation';
 
 const catalog=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as {id:string;displayName:string;src:string}[];
 const series=[
@@ -26,6 +26,7 @@ for(const width of [390,1440])for(const [title,slugs] of series)test(`ShortStory
  await page.getByLabel('이야기 제목',{exact:true}).fill(`나의 ${title} ${images.length}장면`);
  const writing=page.getByRole('region',{name:'숏스토리 쓰기',exact:true});
  for(const [index,asset] of images.entries()){
+  await openPageTools(writing);
   if(index>0)await writing.getByRole('button',{name:'현재 쪽 뒤에 빈 쪽 추가',exact:true}).click();
   await writing.getByRole('button',{name:'삽화 고르기',exact:true}).click();
   const picker=page.getByRole('dialog',{name:'삽화 고르기',exact:true});

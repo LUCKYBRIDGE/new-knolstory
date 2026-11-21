@@ -201,3 +201,27 @@
 .pageNav button{white-space:nowrap}
 .contents button span{word-break:keep-all}
 .toolCard[hidden],.tools button[hidden]{display:none}
+
+/* Focus layout (2026-11-21): the page being read or written gets the screen.
+   The title is edited where it is shown; everything else waits behind ‘작품 도구’. */
+.titleField{width:100%;max-width:640px;margin:0!important;padding:4px 10px;border:1px dashed transparent;border-radius:10px;background:transparent;font:inherit;color:inherit}
+.titleField:hover{border-color:var(--line)}
+.titleField:focus{border-style:solid;border-color:var(--mint-strong);background:var(--white);outline:none}
+.bookTitle :global(span):has(> .titleField){display:flex;align-items:center;gap:4px}
+.toolsToggle{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 0}
+.toolsToggle button{min-height:44px;padding:8px 18px;font-weight:600}
+.toolsToggle button[aria-expanded=true]{background:var(--mint);border-color:var(--mint-strong)}
+.toolsToggle span{color:var(--ink-soft);font-size:var(--text-small)}
+.pageManage{margin-top:12px}
+.pageManage>summary{font-size:var(--text-small)}
+.library[hidden]{display:none}
+@media(max-width:600px){
+ .header>div>a .longLabel{display:none}
+ .header>div>a .shortLabel{display:inline}
+ .header>div>.eyebrow,.header>div>p:not(.eyebrow){display:none}
+ .header>div{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap;align-self:stretch}
+ .header>div>a{min-height:40px}
+ .header .bookTitle{flex:1 1 200px;min-width:0;font-size:var(--text-title)}
+ .toolsToggle span{display:none}
+}
+@media(max-width:720px){.contents button{flex:0 0 210px;display:flex;align-items:center;gap:8px}.contents button img{width:64px;flex:none}}

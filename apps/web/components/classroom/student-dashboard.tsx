@@ -36,15 +36,16 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
  const limits=describeEditingPermissions(student.permissions);
  return <>
   <section className={styles.studentBanner} aria-label="내 정보"><div className={styles.studentNumber} aria-hidden="true">{student.number}<small>번</small></div><div><span className={styles.eyebrow}>나의 이야기 자리</span><h2>{student.className} {student.number}번 {student.name}</h2>
-   <p className={styles.hint}>내 작품은 이 기기와 내 온라인 공간에 있어요. 과제를 내면 그 순간의 작품이 제출 공간에 따로 보관돼요.</p>
    {storage?.bytesLimit&&storage.submissions&&<p className={styles.hint} aria-label="내 온라인 공간">개인 {formatBytes(storage.bytes)} / {formatBytes(storage.bytesLimit)} · 제출 {formatBytes(storage.submissions.bytes)} / {formatBytes(storage.submissions.limit)}</p>}</div></section>
   <StudentTodo key={session.accountId} accountId={session.accountId} csrf={session.csrf} assignments={assignments} assignmentError={error} onReload={load}
    card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} online={online.filter(work=>work.format===item.format)} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
   {/* What to do comes first; the rules and the season's end date follow the tasks. */}
   <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
-  <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것</summary>
+  <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것 · 작품 보관</summary>
    <p className={styles.hint}>과제마다 선생님이 따로 정했으면 그 과제 카드에 적혀 있어요. 그 밖의 작품에서는 아래와 같아요.</p>
-   {limits.length?<ul className={styles.rowsList}>{limits.map(line=><li key={line}>{line}</li>)}</ul>:<p className={styles.hint}>모두 고칠 수 있어요.</p>}</details>
+   {limits.length?<ul className={styles.rowsList}>{limits.map(line=><li key={line}>{line}</li>)}</ul>:<p className={styles.hint}>모두 고칠 수 있어요.</p>}
+   {/* Where works live: useful once, not on top of every visit. */}
+   <p className={styles.hint}>내 작품은 이 기기와 내 온라인 공간에 있어요. 과제를 내면 그 순간의 작품이 제출 공간에 따로 보관돼요.</p></details>
  </>;
 }
 type OnlineChoice=Readonly<{key:string;title:string;format:'knolstory'|'shortstory'}>;

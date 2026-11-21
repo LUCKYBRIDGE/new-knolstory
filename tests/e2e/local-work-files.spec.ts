@@ -1,4 +1,4 @@
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openShortStoryTools} from './shortstory-navigation';
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
@@ -8,7 +8,7 @@ for(const format of ['knolstory','shortstory'] as const)test(`${format}: real do
  await page.goto(format==='knolstory'?'/?view=editor':'/shortstory');
  const field=format==='knolstory'?page.locator('[data-current-cut] textarea').first():page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true});
  await field.fill('서버 없이 실제 파일로 이어 쓰는 원고.\n파일 안에 남아야 하는 문장이에요.');
- if(format==='knolstory')await page.locator('[data-work-menu]>summary').click();
+ if(format==='knolstory')await page.locator('[data-work-menu]>summary').click();else await openShortStoryTools(page);
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true});
  const pending=page.waitForEvent('download');await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();const download=await pending;
  const path=(await download.path())!,raw=await readFile(path,'utf8'),archive=JSON.parse(raw);
@@ -126,7 +126,7 @@ test('ShortStory SPA departure asks first and cancel retains the manuscript and 
 
 for(const outcome of ['saved','cancelled','failed','download'] as const)test(`save and leave ShortStory: ${outcome} only verified saving permits departure`,async({page},info)=>{
  await page.setViewportSize({width:390,height:740});await page.addInitScript((outcome)=>{let text='';Object.assign(window,{showSaveFilePicker:outcome==='download'?undefined:async()=>{if(outcome==='cancelled')throw new DOMException('Cancelled','AbortError');if(outcome==='failed')throw new DOMException('Denied','NotAllowedError');return {name:'leave.shortstory',getFile:async()=>({text:async()=>text}),createWritable:async()=>({write:async(value:string)=>{text=value;},close:async()=>{},abort:async()=>{}})};}});},outcome);
- await page.route('**/api/**',r=>r.abort());await page.goto('/shortstory');const field=page.getByLabel('이 쪽의 이야기',{exact:true});await field.fill('저장하고 이동할 그림책 원고');await page.getByRole('link',{name:'놀스토리 서재로 돌아가기',exact:true}).click();const dialog=page.getByRole('dialog',{name:'작업을 마치고 이동할까요?',exact:true});await expect(dialog).toBeVisible();await dialog.getByRole('button',{name:'저장하고 이동',exact:true}).click();
+ await page.route('**/api/**',r=>r.abort());await page.goto('/shortstory');const field=page.getByLabel('이 쪽의 이야기',{exact:true});await field.fill('저장하고 이동할 그림책 원고');await page.getByRole('link',{name:'‹ 서재로',exact:true}).click();const dialog=page.getByRole('dialog',{name:'작업을 마치고 이동할까요?',exact:true});await expect(dialog).toBeVisible();await dialog.getByRole('button',{name:'저장하고 이동',exact:true}).click();
  if(outcome==='saved'){await expect(page).toHaveURL(/\?view=library/);}else{await expect(dialog.getByRole('status')).toContainText(outcome==='download'?'다운로드':'이동하지 않았');await page.screenshot({path:info.outputPath(`leave-${outcome}.png`)});await dialog.getByRole('button',{name:'계속 편집하기',exact:true}).click();await expect(field).toHaveValue('저장하고 이동할 그림책 원고');expect(await page.evaluate(()=>{const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);return event.defaultPrevented;})).toBe(true);}
 });
 

@@ -1,3 +1,4 @@
+import {openShortStoryTools} from './shortstory-navigation';
 import {test,expect,type Page} from '@playwright/test';
 import axe from 'axe-core';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
@@ -526,6 +527,7 @@ test('cancelling a delayed picture book submission open releases file tools',asy
  });
  await page.goto('/shortstory?classAssignment=a1&classStudent=2');
  await expect.poll(()=>requested).toBe(true);
+ await openShortStoryTools(page);
  await page.getByText('파일 교환·보관',{exact:true}).click();
  await expect(page.getByRole('button',{name:'Excel로 보관',exact:true})).toBeDisabled();
  state.signedIn=false;

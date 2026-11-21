@@ -1,4 +1,4 @@
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openShortStoryTools} from './shortstory-navigation';
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {createExcelWorkbook} from '../../packages/compatibility/src/excel';
@@ -7,7 +7,7 @@ test('official shortstory Excel edits are previewed, cancellable and survive ind
  await page.goto('/shortstory');
  await page.getByLabel('이야기 제목',{exact:true}).fill('원본 보호 그림책');
  await page.getByLabel('이 쪽의 이야기').fill('변경 전 글');
- await page.getByText('소개·마지막 인사·표지 그림',{exact:true}).click();await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();await page.getByRole('button',{name:'세 면과 글·그림 상자 편집 시작',exact:true}).click();await page.getByRole('button',{name:'표지 적용',exact:true}).click();
+ await openShortStoryTools(page);await page.getByText('소개·마지막 인사·표지 그림',{exact:true}).click();await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();await page.getByRole('button',{name:'세 면과 글·그림 상자 편집 시작',exact:true}).click();await page.getByRole('button',{name:'표지 적용',exact:true}).click();
  const downloaded=page.waitForEvent('download');await openShortStoryDetails(page, '파일 교환·보관');await page.getByRole('button',{name:'Excel로 보관',exact:true}).click();const file=await downloaded;
  const book=await createExcelWorkbook();await book.xlsx.load(await readFile((await file.path())!) as never);
  const set=(sheetName:string,key:string,value:string)=>{const sheet=book.getWorksheet(sheetName)!;const col=sheet.getRow(2).values as string[];const at=col.indexOf(key);expect(at).toBeGreaterThan(0);sheet.getCell(3,at).value=value;};

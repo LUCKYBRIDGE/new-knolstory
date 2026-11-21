@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openPageTools} from './shortstory-navigation';
 
 const catalog = JSON.parse(readFileSync('packages/asset-registry/src/catalog.json', 'utf8')) as {
  id: string; displayName: string; src: string;
@@ -31,6 +31,7 @@ for (const width of [390, 1440]) test(`ShortStory mixes familiar scenes and eigh
  await page.getByLabel('이야기 제목', {exact: true}).fill('장면을 섞어 만든 새로운 이야기');
  const writing = page.getByRole('region', {name: '숏스토리 쓰기', exact: true});
  for (const [index, asset] of images.entries()) {
+  await openPageTools(writing);
   if (index > 0) await writing.getByRole('button', {name: '현재 쪽 뒤에 빈 쪽 추가', exact: true}).click();
   await writing.getByRole('button', {name: '삽화 고르기', exact: true}).click();
   const picker = page.getByRole('dialog', {name: '삽화 고르기', exact: true});
@@ -44,6 +45,7 @@ for (const width of [390, 1440]) test(`ShortStory mixes familiar scenes and eigh
   await writing.getByLabel('이 쪽의 이야기', {exact: true}).fill(texts[index]!);
  }
  // Put a new event between the familiar opening and another independent situation.
+ await openPageTools(writing);
  await writing.getByLabel('이 쪽 옮기기').selectOption({label: '2쪽'});
  await expect(writing.getByRole('heading', {name: /^2쪽/})).toBeVisible();
  await page.reload();
