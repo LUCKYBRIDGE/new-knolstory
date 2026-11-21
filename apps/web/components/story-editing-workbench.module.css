@@ -449,3 +449,9 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
  .workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){font-size:var(--text-body)}
  .basicSpeaker button,.workbench[data-screen=basic] .current>fieldset.basicSpeaker button{font-size:var(--text-small);padding:6px 14px}
 }
+/* Focus plan step 3 — writing comes first on 기본편집 at tablet and desktop sizes: the stage gives up some height and the text box takes it (about a third of the screen). */
+@media (min-width:701px) and (min-height:501px){
+ .body[data-basic=true][data-cut-arrangement=columns]{grid-template-rows:minmax(0,.82fr) minmax(0,1.18fr)}
+ .body[data-basic=true][data-cut-arrangement=columns] .current>.text textarea{height:clamp(120px,30dvh,340px);font-size:var(--text-body);line-height:1.65}
+ .body[data-basic=true][data-cut-arrangement=stacked] .current>.text textarea{height:clamp(140px,22dvh,300px);font-size:var(--text-body);line-height:1.65}
+}
