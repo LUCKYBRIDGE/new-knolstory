@@ -1,0 +1,28 @@
+{
+  "deployedAt": "2026-11-21T16:16:00+09:00",
+  "source": "main f3755258 (PR #55–#59)",
+  "backup": "/Volumes/Toshiba/knolstory-backups/predeploy-20261121-161559/db.dump (19 tables)",
+  "rollbackTags": [
+    "knolstory-next-api:rollback-20261121-161559",
+    "knolstory-next-ingress:rollback-20261121-161559"
+  ],
+  "migration": "021-task-stage-and-edit-scope (assignments.edit_scope, after_assignment_id) applied",
+  "api": "knolstory-next-api:production sha256:10c3f8a03dc3 (git archive of main tree)",
+  "ingress": "knolstory-next-ingress:production sha256:ba2ee6a1b3d4 (online Pages candidate)",
+  "pages": {
+    "project": "new-knolstory",
+    "deployment": "a80b2823",
+    "candidate": "2172 files, 0 blockers, online build"
+  },
+  "runtimeReview": "resealed for the deployed build (only game/cache/build_info.json time changed)",
+  "checks": [
+    "static e2e 5 passed (offline candidate before the online rebuild)",
+    "public / 200, /api/v1/auth/config 200, /api/v1/me 401, /teacher /student /picturebook /shortstory 200",
+    "public index sha256 = online candidate index",
+    "ego lite student session: 내 과제 loads real data, no errors"
+  ],
+  "incident": "The first Pages deployment (16700ebe, ~16:20) and the first ingress image were built without NEXT_PUBLIC_KNOL_ONLINE=1, so the web showed “온라인 기능이 꺼져 있어요” for about 4 minutes. The web was rebuilt with NEXT_PUBLIC_KNOL_ONLINE=1 (runtime untouched), redeployed to Pages (a80b2823) and the ingress image replaced. API and DB were not affected.",
+  "notDone": [
+    "logged-in teacher check on production (the browser session was a student account)"
+  ]
+}
