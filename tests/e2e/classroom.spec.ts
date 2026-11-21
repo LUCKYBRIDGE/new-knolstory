@@ -30,6 +30,13 @@ type Assignment={editScope?:Record<string,boolean>|null;after?:{id:string;title:
 const ok=(data:unknown)=>({json:{success:true,data}});
 const fail=(status:number,code:string)=>({status,json:{success:false,error:{code}}});
 
+/** Every task starts from 새 과제 내기 (folded on phones until opened). */
+async function compose(page:Page,name:RegExp){
+ const composer=page.getByRole('region',{name:'새 과제 내기'}),button=composer.getByRole('button',{name});
+ await expect(composer.getByText('새 과제 내기',{exact:true})).toBeVisible();
+ if(!await button.isVisible())await composer.getByText('새 과제 내기',{exact:true}).click();
+ await button.click();
+}
 /** In-memory stand-in for /api/v1/class. `role` and `signedIn` are mutable so one test can walk through a login. */
 async function mockClassroom(page:Page,role:'teacher'|'student'){
  const state={accountId:'11111111-1111-4111-8111-111111111111',permissions:textOnly,signedIn:role==='teacher',classroom:null as null|{id:string;name:string;classCode:string;defaultPermissions:typeof all;students:Student[]},assignments:[] as Assignment[],submissions:{} as Record<string,unknown>,drafts:{} as Record<string,{savedAt:number;amount:number;chars:number;comment:string}>,draftDocs:{} as Record<string,unknown>,review:null as null|{reviewStatus:'passed'|'revise'|null;feedback:string},missions:[] as Mission[],missionRows:{} as Record<string,Record<number,MissionRow>>,missionRoster:[{number:2,name:'하늘'}],missionClock:1_770_000_000_000,calls:[] as string[],bodies:[] as unknown[],qrReady:{} as Record<number,string>,legacyQr:[] as number[]};
@@ -549,7 +556,7 @@ test('classroom design keeps long titles and management usable across screen siz
   await page.screenshot({path:info.outputPath(`teacher-${viewport.width}.png`),fullPage:true});
   await page.getByRole('button',{name:'숏스토리 · 2',exact:true}).click();
   await expect(page.getByRole('heading',{name:'삽화를 섞어 만드는 나만의 그림책',exact:true})).toBeVisible();
-  await page.getByText('작품 쓰기 과제 만들기',{exact:true}).click();
+  await compose(page,/^작품 쓰기 · 숏스토리/);
   await expect(page.getByLabel('과제 유형',{exact:true})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('link',{name:'학급 설정',exact:true}).click();
@@ -856,8 +863,8 @@ test('teacher imports a provided mission, edits it and assigns it',async({page})
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
  await page.goto('/teacher');
  const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
- await expect(panel.getByText('아직 낸 과제가 없어요.',{exact:false})).toBeVisible();
- await panel.getByRole('button',{name:'제공 과제 가져오기'}).click();
+ await expect(panel.getByText('아직 낸 읽기·활동 과제가 없어요.',{exact:false})).toBeVisible();
+ await compose(page,/^제공 과제 가져오기/);
  await panel.getByRole('button',{name:'별주부전 독후 활동지 가져와서 고치기'}).click();
  const title=panel.getByLabel('과제 제목');await expect(title).toHaveValue('별주부전 독후 활동지');await title.fill('별주부전 독후 활동지 · 우리 반');
  await panel.getByRole('button',{name:'과제 내기'}).click();
@@ -872,7 +879,7 @@ test('teacher writes a reading mission and must choose a work',async({page})=>{
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
  await page.goto('/teacher');
  const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
- await panel.getByRole('button',{name:'직접 만들기'}).click();
+ await compose(page,/^독후 활동지/);
  await panel.getByRole('button',{name:/^읽기/}).click();
  await panel.getByLabel('과제 제목').fill('흥부와 놀부 읽기');
  await panel.getByRole('button',{name:'과제 내기'}).click();
@@ -1052,7 +1059,7 @@ test('teacher gives a task to chosen students and changes who gets a mission',as
 
  // A mission for one student, then widened to two.
  const missions=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
- await missions.getByRole('button',{name:'직접 만들기'}).click();
+ await compose(page,/^독후 활동지/);
  await missions.getByLabel('과제 제목').fill('보충 활동지');
  await missions.getByRole('textbox',{name:'1번 질문',exact:true}).fill('기억에 남는 장면은?');
  const missionPicker=missions.getByRole('group',{name:'받는 학생'});
@@ -1271,6 +1278,10 @@ test('a KnolStory task opens after the picture book passes and starts from it, w
  await page.getByRole('button',{name:'과제 만들기',exact:true}).click();
  expect(teacher.bodies).toContainEqual(expect.objectContaining({format:'knolstory',afterAssignmentId:'a1',editScope:{images:false,characters:false,audio:false,direction:false,choices:false}}));
  const row=page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'그림책을 놀스토리로',exact:true})});
+ // The picture book task now tells the teacher that passing opens the next stage.
+ await page.getByRole('button',{name:'숏스토리 · 1',exact:true}).click();
+ await expect(page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'나의 그림책',exact:true})})).toContainText('다음 단계 · 그림책을 놀스토리로');
+ await page.getByRole('button',{name:'놀스토리 · 1',exact:true}).click();
  await expect(row).toContainText('앞 단계 · 나의 그림책 통과 뒤');await expect(row).toContainText('고칠 수 있는 것 · 글만');
  const context=await browser.newContext({viewport:{width:1280,height:860}});
  try{

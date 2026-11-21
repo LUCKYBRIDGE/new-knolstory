@@ -217,5 +217,7 @@ type MissionStudentProgress = MissionProgress & {number:number; name:string};
 - 과제에서 시작한 작품(기기의 과제 연결 키로 찾음)을 열면 놀스토리·숏스토리 편집기가 과제 범위를 쓴다(`taskPermissions`). 새 작품 만들기·지정 작품 같은 계정 제한은 과제가 넓히지 않는다. 과제 범위는 교사가 과제 카드에서 바꿀 수 있고, 다음에 작품을 열 때 적용된다.
 - 학생 카드와 편집기의 ‘과제’ 메뉴에 `이 과제에서 고칠 수 있는 것`을 보여 준다. 편집 범위는 웹 편집기의 제한이며, 제출 원고의 음향·연출을 서버가 지우거나 거절하지는 않는다(§4와 같음).
 
+**화면 정리(같은 날).** 과제는 교사 과제 탭 위쪽 `새 과제 내기` 한 곳에서만 시작한다(작품 쓰기 양식은 고를 때만 열리고 `닫기`가 있다. 과제가 하나도 없으면 처음부터 열려 있다). 숏스토리 제출 확인에는 `통과시키면 이 학생에게 ‘…’ 과제가 열려요`를 보여 준다. 작품 과제의 진행은 `진행 보기`/`진행 접기`와 `새로 고침`으로 연다. 학급·학생·과제의 편집 허용 이름은 `글만 · 글과 그림 · 모든 편집`과 `그림 고르기 · 인물 배치 · 음향 · 연출 · 선택지·점수`로 같다. 휴대폰 편집기에서는 장의 ‘그림책 구상’이 `현재 컷 상세·메모·정리` 위에 접혀 있다.
+
 API: `POST /classroom/assignments`에 `editScope?`·`afterAssignmentId?`, `PATCH /classroom/assignments/{id}`에 `editScope?`(null은 학급 설정대로). 오류 코드 `STAGE_LOCKED`·`STAGE_NOT_ALLOWED`. 검사: `server/classroom/task-stage.integration.ts`, `apps/web/lib/task-scope.test.ts`, `tests/e2e/classroom.spec.ts`의 단계 과제 시나리오.
 

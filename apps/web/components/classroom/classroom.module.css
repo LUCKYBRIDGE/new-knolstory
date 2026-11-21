@@ -455,3 +455,6 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
 .scopeTools{margin-top:4px;padding-top:6px;border-top:1px dashed var(--class-line,#d9d2c3)}
 .scopeChoices input,.scopeTools input{flex:none;width:20px;height:20px;min-height:0;margin:0;padding:0;accent-color:#2f6b5d}
 .scopeChoices label,.scopeTools label{white-space:nowrap}
+
+.formHead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0}
+.assignmentCreate{padding-bottom:16px}

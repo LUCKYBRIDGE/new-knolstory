@@ -25,19 +25,22 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  const studentCount=students.length;
  const [recipients,setRecipients]=useState<Recipients>(null),[recipientError,setRecipientError]=useState('');
  const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory'),[start,setStart]=useState<{value:string;label:string}>({value:'',label:''}),[checks,setChecks]=useState<string[]>(['']),[amount,setAmount]=useState(''),[amountError,setAmountError]=useState('');
- const formRef=useRef<HTMLDetailsElement>(null);
+ const formRef=useRef<HTMLDivElement>(null);
+ // Scrolls to and focuses the form once it is on screen (it only renders while open).
+ const [focusForm,setFocusForm]=useState(0);
+ useEffect(()=>{if(!focusForm)return;const frame=requestAnimationFrame(()=>{formRef.current?.scrollIntoView({block:'start',behavior:'smooth'});formRef.current?.querySelector<HTMLInputElement>('input[name="task-title"]')?.focus({preventScroll:true});});return()=>cancelAnimationFrame(frame);},[focusForm]);
  const [format,setFormat]=useState<AssignmentFormat>('knolstory'),[filter,setFilter]=useState<AssignmentFormat>('knolstory');
  // Task-level rules: the editing tools this task allows, and the ShortStory task a KnolStory task follows.
  const [scope,setScope]=useState<EditScope|null>(null),[after,setAfter]=useState('');
  const stageChoices=items?.filter(item=>item.format==='shortstory'&&!item.archived)??[];
  const staged=format==='knolstory'&&!!after;
  /** Opens the form for a KnolStory task that follows this ShortStory task. */
- const continueFrom=useCallback((item:Assignment)=>{setFormat('knolstory');setAfter(item.id);setStoryKey('');setStart({value:'',label:''});setTitle(current=>current||`${item.title} · 놀스토리로 이어 쓰기`);setFormOpen(true);requestAnimationFrame(()=>{formRef.current?.scrollIntoView({block:'start',behavior:'smooth'});formRef.current?.querySelector<HTMLInputElement>('input[name="task-title"]')?.focus({preventScroll:true});});},[]);
+ const continueFrom=useCallback((item:Assignment)=>{setFormat('knolstory');setAfter(item.id);setStoryKey('');setStart({value:'',label:''});setTitle(current=>current||`${item.title} · 놀스토리로 이어 쓰기`);setFormOpen(true);setFocusForm(Date.now());},[]);
  const [creating,setCreating]=useState(false),[loadFailed,setLoadFailed]=useState(false);
  const createLock=useRef(false);
  const currentCount=items?.filter(item=>!item.archived).length??0;
  // The composer opens this form for writing tasks with the chosen format.
- useEffect(()=>{if(!request||(request.kind!=='knolstory'&&request.kind!=='shortstory'))return;const timer=window.setTimeout(()=>{setFormat(request.kind as AssignmentFormat);setFormOpen(true);requestAnimationFrame(()=>{formRef.current?.scrollIntoView({block:'start',behavior:'smooth'});formRef.current?.querySelector<HTMLInputElement>('input[name="task-title"]')?.focus({preventScroll:true});});},0);return()=>window.clearTimeout(timer);},[request]);
+ useEffect(()=>{if(!request||(request.kind!=='knolstory'&&request.kind!=='shortstory'))return;const timer=window.setTimeout(()=>{setFormat(request.kind as AssignmentFormat);if(request.kind==='shortstory')setAfter('');setFormOpen(true);setFocusForm(Date.now());},0);return()=>window.clearTimeout(timer);},[request]);
  const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list)setItems(list);else setLoadFailed(true);},[run]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(timer);},[load]);
  async function create(event:FormEvent){
@@ -54,7 +57,9 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
   <div className={styles.sectionHeading}><div><span className={styles.eyebrow}>쓰고, 그리고, 내는</span><h2>작품 쓰기 과제</h2>{items&&<span className={styles.taskCount}>작품 과제 {currentCount}/{TASK_LIMIT}개</span>}</div><ClassroomBook small/></div>
-  <details ref={formRef} className={styles.assignmentCreate} open={formOpen||items?.length===0} onToggle={event=>setFormOpen(event.currentTarget.open)}><summary>작품 쓰기 과제 만들기</summary>{items&&currentCount>=TASK_LIMIT&&<p className={styles.error} role="status">작품을 내는 과제는 {TASK_LIMIT}개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.</p>}<form onSubmit={event=>void create(event)}><fieldset disabled={creating}>
+  {/* One way in: the 새 과제 내기 choices above open this form; it also stays open while there is no task yet. */}
+  {!(formOpen||items?.length===0)&&items&&<p className={styles.hint}>새 작품 쓰기 과제는 위의 ‘새 과제 내기’에서 놀스토리나 숏스토리를 골라 만들어요.</p>}
+  {(formOpen||items?.length===0)&&<div ref={formRef} className={styles.assignmentCreate} role="region" aria-label="새 작품 쓰기 과제"><div className={styles.formHead}><strong>새 작품 쓰기 과제</strong>{!!items?.length&&<button type="button" className={styles.btn} onClick={()=>setFormOpen(false)}>닫기</button>}</div>{items&&currentCount>=TASK_LIMIT&&<p className={styles.error} role="status">작품을 내는 과제는 {TASK_LIMIT}개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.</p>}<form onSubmit={event=>void create(event)}><fieldset disabled={creating}>
    <label className={styles.field}>과제 유형<select aria-label="과제 유형" value={format} onChange={event=>setFormat(event.target.value as AssignmentFormat)}><option value="knolstory">놀스토리</option><option value="shortstory">숏스토리</option></select></label>
    {format==='knolstory'&&<fieldset className={styles.editScope} data-task-stage>
     <legend>시작 방법</legend>
@@ -88,7 +93,7 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
     <TaskBrief description={description||'무엇을 하는지 적으면 여기에 보여요.'} checks={cleanChecks(checks)} targetAmount={amount.trim()?Number(amount)||null:null} format={format}/></div></details>
    {!description.trim()&&title.trim()&&<p className={styles.hint}>‘무엇을 하나요’를 적으면 과제를 만들 수 있어요.</p>}
    <p><button className={`${styles.btn} ${styles.primary}`} disabled={creating||!title.trim()||!description.trim()}>{creating?'만드는 중…':'과제 만들기'}</button></p>
-  </fieldset></form></details>
+  </fieldset></form></div>}
   <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}</button>)}</div>
   {loadFailed?<p className={styles.error} role="alert">과제를 불러오지 못했어요. <button className={styles.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>:items===null?<p className={styles.hint} role="status">과제를 불러오고 있어요.</p>:items.filter(item=>item.format===filter).length===0?<p className={styles.hint}>이 유형의 과제가 없어요.</p>
    :<SeasonItems items={items.filter(item=>item.format===filter)} render={group=><ul className={styles.list}>{group.map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students} onContinue={continueFrom} followers={items.filter(other=>other.after?.id===item.id)}/></li>)}</ul>}/>}
@@ -123,13 +128,15 @@ function AssignmentRow({item,csrf,run,onChanged,students,onContinue,followers}:{
   {item.format==='shortstory'&&item.open&&!followers.length&&<p className={styles.shareLine}><button className={styles.linkBtn} aria-label={`${item.title} 통과 뒤 놀스토리로 이어 쓰는 과제 만들기`} onClick={()=>onContinue(item)}>+ 통과하면 놀스토리로 이어 쓰는 과제 만들기</button></p>}
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/></>}
   <div className={styles.taskActions}>
-   <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':progress?'진행 새로고침':`진행 보기 · 작성 중 ${item.draftCount??0} · 냈어요 ${item.submittedCount??0}`}</button>
+   {progress?<button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 접기`} aria-expanded onClick={()=>{setProgress(null);setRows(null);}}>진행 접기</button>
+    :<button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 보기`} aria-expanded={false} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':`진행 보기 · 작성 중 ${item.draftCount??0} · 냈어요 ${item.submittedCount??0}`}</button>}
+   {progress&&<button className={styles.btn} aria-label={`${item.title} 진행 새로 고침`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':'새로 고침'}</button>}
    {!item.archived&&<button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'과제 마감':'다시 열기'}</button>}
    {!item.archived&&!confirmDelete&&<button className={`${styles.btn} ${styles.danger}`} aria-label={`${item.title} 과제 지우기`} onClick={()=>setConfirmDelete(true)}>과제 지우기</button>}
   </div>
   {confirmDelete&&<div className={styles.notice} role="group" aria-label={`${item.title} 과제 지우기 확인`}><p>‘{item.title}’ 과제와 학생들이 낸 작품을 모두 지울까요? 지운 뒤에는 되돌릴 수 없어요. 남겨 둘 작품은 먼저 ‘진행 보기’에서 내려받아 두세요.</p><div className={styles.row}><button className={styles.btn} onClick={()=>setConfirmDelete(false)}>취소</button><button className={`${styles.btn} ${styles.danger}`} onClick={()=>void remove()}>과제와 제출 작품 지우기</button></div></div>}
   {progress&&<TaskProgress item={item} rows={progress} csrf={csrf} run={run} onChanged={async()=>{await showSubmissions();}}
-   review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
+   review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} unlocks={followers.map(next=>next.title)} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
  </>;
 }
@@ -174,7 +181,7 @@ function TaskFacts({item,studentCount,csrf,run,onChanged}:{item:Assignment;stude
 
 const REVIEW_LABEL={passed:'통과',revise:'다시 쓰기'} as const;
 /** One submitted work: open it, then pass it or ask for a rewrite with feedback. */
-function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale,meta}:{item:Assignment;row:SubmissionRow;csrf:string;onOpenFile:()=>void;onSaved:(next:SubmissionRow)=>void;onStale:()=>Promise<void>;meta?:ReactNode}){
+function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale,meta,unlocks=[]}:{item:Assignment;row:SubmissionRow;csrf:string;onOpenFile:()=>void;onSaved:(next:SubmissionRow)=>void;onStale:()=>Promise<void>;meta?:ReactNode;unlocks?:readonly string[]}){
  const [writing,setWriting]=useState(false),[feedback,setFeedback]=useState(row.reviewStatus?row.feedback??'':''),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const status=row.reviewStatus??null;
  async function decide(reviewStatus:SubmissionRow['reviewStatus']){
@@ -189,6 +196,7 @@ function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale,meta}:{item:
  return <div className={styles.review} data-review={status??'pending'}>
   <div className={styles.reviewHead}><strong>{row.number}번 {row.name}</strong><span className={styles.hint}>{formatSubmittedAt(row.submittedAt)} 제출</span>{meta}
    <span className={styles.reviewChip} data-review={status??'pending'}>{status?REVIEW_LABEL[status]:'확인 전'}</span></div>
+  {unlocks.length>0&&!item.archived&&<p className={styles.hint} data-unlocks>{status==='passed'?`통과해서 이 학생에게 ‘${unlocks.join('’, ‘')}’ 과제가 열렸어요.`:`통과시키면 이 학생에게 ‘${unlocks.join('’, ‘')}’ 과제가 열려요.`}</p>}
   {row.feedback&&!writing&&<p className={styles.reviewFeedback}><b>{status===null?'지난 피드백':'피드백'}</b> {row.feedback}</p>}
   <div className={styles.row}>
    <SubmissionPreview item={item} row={row}/>
