@@ -71,3 +71,26 @@
 
 마지막으로 확인한 네 화면(학급 저장 공간·지난 학년 접힘·제출물 바로 보기·시작 지점 고르기): [remaining-screens.jpg](remaining-screens.jpg). 지난 학년 과제의 `받는 학생 · 모든 학생`을 다른 곳과 같은 `우리 반 모두`로 맞췄다.
 
+## 화면 상태별 점검표
+
+각 화면이 바뀌는 상태마다 무엇으로 확인했는지 적었다. ‘사진’은 위 이미지(휴대폰)와 같은 순서의 넓은 화면 사진, ‘E2E’는 `tests/e2e/classroom.spec.ts`·`classroom-season.spec.ts`의 시나리오 이름이다.
+
+| 화면 | 상태 | 확인 |
+|---|---|---|
+| 교사 과제 탭 | 학급 없음 / 과제 없음(양식 열림) / 과제 있음(양식 닫힘) / 목록 불러오기 실패 | 사진 · E2E `teacher retries an assignment list failure…` |
+| 작품 쓰기 과제 만들기 | 놀스토리·숏스토리 / 바탕 작품·판본·시작 지점 / 단계 과제 / 편집 범위 5종 / 받는 학생 골라 주기 / 미리 보기 | 사진 · E2E `one composer opens…`, `a task on the original edition…`, `a task on the adaptation…`, `a KnolStory task opens after…`, `teacher gives a task to chosen students…`, `a teacher writes what to do…` |
+| 과제 카드 | 열림·닫힘·지난 학년 / 시작 작품 있음·없음 / 다음 단계 있음 / 범위 바꾸기 | 사진 · E2E `a teacher attaches one of their works…`, `teacher can read archived task guidance…` |
+| 진행 보기·제출 확인 | 시작 전·작성 중·냈어요·다시 쓰는 중·통과 / 다시 쓰기 요청 / 학생이 그사이 다시 냄 / 바로 보기·파일 받기 | 사진 · E2E `teacher asks for a rewrite…`, `a student sees the due date…`, `cancelling a delayed picture book submission open…` |
+| 미션(교사) | 제공 과제 가져오기·고치기 / 읽기 작품 필수 / 확인 대기·다시 쓰기·직접 통과 / 그사이 다시 냄 | 사진 · E2E `teacher imports a provided mission…`, `teacher writes a reading mission…`, `teacher reviews answers…` |
+| 학생 탭 | 만들기 직후 QR / 이름·비밀번호·QR·지우기 / 일괄 적용 / 휴대폰 카드 | 사진 · E2E `teacher builds a class…`, `teacher manages students on a phone…`, `creating students opens their QR cards…` |
+| QR 인쇄 | 세로·정사각 A4 / 예전 QR 다시 만들기 동의 / 너무 촘촘함 / 계정 바뀜 | 사진 · E2E `teacher prints a complete class…`, `selected QR printing requires…`, `overly dense QR print…`, `switching teacher accounts closes…` |
+| 학급 설정 | 이름·코드 바꾸기 / 기본 편집 허용 / 학년도 정리 안내 / 저장 공간 경고 | 사진 · E2E `classroom design keeps long titles…` |
+| 교사 등록·관리자 | 코드 맞음·틀림·멈춤 / 현황·접속 기록 | 사진 · E2E `admin sees the service overview…`, `a member becomes a teacher…` |
+| 학생 로그인 | 코드 로그인 성공·실패 / QR 성공 / QR 일시 오류·쓸 수 없는 QR | 사진 · E2E `student submits and teacher opens…`, `opening the app with a q QR…`, `a failed QR login offers…` |
+| 학생 할 일·작품 쓰기 카드 | 시작 전·쓰는 중·중간 저장·냈어요·다시 써 주세요·통과·마감·지난 학년·잠긴 단계·열린 단계 | 사진 · E2E `a student sees the due date…`, `a KnolStory task opens after…`, `student sees submitted mission answers…` |
+| 다른 방법 | 제출본 받기 / 다른 기기에서 이어 쓰기 / 온라인 작품으로 가져오기·이름 겹침 / 제출 링크(작품 없음 포함) | 사진 · E2E `on another device a student continues…`, `a student brings a handed-in work…`, `a student hands in a personal online work…` |
+| 미션(학생) | 읽기·활동지·교실 활동 / 제출→확인 대기→다시 쓰기→통과 / 읽으러 갔다 돌아오기 | 사진 · E2E `student submits a worksheet…`, `mission reading link opens…` |
+| 과제 편집기 | 놀스토리(과제 메뉴·마침 안내·그림책 구상, 휴대폰 포함) / 숏스토리(글만 범위·새 작품 막힘·이어 쓰기) | 사진 · E2E `a picture book task that allows text only…`, `a specified assignment starts one draft…`, `an existing picture book task stays resumable…`, `a student starts a writing task from the teacher template…` |
+
+교사 계정과 관리자 계정은 같은 교사 화면 코드(`TeacherDashboard`)를 쓰고 관리자에게는 메뉴에 `관리`만 더 붙는다(`apps/web/lib/service-navigation.ts`). 그래서 운영 확인은 실제 학급(학생 25명)을 가진 관리자 계정으로 교사 화면을 읽은 것으로 갈음했다.
+
