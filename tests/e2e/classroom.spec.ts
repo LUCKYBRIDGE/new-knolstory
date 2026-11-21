@@ -1127,10 +1127,10 @@ test('a student brings a handed-in work into personal online works and chooses o
  await page.getByText('다른 방법',{exact:true}).click();
  await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'같은 이름의 작품이 있어요'});
- await expect(dialog).toContainText('‘02_바다 이야기’이 이미 있어요');
+ await expect(dialog).toContainText('‘02_바다 이야기’가 이미 있어요');
  await expect(dialog.getByLabel('새 이름')).toHaveValue('바다 이야기 (2)');
  await dialog.getByRole('button',{name:'새 이름으로 가져오기',exact:true}).click();
- await expect(page.getByText('‘02_바다 이야기 (2)’을 내 온라인 작품으로 가져왔어요.',{exact:false})).toBeVisible();
+ await expect(page.getByText('‘02_바다 이야기 (2)’을(를) 내 온라인 작품으로 가져왔어요.',{exact:false})).toBeVisible();
  expect(writes[0]!.method).toBe('POST');expect(writes[0]!.body.snapshot.content.document.project.title).toBe('02_바다 이야기 (2)');
  // Replacing the old work asks once more, then saves over it in place.
  await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
@@ -1316,6 +1316,29 @@ test('a KnolStory task opens after the picture book passes and starts from it, w
  }finally{await context.close();}
 });
 
+
+test('a KnolStory stage task from a picture book without pictures still shows each page as its 그림책 구상',async({page})=>{
+ // Found on a real server run (2026-11-21): a text-only picture book left no 그림책 구상, so its pages vanished from view.
+ await page.setViewportSize({width:390,height:844});
+ await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});
+ const state=await mockClassroom(page,'student');state.signedIn=true;state.permissions=all;
+ const textOnlyScope={images:false,characters:false,audio:false,direction:false,choices:false};
+ state.assignments=[{format:'shortstory',id:'p1',title:'나의 그림책',description:'글만 써요.',storyKey:null,open:true,createdAt:1,submittedAt:null,editScope:textOnlyScope},
+  {format:'knolstory',id:'k1',title:'그림책을 놀스토리로',description:'쪽마다 대사를 넣어 써요.',storyKey:null,open:true,createdAt:2,submittedAt:null,editScope:textOnlyScope,after:{id:'p1',title:'나의 그림책',passed:false}}];
+ await page.goto('/student');
+ await expect(page.getByText('숏스토리 과제 ‘나의 그림책’을 선생님이 통과시키면')).toBeVisible();
+ await page.getByRole('link',{name:'과제 쓰기',exact:true}).click();
+ await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('토끼는 꾀를 내어 용궁을 빠져나왔어요.');
+ await page.goto('/student');
+ await page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'나의 그림책',exact:true})}).getByRole('button',{name:'제출',exact:true}).click();
+ await expect(page.getByText('제출했어요.')).toBeVisible();
+ state.assignments[1]={...state.assignments[1]!,after:{id:'p1',title:'나의 그림책',passed:true}};
+ await page.reload();
+ await page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'그림책을 놀스토리로',exact:true})}).getByRole('link',{name:'통과한 그림책으로 시작',exact:true}).click();
+ const reference=page.locator('summary:visible',{hasText:'그림책 구상'}).first();
+ await expect(reference).toBeVisible({timeout:30000});await reference.click();
+ await expect(page.getByTestId('picturebook-chapter-reference').filter({visible:true})).toContainText('토끼는 꾀를 내어 용궁을 빠져나왔어요.');
+});
 
 test('a picture book task that allows text only blocks picture choosing from the first open',async({page})=>{
  const state=await mockClassroom(page,'student');state.signedIn=true;state.permissions=all;

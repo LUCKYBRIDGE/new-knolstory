@@ -7,6 +7,7 @@ import {chosenPages} from './picturebook-create';
 import {confirmedStages,type PicturebookPermissions} from './picturebook-preparation';
 import {shortStoryCoverProject} from './shortstory-cover';
 import {documentRead} from './document-api';
+import {quoted} from './korean-particle';
 
 /** Where a student's task copy starts. Copies live on one device, so on another device the student
  * can continue from their own submission or a personal online work instead of the template.
@@ -14,7 +15,7 @@ import {documentRead} from './document-api';
 export async function taskStartArchive(task:Assignment,from:string|null,fetcher:typeof fetch=fetch,permissions:PicturebookPermissions={images:true,characters:true}):Promise<AuthoringArchive|null>{
  // A KnolStory task that follows a ShortStory task starts from the student's passed picture book.
  if(task.after&&!from){
-  if(!task.after.passed)throw Error(`앞 단계 ‘${task.after.title}’를 선생님이 통과시킨 뒤에 쓸 수 있어요.`);
+  if(!task.after.passed)throw Error(`앞 단계 ${quoted(task.after.title,'을/를')} 선생님이 통과시킨 뒤에 쓸 수 있어요.`);
   const passed=await submissionMine(task.after.id,fetcher);if(!passed)throw Error('통과한 숏스토리 제출본을 찾지 못했어요. 선생님께 확인해 주세요.');
   const archive=await restoreJsonbSnapshot(passed.document);
   if(archive.format!=='shortstory')throw Error('앞 단계 제출본이 숏스토리가 아니에요. 선생님께 확인해 주세요.');

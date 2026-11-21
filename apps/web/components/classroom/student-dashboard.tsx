@@ -19,6 +19,7 @@ import {SeasonNote} from './season-note';
 import {currentStudentNumber,rememberStudentNumber,studentNumberLabel} from '../../lib/student-file-prefix';
 import {shareLinkHost} from '../../lib/share-link';
 import styles from './classroom.module.css';
+import {quoted} from '../../lib/korean-particle';
 export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSession}){
  const student=me.student!;
  const [assignments,setAssignments]=useState<Assignment[]|null>(null),[works,setWorks]=useState<LocalWorkChoice[]>([]),[online,setOnline]=useState<OnlineChoice[]>([]),[error,setError]=useState('');
@@ -119,7 +120,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {phase==='revise'&&<div className={styles.taskStatus} data-tone="revise" role="status"><strong>선생님이 다시 써 달래요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}<small>고친 뒤 아래에서 ‘다시 제출’을 눌러요.</small></div>}
   {phase==='waiting'&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>냈어요 · 선생님 확인을 기다려요</strong><small>{formatSubmittedAt(submitted)}에 냈어요. 더 고치고 싶으면 이어서 쓴 뒤 다시 낼 수 있어요.</small></div>}
   {phase==='passed'&&<div className={styles.taskStatus} data-tone="passed" role="status"><strong>과제 통과! 잘했어요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}</div>}
-  {phase==='locked'&&assignment.after&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>앞 단계를 통과하면 열려요</strong><small>숏스토리 과제 ‘{assignment.after.title}’를 선생님이 통과시키면, 그 그림책으로 이 놀스토리를 시작해요. 쪽마다 장이 하나씩 생겨요.</small></div>}
+  {phase==='locked'&&assignment.after&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>앞 단계를 통과하면 열려요</strong><small>숏스토리 과제 {quoted(assignment.after.title,'을/를')} 선생님이 통과시키면, 그 그림책으로 이 놀스토리를 시작해요. 쪽마다 장이 하나씩 생겨요.</small></div>}
   {phase==='passed'&&!assignment.open&&submitted&&<p className={styles.hint}>{formatSubmittedAt(submitted)}에 낸 작품이에요.</p>}
   {phase==='closed'&&<div className={styles.taskStatus} data-tone="closed" role="status"><strong>제출이 마감됐어요</strong>{submitted?<small>{formatSubmittedAt(submitted)}에 낸 작품이 선생님께 있어요.</small>:<small>선생님께 확인해 주세요.</small>}</div>}
   {assignment.archived&&assignment.feedback&&<p className={styles.reviewFeedback}><b>선생님 피드백</b> {assignment.feedback}</p>}

@@ -5,6 +5,7 @@ import {useBoundedAccountPanel} from './use-bounded-account-panel';
 import styles from './online-works-panel.module.css';
 import {trashExpiryNotice} from '../lib/trash-retention';
 import {storageSummary,type StorageUsage} from '../lib/online-storage';
+import {quoted} from '../lib/korean-particle';
 export function OnlineWorksPanel(props:OnlineWorksProps){
  const online=useOnlineWorks(props);
  return <OnlineWorksPanelView {...props} online={online}/>;
@@ -26,7 +27,7 @@ export function OnlineWorksPanelView({online,acceptedFormat='knolstory',works,di
    <p>처음 올리면 새 온라인 작품이 생겨요. 이미 올린 작품을 다시 올리면 연결된 온라인 작품이 새 내용으로 바뀌어요. 온라인 작품을 열면 서재에 사본이 따로 생기고 기존 원고는 그대로예요. 다른 곳에서 고친 내용과 겹치면 온라인 사본을 열어 비교하거나, 서재에서 사본을 만들어 새 온라인 작품으로 올려 주세요.</p>
    {range==='trash'&&<p>온라인 휴지통의 작품은 10일 뒤 영구 삭제돼요. 그 전에 복구하면 같은 작품과 업로드 이력을 이어가요. 기기의 원고는 바뀌지 않아요.</p>}
    <ul>{(listVisible?documents:[]).map(record=><li key={record.recordId}><span>{record.title}</span>{range==='trash'&&record.deletedAt!=null&&<small>{trashExpiryNotice(record.deletedAt,openedAt)}</small>}{range==='trash'?<button disabled={disabled||busy||record.stateVersion===undefined} aria-label={`${record.title} · 온라인 작품 복구`} onClick={()=>void changeState(record,'restore')}>온라인 작품 복구</button>:<>{record.format===acceptedFormat?<button disabled={disabled||busy} aria-label={`${record.title} · 기기에 사본으로 열기`} onClick={()=>void open(record)}>기기에 사본으로 열기</button>:<small>{record.format==='shortstory'?'숏스토리 그림책 화면에서 열 수 있어요.':'놀스토리 서재에서 열 수 있어요.'}</small>}<button disabled={disabled||busy||record.stateVersion===undefined} aria-label={`${record.title} · 온라인 휴지통으로 이동`} onClick={()=>setConfirmTrash(record)}>온라인 휴지통으로 이동</button></>}</li>)}</ul>
-   {listVisible&&confirmTrash&&<div role="group" aria-label="온라인 휴지통 이동 확인"><p>‘{confirmTrash.title}’을 온라인 휴지통으로 옮길까요? 기기에 있는 원고는 유지되고, 10일 안에 온라인 휴지통에서 같은 작품으로 복구할 수 있어요.</p><button disabled={disabled||busy} onClick={()=>setConfirmTrash(null)}>취소</button><button disabled={disabled||busy} onClick={()=>void changeState(confirmTrash,'trash')}>온라인 휴지통으로 옮기기</button></div>}
+   {listVisible&&confirmTrash&&<div role="group" aria-label="온라인 휴지통 이동 확인"><p>{quoted(confirmTrash.title,'을/를')} 온라인 휴지통으로 옮길까요? 기기에 있는 원고는 유지되고, 10일 안에 온라인 휴지통에서 같은 작품으로 복구할 수 있어요.</p><button disabled={disabled||busy} onClick={()=>setConfirmTrash(null)}>취소</button><button disabled={disabled||busy} onClick={()=>void changeState(confirmTrash,'trash')}>온라인 휴지통으로 옮기기</button></div>}
    {listVisible&&cursor&&<button disabled={disabled||busy} onClick={()=>void list(true)}>목록 더 보기</button>}
    {busy&&!notice&&<p role="status">온라인 작업 중이에요.</p>}
   </>}
