@@ -441,3 +441,11 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 @media (max-width:700px){.additional>.phoneReference{display:block;margin-bottom:6px}}
 /* Inside a 그림책 구상 fold the summary already names it. */
 :is(.phoneReference,.stackedContext>details[data-picturebook-reference])>section>strong:first-child{display:none}
+/* Touch tablets (2026-11-21): what the writer types reads at body size; the kind picker gets room for it. */
+@media (min-width:701px) and (max-width:1366px) and (pointer:coarse){
+ .basicSpeaker{grid-template-columns:minmax(140px,220px) minmax(0,1fr) 128px auto;gap:8px}
+ .speakerKind{gap:6px}.speakerKind select{flex:1;min-width:0}
+ .basicSpeaker label,.speakerImage,.speakerImage>span{font-size:var(--text-small)}
+ .workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){font-size:var(--text-body)}
+ .basicSpeaker button,.workbench[data-screen=basic] .current>fieldset.basicSpeaker button{font-size:var(--text-small);padding:6px 14px}
+}
