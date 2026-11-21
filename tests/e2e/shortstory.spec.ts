@@ -46,3 +46,17 @@ test('ShortStory pictures and Excel survive reopening on phone; unsupported audi
  await expect(page.locator('main > p[role=alert]')).toContainText(/\$\.(?:project\.)?music/);await expect(page.locator('main > p[role=alert]')).toContainText('지원하지 않는 작성 항목');await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('그림과 글을 엑셀로 보관해요.');
  const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!).books.at(-1));expect(after).toEqual(project);await expect(page.locator('iframe')).toHaveCount(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
 });
+
+test('reading a picture book on a phone keeps the page in view and turns it with a swipe',async({browser})=>{
+ // Immersive reading (docs/architecture/focus-reading-editing-plan.md, step 1).
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const page=await context.newPage();
+ await page.goto('/shortstory?work=rabbit&mode=read');
+ const reading=page.getByRole('region',{name:'숏스토리 읽기',exact:true}),turn=page.getByRole('navigation',{name:'읽기 쪽 넘기기',exact:true});
+ await expect(turn.locator('span')).toHaveText('1 / 8');
+ expect(await turn.evaluate(nav=>nav.getBoundingClientRect().bottom<=innerHeight)).toBe(true);
+ const swipe=(from:number,to:number)=>reading.evaluate((el,[x0,x1])=>{const y=el.getBoundingClientRect().top+120;const t=(x:number)=>new Touch({identifier:1,target:el,clientX:x,clientY:y});el.dispatchEvent(new TouchEvent('touchstart',{touches:[t(x0!)],changedTouches:[t(x0!)],bubbles:true}));el.dispatchEvent(new TouchEvent('touchend',{touches:[],changedTouches:[t(x1!)],bubbles:true}));},[from,to]);
+ await swipe(320,60);await expect(turn.locator('span')).toHaveText('2 / 8');
+ await swipe(60,320);await expect(turn.locator('span')).toHaveText('1 / 8');
+ await swipe(60,320);await expect(turn.locator('span')).toHaveText('1 / 8');
+ await context.close();
+});
