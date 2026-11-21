@@ -32,28 +32,28 @@ test('a picture-book tab that cannot keep the library keeps its draft, exports i
 });
 test('a second tab reading an original takes the writer over silently and never changes the saved library',async({page,context})=>{
  await page.goto('/shortstory?work=rabbit&mode=read');
- const original=await page.getByLabel('이야기 제목',{exact:true}).inputValue();
+ const original=await page.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading').innerText();
  await page.getByRole('button',{name:'내 사본으로 쓰기',exact:true}).click();
  await page.getByLabel('이 쪽의 이야기').fill('원본을 지키는 내 사본');
  await expect.poll(()=>page.evaluate(key=>localStorage.getItem(key),key)).toContain('원본을 지키는 내 사본');
  const saved=await page.evaluate(key=>localStorage.getItem(key),key);
  const other=await context.newPage();await other.goto('/shortstory?work=rabbit&mode=read');
  await expect(other.locator('html')).toHaveAttribute('data-local-writer','owned');
- await expect(other.getByLabel('이야기 제목',{exact:true})).toHaveValue(original);
+ await expect(other.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(original);
  await expect(other.getByText(/다른 탭|자동으로 보관하지 못했어요/)).toHaveCount(0);
  await expect(other.getByRole('button',{name:'보관함 새로 시작'})).toHaveCount(0);
  expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
- await other.reload();await expect(other.getByLabel('이야기 제목',{exact:true})).toHaveValue(original);expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
+ await other.reload();await expect(other.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(original);expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
 });
 test('a reading tab that cannot keep the library never migrates, recovers or warns over the saved library',async({page,context})=>{
  await page.goto('/shortstory?work=rabbit&mode=read');
- const original=await page.getByLabel('이야기 제목',{exact:true}).inputValue();
+ const original=await page.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading').innerText();
  await page.getByRole('button',{name:'내 사본으로 쓰기',exact:true}).click();
  await page.getByLabel('이 쪽의 이야기').fill('원본을 지키는 내 사본');
  await expect.poll(()=>page.evaluate(key=>localStorage.getItem(key),key)).toContain('원본을 지키는 내 사본');
  const saved=await page.evaluate(key=>localStorage.getItem(key),key);
  const other=await context.newPage();await withoutLocks(other);await other.goto('/shortstory?work=rabbit&mode=read');
- await expect(other.getByLabel('이야기 제목',{exact:true})).toHaveValue(original);
+ await expect(other.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(original);
  await expect(other.locator('html')).toHaveAttribute('data-local-writer','unavailable');
  await expect(storageWarning(other)).toHaveCount(0);
  // Turning pages only moves the reading position: no warning and the reading goes on.
@@ -61,5 +61,5 @@ test('a reading tab that cannot keep the library never migrates, recovers or war
  await expect(pages).toContainText('2 /');await expect(other.getByText(/보관하지 못했어요|다른 탭/)).toHaveCount(0);
  await expect(other.getByRole('button',{name:'보관함 새로 시작'})).toHaveCount(0);
  expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
- await other.reload();await expect(other.getByLabel('이야기 제목',{exact:true})).toHaveValue(original);expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
+ await other.reload();await expect(other.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(original);expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
 });

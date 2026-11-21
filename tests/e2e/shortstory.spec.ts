@@ -1,4 +1,4 @@
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openPageTools} from './shortstory-navigation';
 import {confirmAuthoringImport} from './authoring-file';
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
@@ -7,6 +7,7 @@ test('ShortStory edits static pages, saves, restores files and prints without ru
  await expect(page.getByRole('heading',{name:'나의 짧은 이야기',exact:true})).toBeVisible();
  await page.getByLabel('이야기 제목',{exact:true}).fill('내 그림책');
  await page.getByLabel('이 쪽의 이야기').fill('첫 번째 그림의 이야기');
+ await openPageTools(page);
  await page.getByRole('button',{name:'현재 쪽 뒤에 빈 쪽 추가'}).click();
  await page.getByLabel('이 쪽 제목').fill('두 번째 쪽');
  await page.getByLabel('이 쪽의 이야기').fill('다음 장면이에요.');
