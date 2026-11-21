@@ -4,7 +4,7 @@ import {pipeline} from 'node:stream/promises';
 import {classroomZip} from '../classroom/season-export';
 import {AuthStateError,authCookieNames,serializeAuthCookie,validateAuthOrigin,type createAuthStateService} from '../auth/auth-state';
 import {ClassroomError,type ClassroomService,type Role} from '../classroom/service';
-import {PermissionsError,normalizePermissions} from '../classroom/permissions';
+import {PermissionsError,normalizeEditScope,normalizePermissions} from '../classroom/permissions';
 import {recipientNumbers} from '../classroom/recipients';
 import {dueAt} from '../classroom/mission-contract';
 import {normalizeClassCode,validQrToken} from '../classroom/secrets';
@@ -105,6 +105,8 @@ function taskAmount(value:unknown):number|null{
  if(typeof value!=='number'||!Number.isInteger(value)||value<1||value>500)throw new HttpError(400,'INVALID_REQUEST');
  return value;
 }
+/** Which editing tools a writing task allows; null follows the class setting. */
+const editScope=(value:unknown)=>normalizeEditScope(value);
 const bad=()=>new HttpError(400,'INVALID_REQUEST');
 function object(value:unknown,allowed:readonly string[],required:readonly string[]=[]):Record<string,unknown>{
  if(!value||typeof value!=='object'||Array.isArray(value))throw bad();
@@ -274,7 +276,8 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){
-   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition','startPoint','startLabel','recipients','checks','targetAmount'],['title']);
+   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition','startPoint','startLabel','recipients','checks','targetAmount','editScope','afterAssignmentId'],['title']);
+   if(input.afterAssignmentId!==undefined&&input.afterAssignmentId!==null&&(typeof input.afterAssignmentId!=='string'||!new RegExp(`^${UUID}$`).test(input.afterAssignmentId)))throw bad();
    if(input.startPoint!==undefined&&input.startPoint!==null&&(typeof input.startPoint!=='string'||!/^(chapter|choice):[A-Za-z0-9_.:-]{1,200}$/.test(input.startPoint)))throw bad();
    if(input.edition!==undefined&&input.edition!==null&&input.edition!=='original'&&input.edition!=='knolstory')throw bad();
    if(input.format!==undefined&&input.format!=='knolstory'&&input.format!=='shortstory')throw bad();
@@ -291,11 +294,13 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     recipients:input.recipients===undefined?null:recipientNumbers(input.recipients),
     ...(input.checks!==undefined?{checks:taskChecks(input.checks)}:{}),
     ...(input.targetAmount!==undefined?{targetAmount:taskAmount(input.targetAmount)}:{}),
+    ...(input.editScope!==undefined?{editScope:editScope(input.editScope)}:{}),
+    ...(input.afterAssignmentId?{afterAssignmentId:input.afterAssignmentId as string}:{}),
    });
   }},
   {method:'DELETE',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.deleteAssignment(accountId,params[0]!)},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
-   const input=object(body,['title','description','open','shareUrl','dueAt','recipients','checks','targetAmount']);
+   const input=object(body,['title','description','open','shareUrl','dueAt','recipients','checks','targetAmount','editScope']);
    if(!Object.keys(input).length||(input.open!==undefined&&typeof input.open!=='boolean'))throw bad();
    return classroom.patchAssignment(accountId,params[0]!,{
     ...(input.title!==undefined?{title:string(input.title,1,100)}:{}),
@@ -306,6 +311,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     ...(input.recipients!==undefined?{recipients:recipientNumbers(input.recipients)}:{}),
     ...(input.checks!==undefined?{checks:taskChecks(input.checks)}:{}),
     ...(input.targetAmount!==undefined?{targetAmount:taskAmount(input.targetAmount)}:{}),
+    ...(input.editScope!==undefined?{editScope:editScope(input.editScope)}:{}),
    });
   }},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/progress$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.assignmentProgress(accountId,params[0]!)},

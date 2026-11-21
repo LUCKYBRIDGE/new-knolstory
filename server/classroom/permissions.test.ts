@@ -22,3 +22,16 @@ describe('editing permissions',()=>{
   expect(effectivePermissions({broken:true},{broken:true})).toEqual(ALLOW_ALL_PERMISSIONS);
  });
 });
+import {normalizeEditScope,storedEditScope} from './permissions';
+describe('task edit scope',()=>{
+ const scope={images:true,characters:false,audio:false,direction:true,choices:false};
+ it('accepts null or every flag as a boolean, and nothing else',()=>{
+  expect(normalizeEditScope(null)).toBeNull();
+  expect(normalizeEditScope(scope)).toEqual(scope);
+  for(const bad of [{},{...scope,text:true},{...scope,audio:'yes'},[],'all',{images:true}])expect(()=>normalizeEditScope(bad)).toThrow(PermissionsError);
+ });
+ it('reads a damaged stored scope as text only, never as more access',()=>{
+  expect(storedEditScope(undefined)).toBeNull();
+  expect(storedEditScope({images:1})).toEqual({images:false,characters:false,audio:false,direction:false,choices:false});
+ });
+});

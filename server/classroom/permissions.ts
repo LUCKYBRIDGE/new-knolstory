@@ -34,3 +34,21 @@ export function effectivePermissions(student:unknown,classroomDefault:unknown):E
  }
  return {...ALLOW_ALL_PERMISSIONS};
 }
+/** Editing tools one writing task allows (text is always allowed). null follows the class/student setting. */
+export type EditScope={images:boolean;characters:boolean;audio:boolean;direction:boolean;choices:boolean};
+const SCOPE_FLAGS=['images','characters','audio','direction','choices'] as const;
+/** Strict: every flag must be a boolean and no other key is accepted. */
+export function normalizeEditScope(value:unknown):EditScope|null{
+ if(value===null)return null;
+ if(!value||typeof value!=='object'||Array.isArray(value))throw new PermissionsError();
+ const input=value as Record<string,unknown>,keys=Object.keys(input);
+ if(keys.length!==SCOPE_FLAGS.length||keys.some(key=>!(SCOPE_FLAGS as readonly string[]).includes(key)))throw new PermissionsError();
+ const result={} as EditScope;
+ for(const flag of SCOPE_FLAGS){if(typeof input[flag]!=='boolean')throw new PermissionsError();result[flag]=input[flag] as boolean;}
+ return result;
+}
+/** A stored scope that no longer parses is treated as "follow the class setting", never as more access. */
+export function storedEditScope(value:unknown):EditScope|null{
+ if(value===null||value===undefined)return null;
+ try{return normalizeEditScope(value);}catch{return {images:false,characters:false,audio:false,direction:false,choices:false};}
+}
