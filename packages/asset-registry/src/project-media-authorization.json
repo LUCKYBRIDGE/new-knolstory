@@ -10571,6 +10571,19 @@
         "docs/architecture/picturebook-image-production-requests.md"
       ],
       "creationMethodEvidence": "uniform derivative of the registered source artwork; requested by project owner"
+    },
+    {
+      "file": "apps/web/public/assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
+      "sha256": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730",
+      "assetIds": [
+        "heungbu.character.picturebook-heungbu-swallow-seed-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.picturebook-heungbu-swallow-seed-v1",
+        "docs/architecture/picturebook-image-production-requests.md"
+      ],
+      "creationMethodEvidence": "built-in image_gen reference edit and uniform canvas normalization; requested by project owner"
     }
   ]
 }

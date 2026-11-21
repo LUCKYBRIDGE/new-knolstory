@@ -1247,43 +1247,32 @@
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-04",
-   "recipeVersion": 2,
-   "review": "approved",
-   "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요. 세로 읽기는 박씨를 문 제비를 보여 줘요.",
+   "recipeVersion": 3,
+   "review": "assembly-review",
+   "note": "몸을 낮춘 흥부에게 작은 제비가 날아들어 박씨를 건네요. 가로·세로에서 눈과 손, 박씨가 함께 보이는지 검토해요.",
    "stage": {
     "backgroundId": "heungbu.background.spring-field",
     "left": [
      {
-      "assetId": "heungbu.character.heungbu-happy",
-      "slot": "heungbu",
-      "label": "흥부 · 기뻐하기",
+      "assetId": "heungbu.character.picturebook-heungbu-swallow-seed-v1",
+      "slot": "heungbu-swallow",
+      "label": "흥부와 제비 · 박씨 건네기",
       "subjects": [
-       "heungbu.heungbu"
-      ]
-     }
-    ],
-    "right": [
-     {
-      "assetId": "heungbu.character.swallow",
-      "slot": "swallow",
-      "label": "제비 · 박씨를 물고 오기",
-      "subjects": [
+       "heungbu.heungbu",
        "heungbu.swallow"
       ],
-      "scaleMultiplier": 0.6,
+      "facing": "original",
       "subject": true
      }
-    ]
+    ],
+    "right": []
    },
    "alternatives": [],
    "revisions": {
     "heungbu.scene.shortstory-classic-04": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
     "heungbu.background.spring-field": "73375600caec4fe75815f1886ad1859f76a603c5c76616cf97fadb6844542ed4",
-    "heungbu.character.heungbu-happy": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
-    "heungbu.character.swallow": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8"
-   },
-   "reviewedAt": "2026-11-20",
-   "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+    "heungbu.character.picturebook-heungbu-swallow-seed-v1": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730"
+   }
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-05",

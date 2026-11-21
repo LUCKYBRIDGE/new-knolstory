@@ -1496,6 +1496,87 @@
       "reason": "소품. 나무꾼 품에 들어갈 크기로 원본을 균일 축소했다. 얼굴과 손은 없고, 옷깃과 녹색 매듭 일부는 y 800 아래에 놓인다. 사람이 옷을 잡는 접촉점은 함께 그린 그림에서 검토해야 한다.",
       "points": [],
       "method": "uniform derivative of the registered source artwork"
+    },
+    {
+      "id": "heungbu.character.picturebook-heungbu-swallow-seed-v1",
+      "sourceId": "heungbu.scene.shortstory-classic-04",
+      "sourceRevision": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
+      "referenceId": "heungbu.character.heungbu-happy",
+      "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+      "additionalReferenceRevisions": {
+        "heungbu.character.swallow-staged-v1": "38bcad79b5682da31af38d3dc3fe57b79e62238dca58000440487af6e1eb6871"
+      },
+      "targetRatio": 0.72,
+      "actualRatio": 0.72,
+      "sourceFile": "assets/source/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.png",
+      "sourceSha256": "f817b51e9d9e721c31cfd04bceae32e629ea139256a9d03c7e666e5f5aa4a67c",
+      "output": "apps/web/public/assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
+      "outputSha256": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730",
+      "comparison": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/heungbu-picturebook-heungbu-swallow-seed-v1-comparison.jpg",
+      "geometry": {
+        "left": 0.235,
+        "top": 0.36,
+        "right": 0.7641666666666667,
+        "bottom": 0.96,
+        "width": 1200,
+        "height": 1200
+      },
+      "alphaThreshold": 16,
+      "alphaBounds": [
+        282,
+        432,
+        917,
+        1152
+      ],
+      "reason": "앉은 흥부의 얼굴과 내민 손, 작은 제비와 박씨 전체를 x 180~1020 및 y 800 위에서 확인했다. 키 비율에는 제비까지 함께 그린 묶음의 알파 경계를 썼다.",
+      "points": [
+        {
+          "label": "흥부 얼굴 왼쪽 위",
+          "x": 441,
+          "y": 551
+        },
+        {
+          "label": "흥부 턱",
+          "x": 589,
+          "y": 688
+        },
+        {
+          "label": "받는 손 끝",
+          "x": 778,
+          "y": 638
+        },
+        {
+          "label": "받는 손바닥 아래",
+          "x": 684,
+          "y": 690
+        },
+        {
+          "label": "제비 날개 위",
+          "x": 742,
+          "y": 433
+        },
+        {
+          "label": "제비 꼬리 끝",
+          "x": 915,
+          "y": 641
+        },
+        {
+          "label": "제비 눈",
+          "x": 725,
+          "y": 566
+        },
+        {
+          "label": "제비 부리 끝",
+          "x": 712,
+          "y": 589
+        },
+        {
+          "label": "박씨",
+          "x": 709,
+          "y": 612
+        }
+      ],
+      "method": "built-in image_gen and uniform stage canvas normalization"
     }
   ],
   "recipeRevisions": [
@@ -1661,6 +1742,49 @@
         "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
       },
       "currentVersion": 2
+    },
+    {
+      "previous": {
+        "sourceAssetId": "heungbu.scene.shortstory-classic-04",
+        "recipeVersion": 2,
+        "review": "approved",
+        "note": "봄 밭에서 흥부(왼쪽)가 기뻐하고, 제비(오른쪽)가 박씨를 물고 와요. 세로 읽기는 박씨를 문 제비를 보여 줘요.",
+        "stage": {
+          "backgroundId": "heungbu.background.spring-field",
+          "left": [
+            {
+              "assetId": "heungbu.character.heungbu-happy",
+              "slot": "heungbu",
+              "label": "흥부 · 기뻐하기",
+              "subjects": [
+                "heungbu.heungbu"
+              ]
+            }
+          ],
+          "right": [
+            {
+              "assetId": "heungbu.character.swallow",
+              "slot": "swallow",
+              "label": "제비 · 박씨를 물고 오기",
+              "subjects": [
+                "heungbu.swallow"
+              ],
+              "scaleMultiplier": 0.6,
+              "subject": true
+            }
+          ]
+        },
+        "alternatives": [],
+        "revisions": {
+          "heungbu.scene.shortstory-classic-04": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
+          "heungbu.background.spring-field": "73375600caec4fe75815f1886ad1859f76a603c5c76616cf97fadb6844542ed4",
+          "heungbu.character.heungbu-happy": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+          "heungbu.character.swallow": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8"
+        },
+        "reviewedAt": "2026-11-20",
+        "evidence": "docs/architecture/evidence/picturebook-three-works-2026-11-20/checkpoint.json"
+      },
+      "currentVersion": 3
     }
   ],
   "scope": "기존 인물·소품을 기준으로 한 무대용 새 ID의 제작과 배치 검토"

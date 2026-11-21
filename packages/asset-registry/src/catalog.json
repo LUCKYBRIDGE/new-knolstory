@@ -50304,5 +50304,69 @@
       },
       "picturebookStageDerivative": true
     }
+  },
+  {
+    "id": "heungbu.character.picturebook-heungbu-swallow-seed-v1",
+    "displayName": "흥부와 제비 · 박씨 건네기",
+    "label": "흥부와 제비 · 박씨 건네기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "group": "흥부",
+    "tags": [
+      "흥부와 놀부",
+      "그림책",
+      "박씨",
+      "건네기"
+    ],
+    "src": "/assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
+    "sourcePath": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/image-generation.json#heungbu.character.picturebook-heungbu-swallow-seed-v1",
+    "copyright": "놀퀴즈",
+    "revision": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730",
+    "geometry": {
+      "left": 0.235,
+      "top": 0.36,
+      "right": 0.7641666666666667,
+      "bottom": 0.96,
+      "width": 1200,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "characterIds": [
+        "heungbu.heungbu",
+        "heungbu.swallow"
+      ],
+      "primaryCharacterId": "heungbu.heungbu",
+      "framing": "group",
+      "composition": "multiple",
+      "bodyFraming": "full",
+      "expressions": [
+        "기쁨"
+      ],
+      "actions": [
+        "받기",
+        "건네기"
+      ],
+      "variantId": "기본 모습",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "secondary",
+      "pickerVisibility": "secondary",
+      "generatedPicturebookStageAsset": true,
+      "searchTerms": [
+        "흥부와 제비 · 박씨 건네기",
+        "제비",
+        "박씨",
+        "흥부"
+      ],
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-happy",
+        "referenceRevision": "0ea4031e358766754cec216b4cdb7bc9e5f9884f8691ffb5df2a97de6a5e1e59",
+        "heightRatio": 0.72,
+        "reason": "앉은 흥부의 얼굴과 내민 손, 작은 제비와 박씨 전체를 x 180~1020 및 y 800 위에서 확인했다. 키 비율에는 제비까지 함께 그린 묶음의 알파 경계를 썼다."
+      }
+    }
   }
 ]

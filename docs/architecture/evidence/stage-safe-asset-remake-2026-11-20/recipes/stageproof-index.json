@@ -1,0 +1,272 @@
+[
+  {
+    "name": "heungbu-04-landscape.jpg",
+    "book": "heungbu",
+    "page": 4,
+    "orientation": "landscape",
+    "revision": 5,
+    "sceneId": "picturebook-preview/preview-8",
+    "width": 1280,
+    "height": 720,
+    "textboxRect": {
+      "x": 0,
+      "y": 534,
+      "width": 1280,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "L1",
+        "path": "assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
+        "rect": {
+          "x": 56.63600000000001,
+          "y": 94.89599999999996,
+          "width": 482.4,
+          "height": 482.40000000000003
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "19bae5b2377f9ed5585fda3b53c13a53d25e635cb54fdac4909cc92ba8f5a1a6",
+    "sha256": "4522deba0f9bf4e58711f3a7e4dba93b9e3c7d4335a184395af3928d0a9f60ee"
+  },
+  {
+    "name": "heungbu-04-portrait.jpg",
+    "book": "heungbu",
+    "page": 4,
+    "orientation": "portrait",
+    "revision": 7,
+    "sceneId": "picturebook-preview/preview-8",
+    "width": 720,
+    "height": 1280,
+    "textboxRect": {
+      "x": 0,
+      "y": 1094,
+      "width": 720,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "L1",
+        "path": "assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
+        "rect": {
+          "x": -132.38933333333335,
+          "y": 141.82400000000007,
+          "width": 985.6,
+          "height": 985.6
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "737f32e02c3fcf8a9255cd6731ec6184bee77a95f3ca71ba6c2ddfab7243bb28",
+    "sha256": "673555a1fc183665b0c7942d4e6c46fbc0f2457a6c4fabd5da6226aa66634d40"
+  },
+  {
+    "name": "seonnyeo-05-landscape.jpg",
+    "book": "seonnyeo",
+    "page": 5,
+    "orientation": "landscape",
+    "revision": 5,
+    "sceneId": "picturebook-preview/preview-10",
+    "width": 1280,
+    "height": 720,
+    "textboxRect": {
+      "x": 0,
+      "y": 534,
+      "width": 1280,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "L1",
+        "path": "assets/legacy-18da4fc/M02-surprised.webp",
+        "rect": {
+          "x": 126.60100000000003,
+          "y": 94.89599999999996,
+          "width": 321.6,
+          "height": 482.40000000000003
+        },
+        "flipX": true
+      },
+      {
+        "id": "R1",
+        "path": "assets/characters/picturebook-v1/seonnyeo-picturebook-fairy-ascending-with-children-v3.webp",
+        "rect": {
+          "x": 704.3820000000001,
+          "y": 94.89599999999996,
+          "width": 482.4,
+          "height": 482.40000000000003
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "7fdecc93732de41d192a88ec6ee5bb0e8fb5b1f656134cb1f986fc256c351a5f",
+    "sha256": "3aa439c97e100261a463602965d19840e1e07adec3698c13921c5fab1e047bb5"
+  },
+  {
+    "name": "seonnyeo-05-portrait.jpg",
+    "book": "seonnyeo",
+    "page": 5,
+    "orientation": "portrait",
+    "revision": 7,
+    "sceneId": "picturebook-preview/preview-10",
+    "width": 720,
+    "height": 1280,
+    "textboxRect": {
+      "x": 0,
+      "y": 1094,
+      "width": 720,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "R1",
+        "path": "assets/characters/picturebook-v1/seonnyeo-picturebook-fairy-ascending-with-children-v3.webp",
+        "rect": {
+          "x": -132.38933333333335,
+          "y": 141.82400000000007,
+          "width": 985.6,
+          "height": 985.6
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "dabb14f194ee8b785f212776efaf53f8f15a8f9200cc0fab42720977157c7e67",
+    "sha256": "56c26f865d581eb694166ffe3a23527b41bfb98735e48f8f9b3991437c152307"
+  },
+  {
+    "name": "seonnyeo-08-landscape.jpg",
+    "book": "seonnyeo",
+    "page": 8,
+    "orientation": "landscape",
+    "revision": 10,
+    "sceneId": "picturebook-preview/preview-16",
+    "width": 1280,
+    "height": 720,
+    "textboxRect": {
+      "x": 0,
+      "y": 534,
+      "width": 1280,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "L1",
+        "path": "assets/legacy-18da4fc/seonnyeo.character.classic-mother-offering-porridge.webp",
+        "rect": {
+          "x": 129.398,
+          "y": 95.69999999999993,
+          "width": 321.6,
+          "height": 482.40000000000003
+        },
+        "flipX": true
+      },
+      {
+        "id": "R1",
+        "path": "assets/characters/picturebook-v1/seonnyeo-classic-woodcutter-riding-horse-staged-v1.webp",
+        "rect": {
+          "x": 389.35300000000007,
+          "y": 94.89599999999996,
+          "width": 482.4,
+          "height": 482.40000000000003
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "4dc820fb8695e3346b51238c363b9367852c13d566f488e6a74c40f82bcdab70",
+    "sha256": "d32b6d0e6608e9b5b1c5ebd6c0a871892337eb4c64168b0a8fe77e1bfc8601ae"
+  },
+  {
+    "name": "seonnyeo-08-portrait.jpg",
+    "book": "seonnyeo",
+    "page": 8,
+    "orientation": "portrait",
+    "revision": 12,
+    "sceneId": "picturebook-preview/preview-16",
+    "width": 720,
+    "height": 1280,
+    "textboxRect": {
+      "x": 0,
+      "y": 1094,
+      "width": 720,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "R1",
+        "path": "assets/characters/picturebook-v1/seonnyeo-classic-woodcutter-riding-horse-staged-v1.webp",
+        "rect": {
+          "x": -152.1013333333333,
+          "y": 141.82400000000007,
+          "width": 985.6,
+          "height": 985.6
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "138205ce9c92698e859faebd7b2c0e669f2edce465e9a113c257816a13be0c72",
+    "sha256": "ee15616a2a32e175525369a08cbe19913f8dd36a2eb04448556eda24f1df6733"
+  },
+  {
+    "name": "seonnyeo-10-landscape.jpg",
+    "book": "seonnyeo",
+    "page": 10,
+    "orientation": "landscape",
+    "revision": 15,
+    "sceneId": "picturebook-preview/preview-20",
+    "width": 1280,
+    "height": 720,
+    "textboxRect": {
+      "x": 0,
+      "y": 534,
+      "width": 1280,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "R1",
+        "path": "assets/characters/picturebook-v1/seonnyeo-classic-rooster-calling-sky-staged-v1.webp",
+        "rect": {
+          "x": 767.68,
+          "y": -90.34559999999999,
+          "width": 450.24,
+          "height": 675.36
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "2b3ce4fc27c0dcddca6899978749b7558245eb1e1546348ef550d07bfe1fa32d",
+    "sha256": "6122f883e69982ddb20705b7df224ecc54c73848ccaca848e7ecf8e9225dafd4"
+  },
+  {
+    "name": "seonnyeo-10-portrait.jpg",
+    "book": "seonnyeo",
+    "page": 10,
+    "orientation": "portrait",
+    "revision": 17,
+    "sceneId": "picturebook-preview/preview-20",
+    "width": 720,
+    "height": 1280,
+    "textboxRect": {
+      "x": 0,
+      "y": 1094,
+      "width": 720,
+      "height": 186
+    },
+    "actors": [
+      {
+        "id": "R1",
+        "path": "assets/characters/picturebook-v1/seonnyeo-classic-rooster-calling-sky-staged-v1.webp",
+        "rect": {
+          "x": -99.94666666666666,
+          "y": -236.64639999999986,
+          "width": 919.8933333333333,
+          "height": 1379.84
+        },
+        "flipX": false
+      }
+    ],
+    "capturePngSha256": "9dd79583bf68fb57039b5bec214e138a46e6666f4e672467accf295140999369",
+    "sha256": "cbc8459ec1f34469f868004961bb6dc8a9339122f219a8b95c9305275a17b52b"
+  }
+]
