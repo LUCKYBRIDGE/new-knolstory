@@ -225,3 +225,20 @@
  .toolsToggle span{display:none}
 }
 @media(max-width:720px){.contents button{flex:0 0 210px;display:flex;align-items:center;gap:8px}.contents button img{width:64px;flex:none}}
+
+/* Immersive reading (2026-11-22, plan step 1): the page is the screen. One thin top row, the picture as
+   wide as fits with its words and page turn in view, contents folded above, book details below the fold. */
+.shell[data-reading] .header{flex-direction:row;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-bottom:4px}
+.shell[data-reading] .header>div:first-child{display:flex;align-items:center;flex-wrap:wrap;gap:4px 14px;min-width:0;flex:1 1 240px}
+.shell[data-reading] .header>div:first-child>.eyebrow,.shell[data-reading] .header>div:first-child>p:not(.eyebrow){display:none}
+.shell[data-reading] .header .bookTitle{margin:0;font-size:var(--text-title)}
+.shell[data-reading] .header .actions{margin-top:0;width:auto}
+.shell[data-reading] .workspace{grid-template-columns:1fr;gap:8px;margin-top:6px}
+.shell[data-reading] .contents>summary{min-height:40px;padding:8px 12px}
+.shell[data-reading] .reading{border:0;background:transparent;padding:0}
+.shell[data-reading] .reading .pageHeader h2{margin:0 0 6px;font-size:var(--text-small);color:var(--ink-soft)}
+.shell[data-reading] .reading .art{width:min(100%,calc((100dvh - 390px) * 16 / 9));min-width:min(100%,320px);border-radius:12px;margin-bottom:12px}
+.shell[data-reading] .reading .storyText{font-size:clamp(18px,2.4vw,24px);line-height:1.85;max-width:40em}
+.shell[data-reading] .readNav{margin-top:12px}
+.shell[data-reading] .reading{touch-action:pan-y}
+@media(max-width:600px){.shell[data-reading]{padding:10px 12px}.shell[data-reading] .reading .art{width:100%;border-radius:8px}}

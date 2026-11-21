@@ -26,7 +26,7 @@ import {createOnlineWorkStore,saveOnlineWork} from '../../lib/online-work-bindin
 import type {OnlineDocument} from '../../lib/document-api';
 import {assertCatalogOnlyMedia} from '../../lib/catalog-only-authoring';
 import Link from 'next/link';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type TouchEvent } from 'react';
 import { newShortStory, newShortStoryPage, prepareJsonbSnapshot, restoreJsonbSnapshot, decodeShortStory, createAuthoringArchive, encodeAuthoringArchive, exportAuthoringExcel, blankAuthoringArchive, importShortStoryTable, exportShortStoryTable, serializeTableTsv, parseTableTsv, googleSheetTsvUrl, shortStoryOriginals, getShortStoryOriginal, isShortStoryWorkKey, type ShortStoryProject } from '@knolstory/compatibility';
 import { resolveAsset } from '@knolstory/asset-registry';
 import { useStorageWriter } from '../../components/use-storage-writer';
@@ -320,6 +320,7 @@ export function ShortStoryWorkspace() {
  const pageCount=project.pages.length;
  // Secondary tools (book details, files, print, the book list) wait behind one control so the page gets the screen.
  const [toolsOpen,setToolsOpen]=useState(false);
+ const swipe=useRef<{x:number;y:number}|null>(null);
  useEffect(()=>{
   if(editing)return;
   const onKey=(event:KeyboardEvent)=>{
@@ -360,7 +361,10 @@ export function ShortStoryWorkspace() {
     })}</nav>
     {editing&&!original&&<button className={styles.appendPage} disabled={blocked||project.pages.length>=500} onClick={()=>{setLastMove(null);const at=project.pages.length;update({...project,pages:[...project.pages,{...newShortStoryPage(),order:at+1}]},at);setIndex(at);}}>+ 맨 뒤에 새 쪽 추가</button>}
    </details>
-   <section className={editing?styles.focus:`${styles.focus} ${styles.reading}`} aria-label={editing?'숏스토리 쓰기':'숏스토리 읽기'}>
+   <section className={editing?styles.focus:`${styles.focus} ${styles.reading}`} aria-label={editing?'숏스토리 쓰기':'숏스토리 읽기'}
+    {...(editing?{}:{onTouchStart:(event:TouchEvent)=>{const t=event.touches[0];swipe.current=t?{x:t.clientX,y:t.clientY}:null;},onTouchEnd:(event:TouchEvent)=>{const start=swipe.current,t=event.changedTouches[0];swipe.current=null;if(!start||!t)return;const dx=t.clientX-start.x,dy=t.clientY-start.y;
+     // A clear sideways swipe turns the page, like a picture book; vertical scrolling is left alone.
+     if(Math.abs(dx)<50||Math.abs(dx)<Math.abs(dy)*1.5)return;const next=index+(dx<0?1:-1);if(next>=0&&next<pageCount)position(next);}})}>
     <div className={styles.pageHeader}><h2 ref={writingHeading} tabIndex={-1}>{index+1}쪽{current.title&&` · ${current.title}`}</h2>
     {editing&&project.pages.length>1&&<nav className={styles.pageNav} aria-label="숏스토리 쪽 이동"><button disabled={index===0} onClick={()=>position(index-1)}>이전 쪽</button><span>{index+1} / {project.pages.length}</span><button disabled={index===project.pages.length-1} onClick={()=>position(index+1)}>다음 쪽</button></nav>}</div>
     <div className={editing?styles.editingPage:undefined}>{editing&&!original&&!blocked?<div className={styles.artStage}><Art page={current} label={`${index+1}쪽 삽화`}/>
@@ -371,7 +375,7 @@ export function ShortStoryWorkspace() {
      {project.pages.length>1&&<nav className={styles.readNav} aria-label="읽기 쪽 넘기기"><button aria-label="이전 쪽" disabled={index===0} onClick={()=>position(index-1)}>‹ 이전 쪽</button><span>{index+1} / {project.pages.length}</span><button aria-label="다음 쪽" className={styles.readNext} disabled={index===project.pages.length-1} onClick={()=>position(index+1)}>{index===project.pages.length-1?'마지막 쪽이에요':'다음 쪽 ›'}</button></nav>}</>}</div>
    </section>
   </div>);
- return <main className={styles.shell} onCompositionStartCapture={()=>{composing.current=true;onlineGeneration.current++;setCompositionActive(true);}} onCompositionEndCapture={()=>{composing.current=false;onlineGeneration.current++;setCompositionActive(false);}}>
+ return <main className={styles.shell} data-reading={!editing&&!libraryView||undefined} onCompositionStartCapture={()=>{composing.current=true;onlineGeneration.current++;setCompositionActive(true);}} onCompositionEndCapture={()=>{composing.current=false;onlineGeneration.current++;setCompositionActive(false);}}>
  <WorkLeaveGuard tracker={leaveTracker} work={project} ready={!!library}/>
   {libraryView&&serviceLinks(classroom.role).length>1&&<ServiceNavigation role={classroom.role} active="library" beforeNavigate={beforeServiceNavigation}/>}
   <header className={styles.header}><div><Link href="/?view=library"><span className={styles.longLabel}>놀스토리 서재로 돌아가기</span><span className={styles.shortLabel}>‹ 서재로</span></Link>{fromMission&&onlineEnabled&&<> <Link href="/student" data-mission-return="true">과제로 돌아가기</Link></>}<p className={styles.eyebrow}>숏스토리 그림책</p>{!libraryView&&editing&&!original?<h1 className={styles.bookTitle}><TitleInput className={styles.titleField} aria-label="이야기 제목" placeholder="그림책 제목" value={project.title} disabled={blocked} onChange={title=>update({...project,title})}/></h1>:<h1 className={styles.bookTitle}>{libraryView?'그림책 보관함':project.title||'제목 없는 그림책'}</h1>}<p>{libraryView?'그림책을 고르거나 새 이야기를 시작해요.':original?'원본 그림책을 읽고 내 사본으로 글을 써요.':'그림과 글을 구성하고 내 그림책으로 보관해요.'}</p></div><div className={styles.actions}>{editing&&!libraryView&&<EditorTermGuide/>}
