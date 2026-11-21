@@ -45,7 +45,7 @@
 | 선녀와 나무꾼 8쪽 | [가로](recipes/seonnyeo-08-landscape.jpg) | [세로](recipes/seonnyeo-08-portrait.jpg) |
 | 선녀와 나무꾼 10쪽 | [가로](recipes/seonnyeo-10-landscape.jpg) | [세로](recipes/seonnyeo-10-portrait.jpg) |
 
-흥부 4쪽 v3은 조립 검토 중이다. 흥부 4쪽 v2와 선녀 5·8·10쪽의 당시 판정은 위에 남겼다. 조합 교체 이력은 [제작 기록](image-generation.json)의 `recipeRevisions`에 있다.
+흥부 4쪽 v3은 **승인**했다(2026-11-21, Claude). 흥부 4쪽 v2와 선녀 5·8·10쪽의 당시 판정은 위에 남겼다. 조합 교체 이력은 [제작 기록](image-generation.json)의 `recipeRevisions`에 있다.
 
 흥부 4쪽 v3은 쪼그린 흥부의 눈과 내민 손, 제비의 부리와 박씨가 두 화면에서 대사창 위에 놓인다. 가로에서는 흥부의 하단이 대사창에 일부 가려지고, 작은 박씨가 배경과 섞여 세로보다 찾기 어렵다. 세로에서는 박씨와 두 인물이 프레임 안에 보인다.
 
@@ -91,3 +91,10 @@
 | heungbu.character.picturebook-heungbu-swallow-seed-v1 | 0.7200 | [비교](heungbu-picturebook-heungbu-swallow-seed-v1-comparison.jpg) | [가로](individual/heungbu.character.picturebook-heungbu-swallow-seed-v1-landscape.jpg) | [세로](individual/heungbu.character.picturebook-heungbu-swallow-seed-v1-portrait.jpg) |
 
 [단독 컷 기록](individual/single-stageproof-index.json) · [조합 컷 기록](recipes/stageproof-index.json) · [자산 리비전과 알파 경계](image-generation.json)
+
+### 흥부 4쪽 v3 승인 판정 — 2026-11-21
+
+정적 빌드의 실제 미리보기와, Runtime Core가 계산한 배치로 원래 크기(1280×720·720×1280)를 다시 그린 화면에서 확인했다. 원화처럼 쪼그려 앉은 흥부가 손을 내밀고 제비가 그 위로 날아든다. 가로·세로 모두 흥부의 얼굴·손과 제비가 대사창 위에 있고, 세로 화면은 옆 잘림 없이 두 인물과 박씨를 함께 보여 준다. 승인 조합 안전 영역 검사(`picturebook-recipe-stage-safety.test.ts`)를 통과했다.
+
+남은 점: 가로 화면에서 박씨는 원래 크기로 약 5px이고, 밝은 베이지색이라 연두색 밭과 섞인다. 사건은 내민 손과 날아드는 제비로 읽히고 원화에서도 박씨는 작아서 승인을 막지 않는다. 박씨를 더 잘 보이게 하려면 박씨에 얇은 어두운 테두리를 두르거나 조금 키운 v2를 만들면 된다(후속, 선택).
+

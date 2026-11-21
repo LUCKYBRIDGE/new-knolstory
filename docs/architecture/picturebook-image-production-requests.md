@@ -170,7 +170,7 @@
 | 기준 ID | `heungbu.character.heungbu-happy`(흥부), `heungbu.character.swallow-staged-v1`(제비) |
 | 등록 | 새 ID `heungbu.character.picturebook-heungbu-swallow-seed-v1`. 4쪽 조합은 이 그림 하나로 v3을 만들고 조립 검토 상태로 둔다. |
 
-묶음 그림을 등록하고 4쪽 조합 v3에 연결했다. 제비의 작은 몸집을 유지한 채 흥부가 쪼그려 앉아 손을 들어 받는 자세로 맞췄다. v3은 조립 검토 상태이며, 기존 v2의 승인 이력과 가로·세로 확인 이미지는 [제작·무대 기록](evidence/stage-safe-asset-remake-2026-11-20/review.md)에 있다.
+묶음 그림을 등록하고 4쪽 조합 v3에 연결했다. 제비의 작은 몸집을 유지한 채 흥부가 쪼그려 앉아 손을 들어 받는 자세로 맞췄다. v3은 실제 무대 검토 뒤 승인했고(가로에서 박씨가 작아 밭과 섞이는 점은 후속 선택 과제), 기존 v2의 승인 이력과 가로·세로 확인 이미지는 [제작·무대 기록](evidence/stage-safe-asset-remake-2026-11-20/review.md)에 있다.
 
 ## 완료 후 등록 절차
 

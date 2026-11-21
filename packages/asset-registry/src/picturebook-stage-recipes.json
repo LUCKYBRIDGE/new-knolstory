@@ -1248,8 +1248,8 @@
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-04",
    "recipeVersion": 3,
-   "review": "assembly-review",
-   "note": "몸을 낮춘 흥부에게 작은 제비가 날아들어 박씨를 건네요. 가로·세로에서 눈과 손, 박씨가 함께 보이는지 검토해요.",
+   "review": "approved",
+   "note": "봄 밭에서 쪼그려 앉은 흥부가 손을 내밀고, 작은 제비가 날아들어 박씨를 건네요. 세로 읽기는 두 인물과 박씨를 함께 보여 줘요.",
    "stage": {
     "backgroundId": "heungbu.background.spring-field",
     "left": [
@@ -1272,7 +1272,9 @@
     "heungbu.scene.shortstory-classic-04": "2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52",
     "heungbu.background.spring-field": "73375600caec4fe75815f1886ad1859f76a603c5c76616cf97fadb6844542ed4",
     "heungbu.character.picturebook-heungbu-swallow-seed-v1": "fd4285cd97ebf6ebdacbbe4b7e15c210c20cc17cfa36f8f8b77c9d505a412730"
-   }
+   },
+   "reviewedAt": "2026-11-21",
+   "evidence": "docs/architecture/evidence/stage-safe-asset-remake-2026-11-20/review.md"
   },
   {
    "sourceAssetId": "heungbu.scene.shortstory-classic-05",
