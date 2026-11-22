@@ -507,3 +507,4 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
  .table td:nth-child(6)>.btn{display:block}
  .table tbody{grid-template-columns:1fr 1fr}
 }
+.todoGroupHead h3 small{font-size:var(--text-caption)}

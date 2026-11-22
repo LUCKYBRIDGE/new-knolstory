@@ -332,7 +332,8 @@ export function ShortStoryWorkspace() {
  useEffect(()=>setWriteTab('text'),[project.id]);
  // Reading a book starts at its cover and ends with it closed; peeking at your own page from 쓰기 goes straight to that page.
  const [bookFace,setBookFace]=useState<'cover'|'pages'|'end'>('pages'),previewing=useRef(false),[justOpened,setJustOpened]=useState(false);
- useEffect(()=>{if(editing||libraryView){setBookFace('pages');return;}setBookFace(previewing.current||index>0?'pages':'cover');previewing.current=false;
+ // Decided before paint so a book opened for reading never flashes its first page before the cover.
+ useLayoutEffect(()=>{if(editing||libraryView){setBookFace('pages');return;}setBookFace(previewing.current||index>0?'pages':'cover');previewing.current=false;
   // eslint-disable-next-line react-hooks/exhaustive-deps -- only when a book is opened for reading, not on every page turn
  },[project.id,editing,libraryView]);
  // The cover and the closing page are whole scenes: start them at the top, wherever the page had been scrolled.
