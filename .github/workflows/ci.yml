@@ -33,3 +33,59 @@ jobs:
       # Compile the Web source without claiming that ignored media or the native
       # runtime are present. Full pnpm build retains its service-audio rights gate.
       - run: pnpm --filter @knolstory/web run build:source
+
+  host-e2e:
+    name: Host E2E (PR)
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Chromium and Linux dependencies
+        id: browser
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run host smoke suite
+        id: smoke
+        run: bash scripts/ci-host-e2e.sh
+      - name: Measure 390px contrast on Linux
+        id: contrast
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        # Keep the platform comparison visible without masking failures in the smoke suite.
+        continue-on-error: true
+        env:
+          PLAYWRIGHT_HTML_OUTPUT_DIR: playwright-report/contrast
+        run: >-
+          pnpm exec playwright test --project=host '(^|/)accessibility-contrast\.spec\.ts$'
+          --grep 'compact default cover and shelf status contrast on actual backgrounds 390$'
+          --global-timeout=90000 --reporter=line,html --output=test-results/contrast
+      - name: Record browser results
+        if: ${{ !cancelled() }}
+        env:
+          SMOKE: ${{ steps.smoke.outcome }}
+          CONTRAST: ${{ steps.contrast.outcome }}
+        run: |
+          {
+            echo "### Linux Chromium"
+            echo "- Host smoke: \`$SMOKE\`"
+            if test -s test-results/host-summary.json; then
+              node --input-type=commonjs -e 'const s = require("./test-results/host-summary.json").stats; console.log(`- Smoke: ${s.expected} passed, ${s.unexpected} failed, ${s.skipped} skipped in ${(s.duration / 1000).toFixed(1)} s`)'
+            fi
+            echo "- 390px contrast: \`$CONTRAST\` (public checkout only)"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload browser diagnostics
+        if: ${{ failure() || steps.contrast.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: host-playwright-diagnostics
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

@@ -1,0 +1,57 @@
+name: Stories Runtime E2E
+
+# The full suite runs on demand against a protected media checkout.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  runner-prerequisite:
+    if: github.ref == 'refs/heads/main' && vars.KNOL_PRIVATE_E2E_READY != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report blocked runtime verification
+        run: |
+          echo 'Stories Runtime E2E blocked: no trusted runner with the authorized media corpus is configured.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
+  stories-runtime:
+    if: github.ref == 'refs/heads/main' && vars.KNOL_PRIVATE_E2E_READY == 'true'
+    # Before enabling: restrict this group in GitHub settings to this exact workflow
+    # on refs/heads/main. Provision KNOL_CI_MEDIA_ROOT (authorized public/assets mirror)
+    # and KNOL_CI_PRIVATE_REPORT_ROOT (private output) on that runner before opting in.
+    runs-on:
+      group: knolstory-trusted-e2e
+      labels: linux
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned image and font tools
+        run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0 fonttools==4.60.2
+      # Browser OS packages are installed when provisioning the restricted Linux runner.
+      - run: pnpm exec playwright install chromium
+      - name: Prepare authorized assets and run every stories-runtime test
+        run: python3 scripts/ci-stories-runtime.py
+      - name: Upload public-safe runtime diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stories-runtime-diagnostics
+          # Public workflow artifacts may not include runtime traces or private artwork.
+          path: |
+            playwright-report/stories-runtime-summary.md
+            test-results/stories-runtime-summary.json
+          retention-days: 7
