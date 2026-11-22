@@ -4,7 +4,7 @@ import {createPortal} from 'react-dom';
 import {chapterLabel,cutLabel,type StoryProject} from '@knolstory/story-domain';
 import {playbackLog,type PlaybackState,type ImagePreloadMode} from '@knolstory/runtime-core';
 import {readerChapterHistory,restartReaderChapter} from '../lib/reader-chapter-history';
-import {loadPlayerSlot,isPlayerSlotChanged,projectPlaybackFingerprint,readPlayerSaves,savePlayerSlot,writePlayerSaves,type PlayerSaves,type PlayerSlot,type PlayerSlotId,type PlayerThumbnail} from '../lib/player-saves';
+import {loadPlayerSlot,isPlayerSlotChanged,playerProgressKey,projectPlaybackFingerprint,readPlayerSaves,savePlayerSlot,writePlayerSaves,type PlayerSaves,type PlayerSlot,type PlayerSlotId,type PlayerThumbnail} from '../lib/player-saves';
 import {canAutoForward,autoForwardDelay} from '../lib/reader-auto-forward';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import {DEFAULT_READER_PREFERENCES,readReaderPreferences,writeReaderPreferences,type ReaderPreferences,type ReaderFormat,type ReaderTapMode} from '../lib/reader-preferences';
@@ -33,7 +33,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
  const historyScroll=useRef<HTMLDivElement>(null),historyScrollPosition=useRef<number|null>(null);
  const dialog=useRef<HTMLDialogElement>(null),trigger=useRef<HTMLButtonElement>(null),topMenu=useRef<HTMLDivElement>(null),returnFocus=useRef<HTMLElement|null>(null),advancedKey=useRef(''),advanceRef=useRef(onAdvance),interactionRef=useRef(onInteractionChange),toolsRef=useRef(onToolsExpandedChange);
  useEffect(()=>{advanceRef.current=onAdvance;interactionRef.current=onInteractionChange;toolsRef.current=onToolsExpandedChange;},[onAdvance,onInteractionChange,onToolsExpandedChange]);
- const fingerprint=useMemo(()=>projectPlaybackFingerprint(project),[project]),progressKey=JSON.stringify([playback,dialoguePosition]),busy=!!panel||!!confirm||topOpen||saving;
+ const fingerprint=useMemo(()=>projectPlaybackFingerprint(project),[project]),progressKey=playerProgressKey(playback,dialoguePosition),busy=!!panel||!!confirm||topOpen||saving;
  useLayoutEffect(()=>{saveContext.current=JSON.stringify([project.id,fingerprint,progressKey,presentationKey]);},[project.id,fingerprint,progressKey,presentationKey]);
  const phone=textboxBounds?textboxBounds.width<660:viewportPhone;
  useEffect(()=>{const query=matchMedia('(max-width:720px)');const update=()=>setViewportPhone(query.matches);update();query.addEventListener('change',update);return()=>query.removeEventListener('change',update);},[]);

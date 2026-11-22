@@ -1,7 +1,7 @@
 import {describe,it,expect} from 'vitest';
 import type {StoryProject} from '@knolstory/story-domain';
 import {createBlankStoryProject,createPlayback,advancePlayback} from '@knolstory/runtime-core';
-import {PLAYER_SAVES_KEY,readPlayerSaves,savePlayerSlot,writePlayerSaves,loadPlayerSlot,projectPlaybackFingerprint} from './player-saves';
+import {PLAYER_SAVES_KEY,readPlayerSaves,savePlayerSlot,writePlayerSaves,loadPlayerSlot,projectPlaybackFingerprint,playerProgressKey} from './player-saves';
 const p=()=>createBlankStoryProject({id:'p',chapterId:'c',lineId:'a'});
 const memory=()=>{const entries=new Map<string,string>();return {getItem:(k:string)=>entries.get(k)??null,setItem:(k:string,v:string)=>{entries.set(k,v);},entries};};
 describe('player slots',()=>{
@@ -96,5 +96,16 @@ describe('conditional scene saved summaries',()=>{
   const state=createPlayback(project);expect(state.status).toBe('ended');
   const slot=savePlayerSlot({version:3,works:{}},project,state,'quick').works.p.quick;
   expect(slot.summary?.text).not.toContain('숨긴 비밀');expect(slot.summary?.location).toBe('이야기 끝');
+ });
+});
+
+describe('save progress guard',()=>{
+ const state={lineId:'line-2',path:['line-1','line-2'],status:'reading' as const};
+ it('treats a not-yet-reported text position as the start of the same cut',()=>{
+  expect(playerProgressKey(state)).toBe(playerProgressKey(state,{lineId:'line-2',offset:0}));
+ });
+ it('still notices reading further into the cut or a different cut',()=>{
+  expect(playerProgressKey(state)).not.toBe(playerProgressKey(state,{lineId:'line-2',offset:12}));
+  expect(playerProgressKey(state)).not.toBe(playerProgressKey({...state,lineId:'line-3',path:[...state.path,'line-3']}));
  });
 });

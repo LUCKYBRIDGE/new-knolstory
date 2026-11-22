@@ -70,6 +70,15 @@ export function readPlayerSaves(storage:Pick<Storage,'getItem'>):PlayerSaves{
  }
  return {...value as PlayerSaves,version:3};
 }
+/**
+ * What a save would record, for the "the scene changed while saving" guard. The reader reports the text
+ * position only after the cut renders, so "not reported yet" and "start of this cut" are the same progress;
+ * treating them as different made an immediate 보관하고 서재로 fail right after a new cut appeared.
+ */
+export function playerProgressKey(state:PlaybackState,dialoguePosition?:PlayerDialoguePosition){
+ const position=dialoguePosition&&!(dialoguePosition.lineId===state.lineId&&dialoguePosition.offset===0)?dialoguePosition:null;
+ return JSON.stringify([state,position]);
+}
 export function savePlayerSlot(saves:PlayerSaves,project:StoryProject,state:PlaybackState,id:PlayerSlotId,savedAt=new Date().toISOString(),thumbnail?:PlayerThumbnail,dialoguePosition?:PlayerDialoguePosition):PlayerSaves{
  if(dialoguePosition!==undefined&&!validDialoguePosition(dialoguePosition))throw Error('읽던 글 위치를 확인해 주세요.');
  if(thumbnail!==undefined&&!isPlayerThumbnail(thumbnail))throw Error('저장 화면 이미지를 확인해 주세요.');

@@ -4,8 +4,11 @@ import {renderedTextContrast} from './rendered-contrast';
 for(const width of [1440,390])test(`compact default cover and shelf status contrast on actual backgrounds ${width}`,async({page},info)=>{
  await page.setViewportSize({width,height:900});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].filter(image=>image.loading!=="lazy").map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
- const texts=page.locator('[data-shelf-cover] [data-role="title"] h2, [data-shelf-cover] [data-role="title"] p'),reports=[];
- await expect(texts).toHaveCount(8);
+ // Phone shelves (≤600px) show only title and picture on grouped classics; the hidden tagline is not on screen to measure.
+ const taglines=page.locator('[data-shelf-cover] [data-role="title"] p');
+ if(width<=600)for(let index=0;index<await taglines.count();index++)await expect(taglines.nth(index)).toBeHidden();
+ const texts=page.locator('[data-shelf-cover] [data-role="title"] h2, [data-shelf-cover] [data-role="title"] p').locator('visible=true'),reports=[];
+ await expect(texts).toHaveCount(width<=600?4:8);
  for(let index=0;index<await texts.count();index++)reports.push({kind:'default compact title or subtitle',...await renderedTextContrast(texts.nth(index),info.outputPath(`cover-${index}`))});
  reports.push({kind:'shelf status',...await renderedTextContrast(page.locator('[data-drawer-face] [role="status"]'),info.outputPath('status'))});
  const path=info.outputPath('rendered-contrast.json');await writeFile(path,JSON.stringify({width,reports},null,2)+'\n');await info.attach('rendered-contrast',{path,contentType:'application/json'});

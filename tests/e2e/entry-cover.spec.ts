@@ -66,7 +66,7 @@ test('all eight existing editions enter actual RenPy through their stored book c
   const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.getAttribute('data-rendered-revision'),{timeout:30000}).toBe(await status.getAttribute('data-scene-revision'));
   const frame=page.getByTestId('story-runtime-frame');if(index===0)await frame.evaluate(n=>n.setAttribute('data-entry-instance','same'));else await expect(frame).toHaveAttribute('data-entry-instance','same');
   const rect=(await frame.boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect.poll(()=>status.getAttribute('data-music-path')).toContain('story-score/');
-  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
+  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true}).getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  }
  await page.screenshot({path:`${evidence}/all-eight-return-library.png`,fullPage:true});
 });

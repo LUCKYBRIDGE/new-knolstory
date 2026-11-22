@@ -46,7 +46,8 @@ async function library(page: Page) {
 async function open(page: Page, kind: string, title: string, intent: string) {
   await library(page);
   await openShelfAction(page,card(page, kind, title),intent);
-  if(intent==='처음부터 읽기'||intent==='이어읽기')await beginSelectedBook(page,intent==='이어읽기');
+  // Starting over passes the book cover; resuming goes straight back to the saved cut.
+  if(intent==='처음부터 읽기')await beginSelectedBook(page);
 }
 async function preparation(page: Page) {
   const pane = page.getByRole('region', { name: '작품 설정', exact: true });
@@ -82,20 +83,16 @@ async function selectCut(page: Page, id: string) {
   if(await pane.isVisible())await pane.getByRole('button',{name:/^(현재 컷 쓰기|현재 컷으로 돌아가기|메모를 두고 현재 컷 편집으로 돌아가기)$/,exact:true}).click();
   await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);
 }
-async function writer(page:Page){
-  const tools=page.locator('[data-writing-tools]');
-  if(!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator(':scope>summary').click();
-  await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();
+async function workMenu(page:Page){
+  const menu=page.locator('[data-work-menu]');
+  if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
 }
 async function next(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await expect(button).toBeEnabled();await button.focus();await page.keyboard.press('Enter');await ready(page);}
-async function nativeChoice(page:Page,index:number,target:string){
+async function choose(page:Page,label:string,targetText:string){
   await ready(page);await expect(page.getByTestId('playback-status')).toHaveText('선택해 주세요');
-  const status=page.getByTestId('story-runtime-status'),box=(await page.getByTestId('story-runtime-frame').boundingBox())!;
-  const rect=JSON.parse((await status.getAttribute('data-choices-rect'))!) as {x:number;y:number;width:number;height:number};
-  expect(rect).not.toBeNull();
-  const width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(box.width/width,box.height/height);
-  await page.mouse.click(box.x+(box.width-width*scale)/2+(rect.x+rect.width/2)*scale,box.y+(box.height-height*scale)/2+(rect.y+Math.min(20,Math.floor(rect.height/8))+25+index*50)*scale);
-  await expect(page.locator(`[data-line-id="${target}"]`)).toHaveAttribute('aria-current','true');await ready(page);
+  // Like next(): the open text mirror carries the same choices as keyboard buttons.
+  const button=page.getByRole('button',{name:label,exact:true});await expect(button).toBeEnabled();await button.focus();await page.keyboard.press('Enter');
+  await ready(page);await expect(page.getByRole('region',{name:'이야기 무대',exact:true}).getByText(targetText,{exact:true})).toBeVisible();
 }
 async function ready(page: Page) {
   const status = page.getByTestId('story-runtime-status');
@@ -159,6 +156,8 @@ test('local library prepares three separate works and roundtrips preparation wit
   const observe=(page:Page)=>{page.on('pageerror',error=>errors.push(error.stack??error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});};
   context.on('page',observe);
   const page = await context.newPage(); page.setDefaultTimeout(15000);
+  // Its own touch context skips the beforeEach page, and the phone-width pass would otherwise raise the one-time offer.
+  await suppressFullscreenOffer(page);
   try {
     await page.goto('/'); await enterLibrary(page); await library(page);
     await expect(page.getByRole('region', { name: '기본 작품', exact: true }).getByRole('article')).toHaveCount(4);
@@ -178,17 +177,15 @@ test('local library prepares three separate works and roundtrips preparation wit
     await preparation(page);
     await prep.getByLabel('작품 설정 항목',{exact:true}).selectOption('memos');
     await prep.getByRole('article', {name:'메모 3',exact:true}).getByRole('button', {name:/컷 열기$/}).click();
-    await writer(page);
-    const manuscript = page.getByRole('region', {name:'장 전체 글 고치기',exact:true});
-    await manuscript.getByLabel('1컷 대사 / 해설', {exact:true}).fill('달빛 편지를 챙겨 숲으로 떠났다.');
-    await manuscript.getByRole('button', {name:'대사 컷 추가',exact:true}).click();
-    await manuscript.getByLabel('2컷 대사 / 해설', {exact:true}).fill('숲에서 친구에게 편지를 전했다.');
+    await page.locator('[data-current-cut] textarea').fill('달빛 편지를 챙겨 숲으로 떠났다.');
+    await workMenu(page); await page.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true}).click();
+    await page.locator('[data-current-cut] textarea').fill('숲에서 친구에게 편지를 전했다.');
     const ownCut = await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();
     await saved(page); await library(page);
     await expect(card(page,'내 작품',ownTitle)).toContainText('편지를 들고 숲으로 떠나는 아이');
     await expect(card(page,'내 작품',ownTitle).locator('img')).toHaveCount(2);
     await create(page,secondTitle);
-    await page.getByLabel('대사 / 해설',{exact:true}).fill('바닷가에 새 이야기를 남겼다.');
+    await page.locator('[data-current-cut] textarea').fill('바닷가에 새 이야기를 남겼다.');
     await saved(page);
     const second=await exportFile(page,`${evidence}/sea-story.knolstory`);
     expect(second.project.lines[0].text).toBe('바닷가에 새 이야기를 남겼다.');
@@ -197,20 +194,20 @@ test('local library prepares three separate works and roundtrips preparation wit
     await importShelfFile(page,registeredForest);
     await saved(page); await library(page);
     await expect(card(page,'내 작품',forestTitle)).toBeVisible();
-    await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(2);
+    await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(3);
     for (const [width,height,name] of [[1280,900,'desktop'],[1024,768,'tablet'],[390,844,'phone']] as const) {
       await page.setViewportSize({width,height}); await shot(page, `library-${name}`);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
     await page.setViewportSize({width:1280,height:900});
     await open(page,'내 작품',ownTitle,'편집하기');
-    await expect(page.locator('[data-line-id][aria-current="true"]')).toHaveAttribute('data-line-id',ownCut);
+    await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(ownCut);
     await preparation(page);await page.getByLabel('작품 설정 항목',{exact:true}).selectOption('planning');await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('달빛 편지로 친구를 찾는다.');
     await page.reload(); await library(page); await open(page,'내 작품',ownTitle,'작품 준비');
     await page.getByLabel('작품 설정 항목',{exact:true}).selectOption('memos');
     await expect(page.getByLabel('메모 3 제목',{exact:true})).toHaveValue('편지를 보여 줄 컷');
     await selectCut(page,ownCut);
-    await expect(page.locator('[data-line-id][aria-current="true"]')).toHaveAttribute('data-line-id',ownCut);
+    await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(ownCut);
     const own = await exportFile(page, `${evidence}/moonlight-letter.knolstory`);
     expect(own.project.creativeMemos).toHaveLength(3); expect(own.project.lines).toHaveLength(2);
     expect(own.project.cover).toMatchObject({author:'서재 검증 작가',subtitle:'아이디어에서 첫 대사까지',authorNote:'여러 작품을 오가도 이야기를 잃지 않아요.',layout:'picture',backgroundId:background,characterId:actor});
@@ -246,25 +243,26 @@ test('local library prepares three separate works and roundtrips preparation wit
     if(process.env.KNOL_CAPTURE_CAUGHT_EXCEPTIONS==='1')stopCaught=await diagnostics.caught(fresh);
     await beginSelectedBook(fresh);
     await ready(fresh); await unlock(fresh); await shot(fresh,'imported-native-reading');
+    const choice=archive.project.lines.find((line:{flow?:{type:string}})=>line.flow?.type==='choice')!.flow.options[1].label,choiceTarget=archive.project.lines[8].text;
     for(let i=0;i<5;i++){diagnostics.record('step',{name:'fresh-next',index:i});await next(fresh);}
-    await nativeChoice(fresh,1,archive.project.lines[8].id);await saved(fresh);
+    await choose(fresh,choice,choiceTarget);await saved(fresh);
     await expect(fresh.getByRole('button',{name:'이전 읽은 컷',exact:true})).toHaveCount(1);await previousReadCut(fresh);await ready(fresh);
     await expect(fresh.getByTestId('playback-status')).toHaveText('선택해 주세요');
-    await nativeChoice(fresh,1,archive.project.lines[8].id);await saved(fresh);
+    await choose(fresh,choice,choiceTarget);await saved(fresh);
     await fresh.getByRole('button',{name:'저장',exact:true}).click();
     await fresh.getByRole('button',{name:'1번 저장',exact:true}).click();
     await expect(fresh.getByRole('button',{name:'1번 저장',exact:true})).toContainText('별빛 아래에서 길 잃은 친구를 만났다.');
     await fresh.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await fresh.getByTestId('story-runtime-frame').evaluate(node=>node.setAttribute('data-library-instance','same'));
     await library(fresh);await expect(fresh.getByTestId('story-runtime-frame')).toHaveAttribute('data-library-instance','same');const parked=await fresh.getByTestId('story-runtime-frame').boundingBox();expect(parked!.width).toBeGreaterThan(0);expect(parked!.height).toBeGreaterThan(0); await fresh.reload(); await library(fresh);
-    await openShelfAction(fresh,card(fresh,'내 작품',forestTitle),'이어읽기');await beginSelectedBook(fresh,true);await ready(fresh);
+    await openShelfAction(fresh,card(fresh,'내 작품',forestTitle),'이어읽기');await ready(fresh);
     await expect(fresh.getByRole('region',{name:'이야기 무대',exact:true}).getByText('별빛 아래에서 길 잃은 친구를 만났다.',{exact:true})).toBeVisible();
-    await fresh.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
-    await fresh.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+    // Reading opened from the shelf has no '이 컷 편집하기' (only editor playback does); edit the cut from the shelf instead.
     const lineId=archive.project.lines.find((line:{text:string})=>line.text==='별빛 아래에서 길 잃은 친구를 만났다.')?.id;
     expect(lineId).toBeDefined();
+    await library(fresh);await open(fresh,'내 작품',forestTitle,'편집하기');await selectCut(fresh,lineId!);
     await expect(fresh.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(lineId!);
     const textTool=fresh.getByRole('button',{name:'글 편집',exact:true});if(await textTool.isVisible())await textTool.click();
-    await fresh.getByLabel('대사 / 해설',{exact:true}).fill('별빛 아래에서 편지를 기다리는 친구를 만났다.');await saved(fresh);
+    await fresh.locator('[data-current-cut] textarea').fill('별빛 아래에서 편지를 기다리는 친구를 만났다.');await saved(fresh);
     await fresh.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await ready(fresh);
     await expect(fresh.getByRole('region',{name:'이야기 무대',exact:true}).getByText('별빛 아래에서 편지를 기다리는 친구를 만났다.',{exact:true})).toBeVisible();
     await stopCaught?.();stopCaught=undefined;
