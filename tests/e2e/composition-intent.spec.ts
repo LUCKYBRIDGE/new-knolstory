@@ -1,9 +1,13 @@
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {previousReadCut} from './reader-actions';
 import {currentCutRow,currentCutText,expectIndependentImportedProject,openFileExchange,parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
-import {openChoiceEditing,openEditingScreen} from './editor-screens';
+import {openChoiceEditing,openEditingScreen,currentCutPlay} from './editor-screens';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync,writeFileSync } from 'node:fs';
 import { PNG } from 'pngjs';
+test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
+/** The cut being read (the editor's cut selector is hidden while reading). */
+const readingAt=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId as string);
 const assetCatalog=parseAuthoringFile(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
 const resolveAsset=(id:string)=>assetCatalog.find((asset:{id:string})=>asset.id===id);
 
@@ -60,6 +64,8 @@ async function rendered(page: Page) {
   await expect(status).toContainText('연결됨', { timeout: 90000 });
   await expect.poll(() => status.evaluate(node => node.getAttribute('data-rendered-revision') === node.getAttribute('data-scene-revision')), { timeout: 30000 }).toBe(true);
 }
+/** The selected cut's own '이 컷부터 재생' (multi-cut screens repeat it on every cut). */
+async function playCut(page:Page){const scoped=currentCutPlay(page);await((await scoped.count())?scoped:page.getByRole('button',{name:'이 컷부터 재생',exact:true}).first()).click();}
 async function selectCut(page: Page, id: string) {
   await page.getByLabel('현재 장과 컷 이동', { exact: true }).selectOption(id);
   await characters(page);
@@ -120,7 +126,8 @@ async function chooseFlow(page: Page, value: string) {
 }
 function sceneryColors(png: PNG) {
   const colors = new Set<number>();
-  for (let y = Math.floor(png.height * .12); y < png.height * .55; y += 2)
+  // Start below the reader's top controls (chapter label, ‘편집으로 돌아가기’) so only the scene itself is sampled.
+  for (let y = Math.floor(png.height * .18); y < png.height * .55; y += 2)
     for (let x = Math.floor(png.width * .1); x < png.width * .9; x += 2) {
       const offset = (y * png.width + x) * 4;
       colors.add((png.data[offset]! << 16) + (png.data[offset + 1]! << 8) + png.data[offset + 2]!);
@@ -188,30 +195,30 @@ test('actual Ren’Py preserves authored bodies, front center and empty POV acro
   await expect(handles).toHaveCount(1);
   await expect(handles).toHaveAttribute('data-actor-flip', 'original');
   await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath('front-center-native.png') });
-  await page.getByRole('button', { name: '이 컷부터 재생', exact: true }).click();
+  await playCut(page);
   await rendered(page);
-  await next(page);await expect(page.getByLabel('현재 장과 컷 이동', { exact: true })).toHaveValue(ids[3]);
+  await next(page);await expect.poll(()=>readingAt(page)).toBe(ids[3]);
   await rendered(page);
   await page.getByTestId('story-stage-viewport').screenshot({path:testInfo.outputPath('semantic-forward-focus.png')});
   await settleStageFocus(page);
   const backgroundOnly = PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' }));
   writeFileSync(testInfo.outputPath('background-only-before-back.png'),PNG.sync.write(backgroundOnly));
   expect(sceneryColors(backgroundOnly)).toBeGreaterThan(150);
-  await next(page);await expect(page.getByLabel('현재 장과 컷 이동', { exact: true })).toHaveValue(ids[4]);
+  await next(page);await expect.poll(()=>readingAt(page)).toBe(ids[4]);
   await rendered(page);
   await settleStageFocus(page);
   const textOnly = PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' }));
   expect(sceneryColors(textOnly)).toBeLessThan(5);
   await expect(page.getByText(source.lines[0].text, { exact: true })).toHaveCount(0);
   await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath('first-person-text-only-native.png') });
-  await previousReadCut(page);await expect(page.getByLabel('현재 장과 컷 이동', { exact: true })).toHaveValue(ids[3]);
+  await previousReadCut(page);await expect.poll(()=>readingAt(page)).toBe(ids[3]);
   await rendered(page);
   await page.getByTestId('story-stage-viewport').screenshot({path:testInfo.outputPath('semantic-back-focus.png')});
   await settleStageFocus(page);
   const restored = PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' }));
   writeFileSync(testInfo.outputPath('background-only-restored.png'),PNG.sync.write(restored));expect(restored.width).toBe(backgroundOnly.width);expect(restored.height).toBe(backgroundOnly.height);
   expect(restored.data.equals(backgroundOnly.data),'the entire returned stage pixel buffer is identical').toBe(true);
-  await previousReadCut(page);await expect(page.getByLabel('현재 장과 컷 이동', { exact: true })).toHaveValue(ids[2]);
+  await previousReadCut(page);await expect.poll(()=>readingAt(page)).toBe(ids[2]);
   await rendered(page);
   expect(sceneryColors(PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' })))).toBeGreaterThan(150);
   await expect(frame).toHaveAttribute('data-composition-instance', 'original');

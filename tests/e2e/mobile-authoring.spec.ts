@@ -225,9 +225,11 @@ test('phone file-restored work renders real assets and both native Ren’Py endi
   for (const index of [0,1]) {
     await expect(page.getByTestId('playback-status')).toHaveText('선택해 주세요');
     await page.getByTestId('story-stage-viewport').scrollIntoViewIfNeeded();
-    const bounds = (await frame.boundingBox())!;
-    const status=page.getByTestId('story-runtime-status'),rect=JSON.parse((await status.getAttribute('data-choices-rect'))!) as {x:number;y:number;width:number;height:number};expect(rect).not.toBeNull();const width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(bounds.width/width,bounds.height/height);
-    await page.touchscreen.tap(bounds.x+(bounds.width-width*scale)/2+(rect.x+rect.width/2)*scale,bounds.y+(bounds.height-height*scale)/2+(rect.y+Math.min(20,Math.floor(rect.height/8))+25+index*60)*scale);
+    // The host's accessible choice with a real key press (as branch-scope does); canvas coordinates shift with measured Korean text.
+    // A long first cut is split into pages: read on (as a person would) until the choices appear.
+    const choice=page.getByRole('button',{name:['집으로 돌아가기','호수로 가기'][index]!,exact:true});
+    for(let page_=0;page_<8&&!await choice.isVisible();page_++){const more=page.getByRole('button',{name:'다음으로',exact:true});if(!await more.isVisible())break;await more.focus();await more.press('Enter');await rendered(page);}
+    await choice.focus();await page.keyboard.press('Enter');
     await expect(page.getByTestId('playback-status')).toHaveText('읽는 중', { timeout: 30000 });
     await rendered(page);
     const next=page.getByRole('button',{name:'다음으로',exact:true});await next.focus();await next.press('Enter');

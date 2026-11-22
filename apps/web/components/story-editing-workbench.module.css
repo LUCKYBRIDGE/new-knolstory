@@ -455,3 +455,8 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
  .body[data-basic=true][data-cut-arrangement=columns] .current>.text textarea{height:clamp(120px,30dvh,340px);font-size:var(--text-body);line-height:1.65}
  .body[data-basic=true][data-cut-arrangement=stacked] .current>.text textarea{height:clamp(140px,22dvh,300px);font-size:var(--text-body);line-height:1.65}
 }
+/* 인물 편집: the current cut's stage stays above the cut list so a placement change (slider or drag on the stage) is seen as it happens. */
+.workbench[data-screen=characters] .body:not([data-playing=true]){display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(150px,38%) minmax(0,1fr);gap:8px}
+.workbench[data-screen=characters] .body:not([data-playing=true])>.previewSlot{grid-column:1;grid-row:1;min-height:0}
+.workbench[data-screen=characters] .body:not([data-playing=true])>.editingContent{grid-column:1;grid-row:2;min-height:0;overflow:auto}
+@media (max-width:700px){.workbench[data-screen=characters] .body:not([data-playing=true]){grid-template-rows:minmax(120px,30%) minmax(0,1fr)}}
