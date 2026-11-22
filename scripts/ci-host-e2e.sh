@@ -6,7 +6,7 @@ set -euo pipefail
 suite='(^|/)(classroom|editing-workbench|shortstory|four-work-shortstory|accessibility|editor-term-guide)\.spec\.ts$'
 titles=(
   'teacher builds a class'
-  'student submits and teacher opens a device copy'
+  'a student submits a picture book while image changes are restricted'
   'a teacher opening the student screen can log out'
   'several cut texts edit directly'
   'background workbench updates separate cuts'
