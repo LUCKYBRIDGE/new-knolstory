@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
 import {openShortStoryDetails} from './shortstory-navigation';
+import {catalogImage} from './catalog-image-url';
 
 const contestId='shortstory.background.creative-heungbu-ricecake-contest-v1';
 const eventIds=[
@@ -27,7 +28,7 @@ for(const width of [390,1440])test(`ShortStory grounded new events are searchabl
  await search.fill('대회');
  const selected=picker.locator(`[data-asset-id="${contestId}"]`);
  await expect(selected).toBeVisible();
- const imageSource=await selected.locator('img').getAttribute('src');
+ await expect(selected.locator('img')).toHaveAttribute('src',catalogImage(contestId).previewSrc);const imageSource=catalogImage(contestId).src;
  await selected.click();
  const text='마을 떡 만들기 대회가 시작되자, 아이가 생각지도 못한 재료를 꺼냈다.';
  await writing.getByLabel('이 쪽의 이야기',{exact:true}).fill(text);

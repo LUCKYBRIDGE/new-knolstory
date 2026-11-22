@@ -4,6 +4,7 @@ import { useId,useState } from 'react';
 import { assetDisplayName, resolveAsset } from '@knolstory/asset-registry';
 import { AssetBrowserDialog } from './asset-browser-dialog';
 import styles from './asset-browser-dialog.module.css';
+import {AssetPreviewImage} from './asset-preview-image';
 export type AssetPickerFieldProps = {
   allowSceneIllustrations?:boolean;
   label: string; type: 'character' | 'background'; value: string; onChange: (id: string) => void;
@@ -23,7 +24,7 @@ export function AssetPickerField({ allowSceneIllustrations=false, label, type, v
   return <div className={styles.field}>
     <span>{label}</span>
     <button type="button" className={styles.launcher} aria-label={`${actionLabel} · ${displayName}`} aria-describedby={hintId} data-asset-value={value} data-asset-inherited={inherited?true:undefined} onClick={() => setOpen(true)}>
-      {selected && <img src={selected.src} alt="" loading="lazy" />}
+      {selected && <AssetPreviewImage asset={selected} />}
       <span><strong>{displayName}</strong><small id={hintId}>{inherited?defaultLabel:'썸네일로 이미지 찾기'}</small></span>
     </button>
 

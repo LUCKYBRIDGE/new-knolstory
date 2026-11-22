@@ -2,6 +2,7 @@ import {openShortStoryDetails,openPageTools,openTextTools,openBook} from './shor
 import {confirmAuthoringImport} from './authoring-file';
 import { test,expect } from '@playwright/test';
 import { mkdir,readFile,writeFile } from 'node:fs/promises';
+import {catalogImage} from './catalog-image-url';
 const packs=JSON.parse(await readFile('packages/compatibility/src/shortstory-originals-data.json','utf8')) as {worldId:string;title:string;description:string;packId:string;cover:{backgroundId:string;characterId:string;authorNote:string};scenes:{sourceSceneId:string;title:string;referenceText:string;art:{assetId:string}}[]}[];
 function getShortStoryOriginal(key:string){const pack=packs.find(pack=>pack.worldId===key)!;return {id:`shortstory-original-${key}`,title:pack.title,description:pack.description,authorDisplayName:'전래 이야기 · 놀퀴즈',source:{kind:'preset',presetId:pack.packId},cover:{backgroundId:pack.cover.backgroundId,characterId:pack.cover.characterId,authorNote:pack.cover.authorNote},pages:pack.scenes.map((scene,i)=>({id:scene.sourceSceneId,order:i+1,title:scene.title,text:scene.referenceText,backgroundId:scene.art.assetId,leftAssetId:'',rightAssetId:''})),updatedAt:'2026-10-06T00:00:00.000Z'};}
 const encodeShortStory=(project:ReturnType<typeof getShortStoryOriginal>)=>JSON.stringify({manifest:{format:'shortstory',version:1,kind:'project'},project});
@@ -124,8 +125,9 @@ test('ShortStory keeps the current page in its copy and moves illustrated text t
    : picker.locator(`[data-asset-id="${otherOriginalIllustration}"]`);
   const assetId = await card.getAttribute('data-asset-id');
   expect(assetId).toBeTruthy();
-  const src = await card.locator('img').getAttribute('src');
-  expect(src).toBeTruthy();
+  // Picker cards show the small preview; the page itself shows the original image.
+  await expect(card.locator('img')).toHaveAttribute('src', catalogImage(assetId!).previewSrc);
+  const src = catalogImage(assetId!).src;
   await card.click();
   await expect(picker).not.toBeVisible();
   await expect(writing.getByRole('img', {name: '2쪽 삽화', exact: true}).locator('img')).toHaveAttribute('src', src!);

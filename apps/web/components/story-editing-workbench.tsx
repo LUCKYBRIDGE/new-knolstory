@@ -26,6 +26,7 @@ import styles from './story-editing-workbench.module.css';
 import type {EditingScreen,Companion,EditorPreferences} from '../lib/editor-preferences';
 import {resolveCutArrangement,type CutArrangement} from '../lib/cut-arrangement';
 import type {AdjacentSceneThumbnail} from './use-adjacent-scene-thumbnails';
+import {AssetPreviewImage} from './asset-preview-image';
 export type {EditingScreen} from '../lib/editor-preferences';
 export type EditorTextSnapshots=Record<string,{cutId?:string;start:number;end:number;direction:"forward"|"backward"|"none";top:number;left:number;scroll:number;windowScroll:number}>;
 type Props={permissions?:EditingPermissions;/** What to do when done, when it differs from saving a work file (a class task). */finishHint?:string;relatedMemos?:ReactNode;
@@ -35,7 +36,7 @@ const screens:readonly [EditingScreen,string][]=[['basic','쓰기'],['text','원
 const names:Record<Companion,string>={text:'글',background:'배경',characters:'인물',audio:'음향',direction:'연출'};
 const optional=(screen:EditingScreen):screen is 'characters'|'audio'|'direction'=>screen==='characters'||screen==='audio'||screen==='direction';
 function backgroundId(project:StoryProject,line:StoryLine){return line.backgroundMode==='none'?'':line.backgroundId||project.chapters.find(c=>c.id===line.chapterId)?.backgroundId||project.stageDefaults?.backgroundId||'';}
-function Material({id}:{id:string}){const asset=resolveAsset(id);return <span className={styles.material}>{asset?<><img src={asset.src} alt="" loading="lazy"/><span>{assetDisplayName(asset)}</span></>:<span>{id?'자료 확인 필요':'이미지 없음'}</span>}</span>;}
+function Material({id}:{id:string}){const asset=resolveAsset(id);return <span className={styles.material}>{asset?<><AssetPreviewImage asset={asset}/><span>{assetDisplayName(asset)}</span></>:<span>{id?'자료 확인 필요':'이미지 없음'}</span>}</span>;}
 function cutReference(project:StoryProject,id:string){const line=project.lines.find(item=>item.id===id);if(!line)return '종료 컷 확인 필요';const chapter=project.chapters.find(item=>item.id===line.chapterId);const index=project.lines.filter(item=>item.chapterId===line.chapterId).sort((a,b)=>a.order-b.order).findIndex(item=>item.id===id);return `${chapter?.title??'장'} ${index+1}컷`;}
 function destinationLabel(project:StoryProject,id:string|null){return id===null?'이야기 종료':id?cutReference(project,id):'도착 컷 미지정';}
 function revealCurrentCut(root:HTMLElement|null){
@@ -164,7 +165,7 @@ export function StoryEditingWorkbench(p:Props){
   return <fieldset className={styles.basicSpeaker} disabled={busy}>
    <legend>현재 컷의 화자</legend>
    <label className={styles.speakerName}>화자<input aria-label="현재 컷 화자" value={line.speakerName} maxLength={200} onCompositionStart={()=>p.onComposing(true)} onCompositionEnd={()=>p.onComposing(false)} onChange={event=>patch(line,{speakerName:event.target.value})}/></label>
-   <div className={styles.speakerImage} aria-label="현재 컷 화자에 연결된 이미지"><span>연결된 이미지</span><div>{linked.length?linked.map(actor=>{const asset=resolveAsset(actor.assetId);return <span key={actor.key}>{asset&&<img src={asset.src} alt="" width={18} height={24}/>}<span>{asset?assetDisplayName(asset):'이미지 확인 필요'}</span></span>;}):<span>{line.type==='narration'?'없음 · 해설':'없음 · 화면 밖 목소리'}</span>}</div></div>
+   <div className={styles.speakerImage} aria-label="현재 컷 화자에 연결된 이미지"><span>연결된 이미지</span><div>{linked.length?linked.map(actor=>{const asset=resolveAsset(actor.assetId);return <span key={actor.key}>{asset&&<AssetPreviewImage asset={asset} width={18} height={24}/>}<span>{asset?assetDisplayName(asset):'이미지 확인 필요'}</span></span>;}):<span>{line.type==='narration'?'없음 · 해설':'없음 · 화면 밖 목소리'}</span>}</div></div>
    <label className={styles.speakerKind}><span>종류</span><select title="글 종류 설정" aria-label="현재 컷 글 종류" value={line.type} disabled={p.composing} onChange={event=>patch(line,{type:event.target.value as StoryLine['type'],...(event.target.value==='narration'?{speaker:'narration' as const}:{})})}><option value="dialogue">대사</option><option value="narration">해설</option></select></label>
    <button type="button" aria-label="이 컷부터 재생" title="현재 컷부터 실제 이야기 재생" disabled={busy||p.composing} onClick={()=>p.onPreview(line.id)}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2 L13 8 L4 14 Z" fill="currentColor"/></svg>재생</button>
   </fieldset>;

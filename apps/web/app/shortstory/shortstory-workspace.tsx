@@ -27,6 +27,7 @@ import type {OnlineDocument} from '../../lib/document-api';
 import {assertCatalogOnlyMedia} from '../../lib/catalog-only-authoring';
 import Link from 'next/link';
 import { useEffect, useLayoutEffect, useRef, useState, type TouchEvent } from 'react';
+import { flushSync } from 'react-dom';
 import { newShortStory, newShortStoryPage, prepareJsonbSnapshot, restoreJsonbSnapshot, decodeShortStory, createAuthoringArchive, encodeAuthoringArchive, exportAuthoringExcel, blankAuthoringArchive, importShortStoryTable, exportShortStoryTable, serializeTableTsv, parseTableTsv, googleSheetTsvUrl, shortStoryOriginals, getShortStoryOriginal, isShortStoryWorkKey, type ShortStoryProject } from '@knolstory/compatibility';
 import { resolveAsset } from '@knolstory/asset-registry';
 import { useStorageWriter } from '../../components/use-storage-writer';
@@ -47,15 +48,17 @@ import styles from './shortstory.module.css';
 import {bindTaskWork,useTaskForWork} from '../../components/use-task-for-work';
 import {taskPermissions} from '../../lib/editing-permissions';
 import {BookClosing,BookOpening} from './book-moments';
+import {AssetPreviewImage} from '../../components/asset-preview-image';
 type Project=ShortStoryProject;
 type Page=Project['pages'][number];
 const loadingProject=getShortStoryOriginal('rabbit');
 const originalById=(id:string)=>{const book=shortStoryOriginals.find(book=>book.id===id);return book?getShortStoryOriginal(book.key):undefined;};
-function Art({page,label}:{page:Pick<Page,'backgroundId'|'leftAssetId'|'rightAssetId'>;label:string}) {
+const pageAssets=(page:Pick<Page,'backgroundId'|'leftAssetId'|'rightAssetId'>|undefined)=>page?[page.backgroundId,page.leftAssetId,page.rightAssetId].map(id=>resolveAsset(id)).filter(asset=>!!asset):[];
+function Art({page,label,loading}:{page:Pick<Page,'backgroundId'|'leftAssetId'|'rightAssetId'>;label:string;loading?:'lazy'|'eager'}) {
  const background=resolveAsset(page.backgroundId),left=resolveAsset(page.leftAssetId),right=resolveAsset(page.rightAssetId);
  return <div className={styles.art} role="img" aria-label={label}>
-  {background&&<img className={styles.background} src={background.src} alt=""/>}
-  {left&&<img className={styles.left} src={left.src} alt=""/>}{right&&<img className={styles.right} src={right.src} alt=""/>}
+  {background&&<img className={styles.background} src={background.src} alt="" loading={loading}/>}
+  {left&&<img className={styles.left} src={left.src} alt="" loading={loading}/>}{right&&<img className={styles.right} src={right.src} alt="" loading={loading}/>}
   {!background&&!left&&!right&&<span>그림 없는 쪽</span>}
  </div>;
 }
@@ -91,6 +94,14 @@ export function ShortStoryWorkspace() {
  const canChooseImages=permissions.images;
  const canPlaceCharacters=canChooseImages&&permissions.characters;
  const [illustrationPage,setIllustrationPage]=useState<string|null>(null),[printPreview,setPrintPreview]=useState(false);
+ // The hidden A4 section loads its pictures only for the preview or an actual print, not on opening the book.
+ const [printing,setPrinting]=useState(false),printImages=printPreview||printing?'eager':'lazy';
+ useEffect(()=>{
+  const query=window.matchMedia?.('print'),start=()=>flushSync(()=>setPrinting(true));
+  const change=(event:MediaQueryListEvent)=>{if(event.matches)start();};
+  window.addEventListener('beforeprint',start);query?.addEventListener?.('change',change);
+  return()=>{window.removeEventListener('beforeprint',start);query?.removeEventListener?.('change',change);};
+ },[]);
  const writingHeading=useRef<HTMLHeadingElement>(null),focusWriting=useRef(false);
  const printHeading=useRef<HTMLHeadingElement>(null),printLauncher=useRef<HTMLButtonElement>(null);
  const [notice,setNotice]=useState(''),[error,setError]=useState(''),[blocked,setBlocked]=useState(false),[sheet,setSheet]=useState(''),[operationBusy,setBusy]=useState(false);
@@ -172,6 +183,13 @@ export function ShortStoryWorkspace() {
  useEffect(()=>{if(printPreview)printHeading.current?.focus();},[printPreview]);
  useEffect(()=>{if(editing&&focusWriting.current&&writingHeading.current){focusWriting.current=false;writingHeading.current.focus();}},[editing,project?.id]);
  const original=!!originalById(project.id),current=project.pages[Math.min(index,project.pages.length-1)];
+ // Only the open page is shown; warm the pages either side so turning stays instant.
+ const neighbourSources=libraryView?'':[index-1,index+1].flatMap(at=>pageAssets(project.pages[at])).map(asset=>asset.src).join('\n');
+ useEffect(()=>{
+  if(!neighbourSources)return;
+  const timer=window.setTimeout(()=>{for(const src of neighbourSources.split('\n')){const image=new Image();image.decoding='async';image.src=src;}},400);
+  return()=>window.clearTimeout(timer);
+ },[neighbourSources]);
  const commit=(next:ShortStoryLibrary,preserveDraft=false)=>{if(blocked)return false;
   // Another tab is the writer for a moment: keep the change here; it is saved once this tab takes over.
   if(!writer.guard.current?.isOwned()&&writer.status!=='unavailable'){latest.current=next;setLibrary(next);dirty.current=true;void writer.claim();return true;}
@@ -375,7 +393,7 @@ export function ShortStoryWorkspace() {
     <nav aria-label="그림책 쪽 목록">{project.pages.map((page,i)=>{
      const illustration=resolveAsset(page.backgroundId);
      return <button key={page.id} aria-current={i===index?'page':undefined} onClick={()=>position(i)}>
-      {editing&&illustration&&<img src={illustration.src} alt="" loading="lazy"/>}
+      {editing&&illustration&&<AssetPreviewImage asset={illustration}/>}
       <span>{i+1}쪽 · {page.title||'제목 없는 쪽'}</span>
      </button>;
     })}</nav>
@@ -447,14 +465,14 @@ export function ShortStoryWorkspace() {
    </div>
   </section>
   <details className={libraryView?`${styles.library} ${styles.libraryPage}`:styles.library} open={libraryView} hidden={!libraryView&&!toolsOpen}><summary>그림책 보관함 · 내 그림책 {library.books.length}권</summary><div className={styles.bookList}>
-   <section aria-label="기본 그림책"><h2>기본 그림책 {shortStoryOriginals.length}권</h2>{shortStoryOriginals.map(book=><button key={book.id} disabled={blocked} aria-pressed={project.id===book.id} onClick={()=>switchBook(book.id,true)}><span className={styles.libraryCover} aria-hidden="true"><BookCover project={shortStoryCoverProject(getShortStoryOriginal(book.key))} edition="original"/></span><span>{book.title} · 원본 읽기</span></button>)}</section>
-   <section aria-label="내 그림책 목록"><h2>내 그림책</h2>{library.books.length?library.books.map(book=><div key={book.id} className={styles.libraryEntry}><button disabled={blocked} aria-pressed={project.id===book.id} onClick={()=>switchBook(book.id)}><span className={styles.libraryCover} aria-hidden="true"><BookCover project={shortStoryCoverProject(book)} edition="own"/></span><span>{book.title}</span></button><LibraryStorageBadge status={onlineShelf.byLocalKey[`shortstory:${book.id}`]??{kind:'local',label:'이 기기에 있음'}}/>{onlineAllowed&&online.account.session&&<button disabled={online.busy||compositionActive||blocked||conflict} onClick={()=>void online.save(`shortstory:${book.id}`)}>온라인에 업로드 · {book.title}</button>}</div>):<p>원본에서 사본을 만들거나 새 그림책을 시작해요.</p>}{onlineShelf.remoteOnly.map(record=><div key={record.recordId} className={styles.libraryEntry}><LibraryStorageBadge status={{kind:'remote',label:'온라인에 있음',record}}/><button disabled={online.busy||compositionActive||blocked||conflict} onClick={()=>void online.open(record)}>{record.title} · 기기에 사본으로 열기</button></div>)}{online.activeCursor&&<button disabled={online.busy} onClick={()=>void online.list(true,'active')}>온라인 그림책 더 보기</button>}{online.error&&<p role="alert">{online.error}</p>}{online.notice&&<p role="status">{online.notice}</p>}</section>
+   <section aria-label="기본 그림책"><h2>기본 그림책 {shortStoryOriginals.length}권</h2>{shortStoryOriginals.map(book=><button key={book.id} disabled={blocked} aria-pressed={project.id===book.id} onClick={()=>switchBook(book.id,true)}><span className={styles.libraryCover} aria-hidden="true"><BookCover preview project={shortStoryCoverProject(getShortStoryOriginal(book.key))} edition="original"/></span><span>{book.title} · 원본 읽기</span></button>)}</section>
+   <section aria-label="내 그림책 목록"><h2>내 그림책</h2>{library.books.length?library.books.map(book=><div key={book.id} className={styles.libraryEntry}><button disabled={blocked} aria-pressed={project.id===book.id} onClick={()=>switchBook(book.id)}><span className={styles.libraryCover} aria-hidden="true"><BookCover preview project={shortStoryCoverProject(book)} edition="own"/></span><span>{book.title}</span></button><LibraryStorageBadge status={onlineShelf.byLocalKey[`shortstory:${book.id}`]??{kind:'local',label:'이 기기에 있음'}}/>{onlineAllowed&&online.account.session&&<button disabled={online.busy||compositionActive||blocked||conflict} onClick={()=>void online.save(`shortstory:${book.id}`)}>온라인에 업로드 · {book.title}</button>}</div>):<p>원본에서 사본을 만들거나 새 그림책을 시작해요.</p>}{onlineShelf.remoteOnly.map(record=><div key={record.recordId} className={styles.libraryEntry}><LibraryStorageBadge status={{kind:'remote',label:'온라인에 있음',record}}/><button disabled={online.busy||compositionActive||blocked||conflict} onClick={()=>void online.open(record)}>{record.title} · 기기에 사본으로 열기</button></div>)}{online.activeCursor&&<button disabled={online.busy} onClick={()=>void online.list(true,'active')}>온라인 그림책 더 보기</button>}{online.error&&<p role="alert">{online.error}</p>}{online.notice&&<p role="status">{online.notice}</p>}</section>
    {!!library.deleted.length&&<section aria-label="삭제한 그림책 복구"><h2>삭제한 그림책</h2>{library.deleted.map(book=><button disabled={blocked} key={book.id} onClick={()=>{const next=restoreShortStoryBook(library,book.id);if(commit(next)){setLibraryView(false);setProject(book);setIndex(Math.min(next.positions[book.id]??0,book.pages.length-1));setEditing(true);window.history.replaceState(null,'',window.location.pathname);}}}>{book.title} 복구</button>)}</section>}
   </div></details>
   {importPreview&&(!submissionAccount||submissionAccount===classroom.session?.accountId)&&<AuthoringImportDialog title={importPreview.title} kind="shortstory" pageCount={importPreview.pages.length} busy={busy} onCancel={()=>{setImportPreview(null);setSubmissionAccount(null);}} onApply={()=>{if(submissionAccount&&submissionAccount!==activeAccount.current)return;if(accept(importPreview)){setImportPreview(null);setSubmissionAccount(null);}}}/>}
   {recoveryConfirmation&&<DeleteConfirmation title={recoveryConfirmation==='reload'?'저장된 보관함 다시 열기':'보관함 새로 시작'} action={recoveryConfirmation==='reload'?'보관함 다시 열기':'새 보관함 시작'} description={recoveryConfirmation==='reload'?'현재 초안을 파일로 보관했나요? 저장된 보관함을 다시 열면 이 탭의 초안은 사라져요.':'열리지 않는 보관함은 따로 남겨 두고 새 보관함을 시작할까요?'} onCancel={()=>setRecoveryConfirmation(null)} onDelete={()=>{if(compositionActive)return;if(recoveryConfirmation==='reload'){dirty.current=false;window.location.reload();return;}try{writer.guard.current!.assertWritable();const raw=localStorage.getItem(SHORTSTORY_LIBRARY_KEY)??localStorage.getItem(SHORTSTORY_LEGACY_KEY);if(raw)localStorage.setItem(`knolstory-shortstory-recovery-${Date.now()}`,raw);const next=addShortStoryBook(emptyShortStoryLibrary(),newShortStory());saveShortStoryLibrary(writer.guard.current!,next);latest.current=next;setLibrary(next);setProject(next.books[0]);setBlocked(false);setEditing(true);setError('');setIndex(0);}catch{setError('복구 원본 보관과 저장에 실패했어요. 파일로 먼저 보관해 주세요.');}setRecoveryConfirmation(null);}}/>}
   {deleteTarget&&<DeleteConfirmation description={deleteTarget==='book'?`‘${project.title}’ 그림책을 보관함에서 삭제할까요? 삭제한 뒤에도 복구할 수 있어요.`:`${index+1}쪽을 삭제할까요? 이 책에서 쪽 삭제 되돌리기로 복구할 수 있어요.`} onCancel={()=>setDeleteTarget(null)} onDelete={()=>{if(deleteTarget==='book'){removeBook();return;}setLastMove(null);setDeletedPage({bookId:project.id,page:current,index});update({...project,pages:project.pages.filter(page=>page.id!==current.id).map((page,i)=>({...page,order:i+1}))},Math.max(0,index-1));setIndex(Math.max(0,index-1));setDeleteTarget(null);}}/>}
-  {!libraryView&&<section id="shortstory-print" className={printPreview?`${styles.printBook} ${styles.printPreview}`:styles.printBook} data-shortstory-print aria-label="A4 그림책 인쇄">{printPreview&&<div className={styles.printControls}><h2 ref={printHeading} tabIndex={-1}>A4 미리보기</h2><button onClick={()=>window.print()}>A4 인쇄</button><button onClick={()=>{setPrintPreview(false);printLauncher.current?.focus();}}>미리보기 닫기</button></div>}<article className={styles.printCover}><div className={styles.printCoverArt}><BookCover project={coverProject} edition={original?'original':'own'}/></div><p>{project.description}</p><p>{project.authorDisplayName&&`${project.authorDisplayName} 지음`}</p></article>{project.pages.map((page,i)=><article key={page.id}><Art page={page} label={`${i+1}쪽 삽화`}/><h2>{page.title}</h2><p>{page.text}</p><small>{i+1}쪽</small></article>)}{project.cover.authorNote&&<article><h2>{project.title}</h2><p>{project.cover.authorNote}</p></article>}</section>}
+  {!libraryView&&<section id="shortstory-print" className={printPreview?`${styles.printBook} ${styles.printPreview}`:styles.printBook} data-shortstory-print aria-label="A4 그림책 인쇄">{printPreview&&<div className={styles.printControls}><h2 ref={printHeading} tabIndex={-1}>A4 미리보기</h2><button onClick={()=>window.print()}>A4 인쇄</button><button onClick={()=>{setPrintPreview(false);printLauncher.current?.focus();}}>미리보기 닫기</button></div>}<article className={styles.printCover}><div className={styles.printCoverArt}><BookCover project={coverProject} edition={original?'original':'own'} loading={printImages}/></div><p>{project.description}</p><p>{project.authorDisplayName&&`${project.authorDisplayName} 지음`}</p></article>{project.pages.map((page,i)=><article key={page.id}><Art page={page} label={`${i+1}쪽 삽화`} loading={printImages}/><h2>{page.title}</h2><p>{page.text}</p><small>{i+1}쪽</small></article>)}{project.cover.authorNote&&<article><h2>{project.title}</h2><p>{project.cover.authorNote}</p></article>}</section>}
   {coverOpen&&!original&&<BookCoverEditor project={coverProject} onCancel={()=>setCoverOpen(false)} onApply={(cover,title)=>{update(applyShortStoryCover(project,cover,title));setCoverOpen(false);}}/>}
  </main>;
 }

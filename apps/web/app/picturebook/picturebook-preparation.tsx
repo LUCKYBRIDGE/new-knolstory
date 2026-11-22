@@ -19,6 +19,7 @@ import {
 } from '../../lib/picturebook-preparation';
 import {picturebookOwnerScope,picturebookSends,savePicturebookRequest,sentPagePlaces,type PicturebookSend,type PicturebookTarget,type SentPlace} from '../../lib/picturebook-links';
 import styles from './picturebook.module.css';
+import {AssetPreviewImage} from '../../components/asset-preview-image';
 
 type Loaded=Readonly<{book:ShortStoryProject;startPageId:string}>|Readonly<{error:string}>;
 const PENDING_PREFIX='knolstory-picturebook-pending-v1:';
@@ -203,7 +204,7 @@ export function PicturebookPreparation(){
       return <li key={plan.pageId} data-picked={on}>
        <label className={styles.pick}><input type="checkbox" checked={on} onChange={()=>toggle(plan.pageId)} aria-label={`${plan.pageNumber}쪽 보내기`}/></label>
        <button aria-current={plan.pageId===current.pageId?'page':undefined} onClick={()=>setPage(plan.pageId)}>
-        {(()=>{const thumb=resolveAsset(item.backgroundId)??resolveAsset(item.leftAssetId)??resolveAsset(item.rightAssetId);return thumb?<img src={thumb.src} alt="" loading="lazy"/>:<span className={styles.noThumb} aria-hidden="true"/>;})()}
+        {(()=>{const thumb=resolveAsset(item.backgroundId)??resolveAsset(item.leftAssetId)??resolveAsset(item.rightAssetId);return thumb?<AssetPreviewImage asset={thumb}/>:<span className={styles.noThumb} aria-hidden="true"/>;})()}
         <span><span>{plan.pageNumber}쪽 · {plan.title||'제목 없는 쪽'}</span><small data-mode={itemMode}>{on?modeLabel[itemMode]:'보내지 않아요'}</small>{sent&&<small data-sent>{sent}</small>}</span>
        </button>
       </li>;})}
@@ -238,7 +239,7 @@ export function PicturebookPreparation(){
       {[{assetId:slot.suggested,label:`추천 · ${resolveAsset(slot.suggested)?.label??slot.suggested}`},...slot.alternatives].map(option=>{
        const asset=resolveAsset(option.assetId);
        let blocked='';try{chooseAlternative(current,selection,slot.slot,option.assetId);}catch(issue){blocked=issue instanceof Error?issue.message:'고를 수 없어요.';}
-       return <label key={option.assetId} className={styles.candidate} title={blocked||undefined}><input type="radio" name={`slot-${slot.slot}`} disabled={!!blocked} checked={slot.current===option.assetId} onChange={()=>{try{select(chooseAlternative(current,selection,slot.slot,option.assetId));}catch(issue){setError(issue instanceof Error?issue.message:'고를 수 없어요.');}}}/>{asset&&<img src={asset.src} alt="" loading="lazy"/>}<span>{option.label}</span></label>;
+       return <label key={option.assetId} className={styles.candidate} title={blocked||undefined}><input type="radio" name={`slot-${slot.slot}`} disabled={!!blocked} checked={slot.current===option.assetId} onChange={()=>{try{select(chooseAlternative(current,selection,slot.slot,option.assetId));}catch(issue){setError(issue instanceof Error?issue.message:'고를 수 없어요.');}}}/>{asset&&<AssetPreviewImage asset={asset}/>}<span>{option.label}</span></label>;
       })}
      </fieldset>)}
      <p className={styles.hint}>더 많은 그림은 놀스토리 편집 화면의 자료 고르기에서 바꿀 수 있어요.</p>

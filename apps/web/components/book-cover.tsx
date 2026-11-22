@@ -1,7 +1,7 @@
 'use client';
 /* eslint-disable @next/next/no-img-element -- static cover art uses the existing local asset catalog. */
 import { useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
-import { resolveAsset } from '@knolstory/asset-registry';
+import { resolveAsset, type Asset } from '@knolstory/asset-registry';
 import type { CoverBox, CoverTextElement, CoverImageElement, StoryProject } from '@knolstory/story-domain';
 import { COVER_BAND, COVER_FONTS, coverElementBox, coverElementText, coverImageGeometry, resolveBookCover, type CoverFaceId } from '../lib/book-cover';
 import styles from './book-cover.module.css';
@@ -38,14 +38,20 @@ function FittedCopy({children,style,className='',signature,layerId,role,writing=
   // The trailing space keeps adjacent cover copy as separate words for text extraction (e.g. axe name/content checks); it collapses visually.
   return <><div ref={root} className={`${styles.copyBox} ${className}`} style={style} data-cover-layer={layerId} data-role={role} data-writing={writing}>{children}</div>{' '}</>;
 }
-function StaticImage({src,className='',style}:{src:string;className?:string;style?:CSSProperties}) {
-  const [failed,setFailed]=useState(false);
-  return failed?<span className={styles.missing}>그림을 불러오지 못했어요.</span>:<img src={src} alt="" className={className} style={style} draggable={false} onError={()=>setFailed(true)} />;
+/** Shelf and picker covers show the small preview; reading, print and editing covers keep the original. */
+function useCoverImage(asset:Pick<Asset,'src'|'previewSrc'>|undefined,preview:boolean) {
+  const [state,setState]=useState<{key:string;step:number}>({key:'',step:0});
+  const key=asset?`${asset.src}|${preview}`:'',step=state.key===key?state.step:0;
+  const sources=asset?(preview?[asset.previewSrc,asset.src]:[asset.src]):[];
+  return {src:sources[step] as string|undefined,fail:()=>setState({key,step:step+1})};
 }
-function ImageLayer({item}:{item:CoverImageElement}) {
+function StaticImage({asset,preview,loading,className='',style}:{asset:Asset;preview:boolean;loading?:'lazy'|'eager';className?:string;style?:CSSProperties}) {
+  const image=useCoverImage(asset,preview);
+  return !image.src?<span className={styles.missing}>그림을 불러오지 못했어요.</span>:<img src={image.src} alt="" loading={loading} className={className} style={style} draggable={false} onError={image.fail} />;
+}
+function ImageLayer({item,preview,loading}:{item:CoverImageElement;preview:boolean;loading?:'lazy'|'eager'}) {
   const root=useRef<HTMLDivElement>(null),image=useRef<HTMLImageElement>(null);
-  const [failed,setFailed]=useState(false);
-  const asset=resolveAsset(item.assetId),src=asset?.type===item.assetType?asset.src:undefined;
+  const asset=resolveAsset(item.assetId),picture=useCoverImage(asset?.type===item.assetType?asset:undefined,preview),src=picture.src;
   const position=()=>{
     const frame=root.current,bitmap=image.current;if(!frame||!bitmap)return;
     const geometry=coverImageGeometry(item,{width:bitmap.naturalWidth,height:bitmap.naturalHeight},{width:frame.clientWidth,height:frame.clientHeight});
@@ -53,7 +59,7 @@ function ImageLayer({item}:{item:CoverImageElement}) {
   };
   useLayoutEffect(()=>{const frame=root.current;if(!frame)return;const observer=new ResizeObserver(position);observer.observe(frame);position();return()=>observer.disconnect();});
   return <div ref={root} className={styles.imageLayer} style={boxStyle(item.box)} data-cover-layer={item.id} data-role={item.role} data-frame={item.frame}>
-    {src&&!failed?<img ref={image} src={src} alt="" draggable={false} onLoad={position} onError={()=>setFailed(true)} />:<span className={styles.missing}>그림을 불러오지 못했어요.</span>}
+    {src?<img ref={image} src={src} alt="" loading={loading} draggable={false} onLoad={position} onError={picture.fail} />:<span className={styles.missing}>그림을 불러오지 못했어요.</span>}
   </div>;
 }
 function TextLayer({item,model}:{item:CoverTextElement;model:ReturnType<typeof resolveBookCover>}) {
@@ -64,7 +70,9 @@ function TextLayer({item,model}:{item:CoverTextElement;model:ReturnType<typeof r
   </FittedCopy>;
 }
 /** Static book packaging only; story chapter/cut playback remains in Ren'Py. */
-export function BookCover({project,compact=false,className='',face='front',edition='own'}:{project:StoryProject;compact?:boolean;className?:string;face?:CoverFaceId;edition?:BookEdition}) {
+export function BookCover({project,compact=false,preview=compact,loading,className='',face='front',edition='own'}:{project:StoryProject;compact?:boolean;
+  /** Hidden covers (the A4 print section) defer their images until shown or printed. */ loading?:'lazy'|'eager';
+  /** Use small catalogue previews (shelf and list cards). Defaults to compact covers. */ preview?:boolean;className?:string;face?:CoverFaceId;edition?:BookEdition}) {
   const model=resolveBookCover(project,face),{cover,theme}=model;
   const design=cover.design;
   const common={className:`${styles.book} ${className}`,role:'group', 'aria-label':`${face==='front'?'앞표지':face==='back'?'뒤표지':'책등'} · ${model.title}`,
@@ -86,7 +94,7 @@ export function BookCover({project,compact=false,className='',face='front',editi
   }
   if(design) return <div {...common} className={`${common.className} ${styles.layered}`} data-layered-cover="1" data-stock={design.finish.stock} data-texture={design.finish.texture}
     style={{'--cover-paper':design.finish.color,'--cover-ink':design.finish.ink,'--cover-accent':design.finish.accent} as CSSProperties}>
-    {model.elements.filter(item=>item.type!=='text'||item.region!=='band').map(item=>item.type==='image'?<ImageLayer key={`${item.id}:${item.assetId}`} item={item}/>:<TextLayer key={item.id} item={item} model={model}/>)}
+    {model.elements.filter(item=>item.type!=='text'||item.region!=='band').map(item=>item.type==='image'?<ImageLayer key={`${item.id}:${item.assetId}`} item={item} preview={preview} loading={loading}/>:<TextLayer key={item.id} item={item} model={model}/>)}
     {design.band.enabled&&<div className={styles.band} data-cover-band={design.band.designId} aria-hidden="true" style={{top:`${COVER_BAND.top*100}%`,height:`${COVER_BAND.height*100}%`}}/>}
     {model.elements.filter((item):item is CoverTextElement=>item.type==='text'&&item.region==='band').map(item=><TextLayer key={item.id} item={item} model={model}/>)}
     <BookFinish/>
@@ -99,8 +107,8 @@ export function BookCover({project,compact=false,className='',face='front',editi
     <div className={styles.legacyFace}>
       {face==='front'?<>
         <div className={styles.art} style={boxStyle(model.artBox)} aria-hidden="true">
-          {model.background&&<StaticImage key={model.background.id} src={model.background.src} className={styles.background} style={backgroundStyle}/>}
-          {model.character&&<StaticImage key={model.character.id} src={model.character.src} className={styles.actor} style={boxStyle(model.actorBox)}/>}
+          {model.background&&<StaticImage key={model.background.id} asset={model.background} preview={preview} loading={loading} className={styles.background} style={backgroundStyle}/>}
+          {model.character&&<StaticImage key={model.character.id} asset={model.character} preview={preview} loading={loading} className={styles.actor} style={boxStyle(model.actorBox)}/>}
           {!model.background&&!model.character&&<span className={styles.ornament}>✧</span>}
         </div>
         {(!composition||composition.showEdition)&&<span className={styles.edition}>{BOOK_EDITION_LABELS[edition]}</span>}{' '}

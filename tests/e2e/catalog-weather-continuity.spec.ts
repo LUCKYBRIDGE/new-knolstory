@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import type {RuntimeScene} from '../../packages/runtime-contract/src';
+import {catalogImage} from './catalog-image-url';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 import {enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry';
 
@@ -164,7 +165,7 @@ test('the new rainy evening yard can be previewed, cancelled, applied and kept a
  await dialog.getByLabel('이미지 검색',{exact:true}).fill('선녀 비 저녁 마당');
  await dialog.locator(`[data-asset-id="${assetId}"]`).click();
  const preview=dialog.getByText('선택 미리보기',{exact:true}).locator('..').locator('..').locator('img');
- await expect(preview).toHaveAttribute('src',asset.src);await expect.poll(()=>preview.evaluate(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0),{timeout:30000,message:'the actual public preview image must finish decoding before it is reviewed'}).toBe(true);
+ await expect(preview).toHaveAttribute('src',catalogImage(asset.id).previewSrc);await expect.poll(()=>preview.evaluate(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0),{timeout:30000,message:'the actual public preview image must finish decoding before it is reviewed'}).toBe(true);
  // The registration declares a character-free scene; retain its visible preview for human review.
  await dialog.screenshot({path:info.outputPath('rainy-yard-background-preview.png')});
  await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toHaveAttribute('data-asset-value',oldValue!);expect((await workspace(page)).document.project).toEqual(before);

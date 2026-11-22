@@ -7,13 +7,14 @@ import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './asset-browser-dialog.module.css';
 import {useEditorKeyboard} from './use-editor-keyboard';
 import {usePicturebookRecommendations} from './picturebook-recommendation-context';
+import {AssetPreviewImage} from './asset-preview-image';
 type EmptyOption=Readonly<{value:string;label:string}>;
 type Props = { allowSceneIllustrations?:boolean; emptyOptions?:readonly EmptyOption[];label: string; type: Asset['type']; value: string; chapterAssetIds?: readonly string[]; onSelect: (id: string) => void; onClose: () => void };
 type Filters = Partial<Record<FacetKey, readonly string[]>>;
 const VIEWS = [['all', '전체'], ['chapter', '장 자료'], ['favorites', '즐겨찾기'], ['recent', '최근 사용']] as const;
 type View = (typeof VIEWS)[number][0];
 function Thumbnail({ asset }: { asset: Asset }) {
-  return <span className={`${styles.thumbnail} ${asset.type === 'background' ? styles.background : ''}`}><img src={asset.src} alt="" loading="lazy" decoding="async" /></span>;
+  return <span className={`${styles.thumbnail} ${asset.type === 'background' ? styles.background : ''}`}><AssetPreviewImage asset={asset} /></span>;
 }
 /** REFINE/reuse: story-maker@18da4fc app/components/assets/AssetBrowserDialog.tsx.
  * Preserve its pending selection, current/preview comparison, view tabs, facet toggles,
