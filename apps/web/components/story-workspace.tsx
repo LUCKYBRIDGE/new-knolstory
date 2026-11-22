@@ -1293,7 +1293,7 @@ export function StoryWorkspace() {
             {mode==='play'&&<div className={styles.readerContext} data-reader-context="true" style={{left:runtime.fit.offsetX+12,top:runtime.fit.offsetY+12,maxWidth:Math.max(1,scene.width*runtime.fit.scale-80)}}>{chapterLabel(chapter)}</div>}
             {(!runtime.ready||runtime.recoverable)&&<StoryLoading stage progress={runtime.loadProgress} recovery={runtime.recoverable?{message:runtime.status,onRetry:runtime.retry,onEdit:()=>switchMode('edit')}:undefined}/>}
             {runtime.ready&&mode==='play'&&<StoryImagePreparation pending={runtime.imagePending} error={runtime.imageError} onRetry={runtime.retryImages}/>}
-            {mode === "edit" && editingScreen === "characters" && activeTool === "assets" &&
+            {mode === "edit" && editingScreen === "characters" &&
               runtime.ready &&
               scene.actors.map((actor) => (
                 <button

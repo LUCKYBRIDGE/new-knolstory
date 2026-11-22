@@ -24,6 +24,8 @@ describe('student todo',()=>{
  });
  it('puts a later stage that waits for the teacher after what can be done now',()=>{
   const groups=groupTodos([task('stage',{dueAt:50,after:{id:'book',title:'그림책',passed:false}}),task('book',{format:'shortstory',dueAt:100}),task('open stage',{dueAt:200,after:{id:'x',title:'x',passed:true}})],[]);
-  expect(groups.todo.map(e=>e.item.id)).toEqual(['book','open stage','stage']);
+  // A stage still waiting for the teacher's pass is not something to do yet: it has its own group after the rest.
+  expect(groups.todo.map(e=>e.item.id)).toEqual(['book','open stage']);
+  expect(groups.later.map(e=>e.item.id)).toEqual(['stage']);
  });
 });

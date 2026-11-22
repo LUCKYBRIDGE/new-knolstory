@@ -1,7 +1,7 @@
 import {createStoryDocument} from '../../packages/story-domain/src';
 import {previousReadCut} from './reader-actions';
-import {parseAuthoringFile,confirmAuthoringImport,openFileExchange} from './authoring-file';
-import {openEditingTool} from './editor-screens';
+import {parseAuthoringFile,confirmAuthoringImport,openFileExchange,currentCutRow} from './authoring-file';
+import {openEditingTool,currentCutPlay,openEditingScreen} from './editor-screens';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { PNG } from 'pngjs';
@@ -39,6 +39,10 @@ async function tool(page:Page,name:string){
 }
 async function direction(page:Page,kind:string){await tool(page,'연출 편집');await page.getByLabel('조정할 연출',{exact:true}).selectOption(kind);}
 async function cut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);await rendered(page);}
+/** The selected cut's own '이 컷부터 재생' (multi-cut screens repeat it on every cut). */
+async function playCut(page:Page){const scoped=currentCutPlay(page);await((await scoped.count())?scoped:page.getByRole('button',{name:'이 컷부터 재생',exact:true}).first()).click();}
+/** The selected cut's first character's 가로 위치 slider on the 인물 screen (‘N컷 인물 1 가로 위치’). */
+async function firstActorX(page:Page){return (await currentCutRow(page)).getByLabel(/^\d+컷 인물 1 가로 위치$/);}
 async function exitReading(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
 async function advance(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await button.focus();await button.press('Enter');}
 
@@ -111,21 +115,21 @@ test('actual auto actors leave a wider center and inverse drag remains correct a
   await frame.evaluate(node => node.setAttribute('data-polish-instance', 'original'));
   expect(content(await exported(page))).toEqual(content(source));
   for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }, { width: 844, height: 390 }]) {
-    await page.setViewportSize(viewport);await page.getByText('보기 설정',{exact:true}).click();await page.getByLabel('미리보기 화면 비율',{exact:true}).selectOption(viewport.width<viewport.height?'portrait':viewport.width<1000?'landscape':'desktop');
-    await cut(page, 'neutral');await tool(page,'배경·인물 편집');
+    // The editor preview is fixed at 16:9 on every device now (no preview-ratio choice); placement handles live on the 인물 screen's stage.
+    await page.setViewportSize(viewport);
+    await cut(page, 'neutral');await openEditingScreen(page,'인물 편집');await rendered(page);
     const handles = page.getByRole('button', { name: /위치 편집$/ });
-    await expect(handles).toHaveCount(viewport.width<viewport.height?1:2);
+    await expect(handles).toHaveCount(2);
     const stage = (await frame.boundingBox())!;
     const left = (await handles.nth(0).boundingBox())!;
-    if(viewport.width>=viewport.height){
+    {
       const right=(await handles.nth(1).boundingBox())!;
       const distance=(right.x+right.width/2-left.x-left.width/2)/stage.width;expect(distance).toBeGreaterThan(.45);
       for(const bounds of [left,right]){expect(bounds.x+bounds.width/2).toBeGreaterThan(stage.x);expect(bounds.x+bounds.width/2).toBeLessThan(stage.x+stage.width);}
     }
     await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath(`auto-${viewport.width}.png`) });
     await cut(page, 'center');
-    await tool(page, '배경·인물 편집');
-    await expect(page.getByLabel('왼쪽 1번 인물 가로 위치', { exact: true })).toHaveValue('50');
+    await expect((await firstActorX(page))).toHaveValue('50');
     await page.getByRole('button',{name:/위치 편집$/}).scrollIntoViewIfNeeded();
     const handle = (await page.getByRole('button', { name: /위치 편집$/ }).boundingBox())!;
     const currentStage = (await frame.boundingBox())!;
@@ -133,12 +137,12 @@ test('actual auto actors leave a wider center and inverse drag remains correct a
     await page.mouse.down();
     await page.mouse.move(handle.x + handle.width / 2 + currentStage.width * .05, handle.y + handle.height / 2, { steps: 5 });
     await page.mouse.up();
-    await expect.poll(async () => Number(await page.getByLabel('왼쪽 1번 인물 가로 위치', { exact: true }).inputValue())).toBeCloseTo(55, 0);
+    await expect.poll(async () => Number(await (await firstActorX(page)).inputValue())).toBeCloseTo(55, 0);
     await rendered(page);
-    await page.getByLabel('왼쪽 1번 인물 가로 위치', { exact: true }).fill('50');
+    await (await firstActorX(page)).fill('50');
     for (const id of ['single', 'four']) {
       await cut(page, id);
-      await expect(page.getByRole('button', { name: /위치 편집$/ })).toHaveCount(viewport.width<viewport.height?1:id === 'single' ? 1 : 4);
+      await expect(page.getByRole('button', { name: /위치 편집$/ })).toHaveCount(id === 'single' ? 1 : 4);
       await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath(`${id}-${viewport.width}.png`) });
     }
     await expect(frame).toHaveAttribute('data-polish-instance', 'original');
@@ -151,7 +155,7 @@ test('presentation preview visibly renders both native looks then restores neutr
   test.skip(testInfo.project.name !== 'stories-runtime', 'Native pixels and playback lifecycle');
   await load(page);
   await cut(page, 'neutral');
-  await page.getByRole('button', { name: '이 컷부터 재생', exact: true }).click();
+  await playCut(page);
   await rendered(page);
   const neutral = await pixels(page);await page.getByTestId('story-stage-viewport').screenshot({path:testInfo.outputPath('neutral-before.png'),scale:'css'});
   await exitReading(page);
@@ -159,14 +163,14 @@ test('presentation preview visibly renders both native looks then restores neutr
     await cut(page, look);
     await direction(page,'look');
     await expect(page.getByLabel('분위기', { exact: true })).toHaveValue(look);
-    await page.getByRole('button', { name: '이 컷부터 재생', exact: true }).click();
+    await playCut(page);
     await rendered(page);
     expect(difference(neutral, await pixels(page)), look).toBeGreaterThan(1);
     await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath(`${look}-native.png`) });
     await exitReading(page);
   }
   await cut(page, 'neutral');
-  await page.getByRole('button', { name: '이 컷부터 재생', exact: true }).click();
+  await playCut(page);
   await rendered(page);
   await advance(page);
   await rendered(page);
@@ -175,10 +179,11 @@ test('presentation preview visibly renders both native looks then restores neutr
   await expect.poll(async () => difference(neutral, await pixels(page)), { timeout: 10000 }).toBeLessThan(.25);await page.getByTestId('story-stage-viewport').screenshot({path:testInfo.outputPath('neutral-after-back.png'),scale:'css'});
   await exitReading(page);
   await cut(page, 'choice');
-  await page.getByRole('button', { name: '이 컷부터 재생', exact: true }).click();
+  await playCut(page);
   await rendered(page);
   const frame = (await page.getByTestId('story-runtime-frame').boundingBox())!;
-  const status=page.getByTestId('story-runtime-status'),rect=JSON.parse((await status.getAttribute('data-choices-rect'))!) as {x:number;y:number;width:number;height:number};expect(rect).not.toBeNull();const width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(frame.width/width,frame.height/height);await page.mouse.click(frame.x+(frame.width-width*scale)/2+(rect.x+rect.width/2)*scale,frame.y+(frame.height-height*scale)/2+(rect.y+Math.min(20,Math.floor(rect.height/8))+25)*scale);
+  // Choose through the host's accessible choice with a real key press; canvas coordinates shift with measured Korean text.
+  await expect(page.getByTestId('playback-status')).toHaveText('선택해 주세요');const choiceA=page.getByRole('button',{name:'따뜻한 결말',exact:true});await choiceA.focus();await page.keyboard.press('Enter');
   await expect(page.getByTestId('playback-status')).toHaveText('읽는 중');await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('ending-a');
   await rendered(page);
   await advance(page);

@@ -132,14 +132,14 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
   {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
   {assignment.open&&phase!=='passed'&&phase!=='locked'&&(works.length===0&&online.length===0?<p className={styles.hint}>{canStart?'쓰기 화면에서 작품을 만든 뒤 이곳에서 제출해요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
-   :<div className={styles.handIn}>
+   :<HandInFold folded={phase==='waiting'}><div className={styles.handIn}>
     <label className={styles.field}>낼 작품<select aria-label="제출할 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
     <div className={styles.handInActions}>
      <button className={styles.btn} disabled={!key||busy} onClick={()=>void shareDraft()}>선생님께 중간 저장</button>
      <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button>
     </div>
     <p className={styles.hint}>{assignment.draftSavedAt?`${formatSubmittedAt(assignment.draftSavedAt)}에 중간 저장했어요. `:''}중간 저장은 아직 내지 않고 선생님께 보여 주는 거예요. 다 쓰면 ‘{submitted?'다시 제출':'제출'}’을 눌러요.</p>
-   </div>)}
+   </div></HandInFold>)}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}{error&&<p className={styles.error} role="alert">{error}</p>}
   {moreWays&&<details className={styles.moreWays}><summary>다른 방법</summary>
    {submitted&&<div className={styles.row}><button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button><SubmissionImport assignmentId={assignment.id} accountId={accountId} csrf={csrf} disabled={busy}/></div>}
@@ -155,9 +155,15 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  </>;
 }
 
+/** After handing in, the hand-in form folds away: the card says it was sent; changing it is a deliberate second step. */
+function HandInFold({folded,children}:{folded:boolean;children:React.ReactNode}){
+ return folded?<details className={styles.taskGuide}><summary>고쳐서 다시 내기</summary>{children}</details>:<>{children}</>;
+}
+
 const GROUPS:readonly {group:TodoGroup;title:string;empty:string}[]=[
  {group:'todo',title:'해야 해요',empty:'지금 할 일을 모두 끝냈어요.'},
  {group:'waiting',title:'냈어요 · 선생님 확인을 기다려요',empty:''},
+ {group:'later',title:'앞 단계를 통과하면 열려요',empty:''},
  {group:'done',title:'끝났어요',empty:''},
 ];
 /** One list for writing tasks and missions: what to do now first, nearest due date first. */
@@ -166,7 +172,7 @@ function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:
  const [now]=useState(()=>Date.now());
  const loading=(assignments===null&&!assignmentError)||(missions.missions===null&&!missions.error);
  const groups=groupTodos(assignments??[],missions.missions??[]);
- const total=groups.todo.length+groups.waiting.length+groups.done.length,finished=groups.done.length;
+ const total=groups.todo.length+groups.waiting.length+groups.later.length+groups.done.length,finished=groups.done.length;
  const label=(entry:TodoEntry)=>entry.type==='assignment'?`작품 쓰기 · ${entry.item.format==='shortstory'?'숏스토리':'놀스토리'}`:missionKindLabel(entry.item.kind);
  const render=(entry:TodoEntry)=>{const due=dueState(entry.item.dueAt,now);return <li key={`${entry.type}:${entry.item.id}`} className={styles.todoItem} data-todo={entry.type} data-format={entry.type==='assignment'?entry.item.format:undefined}>
   <div className={styles.todoMeta}><span className={styles.todoType} data-type={entry.type}>{label(entry)}</span>{due&&entry.item.dueAt!=null&&<span className={styles.dueChip} data-tone={due.tone} title={dueDateLabel(entry.item.dueAt)}>{due.label} · {dueDateLabel(entry.item.dueAt)}</span>}</div>
@@ -180,6 +186,6 @@ function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:
   {loading?<p className={styles.hint} role="status">할 일을 불러오고 있어요.</p>:total===0&&!groups.archived.length?<p className={styles.card}>아직 선생님이 낸 할 일이 없어요.</p>
    /* One list for all groups: a card that moves (submitted, passed) keeps its state and its message. */
    :<ul className={styles.todoList}>{GROUPS.flatMap(({group,title,empty})=>{const list=groups[group];if(!list.length&&!empty)return [];
-    return [<li key={`group:${group}`} className={styles.todoGroupHead} data-group={group}><h3>{title} <small>{list.length}</small></h3>{!list.length&&<p className={styles.hint}>{empty}</p>}</li>,...list.map(render)];})}{groups.archived.length>0&&<li><details><summary>지난 학년 · {groups.archived.length}개</summary><ul className={styles.todoList}>{groups.archived.map(render)}</ul></details></li>}</ul>}
+    return [<li key={`group:${group}`} className={styles.todoGroupHead} data-group={group}><h3>{title} <small>{list.length}</small></h3>{!list.length&&<p className={styles.hint}>{group==='todo'&&(groups.waiting.length||groups.later.length)?'지금 바로 할 일은 없어요.':empty}</p>}</li>,...list.map(render)];})}{groups.archived.length>0&&<li><details><summary>지난 학년 · {groups.archived.length}개</summary><ul className={styles.todoList}>{groups.archived.map(render)}</ul></details></li>}</ul>}
  </section>;
 }

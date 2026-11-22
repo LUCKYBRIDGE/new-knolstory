@@ -1,4 +1,4 @@
-import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {parseAuthoringFile,confirmAuthoringImport,openFileExchange} from './authoring-file';
 import {startShelfCreation,enterLibrary} from './library-entry';
 import {advanceReading,editReadCut,loadReadSlot,openEditorDetails,readerFullscreen,readerTools,restartReading,saveReadSlot,startReading} from './native-reader';
 import {test,expect,type BrowserContext,type Page} from '@playwright/test';
@@ -35,14 +35,15 @@ async function newChapter(page:Page){await manage(page);await openEditorDetails(
 async function id(page:Page){return page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();}
 async function select(page:Page,lineId:string){await writing(page,'현재 컷 쓰기');await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(lineId);}
 async function pick(page:Page,label:string,asset:string){await page.getByRole('button',{name:new RegExp(`^${`${label} 이미지 찾기`} ·`),exact:false}).click();const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});await dialog.getByLabel('이미지 검색').fill(asset===background?'폭풍이 지나간 숲':'흥부');await dialog.locator(`[data-asset-id="${asset}"]`).click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();}
-async function exportFile(page:Page,path:string){await saved(page);await manage(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await(await pending).saveAs(path);return parseAuthoringFile(readFileSync(path,'utf8'));}
+async function exportFile(page:Page,path:string){await saved(page);await manage(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await(await pending).saveAs(path);return parseAuthoringFile(readFileSync(path,'utf8'));}
 async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.evaluate(n=>Number(n.getAttribute('data-rendered-revision'))>=0&&n.getAttribute('data-scene-revision')===n.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);await expect.poll(()=>page.evaluate(()=>{const viewport=document.querySelector('[data-testid="story-stage-viewport"]')!.getBoundingClientRect();const status=document.querySelector('[data-testid="story-runtime-status"]')!;const width=Number(status.getAttribute('data-scene-width')),height=Number(status.getAttribute('data-scene-height')),frame=document.querySelector('[data-testid="story-runtime-frame"]')!.getBoundingClientRect();return Math.abs(width/height-frame.width/frame.height)<.02&&frame.width<=viewport.width+2&&frame.height<=viewport.height+2&&Number(status.getAttribute('data-engine-width'))===width&&Number(status.getAttribute('data-engine-height'))===height;}),{timeout:30000}).toBe(true);}
 async function currentReadCut(page:Page,lineId:string){
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe(lineId);await ready(page);
 }
 async function next(page:Page){
  const state=()=>page.evaluate(()=>JSON.stringify(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback));
- const before=await state();await advanceReading(page);await expect.poll(state).not.toBe(before);await ready(page);
+ // A long cut is paged on narrow screens: keep reading (as a person would) until the story moves on.
+ const before=await state();for(let step=0;step<6&&await state()===before;step++){await advanceReading(page);await page.waitForTimeout(400);}await expect.poll(state).not.toBe(before);await ready(page);
 }
 async function choose(page:Page,index:number,target:string){
  await ready(page);const frame=page.getByTestId('story-runtime-frame');await frame.scrollIntoViewIfNeeded();await frame.contentFrame().locator('#canvas').focus();

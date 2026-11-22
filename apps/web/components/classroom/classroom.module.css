@@ -470,3 +470,5 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
  .pageHeading h1{font-size:var(--text-title)}
  .studentBanner{padding:14px 16px;margin-bottom:12px}
 }
+.todoGroupHead[data-group=later] h3{color:var(--class-muted)}
+.reviewBadge{margin-left:6px;padding:1px 8px;border-radius:999px;background:#f4e3b8;color:#6b4c0c;font-size:var(--text-caption);font-weight:700}

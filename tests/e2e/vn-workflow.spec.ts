@@ -1,3 +1,4 @@
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {expectIndependentImportedProject,openFileExchange,parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
 import {saveReadSlot,loadReadSlot} from './native-reader';
 import {existingPrivateWorkspace} from './existing-private-audio';
@@ -6,6 +7,7 @@ import {createHash} from 'node:crypto';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {join,dirname} from 'node:path';
+test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 const demo='docs/architecture/evidence/responsive-audio/branching-demo.knolstory';
 async function management(page:Page){const s=page.locator('[data-work-menu]>summary');if(!await s.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await s.click();}
 async function details(page:Page,text:string){if(/^(Excel|간단 표)/.test(text))await openFileExchange(page);const n=page.getByText(text,{exact:true});if(!await n.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await n.click();}

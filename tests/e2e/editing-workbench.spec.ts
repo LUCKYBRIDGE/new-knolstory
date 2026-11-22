@@ -433,8 +433,10 @@ test('character cards keep the next cut and compact add action reachable',async(
  const before=(await exported(page)).project,controls=await settings(page);await controls.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();await mode(page,'인물 편집');
  const first=row(page,0),add=first.getByRole('button',{name:/^1컷 인물 추가 이미지 찾기/});
  expect((await add.boundingBox())!.height).toBeLessThanOrEqual(100);
- const bounds=await workbench(page).locator('[data-writer-scroll]').boundingBox(),next=await row(page,1).locator('header').boundingBox();
- expect(next!.y+next!.height).toBeLessThanOrEqual(bounds!.y+bounds!.height);
+ // The current cut's stage stays above the list on 인물 편집 (place characters while seeing them); the next cut stays reachable by scrolling the list.
+ const stage=(await page.getByTestId('story-stage-viewport').boundingBox())!;expect(stage.height).toBeGreaterThan(100);expect(stage.y+stage.height).toBeLessThanOrEqual((await workbench(page).locator('[data-writer-scroll]').boundingBox())!.y+1);
+ await row(page,1).locator('header').scrollIntoViewIfNeeded();const bounds=await workbench(page).locator('[data-writer-scroll]').boundingBox(),next=await row(page,1).locator('header').boundingBox();
+ expect(next!.y+next!.height).toBeLessThanOrEqual(bounds!.y+bounds!.height+1);await first.scrollIntoViewIfNeeded();
  await first.getByRole('combobox',{name:'1컷 인물 1 배치 위치',exact:true}).selectOption('center');
  await first.getByRole('slider',{name:'1컷 인물 1 크기',exact:true}).press('End');
  await expect(first.getByText('크기 · 140%',{exact:true})).toBeVisible();
