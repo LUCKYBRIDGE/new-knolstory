@@ -1,6 +1,6 @@
 import {expect,it} from 'vitest';
 import {readFileSync} from 'node:fs';
-import {createHash} from 'node:crypto';
+import {stableCatalogDigest} from './catalog-tag-projection';
 import {ASSET_CATALOG,STORY_CHARACTERS,resolveAsset,isSelectableAsset,matchesAssetSearch,facetValues} from '../src';
 import {isRuntimeImagePath} from '../../runtime-contract/src';
 
@@ -33,11 +33,12 @@ it('provides distinct everyday/joy/anger/sorrow/mirth images for every individua
   }
  }
 });
-it('preserves all481previous catalogue rows and makes each new mood searchable by its character and emotional label',()=>{
+it('preserves all 481 previous catalogue rows outside the reviewed picker tags and makes each new mood searchable by its character and emotional label',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
  const before=rows.filter((row:{metadata:{emotionBatch?:string;shortStoryCollection?:string;generatedPicturebookStageAsset?:boolean}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedPicturebookStageAsset&&row.metadata.emotionBatch!=='all-character-v3');
  expect(before).toHaveLength(plan.before.catalogueRows);
- expect(createHash('sha256').update(JSON.stringify(before)).digest('hex')).toBe(plan.before.catalogueSha256);
+ // Baseline from 37ed62e9 with only the reviewed picker fields removed.
+ expect(stableCatalogDigest(before)).toBe('21ddeebf1146e0f88ca37a5282f696c6a253e055a4859e8f81fcdf39b65a718d');
  for(const recipe of plan.recipes){
   const asset=resolveAsset(recipe.id);expect(asset).toBeDefined();
   for(const term of [recipe.name,...recipe.expressions])expect(matchesAssetSearch(asset!,term),recipe.id+'/'+term).toBe(true);

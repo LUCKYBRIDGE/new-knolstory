@@ -1,6 +1,6 @@
 import {expect,it} from 'vitest';
 import {readFileSync} from 'node:fs';
-import {createHash} from 'node:crypto';
+import {stableCatalogDigest} from './catalog-tag-projection';
 import {ASSET_CATALOG,resolveAsset,matchesAssetSearch,isSelectableAsset} from '../src';
 import {isRuntimeImagePath} from '../../runtime-contract/src';
 
@@ -19,10 +19,11 @@ it('fills four story packs with sixteen searchable individually selectable poses
   expect(asset!.geometry).toMatchObject({width:800,height:1200});
  }
 });
-it('preserves every previous catalogue row and rejects unreviewed new runtime paths',()=>{
+it('preserves every previous catalogue row outside the reviewed picker tags and rejects unreviewed new runtime paths',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
  const previous=rows.filter((row:{metadata:{generatedExpressionAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedExpressionAsset&&!row.metadata.generatedPicturebookStageAsset);
  expect(previous).toHaveLength(plan.before.catalogueRows);
- expect(createHash('sha256').update(JSON.stringify(previous)).digest('hex')).toBe(plan.before.catalogueSha256);
+ // Baseline from 37ed62e9 with only the reviewed picker fields removed.
+ expect(stableCatalogDigest(previous)).toBe('fdcc3ecfd97e4eedc4fba1f70d4d2bbb41fd1adcd140380fadd1e01f6f08d889');
  for(const path of ['assets/characters/expressions-v1/unknown.webp','assets/characters/expressions-v1/../heungbu.webp','https://example.com/actor.webp'])expect(isRuntimeImagePath(path)).toBe(false);
 });

@@ -23,6 +23,17 @@ describe('추천 shelf and the list of all pictures',()=>{
   const outside=characters.find(asset=>!narrowed.includes(asset))!;
   expect(suggestAssets(narrowed,{picturebookIds:[outside.id]})).toEqual([]);
  });
+ it('keeps a nonmatching current picture for inspection without recommending it',()=>{
+  const id='seonnyeo.background.BG01-valley-day';
+  const context={currentAssetId:id,picturebookIds:[id]};
+  const filters={times:['저녁']};
+  const found=searchAssets({type:'background',currentAssetId:id,filters});
+  expect(found[0]?.id).toBe(id);
+  expect(suggestAssets(found,{...context,filters})).toEqual([]);
+  expect(suggestAssets(found,{...context,search:'겨울'})).toEqual([]);
+  const matching={times:['낮']};
+  expect(suggestAssets(searchAssets({type:'background',filters:matching}),{...context,filters:matching})).toHaveLength(1);
+ });
  it('keeps all pictures in a steady order, with the saved picture first',()=>{
   const shuffled=[...characters].reverse();
   expect(stableAssetOrder(shuffled).map(asset=>asset.id)).toEqual(stableAssetOrder(characters).map(asset=>asset.id));

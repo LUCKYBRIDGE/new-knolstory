@@ -53,7 +53,7 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
   }), [type, allowSceneIllustrations, search, filters, view, value, chapterAssetIds, preferences, sameCharacter]);
   const found = useMemo(() => searchAssets(options), [options]);
   // 전체: a short explained 추천 shelf (filters apply to it too), then every picture in a steady order.
-  const suggestions = useMemo(() => view === 'all' ? suggestAssets(found, { picturebookIds: recommended, chapterAssetIds, currentAssetId: value, recentIds: preferences.recentIds, favoriteIds: preferences.favoriteIds }) : [], [view, found, recommended, chapterAssetIds, value, preferences]);
+  const suggestions = useMemo(() => view === 'all' ? suggestAssets(found, { ...options, picturebookIds: recommended }) : [], [view, found, options, recommended]);
   // A suggested picture is shown once, on the shelf; the list below holds every other picture.
   const listed = useMemo(() => view === 'all' ? stableAssetOrder(found, value).filter(asset => !suggestions.some(item => item.asset.id === asset.id)) : found, [view, found, value, suggestions]);
   const visibleFacets = ASSET_FACETS.filter(facet => type === 'character'

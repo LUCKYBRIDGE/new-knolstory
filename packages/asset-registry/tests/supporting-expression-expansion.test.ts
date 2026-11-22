@@ -1,6 +1,6 @@
 import {expect,it} from 'vitest';
 import {readFileSync} from 'node:fs';
-import {createHash} from 'node:crypto';
+import {stableCatalogDigest} from './catalog-tag-projection';
 import {ASSET_CATALOG,resolveAsset,matchesAssetSearch,isSelectableAsset} from '../src';
 import {isRuntimeImagePath} from '../../runtime-contract/src';
 
@@ -19,10 +19,11 @@ it('adds two distinct searchable poses for each of sixteen supporting identities
   expect(isRuntimeImagePath(asset!.runtimePath)).toBe(true);expect(asset!.geometry).toMatchObject({width:800,height:1200});
  }
 });
-it('preserves all previous449catalogue rows and permits only reviewed new runtime paths',()=>{
+it('preserves all 449 previous catalogue rows outside the reviewed picker tags and permits only reviewed new runtime paths',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
  const previous=rows.filter((row:{src:string;metadata:{generatedExpressionAsset?:boolean;shortStoryCollection?:string;generatedPicturebookStageAsset?:boolean}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedPicturebookStageAsset&&(!row.metadata.generatedExpressionAsset||row.src.startsWith('/assets/characters/expressions-v1/')));
  expect(previous).toHaveLength(plan.before.catalogueRows);
- expect(createHash('sha256').update(JSON.stringify(previous)).digest('hex')).toBe(plan.before.catalogueSha256);
+ // Baseline from 37ed62e9 with only the reviewed picker fields removed.
+ expect(stableCatalogDigest(previous)).toBe('496e2dde0b225a09fffb0f45cece7494b7863522f98cc6a630775d0d8cc65c99');
  for(const path of ['assets/characters/expressions-v2/unknown.webp','assets/characters/expressions-v2/../guard.webp','assets/characters/expressions-v2/onggojib-guard-stop.webp?x=1','https://example.com/guard.webp'])expect(isRuntimeImagePath(path)).toBe(false);
 });
