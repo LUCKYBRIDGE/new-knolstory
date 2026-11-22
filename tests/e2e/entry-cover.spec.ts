@@ -17,8 +17,8 @@ test('fresh browser entry introduces existing books and explicit navigation ente
  await page.goto('/');await expect(intro).toBeVisible();
  await page.reload();await expect(intro).toBeVisible();
  await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
- const card=builtinShelfCard(page,'seonnyeo');
- await openShelfAction(page,card,'처음부터 읽기');
+ // The title page greets readers from the home screen and does not mount the story runtime.
+ await page.goto('/');await intro.getByRole('button',{name:/이야기 읽기/}).click();
  await expect(page.getByRole('main',{name:'책 표지와 소개',exact:true})).toBeVisible();
  await expect(page.getByTestId('story-runtime-frame')).toHaveCount(0);
  await page.getByRole('button',{name:'서재로',exact:true}).click();
@@ -53,7 +53,7 @@ for(const [id,title] of [['seonnyeo-classic','선녀와 나무꾼'],['heungbu','
  const archive=parseAuthoringFile(readFileSync(`${evidence}/${id}-cover.knolstory`,'utf8'));expect({...archive.project,cover:before.cover,title:before.title,updatedAt:before.updatedAt}).toEqual(before);expect(archive.project.title).toBe(`${title} · 표지 적용 검토`);expect(archive.project.cover.design.faces.front.elements.some((e:{content?:{text?:string}})=>e.content?.text==='함께 읽는 우리 이야기')).toBe(true);
  const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await importShelfFile(restored,`${evidence}/${id}-cover.knolstory`);
  await exportMenu(restored);const exportAgain=restored.waitForEvent('download');await restored.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();expect(parseAuthoringFile(readFileSync((await(await exportAgain).path())!,'utf8')).project).toEqual(archive.project);
- await restored.getByRole('button',{name:'서재로',exact:true}).click();const imported=restored.getByRole('article',{name:`내 작품 · ${archive.project.title}`,exact:true});await openShelfAction(restored,imported,'처음부터 읽기');await expect(restored.getByRole('main',{name:'책 표지와 소개'})).toBeVisible();
+ await restored.getByRole('button',{name:'서재로',exact:true}).click();const imported=restored.getByRole('article',{name:`내 작품 · ${archive.project.title}`,exact:true});await imported.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();await expect(restored.getByRole('dialog')).toBeVisible();
  for(const [width,height,label] of [[1280,900,'desktop'],[844,390,'landscape'],[390,844,'portrait']] as const){await restored.setViewportSize({width,height});await restored.screenshot({path:`${evidence}/${id}-start-${label}.png`,fullPage:true});expect(await restored.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
  writeFileSync(`${evidence}/${id}-cover-roundtrip.json`,JSON.stringify({projectId:archive.project.id,exactProjectMatch:true,frontElements:archive.project.cover.design.faces.front.elements.length,backElements:archive.project.cover.design.faces.back.elements.length},null,2));await fresh.close();await context.close();
 });

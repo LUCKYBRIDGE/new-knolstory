@@ -1,5 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
-import {enterLibrary,openBuiltinEdition,beginSelectedBook,shelfCoverButton} from './library-entry';
+import {enterLibrary,openBuiltinEdition,beginSelectedBook,shelfCoverButton,openBookMore} from './library-entry';
 import {createStoryDocument} from '../../packages/story-domain/src';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {readFile} from 'node:fs/promises';
@@ -113,7 +113,7 @@ test('a work deleted in another tab is not resurrected and this tab’s remainin
  await expect(writer(second)).toHaveAttribute('data-local-writer','owned');
  await setTextQuietly(page,'현재 탭에만 남아 있는 초안');
  await shelfCoverButton(second,'두 탭의 작품').click();
- const focus=second.getByRole('dialog');await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
+ const focus=second.getByRole('dialog');await openBookMore(focus);
  await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();
  await second.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();
  await expect.poll(()=>second.evaluate(key=>{const value=JSON.parse(localStorage.getItem(key)!);return Object.hasOwn({...value.works,[value.storyId]:value.document},'new:tab-handover');},workspace)).toBe(false);

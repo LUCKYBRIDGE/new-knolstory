@@ -1,5 +1,5 @@
 import {expect,test} from '@playwright/test';
-import {openBuiltinEdition,selectShelfCollection} from './library-entry';
+import {openBuiltinEdition,selectShelfCollection,openBookMore} from './library-entry';
 
 test('catalog edit copies receive numbered titles and identical blue covers',async({page})=>{
  await page.goto('/?view=library');
@@ -24,7 +24,7 @@ test('catalog edit copies receive numbered titles and identical blue covers',asy
  }
  await page.locator('[data-shelf-cover]').first().click();
  const detail=page.getByRole('dialog');
- await detail.getByText('책 꾸미기·작품 도구',{exact:true}).click();
+ await openBookMore(detail);
  await detail.getByRole('button',{name:'책 표지 편집',exact:true}).click();
  const editor=page.getByRole('dialog');
  await editor.getByRole('textbox',{name:'작품 제목',exact:true}).fill('내가 지은 제목');

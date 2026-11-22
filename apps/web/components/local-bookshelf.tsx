@@ -5,7 +5,7 @@ import {useEffect,useRef,useState,type CSSProperties,type ReactNode} from 'react
 import {findLibraryBooks,libraryPage,parseLibraryView,LIBRARY_VIEW_KEY,shelfLayoutForWidth,isPersonalLibraryKind} from '../lib/library-catalog';
 import {groupBuiltinWorks,builtinShelfCoverProject,type GroupedBuiltinWork} from '../lib/builtin-works';
 import {classicStories} from '@knolstory/compatibility';
-import {LibraryBookFocus} from './library-book-focus';
+import {LibraryBookFocus,type BookFocusOnlineTools} from './library-book-focus';
 import {BookCover} from './book-cover';
 import {shelfCoverAccessibleLabel} from '../lib/shelf-cover-label';
 import type {StoryProject} from '@knolstory/story-domain';
@@ -22,7 +22,7 @@ function readableUpdatedAt(value:string|undefined):string{
  const time=/^\d{4}-\d{2}-\d{2}T/.test(value)?Date.parse(value):Number.NaN;
  return Number.isNaN(time)?value:new Date(time).toLocaleDateString('ko-KR');
 }
-export type BookshelfOnline={records:readonly OnlineDocumentMetadata[];byLocalKey:Record<string,OnlineShelfStatus>;header?:ReactNode;onOpen:(record:OnlineDocumentMetadata)=>void;renderLocalActions:(work:BookshelfWork)=>ReactNode;renderRemoteActions:(record:OnlineDocumentMetadata)=>ReactNode;busy:boolean;more?:boolean;onMore:()=>void};
+export type BookshelfOnline={records:readonly OnlineDocumentMetadata[];byLocalKey:Record<string,OnlineShelfStatus>;header?:ReactNode;onOpen:(record:OnlineDocumentMetadata)=>void;renderLocalActions:(work:BookshelfWork)=>BookFocusOnlineTools|null;renderRemoteActions:(record:OnlineDocumentMetadata)=>BookFocusOnlineTools;busy:boolean;more?:boolean;onMore:()=>void};
 export type BookshelfWork={key:string;project:StoryProject;kind:'own'|'imported'|'example'|'original';canResume:boolean};
 export type BookshelfBook=GroupedBuiltinWork<BookshelfWork>;
 export type BookshelfIntent='edit'|'start'|'resume'|'prepare'|'cover';
@@ -99,7 +99,7 @@ export function LocalBookshelf({recentWriting,online,accountMenu,navigation,work
   {online?.more&&<div className={styles.loadMore}><button disabled={online.busy||disabled} onClick={online.onMore}>온라인 작품 더 불러오기</button></div>}
   <div className={`${styles.foreground} ${styles.foregroundLeft}`} aria-hidden="true"/><div className={`${styles.foreground} ${styles.foregroundRight}`} aria-hidden="true"/>
   <footer className={styles.roomFooter}>─ ◇ ─<p>오늘도, 새로운 이야기가 기다리고 있어요.</p><small>© 놀퀴즈</small></footer>
-  {selectedWork&&<LibraryBookFocus works={localVisible} selected={selectedWork} onMove={moveSelection} count={visible.length} onlineTools={online?.renderLocalActions(selectedWork)} onSelect={setSelected} onClose={()=>setSelected(null)} onOpen={(key,intent)=>{setSelected(null);onOpen(key,intent);}} disabled={disabled} onExport={onExport} onDelete={onDelete} onDuplicate={onDuplicate}/>}
-  {selectedOnline&&online&&<OnlineBookFocus record={selectedOnline} onClose={()=>setSelectedRemote(null)} onOpen={()=>online.onOpen(selectedOnline)} disabled={disabled||online.busy} actions={online.renderRemoteActions(selectedOnline)} onMove={moveSelection} count={visible.length}/>}
+  {selectedWork&&<LibraryBookFocus works={localVisible} selected={selectedWork} onMove={moveSelection} count={visible.length} onlineTools={online?.renderLocalActions(selectedWork)??undefined} onSelect={setSelected} onClose={()=>setSelected(null)} onOpen={(key,intent)=>{setSelected(null);onOpen(key,intent);}} disabled={disabled} onExport={onExport} onDelete={onDelete} onDuplicate={onDuplicate}/>}
+  {selectedOnline&&online&&<OnlineBookFocus record={selectedOnline} onClose={()=>setSelectedRemote(null)} onOpen={()=>online.onOpen(selectedOnline)} disabled={disabled||online.busy} tools={online.renderRemoteActions(selectedOnline)} onMove={moveSelection} count={visible.length}/>}
  </main>;
 }

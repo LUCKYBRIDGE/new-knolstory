@@ -576,7 +576,7 @@ export function StoryWorkspace() {
   // Stepping into the story from its cover: the book opens where it stands and the first scene draws the reader in (story-portal).
   const bookEdition=storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory";
   const [portal,setPortal]=useState<{rect:{left:number;top:number;width:number;height:number}}|null>(null);
-  function openPortal(){const cover=document.querySelector('main[aria-label="책 표지와 소개"] [data-cover-face]');if(!cover)return;const box=cover.getBoundingClientRect();if(box.width<40)return;setPortal({rect:{left:box.left,top:box.top,width:box.width,height:box.height}});}
+  function openPortal(from='main[aria-label="책 표지와 소개"] [data-cover-face]'){const cover=document.querySelector(from);if(!cover)return;const box=cover.getBoundingClientRect();if(box.width<40)return;setPortal({rect:{left:box.left,top:box.top,width:box.width,height:box.height}});}
   const endPortal=useCallback(()=>setPortal(null),[]);
   function restartReading(){setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setPlayback(createPlayback(project));setRevision(v=>v+1);}
   function beginBook(resume:boolean,key=storyId,work=project){
@@ -600,7 +600,7 @@ export function StoryWorkspace() {
     if(directEditor.current)return stored??fixture.project;
     return resolveProvidedCatalogStory(fixture.project,stored);
   }
-  async function openLibraryWork(key:string,intent:BookshelfIntent,writingCut?:string){
+  async function openLibraryWork(key:string,intent:BookshelfIntent|'introduce',writingCut?:string){
     rememberCurrent();setMemoRequest(null);
     const fixture=builtInStories.find(item=>item.id===key);
     let next=fixture?structuredClone(catalogProject(fixture)):savedProjects.current[key];if(!next)return;
@@ -619,8 +619,10 @@ export function StoryWorkspace() {
     const editId=requestedCut&&next.lines.some(cut=>cut.id===requestedCut)?requestedCut:orderedLines(next)[0]!.id;
     const resume=intent==='resume'?resumeFor(key,next):undefined;
     if(intent==='resume'&&!resume){setError('이 작품의 읽던 위치를 찾지 못했어요. 처음부터 읽거나 읽기 메뉴의 불러오기를 이용해 주세요.');return;}
+    /* Reading chosen on the shelf opens the book straight from the cover in the still-open book dialog (no await has run on this path). */
+    if(intent==='start'||intent==='resume')openPortal('dialog[open] [data-cover-face]');
     setProject(next);setStoryId(key);setLineId(editId);setEditorView(context?.editorView??'cut');setActiveTool(context?.activeTool??'text');setWriterChapterId(context?.writerChapterId??null);setPreviewProfile(context?.previewProfile??'auto');
-    setPlayback(resume??createPlayback(next,intent==='edit'||intent==='prepare'?editId:undefined));setMode('edit');setView(intent==='cover'?'cover':intent==='prepare'?'prepare':intent==='start'||intent==='resume'?'book':'editor');/* ‘이어읽기’ was already chosen on the shelf: open the saved scene, not the title page again. */if(intent==='resume')beginBook(true,key,next);setRuntimeMounted(current=>current||intent==='edit');setPresentationEntry(v=>v+1);setPlaybackRun(v=>v+1);setRevision(v=>v+1);setError('');
+    setPlayback(resume??createPlayback(next,intent==='edit'||intent==='prepare'?editId:undefined));setMode('edit');setView(intent==='cover'?'cover':intent==='prepare'?'prepare':intent==='introduce'||intent==='start'||intent==='resume'?'book':'editor');/* Reading was already chosen on the shelf: open the story, not the title page again. The title page stays for the home screen and assignments. */if(intent==='start'||intent==='resume')beginBook(intent==='resume',key,next);setRuntimeMounted(current=>current||intent==='edit');setPresentationEntry(v=>v+1);setPlaybackRun(v=>v+1);setRevision(v=>v+1);setError('');
   }
   const libraryWorks=[...builtInStories.map(fixture=>({key:fixture.id,project:catalogProject(fixture),kind:fixture.id.endsWith('-classic')?'original' as const:'example' as const,canResume:!!resumeFor(fixture.id,catalogProject(fixture))})),...Object.entries({...savedProjects.current,[storyId]:project}).filter(([key])=>key.startsWith('new:')||key.startsWith('import:')).map(([key,work])=>({key,project:work,kind:key.startsWith('new:')?'own' as const:'imported' as const,canResume:!!resumeFor(key,work)}))];
   const writingPointer=view==='library'&&hydrated&&loadComplete&&editorLimits.accountKnown?readRecentWriting(localStorage,editorLimits.accountId):null;
@@ -954,7 +956,7 @@ export function StoryWorkspace() {
       const definition=BUILTIN_WORKS.find(item=>item.id===workId);
       const documentId=definition&&(url.searchParams.get('readEdition')==='knolstory'?definition.knolstoryDocumentId:definition.originalDocumentId);
       const fixture=documentId?builtInStories.find(item=>item.project.id===documentId):undefined;
-      if(fixture){setMissionReturn(true);void openLibraryWork(fixture.id,'start');}
+      if(fixture){setMissionReturn(true);void openLibraryWork(fixture.id,'introduce');}
       else setError('과제의 작품을 찾지 못했어요. 서재에서 작품을 골라 읽어 주세요.');
       url.searchParams.delete('readWork');url.searchParams.delete('readEdition');
       history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);
@@ -1385,8 +1387,8 @@ export function StoryWorkspace() {
     {confirmStorageReload&&<StorageReloadDialog composing={composing} onCancel={()=>setConfirmStorageReload(false)} onConfirm={()=>{if(!composing)location.reload();}}/>}
     {view!=='editor'&&storageRecovery}
     {(!!storageError&&view!=='prepare'&&view!=='editor')&&<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>}
-    {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={error}/>}
-    {view==='book'&&<BookStart edition={bookEdition} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>{openPortal();beginBook(false);}} onResume={()=>{openPortal();beginBook(true);}} onLibrary={returnToLibrary} onMission={missionReturn&&onlineEnabled?()=>{if(beforeServiceNavigation())location.assign('/student');}:undefined} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
+    {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'introduce')} disabled={!loadComplete} notice={error}/>}
+    {view==='book'&&<BookStart edition={bookEdition} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>{openPortal();beginBook(false);}} onResume={()=>{openPortal();beginBook(true);}} onLibrary={returnToLibrary} onMission={missionReturn&&onlineEnabled?()=>{if(beforeServiceNavigation())location.assign('/student');}:undefined}/>}
     {portal&&<StoryPortal project={project} edition={bookEdition} from={portal.rect} scene={(()=>{const id=line.backgroundMode==='none'?'':line.backgroundId||project.chapters.find(c=>c.id===line.chapterId)?.backgroundId||project.stageDefaults?.backgroundId||'';return id?resolveAsset(id)?.src:undefined;})()} ready={mode==='play'&&runtime.ready&&runtime.rendered===scene.revision&&!runtime.imagePending} onDone={endPortal}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
     {pendingBranch&&<StoryChoiceWritingDialog label={pendingBranch.label} sourceLabel={pendingBranch.sourceLabel} closesLinearTail={!!pendingBranch.closedLinearTailId} error={branchError} onCancel={()=>{setPendingBranch(null);setBranchError('');}} onCreate={startChoiceWriting}/>}

@@ -1,7 +1,7 @@
 import {openFileExchange} from './authoring-file';
 import {test,expect,type Page} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
-import {enterLibrary,startShelfCreation,importShelfFile,openBuiltinEdition} from './library-entry';
+import {enterLibrary,startShelfCreation,importShelfFile,openBuiltinEdition,openBookMore} from './library-entry';
 const workspace='knolstory-next-workspace-v1';
 // Fullscreen offers have dedicated tests; keep recovery controls unobstructed here.
 test.beforeEach(async({context})=>{await context.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
@@ -64,7 +64,7 @@ test('corrupt storage stays byte-identical until explicit recovery, with checkpo
 
 test('failed deletion preserves the previous deleted book and the current draft together',async({page})=>{
  await create(page,'이전 삭제 원고');await page.getByRole('button',{name:'서재로',exact:true}).click();
- async function remove(title:string){const book=page.getByRole('article',{name:`내 작품 · ${title}`,exact:true});await book.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인'}).getByRole('button',{name:'삭제 확인',exact:true}).click();}
+ async function remove(title:string){const book=page.getByRole('article',{name:`내 작품 · ${title}`,exact:true});await book.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await openBookMore(focus);await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인'}).getByRole('button',{name:'삭제 확인',exact:true}).click();}
  await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await remove('이전 삭제 원고');
  await create(page,'삭제 실패 원고');await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  const before=await page.evaluate(key=>localStorage.getItem(key),workspace);

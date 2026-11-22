@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {openBookMore} from './library-entry';
 const id='22222222-2222-4222-8222-222222222222',account='11111111-1111-4111-8111-111111111111';
 for(const format of ['knolstory','shortstory'] as const)for(const width of [1440,390])test(`${format} online trash cancel, response loss retry and same-record restore preserve device manuscript ${width}`,async({page},info)=>{
  await page.setViewportSize({width,height:900});let deletedAt:number|null=null,stateVersion=1,lose=true;const sent:{key:string|undefined;body:unknown}[]=[];
@@ -21,7 +22,7 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
  const authored=()=>page.evaluate(format=>{if(format==='shortstory')return JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);const s=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:s.document.project,works:{...s.works,[s.storyId]:s.document}};},format);const before=await authored();
  if(format==='knolstory'){
   await page.getByRole('button',{name:/^온라인 원고 책 표지와 소개 보기/}).click();
-  const book=page.getByRole('dialog',{name:'온라인 원고 · 온라인 작품',exact:true});
+  const book=page.getByRole('dialog',{name:'온라인 원고',exact:true});await openBookMore(book);
   const trash=book.getByRole('button',{name:'온라인 휴지통으로 이동',exact:true});
   const confirmation=book.getByRole('group',{name:'온라인 휴지통 이동 확인',exact:true});
   const confirm=confirmation.getByRole('button',{name:'온라인 휴지통으로 옮기기',exact:true});
