@@ -19,3 +19,5 @@
 .waiting{position:absolute;left:50%;bottom:max(24px,6dvh);transform:translateX(-50%);margin:0;padding:6px 14px;border-radius:999px;background:#0008;color:#f4ead7;font-size:var(--text-small);letter-spacing:.04em;white-space:nowrap;animation:appear .6s 1.2s ease-out both}
 @keyframes appear{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion: reduce){.portal{animation:none}.portal[data-phase=hold] .scene img{animation:none}.waiting{animation:none}}
+/* While it fades away the stage is already live: a first tap goes straight through to it (e.g. 소리 켜고 시작). */
+.portal[data-phase=reveal]{pointer-events:none}
