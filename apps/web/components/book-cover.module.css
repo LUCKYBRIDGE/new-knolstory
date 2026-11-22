@@ -455,8 +455,9 @@
   [data-work-id] .book[data-compact] .tagline,
   [data-work-id] .book[data-compact] .edition,
   [data-work-id] .book[data-compact] .bottomAuthor { display:none }
-  [data-work-id] .book[data-compact] .titleBox { top:6%!important;height:31%!important;padding:2% }
-  [data-work-id] .book[data-compact] .title { font-size:clamp(13px,14cqw,18px);line-height:1.18;text-wrap:balance }
+  [data-work-id] .book[data-compact] .titleBox { top:6%!important;height:33%!important;padding:2% }
+  /* Sized to the tiny cover itself so a four-syllable title (별주부전) fits on one line instead of breaking mid-word. */
+  [data-work-id] .book[data-compact] .title { font-size:clamp(8px,19cqw,18px);line-height:1.18;text-wrap:balance }
   [data-work-id] .book[data-compact] .art { top:39%!important;height:51%!important }
 }
 /* Thumbnail covers (picture book card, 2026-11-21) are always small: title and picture only. */
@@ -466,3 +467,5 @@
 [data-small-cover] .book[data-compact] .titleBox { top:6%!important;height:31%!important;padding:2% }
 [data-small-cover] .book[data-compact] .title { font-size:clamp(11px,14cqw,16px);line-height:1.18;text-wrap:balance }
 [data-small-cover] .book[data-compact] .art { top:39%!important;height:51%!important }
+/* Cover copy never breaks inside a Korean word (별주부 / 전): a word wider than its box makes the fitter shrink the type instead. */
+.copyBox>*{word-break:keep-all;overflow-wrap:normal}

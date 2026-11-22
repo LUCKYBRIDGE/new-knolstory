@@ -24,7 +24,7 @@
 .caption[data-arriving]{opacity:0;transform:translateY(8px)}
 .caption h2{margin:0;font-size:var(--text-title);line-height:1.3;word-break:keep-all;overflow-wrap:anywhere}
 .caption h2:focus{outline:none}
-.caption h2.end{font-size:calc(var(--text-title)*1.35);letter-spacing:.3em;padding-left:.3em;font-weight:600}
+.caption h2.end{font-size:var(--text-heading);letter-spacing:.3em;padding-left:.3em;font-weight:600}
 .author{margin:0;color:var(--ink-soft);font-size:var(--text-small)}
 .description{margin:4px 0 0;font-size:var(--text-body);line-height:1.7;color:var(--ink);word-break:keep-all;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .credit{margin:0;font-size:var(--text-caption);color:var(--ink-soft)}

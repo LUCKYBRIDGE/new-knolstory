@@ -94,3 +94,5 @@
   .bookDetails>.author { order:8; }
   .bookDetails>.authorNote { order:9; }
 }
+/* Small phones: the book's title stays the largest text on the screen without dominating it. */
+@media (max-width:400px){ .bookDetails h1{font-size:var(--text-heading);line-height:1.35} }
