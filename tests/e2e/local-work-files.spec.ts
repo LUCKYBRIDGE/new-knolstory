@@ -1,4 +1,4 @@
-import {openShortStoryDetails,openShortStoryTools} from './shortstory-navigation';
+import {openShortStoryDetails,openShortStoryTools,openBook} from './shortstory-navigation';
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
@@ -139,7 +139,7 @@ test('editor save and return action verifies a file before opening the library',
 });
 
 test('reading existing ShortStory originals does not create a false unsaved-work warning',async({page})=>{
- await page.goto('/shortstory');await expect(page.getByRole('heading',{name:'나의 짧은 이야기',exact:true})).toBeVisible();await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);for(const title of ['선녀와 나무꾼','흥부와 놀부']){await page.getByRole('button',{name:`${title} · 원본 읽기`,exact:true}).click();}
+ await page.goto('/shortstory');await expect(page.getByRole('heading',{name:'나의 짧은 이야기',exact:true})).toBeVisible();await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);for(const title of ['선녀와 나무꾼','흥부와 놀부']){await page.getByRole('button',{name:`${title} · 원본 읽기`,exact:true}).click();await openBook(page);}
  expect(await page.evaluate(()=>{const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);return event.defaultPrevented;})).toBe(false);
 });
 

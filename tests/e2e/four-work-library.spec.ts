@@ -1,3 +1,4 @@
+import {openBook} from './shortstory-navigation';
 import {test,expect} from '@playwright/test';
 import {enterLibrary,beginSelectedBook,fillShelfSearch,shelfCoverButton} from './library-entry';
 const works=[['rabbit','별주부전'],['onggojib','옹고집전'],['seonnyeo','선녀와 나무꾼'],['heungbu','흥부와 놀부']] as const;
@@ -36,7 +37,7 @@ test('all four shelf choices open their actual ShortStory and return to the same
  await page.goto('/');await enterLibrary(page);
  for(const [id,title] of works){
   await page.locator(`article[data-work-id="${id}"]`).getByRole('button').click();await page.getByRole('dialog').getByRole('link',{name:'숏스토리 읽기',exact:true}).click();
-  await expect(page).toHaveURL(new RegExp(`work=${id}&mode=read`));await expect(page.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(title);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
+  await expect(page).toHaveURL(new RegExp(`work=${id}&mode=read`));await expect(page.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(title);await openBook(page);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
   await page.getByRole('link',{name:'놀스토리 서재로 돌아가기',exact:true}).click();await expect(page.locator('article[data-shelf-book]')).toHaveCount(4);await expect(page.locator(`article[data-work-id="${id}"]`)).toBeVisible();
  }
 });

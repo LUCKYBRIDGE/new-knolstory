@@ -472,3 +472,39 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
 }
 .todoGroupHead[data-group=later] h3{color:var(--class-muted)}
 .reviewBadge{margin-left:6px;padding:1px 8px;border-radius:999px;background:#f4e3b8;color:#6b4c0c;font-size:var(--text-caption);font-weight:700}
+/* Type tabs on narrow phones: words never break letter by letter — the book icon steps aside and the label, count and badge stay on whole lines. */
+.typeTabs>.btn{word-break:keep-all}
+.reviewBadge{white-space:nowrap}
+@media (max-width:480px){
+ .typeTabs .bookMark,.typeTabs>.btn>svg{display:none}
+ .typeTabs>.btn{flex-wrap:wrap;justify-content:center;row-gap:2px;white-space:nowrap}
+ .reviewBadge{margin-left:2px}
+}
+
+/* Landscape phones and small tablets: the student table becomes cards too, so 관리 and 편집 허용 never slide out of sight. */
+@media (min-width:721px) and (max-width:960px){
+ .tableWrap{overflow:visible}
+ .table{display:block;min-width:0;width:100%}
+ .table caption{display:block}
+ .table thead,.table thead tr{display:block}
+ .table thead th{display:none}
+ .table thead th:first-child{display:flex;align-items:center;border:0;padding:0;background:none}
+ .table thead th:first-child::after{content:'학생 모두 선택'}
+ .table tbody{display:grid;gap:12px}
+ .table tbody tr{display:grid;grid-template-columns:1fr 1fr;padding:10px 12px;border:1px solid #dbdfd1;border-radius:12px;background:#fffefa}
+ .table td{display:block;min-width:0;border:0;padding:7px 0}
+ .table td::before{content:attr(data-label);display:block;font-size:var(--text-caption);color:var(--class-muted);margin-bottom:4px}
+ .table td:first-child{padding:0;justify-self:end;grid-column:2;grid-row:1}
+ .table td:nth-child(2){grid-column:1;grid-row:1;align-self:center;font-weight:700}
+ .table td:nth-child(-n+2)::before{display:none}
+ .table td:nth-child(3),.table td:nth-child(4),.table td:last-child{grid-column:1/-1}
+ .table td:nth-child(5),.table td:nth-child(6){align-self:start}
+ .table td:last-child{border-top:1px solid #e6e7dc;margin-top:6px;padding:6px 0 0}
+ .table td:last-child::before{display:none}
+ .table td .row{flex-wrap:nowrap}
+ .table td .cellInput{width:100%;flex:1;min-width:0}
+ .table td .btn{font-size:var(--text-small);padding-inline:10px}
+ .table td:nth-child(6)>.btn{display:block}
+ .table tbody{grid-template-columns:1fr 1fr}
+}
+.todoGroupHead h3 small{font-size:var(--text-caption)}

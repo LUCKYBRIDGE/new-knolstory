@@ -1,4 +1,4 @@
-import {openShortStoryDetails} from './shortstory-navigation';
+import {openShortStoryDetails,openBook} from './shortstory-navigation';
 import {test,expect,type Page} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 const key='knolstory-shortstory-library-v1';
@@ -57,7 +57,7 @@ test('a reading tab that cannot keep the library never migrates, recovers or war
  await expect(other.locator('html')).toHaveAttribute('data-local-writer','unavailable');
  await expect(storageWarning(other)).toHaveCount(0);
  // Turning pages only moves the reading position: no warning and the reading goes on.
- const pages=other.getByRole('navigation',{name:'읽기 쪽 넘기기',exact:true});await pages.getByRole('button',{name:'다음 쪽',exact:true}).click();
+ await openBook(other);const pages=other.getByRole('navigation',{name:'읽기 쪽 넘기기',exact:true});await pages.getByRole('button',{name:'다음 쪽',exact:true}).click();
  await expect(pages).toContainText('2 /');await expect(other.getByText(/보관하지 못했어요|다른 탭/)).toHaveCount(0);
  await expect(other.getByRole('button',{name:'보관함 새로 시작'})).toHaveCount(0);
  expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);

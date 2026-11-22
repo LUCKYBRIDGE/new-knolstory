@@ -1,3 +1,4 @@
+import {CURRENT_SCHEMA_VERSION} from '../../packages/story-domain/src';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {registeredWorkbookCopy} from './registered-workbook-copy';
@@ -12,6 +13,6 @@ for(const source of ['google','excel'])test(`previous actual ${source} Korean co
  await page.getByLabel('작품 파일 가져오기').setInputFiles({name:`current-korean-${source}.xlsx`,mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:copy.buffer});await confirmAuthoringImport(page);
  await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('한글 양식에서 수정한 작품 🌳');await expect(page.getByLabel('글 종류',{exact:true})).toHaveValue('narration');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await page.reload();await expect(page.getByLabel('글 종류',{exact:true})).toHaveValue('narration');await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('한글 양식에서 수정한 작품 🌳');
- const first=await exported(page);expect(first.archive.schemaVersion).toBe(8);expect(first.archive.project).toEqual({...copy.archive.document.project,id:first.archive.project.id});expect(first.archive.audioResources).toEqual([]);
+ const first=await exported(page);expect(first.archive.schemaVersion).toBe(CURRENT_SCHEMA_VERSION);expect(first.archive.project).toEqual({...copy.archive.document.project,id:first.archive.project.id});expect(first.archive.audioResources).toEqual([]);
  await page.getByLabel('작품 파일 가져오기').setInputFiles(first.path);await confirmAuthoringImport(page);await page.reload();const reopened=(await exported(page)).archive;expect(reopened.project).toEqual({...first.archive.project,id:reopened.project.id});expect(reopened.audioResources).toEqual([]);
 });

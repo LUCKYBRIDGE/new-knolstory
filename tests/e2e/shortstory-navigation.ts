@@ -28,3 +28,11 @@ export async function openTextTools(scope: Page | Locator) {
  const tab = scope.getByRole('tab', {name: '글', exact: true});
  if (await tab.getAttribute('aria-selected') !== 'true') await tab.click();
 }
+/** Reading a book starts at its closed cover: open it (the cover swings away) and wait for the first page. */
+export async function openBook(page: Page) {
+ const open = page.getByRole('button', {name: '책 펼치기', exact: true}), reading = page.getByRole('region', {name: '숏스토리 읽기', exact: true});
+ // The cover appears once the book has switched; a page still on screen from the previous book is not the answer.
+ const cover = await open.waitFor({timeout: 2500}).then(() => true, () => false);
+ if (cover) { await open.click(); await open.waitFor({state: 'detached'}); }
+ await reading.waitFor();
+}
