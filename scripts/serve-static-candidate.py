@@ -167,7 +167,9 @@ class CandidateHandler(PREVIEW.ExportHandler):
         self.send_header('X-KnolStory-Preview', 'local-split-static-no-api')
         if row:
             version = parse_qs(urlsplit(self.path).query).get('v', [])
-            cache = 'public, max-age=31536000, immutable' if version == [row['sha256'][:16]] else 'no-cache'
+            # Content-versioned URLs, and previews named by their source revision, never change in place.
+            preview = row['path'].startswith(AUDIT.PREVIEWS['directory'] + '/') and row['path'].endswith('.webp')
+            cache = 'public, max-age=31536000, immutable' if version == [row['sha256'][:16]] or preview else 'no-cache'
             self.send_header('Cache-Control', cache)
             self.send_header('ETag', '"' + row['sha256'] + '"')
         super().end_headers()

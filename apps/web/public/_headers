@@ -13,8 +13,6 @@
   Cache-Control: no-cache
 /runtime/*
   Cache-Control: no-cache
-/assets/*
-  Cache-Control: no-cache
 /brand/*
   Cache-Control: no-cache
 /loading-stories.json
@@ -23,3 +21,19 @@
 # Only filenames containing build hashes receive a long immutable lifetime.
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Catalogue images are requested as <path>?v=<source revision prefix> and previews are
+# named by that revision (packages/asset-registry/src/image-previews.json), so a URL never
+# changes meaning. Cover fonts carry content hashes in their file names.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Unversioned URLs under /assets keep the host default (revalidate on every use).
+/assets/audio/*
+  ! Cache-Control
+/assets/legacy-ui/*
+  ! Cache-Control
+/assets/licenses/*
+  ! Cache-Control
+/assets/loading/*
+  ! Cache-Control
