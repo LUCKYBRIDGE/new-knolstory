@@ -62,7 +62,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
   await expect(area).toBeVisible();expect(await overlappingControls(area)).toEqual([]);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
- await openEditingScreen(page,'기본편집');const flow=await openChoiceEditing(page);await setFlowType(page,'choice');
+ await openEditingScreen(page,'쓰기');const flow=await openChoiceEditing(page);await setFlowType(page,'choice');
  const card=flow.locator('[class*="choiceCard"]').first();
  await expect(card.getByText('선택 결과·표시 조건',{exact:true})).toHaveCount(0);
  await expect(card.getByRole('button',{name:'점수 변화 추가',exact:true})).toHaveCount(0);

@@ -69,7 +69,7 @@ async function author(page:Page){
  const changed=(await exportProject(page)).project;expect(changed.lines[0].speakerName).toBe('흥부');expect(changed.lines[0].stageComposition.leftActors[0]).toMatchObject({key,assetId:variant,position:'center',scaleMultiplier:.9,facing:'original',characterKey:composed.characters[0].id});
  await row.getByRole('button',{name:/^1컷 인물 1 이미지 찾기 ·/}).click();dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'즐겨찾기',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'최근 사용',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'취소',exact:true}).click();
  // Two ending cuts, appended with the next-cut card and written in the basic view.
- await openEditingScreen(page,'기본편집');
+ await openEditingScreen(page,'쓰기');
  await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endA=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('dialogue');await page.getByLabel('현재 컷 화자',{exact:true}).fill('흥부');await (await currentCutText(page)).fill('첫 갈래의 끝이에요.');
  await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endB=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('narration');await (await currentCutText(page)).fill('두 번째 갈래의 끝이에요.');
  for(const id of [endA,endB]){await chooseCut(page,id);await openChoiceEditing(page);await setFlow(page,'ending');}

@@ -17,8 +17,8 @@ async function create(page:Page){
 const writer=(page:Page)=>page.locator('[data-screen="text"]');
 for(const size of sizes)test(`editor writing and preparation stay compact and preserve Korean input at ${size.width}x${size.height}`,async({page},testInfo)=>{
  page.setDefaultTimeout(15000);await suppressFullscreenOffer(page);await page.setViewportSize(size);await create(page);
- // Whole-chapter writing is the 글 편집 screen of the settings menu's 편집화면 선택.
- await openEditingScreen(page,'글 편집');
+ // Whole-chapter writing is the 원고 screen of the settings menu's 편집화면 선택.
+ await openEditingScreen(page,'원고');
  await expect(writer(page)).toBeVisible();await writer(page).getByLabel('1컷 글',{exact:true}).fill(manuscript);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await noOverflow(page);
  const writerPadding=await writer(page).locator('article').first().evaluate(node=>parseFloat(getComputedStyle(node).paddingLeft));
@@ -39,9 +39,9 @@ for(const size of sizes)test(`editor writing and preparation stay compact and pr
  await page.getByTestId('preparation-save-status').waitFor();
  await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');await noOverflow(page);
  await page.screenshot({path:testInfo.outputPath('preparation.png'),fullPage:true});
- await preparation.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await openEditingScreen(page,'글 편집');
+ await preparation.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await openEditingScreen(page,'원고');
  await expect(writer(page).getByLabel('1컷 글',{exact:true})).toHaveValue(manuscript);
  await page.reload();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
- await openEditingScreen(page,'글 편집');await expect(writer(page).getByLabel('1컷 글',{exact:true})).toHaveValue(manuscript);await noOverflow(page);
+ await openEditingScreen(page,'원고');await expect(writer(page).getByLabel('1컷 글',{exact:true})).toHaveValue(manuscript);await noOverflow(page);
  await page.screenshot({path:testInfo.outputPath('writer.png'),fullPage:true});
 });

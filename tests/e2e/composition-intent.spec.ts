@@ -30,7 +30,7 @@ async function closeManagement(page: Page) {
 }
 /** Characters are placed on the 인물 편집 screen; the other screens keep their own jobs. */
 async function characters(page: Page) { await openEditingScreen(page, '인물 편집'); }
-async function basic(page: Page) { await openEditingScreen(page, '기본편집'); }
+async function basic(page: Page) { await openEditingScreen(page, '쓰기'); }
 /** The 1-based position of the selected cut inside the screen's cut list ("N컷 편집"). */
 async function cutNo(page: Page) { return ((await (await currentCutRow(page)).getAttribute('aria-label')) ?? '').replace(/컷 편집$/, ''); }
 async function actorEditors(page: Page) { return (await currentCutRow(page)).getByRole('button', { name: /^\d+컷 인물 \d+ 이미지 찾기/ }); }

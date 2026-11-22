@@ -3,8 +3,8 @@ import type {EditingScreen} from '../lib/editor-preferences';
 import styles from './editor-work-tabs.module.css';
 
 const LABELS:Record<Exclude<EditingScreen,'audio-direction'>,{label:string;hint:string}>={
- basic:{label:'기본',hint:'글·장면을 한 화면에서'},
- text:{label:'글',hint:'글만 크게 쓰기'},
+ basic:{label:'쓰기',hint:'지금 컷의 글과 장면을 한 화면에서'},
+ text:{label:'원고',hint:'이 장의 컷 글을 이어서 보고 고치기'},
  background:{label:'배경',hint:'컷마다 배경 고르기'},
  characters:{label:'인물',hint:'인물 배치·표정'},
  audio:{label:'음향',hint:'배경음·효과음'},

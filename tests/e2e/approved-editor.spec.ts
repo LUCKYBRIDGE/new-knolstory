@@ -19,7 +19,7 @@ for(const size of [{width:1280,height:900},{width:820,height:1180},{width:390,he
   await openEditingScreen(page,'음향 편집');
   await expect(page.locator('[data-screen="direction"]:visible')).toHaveCount(0);
   await expect(page.locator('[data-screen="audio"]:visible')).toHaveCount(1);
-  await openEditingScreen(page,'기본편집');
+  await openEditingScreen(page,'쓰기');
   await expect(page.locator('[data-screen="basic"]:visible')).toHaveCount(1);
   await expect(await currentCutText(page)).toBeVisible();
   await expect(page.locator('[data-screen="audio"]:visible')).toHaveCount(0);
@@ -130,9 +130,9 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await expect(select).toBeDisabled();
  await expect(text).toBeVisible();await expect(select).toHaveValue('basic');await text.dispatchEvent('compositionend');
  await expect(select).toBeEnabled();
- await openEditingScreen(page,'글 편집');await expect(page.locator('[data-screen="text"]:visible')).toHaveCount(1);await expect(await currentCutText(page)).toHaveValue('한글을 조합하며 도구를 바꾸어도 원고를 잃지 않는다.');
+ await openEditingScreen(page,'원고');await expect(page.locator('[data-screen="text"]:visible')).toHaveCount(1);await expect(await currentCutText(page)).toHaveValue('한글을 조합하며 도구를 바꾸어도 원고를 잃지 않는다.');
  await openEditingScreen(page,'음향 편집');await expect(page.locator('[data-screen="audio"]:visible')).toHaveCount(1);
- await openEditingScreen(page,'기본편집');await expect(await currentCutText(page)).toHaveValue('한글을 조합하며 도구를 바꾸어도 원고를 잃지 않는다.');
+ await openEditingScreen(page,'쓰기');await expect(await currentCutText(page)).toHaveValue('한글을 조합하며 도구를 바꾸어도 원고를 잃지 않는다.');
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
  await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');const rendered=await state.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);await page.screenshot({path:info.outputPath(`tool-navigation-${size.width}.png`),fullPage:true});
  await page.reload();await expect(await currentCutText(page)).toHaveValue('한글을 조합하며 도구를 바꾸어도 원고를 잃지 않는다.');
@@ -155,7 +155,7 @@ test('screen navigation tracks composition in choice labels',async({page})=>{
  const label=page.getByLabel('선택지 1 문구',{exact:true});await label.fill('친구와 함께 돌아간다');await label.dispatchEvent('compositionstart');
  await expect(label).toBeVisible();const select=await screenSelect(page);await expect(select).toBeDisabled();
  await label.dispatchEvent('compositionend');await expect(select).toBeEnabled();
- await openEditingScreen(page,'글 편집');await openEditingScreen(page,'기본편집');
+ await openEditingScreen(page,'원고');await openEditingScreen(page,'쓰기');
  await openChoiceEditing(page);await expect(label).toHaveValue('친구와 함께 돌아간다');
 });
 

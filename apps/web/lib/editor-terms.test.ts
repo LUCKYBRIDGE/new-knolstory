@@ -23,10 +23,10 @@ it('explains current file actions and catalog-only sounds using actual names',()
 describe('current product vocabulary',()=>{
  const term=(name:string)=>editorTerms.find(item=>item.name===name)!;
  it('keeps superseded editor names searchable and describes all six actual screens',()=>{
-  expect(findEditorTerms('현재 컷 쓰기','원고').map(item=>item.name)).toContain('기본편집');
-  expect(findEditorTerms('장 전체 글 고치기','원고').map(item=>item.name)).toContain('글 편집');
-  for(const name of ['기본편집','글 편집','배경 편집','인물 편집','음향 편집','연출 편집'])expect(term(name)).toBeDefined();
-  expect(term('글 편집').description).toContain('여러 컷');
+  expect(findEditorTerms('현재 컷 쓰기','원고').map(item=>item.name)).toContain('쓰기');
+  expect(findEditorTerms('장 전체 글 고치기','원고').map(item=>item.name)).toContain('원고');
+  for(const name of ['쓰기','원고','배경 편집','인물 편집','음향 편집','연출 편집'])expect(term(name)).toBeDefined();
+  expect(term('원고').description).toContain('여러 컷');
   expect(term('연출 편집').description).toContain('화면·배경·인물');
  });
  it('distinguishes companion viewing, optional editing, and session settings from manuscript content',()=>{

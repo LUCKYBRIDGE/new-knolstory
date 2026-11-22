@@ -17,9 +17,9 @@ export async function enableEditing(page:Page,...features:string[]){
  for(const feature of features)await menu.getByRole('checkbox',{name:`${feature} 편집 사용`,exact:true}).check();
  await closeSettings(page);
 }
-/** Chooses a 편집화면 such as "글 편집", "음향 편집" or "연출 편집" (enabling its optional feature first). */
+/** Chooses a 편집화면 such as "원고", "음향 편집" or "연출 편집" (enabling its optional feature first). */
 export async function openEditingScreen(page:Page,label:string){
- const id=({'기본편집':'basic','글 편집':'text','배경 편집':'background','인물 편집':'characters','음향 편집':'audio','연출 편집':'direction','음향·연출 함께 편집':'audio-direction'} as Record<string,string>)[label];
+ const id=({'쓰기':'basic','원고':'text','배경 편집':'background','인물 편집':'characters','음향 편집':'audio','연출 편집':'direction','음향·연출 함께 편집':'audio-direction'} as Record<string,string>)[label];
  if(id&&await page.locator(`[data-screen="${id}"]`).count())return;
  const feature=({'인물 편집':'인물','음향 편집':'음향','연출 편집':'연출','음향·연출 함께 편집':'음향'} as Record<string,string>)[label];
  if(feature)await enableEditing(page,...(label==='음향·연출 함께 편집'?['음향','연출']:[feature]));
@@ -52,7 +52,7 @@ export async function openCutPanel(page:Page,kind:'음향'|'연출'){
 /** Old single-row tool names mapped onto the current 편집화면/panel model. */
 export async function openEditingTool(page:Page,name:string){
  if(name==='선택지 편집')return openChoiceEditing(page);
- const screen=({'글 편집':'글 편집','배경·인물 편집':'배경 편집','연출 편집':'연출 편집','소리 편집':'음향 편집','음향 편집':'음향 편집'} as Record<string,string>)[name];
+ const screen=({'원고':'원고','배경·인물 편집':'배경 편집','연출 편집':'연출 편집','소리 편집':'음향 편집','음향 편집':'음향 편집'} as Record<string,string>)[name];
  if(!screen)throw new Error(`No current editing screen for ${name}`);
  await openEditingScreen(page,screen);
  if(screen==='음향 편집')await openCutPanel(page,'음향');

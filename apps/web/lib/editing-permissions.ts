@@ -59,7 +59,7 @@ export function allowedEditingScreen(screen: EditingScreen, permissions: Editing
   return true;
 }
 
-/** Editor preferences after the teacher's limits: blocked features stay off and blocked screens fall back to 기본편집. */
+/** Editor preferences after the teacher's limits: blocked features stay off and blocked screens fall back to 쓰기 (basic). */
 export function restrictEditorPreferences(preferences: EditorPreferences, permissions: EditingPermissions): EditorPreferences {
   if (permissions === ALL_EDITING_ALLOWED) return preferences;
   const enabled = {
