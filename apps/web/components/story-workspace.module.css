@@ -475,6 +475,10 @@
 .readerContext{position:absolute;left:12px;right:70px;top:16px;z-index:6;color:white;text-shadow:0 1px 4px #183331;font-size:var(--text-caption);pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .playMode .stage>.semantic,.playMode .stage>.status{position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);}
 .playMode .stage>.semantic:focus-within{width:auto;height:auto;max-height:calc(100dvh - 104px);overflow:auto;clip-path:none;left:12px;right:12px;bottom:80px;padding:12px;z-index:10;background:var(--paper);border-radius:12px;}
+/* The open text view is a keyboard reading mode with its own next/previous and choice buttons. The reading bar
+   (reader overlay, z-index 11) would sit on top of those buttons, so it steps aside while the view is open; the
+   menu trigger at the stage's top corner stays reachable above it. */
+.playMode .stage:has(>.semantic:focus-within) [data-reader-quick-bar]{visibility:hidden}
 .shell [hidden] { display:none !important; }
 .editorPanel > .inspector [data-inspector-section="text"] { display:grid;grid-template-columns:1fr 1fr;gap:0 8px; }
 .editorPanel > .inspector [data-inspector-section="text"] > details,
