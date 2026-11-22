@@ -51,7 +51,7 @@ async function pickBackground(page:Page,target:Locator,label:string){
 }
 
 test('several cut texts edit directly and companion visibility never edits manuscript data',async({page},info)=>{
- const before=await prepare(page);await mode(page,'글 편집');
+ const before=await prepare(page);await mode(page,'원고');
  await expect(row(page,0).getByRole('textbox',{name:'1컷 글',exact:true})).toBeVisible();
  await expect(row(page,1).getByRole('textbox',{name:'2컷 글',exact:true})).toBeVisible();
  const companion=page.getByRole('checkbox',{name:'배경 함께 보기',exact:true});
@@ -61,7 +61,7 @@ test('several cut texts edit directly and companion visibility never edits manus
  await row(page,1).getByRole('textbox',{name:'2컷 글',exact:true}).fill('다음 컷도 바로 이어서 고친 원고.');
  const after=(await exported(page)).project;
  expect(after).toEqual({...before,updatedAt:after.updatedAt,lines:before.lines.map((line,index)=>({...line,text:index===0?'앞 컷의 문장을 읽으며 고친 첫 원고.':index===1?'다음 컷도 바로 이어서 고친 원고.':line.text}))});
- await page.reload();await mode(page,'글 편집');
+ await page.reload();await mode(page,'원고');
  await expect(row(page,0).getByRole('textbox',{name:'1컷 글',exact:true})).toHaveValue(after.lines[0].text);
  await expect(row(page,1).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue(after.lines[1].text);
  await page.screenshot({path:info.outputPath('multi-cut-text.png'),fullPage:true});
@@ -129,7 +129,7 @@ test('character batch view changes placement across cuts without converting left
 test('basic editing keeps previous and next cut context beside a clear current editor at desktop and phone widths',async({page},info)=>{
  await page.setViewportSize({width:1440,height:900});await prepare(page);
  const menu=page.locator('[data-work-menu]');if(await menu.evaluate(element=>(element as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
- await mode(page,'글 편집');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();await mode(page,'기본편집');
+ await mode(page,'원고');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();await mode(page,'쓰기');
  const current=workbench(page).getByRole('group',{name:'현재 컷 · 2컷',exact:true});
  const previous=workbench(page).getByRole('button',{name:/^이전 컷/}),next=workbench(page).getByRole('button',{name:/^다음 컷/});
  for(const width of [1440,390]){
@@ -149,7 +149,7 @@ test('basic editing keeps previous and next cut context beside a clear current e
 });
 
 test('multi-cut text composition keeps typing and caret stable while cut and screen navigation wait',async({page},info)=>{
- await page.setViewportSize({width:390,height:844});await prepare(page);await mode(page,'글 편집');
+ await page.setViewportSize({width:390,height:844});await prepare(page);await mode(page,'원고');
  const companion=page.getByRole('checkbox',{name:'배경 함께 보기',exact:true});await companion.check();
  const field=row(page,1).getByRole('textbox',{name:'2컷 글',exact:true});
  await field.fill('이전 컷과 다음 컷을 보며 이어 쓰는 글. ');await field.focus();await field.press('End');
@@ -168,7 +168,7 @@ test('multi-cut text composition keeps typing and caret stable while cut and scr
  await field.dispatchEvent('compositionend',{data:'한글 조합 중'});
  await expect(page.locator('[aria-label="편집화면 선택"]')).toBeEnabled();await saved(page);
  await field.evaluate(element=>(element as HTMLTextAreaElement).setSelectionRange(3,6));
- await mode(page,'배경 편집');await mode(page,'글 편집');await expect(companion).toBeChecked();
+ await mode(page,'배경 편집');await mode(page,'원고');await expect(companion).toBeChecked();
  await expect.poll(()=>field.evaluate(element=>{const input=element as HTMLTextAreaElement;return [input.selectionStart,input.selectionEnd,document.activeElement===input];})).toEqual([3,6,true]);
  await expect(field).toHaveValue('이전 컷과 다음 컷을 보며 이어 쓰는 글. 한글 조합 중');
  const afterProject=(await exported(page)).project;expect(afterProject.lines[1].text).toBe('이전 컷과 다음 컷을 보며 이어 쓰는 글. 한글 조합 중');
@@ -206,11 +206,11 @@ test('direction edits existing actor motion while keeping one native frame and a
  expect(after.lines[0].stageComposition?.leftActors[0]).toMatchObject({key:before.lines[0].stageComposition!.leftActors[0].key,assetId:before.lines[0].stageComposition!.leftActors[0].assetId,motion:{type:'move',fromXAnchor:95,durationMs:600,delayMs:0}});
  expect(after.lines[0].stageComposition?.rightActors).toEqual(before.lines[0].stageComposition?.rightActors);
  expect(after.lines.map(line=>line.text)).toEqual(before.lines.map(line=>line.text));
- await mode(page,'글 편집');await mode(page,'배경 편집');await mode(page,'기본편집');await expect(frame).toHaveCount(1);await expect(frame).toHaveAttribute('data-workbench-identity','same-frame');
+ await mode(page,'원고');await mode(page,'배경 편집');await mode(page,'쓰기');await expect(frame).toHaveCount(1);await expect(frame).toHaveAttribute('data-workbench-identity','same-frame');
 });
 
 test('phone basic editor stacks compact context around the current landscape preview and draft',async({page},info)=>{
- await page.setViewportSize({width:390,height:844});await prepare(page);await mode(page,'글 편집');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();await mode(page,'기본편집');
+ await page.setViewportSize({width:390,height:844});await prepare(page);await mode(page,'원고');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();await mode(page,'쓰기');
  const current=workbench(page).getByRole('group',{name:'현재 컷 · 2컷',exact:true}),previous=workbench(page).getByRole('button',{name:/^이전 컷/}),next=workbench(page).getByRole('button',{name:/^다음 컷/});
  const scene=page.getByTestId('story-stage-viewport');await expect(scene).toBeVisible();
  const boxes=await Promise.all([previous,scene,current,next].map(locator=>locator.boundingBox()));const [p,s,c,n]=boxes as {x:number;y:number;width:number;height:number}[];
@@ -234,9 +234,9 @@ for(const [width,height] of [[360,640],[640,360],[768,1024],[1280,720]])test(`ed
  await page.setViewportSize({width,height});await prepare(page);
  if(height<=400&&width<=700){// Phone landscape is review-only: every other editing screen asks to rotate, and the chrome still fits.
   await expect(page.locator('[data-work-menu]>summary')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);
-  await openWorkMenu(page);expect(await page.getByRole('option',{name:'글 편집 · 세로에서 편집',exact:true}).evaluate(node=>(node as HTMLOptionElement).disabled)).toBe(true);return;
+  await openWorkMenu(page);expect(await page.getByRole('option',{name:'원고 · 세로에서 편집',exact:true}).evaluate(node=>(node as HTMLOptionElement).disabled)).toBe(true);return;
  }
- await mode(page,'글 편집');
+ await mode(page,'원고');
  await expect(page.locator('[data-work-menu]>summary')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);
   const field=row(page,0).getByRole('textbox',{name:'1컷 글',exact:true});await field.fill(`가용 화면 ${width}×${height}에서 고친 글`);await saved(page);
@@ -298,9 +298,9 @@ test('one grouped settings menu replaces scattered editor controls',async({page}
 
 
 test('library navigation is inside settings and returns to the same edited work',async({page})=>{
- const before=await prepare(page);await mode(page,'글 편집');await row(page,1).getByRole('textbox',{name:'2컷 글',exact:true}).fill('설정 안에서 서재로 갔다 돌아와도 남는 원고');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();
+ const before=await prepare(page);await mode(page,'원고');await row(page,1).getByRole('textbox',{name:'2컷 글',exact:true}).fill('설정 안에서 서재로 갔다 돌아와도 남는 원고');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();
  await expect(page.getByRole('button',{name:'서재로',exact:true})).not.toBeVisible();await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
- await shelfCoverButton(page,before.title).click();await page.getByRole('dialog').getByRole('button',{name:'편집하기',exact:true}).click();await expect(workbench(page)).toBeVisible();await mode(page,'글 편집');await expect(row(page,1).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue('설정 안에서 서재로 갔다 돌아와도 남는 원고');
+ await shelfCoverButton(page,before.title).click();await page.getByRole('dialog').getByRole('button',{name:'편집하기',exact:true}).click();await expect(workbench(page)).toBeVisible();await mode(page,'원고');await expect(row(page,1).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue('설정 안에서 서재로 갔다 돌아와도 남는 원고');
  const after=(await exported(page)).project;expect(after.id).toBe(before.id);expect(after.lines[1].text).toBe('설정 안에서 서재로 갔다 돌아와도 남는 원고');expect(after.lines[1].stageComposition).toEqual(before.lines[1].stageComposition);expect(after.lines[1].flow).toEqual(before.lines[1].flow);
 });
 
@@ -320,7 +320,7 @@ for(const width of [320,390,1280])test(`story-game system menus preserve editor 
  test.setTimeout(150000);await page.setViewportSize({width,height:width===390?844:720});const before=await prepare(page);await openWorkMenu(page);
  const editor=page.locator('[data-system-menu=editor]');await expect(editor).toBeVisible();await expect(editor.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(editor.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();
  await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).focus();expect((await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).boundingBox())!.width).toBeGreaterThan((await editor.boundingBox())!.width-65);expect(await editor.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);for(const button of await editor.getByRole('button').all()){if(await button.isVisible()){const b=(await button.boundingBox())!,e=(await editor.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(e.x);expect(b.x+b.width).toBeLessThanOrEqual(e.x+e.width+1);}}await page.screenshot({path:info.outputPath(`editor-system-menu-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(editor).not.toBeVisible();await expect(page.locator('[data-work-menu]>summary')).toBeFocused();
- await mode(page,'기본편집');await workbench(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-rendered-revision');return revision!==null&&Number(revision)>=0&&revision===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+ await mode(page,'쓰기');await workbench(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-rendered-revision');return revision!==null&&Number(revision)>=0&&revision===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();const player=page.locator('[data-system-menu=player]');await expect(player).toBeVisible();await page.screenshot({path:info.outputPath(`player-system-menu-${width}.png`),fullPage:true});await player.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await expect(dialog).toBeVisible();const waitField=dialog.getByRole('spinbutton');const inputBox=(await waitField.boundingBox())!,unitBox=(await waitField.locator('..').locator(':scope>span').boundingBox())!;expect(Math.abs((inputBox.y+inputBox.height/2)-(unitBox.y+unitBox.height/2))).toBeLessThanOrEqual(2);expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);await dialog.getByRole('combobox',{name:'본문 글씨 크기',exact:true}).selectOption('1.15');await page.screenshot({path:info.outputPath(`player-settings-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await player.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect((await exported(page)).project).toEqual(before);
 });
 
@@ -381,7 +381,7 @@ test('connection information names source chapters choices and score thresholds 
  await page.setViewportSize({width:390,height:844});await prepare(page);
  const source={...fixture,scores:[{id:'trust',name:'신뢰',description:'친구를 믿는 마음',initial:0}],chapters:fixture.chapters.map((chapter,index)=>index===0?{...chapter,chapterNumber:2}:chapter),lines:fixture.lines.map((line,index)=>index===0?{...line,flow:{type:'choice',options:[{id:'help',label:'친구를 돕는다',targetLineId:cutIds[2]},{id:'wait',label:'기다린다',targetLineId:cutIds[1]}]}}:index===1?{...line,flow:{type:'goto',targetLineId:null,routes:[{id:'trust-route',condition:{mode:'all',terms:[{scoreId:'trust',operator:'gte',value:3}]},targetLineId:cutIds[2]}]}}:line)};
  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:source}));const before=(await exported(page)).project;
- await settings(page);await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await mode(page,'글 편집');await row(page,2).getByRole('button',{name:'이 컷 선택',exact:true}).click();const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷 상세·메모·정리'})}).first();await detail.locator(':scope>summary').click();await detail.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();const deletion=page.getByRole('dialog',{name:'컷 삭제 확인',exact:true});await expect(deletion).toContainText('‘친구를 돕는다’를 선택하면');await expect(deletion).toContainText('신뢰 3점 이상일 때');await expect(deletion).toContainText('2장');await expect(deletion).not.toContainText('명시 연결');await page.screenshot({path:info.outputPath('friendly-delete-connections.png'),fullPage:true});await page.keyboard.press('Escape');await page.keyboard.press('Escape');
+ await settings(page);await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await mode(page,'원고');await row(page,2).getByRole('button',{name:'이 컷 선택',exact:true}).click();const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷 상세·메모·정리'})}).first();await detail.locator(':scope>summary').click();await detail.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();const deletion=page.getByRole('dialog',{name:'컷 삭제 확인',exact:true});await expect(deletion).toContainText('‘친구를 돕는다’를 선택하면');await expect(deletion).toContainText('신뢰 3점 이상일 때');await expect(deletion).toContainText('2장');await expect(deletion).not.toContainText('명시 연결');await page.screenshot({path:info.outputPath('friendly-delete-connections.png'),fullPage:true});await page.keyboard.press('Escape');await page.keyboard.press('Escape');
  const logic=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await logic.locator(':scope>summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();const context=page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});await expect(context).toContainText('‘친구를 돕는다’를 선택하면');await expect(context).toContainText('신뢰 3점 이상일 때');await expect(context).toContainText('여러 길이 다시 만나는 지점');await page.screenshot({path:info.outputPath('friendly-connection-context.png'),fullPage:true});await page.keyboard.press('Escape');await settings(page);await page.getByRole('button',{name:'전체 흐름 보기',exact:true}).click();const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});await map.locator('summary').filter({hasText:'여러 길이 다시 만나는 지점'}).click();await expect(map).toContainText('‘친구를 돕는다’를 선택하면');await expect(map).toContainText('신뢰 3점 이상일 때');await page.screenshot({path:info.outputPath('join-points-map.png'),fullPage:true});await page.keyboard.press('Escape');await page.keyboard.press('Escape');expect((await exported(page)).project).toEqual(before);
 });
 
@@ -475,11 +475,11 @@ test('the kinds of work stay in view as tabs and switch the editing screen',asyn
  // Focus plan step 2 (docs/architecture/focus-reading-editing-plan.md): no trip into 설정 to change the kind of work.
  await page.goto('/?view=editor');
  const tabs=page.getByRole('navigation',{name:'편집 작업',exact:true});
- await expect(tabs.getByRole('button')).toHaveText(['기본','글','배경']);
- await expect(tabs.getByRole('button',{name:'기본',exact:true})).toHaveAttribute('aria-current','page');
- await tabs.getByRole('button',{name:'글',exact:true}).click();
+ await expect(tabs.getByRole('button')).toHaveText(['쓰기','원고','배경']);
+ await expect(tabs.getByRole('button',{name:'쓰기',exact:true})).toHaveAttribute('aria-current','page');
+ await tabs.getByRole('button',{name:'원고',exact:true}).click();
  await expect(page.locator('[data-editing-screen]')).toHaveAttribute('data-editing-screen','text');
- await expect(tabs.getByRole('button',{name:'글',exact:true})).toHaveAttribute('aria-current','page');
- await tabs.getByRole('button',{name:'기본',exact:true}).click();
+ await expect(tabs.getByRole('button',{name:'원고',exact:true})).toHaveAttribute('aria-current','page');
+ await tabs.getByRole('button',{name:'쓰기',exact:true}).click();
  await expect(page.locator('[data-editing-screen]')).toHaveAttribute('data-editing-screen','basic');
 });

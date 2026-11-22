@@ -63,7 +63,7 @@ test('current vocabulary distinguishes work files, browser recovery and optional
  await page.getByRole('button',{name:'편집 용어 안내',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'편집 용어 안내',exact:true});
  const search=dialog.getByRole('searchbox',{name:'용어 검색',exact:true});
- for(const term of ['기본편집','글 편집','배경 편집','인물 편집','음향 편집','연출 편집','함께 보기','작품 파일 저장','온라인 업로드','임시 보관','자동 저장','사본으로 열기','말하는 인물의 역할']){
+ for(const term of ['쓰기','원고','배경 편집','인물 편집','음향 편집','연출 편집','함께 보기','작품 파일 저장','온라인 업로드','임시 보관','자동 저장','사본으로 열기','말하는 인물의 역할']){
   await search.fill(term);await expect(dialog.locator('dt').filter({hasText:term}).first()).toBeVisible();
  }
  await search.fill('Flow');

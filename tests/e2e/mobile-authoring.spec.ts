@@ -56,7 +56,7 @@ async function create(page: Page) {
   const backgroundId=await pick(page,'1컷 배경');
   await enableEditing(page,'인물');await openEditingScreen(page,'인물 편집');
   const characterId=await pick(page,'1컷 인물 추가');
-  await openEditingScreen(page,'기본편집');
+  await openEditingScreen(page,'쓰기');
   const ids: string[] = [];
   for (let index = 0; index < texts.length; index++) {
     // The new cut is appended after the chapter's last cut, where the next-cut card reads "+ 다음 컷 만들기".

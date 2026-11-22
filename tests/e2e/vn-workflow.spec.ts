@@ -14,8 +14,8 @@ async function rendered(page:Page){const s=page.getByTestId('story-runtime-statu
 async function tool(page:Page,name:string){
  await management(page);const settings=page.getByText('편집 설정',{exact:true});if(!await settings.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await settings.click();
  if(name==='배경·인물 편집')await page.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();
- await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption({label:name==='배경·인물 편집'?'인물 편집':'기본편집'});
- if(name==='글 편집')await details(page,'현재 컷 상세·메모·정리');
+ await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption({label:name==='배경·인물 편집'?'인물 편집':'쓰기'});
+ if(name==='원고')await details(page,'현재 컷 상세·메모·정리');
 }
 async function views(page:Page,_value:string){await rendered(page);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-width','1280');await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-height','720');}
 async function line(page:Page,id:string){await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback?.lineId)).toBe(id);await rendered(page);}
@@ -58,7 +58,7 @@ test('fixed landscape editor preview, responsive native reading, slots and actua
 test('changed-work slots show saved excerpt and require explicit compatible restore',async({page},info)=>{
  test.skip(info.project.name!=='stories-runtime');await load(page);const baseline=parseAuthoringFile(readFileSync(await exported(page,'작품 파일 내보내기'),'utf8'));await rendered(page);await read(page);
  await saveSlot(page,2);
- await edit(page);await tool(page,'글 편집');await page.getByLabel('대사 / 해설',{exact:true}).fill('저장 뒤 바뀐 새 대사');
+ await edit(page);await tool(page,'원고');await page.getByLabel('대사 / 해설',{exact:true}).fill('저장 뒤 바뀐 새 대사');
  await page.keyboard.press('Escape');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);
  await page.getByRole('button',{name:'불러오기',exact:true}).click();const slot=page.getByRole('button',{name:'2번 불러오기',exact:true});
  await expect(slot).toContainText('아이와 어른은 숲의 두 길 앞에 섰다.');await expect(slot).not.toContainText('저장 뒤 바뀐 새 대사');await slot.click();await page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true}).getByRole('button',{name:'확인',exact:true}).click();

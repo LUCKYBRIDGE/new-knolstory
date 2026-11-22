@@ -32,7 +32,7 @@ async function rendered(page: Page) {
 }
 
 async function tool(page:Page,name:string){
- if(['연출 편집','글 편집','소리 편집','선택지 편집'].includes(name)){await openEditingTool(page,name);return;}
+ if(['연출 편집','원고','소리 편집','선택지 편집'].includes(name)){await openEditingTool(page,name);return;}
  if(['컷 목록','선택지 편집','연출 편집'].includes(name)){const details=page.locator('[data-additional-tools]');if(!await details.evaluate(n=>(n as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}
  await page.getByRole('button',{name,exact:true}).click();
  if(name==='배경·인물 편집'){const details=page.locator('[data-placement-details]');if(!await details.evaluate(n=>(n as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}
