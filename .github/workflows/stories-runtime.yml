@@ -1,34 +1,40 @@
 name: Stories Runtime E2E
 
-# The full suite runs on demand against a protected media checkout.
 on:
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
 
 jobs:
   runner-prerequisite:
-    if: github.ref == 'refs/heads/main' && vars.KNOL_PRIVATE_E2E_READY != 'true'
+    if: >-
+      !github.event.repository.private ||
+      (github.event_name != 'schedule' && github.event_name != 'workflow_dispatch') ||
+      github.ref != format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
     steps:
       - name: Report blocked runtime verification
         run: |
-          echo 'Stories Runtime E2E blocked: no trusted runner with the authorized media corpus is configured.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Stories Runtime E2E requires a scheduled or manually dispatched caller on the default branch of a private repository with an authorized media runner.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
   stories-runtime:
-    if: github.ref == 'refs/heads/main' && vars.KNOL_PRIVATE_E2E_READY == 'true'
-    # Before enabling: restrict this group in GitHub settings to this exact workflow
-    # on refs/heads/main. Provision KNOL_CI_MEDIA_ROOT (authorized public/assets mirror)
-    # and KNOL_CI_PRIVATE_REPORT_ROOT (private output) on that runner before opting in.
-    runs-on:
-      group: knolstory-trusted-e2e
-      labels: linux
+    if: >-
+      github.event.repository.private &&
+      (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') &&
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    # A private caller owned by LUCKYBRIDGE owns the runner and its artifacts.
+    # Provision KNOL_CI_MEDIA_ROOT (authorized public/assets mirror) and
+    # KNOL_CI_PRIVATE_REPORT_ROOT (private output) on that runner.
+    runs-on: [self-hosted, Linux, knolstory-authorized-media]
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
         with:
+          repository: LUCKYBRIDGE/new-knolstory
+          ref: refs/heads/main
           persist-credentials: false
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
@@ -41,16 +47,27 @@ jobs:
           python-version: '3.12'
       - name: Install pinned image and font tools
         run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0 fonttools==4.60.2
-      # Browser OS packages are installed when provisioning the restricted Linux runner.
+      # Browser OS packages are installed when provisioning the private Linux runner.
       - run: pnpm exec playwright install chromium
       - name: Prepare authorized assets and run every stories-runtime test
+        id: runtime
         run: python3 scripts/ci-stories-runtime.py
-      - name: Upload public-safe runtime diagnostics
-        if: failure()
+      - name: Upload private runtime diagnostics
+        if: ${{ failure() && steps.runtime.outputs.diagnostics != '' }}
         uses: actions/upload-artifact@v4
         with:
           name: stories-runtime-diagnostics
-          # Public workflow artifacts may not include runtime traces or private artwork.
+          path: |
+            ${{ steps.runtime.outputs.diagnostics }}/playwright-report/
+            ${{ steps.runtime.outputs.diagnostics }}/test-results/
+            playwright-report/stories-runtime-summary.md
+            test-results/stories-runtime-summary.json
+          retention-days: 7
+      - name: Upload runtime preparation summary
+        if: ${{ failure() && steps.runtime.outputs.diagnostics == '' && steps.runtime.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: stories-runtime-preparation
           path: |
             playwright-report/stories-runtime-summary.md
             test-results/stories-runtime-summary.json

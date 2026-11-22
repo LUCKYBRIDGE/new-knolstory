@@ -47,7 +47,7 @@ def restore_media(source):
 
 
 def safe_result(report):
-    """Only test identities and statuses may leave the private runner."""
+    """Summarize test identities and statuses without copying raw errors."""
     data = json.loads(report.read_text())
     outcomes = []
 
@@ -77,7 +77,7 @@ def write_summary(result):
                     for row in result['notable'])
     else:
         text.append(result['status'])
-    text.append('Full Playwright HTML, traces and screenshots stay on the restricted runner.')
+    text.append('Full Playwright HTML, traces and screenshots are retained privately.')
     summary = '\n'.join(text) + '\n'
     for directory in ['playwright-report', 'test-results']:
         (ROOT / directory).mkdir(exist_ok=True)
@@ -112,6 +112,9 @@ def main():
 
     os.umask(0o077)
     private = Path(tempfile.mkdtemp(prefix='stories-runtime-', dir=storage))
+    if output := os.environ.get('GITHUB_OUTPUT'):
+        with open(output, 'a') as stream:
+            stream.write(f'diagnostics={private}\n')
     result = {'status': 'Runtime preparation did not complete.'}
     with (private / 'run.log').open('wb') as log:
         for script in ['runtime:prepare', 'runtime:build']:
