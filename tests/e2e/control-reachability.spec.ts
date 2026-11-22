@@ -2,6 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {coveredControls,type CoveredControl} from './hit-targets';
 import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {enterLibrary,builtinShelfCard,openBuiltinEdition,startShelfCreation} from './library-entry';
+import {lastCutPlayback,moveReadingTo,startSound,readToEnding} from './ending-position';
 
 /**
  * Buttons, bars and panels must not sit on top of one another: every visible control on the main screens
@@ -43,6 +44,10 @@ for(const size of sizes)test(`main screens keep every control reachable · ${siz
   await page.locator('details summary').filter({hasText:'대사·해설 텍스트 보기'}).focus();await probe(page,found,'reader text view');
   // Touch readers keep the reading bar folded away until the stage is tapped.
   const save=page.getByRole('button',{name:'저장',exact:true});if(await save.isVisible()){await save.click();await probe(page,found,'reader saves');await page.keyboard.press('Escape');}
+  // The end of the story: the credits (still, as motion is reduced here) and the next steps after them.
+  await moveReadingTo(page,lastCutPlayback('seonnyeo','knolstory'));await readerReady(page);await startSound(page);await readerReady(page);
+  await readToEnding(page);await probe(page,found,'ending credits');
+  await page.getByRole('button',{name:'다른 결말 찾아보기',exact:true}).click();await expect(page.locator('[data-story-credits]')).toHaveCount(0);await readerReady(page);
   await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();
   await page.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true}).getByRole('button',{name:'보관하고 서재로',exact:true}).click();
   await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
