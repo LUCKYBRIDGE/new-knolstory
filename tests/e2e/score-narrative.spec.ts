@@ -1,3 +1,4 @@
+import {CURRENT_SCHEMA_VERSION} from '../../packages/story-domain/src';
 import {advanceReading,editReadCut,restartReading} from './native-reader';
 import {previousReadCut} from './reader-actions';
 import {confirmAuthoringImport,expectIndependentImportedProject,openFileExchange} from './authoring-file';
@@ -35,7 +36,7 @@ test('score definitions, choice effects and conditional routes are editable and 
  await flow(page);await page.getByRole('button',{name:'조건 2 위로',exact:true}).click();
  await page.getByLabel('진행 1 조건 1 값',{exact:true}).fill('5');await page.getByLabel('진행 1 조건 1 값',{exact:true}).blur();
  for(const viewport of [{width:1280,height:900},{width:820,height:1180},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(viewport);await expect(page.getByLabel('진행 1 조건 1 값',{exact:true})).toHaveValue('5');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`score-routes-${viewport.width}.png`),fullPage:true});}
- const path=info.outputPath('score-edited.knolstory'),archive=await exported(page,path);expect(archive.document.schemaVersion).toBe(8);
+ const path=info.outputPath('score-edited.knolstory'),archive=await exported(page,path);expect(archive.document.schemaVersion).toBe(CURRENT_SCHEMA_VERSION);
  const expected:StoryProject={...before,updatedAt:archive.document.project.updatedAt,lines:before.lines.map(line=>{
   const value=line.flow;
   if(line.id==='score-first'&&value?.type==='choice')return {...line,flow:{...value,options:value.options.map((option,index)=>index?option:{...option,effects:option.effects!.map((item,i)=>i?item:{...item,operation:'set' as const,value:3})})}};

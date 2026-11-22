@@ -81,6 +81,8 @@ export function ShortStoryWorkspace() {
  const [fromMission,setFromMission]=useState(false);
  useEffect(()=>{const timer=window.setTimeout(()=>setFromMission(new URLSearchParams(window.location.search).get('from')==='mission'),0);return()=>window.clearTimeout(timer);},[]);
  const [index,setIndex]=useState(0),[editing,setEditing]=useState(true),[coverOpen,setCoverOpen]=useState(false);
+ /** Peeking at your own page from 쓰기 (or returning from sign-in) skips the book's cover once. */
+ const [skipCover,setSkipCover]=useState(false);
  const classroom=useClassroomMe();
  // A task's own edit scope applies to the picture book started from it.
  const workTask=useTaskForWork(classroom.role==='student'?classroom.session?.accountId??null:null,loadedProject?`shortstory:${loadedProject.id}`:null);
@@ -132,7 +134,7 @@ export function ShortStoryWorkspace() {
    if(isShortStoryWorkKey(key)&&params.get('mode')==='edit'){const previousPosition=Math.min(loaded.positions[selected.id]??0,selected.pages.length-1);loaded=copyShortStoryBook(loaded,selected);selected=loaded.books.at(-1)!;loaded={...loaded,positions:{...loaded.positions,[selected.id]:previousPosition}};if(writer.status==='owned')saveShortStoryLibrary(storage,loaded);window.history.replaceState(null,'',window.location.pathname);}
    loaded={...loaded,activeId:selected.id};latest.current=loaded;saved.current=loaded;setLibrary(loaded);setProject(selected);setIndex(Math.min(loaded.positions[selected.id]??0,selected.pages.length-1));let returnEditing:boolean|'library'|null=null;try{returnEditing=consumeShortStoryAccountView(sessionStorage,location.search,selected.id);}catch{/* Optional view state never alters the library. */}if(returnEditing==='library')setLibraryView(true);
     // Coming back from signing in returns to the page you were on, not to the book's cover.
-    if(returnEditing===false)previewing.current=true;setEditing(!originalById(selected.id)&&(typeof returnEditing==='boolean'?returnEditing:!read));
+    if(returnEditing===false)setSkipCover(true);setEditing(!originalById(selected.id)&&(typeof returnEditing==='boolean'?returnEditing:!read));
   }catch(e){if(new URLSearchParams(window.location.search).get('mode')==='library')setLibraryView(true);setError(`보관함을 열지 못했어요. 원본을 보존하고 복구해 주세요. ${e instanceof Error?e.message:''}`);setBlocked(true);const empty=emptyShortStoryLibrary();latest.current=empty;setLibrary(empty);const key=new URLSearchParams(window.location.search).get('work');setProject(isShortStoryWorkKey(key)?getShortStoryOriginal(key):newShortStory());setEditing(false);}
  },0);return()=>clearTimeout(timer);},[writer.status,writer.guard]);
  useEffect(()=>{const flush=()=>{if(!dirty.current||!latest.current||blocked||conflict||!writer.guard.current?.isOwned())return;try{saveShortStoryLibrary(writer.guard.current,latest.current);saved.current=latest.current;dirty.current=false;}catch{dirty.current=true;}};const leave=(event:BeforeUnloadEvent)=>{flush();if(dirty.current){event.preventDefault();}};window.addEventListener('pagehide',flush);window.addEventListener('beforeunload',leave);return()=>{window.removeEventListener('pagehide',flush);window.removeEventListener('beforeunload',leave);};},[blocked,conflict,writer.guard]);
@@ -331,11 +333,10 @@ export function ShortStoryWorkspace() {
  // Another book opens on its words, not on whichever tab the last book was left on.
  useEffect(()=>setWriteTab('text'),[project.id]);
  // Reading a book starts at its cover and ends with it closed; peeking at your own page from 쓰기 goes straight to that page.
- const [bookFace,setBookFace]=useState<'cover'|'pages'|'end'>('pages'),previewing=useRef(false),[justOpened,setJustOpened]=useState(false);
- // Decided before paint so a book opened for reading never flashes its first page before the cover.
- useLayoutEffect(()=>{if(editing||libraryView){setBookFace('pages');return;}setBookFace(previewing.current||index>0?'pages':'cover');previewing.current=false;
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- only when a book is opened for reading, not on every page turn
- },[project.id,editing,libraryView]);
+ const [bookFace,setBookFace]=useState<'cover'|'pages'|'end'>('pages'),[justOpened,setJustOpened]=useState(false);
+ // Decided while rendering (React's "adjust state when an input changes"), so a book opened for reading never flashes its first page before the cover.
+ const faceKey=`${project.id}|${editing}|${libraryView}`,[seenFaceKey,setSeenFaceKey]=useState(faceKey);
+ if(seenFaceKey!==faceKey){setSeenFaceKey(faceKey);setBookFace(editing||libraryView||skipCover||index>0?'pages':'cover');if(skipCover)setSkipCover(false);}
  // The cover and the closing page are whole scenes: start them at the top, wherever the page had been scrolled.
  useEffect(()=>{if(bookFace!=='pages')window.scrollTo({top:0});},[bookFace]);
  useEffect(()=>{if(!justOpened)return;const timer=window.setTimeout(()=>setJustOpened(false),700);return()=>window.clearTimeout(timer);},[justOpened]);
@@ -403,7 +404,7 @@ export function ShortStoryWorkspace() {
    {editing&&!original&&!libraryView&&!coverOpen&&onlineEnabled&&classroom.role==='student'&&classroom.session&&<TaskAction key={`${classroom.session.accountId}:${project.id}`} className={styles.taskAction} accountId={classroom.session.accountId} workKey={`shortstory:${project.id}`} project={project} beforeNavigate={beforeServiceNavigation}/>}
    {!coverOpen&&<><AccountMenu account={online.account} returnTo="shortstory" disabled={compositionActive||blocked||conflict} beforeNavigate={beforeAccount}/>{onlineAllowed&&<OnlineWorksPanelView online={online} usage={classroom.me?.storage} acceptedFormat="shortstory" works={library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}))} disabled={compositionActive||blocked||conflict} onSaveNew={saveOnline} onOpen={openOnline}/>}</>}{libraryView?<><button disabled={blocked||!canCreate} onClick={()=>accept(newShortStory())}>새 그림책</button><button disabled={busy||blocked||!canCreate} onClick={()=>file.current?.click()}>파일 가져오기</button></>:<>
    {!original&&editing&&<button className={styles.toKnolstory} data-testid="picturebook-to-knolstory" disabled={blocked||compositionActive||!accountSettled} onClick={toKnolstory}>놀스토리로 보내기</button>}
-   {original?<button className={styles.copyToWrite} disabled={blocked} onClick={()=>accept(project,true)}>내 사본으로 쓰기</button>:<div className={styles.modeSwitch} role="group" aria-label="보기 방식"><button disabled={blocked} onClick={()=>{if(!editing){focusWriting.current=true;setEditing(true);}}} aria-pressed={editing}>쓰기</button><button onClick={()=>{previewing.current=true;setEditing(false);}} aria-pressed={!editing}>읽기</button></div>}<button disabled={compositionActive} onClick={()=>{if(dirty.current&&!commit(latest.current??library))return;onlineGeneration.current++;setPrintPreview(false);setLibraryView(true);window.history.replaceState(null,'','?mode=library');}} aria-label="그림책 보관함 열기"><span className={styles.longLabel}>그림책 보관함 열기</span><span className={styles.shortLabel} aria-hidden="true">보관함</span></button>
+   {original?<button className={styles.copyToWrite} disabled={blocked} onClick={()=>accept(project,true)}>내 사본으로 쓰기</button>:<div className={styles.modeSwitch} role="group" aria-label="보기 방식"><button disabled={blocked} onClick={()=>{if(!editing){focusWriting.current=true;setEditing(true);}}} aria-pressed={editing}>쓰기</button><button onClick={()=>{setSkipCover(true);setEditing(false);}} aria-pressed={!editing}>읽기</button></div>}<button disabled={compositionActive} onClick={()=>{if(dirty.current&&!commit(latest.current??library))return;onlineGeneration.current++;setPrintPreview(false);setLibraryView(true);window.history.replaceState(null,'','?mode=library');}} aria-label="그림책 보관함 열기"><span className={styles.longLabel}>그림책 보관함 열기</span><span className={styles.shortLabel} aria-hidden="true">보관함</span></button>
   </>}</div></header>
   {error&&<p role="alert" className={styles.error}>{error}</p>}{/* Reserved line: saving messages never push the page down while writing. */}<p role="status" className={styles.statusLine}>{editing||libraryView?notice:''}</p>
   {/* Only while writing: reading is never interrupted by the browser storage. */}

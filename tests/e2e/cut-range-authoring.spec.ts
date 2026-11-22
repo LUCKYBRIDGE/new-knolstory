@@ -1,3 +1,4 @@
+import {CURRENT_SCHEMA_VERSION} from '../../packages/story-domain/src';
 import {openWorkFileExchange} from './work-file-exchange';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
@@ -18,7 +19,7 @@ test('actual work cut-end authoring saves, exports and reopens unchanged unrelat
  const position=page.getByLabel('현재 장과 컷 이동'),start=await position.inputValue(),end=await position.locator('option').evaluateAll(options=>options.map(o=>(o as HTMLOptionElement).value)[1]);
  await effects(page);await page.getByLabel('효과',{exact:true}).selectOption('shake');await page.getByRole('dialog',{name:'화면 흔들림',exact:true}).getByRole('button',{name:'사용',exact:true}).click();await page.getByLabel('효과 적용 범위',{exact:true}).selectOption('following');await page.getByLabel('효과 종료 컷',{exact:true}).selectOption(end);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await tool(page,'소리 편집');await current(page).getByLabel('조정할 소리',{exact:true}).selectOption('music');await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');await page.getByLabel('배경음 종료 컷',{exact:true}).selectOption(end);
- const {path,document:saved}=await exported(page);expect(saved.schemaVersion).toBe(8);
+ const {path,document:saved}=await exported(page);expect(saved.schemaVersion).toBe(CURRENT_SCHEMA_VERSION);
  const first=saved.project.lines.find((line:{id:string})=>line.id===start);expect(first.presentation.effects[0]).toMatchObject({scope:'following',endLineId:end});expect(first.audio.music.endLineId).toBe(end);
  const before=baseline.lines.find((cut:{id:string})=>cut.id===start);const presentation={...first.presentation,effects:before.presentation?.effects},audio={...first.audio,music:before.audio?.music};const restoredFirst={...first,presentation:Object.values(presentation).every(value=>value===undefined)?undefined:presentation,audio:Object.values(audio).every(value=>value===undefined)?undefined:audio};expect(JSON.parse(JSON.stringify({...saved.project,updatedAt:baseline.updatedAt,lines:saved.project.lines.map((line:{id:string})=>line.id===start?restoredFirst:line)}))).toEqual(baseline);
  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(path);await confirmAuthoringImport(page);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.reload();await effects(page);await expect(page.getByLabel('효과 종료 컷',{exact:true})).toHaveValue(end);await tool(page,'소리 편집');await current(page).getByLabel('조정할 소리',{exact:true}).selectOption('music');await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end);const reopened=(await exported(page)).document.project;expect(reopened).toEqual({...saved.project,id:reopened.id});
