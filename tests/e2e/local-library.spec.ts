@@ -46,7 +46,7 @@ async function library(page: Page) {
 async function open(page: Page, kind: string, title: string, intent: string) {
   await library(page);
   await openShelfAction(page,card(page, kind, title),intent);
-  // Starting over passes the book cover; resuming goes straight back to the saved cut.
+  // Reading chosen on the shelf opens the story directly; resuming goes straight back to the saved cut.
   if(intent==='처음부터 읽기')await beginSelectedBook(page);
 }
 async function preparation(page: Page) {

@@ -1,17 +1,25 @@
 'use client';
-import {useEffect,useRef,type ReactNode} from 'react';
+import {useEffect,useId,useRef} from 'react';
 import type {OnlineDocumentMetadata} from '../lib/document-api';
 import {trapDialogTab} from '../lib/dialog-keyboard';
-import {LibraryStorageBadge,StorageIcon} from './library-storage';
+import {StorageIcon} from './library-storage';
+import type {BookFocusOnlineTools} from './library-book-focus';
 import styles from './library-book-focus.module.css';
 import shelf from './local-bookshelf.module.css';
-export function OnlineBookFocus({record,onClose,onOpen,disabled,actions,onMove,count}:{record:OnlineDocumentMetadata;onClose:()=>void;onOpen:()=>void;disabled:boolean;actions?:ReactNode;onMove:(delta:number)=>void;count:number}){
- const dialog=useRef<HTMLDialogElement>(null);
+/** An online-only book has one thing to do here: bring it onto this device. Its trash action waits in ‘더보기’. */
+export function OnlineBookFocus({record,onClose,onOpen,disabled,tools,onMove,count}:{record:OnlineDocumentMetadata;onClose:()=>void;onOpen:()=>void;disabled:boolean;tools?:BookFocusOnlineTools;onMove:(delta:number)=>void;count:number}){
+ const dialog=useRef<HTMLDialogElement>(null),title=useId();
  useEffect(()=>{const opener=document.activeElement as HTMLElement|null,node=dialog.current;node?.showModal();return()=>{node?.close();opener?.focus();};},[]);
- return <dialog ref={dialog} className={styles.dialog} aria-label={`${record.title} · 온라인 작품`} onCancel={event=>{event.preventDefault();onClose();}} onKeyDown={event=>{trapDialogTab(event,dialog.current);if(event.key==='ArrowLeft'){event.preventDefault();onMove(-1);}if(event.key==='ArrowRight'){event.preventDefault();onMove(1);}}}>
-  <header><p>온라인에 보관한 내 작품</p><button onClick={onClose} aria-label="닫기 · 서재로 돌아가기">닫기</button></header>
-  <div className={styles.showcase}><button className={styles.arrow} disabled={count<2} onClick={()=>onMove(-1)} aria-label="이전 책">‹</button><figure><div className={styles.book}><div className={shelf.remoteCover} aria-hidden="true"><StorageIcon online/><strong>{record.title}</strong><small>놀스토리</small></div></div><figcaption><LibraryStorageBadge status={{kind:'remote',label:'온라인에 있음',record}}/></figcaption></figure><button className={styles.arrow} disabled={count<2} onClick={()=>onMove(1)} aria-label="다음 책">›</button></div>
-  <section className={styles.meta}><h2>{record.title}</h2><p>이 기기에 열면 편집하고 읽을 수 있는 사본을 만들어요.</p><p className={styles.modified}>온라인 수정 · {new Date(record.updatedAt).toLocaleDateString('ko-KR')}</p></section>
-  <nav className={styles.actions} aria-label="선택한 책으로 할 일"><button disabled={disabled} onClick={onOpen}><strong>이 기기에 열기</strong><small>온라인 원본과 기존 원고를 보존해요</small></button>{actions&&<div className={styles.onlineTools}>{actions}</div>}</nav>
+ return <dialog ref={dialog} className={styles.dialog} aria-labelledby={title} aria-describedby={`${title}-note`} onCancel={event=>{event.preventDefault();onClose();}} onKeyDown={event=>{trapDialogTab(event,dialog.current);if(event.key==='ArrowLeft'){event.preventDefault();onMove(-1);}if(event.key==='ArrowRight'){event.preventDefault();onMove(1);}}}>
+  <header><button onClick={onClose} aria-label="닫기 · 서재로 돌아가기">닫기</button></header>
+  <div className={styles.showcase}><button className={styles.arrow} disabled={count<2} onClick={()=>onMove(-1)} aria-label="이전 책">‹</button><figure><div className={styles.book}><div className={shelf.remoteCover} aria-hidden="true"><StorageIcon online/><strong>{record.title}</strong><small>놀스토리</small></div></div><div className={styles.pedestal} aria-hidden="true"/>{tools?.status&&<figcaption>{tools.status}</figcaption>}</figure><button className={styles.arrow} disabled={count<2} onClick={()=>onMove(1)} aria-label="다음 책">›</button></div>
+  <section className={styles.meta}><h2 id={title}>{record.title}</h2><small>온라인 수정 · {new Date(record.updatedAt).toLocaleDateString('ko-KR')}</small></section>
+  <div className={styles.read}>
+   <div className={styles.readRow}><button className={styles.primary} data-focus-action="open-online" disabled={disabled} onClick={onOpen}>이 기기에 열기</button></div>
+   <p id={`${title}-note`} className={styles.sheetNote}>이 기기에 사본을 만들어 열어요. 온라인 원본은 그대로 남아요.</p>
+   {tools?.manage&&<div className={styles.online}>{tools.manage}</div>}
+  </div>
+  {tools?.danger&&<details className={styles.more}><summary>더보기</summary><div className={styles.sheet}><section aria-label="관리"><h3>관리</h3><div className={styles.danger}>{tools.danger}</div></section></div></details>}
+  <p className={styles.hint}>← → 다른 책 · Esc 닫기</p>
  </dialog>;
 }

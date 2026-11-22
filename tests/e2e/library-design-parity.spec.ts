@@ -3,7 +3,7 @@ import {builtinShelfCard,openBuiltinEdition,builtinEditions} from './library-ent
 import {selectShelfCollection,fillShelfSearch,importShelfFile,openLibraryTools} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {test,expect} from '@playwright/test';
-import {enterLibrary} from './library-entry';
+import {enterLibrary,leaveReading} from './library-entry';
 import {mkdirSync} from 'node:fs';
 const evidence=`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-design`;
 for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]])test(`legacy book surfaces and focus browsing at ${width}x${height}`,async({browser})=>{
@@ -53,7 +53,7 @@ test('all eight books start native RenPy from the library focus and retain the s
  await page.goto('/');await enterLibrary(page);
  const works=builtinEditions;
  for(const [index,[workId,edition]] of works.entries()){
-  await openBuiltinEdition(page,workId,edition,'start');const start=page.getByRole('main',{name:'책 표지와 소개'});await expect(start.locator('[data-edition]')).toHaveAttribute('data-edition',edition);await start.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
+  const label=edition==='original'?'원작':'놀스토리';await builtinShelfCard(page,workId).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('radio',{name:label,exact:true}).check();await expect(dialog.locator('[data-edition]').first()).toHaveAttribute('data-edition',edition);await dialog.getByRole('button',{name:`${label} 읽기`,exact:true}).click();
   const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.getAttribute('data-rendered-revision'),{timeout:30000}).toBe(await status.getAttribute('data-scene-revision'));
   const frame=page.getByTestId('story-runtime-frame');if(index===0)await frame.evaluate(node=>node.setAttribute('data-design-instance','persistent'));else await expect(frame).toHaveAttribute('data-design-instance','persistent');
   const rect=(await frame.boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true');await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true}).getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
@@ -67,7 +67,7 @@ test('one pointer drag can undo, redo and apply while preserving the existing ma
 });
 
 test('tab browsing preferences survive book work and reload without entering the story file',async({page})=>{
- await page.goto('/');await enterLibrary(page);await selectShelfCollection(page,'example');await fillShelfSearch(page,'흥부');await page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();await page.getByRole('dialog').getByRole('button',{name:'놀스토리 읽기',exact:true}).click();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('builtin');await openLibraryTools(page);await expect(page.getByRole('searchbox',{name:'책 찾기'})).toHaveValue('흥부');await page.reload();await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('builtin');await openLibraryTools(page);await expect(page.getByRole('searchbox',{name:'책 찾기'})).toHaveValue('흥부');
+ await page.goto('/');await enterLibrary(page);await selectShelfCollection(page,'example');await fillShelfSearch(page,'흥부');await page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();await page.getByRole('dialog').getByRole('button',{name:'놀스토리 읽기',exact:true}).click();await leaveReading(page);await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('builtin');await openLibraryTools(page);await expect(page.getByRole('searchbox',{name:'책 찾기'})).toHaveValue('흥부');await page.reload();await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('builtin');await openLibraryTools(page);await expect(page.getByRole('searchbox',{name:'책 찾기'})).toHaveValue('흥부');
  const data=await page.evaluate(()=>({view:JSON.parse(sessionStorage.getItem('knolstory-library-view-v1')!),document:JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document}));expect(data.view.query).toBe('흥부');expect(JSON.stringify(data.document)).not.toContain('knolstory-library-view-v1');
 });
 
@@ -162,6 +162,7 @@ test('small shelf prints a readable title and keeps edition choices inside the b
  expect(await front.locator('h2').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(13);
  await card.getByRole('button').click();
  const dialog=page.getByRole('dialog');
- await expect(dialog.getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
- await expect(dialog.getByRole('link',{name:'숏스토리 읽기',exact:true})).toBeVisible();
+await expect(dialog.getByRole('button',{name:'놀스토리 읽기',exact:true})).toBeVisible();
+ await dialog.getByRole('radio',{name:'원작',exact:true}).check();await expect(dialog.getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
+ await dialog.getByRole('radio',{name:'숏스토리',exact:true}).check();await expect(dialog.getByRole('link',{name:'숏스토리 읽기',exact:true})).toBeVisible();
 });

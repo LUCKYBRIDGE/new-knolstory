@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {coveredControls,type CoveredControl} from './hit-targets';
 import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
-import {enterLibrary,builtinShelfCard,openBuiltinEdition,startShelfCreation} from './library-entry';
+import {enterLibrary,builtinShelfCard,openBuiltinEdition,startShelfCreation,openBookMore} from './library-entry';
 import {lastCutPlayback,moveReadingTo,startSound,readToEnding} from './ending-position';
 
 /**
@@ -31,13 +31,16 @@ for(const size of sizes)test(`main screens keep every control reachable · ${siz
  const found:Record<string,CoveredControl[]>={};
  try{
   await page.goto('/');await expect(page.getByRole('main',{name:'책 소개',exact:true})).toBeVisible();await probe(page,found,'introduction');
+  // The title page now greets readers from the home screen (and assignments); the shelf opens stories directly.
+  await page.getByRole('button',{name:/이야기 읽기/}).click();const start=page.getByRole('main',{name:'책 표지와 소개'});await expect(start).toBeVisible();await probe(page,found,'book start');
+  await start.getByRole('button',{name:'서재로',exact:true}).click();
   await enterLibrary(page);await probe(page,found,'library');
-  await builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();await expect(page.getByRole('dialog')).toBeVisible();await probe(page,found,'book focus');
+  await builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await probe(page,found,'book focus');
+  await openBookMore(focus);await probe(page,found,'book focus more');
   await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
 
   await openBuiltinEdition(page,'seonnyeo','knolstory','start');
-  const start=page.getByRole('main',{name:'책 표지와 소개'});await expect(start).toBeVisible();await probe(page,found,'book start');
-  await start.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await readerReady(page);await probe(page,found,'reader');
+  await readerReady(page);await probe(page,found,'reader');
   await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await probe(page,found,'reader menu');
   await page.keyboard.press('Escape');
   // Keyboard readers open the text view over the stage; it must not share space with the reading bar.

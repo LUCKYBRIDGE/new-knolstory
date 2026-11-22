@@ -96,3 +96,10 @@
 }
 /* Small phones: the book's title stays the largest text on the screen without dominating it. */
 @media (max-width:400px){ .bookDetails h1{font-size:var(--text-heading);line-height:1.35} }
+
+/* 2026-11-23 one reading action: the primary fills the row, ‘처음부터 읽기’ sits beside it only when there is a place to resume. */
+.startActions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.startActions button{min-height:56px;padding:12px 28px;font-size:var(--text-body);font-weight:700;text-align:center}
+.startActions .primary{flex:1 1 220px}
+.startActions .secondary{min-height:44px;padding:8px 4px;background:transparent;border-color:transparent;color:#f6ecd8;font-weight:500;text-decoration:underline;text-underline-offset:4px}
+.startActions button:focus-visible{outline:3px solid #f0ca80;outline-offset:3px}

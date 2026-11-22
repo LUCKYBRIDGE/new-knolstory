@@ -95,7 +95,7 @@ test('downloaded images survive a fresh runtime when image requests are unavaila
  await context.route(/\/runtime\/game\/assets\/.*\.(webp|png|jpg|jpeg)(\?.*)?$/,route=>{networkAttempts++;return route.abort('internetdisconnected');});
  const reopened=await context.newPage();await reopened.goto('/');await enterLibrary(reopened);
  await shelfCoverButton(reopened,authored.title).click();
- await reopened.getByRole('dialog').getByRole('button',{name:'이어읽기',exact:true}).click();
+ await reopened.getByRole('dialog').getByRole('button',{name:/이어읽기$/}).click();
  await beginSelectedBook(reopened,true);await ready(reopened);
  const fresh=reopened.frames().find(item=>item.url().includes('/runtime/'))!;
  const native=await fresh.evaluate(()=>(window as unknown as {renpy_exec:(s:string)=>Promise<{text:string;paths:string[]}>}).renpy_exec('result = {"text": knol_scene["dialogue"]["text"], "paths": knol_prepared_image_paths}'));

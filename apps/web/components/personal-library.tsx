@@ -61,18 +61,23 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
   <LocalBookshelf {...shelf} navigation={serviceLinks(classroom.role).length>1&&<ServiceNavigation role={classroom.role} active="library" beforeNavigate={beforeServiceNavigation}/>} accountMenu={onlineEnabled&&<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}/>} online={onlineEnabled?{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
    if(!isPersonalLibraryKind(work.kind))return null;
    const key=`local:${work.key}`,status=projection.byLocalKey[work.key]??{kind:'local' as const,label:'이 기기에 있음'};
-   return <OnlineLibraryActions key={key} status={status} disabled={unavailable} signedIn={!!owner} size={sizes[work.key]} {...feedback(key)} onUpload={()=>{setTarget({key,title:work.project.title});void online.save(work.key);}} onOpenOnline={status.record?()=>{setTarget({key,title:work.project.title});void online.open(status.record!);}:undefined} onTrash={status.record?()=>stateAction(status.record!,'trash',key):undefined}/>;
-  },renderRemoteActions:record=><OnlineLibraryActions key={record.recordId} status={{kind:'remote',label:'온라인에 있음',record}} disabled={unavailable} signedIn={!!owner} {...feedback(`remote:${record.recordId}`)} onTrash={()=>stateAction(record,'trash')}/>}:undefined}/>
+   return {status:<LibraryStorageBadge status={status}/>,manage:owner?<OnlineManage key={key} status={status} disabled={unavailable} size={sizes[work.key]} {...feedback(key)} onUpload={()=>{setTarget({key,title:work.project.title});void online.save(work.key);}} onOpenOnline={status.record?()=>{setTarget({key,title:work.project.title});void online.open(status.record!);}:undefined}/>:undefined,danger:owner&&status.record?<OnlineTrash key={key} record={status.record} disabled={unavailable} onTrash={()=>stateAction(status.record!,'trash',key)}/>:undefined};
+  },renderRemoteActions:record=>{const key=`remote:${record.recordId}`,{notice,error}=feedback(key);return {status:<LibraryStorageBadge status={{kind:'remote',label:'온라인에 있음',record}}/>,manage:notice||error?<>{notice&&<p role="status">{notice}</p>}{error&&<p role="alert">{error}</p>}</>:undefined,danger:owner?<OnlineTrash key={key} record={record} disabled={unavailable} onTrash={()=>stateAction(record,'trash')}/>:undefined};}}:undefined}/>
   {trashOpen&&owner&&<OnlineTrashDialog documents={online.range==='trash'?online.documents:[]} busy={online.busy} error={online.error} notice={online.notice} cursor={online.range==='trash'?online.cursor:null} onMore={()=>void online.list(true,'trash')} onClose={()=>{setTrashOpen(false);requestAnimationFrame(()=>trashTrigger.current?.focus());}} onRestore={record=>stateAction(record,'restore')}/>}
  </>;
 }
-function OnlineLibraryActions({status,disabled,signedIn,size,onUpload,onOpenOnline,onTrash,notice,error}:{status:OnlineShelfStatus;disabled:boolean;signedIn:boolean;size?:number;onUpload?:()=>void;onOpenOnline?:()=>void;onTrash?:()=>void;notice?:string;error?:string}){
- const [confirming,setConfirming]=useState(false),sizeNotice=signedIn&&size!==undefined?workSizeNotice(size):null;
- return <><LibraryStorageBadge status={status}/>{onUpload&&<>{sizeNotice&&<p className={styles.workSize} data-level={sizeNotice.level}>{sizeNotice.text}</p>}{signedIn&&<button disabled={disabled||status.kind==='unknown'||sizeNotice?.level==='block'} onClick={onUpload}>{status.kind==='linked'?'다시 업로드':'온라인에 업로드'}</button>}</>}
-  {signedIn&&onOpenOnline&&<button disabled={disabled} onClick={onOpenOnline}>온라인 사본 열기</button>}
-  {signedIn&&onTrash&&(confirming?<div role="group" aria-label="온라인 휴지통 이동 확인"><p>이 기기의 원고는 유지하고 온라인 작품만 휴지통으로 옮길까요?</p><button disabled={disabled} onClick={()=>setConfirming(false)}>취소</button><button disabled={disabled} onClick={onTrash}>온라인 휴지통으로 옮기기</button></div>:<button disabled={disabled||status.record?.stateVersion===undefined} onClick={()=>setConfirming(true)}>온라인 휴지통으로 이동</button>)}
+/** Upload and open-online controls for a personal book; shown only to a signed-in owner. */
+function OnlineManage({status,disabled,size,onUpload,onOpenOnline,notice,error}:{status:OnlineShelfStatus;disabled:boolean;size?:number;onUpload:()=>void;onOpenOnline?:()=>void;notice?:string;error?:string}){
+ const sizeNotice=size!==undefined?workSizeNotice(size):null;
+ return <>{sizeNotice&&<p className={styles.workSize} data-level={sizeNotice.level}>{sizeNotice.text}</p>}
+  <div role="group" aria-label="온라인 보관"><button disabled={disabled||status.kind==='unknown'||sizeNotice?.level==='block'} onClick={onUpload}>{status.kind==='linked'?'다시 업로드':'온라인에 업로드'}</button>{onOpenOnline&&<button disabled={disabled} onClick={onOpenOnline}>온라인 사본 열기</button>}</div>
   {notice&&<p role="status">{notice}</p>}{error&&<p role="alert">{error}</p>}
  </>;
+}
+/** Moving the online copy to the trash asks once; the work on this device is never touched. */
+function OnlineTrash({record,disabled,onTrash}:{record:OnlineDocumentMetadata;disabled:boolean;onTrash:()=>void}){
+ const [confirming,setConfirming]=useState(false);
+ return confirming?<div role="group" aria-label="온라인 휴지통 이동 확인"><p>이 기기의 원고는 그대로 두고 온라인 작품만 휴지통으로 옮길까요?</p><button disabled={disabled} onClick={()=>setConfirming(false)}>취소</button><button disabled={disabled} onClick={onTrash}>온라인 휴지통으로 옮기기</button></div>:<button disabled={disabled||record.stateVersion===undefined} onClick={()=>setConfirming(true)}>온라인 휴지통으로 이동</button>;
 }
 function OnlineTrashDialog({documents,busy,error,notice,cursor,onClose,onRestore,onMore}:{documents:readonly OnlineDocumentMetadata[];busy:boolean;error:string;notice:string;cursor:string|null;onClose:()=>void;onRestore:(record:OnlineDocumentMetadata)=>void;onMore:()=>void}){
  const dialog=useRef<HTMLDialogElement>(null);

@@ -84,10 +84,11 @@ test('a finished book offers to start again instead of resuming into its credits
  await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  await builtinShelfCard(page,'rabbit').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();
  const dialog=page.getByRole('dialog');await expect(dialog).toHaveAttribute('data-work-id','rabbit');
+ await dialog.getByRole('radio',{name:'원작',exact:true}).check();
+ // A finished book offers one way in: read it again from the start, with no ‘이어읽기’ into its credits.
  await expect(dialog.getByRole('button',{name:'원작 이어읽기',exact:true})).toHaveCount(0);
- await dialog.getByRole('button',{name:'원작 읽기',exact:true}).click();
- const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});
- await expect(start.getByRole('button',{name:'이어읽기',exact:true})).toBeDisabled();
+ await expect(dialog.getByRole('button',{name:'처음부터 읽기',exact:true})).toHaveCount(0);
+ await expect(dialog.getByRole('button',{name:'원작 읽기',exact:true})).toBeEnabled();
 });
 
 test('a story written by its reader ends with its own credits',async({page})=>{
@@ -99,8 +100,7 @@ test('a story written by its reader ends with its own credits',async({page})=>{
  await importShelfFile(page,{name:'ending.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-11-22T00:00:00.000Z',appVersion:'ending-test',project}))});
  await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');
  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
- await shelfCoverButton(page,'달빛 바다의 약속').click();await page.getByRole('dialog').getByRole('button',{name:'처음부터 읽기',exact:true}).click();
- await page.getByRole('main',{name:'책 표지와 소개',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true}).click();
+ await shelfCoverButton(page,'달빛 바다의 약속').click();await page.getByRole('dialog').getByRole('button',{name:'읽기',exact:true}).click();
  await readerReady(page);await startSound(page);await readerReady(page);
  await readToEnding(page);
  const credits=page.locator('[data-story-credits]');

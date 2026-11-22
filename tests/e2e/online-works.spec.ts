@@ -2,7 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {createStoryDocument} from '../../packages/story-domain/src';
 import {createHash} from 'node:crypto';
-import {startShelfCreation,shelfCoverButton} from './library-entry';
+import {startShelfCreation,shelfCoverButton,openBookMore} from './library-entry';
 // Fullscreen prompting has its own coverage. Keep these account flows on the current page.
 test.beforeEach(async({page})=>{
  await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});
@@ -31,7 +31,7 @@ const library=(page:Page)=>page.getByRole('main',{name:'놀스토리 서재',exa
 async function onlineReady(page:Page){await expect(page.locator('[data-storage-tools] button[aria-label="온라인 목록 다시 확인"]')).toBeEnabled();}
 async function focusWork(page:Page,title:string){
  await page.getByRole('button',{name:'내 작품',exact:true}).click();
- await shelfCoverButton(page,title).click();return page.getByRole('dialog');
+ await shelfCoverButton(page,title).click();const dialog=page.getByRole('dialog');await openBookMore(dialog);return dialog;
 }
 async function openRemote(page:Page){const focus=await focusWork(page,'온라인에 보관한 원고');await focus.getByRole('button',{name:/^이 기기에 열기/}).click();}
 async function returnToLibrary(page:Page){await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true}).filter({visible:true})).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await onlineReady(page);}
@@ -91,7 +91,7 @@ test('deleting a local work while online copy validation awaits preserves the de
  await onlineHarness(page);await page.goto('/?view=library');await createLocal(page,'삭제를 유지할 개인 작품');await returnToLibrary(page);const before=await local(page);
  await page.evaluate(()=>{const target=window as unknown as {onlineValidationPaused?:boolean;releaseOnlineValidation?:()=>void};const digest=crypto.subtle.digest.bind(crypto.subtle);let count=0;crypto.subtle.digest=async(...args:Parameters<SubtleCrypto['digest']>)=>{count++;if(count===4){target.onlineValidationPaused=true;await new Promise<void>(resolve=>{target.releaseOnlineValidation=resolve;});}return digest(...args);};});
  await openRemote(page);await expect.poll(()=>page.evaluate(()=>(window as unknown as {onlineValidationPaused?:boolean}).onlineValidationPaused)).toBe(true);await page.keyboard.press('Escape');
- const focus=await focusWork(page,'삭제를 유지할 개인 작품');await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
+ const focus=await focusWork(page,'삭제를 유지할 개인 작품');await openBookMore(focus);await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
  await page.evaluate(()=>(window as unknown as {releaseOnlineValidation:()=>void}).releaseOnlineValidation());await afterFrame(page);expect((await local(page)).deletedWork).toEqual(deleted.deletedWork);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(deleted.works));await expect(library(page)).toBeVisible();
 });
 test('switching accounts hides the previous owner online titles before loading the new account',async({page})=>{
@@ -106,7 +106,7 @@ test('deleting the selected local work during online save preparation sends no r
  await page.goto('/?view=library');await createLocal(page,'준비 중 삭제할 원고');await returnToLibrary(page);const before=await local(page),focus=await focusWork(page,'준비 중 삭제할 원고');
  await page.evaluate(()=>{const target=window as unknown as {savePreparationPaused?:boolean;releaseSavePreparation?:()=>void};const digest=crypto.subtle.digest.bind(crypto.subtle);let first=true;crypto.subtle.digest=async(...args:Parameters<SubtleCrypto['digest']>)=>{if(first){first=false;target.savePreparationPaused=true;await new Promise<void>(resolve=>{target.releaseSavePreparation=resolve;});}return digest(...args);};});
  await focus.getByRole('button',{name:'온라인에 업로드',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as unknown as {savePreparationPaused?:boolean}).savePreparationPaused)).toBe(true);await page.keyboard.press('Escape');
- const deletion=await focusWork(page,'준비 중 삭제할 원고');await deletion.getByText('책 꾸미기·작품 도구',{exact:true}).click();await deletion.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
+ const deletion=await focusWork(page,'준비 중 삭제할 원고');await openBookMore(deletion);await deletion.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
  await page.evaluate(()=>(window as unknown as {releaseSavePreparation:()=>void}).releaseSavePreparation());await onlineReady(page);expect(posts).toBe(0);expect((await local(page)).deletedWork).toEqual(deleted.deletedWork);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(deleted.works));await expect(page.locator('[aria-label="작품 보관 안내"]').getByRole('status').filter({hasText:'업로드했어요'})).toHaveCount(0);
 });
 test('stale account expectation rejects an online list without changing device manuscripts',async({page})=>{

@@ -13,7 +13,7 @@ test('phone search closes its panel and leaves the matching book usable',async({
  await search.press('Enter');
  await expect(tools).not.toHaveAttribute('open','');
  const book=page.locator('[data-shelf-book]');await expect(book).toHaveCount(1);await book.getByRole('button').click();
- await expect(page.getByRole('dialog').getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
+ await expect(page.getByRole('dialog').getByRole('button',{name:/^(놀스토리|원작) 읽기$/})).toBeVisible();
 });
 test('owner-selected legacy honey oak finish keeps window wall clearance',async({page},info)=>{
  await page.setViewportSize({width:1200,height:900});await page.goto('/');await enterLibrary(page);
@@ -29,7 +29,7 @@ for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]
  const touching=await books.evaluateAll(nodes=>nodes.map(book=>Math.abs(book.querySelector('[data-shelf-cover]')!.getBoundingClientRect().bottom-book.querySelector('[class*=plank]')!.getBoundingClientRect().top)));expect(Math.max(...touching)).toBeLessThanOrEqual(2);
  const sideGaps=await cabinet.boundingBox();expect(sideGaps!.x).toBeGreaterThanOrEqual(width>900?width*.07:20);expect(width-sideGaps!.x-sideGaps!.width).toBeGreaterThanOrEqual(width>900?width*.07:20);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);mkdirSync(evidence,{recursive:true});await page.screenshot({path:`${evidence}/after-${width}.png`,fullPage:true});
- await books.first().getByRole('button').click();await expect(page.getByRole('dialog').getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(books.first().getByRole('button')).toBeFocused();await context.close();
+ await books.first().getByRole('button').click();await expect(page.getByRole('dialog').getByRole('button',{name:/^(놀스토리|원작) 읽기$/})).toBeVisible();await page.keyboard.press('Escape');await expect(books.first().getByRole('button')).toBeFocused();await context.close();
 });
 
 test('cabinet keeps two shelf rows with four books, a single match or an empty collection',async({page})=>{

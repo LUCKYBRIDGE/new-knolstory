@@ -10,8 +10,12 @@ export function trapDialogTab(event:Pick<KeyboardEvent,'key'|'shiftKey'|'prevent
  if(event.key!=='Tab'||!dialog)return;
  const activeDialog=document.activeElement?.closest('dialog');
  if(activeDialog&&activeDialog!==dialog)return; // A nested asset dialog owns its focus.
- const controls=Array.from(dialog.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,a[href],[tabindex]:not([tabindex="-1"])')).filter(element=>element.closest('dialog')===dialog&&element.tabIndex>=0&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden');
+ const controls=Array.from(dialog.querySelectorAll<HTMLElement>('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,a[href],[tabindex]:not([tabindex="-1"])')).filter(element=>element.closest('dialog')===dialog&&element.tabIndex>=0&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden'&&isRendered(element));
  const destination=dialogTabDestination(controls.indexOf(document.activeElement as HTMLElement),controls.length,event.shiftKey);
  if(destination===undefined)return;
  event.preventDefault();controls[destination].focus();
+}
+/** Controls inside a closed <details> keep layout boxes in Chromium (content-visibility), yet cannot take focus. */
+function isRendered(element:HTMLElement):boolean{
+ return typeof element.checkVisibility==='function'?element.checkVisibility({visibilityProperty:true}):!element.closest('details:not([open])>:not(summary)');
 }

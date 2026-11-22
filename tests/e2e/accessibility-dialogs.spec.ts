@@ -1,7 +1,7 @@
 import {test,expect,type Page,type Locator,type TestInfo} from '@playwright/test';
 import axe from 'axe-core';
 import {writeFile} from 'node:fs/promises';
-import {startShelfCreation,shelfCoverButton,builtinShelfCard} from './library-entry';
+import {startShelfCreation,shelfCoverButton,builtinShelfCard,openBookMore} from './library-entry';
 test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 const authored=(page:Page)=>page.evaluate(()=>{const state=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {active:state.document.project,works:Object.fromEntries(Object.entries({...state.works,[state.storyId]:state.document}).map(([id,document])=>[id,(document as {project:unknown}).project]))};});
 async function create(page:Page){await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('열린 화면 접근성 검사');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
@@ -25,19 +25,19 @@ async function scan(page:Page,root:Locator,surface:string,info:TestInfo){
  await writeFile(path,JSON.stringify({surface,result,scannerDisagreements,scope:'Active surface raw findings retained; only verified primary-name/separate-description controls are classified as scanner disagreements. No global rule exclusion.'},null,2)+'\n');
  expect(unresolved).toEqual([]);
 }
-for(const width of [1440,390])for(const kind of ['own','builtin'] as const)test(`book focus exposes visible close label and action descriptions ${kind} ${width}`,async({page},info)=>{
+for(const width of [1440,390])for(const kind of ['own','builtin'] as const)test(`book focus exposes visible close label and plainly named actions ${kind} ${width}`,async({page},info)=>{
  await page.setViewportSize({width,height:900});
  if(kind==='own'){await create(page);await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).click();}else{await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');}
  const opener=kind==='own'?shelfCoverButton(page,'열린 화면 접근성 검사'):builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});const before=await authored(page);await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
  const close=dialog.locator('header button');await expect.soft(close).toHaveAccessibleName('닫기 · 서재로 돌아가기',{timeout:500});await expect(close).toHaveText('닫기');
- await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
- for(const action of await actions.all()){
-  const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
- }
- const ids=descriptions.map(item=>item.ids);expect(ids.every(Boolean)).toBe(true);expect(new Set(ids).size).toBe(ids.length);expect(await page.evaluate(ids=>ids.every(id=>Array.from(document.querySelectorAll('[id]')).filter(node=>node.id===id).length===1),ids)).toBe(true);
- await scan(page,dialog,'focus-open-tools',info);
+ // One reading action is visible at first; making and managing wait behind ‘더보기’.
+ const actions=dialog.locator('[data-focus-action]');await expect(actions.filter({visible:true}).first()).toHaveText(kind==='own'?'읽기':'놀스토리 읽기');
+ if(kind==='builtin')await expect(dialog.getByRole('group',{name:'읽을 판',exact:true}).getByRole('radio')).toHaveCount(3);
+ await openBookMore(dialog);expect(await actions.count()).toBeGreaterThanOrEqual(kind==='own'?7:5);const names=[];
+ for(const action of await actions.all()){const text=(await action.innerText()).trim();expect(text).not.toBe('');await expect(action).toHaveAccessibleName(text);names.push(text);}
+ await scan(page,dialog,'focus-open-more',info);
  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();await opener.click();await close.focus();await close.press('Enter');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
- await writeFile(info.outputPath('action-descriptions.json'),JSON.stringify({kind,width,descriptions,scope:'Computed names/descriptions, explicit boundary Tab traversal and Escape return; no real screen-reader/voice claim.'},null,2)+'\n');
+ await writeFile(info.outputPath('action-names.json'),JSON.stringify({kind,width,names,scope:'Computed names, explicit boundary Tab traversal and Escape return; no real screen-reader/voice claim.'},null,2)+'\n');
 });
 for(const width of [1440,390])test(`preparation cover and recovery surfaces retain names and authored content ${width}`,async({page},info)=>{
  await page.setViewportSize({width,height:900});await create(page);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');const before=await authored(page),preparation=page.getByRole('region',{name:'작품 설정',exact:true});await scan(page,preparation,'preparation',info);
@@ -45,9 +45,9 @@ for(const width of [1440,390])test(`preparation cover and recovery surfaces reta
  if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const summary=page.getByText('이전 원고',{exact:true});await summary.click();const recovery=summary.locator('..');const record=recovery.getByRole('button',{name:'현재 원고 보관',exact:true});await record.focus();await record.press('Enter');await expect(recovery.getByRole('button',{name:'이 원고를 사본으로 열기',exact:true})).toBeVisible();await scan(page,recovery,'recovery',info);expect(await authored(page)).toEqual(before);
 });
 for(const width of [1440,390])test(`open surface chrome contrast against actual backgrounds ${width}`,async({page},info)=>{
- const {renderedTextContrast}=await import('./rendered-contrast');await page.setViewportSize({width,height:900});await page.emulateMedia({reducedMotion:'reduce'});await create(page);await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).click();await shelfCoverButton(page,'열린 화면 접근성 검사').click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();const reports=[];
+ const {renderedTextContrast}=await import('./rendered-contrast');await page.setViewportSize({width,height:900});await page.emulateMedia({reducedMotion:'reduce'});await create(page);await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).click();await shelfCoverButton(page,'열린 화면 접근성 검사').click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await openBookMore(focus);const reports=[];
  async function measure(surface:string,targets:Locator){for(let index=0;index<await targets.count();index++){const target=targets.nth(index);if(!await target.isVisible())continue;const value=await renderedTextContrast(target,info.outputPath(`${surface}-${index}`)).catch(async(error:Error)=>{throw new Error(`${surface}[${index}] ${JSON.stringify(await target.innerText())}: ${error.message}`);});const threshold=value.info.fontSize>=24||value.info.fontSize>=56/3&&value.info.fontWeight>=700?3:4.5;reports.push({surface,threshold,...value});}}
- await measure('book-focus',focus.locator('header p,header button,figcaption,section>h2,section>p,[data-focus-action]>strong,[data-focus-action]>small'));
+ await measure('book-focus',focus.locator('header button,section>h2,section>p,section>small,[data-focus-action],summary,section>h3'));
  await focus.getByRole('button',{name:'작품 정보·기획',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await expect(cover).toBeVisible();
  await measure('cover-editor',cover.locator('header h2,header small,header>button,footer>button'));
  await page.keyboard.press('Escape');const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const summary=page.getByText('이전 원고',{exact:true});await summary.click();const recovery=summary.locator('..');await recovery.getByRole('button',{name:'현재 원고 보관',exact:true}).click();await expect(recovery.getByRole('button',{name:'이 원고를 사본으로 열기',exact:true})).toBeVisible();await measure('recovery',recovery.locator('p,button,strong,time,li span'));
