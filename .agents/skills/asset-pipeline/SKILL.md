@@ -10,6 +10,8 @@ For white-matte character repairs follow the [reviewed replacement receipt](../.
 
 Use for Asset IDs, metadata, source media, geometry, derivatives or audio delivery.
 
+카드(이미지 고르기·서재 표지·그림책 쪽 목록)는 빌드에서 만든 미리보기 `previewSrc`를, 무대·읽기·인쇄는 버전 붙은 원본 `src`를 쓴다. 주소·생성·권리·캐시 규칙은 [그림 미리보기와 버전 캐시](../../../docs/architecture/image-previews-and-caching.md)가 소유한다. 등록 그림을 바꾸면 미리보기는 빌드가 다시 만들고, 생성 설정을 바꾸면 `image-previews.json`의 버전과 경로를 함께 올린다.
+
 그림책→놀스토리의 숏스토리 추천 무대는 [조합 목록](../../../packages/asset-registry/src/picturebook-stage-recipes.json)이 소유한다(원화 ID+revision 키, 작품 파일과 분리). 새 조합은 `assembly-review`로 넣고, `/picturebook?review=recipes`에서 가로 16:9·세로 9:16 실제 무대를 본 뒤 `pnpm exec vitest run packages/asset-registry/tests/picturebook-recipes.test.ts`(리비전·권리·중복 인물)를 통과해야 `approved`와 `reviewedAt`·`evidence`를 쓴다. 그림을 만드는 쪽은 자산 등록과 조합 갱신까지만 하고 승인하지 않는다. 세로 화면의 주인공은 `subject`로 지정하고, 공중의 인물은 바닥까지 이어진 자락으로 높이를 만든다(배치는 `geometry.bottom`을 바닥선에 맞춤). 새 그림이 필요한 쪽은 [제작 요청](../../../docs/architecture/picturebook-image-production-requests.md)에 원화 ID·검토한 후보와 탈락 이유·필요한 행동·기준 ID·구도를 남긴다. [설계](../../../docs/architecture/picturebook-to-chapters-design.md#조합-레코드-예시와-우선순위)
 
 1. Read the [layout ownership ADR](../../../docs/decisions/0004-stage-layout-owned-by-runtime-core.md) and [authoring storage contract](../../../docs/architecture/authoring-storage-contract.md); inspect the resolver and provenance implementation before editing.

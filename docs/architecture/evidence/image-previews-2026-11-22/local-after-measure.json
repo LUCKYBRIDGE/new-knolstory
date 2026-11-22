@@ -1,0 +1,198 @@
+[
+ {
+  "label": "desktop 서재 첫 방문",
+  "ms": 149,
+  "requests": 41,
+  "totalKB": 10634,
+  "images": 13,
+  "imageKB": 609,
+  "imageStatus": {
+   "200": 13
+  },
+  "imageDirs": {
+   "/assets/legacy-ui/room.webp": 1,
+   "/assets/legacy-ui/plant.webp": 1,
+   "/assets/legacy-ui/foreground-right.webp": 1,
+   "/assets/legacy-ui/shelf.webp": 1,
+   "/assets/legacy-ui/foreground-left.webp": 1,
+   "/assets/previews/v1": 8
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "foreground-left.webp 114KB",
+   "shelf.webp 102KB",
+   "plant.webp 100KB"
+  ]
+ },
+ {
+  "label": "desktop 서재 다시 방문",
+  "ms": 351,
+  "requests": 41,
+  "totalKB": 10458,
+  "images": 13,
+  "imageKB": 434,
+  "imageStatus": {
+   "200": 13
+  },
+  "imageDirs": {
+   "/assets/legacy-ui/shelf.webp": 1,
+   "/assets/legacy-ui/foreground-left.webp": 1,
+   "/assets/legacy-ui/room.webp": 1,
+   "/assets/legacy-ui/foreground-right.webp": 1,
+   "/assets/legacy-ui/plant.webp": 1,
+   "/assets/previews/v1": 8
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "foreground-left.webp 114KB",
+   "shelf.webp 102KB",
+   "plant.webp 100KB"
+  ]
+ },
+ {
+  "label": "desktop 그림책 원본 읽기",
+  "ms": 105,
+  "requests": 38,
+  "totalKB": 10978,
+  "images": 6,
+  "imageKB": 848,
+  "imageStatus": {
+   "200": 6
+  },
+  "imageDirs": {
+   "/assets/previews/v1": 4,
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-01.webp": 1,
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-02.webp": 1
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "rabbit-turtle.scene.shortstory-classic-02.webp 350KB",
+   "rabbit-turtle.scene.shortstory-classic-01.webp 348KB",
+   "88e2b3756295e61a.webp 43KB"
+  ]
+ },
+ {
+  "label": "desktop 그림책 다시 방문",
+  "ms": 112,
+  "requests": 38,
+  "totalKB": 10128,
+  "images": 6,
+  "imageKB": -2,
+  "imageStatus": {
+   "200": 6
+  },
+  "imageDirs": {
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-01.webp": 1,
+   "/assets/previews/v1": 4,
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-02.webp": 1
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "4adf840ee2d32aff.webp 0KB",
+   "2acfd808d36b73c5.webp 0KB",
+   "88e2b3756295e61a.webp 0KB"
+  ]
+ },
+ {
+  "label": "phone 서재 첫 방문",
+  "ms": 133,
+  "requests": 41,
+  "totalKB": 10634,
+  "images": 13,
+  "imageKB": 609,
+  "imageStatus": {
+   "200": 13
+  },
+  "imageDirs": {
+   "/assets/legacy-ui/room.webp": 1,
+   "/assets/legacy-ui/shelf.webp": 1,
+   "/assets/legacy-ui/foreground-left.webp": 1,
+   "/assets/legacy-ui/plant.webp": 1,
+   "/assets/legacy-ui/foreground-right.webp": 1,
+   "/assets/previews/v1": 8
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "foreground-left.webp 114KB",
+   "shelf.webp 102KB",
+   "plant.webp 100KB"
+  ]
+ },
+ {
+  "label": "phone 서재 다시 방문",
+  "ms": 426,
+  "requests": 41,
+  "totalKB": 10458,
+  "images": 13,
+  "imageKB": 434,
+  "imageStatus": {
+   "200": 13
+  },
+  "imageDirs": {
+   "/assets/legacy-ui/shelf.webp": 1,
+   "/assets/legacy-ui/foreground-left.webp": 1,
+   "/assets/legacy-ui/room.webp": 1,
+   "/assets/legacy-ui/plant.webp": 1,
+   "/assets/previews/v1": 8,
+   "/assets/legacy-ui/foreground-right.webp": 1
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "foreground-left.webp 114KB",
+   "shelf.webp 102KB",
+   "plant.webp 100KB"
+  ]
+ },
+ {
+  "label": "phone 그림책 원본 읽기",
+  "ms": 99,
+  "requests": 38,
+  "totalKB": 10978,
+  "images": 6,
+  "imageKB": 848,
+  "imageStatus": {
+   "200": 6
+  },
+  "imageDirs": {
+   "/assets/previews/v1": 4,
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-01.webp": 1,
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-02.webp": 1
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "rabbit-turtle.scene.shortstory-classic-02.webp 350KB",
+   "rabbit-turtle.scene.shortstory-classic-01.webp 348KB",
+   "88e2b3756295e61a.webp 43KB"
+  ]
+ },
+ {
+  "label": "phone 그림책 다시 방문",
+  "ms": 95,
+  "requests": 38,
+  "totalKB": 10128,
+  "images": 6,
+  "imageKB": -2,
+  "imageStatus": {
+   "200": 6
+  },
+  "imageDirs": {
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-01.webp": 1,
+   "/assets/previews/v1": 4,
+   "/assets/legacy-18da4fc/rabbit-turtle.scene.shortstory-classic-02.webp": 1
+  },
+  "runtimeKB": 0,
+  "runtimeStatus": {},
+  "biggest": [
+   "4adf840ee2d32aff.webp 0KB",
+   "2acfd808d36b73c5.webp 0KB",
+   "88e2b3756295e61a.webp 0KB"
+  ]
+ }
+]
