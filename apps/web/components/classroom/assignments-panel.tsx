@@ -21,6 +21,8 @@ import styles from './classroom.module.css';
 type Run=<T>(action:()=>Promise<T>)=>Promise<T|undefined>;
 /** Work tasks per classroom (server/documents/quota.ts): each holds one work per student. */
 const TASK_LIMIT=20;
+/** Hand-ins the teacher has not passed yet (open tasks only): what a returning teacher should see first. */
+const toReview=(item:Assignment)=>item.open&&!item.archived?Math.max(0,(item.submittedCount??0)-(item.passedCount??0)):0;
 export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:string;run:Run;students?:readonly RecipientStudent[];request?:TaskRequest|null}){
  const studentCount=students.length;
  const [recipients,setRecipients]=useState<Recipients>(null),[recipientError,setRecipientError]=useState('');
@@ -43,7 +45,7 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  useEffect(()=>{if(!request||(request.kind!=='knolstory'&&request.kind!=='shortstory'))return;const timer=window.setTimeout(()=>{setFormat(request.kind as AssignmentFormat);if(request.kind==='shortstory')setAfter('');setFormOpen(true);setFocusForm(Date.now());},0);return()=>window.clearTimeout(timer);},[request]);
  // First load opens the tab that has tasks, so a class with only picture book tasks does not land on an empty list.
  const firstList=useRef(true);
- const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list){setItems(list);if(firstList.current){firstList.current=false;if(!list.some(item=>item.format==='knolstory')&&list.some(item=>item.format==='shortstory'))setFilter('shortstory');}}else setLoadFailed(true);},[run]);
+ const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list){setItems(list);if(firstList.current){firstList.current=false;const waiting=(format:AssignmentFormat)=>list.filter(item=>item.format===format).reduce((sum,item)=>sum+toReview(item),0);if(!list.some(item=>item.format==='knolstory')&&list.some(item=>item.format==='shortstory')||waiting('knolstory')===0&&waiting('shortstory')>0)setFilter('shortstory');}}else setLoadFailed(true);},[run]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(timer);},[load]);
  async function create(event:FormEvent){
   event.preventDefault();if(!title.trim()||!description.trim()||createLock.current)return;
@@ -96,7 +98,7 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
    {!description.trim()&&title.trim()&&<p className={styles.hint}>‘무엇을 하나요’를 적으면 과제를 만들 수 있어요.</p>}
    <p><button className={`${styles.btn} ${styles.primary}`} disabled={creating||!title.trim()||!description.trim()}>{creating?'만드는 중…':'과제 만들기'}</button></p>
   </fieldset></form></div>}
-  <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}</button>)}</div>
+  <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}{items&&(()=>{const n=items.filter(item=>item.format===value).reduce((sum,item)=>sum+toReview(item),0);return n>0?<span className={styles.reviewBadge} aria-label={`확인할 제출 ${n}개`}>확인 {n}</span>:null;})()}</button>)}</div>
   {loadFailed?<p className={styles.error} role="alert">과제를 불러오지 못했어요. <button className={styles.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>:items===null?<p className={styles.hint} role="status">과제를 불러오고 있어요.</p>:items.filter(item=>item.format===filter).length===0?<p className={styles.hint}>이 유형의 과제가 없어요.</p>
    :<SeasonItems items={items.filter(item=>item.format===filter)} render={group=><ul className={styles.list}>{group.map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students} onContinue={continueFrom} followers={items.filter(other=>other.after?.id===item.id)}/></li>)}</ul>}/>}
  </section>;

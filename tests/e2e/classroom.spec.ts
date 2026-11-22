@@ -186,6 +186,8 @@ test('student submits and teacher opens a device copy after the assignment close
  await page.getByLabel('제출할 작품').selectOption({label:'하늘의 이야기'});
  await page.getByRole('button',{name:'제출',exact:true}).click();
  await expect(page.getByText(/^제출했어요./)).toBeVisible();await expect(page.getByRole('status').filter({hasText:'냈어요 · 선생님 확인을 기다려요'})).toBeVisible();
+ // Once handed in, the form folds behind ‘고쳐서 다시 내기’.
+ await expect(page.getByRole('button',{name:'다시 제출'})).toBeHidden();await page.getByText('고쳐서 다시 내기',{exact:true}).click();
  await expect(page.getByRole('button',{name:'다시 제출'})).toBeVisible();
  const submitted=state.submissions.a1 as {content:{format:string;document:{project:{title:string}}}};
  expect(submitted.content.format).toBe('knolstory');expect(submitted.content.document.project.title).toContain('하늘의 이야기');
