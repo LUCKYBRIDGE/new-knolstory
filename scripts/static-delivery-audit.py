@@ -32,6 +32,7 @@ BUNDLES = {'.wasm', '.data', '.zip'}
 # A transport copy (for example runtime/renpy.data.br) decodes to its source file. It is classified and
 # reviewed as that source, never as an ordinary web build file, and needs the source to be present.
 TRANSPORT = {'.br': 'br'}
+PREVIEWS = json.loads((ROOT / 'packages/asset-registry/src/image-previews.json').read_text())
 MIME = {'.wasm': 'application/wasm', '.js': 'text/javascript',
         '.data': 'application/octet-stream', '.zip': 'application/zip',
         '.ogg': 'audio/ogg', '.mp3': 'audio/mpeg', '.wav': 'audio/wav'}
@@ -127,6 +128,42 @@ def local_asset_path(src):
     return name
 
 
+def preview_path(revision):
+    return f"{PREVIEWS['directory']}/{revision[:PREVIEWS['hashLength']]}.webp"
+
+
+def preview_manifest(build_root):
+    """Build-generated preview bindings: preview bytes -> exact catalogue source bytes."""
+    path = build_root / PREVIEWS['manifest']
+    if not path.is_file() or path.is_symlink():
+        return {}
+    try:
+        value = json.loads(path.read_text())
+        entries = value['entries'] if value.get('settings', {}).get('directory') == PREVIEWS['directory'] else []
+        return {entry['preview']: entry for entry in entries if isinstance(entry, dict) and isinstance(entry.get('preview'), str)}
+    except (ValueError, KeyError, TypeError):
+        return {}
+
+
+def preview_source_record(relative, sha, previews, by_source, block):
+    """A preview inherits its source's rights record only when both hashes are bound by the manifest."""
+    entry = previews.get(relative)
+    if not entry:
+        block(relative, 'unregistered-image-preview')
+        return None
+    if entry.get('sha256') != sha:
+        block(relative, 'image-preview-hash-mismatch')
+        return None
+    source = entry.get('source')
+    record = by_source.get(source_path(source)) if isinstance(source, str) else None
+    if (not record or record.get('sha256') != entry.get('sourceSha256') or
+            preview_path(record['sha256']) != relative):
+        block(relative, 'image-preview-source-mismatch')
+        return None
+    # Rights (including hash-pinned owner authorization) are decided on the unchanged source record.
+    return record
+
+
 def reviewed_scene_audio_approvals(root=None):
     """Reuse the existing source/hash/evidence gate; absent fixture approvals grant nothing."""
     root = ROOT if root is None else Path(root)
@@ -201,6 +238,8 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
     if not build_root.is_dir():
         raise ValueError('Static build directory is missing; build the Web app first.')
     by_source = {record['file']: record for record in provenance}
+    previews = preview_manifest(build_root)
+    expected_previews = {}
     catalog_by_path = {}
     blockers, files, found, transports = [], [], set(), []
 
@@ -211,6 +250,8 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
         name = local_asset_path(asset['src'])
         if name is not None:
             catalog_by_path.setdefault(name, []).append(asset['id'])
+            if isinstance(asset.get('revision'), str):
+                expected_previews.setdefault(preview_path(asset['revision']), []).append(asset['id'])
     for directory, dirs, names in os.walk(build_root, followlinks=False):
         for name in sorted(dirs + names):
             path = Path(directory) / name
@@ -226,6 +267,10 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
             transport_of, encoding = transport_source(relative)
             # A transport copy has no rights record of its own; it inherits its source's review.
             record = None if transport_of else by_source.get(source)
+            preview_of = None
+            if not transport_of and relative.startswith(PREVIEWS['directory'] + '/') and relative.endswith('.webp'):
+                record = preview_source_record(relative, sha, previews, by_source, block)
+                preview_of = record['file'].removeprefix('apps/web/public/') if record else None
             kind = media_type(Path(relative))
             if transport_of:
                 transports.append((relative, transport_of))
@@ -237,7 +282,7 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
                 block(relative, 'private-artifact')
             if size > max_file_bytes:
                 block(relative, 'pages-file-too-large', bytes=size, limit=max_file_bytes)
-            if record and record['sha256'] != sha:
+            if record and record['sha256'] != sha and not preview_of:
                 rights = 'hash-mismatch'
                 block(relative, 'provenance-hash-mismatch')
             elif kind != 'web-source-build':
@@ -276,7 +321,7 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
                 reference = record['usageReferencesFrom']
                 origin = by_source.get(reference) if isinstance(reference, str) else None
                 if (not origin or 'usageReferencesFrom' in origin or
-                        origin.get('sha256') != record.get('sha256') or origin.get('sha256') != sha or
+                        origin.get('sha256') != record.get('sha256') or origin.get('sha256') != (record['sha256'] if preview_of else sha) or
                         not isinstance(origin.get('usageReferences'), list)):
                     rights = 'reference-mismatch'
                     block(relative, 'provenance-reference-mismatch')
@@ -288,7 +333,8 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
                           'mime': MIME.get(PurePosixPath(mime_name).suffix.lower()) or mimetypes.guess_type(mime_name)[0] or 'application/octet-stream',
                           **({'contentEncoding': encoding, 'transportOf': transport_of} if transport_of else {}),
                           'mediaType': kind,
-                          'assetIds': sorted(set(catalog_by_path.get(relative, []) + (record or {}).get('assetIds', []))),
+                          'assetIds': sorted(set(catalog_by_path.get(relative, []) + expected_previews.get(relative, []) + (record or {}).get('assetIds', []))),
+                          **({'derivedPreviewOf': preview_of} if preview_of else {}),
                           'usageReferences': usage_references,
                           'license': (record or {}).get('license', 'not-recorded'),
                           'redistribution': (record or {}).get('redistribution', 'not-reviewed'),
@@ -306,6 +352,9 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
     for name, asset_ids in sorted(catalog_by_path.items()):
         if name not in found:
             block(name, 'missing-asset', assetIds=asset_ids)
+    for name, asset_ids in sorted(expected_previews.items()):
+        if name not in found:
+            block(name, 'missing-image-preview', assetIds=asset_ids)
     for source, record in sorted(by_source.items()):
         if source.startswith('apps/web/public/'):
             name = source.removeprefix('apps/web/public/')

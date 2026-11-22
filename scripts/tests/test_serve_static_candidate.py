@@ -25,7 +25,8 @@ class CandidateServerTests(unittest.TestCase):
         self.files = []
         for path, tier, data in [('index.html', 'site', b'web'), ('shortstory.html', 'site', b'book'),
                                  ('runtime/game.zip', 'objects', b'0123456789'),
-                                 ('runtime/game/scene.webp', 'site', b'scene')]:
+                                 ('runtime/game/scene.webp', 'site', b'scene'),
+                                 ('assets/previews/v1/0123456789abcdef.webp', 'site', b'preview')]:
             file = self.root / tier / path
             file.parent.mkdir(parents=True, exist_ok=True)
             file.write_bytes(data)
@@ -72,6 +73,14 @@ class CandidateServerTests(unittest.TestCase):
             self.assertIn('immutable', response.headers['Cache-Control'])
             self.assertEqual(response.headers['ETag'], '"' + digest + '"')
         with urllib.request.urlopen(url + '?v=wrong') as response:
+            self.assertEqual(response.headers['Cache-Control'], 'no-cache')
+
+    def test_revision_named_previews_are_immutable_without_a_query(self):
+        url = self.server()
+        with urllib.request.urlopen(url + '/assets/previews/v1/0123456789abcdef.webp') as response:
+            self.assertEqual(response.read(), b'preview')
+            self.assertIn('immutable', response.headers['Cache-Control'])
+        with urllib.request.urlopen(url + '/runtime/game/scene.webp') as response:
             self.assertEqual(response.headers['Cache-Control'], 'no-cache')
 
     def test_tampered_candidate_is_refused_before_serving(self):

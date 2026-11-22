@@ -2,6 +2,7 @@ import {test, expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
+import {catalogImage} from './catalog-image-url';
 import {openShortStoryDetails,openPageTools} from './shortstory-navigation';
 
 const catalog = JSON.parse(readFileSync('packages/asset-registry/src/catalog.json', 'utf8')) as {
@@ -81,7 +82,7 @@ for (const width of [390, 1440]) test(`ShortStory mixes familiar scenes and eigh
   for (const [index, scene] of expected.entries()) {
    await expect(reading).toContainText(scene.text!);
    const art = reading.getByRole('img', {name: `${index + 1}쪽 삽화`, exact: true}).locator('img');
-   await expect(art).toHaveAttribute('src', catalog.find(asset => asset.id === scene.backgroundId)!.src);
+   await expect(art).toHaveAttribute('src', catalogImage(scene.backgroundId).src);
    await expect.poll(() => art.evaluate(image => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
    if (index < expected.length - 1) await reading.getByRole('button', {name: '다음 쪽', exact: true}).click();
   }

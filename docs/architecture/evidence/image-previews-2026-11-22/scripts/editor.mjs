@@ -1,0 +1,43 @@
+import pw from '@playwright/test';const {chromium}=pw;
+const BASE=process.env.BASE||'https://story.knolquiz.com';
+const browser=await chromium.launch();
+const out=[];
+for(const [w,h,name,dpr] of [[1280,860,'desktop',1],[390,844,'phone',3]]){
+ const ctx=await browser.newContext({viewport:{width:w,height:h},deviceScaleFactor:dpr});
+ await ctx.addInitScript(()=>{try{sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');}catch{}});
+ if(process.env.BASE)await ctx.route('**/api/**',r=>r.request().url().endsWith('/api/v1/auth/config')?r.fulfill({status:200,contentType:'application/json',body:'{"success":true,"data":{"signupProvider":"kakao","providers":{"kakao":true,"google":true}}}'}):r.fulfill({status:401,contentType:'application/json',body:'{"success":false,"error":{"code":"SESSION_REQUIRED"}}'}));
+ const page=await ctx.newPage();
+ let log=[];
+ page.on('requestfinished',async r=>{try{const res=await r.response();const s=await r.sizes();log.push({p:new URL(r.url()).pathname,st:res?.status(),b:s.responseBodySize,t:Date.now()});}catch{}});
+ const pending=new Map();page.on('request',r=>pending.set(r,Date.now()));page.on('requestfinished',r=>pending.delete(r));page.on('requestfailed',r=>pending.delete(r));
+ const sum=(a)=>Math.round(a.reduce((s,x)=>s+x.b,0)/1024);
+ const take=(label,ms)=>{const img=log.filter(x=>/\.(webp|png|jpg)$/.test(x.p));const rt=log.filter(x=>x.p.startsWith('/runtime/'));
+  out.push({label,ms,req:log.length,KB:sum(log),img:img.length,imgKB:sum(img),runtimeKB:sum(rt),runtimeBig:rt.filter(x=>x.b>200000).map(x=>x.p.split('/').pop()+' '+Math.round(x.b/1024)+'KB '+x.st),stillOpen:[...pending.keys()].map(r=>new URL(r.url()).pathname).slice(0,5)});log=[];};
+ await page.goto(BASE+'/shortstory?work=rabbit&mode=edit',{waitUntil:'load'});
+ await page.getByRole('button',{name:'놀스토리로 보내기',exact:true}).click();
+ await page.waitForURL(/picturebook/);log=[];
+ let t=Date.now();
+ await page.waitForFunction(()=>{const s=document.querySelector('[data-testid=picturebook-stage-status]');return s&&Number(s.dataset.renderedRevision)>=0;},undefined,{timeout:120000});
+ take(name+' 보내기 화면 · 첫 무대 미리보기까지',Date.now()-t);
+ t=Date.now();
+ await page.locator('main > footer').getByRole('button',{name:'놀스토리로 보내기',exact:true}).click();
+ await page.waitForSelector('section[aria-label="이야기 무대"] iframe',{timeout:120000});
+ await page.waitForTimeout(6000);
+ take(name+' 편집 화면 · 무대 준비',Date.now()-t);
+ const offer=page.getByRole('button',{name:'지금은 그대로',exact:true});if(await offer.isVisible().catch(()=>false))await offer.click();
+ t=Date.now();
+ await page.getByRole('button',{name:/^1컷 배경 이미지 찾기/}).first().click();
+ await page.waitForTimeout(5000);
+ take(name+' 배경 고르기 창 열기',Date.now()-t);
+ const dlg=page.getByRole('dialog',{name:/이미지 선택/});
+ t=Date.now();
+ for(let i=0;i<6;i++){await dlg.locator('[class*=grid]').last().evaluate(n=>n.scrollIntoView({block:'end'}));await dlg.evaluate(n=>{const b=n.querySelector('[class*=body]');if(b)b.scrollTop=b.scrollHeight;});await page.waitForTimeout(800);}
+ take(name+' 배경 고르기 끝까지 내림',Date.now()-t);
+ await dlg.getByRole('button',{name:'취소',exact:true}).click();
+ t=Date.now();
+ await page.getByRole('button',{name:/인물 추가 이미지 찾기|왼쪽 인물 이미지 찾기|인물 1 이미지 찾기/}).first().click().catch(()=>{});
+ await page.waitForTimeout(5000);
+ take(name+' 인물 고르기 창 열기',Date.now()-t);
+ await ctx.close();
+}
+console.log(JSON.stringify(out,null,1));await browser.close();

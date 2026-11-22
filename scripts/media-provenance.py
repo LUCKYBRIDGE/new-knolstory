@@ -4,6 +4,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'packages/asset-registry/src/media-provenance.json'
 OVERRIDES=ROOT/'packages/asset-registry/src/media-provenance-overrides.json'
+# Build-generated card previews are bound to their source bytes by their own manifest
+# (scripts/build-image-previews.py) and inherit that source record in the delivery audit.
+PREVIEWS=ROOT/'apps/web/public/assets/previews'
 SPEC=importlib.util.spec_from_file_location('project_media_authorization',ROOT/'scripts/project-media-authorization.py')
 OWNER=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(OWNER)
 EXT={'.webp','.png','.jpg','.jpeg','.svg','.gif','.wav','.ogg','.mp3','.ttf','.woff','.woff2','.otf','.mp4','.webm'}
@@ -85,7 +88,7 @@ def inventory():
   for index,row in enumerate(json.loads(layered.read_text()).get('changedVisualCuts',[])):
    scan(row,'catalog:'+row['edition'],f'layered-stories-2026-11-02/audit.json.changedVisualCuts[{index}]')
  entries=[]
- for file in sorted(set(p for p in files if p.is_file() and p.suffix.lower() in EXT)):
+ for file in sorted(set(p for p in files if p.is_file() and p.suffix.lower() in EXT and not p.is_relative_to(PREVIEWS))):
   relative=file.relative_to(ROOT).as_posix();pub=relative.removeprefix('apps/web/public/');asset=by_path.get(pub);cue=scores.get(pub)
   record={'file':relative,'sha256':digest(file),'mediaType':'font' if file.suffix.lower() in {'.ttf','.woff','.woff2','.otf'} else 'audio' if file.suffix.lower() in {'.wav','.ogg','.mp3'} else 'video' if file.suffix.lower() in {'.mp4','.webm'} else 'image','assetIds':[],'provider':'unknown','source':'unknown','authorOrRightsHolder':'unknown','license':'unknown','commercialUse':'unverified','redistribution':'unverified','attribution':'unverified','generationPlan':'not-recorded','replacementRequiredBeforeCommercialRelease':'review-required','replacementAssetId':None}
   if asset:record.update(asset_provenance(asset))

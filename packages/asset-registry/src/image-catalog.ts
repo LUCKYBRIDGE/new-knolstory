@@ -1,10 +1,15 @@
 import catalog from './catalog.json';
 import backgroundSizes from './background-sizes.json';
 import characters from './characters.json';
+import previews from './image-previews.json';
 export type AssetGeometry = Readonly<{left:number; right:number; top:number; bottom:number; width:number; height:number}>;
 export type Asset = Readonly<{
   group: string; framing?: string; backgroundRole?: string; id: string; displayName: string; label: string; story: string; type: 'character'|'background';
-  src: string; runtimePath: string; revision: string; geometry: AssetGeometry | null;
+  /** Original image URL with its content version; stage, reading and print views use this. */
+  src: string;
+  /** Small build-generated WebP for picker, shelf and page-list cards. */
+  previewSrc: string;
+  runtimePath: string; revision: string; geometry: AssetGeometry | null;
   metadata: Readonly<Record<string, unknown>>;
 }>;
 function freezeTree<T>(value: T): T {
@@ -14,9 +19,15 @@ function freezeTree<T>(value: T): T {
   }
   return value;
 }
+export const IMAGE_PREVIEW_VERSION = previews.version;
+/** Version token for an original image URL: the source revision prefix the static host treats as immutable. */
+export function imageUrlVersion(revision: string): string { return revision.slice(0, previews.hashLength); }
+/** Preview files are named by the source revision, so each URL is immutable for its source bytes. */
+export function imagePreviewPath(revision: string): string { return `/${previews.directory}/${imageUrlVersion(revision)}.webp`; }
 /** Stable source IDs and measured geometry; versioned local derivatives retain original lineage. */
 export const ASSET_CATALOG: readonly Asset[] = freezeTree(catalog.map(asset => ({
   ...asset, type: asset.type as Asset['type'], runtimePath: asset.src.slice(1),
+  src: `${asset.src}?v=${imageUrlVersion(asset.revision)}`, previewSrc: imagePreviewPath(asset.revision),
   geometry: asset.geometry ? Object.freeze({...asset.geometry}) : null,
   metadata: Object.freeze({...asset.metadata}),
 })));

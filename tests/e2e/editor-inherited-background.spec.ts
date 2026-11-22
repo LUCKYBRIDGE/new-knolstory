@@ -2,9 +2,10 @@ import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport} from './authoring-file';
+import {catalogImage} from './catalog-image-url';
 const projectDefault='seonnyeo.background.BG01-valley-day',chapterDefault='seonnyeo.background.BG02-valley-storm';
-const catalog=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as {id:string;src:string}[];
-const source=(id:string)=>catalog.find(asset=>asset.id===id)!.src;
+// Picker launchers show the build-generated preview named by the source revision.
+const source=(id:string)=>catalogImage(id).previewSrc;
 const base=createBlankStoryProject({id:'inherited-background',chapterId:'a',lineId:'inherit',title:'기본 배경 확인'}),cut=base.lines[0]!,chapter=base.chapters[0]!;
 const fixture={...base,stageDefaults:{leftAssetId:'',rightAssetId:'',...base.stageDefaults,backgroundId:projectDefault},chapters:[{...chapter,backgroundId:chapterDefault},{...chapter,id:'b',order:2,chapterNumber:2,title:'작품 기본 배경'}],lines:[
  {...cut,text:'장의 배경을 이어받는 글',backgroundId:''},

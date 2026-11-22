@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
 import {openShortStoryDetails} from './shortstory-navigation';
+import {catalogImage} from './catalog-image-url';
 
 const shadowId='shortstory.background.creative-rabbit-wandering-shadow-v1';
 const mysteryIds=[
@@ -29,7 +30,7 @@ for(const width of [390,1440])test(`ShortStory mysterious scenes are searchable 
  await search.fill('그림자');
  const selected=picker.locator(`[data-asset-id="${shadowId}"]`);
  await expect(selected).toBeVisible();
- const imageSource=await selected.locator('img').getAttribute('src');
+ await expect(selected.locator('img')).toHaveAttribute('src',catalogImage(shadowId).previewSrc);const imageSource=catalogImage(shadowId).src;
  await selected.click();
  const text='나는 두 손을 내리고 있었는데, 그림자가 먼저 손을 흔들었다.';
  await writing.getByLabel('이 쪽의 이야기',{exact:true}).fill(text);

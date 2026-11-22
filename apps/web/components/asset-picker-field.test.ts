@@ -10,7 +10,7 @@ describe('inherited asset preview remains separate from authoring selection',()=
  it('shows the actual inherited image and name without converting default into a direct asset choice',()=>{
   const asset=resolveAsset(inherited)!;expect(asset).toBeDefined();const onChange=vi.fn();
   const html=render({inheritedPreviewId:inherited,onChange});
-  expect(html).toContain(`src="${asset.src}"`);expect(html).toContain(assetDisplayName(asset));
+  expect(html).toContain(`src="${asset.previewSrc}"`);expect(html).toContain(assetDisplayName(asset));
   expect(html).toContain('장의 기본 이미지');expect(html).toContain('data-asset-value=""');expect(html).toContain('data-asset-inherited="true"');
   expect(onChange).not.toHaveBeenCalled();
  });

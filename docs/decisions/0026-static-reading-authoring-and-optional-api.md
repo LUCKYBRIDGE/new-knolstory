@@ -59,3 +59,6 @@ Ren’Py iframe과 브리지는 현재 같은 출처 메시지·부모 접근 �
 - 연결 조건: 운영 API를 현재 main으로 함께 갱신한다. 2026-10-17 운영 API에는 휴지통 경로가 없고, 이후 추가된 편집 기능을 쓴 작품 28개를 업로드에서 거부한다(현재 코드로 읽히는 작품과 새 빈 작품 142개 중). 추가형 migration 007을 적용하기 전에 운영 DB를 백업한다.
 - 압축 전달(2026-10-31 사용자 승인): Cloudflare는 `application/octet-stream`을 압축하지 않고 Pages는 wasm을 약하게 압축한다. 그래서 실행 파일 빌드가 `renpy.data`·`renpy.wasm`의 brotli 사본을 만들고, Worker가 br을 받는 브라우저에 이 사본을 보낸다(15.1MB→3.7MB, 5.7MB→4.2MB 전송). 원본 바이트·같은 출처 경로·범위 요청은 그대로다. fail-open과 Pages 단독 주소는 원본을 보낸다.
 - 현재 상태(2026-10-31 19:42 연결): 사용자 승인 후 운영 DB를 백업하고 API·ingress를 main으로 갱신했다(migration 007 적용, 자료 수 변화 없음). 이어서 Worker를 배포하고 fail-open 경로를 붙였다. story.knolquiz.com의 파일 1534개와 핵심 해시 7개가 Pages 후보와 같고, `/api`와 카카오 시작 경로는 Mac mini가 응답한다. DNS·Tunnel은 바꾸지 않았다. 사람이 하는 카카오 로그인·업로드 확인은 남아 있다. [준비·갱신·연결 근거](../architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
+
+## 그림 미리보기와 긴 캐시 — 2026-11-22
+편집기·서재·그림책 목록은 빌드에서 만든 작은 미리보기를 쓰고, 원본 그림 주소에는 내용 버전(`?v=`)을 붙여 `/assets/*`에 1년 `immutable` 캐시를 준다. 버전 없는 주소를 쓰는 소리·방 꾸밈 그림 등은 떼어 둔다. `/runtime/*`는 바꾸지 않는다. 기준과 측정은 [그림 미리보기와 버전 캐시](../architecture/image-previews-and-caching.md)에 둔다.

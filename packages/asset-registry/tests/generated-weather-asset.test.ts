@@ -10,7 +10,7 @@ it('registers one character-free rainy evening cottage and makes it selectable b
  expect(asset!.metadata.background).not.toHaveProperty('season');
  for(const query of ['선녀 비 저녁','초가집 재회','인물 없음'])expect(matchesAssetSearch(asset!,query)).toBe(true);
  expect(isSelectableAsset(asset!)).toBe(true);expect(getBackgroundSize(id)).toEqual({width:1672,height:941});
- const bytes=readFileSync('apps/web/public'+asset!.src);expect(createHash('sha256').update(bytes).digest('hex')).toBe(asset!.revision);
+ const bytes=readFileSync('apps/web/public/'+asset!.runtimePath);expect(createHash('sha256').update(bytes).digest('hex')).toBe(asset!.revision);
  expect(ASSET_CATALOG.filter(a=>a.metadata.generatedWeatherAsset)).toHaveLength(1);
 });
 it('retains all 432 pre-weather rows outside the reviewed picker tags and transparency repairs',()=>{

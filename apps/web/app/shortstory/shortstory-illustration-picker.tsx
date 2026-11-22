@@ -5,6 +5,7 @@ import {useEffect, useRef, useState} from 'react';
 import dialogSurface from '../../components/story-dialog-surface.module.css';
 import {trapDialogTab} from '../../lib/dialog-keyboard';
 import styles from './shortstory.module.css';
+import {AssetPreviewImage} from '../../components/asset-preview-image';
 
 const illustrations = ASSET_CATALOG.filter(asset => asset.metadata.kind === 'scene-illustration' && isSelectableAsset(asset, true));
 const pageSize = 24;
@@ -78,7 +79,7 @@ export function ShortStoryIllustrationPicker({value, onSelect, onClose}: {
   <div className={styles.illustrationGrid}>
    {matches.slice(0, limit).map(asset => <button key={asset.id} data-asset-id={asset.id}
     aria-pressed={value === asset.id} onClick={() => onSelect(asset.id)}>
-    <img src={asset.src} alt="" loading="lazy"/><span>{creative&&series&&`${asset.metadata.sequenceOrder ?? 1}. `}{assetDisplayName(asset)}</span>{collection==='all'&&<small>{isCreative(asset)?'자유 창작':'작품 속 장면'}</small>}
+    <AssetPreviewImage asset={asset}/><span>{creative&&series&&`${asset.metadata.sequenceOrder ?? 1}. `}{assetDisplayName(asset)}</span>{collection==='all'&&<small>{isCreative(asset)?'자유 창작':'작품 속 장면'}</small>}
    </button>)}
   </div>
   {matches.length > limit && <button onClick={() => setLimit(limit + pageSize)}>삽화 더 보기</button>}

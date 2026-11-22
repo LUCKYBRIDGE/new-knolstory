@@ -7,6 +7,7 @@ export {changeChapterResource} from '../lib/chapter-resources';
 import type {StoryProject} from '@knolstory/story-domain';
 import {AssetPickerField} from './asset-picker-field';
 import styles from './story-chapter-resources.module.css';
+import {AssetPreviewImage} from './asset-preview-image';
 
 type Props={project:StoryProject;chapterId:string;onProjectChange:(project:StoryProject)=>void;charactersEnabled:boolean;disabled?:boolean;composing?:boolean};
 
@@ -18,7 +19,7 @@ function ResourceList({ids,type,onRemove}:{ids:readonly string[];type:ResourceTy
    const asset=resolveAsset(id),available=asset?.type===type;
    const name=available?assetDisplayName(asset):`이름 확인 필요 · 자료 ${index+1}`;
    return <li key={id} data-chapter-resource-id={id}>
-    {available&&<img src={asset.src} alt="" loading="lazy"/>}
+    {available&&<AssetPreviewImage asset={asset}/>}
     <span>{name}</span>
     <button type="button" onClick={()=>onRemove(id)} aria-label={`${name} 목록에서 제외`}>목록에서 제외</button>
    </li>;

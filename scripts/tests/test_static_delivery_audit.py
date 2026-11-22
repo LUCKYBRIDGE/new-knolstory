@@ -44,6 +44,38 @@ class StaticDeliveryAuditTests(unittest.TestCase):
         self.assertEqual(entry['usageReferences'], [{'work': 'fixture'}])
         self.assertEqual(entry['rightsStatus'], 'verified')
 
+    def preview_fixture(self, *, preview_bytes=b'small', manifest_sha=None, source_sha=None, write_preview=True):
+        source = self.write('assets/scene.webp', b'original-bytes')
+        revision = hashlib.sha256(source.read_bytes()).hexdigest()
+        name = MODULE.preview_path(revision)
+        if write_preview:
+            self.write(name, preview_bytes)
+        entry = {'preview': name, 'sha256': manifest_sha or hashlib.sha256(preview_bytes).hexdigest(),
+                 'source': 'assets/scene.webp', 'sourceSha256': source_sha or revision, 'assetIds': ['image:fixture']}
+        self.write(MODULE.PREVIEWS['manifest'], json.dumps({'settings': {'directory': MODULE.PREVIEWS['directory']}, 'entries': [entry]}).encode())
+        catalog = [{'id': 'image:fixture', 'src': '/assets/scene.webp', 'revision': revision}]
+        return name, catalog, [self.record('assets/scene.webp')]
+
+    def test_bound_preview_inherits_its_source_rights(self):
+        name, catalog, provenance = self.preview_fixture()
+        result = self.audit(catalog=catalog, provenance=provenance)
+        self.assertEqual(result['blockers'], [])
+        entry = next(item for item in result['files'] if item['path'] == name)
+        self.assertEqual(entry['rightsStatus'], 'verified')
+        self.assertEqual(entry['derivedPreviewOf'], 'assets/scene.webp')
+        self.assertEqual(entry['assetIds'], ['image:fixture'])
+
+    def test_missing_unbound_or_changed_previews_block_publication(self):
+        name, catalog, provenance = self.preview_fixture(write_preview=False)
+        self.assertIn(('missing-image-preview', name), {(item['reason'], item['path']) for item in self.audit(catalog=catalog, provenance=provenance)['blockers']})
+        name, catalog, provenance = self.preview_fixture(manifest_sha='0' * 64)
+        self.assertIn(('image-preview-hash-mismatch', name), {(item['reason'], item['path']) for item in self.audit(catalog=catalog, provenance=provenance)['blockers']})
+        name, catalog, provenance = self.preview_fixture(source_sha='1' * 64)
+        self.assertIn(('image-preview-source-mismatch', name), {(item['reason'], item['path']) for item in self.audit(catalog=catalog, provenance=provenance)['blockers']})
+        stray = self.write(MODULE.PREVIEWS['directory'] + '/' + 'f' * 16 + '.webp', b'stray')
+        reasons = {(item['reason'], item['path']) for item in self.audit(catalog=catalog, provenance=provenance)['blockers']}
+        self.assertIn(('unregistered-image-preview', stray.relative_to(self.root).as_posix()), reasons)
+
     def scene_approval(self, name):
         evidence = 'docs/scene-rights.json'
         proof = Path(self.temp.name) / 'repo' / evidence

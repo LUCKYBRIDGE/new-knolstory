@@ -7,6 +7,7 @@ import {importStoryStaging,undoStoryStagingImport,canUndoStoryStagingImport,type
 import {resolveAsset,assetDisplayName} from '@knolstory/asset-registry';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './story-staging-import.module.css';
+import {AssetPreviewImage} from './asset-preview-image';
 const undoByCut=new Map<string,StagingImportUndo>();
 type Props={project:StoryProject;line:StoryLine;ordered:readonly StoryLine[];onChange:(project:StoryProject)=>void};
 export function StoryStagingImport(p:Props){
@@ -36,7 +37,7 @@ function ImportDialog({project,line,ordered,onClose,onApply}:Props&{onClose:()=>
   <div className={styles.body}><p>적용할 컷: {cutLabel(project.chapters.find(item=>item.id===line.chapterId)!,line)} · {line.text||'빈 글'}</p>
    <label>원본 컷<select ref={select} aria-label="배치 원본 컷" value={sourceId} onChange={event=>setSourceId(event.target.value)}>{ordered.filter(item=>item.id!==line.id).map(item=><option key={item.id} value={item.id}>{cutLabel(project.chapters.find(ch=>ch.id===item.chapterId)!,item)} · {item.text.slice(0,40)||'빈 글'}</option>)}</select></label>
    <p className={styles.sourceText}>{source.speakerName||'해설'} · {source.text||'빈 글'}</p>
-   <div className={styles.assets}>{artIds.map((id,index)=>{const asset=resolveAsset(id);return <figure key={`${id}/${index}`}>{asset&&<img src={asset.src} alt=""/>}<figcaption>{asset?assetDisplayName(asset):'자료 확인 필요'}</figcaption></figure>;})}</div>
+   <div className={styles.assets}>{artIds.map((id,index)=>{const asset=resolveAsset(id);return <figure key={`${id}/${index}`}>{asset&&<AssetPreviewImage asset={asset} loading="eager"/>}<figcaption>{asset?assetDisplayName(asset):'자료 확인 필요'}</figcaption></figure>;})}</div>
    <p>배경: {backgroundId?(resolveAsset(backgroundId)?assetDisplayName(resolveAsset(backgroundId)!):'자료 확인 필요'):'그림 없음'} · 인물 {stage.leftActors.length+stage.rightActors.length}명</p>
    <fieldset><legend>가져올 항목</legend><label className={styles.check}><input type="checkbox" checked={background} onChange={event=>setBackground(event.target.checked)}/>배경 이미지 · 원본에 없으면 현재 배경도 없애요</label><label className={styles.check}><input type="checkbox" checked={actors} onChange={event=>setActors(event.target.checked)}/>인물과 위치·크기·방향 · 현재 인물 배치를 교체해요</label><label className={styles.check}><input type="checkbox" checked={motion} disabled={!actors} onChange={event=>setMotion(event.target.checked)}/>인물의 등장·퇴장·이동 동작도 함께 가져오기</label></fieldset>
    <p>현재 글·말하는 이름·선택지·소리·화면 효과·배경 구도는 유지돼요. 인물 대상 효과와 화자 연결은 바뀐 인물에서 확인하세요. 자료 그림은 원본 참고이며 실제 결과는 적용 후 같은 미리보기에서 확인해요.</p>{error&&<p role="alert">{error}</p>}

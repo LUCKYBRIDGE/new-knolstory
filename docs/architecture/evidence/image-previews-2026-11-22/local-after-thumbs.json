@@ -1,0 +1,36 @@
+[
+ {
+  "name": "desktop",
+  "kind": "배경",
+  "count": 74,
+  "sampleNatural": {
+   "nw": 512,
+   "nh": 288,
+   "cw": 137,
+   "ch": 120
+  },
+  "sampleShown": {
+   "w": 137,
+   "h": 120
+  },
+  "decodedMB": 42,
+  "neededMB": 5
+ },
+ {
+  "name": "phone",
+  "kind": "배경",
+  "count": 29,
+  "sampleNatural": {
+   "nw": 512,
+   "nh": 288,
+   "cw": 138,
+   "ch": 120
+  },
+  "sampleShown": {
+   "w": 138,
+   "h": 120
+  },
+  "decodedMB": 16,
+  "neededMB": 17
+ }
+]
