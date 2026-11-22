@@ -7,6 +7,10 @@ test('actual native reading retains menu focus and semantic advance at phone wid
  const wasmResponses:{path:string;status:number}[]=[];page.on('response',response=>{const path=new URL(response.url()).pathname;if(path.endsWith('.wasm'))wasmResponses.push({path,status:response.status()});});
  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await openBuiltinEdition(page,'seonnyeo','original','start');await beginSelectedBook(page);
+ const offer=page.getByRole('dialog',{name:'휴대폰 전체 화면 안내',exact:true});
+ await expect(offer.getByRole('button',{name:'지금은 그대로',exact:true})).toBeFocused();
+ await page.keyboard.press('Enter');
+ await expect(offer).toHaveCount(0);
  const state=page.getByTestId('story-runtime-status');
  await expect.poll(async()=>{const rendered=await state.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
  const stageBox=(await page.getByTestId('story-runtime-frame').boundingBox())!;
@@ -17,9 +21,16 @@ test('actual native reading retains menu focus and semantic advance at phone wid
  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}),text=mirror.locator('[aria-live="polite"]>p').last();
  const initial=await text.innerText();expect(initial.trim()).not.toBe('');
  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.focus();await trigger.press('Enter');
- const top=page.getByRole('group',{name:'읽기 메뉴',exact:true});await top.getByRole('button',{name:'읽기 설정',exact:true}).press('Enter');
+ const top=page.getByRole('group',{name:'읽기 메뉴',exact:true});
+ await expect(top.getByRole('button',{name:'계속 읽기',exact:true})).toBeFocused();
+ await top.getByRole('button',{name:'읽기 설정',exact:true}).press('Enter');
  const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await expect(dialog).toBeVisible();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
- await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect(top).toHaveCount(0);
+ await trigger.press('Enter');
+ // The close button is first inside the current menu. Leave from its final action.
+ await top.getByRole('button',{name:'서재로 돌아가기',exact:true}).focus();
+ await page.keyboard.press('Tab');
+ await expect(top).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'지난기록',exact:true})).toBeFocused();
  const next=mirror.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await expect(text).not.toHaveText(initial);
  await expect.poll(async()=>await state.getAttribute('data-rendered-revision')===await state.getAttribute('data-scene-revision'),{timeout:30000}).toBe(true);
  expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);expect(await authored()).toEqual(before);
