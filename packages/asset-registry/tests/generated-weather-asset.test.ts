@@ -1,6 +1,7 @@
 import {it,expect} from 'vitest';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
+import {stableCatalogDigest,withoutPickerTags} from './catalog-tag-projection';
 import {resolveAsset,ASSET_CATALOG,getBackgroundSize,matchesAssetSearch,isSelectableAsset} from '../src';
 const id='seonnyeo.background.cottage-rain-evening-v1';
 it('registers one character-free rainy evening cottage and makes it selectable by useful Korean terms',()=>{
@@ -12,8 +13,8 @@ it('registers one character-free rainy evening cottage and makes it selectable b
  const bytes=readFileSync('apps/web/public'+asset!.src);expect(createHash('sha256').update(bytes).digest('hex')).toBe(asset!.revision);
  expect(ASSET_CATALOG.filter(a=>a.metadata.generatedWeatherAsset)).toHaveLength(1);
 });
-it('retains the exact pre-weather432 rows after accounting for the two recorded transparency repairs',()=>{
- type Row={id:string;revision:string;metadata?:{generatedWeatherAsset?:boolean;generatedTransparencyRepair?:boolean;generatedExpressionAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}};
+it('retains all 432 pre-weather rows outside the reviewed picker tags and transparency repairs',()=>{
+ type Row={id:string;type:string;revision:string;metadata?:{generatedWeatherAsset?:boolean;generatedTransparencyRepair?:boolean;generatedExpressionAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}};
  type Repair={id:string;outputSha256:string;previousCatalogEntry:Row};
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as Row[];
  const receipt=JSON.parse(readFileSync('docs/architecture/evidence/transparency-repair-2026-11-11/generation.json','utf8')) as {assets:Repair[]};
@@ -25,8 +26,8 @@ it('retains the exact pre-weather432 rows after accounting for the two recorded 
   const repair=repairs.get(row.id);expect(repair).toBeDefined();expect(row.revision).toBe(repair!.outputSha256);
   return repair!.previousCatalogEntry;
  });
- // Keep the historical digest, rather than approving an unrelated replacement of the other rows.
- expect(createHash('sha256').update(JSON.stringify(historical)).digest('hex')).toBe('f5559656c2cad6ac43c4d031fba6bd9ebaeddf764f9872b1ef6b92080dd524d8');
+ // Baseline from 37ed62e9 with the original transparency entries and without the reviewed picker fields.
+ expect(stableCatalogDigest(historical)).toBe('d23453b7da16baf2a59ecef05540378216ae2b8d4e0d0e3abbdf63d59aab572c');
 });
 it('changes only reviewed image fields while preserving character identity and selection metadata',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
@@ -36,6 +37,6 @@ it('changes only reviewed image fields while preserving character identity and s
   const old=receipt.assets.find((value:{id:string})=>value.id===row.id).previousCatalogEntry;
   const identity=(value:Record<string,unknown>)=>Object.fromEntries(Object.entries(value).filter(([key])=>!imageFields.has(key)&&key!=='metadata'));
   const metadata=(value:Record<string,unknown>)=>Object.fromEntries(Object.entries(value).filter(([key])=>key!=='generatedTransparencyRepair'&&key!=='qualityReview'));
-  expect(identity(row)).toEqual(identity(old));expect(metadata(row.metadata)).toEqual(metadata(old.metadata));
+  expect(identity(row)).toEqual(identity(old));expect(metadata(withoutPickerTags(row).metadata!)).toEqual(metadata(withoutPickerTags(old).metadata!));
  }
 });

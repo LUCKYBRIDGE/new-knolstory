@@ -89,6 +89,17 @@ const SEARCH_ALIASES: Record<string, string[]> = {
   치료하기: ["치료", "제비 치료", "돌보는"], 나누기: ["나누는", "나눔"], 안기: ["안은", "안음", "안고"],
   걷기: ["걷는", "걸어가는", "걸음"], 달리기: ["달리는", "뛰는", "뛰어가는"],
   인사하기: ["인사", "고개 숙이기", "절하는"], 듣기: ["듣는", "경청"], 가리키기: ["가리키는", "손가락으로"],
+  타기: ["탑승", "올라타기", "등에 타기"], 뛰어내리기: ["뛰어 내리는", "뛰어내림"],
+  넘어지기: ["넘어지는", "넘어짐"], 미안함: ["미안한", "잘못을 뉘우치는"],
+  "보여 주기": ["들어 보이는", "내보이는"], 숨기: ["숨겨 주는", "숨어 있는"], 보호하기: ["감싸는", "지켜 주는"],
+  건네기: ["건네는", "내미는", "건네주는"],
+  "원작 장면": ["원작", "고전 이야기"], "놀스토리 각색": ["각색", "놀스토리 장면"], "자유 창작": ["창작", "새 이야기"],
+  맑음: ["맑은", "갬"], 흐림: ["흐린", "구름 낀", "흐릿한 하늘"], 안개: ["안개 낀", "자욱한"],
+  평온함: ["평온한", "고요한", "차분한"], 신비로움: ["신비한", "신비로운"],
+  긴장감: ["긴장된", "긴장되는"], 쓸쓸함: ["쓸쓸한", "적막한"], 활기: ["활기찬", "생기 있는"],
+  따뜻함: ["따뜻한", "포근한"], "눈이 쌓임": ["쌓인 눈", "눈 쌓인"], "비가 지나감": ["비가 그친", "비 온 뒤"],
+  "비어 있음": ["텅 빈", "비어 있는"], 어수선함: ["어수선한"], 반짝임: ["반짝이는", "빛나는"],
+  "물건이 널림": ["물건이 널려 있는", "흩어진 물건"],
 };
 const SEARCH_TERM_ALIASES: Record<string, string[]> = {
   안기: ["안은", "안음", "안고"], 안은: ["안기", "안음", "안고"], 안음: ["안기", "안은", "안고"],
@@ -137,6 +148,10 @@ export type AssetSearchOptions = AssetRankingContext & Readonly<{
   type: Asset['type']; allowSceneIllustrations?:boolean; search?: string; filters?: Partial<Record<FacetKey, readonly string[]>>;
   view?: 'all'|'chapter'|'favorites'|'recent'; sameCharacterAssetId?: string;
 }>;
+function matchesAssetConditions(asset: Asset, { filters, search }: Pick<AssetSearchOptions, 'filters'|'search'>): boolean {
+  return ASSET_FACETS.every(({ key }) => !filters?.[key]?.length || filters[key]!.some(value => facetValues(asset, key).includes(value)))
+    && matchesAssetSearch(asset, search);
+}
 export function searchAssets(options: AssetSearchOptions): Asset[] {
   const sameCharacter = resolveAsset(options.sameCharacterAssetId ?? '');
   const characterIds = sameCharacter ? assetCharacterIds(sameCharacter) : [];
@@ -146,8 +161,7 @@ export function searchAssets(options: AssetSearchOptions): Asset[] {
     if (options.view === 'favorites' && !options.favoriteIds?.includes(asset.id)) return false;
     if (options.view === 'recent' && !options.recentIds?.includes(asset.id)) return false;
     if (sameCharacter && !assetCharacterIds(asset).some(id => characterIds.includes(id))) return false;
-    return ASSET_FACETS.every(({ key }) => !options.filters?.[key]?.length || options.filters[key]!.some(value => facetValues(asset, key).includes(value)))
-      && matchesAssetSearch(asset, options.search);
+    return matchesAssetConditions(asset, options);
   });
   const current = resolveAsset(options.currentAssetId ?? '');
   // Retain a saved selection for inspection even when quality policy or active filters exclude it.
@@ -161,7 +175,7 @@ export function searchAssets(options: AssetSearchOptions): Asset[] {
  * suggestions too. The order of reasons is fixed and explained, not a hidden score over every picture.
  */
 export type AssetSuggestion = Readonly<{ asset: Asset; reason: string }>;
-export type AssetSuggestionContext = Readonly<{
+export type AssetSuggestionContext = Pick<AssetSearchOptions, 'filters'|'search'|'allowSceneIllustrations'> & Readonly<{
   picturebookIds?: readonly string[]; chapterAssetIds?: readonly string[]; currentAssetId?: string;
   recentIds?: readonly string[]; favoriteIds?: readonly string[];
 }>;
@@ -171,7 +185,10 @@ export function suggestAssets(found: readonly Asset[], context: AssetSuggestionC
   const current = resolveAsset(context.currentAssetId ?? '');
   const sameCharacter = current?.type === 'character' ? assetCharacterIds(current) : [];
   const allowed = new Map(found.map(asset => [asset.id, asset]));
-  // The saved picture shows only when it is what the picture-book page suggests: the student sees it fits.
+  // A saved picture outside the conditions stays in the list for inspection.
+  if (current && (!isSelectableAsset(current, context.allowSceneIllustrations) || !matchesAssetConditions(current, context))) {
+    allowed.delete(current.id);
+  }
   const skipCurrent = (id: string, reason: string) => id === context.currentAssetId && reason !== PICTUREBOOK_REASON;
   const picked: AssetSuggestion[] = [];
   const add = (ids: readonly string[], reason: string) => {
