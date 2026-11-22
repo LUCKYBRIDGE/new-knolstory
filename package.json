@@ -37,6 +37,7 @@
     "delivery:verify": "python3 scripts/verify-static-deployment.py",
     "test:e2e:static": "playwright test --config tests/static-delivery.playwright.config.ts",
     "test:client-proof": "node server/operations/test-client-proof.mjs",
+    "test:classroom:real": "node scripts/real-server-classroom-check.mjs",
     "test:e2e:registry": "node scripts/check-e2e-registration.mjs"
   },
   "devDependencies": {
