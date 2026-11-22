@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {confirmAuthoringImport} from './authoring-file';
 import {openWorkFileExchange} from './work-file-exchange';
 import {enterLibrary,startShelfCreation} from './library-entry';
+import {openShortStoryTools} from './shortstory-navigation';
 
 test.beforeEach(async({page})=>{page.setDefaultTimeout(10_000);});
 
@@ -52,6 +53,8 @@ test('ShortStory guide leaves edited page text untouched',async({page})=>{
  await page.goto('/shortstory');
  const body=page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true});
  await body.fill('숏스토리의 문구와 자유 배치는 그대로 둬요.');
+ // In the picture book the guide sits with the other 작품 도구, not in the header.
+ await openShortStoryTools(page);
  await checkGuide(page);
  await expect(body).toHaveValue('숏스토리의 문구와 자유 배치는 그대로 둬요.');
 });
@@ -60,7 +63,7 @@ test('current vocabulary distinguishes work files, browser recovery and optional
  await page.goto('/shortstory');
  const body=page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true});
  await body.fill('용어를 찾아보는 동안 이 원고를 보존해요.');
- await page.getByRole('button',{name:'편집 용어 안내',exact:true}).click();
+ await openShortStoryTools(page);await page.getByRole('button',{name:'편집 용어 안내',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'편집 용어 안내',exact:true});
  const search=dialog.getByRole('searchbox',{name:'용어 검색',exact:true});
  for(const term of ['쓰기','원고','배경 편집','인물 편집','음향 편집','연출 편집','함께 보기','작품 파일 저장','온라인 업로드','임시 보관','자동 저장','사본으로 열기','말하는 인물의 역할']){

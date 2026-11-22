@@ -249,3 +249,4 @@
 .writeTabs button:focus-visible{outline:3px solid var(--mint-strong);outline-offset:-3px}
 .pageTools[hidden]{display:none}
 @media(max-width:600px){.writeTabs{width:100%}.writeTabs button{flex:1}}
+.toolsHelp{display:flex;justify-content:flex-end}
