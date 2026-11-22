@@ -90,3 +90,6 @@ apps/web/public/assets/legacy-18da4fc
 apps/web/public/assets/legacy-ui
 apps/web/public/assets/characters/stature-v2
 /.tools
+
+# Build-generated catalogue previews (scripts/build-image-previews.py).
+apps/web/public/assets/previews/

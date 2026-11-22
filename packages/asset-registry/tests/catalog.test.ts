@@ -9,7 +9,7 @@ describe('baseline asset registry', () => {
     expect(ASSET_CATALOG.filter(a=>a.metadata.generatedWeatherAsset)).toHaveLength(1);
     for (const asset of ASSET_CATALOG) {
       expect(resolveAsset(asset.id)).toBe(asset);
-      const bytes = readFileSync(`apps/web/public${asset.src}`);
+      const bytes = readFileSync(`apps/web/public/${asset.runtimePath}`);
       expect(createHash('sha256').update(bytes).digest('hex')).toBe(asset.revision);
       if (asset.type === 'character') {
         expect(asset.geometry?.width).toBeGreaterThan(0);

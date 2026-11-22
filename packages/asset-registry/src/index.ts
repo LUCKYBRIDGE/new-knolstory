@@ -1,4 +1,4 @@
-export {ASSET_CATALOG,resolveAsset,STORY_CHARACTERS,LEGACY_ASSET_BASELINE,getBackgroundSize} from './image-catalog';
+export {ASSET_CATALOG,IMAGE_PREVIEW_VERSION,imagePreviewPath,imageUrlVersion,resolveAsset,STORY_CHARACTERS,LEGACY_ASSET_BASELINE,getBackgroundSize} from './image-catalog';
 export type {Asset,AssetGeometry} from './image-catalog';
 
 export { ASSET_SUGGESTION_LIMIT, suggestAssets, stableAssetOrder, ASSET_FACETS, assetCharacterIds, assetDisplayName, facetValues, facetLabel, matchesAssetSearch, isSelectableAsset, rankAssets, searchAssets } from './asset-query';
