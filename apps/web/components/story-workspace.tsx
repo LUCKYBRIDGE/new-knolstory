@@ -16,6 +16,10 @@ import {chapterArrangement} from '../lib/chapter-arrange';
 import {StoryImagePreparation} from './story-image-preparation';
 import {MobileFullscreenOffer} from './mobile-fullscreen-offer';
 import {StoryLoading} from './story-loading';
+import {StoryPortal} from './story-portal';
+import {StoryCreditsRoll} from './story-credits';
+import {buildStoryCredits} from '../lib/story-credits';
+import {resolveAsset} from '@knolstory/asset-registry';
 import {incomingStoryConnections} from '../lib/story-connection-labels';
 import {EditorFlowContext} from './editor-flow-context';
 import {StoryBranchEditingContext} from './story-branch-editing-context';
@@ -563,6 +567,12 @@ export function StoryWorkspace() {
     }catch(issue){setError(`지금 원고를 임시 보관하지 못해 컷 편집으로 돌아가지 않았어요. ${issueText(issue)}`);}
   }
   function continueWriting(){if(stopForUnappliedInput())return;try{persistWorkspace();}catch(issue){setError(`지금 글을 임시 보관하지 못해 돌아가기를 멈췄어요. ${issueText(issue)}`);return;}setView('editor');setRuntimeMounted(true);setMode('edit');setEditorView('cut');setWriterChapterId(null);setActiveTool('text');setRevision(v=>v+1);}
+  // Stepping into the story from its cover: the book opens where it stands and the first scene draws the reader in (story-portal).
+  const bookEdition=storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory";
+  const [portal,setPortal]=useState<{rect:{left:number;top:number;width:number;height:number}}|null>(null);
+  function openPortal(){const cover=document.querySelector('main[aria-label="책 표지와 소개"] [data-cover-face]');if(!cover)return;const box=cover.getBoundingClientRect();if(box.width<40)return;setPortal({rect:{left:box.left,top:box.top,width:box.width,height:box.height}});}
+  const endPortal=useCallback(()=>setPortal(null),[]);
+  function restartReading(){setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setPlayback(createPlayback(project));setRevision(v=>v+1);}
   function beginBook(resume:boolean,key=storyId,work=project){
     setReadingFromEditor(false);rememberEditorReading(null);setReaderResume(null);
     const state=resume?resumeFor(key,work):createPlayback(work);
@@ -1293,6 +1303,8 @@ export function StoryWorkspace() {
             {mode==='play'&&<div className={styles.readerContext} data-reader-context="true" style={{left:runtime.fit.offsetX+12,top:runtime.fit.offsetY+12,maxWidth:Math.max(1,scene.width*runtime.fit.scale-80)}}>{chapterLabel(chapter)}</div>}
             {(!runtime.ready||runtime.recoverable)&&<StoryLoading stage progress={runtime.loadProgress} recovery={runtime.recoverable?{message:runtime.status,onRetry:runtime.retry,onEdit:()=>switchMode('edit')}:undefined}/>}
             {runtime.ready&&mode==='play'&&<StoryImagePreparation pending={runtime.imagePending} error={runtime.imageError} onRetry={runtime.retryImages}/>}
+            {/* A book read from its cover ends like a film: credits roll over the last scene (not while an author previews from the editor). */}
+            {runtime.ready&&mode==='play'&&playback.status==='ended'&&!readingFromEditor&&<StoryCreditsRoll key={playbackRun} credits={buildStoryCredits(project)} ending={line.ending?.name?`결말 · ${line.ending.name}`:undefined} branching={hasBranches(project)} onRestart={restartReading} onLibrary={returnToLibrary}/>}
             {mode === "edit" && editingScreen === "characters" &&
               runtime.ready &&
               scene.actors.map((actor) => (
@@ -1344,7 +1356,7 @@ export function StoryWorkspace() {
               : ""}
           </div>
           {mode==='edit'&&activeTool==='cuts'&&(line.ending?.endsStory||line.flow?.type==='goto')&&<p className={styles.hint}>이 컷 뒤에 추가하면 지금의 엔딩·이동 설정이 새 컷으로 넘어가요. 다른 갈래는 선택지에서 새 장으로 연결하세요.</p>}
-          <StoryStageNavigation mode={mode} activeTool={activeTool} line={line} chapterCuts={chapterCuts} chapterCutIndex={chapterCutIndex} playback={playback} onAdd={addCut} onMove={direction=>editStructure(()=>moveStoryCut(project,line.id,direction))} onSelect={selectCut} onRepair={()=>editFromFlow(line.id,{kind:'missing-target'})} onRestart={()=>{setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setPlayback(createPlayback(project));setRevision(v=>v+1);}}/>
+          <StoryStageNavigation mode={mode} activeTool={activeTool} line={line} chapterCuts={chapterCuts} chapterCutIndex={chapterCutIndex} playback={playback} onAdd={addCut} onMove={direction=>editStructure(()=>moveStoryCut(project,line.id,direction))} onSelect={selectCut} onRepair={()=>editFromFlow(line.id,{kind:'missing-target'})} onRestart={restartReading}/>
           {!!project.scores?.length&&(mode==='play'||activeTool==='flow')&&<details className={`${styles.semantic} ${styles.scoreSummary}`}><summary>이야기 점수 확인</summary><p>{mode==='play'?'이번 읽기에서 선택한 결과로 계산해요.':'편집 중에는 시작 점수를 기준으로 보여줘요.'}</p>{project.scores.map(score=><p key={score.id}>{score.name}: <output aria-label={`${score.name} 현재 점수`}>{mode==='play'?playbackScores(project,playback)[score.id]:score.initial}</output></p>)}</details>}
           <StoryTextAccessibility sceneReady={runtime.rendered===scene.revision} nativeFrame={runtime.frame} onNativeBackTab={()=>runtime.container.current?.querySelector<HTMLButtonElement>('[data-reader-menu-trigger]')?.focus()} scene={scene} hasMoreText={!!runtime.renderEvidence?.dialoguePage&&runtime.renderEvidence.revision===scene.revision&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1} mode={mode} status={playback.status} presentationPending={runtime.presentationPending} readerBusy={readerBusy} onAdvance={advance} onBack={rewind} canGoBack={readerCanGoBack}/>
         </section>:null;
@@ -1368,7 +1380,8 @@ export function StoryWorkspace() {
     {view!=='editor'&&storageRecovery}
     {(!!storageError&&view!=='prepare'&&view!=='editor')&&<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>}
     {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={error}/>}
-    {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onMission={missionReturn&&onlineEnabled?()=>{if(beforeServiceNavigation())location.assign('/student');}:undefined} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
+    {view==='book'&&<BookStart edition={bookEdition} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>{openPortal();beginBook(false);}} onResume={()=>{openPortal();beginBook(true);}} onLibrary={returnToLibrary} onMission={missionReturn&&onlineEnabled?()=>{if(beforeServiceNavigation())location.assign('/student');}:undefined} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
+    {portal&&<StoryPortal project={project} edition={bookEdition} from={portal.rect} scene={(()=>{const id=line.backgroundMode==='none'?'':line.backgroundId||project.chapters.find(c=>c.id===line.chapterId)?.backgroundId||project.stageDefaults?.backgroundId||'';return id?resolveAsset(id)?.src:undefined;})()} ready={mode==='play'&&runtime.ready&&runtime.rendered===scene.revision&&!runtime.imagePending} onDone={endPortal}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
     {pendingBranch&&<StoryChoiceWritingDialog label={pendingBranch.label} sourceLabel={pendingBranch.sourceLabel} closesLinearTail={!!pendingBranch.closedLinearTailId} error={branchError} onCancel={()=>{setPendingBranch(null);setBranchError('');}} onCreate={startChoiceWriting}/>}
     {view==='library'&&<><PersonalLibrary recentWriting={recentWriting} deleted={deletedWork?{title:deletedWork.project.title}:undefined} onRestore={restorePersonalWork} onlineDisabled={composing} beforeAccountNavigation={beforeAccountNavigation} beforeServiceNavigation={beforeServiceNavigation} onSaveOnline={saveOnlinePersonalWork} onOpenOnline={openOnlinePersonalWork} onDuplicate={duplicatePersonalWork} onDelete={key=>{if(isPersonalWork(key))setPendingWorkDelete(key);}} onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');if(new URLSearchParams(location.search).get('view')==='library')history.replaceState(null,'',location.pathname);}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={error}/><div className={styles.libraryUtility}><PersonalLibraryTools pendingTitle={pendingWorkDelete?libraryWorks.find(work=>work.key===pendingWorkDelete)?.project.title:undefined} onCancel={()=>setPendingWorkDelete(null)} onConfirm={deletePersonalWork}/><p data-testid="library-save-status" data-save-attention={displayedSaveStatus!=='임시 보관됨'} role="status">{displayedSaveStatus}</p></div></>}

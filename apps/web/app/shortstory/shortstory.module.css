@@ -250,3 +250,7 @@
 .pageTools[hidden]{display:none}
 @media(max-width:600px){.writeTabs{width:100%}.writeTabs button{flex:1}}
 .toolsHelp{display:flex;justify-content:flex-end}
+/* Right after the cover opens, the first page settles in instead of appearing at once. */
+.reading[data-just-opened]{animation:pageSettle .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pageSettle{from{opacity:0;transform:translateY(6px) scale(.992)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.reading[data-just-opened]{animation:pageFade .2s linear both}@keyframes pageFade{from{opacity:0}to{opacity:1}}}

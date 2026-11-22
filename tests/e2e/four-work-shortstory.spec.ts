@@ -1,4 +1,4 @@
-import {openShortStoryDetails,openPageTools,openTextTools} from './shortstory-navigation';
+import {openShortStoryDetails,openPageTools,openTextTools,openBook} from './shortstory-navigation';
 import {confirmAuthoringImport} from './authoring-file';
 import { test,expect } from '@playwright/test';
 import { mkdir,readFile,writeFile } from 'node:fs/promises';
@@ -11,8 +11,10 @@ for(const work of works)test(`actual ${work} picture book read, isolated positio
  const original=getShortStoryOriginal(work);await page.goto(`/shortstory/?work=${work}&mode=read`);
  // Reading an original shows a book card, not read-only editing fields.
  const bookCard=page.getByRole('region',{name:'이 그림책',exact:true});
- await expect(bookCard.getByRole('heading',{name:original.title,exact:true})).toBeVisible();
+ // Reading starts at the closed book: its cover, title and introduction; ‘책 펼치기’ opens it.
+ await expect(bookCard.getByRole('heading',{name:original.title,exact:true})).toBeVisible();await expect(bookCard).toContainText(original.description);
  await expect(page.getByLabel('이야기 제목',{exact:true})).toBeHidden();
+ await openBook(page);
  const reading=page.getByRole('region',{name:'숏스토리 읽기'});
  for(const [i,chapter] of original.pages.entries()){
   await expect(reading).toContainText(chapter.text);const art=reading.getByRole('img',{name:`${i+1}쪽 삽화`,exact:true}).locator('img');await expect(art).toHaveCount(1);
@@ -21,7 +23,8 @@ for(const work of works)test(`actual ${work} picture book read, isolated positio
  }
  await page.reload();await expect(reading).toContainText(original.pages.at(-1)!.text);
  await mkdir(evidence,{recursive:true});await page.screenshot({path:`${evidence}/${work}-reader.png`,fullPage:true});
- await expect(bookCard).toContainText(original.description);
+ // The last page's ‘책 덮기’ closes the book and ends with ‘끝’.
+ await page.getByRole('button',{name:'책 덮기',exact:true}).click();await expect(page.getByRole('heading',{name:'끝',exact:true})).toBeVisible();
  await page.emulateMedia({media:'print'});await expect(page.locator('[data-shortstory-print] article')).toHaveCount(original.pages.length+2);
  const pdf=await page.pdf({format:'A4',preferCSSPageSize:true,printBackground:true,path:`${evidence}/${work}-a4.pdf`});
  const pageCount=[...pdf.toString('latin1').matchAll(/\/Type \/Page\b/g)].length;
@@ -43,11 +46,11 @@ test('original copy, three-face cover, multiple books, page operations, reload a
  await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('표지를 꾸민 토끼 그림책');
  const downloadEvent=page.waitForEvent('download');await openShortStoryDetails(page, '파일 교환·보관');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await downloadEvent,bytes=await readFile((await download.path())!);const exported=JSON.parse(bytes.toString()).project;expect(exported.cover.design).toBeTruthy();
  await openShortStoryDetails(page, '그림책 관리');await page.getByRole('button',{name:'새 그림책',exact:true}).click();await page.getByLabel('이야기 제목',{exact:true}).fill('두 번째 그림책');await page.getByLabel('이 쪽의 이야기').fill('다른 책의 글');
- await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'선녀와 나무꾼 · 원본 읽기',exact:true}).click();await page.getByRole('button',{name:'다음 쪽',exact:true}).click();await page.getByRole('button',{name:'다음 쪽',exact:true}).click();
+ await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'선녀와 나무꾼 · 원본 읽기',exact:true}).click();await openBook(page);await page.getByRole('button',{name:'다음 쪽',exact:true}).click();await page.getByRole('button',{name:'다음 쪽',exact:true}).click();
  await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'표지를 꾸민 토끼 그림책',exact:true}).click();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('내가 직접 고쳐 쓴 첫 쪽');await page.reload();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('표지를 꾸민 토끼 그림책');
- await openShortStoryDetails(page, '그림책 관리');await page.getByRole('button',{name:'이 그림책 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'별주부전 · 원본 읽기',exact:true}).click();await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'표지를 꾸민 토끼 그림책 복구',exact:true}).click();await page.reload();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('내가 직접 고쳐 쓴 첫 쪽');
- await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'선녀와 나무꾼 · 원본 읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(getShortStoryOriginal('seonnyeo').pages[2].text);
- await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'별주부전 · 원본 읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(getShortStoryOriginal('rabbit').pages[0].text);
+ await openShortStoryDetails(page, '그림책 관리');await page.getByRole('button',{name:'이 그림책 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'별주부전 · 원본 읽기',exact:true}).click();await openBook(page);await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'표지를 꾸민 토끼 그림책 복구',exact:true}).click();await page.reload();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('내가 직접 고쳐 쓴 첫 쪽');
+ await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'선녀와 나무꾼 · 원본 읽기',exact:true}).click();await openBook(page);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(getShortStoryOriginal('seonnyeo').pages[2].text);
+ await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'별주부전 · 원본 읽기',exact:true}).click();await openBook(page);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(getShortStoryOriginal('rabbit').pages[0].text);
  const other=await browser.newContext(),imported=await other.newPage();await imported.goto(new URL('/shortstory/',page.url()).href);await imported.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:'rabbit.shortstory',mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(imported);await expect(imported.getByLabel('이야기 제목',{exact:true})).toHaveValue(exported.title);
  await imported.getByRole('button',{name:'읽기',exact:true}).click();await expect(imported.getByRole('region',{name:'숏스토리 읽기'})).toContainText('내가 직접 고쳐 쓴 첫 쪽');await imported.reload();await expect(imported.getByLabel('이야기 제목',{exact:true})).toHaveValue(exported.title);
  const restored=await imported.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(restored).toEqual(exported);await other.close();
@@ -89,7 +92,7 @@ for(const work of works)test(`${work} personal picture book copy preserves its o
  const original=getShortStoryOriginal(work);await page.goto(`/shortstory/?work=${work}&mode=read`);await page.getByRole('button',{name:'내 사본으로 쓰기',exact:true}).click();const title=`${original.title} · 나의 그림책`;
  await page.getByLabel('이야기 제목',{exact:true}).fill(title);const text=`${original.pages[0].text}\n나의 새로운 첫 장면이에요.`;await page.getByLabel('이 쪽의 이야기').fill(text);await openShortStoryDetails(page, '파일 교환·보관');await page.getByRole('button',{name:'임시 보관',exact:true}).click();await page.reload();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue(text);
  const downloading=page.waitForEvent('download');await openShortStoryDetails(page, '파일 교환·보관');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=await downloading,bytes=await readFile((await saved.path())!),project=JSON.parse(bytes.toString()).project;expect(project.id).not.toBe(original.id);expect(project.pages.map((p:{text:string},i:number)=>i===0?original.pages[0].text:p.text)).toEqual(original.pages.map(p=>p.text));
- await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:`${original.title} · 원본 읽기`,exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(original.pages[0].text);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).not.toContainText('나의 새로운 첫 장면');
+ await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:`${original.title} · 원본 읽기`,exact:true}).click();await openBook(page);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(original.pages[0].text);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).not.toContainText('나의 새로운 첫 장면');
  const context=await browser.newContext(),restored=await context.newPage();await restored.goto(new URL('/shortstory/',page.url()).href);await restored.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:`${work}.shortstory`,mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(restored);await expect(restored.getByLabel('이야기 제목',{exact:true})).toHaveValue(title);await restored.getByRole('button',{name:'읽기',exact:true}).click();await expect(restored.getByRole('region',{name:'숏스토리 읽기'})).toContainText(text);await restored.reload();
  const loaded=await restored.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(loaded).toEqual(project);await context.close();await mkdir(evidence,{recursive:true});await writeFile(`${evidence}/${work}-copy.shortstory`,bytes);await writeFile(`${evidence}/${work}-copy-roundtrip.json`,JSON.stringify({sourceId:original.id,copyId:project.id,fullProjectMatchesAfterFreshContextAndReload:true,sourceReadingUnmodified:true,pages:project.pages.length},null,2));
 });
@@ -100,6 +103,7 @@ test('ShortStory keeps the current page in its copy and moves illustrated text t
  const otherOriginalIllustration = original.pages[0].backgroundId;
  const editedText = '토끼는 낯선 길에서 새로운 친구를 만났어요.';
  await page.goto('/shortstory/?work=rabbit&mode=read');
+ await openBook(page);
  await page.getByRole('button', {name: '다음 쪽', exact: true}).click();
  await expect(page.getByRole('region', {name: '숏스토리 읽기'})).toContainText(originalPage.text);
  await page.getByRole('button', {name: '내 사본으로 쓰기', exact: true}).click();
@@ -150,9 +154,9 @@ test('ShortStory keeps the current page in its copy and moves illustrated text t
  await expect.poll(() => movedArt.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
 
  const imageSrc = await movedArt.getAttribute('src');
- // Reading keeps only the book card; its A4 preview is right there.
+ // While reading, the A4 preview sits with the other 작품 도구 (and on the closing ‘끝’ page).
  await expect(page.getByRole('group', {name: '저장과 파일'})).toBeHidden();
- await page.getByRole('button', {name: 'A4 미리보기', exact: true}).click();
+ await openShortStoryDetails(page, '그림책 관리');await page.getByRole('button', {name: 'A4 미리보기', exact: true}).click();
  const print = page.getByRole('region', {name: 'A4 그림책 인쇄'});
  await expect(print).toBeVisible();
  await expect(print.getByRole('img', {name: '1쪽 삽화', exact: true}).locator('img')).toHaveAttribute('src', imageSrc!);
