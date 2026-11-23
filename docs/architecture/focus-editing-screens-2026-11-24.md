@@ -14,7 +14,7 @@
 새 세션은 이 절부터 읽는다. 진행할 때마다 이 절과 아래 ‘진행 기록’을 함께 갱신한다.
 
 - **상태**: 2단계 일부 끝·커밋함(bd0516ab·fed9297e·ce9a3b65). 코덱스 작업을 `feat/actor-offscreen-exit`(f076de5d, main 바탕)로 옮겨 이 브랜치에 병합함(2131218c). 병합 뒤 편집기 host e2e 146개·stories-runtime 9개(인물 상대 크기·조작 겹침) 통과. 메인 체크아웃의 코덱스 미커밋 파일은 그대로 두었다(옮긴 것과 같은 내용 — 정리는 사용자 확인 뒤).
-- **다음 할 일**: E6(폰 가로 편집 메뉴 두 열), R1(폰 가로 읽기 막대 3개 — 코덱스의 `story-player-menu.tsx` 변경이 합쳐져 이제 진행 가능), E2(폰 무대 띠), 7크기 재측정·전후 표. 사용자 요청: A2UI(구글 공개 사양)를 개발에 적용 — 적용 방향 확인 대기.
+- **다음 할 일**: E6(폰 가로 편집 메뉴 두 열), R1(폰 가로 읽기 막대 3개 — 코덱스의 `story-player-menu.tsx` 변경이 합쳐져 이제 진행 가능), E2(폰 무대 띠), 7크기 재측정·전후 표. A2UI는 ‘편집 화면 카탈로그’ 방향으로 적용함(아래 ‘A2UI 카탈로그’) — 다음은 실제 화면 코드를 설계도와 한 곳씩 맞추기.
 - **알려진 것**: stories-runtime `catalog-reading-paths`의 선녀와 나무꾼 긴 경로(340~412컷) 4개는 360초 제한을 넘는다. main 바탕 브랜치에서도 혼자 돌려 같은 지점(361/376)에서 넘으므로 이번 변경과 무관하다. 런타임은 `../new-knolstory-codex-port/apps/web/public/runtime`(코덱스 .rpy 포함 새 빌드)에 링크.
 - **바뀐 파일**
   - 앱: `apps/web/components/story-cut-context.tsx`(위 막대 장·컷 칸), `story-workspace.tsx`(화살표 자리 `cutStepsHost` → 편집 화면 `cutStepTarget`), `story-editing-workbench.tsx`(화살표 그리기, 중복 이동 제거, 현재 컷 글, 함께 보기 칩), `story-editing-workbench.module.css`·`story-workspace.module.css`·`editor-work-tabs.module.css`(각 파일 끝의 ‘Focus screens (2026-11-24)’ 블록), `workspace-management.tsx`·`story-player-menu.tsx`(+css)(닫기 ×).
@@ -48,6 +48,13 @@
 - **E4(태블릿 세로 쓰기)**: 맨 위 `이야기의 시작이에요.` 줄을 없애 무대가 한 줄만큼 커졌다(첫 컷이 아닐 때의 이전 컷 단추, 갈래가 끊긴 ‘이어지는 컷이 없어요’ 경고는 그대로). `+ 이 컷 뒤에 새 컷 넣기`는 다음 컷 옆에 단추 높이(44px)로, `+ 여기서 이야기 나누기`(또는 갈래·선택지 고치기)·`이야기 지도 보기`·`이 장의 컷 목록`·`메모·연결 요약`·`그림책 구상`은 `컷 더보기` 하나 안으로 옮겼다. 넓은 화면(나란히 배치)과 폰은 그대로.
 - **4px 간격**: `story-editing-workbench.module.css`·`editor-work-tabs.module.css`의 gap·padding·margin 값 2·3·5·6·7·9·10·11·14·15·18·22px를 4·8·12·16·24 단계로 맞췄다(78곳).
 - **코덱스 작업 옮기기**: 코덱스 작업은 main보다 221커밋 뒤에서 시작해 9개 파일이 충돌했다. 풀이 원칙: main의 말투(해요체)·새 구조를 지키고 코덱스가 더한 기능만 얹는다. `stage-view.ts`는 main의 ‘배치 검토(placementReview)를 거친 그림은 다시 줄이지 않는다’를 먼저 두고 그 뒤에 코덱스의 예전 그림 키 보정을 둔다. 코덱스의 인물 등록 검사 기준 목록은 11-12 기준이라, 그 뒤 main에 검토를 거쳐 들어온 40개(넓은 그림책 장면 포함)를 기준에 더해 ‘앞으로 새로 넣거나 바꾸는 그림’만 검사하게 했다.
+
+## A2UI 카탈로그 (2026-11-24)
+사용자 결정: A2UI(구글 공개 사양)를 개발에 적용하되, AI 기능이 아직 없으므로 **집중 편집 화면의 카탈로그**로 쓴다. 화면과 개발 에이전트가 이 카탈로그의 컴포넌트로만 UI를 짠다.
+- 조사: [google/A2UI](https://github.com/google/A2UI)(`a2ui-project/a2ui`로 옮겨 가는 중), v0.9 공개(2026-04, [소개](https://developers.googleblog.com/a2ui-v0-9-generative-ui/)), v1.0 후보. UI를 JSON 데이터(평평한 컴포넌트 목록 + id 참조 + 데이터 모델 JSON Pointer 연결)로 보내고, 클라이언트는 미리 정한 [카탈로그](https://a2ui.org/concepts/catalogs/)(컴포넌트마다 JSON Schema, `catalogId`, `instructions`)로만 그린다. 공식 React 렌더러 `@a2ui/react`(0.16, zod 필요)는 아직 0.x라 들이지 않고, 메시지·카탈로그 형식만 v0.9에 맞췄다 — 나중에 AI 기능이 생기면 같은 카탈로그를 그대로 넘길 수 있다.
+- 만든 것: `packages/ui`(`@knolstory/ui`) — 카탈로그 JSON(15개 컴포넌트), 메시지 적용·검사기 `surface.ts`, 여섯 화면 설계도 `screens/*.json`. `apps/web/components/a2ui/focus-surface.tsx` — 컴포넌트마다 렌더러 하나(4px·32–36px·44px 누르는 영역). 개발용 `/a2ui-catalog`(배포 빌드에서는 404). 절차는 [A2UI 카탈로그 스킬](../../.agents/skills/a2ui-focus-catalog/SKILL.md).
+- 규칙을 어떻게 막나: 자유 글 컴포넌트가 없다(문장은 `Notice` 빈 상태·오류·되돌릴 수 없는 일만). `ToolGroup` 4개까지, 간격 4·8·12·16·24만, 닫기는 아이콘, `CutCard`는 태블릿·컴퓨터만, `allowedParents`로 자리 고정. 스키마로 못 쓰는 것은 검사기가: 주 단추 하나, 같은 동작이 겹치는 기기에서 두 번(`one-way`), 작업 탭이 그 화면을 고름.
+- 한계: 설계도는 지금 화면의 뼈대와 대표 도구를 적은 것이고, 실제 편집 화면 코드는 아직 이 렌더러로 그리지 않는다. 다음 단계는 화면 하나(예: 배경)를 설계도와 맞추고 실제 화면의 조작 목록을 설계도와 비교하는 검사를 더하는 것.
 
 ## 1단계 결과 (2026-11-24)
 측정: 선녀와 나무꾼 놀스토리판 편집, 인물·음향·연출 편집을 켠 상태. 근거 `evidence/focus-editing-2026-11-24/{before,after}-audit.json`, 캡처(로컬, gitignore) `before/`·`after/`·`compare-*.png`.
