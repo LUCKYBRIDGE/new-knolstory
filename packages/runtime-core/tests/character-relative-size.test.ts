@@ -75,3 +75,75 @@ describe('default character stature shared by reading and editing',()=>{
   expect(stageReadableCharacterScale('unknown')).toBe(1);
  });
 });
+
+it('keeps reviewed stature across stories and expression changes on a shared floor', () => {
+ const ids = [
+  'heungbu.character.heungbu-default',
+  'seonnyeo.character.M02-neutral',
+  'creative.character.young-traveler',
+  'creative.character.village-girl',
+  'onggojib.character.child-pixel',
+  'onggojib.character.second-child-pixel',
+  'onggojib.character.youngest-child-pixel',
+  'heungbu.character.swallow',
+ ];
+ for (const viewport of viewports) for (const mode of ['edit', 'play'] as const) {
+  const heights = ids.map(id => paintedHeight(id, viewport, mode));
+  for (const height of heights.slice(1, 3)) {
+   expect(height / heights[0]).toBeGreaterThan(.93);
+   expect(height / heights[0]).toBeLessThan(1.07);
+  }
+  for (let index = 4; index < heights.length; index++) {
+   expect(heights[index]).toBeLessThan(heights[index - 1]);
+  }
+  expect(heights[3]).toBeLessThan(heights[0]);
+  expect(heights[7] / heights[0]).toBeGreaterThan(.25);
+  expect(heights[7] / heights[0]).toBeLessThan(.34);
+  const bottom = (id: string) => {
+   const rect = sceneFor(id, viewport, mode).actors[0].rect;
+   return rect.y + rect.height * resolveAsset(id)!.geometry!.bottom;
+  };
+  for (const id of ids.slice(1)) expect(bottom(id)).toBeCloseTo(bottom(ids[0]), 6);
+  for (const [baseline, expression] of [
+   ['onggojib.character.magistrate-pixel', 'onggojib.character.emotion-magistrate-sorrow-v3'],
+   ['onggojib.character.stranger-hidden-pixel', 'onggojib.character.emotion-stranger-anger-v3'],
+  ]) {
+   expect(paintedHeight(expression, viewport, mode) / paintedHeight(baseline, viewport, mode))
+    .toBeLessThan(1.06);
+  }
+ }
+});
+
+it('retains cross-story proportions when characters share one crowded stage', () => {
+ const ids = {
+  adult: 'seonnyeo.character.M02-neutral',
+  traveler: 'creative.character.young-traveler',
+  child: 'onggojib.character.emotion-youngest-child-joy-v3',
+  bird: 'heungbu.character.emotion-swallow-mirth-v3',
+ };
+ const base = createBlankStoryProject({id:'mixed',chapterId:'ch',lineId:'cut'});
+ const project = patchStoryLine(base,'cut',{
+  type:'dialogue',speaker:'left',speakerName:'나무꾼',text:'네 작품에서 온 인물들이 만났어요.',
+  stageComposition:{
+   leftActors:[{key:'adult',assetId:ids.adult},{key:'traveler',assetId:ids.traveler}],
+   rightActors:[{key:'child',assetId:ids.child},{key:'bird',assetId:ids.bird}],
+  },
+ });
+ for (const mode of ['edit','play'] as const) {
+  const scene = compileStoryScene(project,'cut',1,{mode,viewport:viewports[0]});
+  const metrics = scene.actors.map(actor => {
+   const id = ids[actor.id as keyof typeof ids];
+   const geometry = resolveAsset(id)!.geometry!;
+   return {
+    height:actor.rect.height * fraction(id),
+    floor:actor.rect.y + actor.rect.height * geometry.bottom,
+   };
+  });
+  expect(metrics).toHaveLength(4);
+  expect(metrics[1].height / metrics[0].height).toBeCloseTo(.89 * fraction(ids.traveler) / fraction(ids.adult), 5);
+  expect(metrics[2].height).toBeLessThan(metrics[0].height * .75);
+  expect(metrics[3].height).toBeLessThan(metrics[2].height);
+  expect(metrics[3].height / metrics[0].height).toBeGreaterThan(.25);
+  for (const actor of metrics.slice(1)) expect(actor.floor).toBeCloseTo(metrics[0].floor, 6);
+ }
+});

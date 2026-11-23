@@ -1,4 +1,4 @@
-import {createStoryDocument,parseStoryDocument,type StoryLine,type StoryProject} from '@knolstory/story-domain';
+import {createStoryDocument,parseStoryDocument,withoutActorExits,type StoryLine,type StoryProject} from '@knolstory/story-domain';
 import {cutRangeEndReferences} from './cut-range-references';
 import {relocateChoiceConditions} from './relocate-choice-conditions';
 
@@ -29,7 +29,8 @@ export function splitStoryCut(project:StoryProject,lineId:string,newId:string,po
  const boundary=Number.isInteger(position)&&position>0&&position<source.text.length&&
   [...new Intl.Segmenter('ko',{granularity:'grapheme'}).segment(source.text)].some(segment=>segment.index===position);
  if(!boundary)throw new Error('글 안에서 나눌 위치를 골라 주세요. 한 글자나 이모지 중간에서는 나눌 수 없어요.');
- const first={...source,text:source.text.slice(0,position),flow:undefined,ending:undefined};
+ const first={...source,text:source.text.slice(0,position),flow:undefined,ending:undefined,
+  ...(source.stageComposition ? {stageComposition:withoutActorExits(source.stageComposition)} : {})};
  const second={...structuredClone(source),id:newId,text:source.text.slice(position)};
  return replaceCuts(project,source.chapterId,ordered(project,source.chapterId).flatMap(line=>line.id===lineId?[first,second]:[line]),{source,to:newId});
 }

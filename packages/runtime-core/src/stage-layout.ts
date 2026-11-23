@@ -5,7 +5,7 @@ type Placed = LayoutActor & Readonly<{height:number; width:number; alphaLeft:num
 const clamp = (v:number, low:number, high:number) => Math.max(low, Math.min(high, v));
 const resize = (a:Placed, f:number):Placed => ({...a,width:a.width*f,height:a.height*f,visibleWidth:a.visibleWidth*f,effectiveScale:a.effectiveScale*f});
 const atCenter = (a:Placed, center:number):Placed => ({...a,x:center-a.width*(a.alphaLeft+a.alphaRight)/2});
-export function resolveStageLayout(width:number, baseHeight:number, actors:readonly LayoutActor[], contentWidth?:number, maxVisibleHeight=Infinity, cropSides=false) {
+export function resolveStageLayout(width:number, baseHeight:number, actors:readonly LayoutActor[], contentWidth?:number, maxVisibleHeight=Infinity, portrait=false) {
   if (!Number.isFinite(width) || width<=0 || !Number.isFinite(baseHeight) || baseHeight<0 || actors.length>4 || new Set(actors.map(a=>a.key)).size!==actors.length ||
       (contentWidth!==undefined && (!Number.isFinite(contentWidth)||contentWidth<0)) || maxVisibleHeight<=0 || Number.isNaN(maxVisibleHeight) ||
       actors.some(a => !Number.isFinite(a.scale)||a.scale<0 || (a.xAnchor!==undefined&&!Number.isFinite(a.xAnchor)) ||
@@ -17,7 +17,7 @@ export function resolveStageLayout(width:number, baseHeight:number, actors:reado
   const safeLeft=contentLeft+inset, safeRight=width-contentLeft-inset, safeWidth=Math.max(1,safeRight-safeLeft);
   const maxGap=24,maxOverlap=.25;
   const fit=(actor:Placed):Placed => {
-    const a=!cropSides&&actor.visibleWidth>safeWidth?resize(actor,safeWidth/actor.visibleWidth):actor;
+    const a=actor.visibleWidth>safeWidth?resize(actor,safeWidth/actor.visibleWidth):actor;
     const minX=a.width<=width?Math.max(0,safeLeft-a.width*a.alphaLeft):safeLeft-a.width*a.alphaLeft;
     const maxX=a.width<=width?Math.min(width-a.width,safeRight-a.width*a.alphaRight):safeRight-a.width*a.alphaRight;
     return {...a,x:clamp(a.x,minX,Math.max(minX,maxX))};
@@ -44,7 +44,7 @@ export function resolveStageLayout(width:number, baseHeight:number, actors:reado
   const automaticFactor=allAutomatic?Math.min(1,...(['left','right'] as const).map(side=>{
     const group=unscaled.filter(a=>a.side===side);
     if(group.length===2)return pairSpace(side,group).factor;
-    return !cropSides&&group.length===1&&group[0].visibleWidth>safeWidth?safeWidth/group[0].visibleWidth:1;
+    return !portrait&&group.length===1&&group[0].visibleWidth>safeWidth?safeWidth/group[0].visibleWidth:1;
   })):1;
   const initial=automaticFactor<1?unscaled.map(a=>resize(a,automaticFactor)):unscaled;
   const sideGroup=(side:'left'|'right'):readonly Placed[]=>{
@@ -56,10 +56,11 @@ export function resolveStageLayout(width:number, baseHeight:number, actors:reado
       return [atCenter(aa,start+aa.visibleWidth/2),atCenter(bb,start+aa.visibleWidth+scaledGap+bb.visibleWidth/2)];
     }
     const fitted=group.map(actor=>{
-      const a=!cropSides&&actor.visibleWidth>safeWidth?resize(actor,safeWidth/actor.visibleWidth):actor;
+      const a=actor.visibleWidth>safeWidth?resize(actor,safeWidth/actor.visibleWidth):actor;
       // Only unpositioned side actors move outward; authored anchors and shared centering retain their meaning.
-      const positioned=a.xAnchor!==undefined?{...a,x:width*a.xAnchor/100-a.width/2}:atCenter(a,contentLeft+railWidth*(a.centered?.5:side==='left'?(cropSides?.23:.14):(cropSides?.77:.86)));
-      return cropSides ? positioned : fit(positioned);
+      const positioned=a.xAnchor!==undefined?{...a,x:width*a.xAnchor/100-a.width/2}:atCenter(a,contentLeft+railWidth*(a.centered?.5:side==='left'?(portrait?.23:.14):(portrait?.77:.86)));
+      // Portrait focuses one actor: center the visible figure, allowing transparent padding outside.
+      return portrait && a.centered && a.xAnchor===undefined ? positioned : fit(positioned);
     });
     const automatic=fitted.find(a=>a.xAnchor===undefined),manual=fitted.find(a=>a.xAnchor!==undefined);
     if(fitted.length!==2||!automatic||!manual||automatic.centered)return fitted;

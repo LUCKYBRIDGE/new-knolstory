@@ -419,7 +419,7 @@ init python:
         if not renpy.emscripten:
             return
         if not knol_ready:
-            knol_emit({"protocol": 1, "type": "ready", "runtimeVersion": "8.5.3", "contractVersion": 1, "imagePreparationVersion": 1})
+            knol_emit({"protocol": 1, "type": "ready", "runtimeVersion": "8.5.3", "contractVersion": 1, "imagePreparationVersion": 1, "actorExitVersion": 1})
             knol_ready = True
         viewport = knol_viewport()
         if viewport != knol_last_viewport:
@@ -637,7 +637,11 @@ screen knol_stage():
                                 for target_actor in knol_scene["actors"]:
                                     if target_actor["id"] == target.get("actorId"):
                                         $ target_rect = target_actor["rect"]
-                                        add knol_actor_effect(effect, target_actor, knol_scene) xpos int(target_rect["x"]) ypos int(target_rect["y"]) id ("effect-" + str(effect))
+                                        add knol_actor_effect(effect, target_actor, knol_scene):
+                                            xpos int(target_rect["x"])
+                                            ypos int(target_rect["y"])
+                                            at knol_actor_motion_atl(target_actor, knol_scene), knol_actor_shake_transform(target_actor, knol_scene)
+                                            id ("effect-" + str(effect))
         # Native stage input stays below dialogue controls, choices and audio/transition gates.
         button:
             id "stage-tap-input"

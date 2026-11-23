@@ -48,6 +48,7 @@ export function useStoryRuntime(
   // Optional download progress before `ready`; a runtime that never reports it simply shows none.
   const [loadProgress, setLoadProgress] = useState<LoadProgress | null>(null);
   const readySeen = useRef(false);
+  const actorExitSupported = useRef(false);
   const [rendered, setRendered] = useState(-1);
   const [renderEvidence,setRenderEvidence]=useState<Extract<RuntimeEvent,{type:"sceneRendered"}>|null>(null);
   const [runtimeStatus, updateStatus] = useReducer(runtimeStatusReducer, initialRuntimeStatus);
@@ -104,6 +105,7 @@ export function useStoryRuntime(
       }
       if (event.type === "ready") {
         setImageSupported(event.imagePreparationVersion===1);
+        actorExitSupported.current=event.actorExitVersion===1;
         confirmedServicePaths.current=new Set();
         readySeen.current = true;
         setLoadProgress(null);
@@ -211,7 +213,9 @@ export function useStoryRuntime(
           seq: seq.current,
           revision: current.revision,
           type: "loadScene",
-          payload: current, audioResources, serviceAudioResources,
+          payload: actorExitSupported.current ? current : {...current,actors:current.actors.map(actor =>
+            actor.motion?.type === 'exit' ? {...actor,motion:undefined} : actor)},
+          audioResources, serviceAudioResources,
         },
         location.origin,
       );
@@ -247,6 +251,7 @@ export function useStoryRuntime(
     if(sendTimer.current!==null)window.clearTimeout(sendTimer.current);
     sendTimer.current=null;
     readySeen.current=false;
+    actorExitSupported.current=false;
     confirmedResources.current.clear();pendingResources.current.clear();
     confirmedServicePaths.current=new Set();pendingServicePaths.current.clear();
     serviceDelivery.current?.clear();

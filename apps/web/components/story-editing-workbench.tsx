@@ -5,9 +5,9 @@ import {usePhoneEditor} from './use-phone-editor';
 import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type ReactNode} from 'react';
 import {assetDisplayName,resolveAsset} from '@knolstory/asset-registry';
 import {activeStageSpeaker,chapterLabel,chaptersForDisplay,resolveStageComposition,presentationLabel,type StoryProject,type StoryLine,type StageComposition,type StageActorEntry} from '@knolstory/story-domain';
-import {actorMotionChoice} from '../lib/actor-motion-choice';
+import {ACTOR_MOTION_OPTIONS,actorMotionChoice} from '../lib/actor-motion-choice';
 import {buildEditorRangeSummaries} from '../lib/editor-range-summaries';
-import {patchStoryLine} from '@knolstory/runtime-core';
+import {patchStoryLine,resetActorPlacement,compileStoryScene} from '@knolstory/runtime-core';
 import {hasBranches,storyPaths} from '../lib/story-path';
 import {splitChapterAudioRange} from '../lib/chapter-audio-split';
 import {editCombinedRange,undoCombinedRange,type CombinedRangeUndo} from '../lib/combined-range-edit';
@@ -179,7 +179,7 @@ export function StoryEditingWorkbench(p:Props){
  const primary=(line:StoryLine,index:number)=>{
   if(screen==='text')return textEditor(line,index);
   if(screen==='background')return backgroundEditor(line,index);
-  if(screen==='characters')return <><CharacterEditors stage={stageFor(line)} index={index} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.characterAssetIds} onChange={stageComposition=>patch(line,{stageComposition})}/><StoryStagingImport project={p.project} line={line} ordered={[...p.project.lines].sort((a,b)=>(p.project.chapters.find(c=>c.id===a.chapterId)?.order??0)-(p.project.chapters.find(c=>c.id===b.chapterId)?.order??0)||a.order-b.order)} onChange={changeProject}/></>;
+  if(screen==='characters')return <><CharacterEditors project={p.project} line={line} stage={stageFor(line)} index={index} onReset={key=>changeProject(resetActorPlacement(p.project,line.id,key))} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.characterAssetIds} onChange={stageComposition=>patch(line,{stageComposition})}/><StoryStagingImport project={p.project} line={line} ordered={[...p.project.lines].sort((a,b)=>(p.project.chapters.find(c=>c.id===a.chapterId)?.order??0)-(p.project.chapters.find(c=>c.id===b.chapterId)?.order??0)||a.order-b.order)} onChange={changeProject}/></>;
   if(screen==='audio')return <><p className={styles.rangeSummary}>{audioSummary(line)}</p><details key={`${p.project.id}/audio/${line.id}`} onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`${p.project.id}/audio/${line.id}`]:open}));}}><summary>{index+1}컷 음향 수정</summary>{expanded[`${p.project.id}/audio/${line.id}`]&&<StoryAudioControls value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>}</details></>;
   return <><p className={styles.rangeSummary}>{directionSummary(line)}</p><details key={`${p.project.id}/direction/${line.id}`} onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`${p.project.id}/direction/${line.id}`]:open}));}}><summary>{index+1}컷 연출 수정</summary>{expanded[`${p.project.id}/direction/${line.id}`]&&<><StoryDirectionPanel project={p.project} line={line} stage={stageFor(line)} onChange={presentation=>patch(line,{presentation})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview} onMotion={()=>{const stage=stageFor(line);if(stage.leftActors.length+stage.rightActors.length){const details=document.querySelector<HTMLDetailsElement>(`[data-testid="editing-cut-${CSS.escape(line.id)}"] details[data-actor-motion]`);if(details){details.open=true;requestAnimationFrame(()=>details.querySelector<HTMLElement>('select,input')?.focus());}return;}if(!enabled.characters)p.onPreferencesChange(prefs=>({...prefs,enabled:{...prefs.enabled,characters:true}}));p.onScreenChange('characters');}}/><details data-actor-motion><summary>인물 동작 수정</summary><ActorMotionEditors stage={stageFor(line)} index={index} onChange={stageComposition=>patch(line,{stageComposition})}/></details></>}</details></>;
  };
@@ -281,8 +281,39 @@ function BackgroundDisplayControls({line,index,onChange}:{line:StoryLine;index:n
   <small>작은 자료 이미지는 바뀌지 않아요. 표시 결과는 ‘이 컷부터 재생’으로 확인하세요.</small>
  </details>;
 }
-function CharacterEditors({stage,index,onChange,chapterAssetIds}:{stage:StageComposition;index:number;onChange:(stage:StageComposition)=>void;chapterAssetIds?:readonly string[]}){
+function heavilyOverlappedActors(preview:ReturnType<typeof compileStoryScene>,stage:StageComposition){
+ const assetsByActor = new Map([...stage.leftActors,...stage.rightActors].map(actor=>[actor.key,actor.assetId]));
+ // Ren'Py draws from low to high depth and preserves actor order at equal depth.
+ const bounds = [...preview.actors].sort((a,b)=>(a.depth??0)-(b.depth??0)).flatMap(actor=>{
+  const assetId=assetsByActor.get(actor.id);
+  const geometry=assetId?resolveAsset(assetId)?.geometry:undefined;
+  if(!geometry)return [];
+  const {x,y,width,height}=actor.rect;
+  return [{
+   id:actor.id,
+   left:x+width*(actor.flipX?1-geometry.right:geometry.left),
+   right:x+width*(actor.flipX?1-geometry.left:geometry.right),
+   top:y+height*geometry.top,
+   bottom:y+height*geometry.bottom,
+   opacity:actor.opacity??1,
+  }];
+ });
+ return new Set(bounds.filter((back,index)=>{
+  if(back.opacity===0)return false;
+  const area=(back.right-back.left)*(back.bottom-back.top);
+  return area>0&&bounds.slice(index+1).some(front=>{
+   const width=Math.min(back.right,front.right)-Math.max(back.left,front.left);
+   const height=Math.min(back.bottom,front.bottom)-Math.max(back.top,front.top);
+   return width>0&&height>0&&width*height*front.opacity>=area*.65;
+  });
+ }).map(actor=>actor.id));
+}
+
+function CharacterEditors({project,line,stage,index,onChange,onReset,chapterAssetIds}:{project:StoryProject;line:StoryLine;stage:StageComposition;index:number;onReset:(key:string)=>void;onChange:(stage:StageComposition)=>void;chapterAssetIds?:readonly string[]}){
  const actors=[...stage.leftActors,...stage.rightActors];
+ const preview=useMemo(()=>compileStoryScene(project,line.id,0,{mode:'edit',viewport:{width:1280,height:720}}),[project,line.id]);
+ const overlapped=heavilyOverlappedActors(preview,stage);
+ const speakerKey=activeStageSpeaker(stage,line);
  const update=(key:string,value:Partial<StageActorEntry>)=>onChange({...stage,leftActors:stage.leftActors.map(a=>a.key===key?{...a,...value}:a),rightActors:stage.rightActors.map(a=>a.key===key?{...a,...value}:a)});
  const move=(actor:StageActorEntry,position:'left'|'center'|'right')=>{
   const origin=stage.leftActors.some(a=>a.key===actor.key)?'leftActors':'rightActors';
@@ -290,23 +321,25 @@ function CharacterEditors({stage,index,onChange,chapterAssetIds}:{stage:StageCom
   if(target!==origin&&stage[target].length>=2)return;
   const nextActor={...actor,position:position==='center'?'center' as const:undefined,positionOrder:position==='center'?actor.positionOrder??1:undefined,xAnchor:undefined};
   if(target===origin){update(actor.key,nextActor);return;}
-  onChange({...stage,leftActors:stage.leftActors.filter(a=>a.key!==actor.key).concat(target==='leftActors'?[nextActor]:[]),rightActors:stage.rightActors.filter(a=>a.key!==actor.key).concat(target==='rightActors'?[nextActor]:[])});
+  onChange({...stage,speakerActorKey:speakerKey??stage.speakerActorKey,leftActors:stage.leftActors.filter(a=>a.key!==actor.key).concat(target==='leftActors'?[nextActor]:[]),rightActors:stage.rightActors.filter(a=>a.key!==actor.key).concat(target==='rightActors'?[nextActor]:[])});
  };
  const remove=(key:string)=>onChange({...stage,leftActors:stage.leftActors.filter(a=>a.key!==key),rightActors:stage.rightActors.filter(a=>a.key!==key),speakerActorKey:stage.speakerActorKey===key?undefined:stage.speakerActorKey,speakerActorKeys:stage.speakerActorKeys?.filter(id=>id!==key)});
- const add=(assetId:string)=>{const side=stage.leftActors.length<2?'leftActors':'rightActors';if(stage[side].length>=2)return;onChange({...stage,[side]:[...stage[side],{key:`actor-${crypto.randomUUID()}`,assetId}]});};
+ const add=(assetId:string)=>{const side=stage.leftActors.length<=stage.rightActors.length?'leftActors':'rightActors';if(stage[side].length>=2)return;onChange({...stage,[side]:[...stage[side],{key:`actor-${crypto.randomUUID()}`,assetId}]});};
  return <div className={styles.characters}>{actors.map((actor,i)=>{
-  const x=actor.xAnchor??(actor.position==='center'?50:stage.leftActors.some(a=>a.key===actor.key)?25:75);
+  const rendered=preview.actors.find(item=>item.id===actor.key);
+  const x=actor.xAnchor??(rendered?(rendered.rect.x+rendered.rect.width/2)/preview.width*100:50);
   const scale=Math.round((actor.scaleMultiplier??1)*100);
   return <section key={actor.key}>
   <strong>{actor.position==='center'?'중앙':stage.leftActors.some(a=>a.key===actor.key)?'왼쪽':'오른쪽'} 인물 {i+1}</strong><AssetPickerField label={`${index+1}컷 인물 ${i+1}`} type="character" value={actor.assetId} chapterAssetIds={chapterAssetIds} onChange={assetId=>update(actor.key,{assetId})}/>
-  <label>가로 위치 · {x}%<input aria-label={`${index+1}컷 인물 ${i+1} 가로 위치`} type="range" min="5" max="95" value={x} onChange={e=>update(actor.key,{xAnchor:Number(e.target.value)})}/></label>
+  {overlapped.has(actor.key)&&<div role="status" className={styles.actorOverlap}>다른 인물과 많이 겹쳐요.</div>}
+  <label>가로 위치 · {actor.xAnchor===undefined?'자동':`${Math.round(x)}%`}<input aria-label={`${index+1}컷 인물 ${i+1} 가로 위치`} type="range" min="5" max="95" value={x} onChange={e=>update(actor.key,{xAnchor:Number(e.target.value)})}/></label>
   <label>배치 위치<select aria-label={`${index+1}컷 인물 ${i+1} 배치 위치`} value={actor.position==='center'?'center':stage.leftActors.some(a=>a.key===actor.key)?'left':'right'} onChange={e=>move(actor,e.target.value as 'left'|'center'|'right')}><option value="left" disabled={!stage.leftActors.some(a=>a.key===actor.key)&&stage.leftActors.length>=2}>왼쪽</option><option value="center">중앙</option><option value="right" disabled={!stage.rightActors.some(a=>a.key===actor.key)&&stage.rightActors.length>=2}>오른쪽</option></select></label>
   <label>방향<select aria-label={`${index+1}컷 인물 ${i+1} 방향`} value={actor.facing??'auto'} onChange={e=>update(actor.key,{facing:e.target.value==='auto'?undefined:e.target.value as StageActorEntry['facing']})}><option value="auto">자료 기본 방향</option><option value="original">원본 방향</option><option value="left">왼쪽 보기</option><option value="right">오른쪽 보기</option></select></label>
-  <label>크기 · {scale}%<input aria-label={`${index+1}컷 인물 ${i+1} 크기`} type="range" min="50" max="140" value={scale} onChange={e=>update(actor.key,{scaleMultiplier:Number(e.target.value)/100})}/></label><button type="button" onClick={()=>remove(actor.key)}>인물 {i+1} 빼기</button>
+  <label>크기 · {scale}%<input aria-label={`${index+1}컷 인물 ${i+1} 크기`} type="range" min="50" max="140" value={scale} onChange={e=>update(actor.key,{scaleMultiplier:Number(e.target.value)/100})}/></label><div className={styles.actorActions}><button type="button" onClick={()=>onReset(actor.key)}>인물 {i+1} 기본 배치로</button><button type="button" onClick={()=>remove(actor.key)}>인물 {i+1} 빼기</button></div>
  </section>;})}{actors.length<4&&<div className={styles.characterAdd}><AssetPickerField label={`${index+1}컷 인물 추가`} type="character" value="" chapterAssetIds={chapterAssetIds} onChange={add}/></div>}</div>;
 }
 
 function ActorMotionEditors({stage,index,onChange}:{stage:StageComposition;index:number;onChange:(stage:StageComposition)=>void}){
  const update=(key:string,motion:StageActorEntry['motion'])=>onChange({...stage,leftActors:stage.leftActors.map(a=>a.key===key?{...a,motion}:a),rightActors:stage.rightActors.map(a=>a.key===key?{...a,motion}:a)});
- return <>{[...stage.leftActors,...stage.rightActors].map((actor,i)=><fieldset key={actor.key}><legend>인물 {i+1} 동작</legend><label>동작<select aria-label={`${index+1}컷 인물 ${i+1} 동작`} value={actor.motion?.type??''} onChange={event=>update(actor.key,actorMotionChoice(actor.motion,event.target.value as NonNullable<StageActorEntry['motion']>['type']|''))}><option value="">바로 표시</option><option value="fade-in">서서히 등장</option><option value="fade-out">서서히 퇴장</option><option value="move">지정 위치에서 이동</option></select></label>{actor.motion&&<><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 시간`} valueMs={actor.motion.durationMs??600} onChange={durationMs=>update(actor.key,{...actor.motion!,durationMs})}/><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 대기`} valueMs={actor.motion.delayMs??0} onChange={delayMs=>update(actor.key,{...actor.motion!,delayMs})}/>{actor.motion.type==='move'&&<label>출발 가로 위치<input type="range" min="5" max="95" aria-label={`${index+1}컷 인물 ${i+1} 출발 위치`} value={actor.motion.fromXAnchor??50} onChange={event=>update(actor.key,{...actor.motion!,fromXAnchor:Number(event.target.value)})}/></label>}</>}</fieldset>)}</>;
+ return <>{[...stage.leftActors,...stage.rightActors].map((actor,i)=><fieldset key={actor.key}><legend>인물 {i+1} 동작</legend><label>동작<select aria-label={`${index+1}컷 인물 ${i+1} 동작`} value={actor.motion?.type??''} onChange={event=>update(actor.key,actorMotionChoice(actor.motion,event.target.value as NonNullable<StageActorEntry['motion']>['type']|''))}>{ACTOR_MOTION_OPTIONS.map(({value,label})=><option key={value} value={value}>{label}</option>)}</select></label>{actor.motion&&<><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 시간`} valueMs={actor.motion.durationMs??600} onChange={durationMs=>update(actor.key,{...actor.motion!,durationMs})}/><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 대기`} valueMs={actor.motion.delayMs??0} onChange={delayMs=>update(actor.key,{...actor.motion!,delayMs})}/>{actor.motion.type==='move'&&<label>출발 가로 위치<input type="range" min="5" max="95" aria-label={`${index+1}컷 인물 ${i+1} 출발 위치`} value={actor.motion.fromXAnchor??50} onChange={event=>update(actor.key,{...actor.motion!,fromXAnchor:Number(event.target.value)})}/></label>}</>}</fieldset>)}</>;
 }

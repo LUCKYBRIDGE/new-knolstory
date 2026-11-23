@@ -24,7 +24,7 @@ const content:Readonly<Record<string,Readonly<Record<string,Labels>>>>={
  scoreConditions:{ownerKind:{choice:'선택지 표시',route:'조건 경로'},mode:{all:'모두 만족',any:'하나라도 만족'},operator:{eq:'같음',ne:'다름',gt:'초과',gte:'이상',lt:'미만',lte:'이하'}},
  scoreRoutes:{targetKind:{cut:'지정 컷',end:'이야기 종료',pending:'아직 미연결'}},
  flowChoices:{targetKind:{cut:'지정 컷',end:'이야기 종료',pending:'아직 미연결'}},
- stageActors:{side:{left:'왼쪽 그룹',right:'오른쪽 그룹'},position:{center:'가운데 배치'},placementPreset:{'single-left':'왼쪽 한 명','single-right':'오른쪽 한 명','double-left':'왼쪽 두 명','double-right':'오른쪽 두 명'},facing,motionType:{'fade-in':'서서히 등장','fade-out':'서서히 퇴장',move:'가로 이동'}},
+ stageActors:{side:{left:'왼쪽 그룹',right:'오른쪽 그룹'},position:{center:'가운데 배치'},placementPreset:{'single-left':'왼쪽 한 명','single-right':'오른쪽 한 명','double-left':'왼쪽 두 명','double-right':'오른쪽 두 명'},facing,motionType:{'fade-in':'서서히 등장','fade-out':'서서히 퇴장',move:'가로 이동','exit-left':'왼쪽으로 퇴장','exit-right':'오른쪽으로 퇴장'}},
  branchConditionTerms:{ownerTable:{presentationEffects:'연출 효과',audioTracks:'배경음·주변 소리',audioSounds:'효과음'},channel:{music:'배경음',ambience:'주변 소리'}},
  audioClips:{channel:{music:'배경음',ambience:'주변 소리'}},
  audioTracks:{branchConditionMode:{all:'모두 만족',any:'하나라도 만족'},channel:{music:'배경음',ambience:'주변 소리'},action:{maintain:'이전 소리 유지',stop:'소리 중지',play:'소리 재생',sequence:'이어 재생'}},

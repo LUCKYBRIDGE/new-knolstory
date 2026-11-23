@@ -8,7 +8,7 @@
 
 2026-11-11 이미지 후속 인계: 진행 중인 새 창작·정적 체험·API/배포 작업은 [이미지·감정 구성 인계](evidence/all-character-emotions-2026-11-11/review.md#후속-개발자가-기존-작업에-반영할-사항)를 먼저 반영한다. 생성·편집 연결을 다시 구현하지 않고 현재 등록표/원본/실행본을 재사용한다. 새 자산ID를 사용하는 배포는 Web/Ren’Py/API 카탈로그를 함께 대조하고, 예전 봉인 runtime-review를 새 실행 바이트의 승인으로 쓰지 않는다. 기존 제품 큐의 미완료 항목은 아래에 유지한다. 이번 이미지 저장소 작업은 운영 배포를 수행하지 않았다.
 
-2026-11-10 사용자 요청: 숏스토리·놀스토리 편집을 직관적으로 개편하며 완성한다. 숏스토리 쓰기 화면 1·2차와 놀스토리 기본편집 이어 쓰기를 구현했다([STATUS](../../STATUS.md)). 다음 행동은 ① host E2E 묶음별 회귀 복구와 병합(현재 화면 기준, 의도 유지) ② 선녀와 나무꾼 전체 경로 검사 ③ 사용자 승인이 필요한 운영 API 재배포·새 삽화 권리 검토·실제 카카오 업로드·실기기 확인이다. 학급·공유 정책(Q-01~03)은 계속 미결이다.
+2026-11-10 사용자 요청: 숏스토리·놀스토리 편집을 직관적으로 개편하며 완성한다. 숏스토리 쓰기 화면 1·2차와 놀스토리 기본편집 이어 쓰기를 구현했다([STATUS](../../STATUS.md)). 다음 행동은 ① host E2E 묶음별 회귀 복구와 병합(현재 화면 기준, 의도 유지) ② 선녀와 나무꾼 전체 경로 검사 ③ 사용자 승인이 필요한 운영 API 재배포·새 삽화 권리 검토·실제 카카오 업로드·실기기 확인이다. 학급 등록·참여·제출 권한은 [학급 설계](classroom-design.md)에 따르며 외부 공유 범위와 보관 기간은 계속 미결이다.
 
 2026-11-05 사용자 추가 요청의 숏스토리 작업은 [삽화·편집·보관·인쇄 체크포인트](evidence/shortstory-2026-11-05/checkpoint.json)와 [자유 창작 삽화 확장](evidence/shortstory-mystery-2026-11-05/checkpoint.json), 이후 [사건 다양성 보정](evidence/shortstory-event-variety-2026-11-05/checkpoint.json)과 [연속 삽화](evidence/shortstory-continuations-2026-11-05/checkpoint.json), [연속 삽화 2차](evidence/shortstory-continuations-next-2026-11-05/checkpoint.json)에서 이어간다. 다음 외부 반영은 새 삽화의 권리와 API 자료 목록을 확인한 뒤 같은 정적 빌드로 진행한다. 실제 인증·물리기기·인쇄 검증은 해당 증거를 별도로 남긴다. 아래 전체 제품 큐와 기존 검증 기록을 함께 보존한다.
 
@@ -96,7 +96,7 @@
 | PC-02 P1 | 완료(현 P1 로컬 제작 대조·점수 전용 native 빈 셀 보완; 물리/출시 별도) | 필수 제작별 실제 흐름 | [기능별 감사](editor-redesign-completeness-audit.md) | 선택/점수4경우·연출/소리/범위·파일·취소/오류·재열기·native 복귀를 구현/부분/누락/제외 판정. 필수 누락을 구현하고 증거 연결→로컬 안정화 종료 |
 | PC-03 P1 | 대기(기존 Q-01~04 답 및 Google 실제 제공자 환경) | 기존 ADR/사용자 결정 확인 | [STATUS 미확정 정책](../../STATUS.md), [형식/서비스 계획](authoring-format-development-plan.md) | 확정 답변을 정식 소유 문서에 기록해 관련 구현만 해제. 카카오/연결Google/맥미니Docker/도메인은 재질문하지 않음 |
 | PC-04 P1 | 부분 구현 checkpoint 유지·휴지통 로컬구현·실제 결합 검증 완료·대기(보관 결정, 실제 제공자/기기 환경) | Q-03/05와 실제 환경 | [구조](knolstory-final-architecture.md), [현재 계정 API/Web](authoring-storage-contract.md#계정-경계의-로컬-api-후보-연결-2026-10-16), [형식 계획](authoring-format-development-plan.md) | Docker/PostgreSQL·OIDC/세션HTTP·소유자create/list/read/update·두제작모드Web저장/읽기/충돌/재시도는 기존 근거 유지. 현재 휴지통 결합 근거 재사용; 보관·장기offline/실기기전환을 해당 의존성 해제 후 이행→PC-05 |
-| PC-05 P1 | 대기(PC-04 및 관련 정책) | 역할/학급/제출/공개 범위 | [Blueprint M8](development-blueprint.md), [구조](knolstory-final-architecture.md) | 실제 학급/과제/제출 snapshot/재제출·공유/취소·권한 거부/실패 복구 및 같은 Ren’Py 뷰어를 검증→PC-07 |
+| PC-05 P1 | 로컬 구현·격리 검증 진행, 실제 서비스 후속 | 역할/학급/유형별 과제·제출은 [학급 설계](classroom-design.md), 공개 범위는 Q-02 | [Blueprint M8](development-blueprint.md), [구조](knolstory-final-architecture.md) | 실제 학급/과제/제출 snapshot/재제출·공유/취소·권한 거부/실패 복구 및 같은 Ren’Py 뷰어를 검증→PC-07 |
 | PC-06 P1 | 진행(Web/좁은 화면·실제 Mac Chrome400% native 선택/초점 보완 완료; 목표 실기기·스크린리더 등 대기) | 목표 기기·보조 기술·측정/권리 환경 | [기기 ADR](../decisions/0013-target-devices-and-performance-budget.md), [환경](reproducible-test-environment.md), [현재 실제 확대](evidence/chrome-native-zoom-2026-10-18/checkpoint.json), [음원 권리](audio-service-rights.md) | 실제 Mac의400% native·키보드 근거 유지. Windows/Chromebook/Android/스크린리더/청취·성능·배포 권리 남은 범위는 실제 환경에서 확인→PC-07 |
 | PC-07 P1 | 대기(PC-04/05/06의 출시 범위 및 승인; 로컬 논리 DB 및 정적 runtime 복원 준비 확인) | 출시 후보·운영 설정·실제 환경 | [Blueprint M9/완성 정의](development-blueprint.md), [환경](reproducible-test-environment.md) | 동일 후보 통합 검사·실제 DB/자산 백업/복원·운영/롤백 준비·승인된 실제 도메인 검증→제품 전체 완료 감사 |
 | PC-08 P2 | 후보 | 실제 제작 필요·자산/해석 계약 | [비음원 계획](presentation-authoring-development-plan.md) | 표정/카메라/통합 timeline의 필요성을 판단. 필요 없으면 제외 근거, 승격되면 기존 계획에 조건/범위 명시. P1의 대체 목표로 진행하지 않음 |
@@ -110,7 +110,7 @@
 | 단계A·M2~M7 저작/이동/재생 | PC-01/02의 종료 checkpoint와 기능별 원고/파일/native 증거 유지. 이후 입력 변경은 PC-06 집중 근거로 연결. 모든 후속 변경을 포함한 최초 출시 통합 결과는 아직 아님 |
 | 단계B 계정·소유권 | 실제 Docker/PostgreSQL·합성 제공자 서명/HTTP·Web 계정 경계 근거 유지. 실제 Kakao는 [최종 도메인 검증](evidence/production-cutover-2026-10-17/checkpoint.json)으로 완료한 당시 범위를 유지하며 다시 설정/검증하지 않는다. Google 연결·로그인 실제 왕복만 Q-05 환경에 의존 |
 | 단계B 온라인 업로드/삭제/복구 | 소유자 create/list/read/update·revision/멱등·충돌/재시도 및 계정 경계 근거 있음. 온라인 휴지통/같은 작품 복구 의미는 Q-04 확정, 실제 로컬 Web/API/DB 결합은 [현재 근거](evidence/online-trash-combined-2026-10-20/checkpoint.json)로 완료. 보관은 Q-03, 실제 기기 전환/장기 offline은 실제 환경 필요 |
-| 단계B·M8 학급/과제/제출/공유 | 역할·참여 Q-01, 제출/공개/링크 범위 Q-02에 의존. snapshot/권한/취소/뷰어 실제 서비스는 미완료이며 mock으로 대체하지 않음 |
+| 단계B·M8 학급/과제/제출/공유 | 역할·참여 Q-01은 학급 설계로 확정하고 유형별 과제·작성·제출을 로컬 구현했다. 운영 migration 008·009/설정/배포와 실제 교사·학생 세션 검증이 다음이다. 공개/링크 Q-02는 별도 미결이며 실제 서비스 완료를 mock으로 대체하지 않음 |
 | 단계B/C 운영 관찰 | 요청 ID·고정 schema·비밀 정보 배제 로그를 새로 구현/실제 로컬 Docker 확인. 외부 수집·보관/계정 감사 정책까지 승인된 것은 아님 |
 | 단계C·M5/1.0 기기/성능/보조 기술 | host DOM·keyboard·native 입력 및 실제 Mac Chrome200/400% 서재/책/대본 근거 있음. 이후 [실제400% native 읽기/선택](evidence/chrome-native-zoom-2026-10-18/checkpoint.json)과 BODY 초점 이탈 수정도 확인. Windows/Chromebook/Android 실물·IME·청취·스크린리더·기기 성능은 미검증 |
 | 단계C 음원/권리 | 현재 등록/전달/ZIP 조건 근거 유지. 실제 목표 기기 청취·loop/음량 및 공개 후보의 전달/권리 gate 별도 |

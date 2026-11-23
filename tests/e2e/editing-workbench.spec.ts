@@ -486,3 +486,58 @@ test('the kinds of work stay in view as tabs and switch the editing screen',asyn
  await tabs.getByRole('button',{name:'쓰기',exact:true}).click();
  await expect(page.locator('[data-editing-screen]')).toHaveAttribute('data-editing-screen','basic');
 });
+
+test('new character additions balance sides and edited placement can return to automatic',async({page},info)=>{
+ test.skip(info.project.name!=='host');
+ await page.route('**/runtime/**',route=>route.abort());
+ await prepare(page);
+ const single={...fixture,lines:fixture.lines.map(line=>({...line,rightAssetId:'',stageComposition:{leftActors:line.stageComposition!.leftActors.slice(0,1),rightActors:[]}}))};
+ await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-11-12T00:00:00.000Z',appVersion:'test',project:single}));
+ const menu=await settings(page);
+ await menu.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();
+ await mode(page,'인물 편집');
+ const first=row(page,0);
+ await first.getByRole('button',{name:/^1컷 인물 추가 이미지 찾기/}).click();
+ const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 인물 추가',exact:true});
+ await dialog.getByLabel('이미지 검색').fill('젊은 여행자');
+ await dialog.locator('[data-asset-id="creative.character.young-traveler"]').click();
+ await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();
+ const addedProject=(await exported(page)).project;
+ const added=addedProject.lines[0].stageComposition!;
+ expect(added.leftActors).toHaveLength(1);
+ expect(added.rightActors).toHaveLength(1);
+ expect(added.rightActors[0].assetId).toBe('creative.character.young-traveler');
+ await mode(page,'인물 편집');
+ await expect(first.getByText('가로 위치 · 자동',{exact:true})).toHaveCount(2);
+ const status=page.getByTestId('story-runtime-status');
+ const actors=JSON.parse((await status.getAttribute('data-actor-rects'))!) as {id:string;rect:{x:number;width:number}}[];
+ const rect=actors.find(actor=>actor.id===added.rightActors[0].key)!.rect;
+ const expectedAnchor=(rect.x+rect.width/2)/Number(await status.getAttribute('data-scene-width'))*100;
+ const slider=first.getByRole('slider',{name:'1컷 인물 2 가로 위치',exact:true});
+ expect(Number(await slider.inputValue())).toBeCloseTo(expectedAnchor,0);
+ await slider.press('ArrowLeft');
+ await first.getByRole('slider',{name:'1컷 인물 2 크기',exact:true}).press('End');
+ await first.getByRole('button',{name:'인물 2 기본 배치로',exact:true}).click();
+ await expect(first.getByText('가로 위치 · 자동',{exact:true})).toHaveCount(2);
+ const overlapHint=first.getByText('다른 인물과 많이 겹쳐요.',{exact:true});
+ await expect(overlapHint).toHaveCount(0);
+ for(const number of [1,2]){
+  await first.getByRole('combobox',{name:`1컷 인물 ${number} 배치 위치`,exact:true}).selectOption('center');
+ }
+ await expect(overlapHint).toHaveCount(1);
+ await page.setViewportSize({width:390,height:844});
+ await expect(overlapHint).toBeVisible();
+ for(const number of [1,2])await first.getByRole('button',{name:`인물 ${number} 기본 배치로`,exact:true}).click();
+ await expect(overlapHint).toHaveCount(0);
+ const reset=(await exported(page)).project.lines[0].stageComposition!;
+ expect(reset).toEqual(added);
+ await page.reload();
+ const reopened=(await exported(page)).project.lines[0].stageComposition!;
+ expect(reopened).toEqual(added);
+ await mode(page,'인물 편집');
+ const originalSpeaker=addedProject.lines[0].speaker==='left'?added.leftActors[0].key:added.rightActors[0].key;
+ await first.getByRole('combobox',{name:'1컷 인물 1 배치 위치',exact:true}).selectOption('right');
+ const moved=(await exported(page)).project;
+ expect(moved.lines[0].stageComposition!.speakerActorKey).toBe(originalSpeaker);
+ expect(moved.lines[0].speakerName).toBe(addedProject.lines[0].speakerName);
+});

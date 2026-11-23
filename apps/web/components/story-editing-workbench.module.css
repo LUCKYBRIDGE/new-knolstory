@@ -524,3 +524,6 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .cutMore>details>summary::-webkit-details-marker{display:none}
 .cutMore>details[open]{padding:8px;border:1px solid var(--line);border-radius:8px}
 .cutMore>details[open]>summary{border:0;border-bottom:1px solid var(--line);border-radius:0;margin:-8px -8px 8px}
+.actorActions{display:flex;flex-wrap:wrap;gap:8px}
+
+.actorOverlap{font-size:var(--text-caption);padding:4px 8px;border:1px solid var(--line);border-radius:8px}

@@ -4,6 +4,7 @@ import {useRef,useState} from 'react';
 import {createPortal} from 'react-dom';
 import {flowMode,prepareFlowChange,type FlowMode} from '../lib/story-flow-change';
 import {StoryFlowChangeDialog} from './story-flow-change-dialog';
+import {ACTOR_MOTION_OPTIONS,actorMotionChoice} from '../lib/actor-motion-choice';
 import {SecondsInput} from './seconds-input';
 import {StoryStagingImport} from './story-staging-import';
 import {StoryCutNotes} from './story-cut-notes';
@@ -211,8 +212,8 @@ export function StoryWorkspaceInspector({
             </select></label>
             <button onClick={() => patch({ stageComposition: cleanedComposition({ ...stage, leftActors: stage.leftActors.filter(item => item.key !== actor.key), rightActors: stage.rightActors.filter(item => item.key !== actor.key) }) })}>{actorLabel} 제거</button>
             <AssetPickerField label={`${actorLabel} 이미지`} type="character" value={actor.assetId} chapterAssetIds={chapterAssets} onChange={id=>updateActor(actor.key,{assetId:id})}/>
-            <label>인물 동작<select aria-label={`${actorLabel} 인물 동작`} value={actor.motion?.type??''} onChange={event=>updateActor(actor.key,{motion:event.target.value?{type:event.target.value as NonNullable<StageActorEntry['motion']>['type'],durationMs:600,delayMs:0}:undefined})}>
-              <option value="">바로 표시</option><option value="fade-in">서서히 등장</option><option value="fade-out">서서히 퇴장</option><option value="move">지정 위치에서 이동</option>
+            <label>인물 동작<select aria-label={`${actorLabel} 인물 동작`} value={actor.motion?.type??''} onChange={event=>updateActor(actor.key,{motion:actorMotionChoice(actor.motion,event.target.value as NonNullable<StageActorEntry['motion']>['type']|'')})}>
+              {ACTOR_MOTION_OPTIONS.map(({value,label})=><option key={value} value={value}>{label}</option>)}
             </select></label>
             {actor.motion&&<><p className={styles.hint}>이 인물만 움직여요. 컷 진입 시 시작하고, 설정 변경은 동작을 다시 시작하지 않아요. 퇴장은 마지막에 인물을 숨겨요.</p>
               <SecondsInput label={`${actorLabel} 동작 시간`} valueMs={actor.motion.durationMs??600} onChange={durationMs=>updateActor(actor.key,{motion:{...actor.motion!,durationMs}})}/>
