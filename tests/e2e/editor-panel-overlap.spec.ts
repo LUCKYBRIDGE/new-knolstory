@@ -2,6 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
+import {openCutMore} from './editor-screens';
 test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 import {readFileSync} from 'node:fs';
 const base=createBlankStoryProject({id:'manuscript-choice',chapterId:'ch',lineId:'a'}),first=base.lines[0],project={...base,chapters:base.chapters.map(ch=>({...ch,audio:{music:{action:'play' as const,assetId:'audio:music:night',loop:true}}})),lines:[{...first,text:'앞 문장. 뒤 문장.',flow:{type:'choice' as const,options:[{id:'yes',label:'첫 번째 선택',targetLineId:'b'},{id:'no',label:'두 번째 선택',targetLineId:'b'}]}},{...first,id:'b',order:2,text:'같은 컷, 서로 다른 선택 조건',audio:{music:{action:'play' as const,assetId:'audio:music:forest',loop:true,sourceStartMs:200,sourceEndMs:1800,branchCondition:{sourceLineId:'a',choiceId:'yes'}}},presentation:{effects:[{id:'flash',type:'flash' as const,branchCondition:{sourceLineId:'a',choiceId:'yes'}}]}}]};
@@ -27,10 +28,12 @@ for(const viewport of [{width:1440,height:900},{width:1024,height:768},{width:76
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click({trial:true,timeout:5000});await page.screenshot({path:info.outputPath('expanded-tools.png')});
  await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();await expect(dock).toHaveCount(0);
  const context=page.locator('[data-stacked-context]');if(await context.isVisible()){
-  await context.getByText('이 장의 컷 목록',{exact:true}).click();const panel=context.locator('details[open]'),r=await panel.boundingBox(),bb=await body.boundingBox();expect(r!.y).toBeGreaterThanOrEqual(bb!.y+bb!.height-1);await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click({trial:true,timeout:5000});await page.keyboard.press('Escape');
+  // Tablet stacked writing keeps these panels inside '컷 더보기', which stays open around them.
+  const inner=context.locator('details[open]:not([data-cut-more])');await openCutMore(page);
+  await context.getByText('이 장의 컷 목록',{exact:true}).click();const panel=inner.first(),r=await panel.boundingBox(),bb=await body.boundingBox();expect(r!.y).toBeGreaterThanOrEqual(bb!.y+bb!.height-1);await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click({trial:true,timeout:5000});await page.keyboard.press('Escape');
   const listSummary=context.getByText('이 장의 컷 목록',{exact:true}),notesSummary=context.getByText('메모·연결 요약',{exact:true}),dockSummary=page.getByText('현재 컷 상세·메모·정리',{exact:true});
-  await listSummary.focus();await listSummary.press('Enter');await expect(context.locator('details[open]')).toHaveCount(1);
-  await notesSummary.focus();await notesSummary.press('Enter');await expect(context.locator('details[open]')).toHaveCount(1);
+  await listSummary.focus();await listSummary.press('Enter');await expect(inner).toHaveCount(1);
+  await notesSummary.focus();await notesSummary.press('Enter');await expect(inner).toHaveCount(1);
   await dockSummary.focus();await dockSummary.press('Enter');await expect(context.locator('details[open]')).toHaveCount(0);await expect(dock).toHaveCount(1);
   await dockSummary.press('Escape');await expect(dock).toHaveCount(0);await expect(dockSummary).toBeFocused();
  }
