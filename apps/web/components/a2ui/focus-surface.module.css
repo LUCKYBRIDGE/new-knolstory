@@ -1,0 +1,74 @@
+/* A2UI focus editor catalog renderer. DESIGN.md '집중 편집 화면 규칙': 4px spacing scale,
+   visible controls 32–36px with 44px touch targets, three text sizes, one filled primary. */
+.surface{color:var(--ink);background:var(--paper);font-size:var(--text-body);min-width:0}
+.screen{display:flex;flex-direction:column;gap:12px;padding:8px 12px 16px;min-width:0}
+.surface[data-device=tablet] .screen,.surface[data-device=desktop] .screen{gap:16px;padding:12px 16px 24px}
+
+.topBar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-height:44px}
+.surface[data-device=phone] .topBar .tabs{order:1;flex:1 1 100%}
+
+.icon,.step,.cutPlace,.button,.tabs>button,.cutCard,.more>summary{position:relative;font:inherit;color:inherit;cursor:pointer}
+/* globals.css gives every button/select a 44px box; here the visible box is 32–36px and ::after keeps the 44px target. */
+.icon,.step,.cutPlace,.button,.tabs>button,.choice>select{min-height:0}
+.choice>select{width:auto}
+.choice{position:relative}
+/* Transparent touch area around smaller visible controls. */
+.icon::after,.step::after,.cutPlace::after,.button::after,.tabs>button::after{content:'';position:absolute;inset:50% auto auto 50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
+
+.icon{display:inline-grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:var(--radius-control);background:transparent;font-size:var(--text-lead);line-height:1}
+.cutNavigator{display:inline-flex;align-items:center;gap:4px;height:36px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white)}
+.step{width:36px;height:36px;padding:0;border:0;background:transparent;font-size:var(--text-body)}
+.cutPlace{height:36px;padding:0 8px;border:0;background:transparent;font-size:var(--text-small);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.tabs{display:flex;gap:4px;padding:4px;border-radius:var(--radius-control);background:var(--mint);overflow-x:auto}
+.tabs>button{height:32px;padding:0 12px;border:0;border-radius:calc(var(--radius-control) - 4px);background:transparent;font-size:var(--text-small);white-space:nowrap}
+.tabs>button[aria-current=page]{background:var(--white);font-weight:700}
+
+.stage{aspect-ratio:16/9;width:100%;border-radius:var(--radius-panel);background:linear-gradient(160deg,var(--navy),var(--mint-strong))}
+.stage[data-orientation=portrait]{aspect-ratio:9/16;max-height:60vh;margin-inline:auto;width:auto}
+
+.current{display:flex;flex-direction:column;gap:8px}
+.currentHead{display:flex;align-items:center;gap:8px;min-height:36px}
+.cutNumber{font-size:var(--text-small);color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.speaker{font-weight:700}
+.currentHead>.icon{margin-left:auto}
+.editor{min-height:96px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);font:inherit;resize:vertical}
+.cutText{margin:0;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere}
+.cutText[data-lines="3"]{-webkit-line-clamp:3}
+.cutText[data-lines="2"]{-webkit-line-clamp:2}
+
+.context{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cutCard{display:flex;flex-direction:column;gap:8px;padding:8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);text-align:left;font-size:var(--text-small)}
+.cardPreview{aspect-ratio:16/9;border-radius:calc(var(--radius-control) - 4px);background:var(--mint)}
+
+.work{min-width:0}
+.column{display:flex;flex-direction:column}
+.toolGroup{display:flex;flex-wrap:wrap;align-items:center}
+.gap4{gap:4px}.gap8{gap:8px}.gap12{gap:12px}.gap16{gap:16px}.gap24{gap:24px}
+/* Neighbouring 44px touch areas must not overlap: keep at least 8px between controls in a row. */
+.toolGroup.gap4{gap:8px}
+
+.button{height:36px;padding:0 12px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);font-size:var(--text-small);white-space:nowrap}
+.button[data-variant=primary]{border-color:var(--mint-strong);background:var(--mint-strong);color:var(--white);font-weight:700}
+.button[data-variant=quiet]{border-color:transparent;background:transparent;color:var(--ink-soft)}
+.button:disabled{cursor:not-allowed;opacity:.5}
+
+.choice{display:inline-flex;align-items:center;gap:4px;min-height:44px;font-size:var(--text-small)}
+.choice>select{height:36px;padding:0 8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);font:inherit}
+
+.chip{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;font-size:var(--text-caption)}
+.chip>img{width:20px;height:20px;border-radius:50%;object-fit:cover}
+
+.more{border-top:1px solid var(--line)}
+.more>summary{display:flex;align-items:center;min-height:44px;font-size:var(--text-small);list-style:none}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary::after{content:'▾';margin-left:4px}
+.more[open]>summary::after{content:'▴'}
+.moreBody{display:flex;flex-direction:column;gap:8px;padding-bottom:8px}
+
+.notice{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--radius-control);background:var(--white);border:1px solid var(--line);font-size:var(--text-small)}
+.notice>p{margin:0;flex:1 1 auto}
+.notice[data-kind=error]{border-color:var(--coral)}
+.notice[data-kind=irreversible]{border-color:var(--gold)}
+
+.icon:focus-visible,.step:focus-visible,.cutPlace:focus-visible,.button:focus-visible,.tabs>button:focus-visible,.cutCard:focus-visible,.more>summary:focus-visible,.choice>select:focus-visible{outline:2px solid var(--mint-strong);outline-offset:2px}
