@@ -13,7 +13,9 @@
 ## 이어서 할 때 (인계 — 마지막 갱신 2026-11-24)
 새 세션은 이 절부터 읽는다. 진행할 때마다 이 절과 아래 ‘진행 기록’을 함께 갱신한다.
 
-- **상태**: 2단계 진행 중(2026-11-24 오후). 코덱스의 미커밋 작업(인물 화면 밖 퇴장·새 인물 등록 검사)을 main 바탕 브랜치 `feat/actor-offscreen-exit`(worktree `../new-knolstory-codex-port`)로 옮겨 충돌을 풀고 검사한 뒤 이 브랜치에 합친다(아래 ‘코덱스 작업 옮기기’). 2단계에서 끝낸 것: E5, 태블릿 쓰기 화면 아래 도구 정리(E4), 편집 화면 CSS 4px 간격. 남은 것: E6(폰 가로 편집 메뉴 두 열), R1(폰 가로 읽기 막대 3개), E2(폰 무대 띠), 7크기 재측정, DESIGN.md 표.
+- **상태**: 2단계 일부 끝·커밋함(bd0516ab·fed9297e·ce9a3b65). 코덱스 작업을 `feat/actor-offscreen-exit`(f076de5d, main 바탕)로 옮겨 이 브랜치에 병합함(2131218c). 병합 뒤 편집기 host e2e 146개·stories-runtime 9개(인물 상대 크기·조작 겹침) 통과. 메인 체크아웃의 코덱스 미커밋 파일은 그대로 두었다(옮긴 것과 같은 내용 — 정리는 사용자 확인 뒤).
+- **다음 할 일**: E6(폰 가로 편집 메뉴 두 열), R1(폰 가로 읽기 막대 3개 — 코덱스의 `story-player-menu.tsx` 변경이 합쳐져 이제 진행 가능), E2(폰 무대 띠), 7크기 재측정·전후 표. 사용자 요청: A2UI(구글 공개 사양)를 개발에 적용 — 적용 방향 확인 대기.
+- **알려진 것**: stories-runtime `catalog-reading-paths`의 선녀와 나무꾼 긴 경로(340~412컷) 4개는 360초 제한을 넘는다. main 바탕 브랜치에서도 혼자 돌려 같은 지점(361/376)에서 넘으므로 이번 변경과 무관하다. 런타임은 `../new-knolstory-codex-port/apps/web/public/runtime`(코덱스 .rpy 포함 새 빌드)에 링크.
 - **바뀐 파일**
   - 앱: `apps/web/components/story-cut-context.tsx`(위 막대 장·컷 칸), `story-workspace.tsx`(화살표 자리 `cutStepsHost` → 편집 화면 `cutStepTarget`), `story-editing-workbench.tsx`(화살표 그리기, 중복 이동 제거, 현재 컷 글, 함께 보기 칩), `story-editing-workbench.module.css`·`story-workspace.module.css`·`editor-work-tabs.module.css`(각 파일 끝의 ‘Focus screens (2026-11-24)’ 블록), `workspace-management.tsx`·`story-player-menu.tsx`(+css)(닫기 ×).
   - 규칙: `DESIGN.md` 맨 앞 ‘집중 편집 화면 규칙’.
