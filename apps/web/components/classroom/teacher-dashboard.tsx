@@ -62,10 +62,11 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
      <button className={`${styles.btn} ${styles.primary}`} disabled={busy||remaining<1}>학생 만들기</button>
     </form>
    </PhoneFold></section>
-   <ClassStorage classroom={classroom}/>
    <section className={`${styles.card} ${styles.roster}`} aria-label="학생 목록"><h2>학생</h2>
     <StudentTable classroom={classroom} csrf={csrf} run={run} onChanged={next=>void reload(next)}/>
    </section>
+   {/* The roster is what this tab is for; the shared storage follows it. */}
+   <ClassStorage classroom={classroom}/>
    {newQr&&<StudentQrPrintWorkspace numbers={newQr} csrf={csrf} onClose={()=>{setNewQr(null);void reload();}}/>}
   </>}
   {panel==='settings'&&<>

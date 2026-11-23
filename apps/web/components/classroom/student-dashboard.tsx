@@ -126,10 +126,11 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {assignment.draftComment&&phase!=='passed'&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
   {(phase==='working'||phase==='revise')&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage?'done':index===stage?'current':'todo'} aria-current={index===stage?'step':undefined}>{step}</li>)}</ol>}
   {phase==='working'||phase==='revise'||phase==='locked'?brief:<details className={styles.taskGuide}><summary>과제 안내 다시 보기</summary>{brief}</details>}
+  {/* The write action follows what to do; the scope and base work are reference lines under it. */}
+  {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
   {assignment.editScope&&<p className={styles.hint} data-task-scope>이 과제에서 고칠 수 있는 것 · <b>{editScopeLabel(assignment.editScope)}</b></p>}
   {assignment.after&&!locked&&phase==='working'&&!draftKey&&<p className={styles.hint}>통과한 그림책 ‘{assignment.after.title}’의 쪽마다 놀스토리 장이 하나씩 만들어져요. 장마다 ‘그림책 구상’(그 쪽의 글과 삽화)을 펼쳐 보며 대사와 장면을 써요.</p>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
-  {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
   {assignment.open&&phase!=='passed'&&phase!=='locked'&&(works.length===0&&online.length===0?(canStart?null:<p className={styles.hint}>제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.</p>)
    :<HandInFold folded={phase==='waiting'}><div className={styles.handIn}>
     <label className={styles.field}>낼 작품<select aria-label="제출할 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>

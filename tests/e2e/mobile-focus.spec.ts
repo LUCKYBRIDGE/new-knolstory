@@ -11,12 +11,14 @@ test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window
 const phone={width:320,height:700},tall={width:390,height:844},landscape={width:844,height:390},shortLandscape={width:667,height:375},tablet={width:768,height:1024};
 const students=[{number:1,name:'하늘',password:'1234',permissions:null,hasQr:true},{number:2,name:'바다',password:'5678',permissions:null,hasQr:false}];
 const tasks:Assignment[]=[
- {id:'a1',format:'knolstory',title:'토끼와 자라가 다시 만난 날',description:'등장인물의 마음을 상상하며 대사를 이어 써 보세요.',storyKey:'rabbit',open:true,createdAt:1,submittedCount:1},
- {id:'a2',format:'shortstory',title:'나만의 그림책',description:'익숙한 장면과 새로운 사건을 섞어 보세요.',storyKey:null,open:true,createdAt:2,submittedCount:0},
+ {id:'a1',format:'knolstory',title:'토끼와 자라가 다시 만난 날',description:'등장인물의 마음을 상상하며 대사를 이어 써 보세요.',storyKey:'rabbit',open:true,createdAt:1,submittedCount:1,editScope:{text:true,images:false,characters:false,audio:true,direction:false,choices:false}},
+ {id:'a2',format:'shortstory',title:'나만의 그림책',description:'익숙한 장면과 새로운 사건을 섞어 보세요.',storyKey:null,open:true,createdAt:2,submittedCount:0,editScope:{text:true,images:true,characters:false,audio:false,direction:false,choices:false}},
 ];
 async function teacher(page:Page){
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:students.map(s=>({...s}))};
+ // The shared storage pool, as the live class returns it (2026-11-23 real-data replay).
+ (state.classroom as Record<string,unknown>).storage={bytes:229_000,limit:300*1024*1024,studentLimit:20*1024*1024};
  state.assignments=tasks.map(a=>({...a}));
  return state;
 }
@@ -47,6 +49,10 @@ for(const size of [phone,landscape])test(`teacher roster gives the name room and
  expect(await name.evaluate(node=>node.getBoundingClientRect().width)).toBeGreaterThanOrEqual(80);
  // On landscape phones the create form folds like on portrait phones.
  await expect(page.getByLabel('만들 학생 수',{exact:true})).toBeHidden();
+ // The roster comes before the shared storage, whose explanation stays folded.
+ const roster=await page.getByRole('region',{name:'학생 목록',exact:true}).boundingBox(),storage=await page.getByRole('region',{name:'학급 저장 공간',exact:true}).boundingBox();
+ expect(roster!.y).toBeLessThan(storage!.y);
+ await expect(page.getByText(/함께 쓰는 공간이에요/)).toBeHidden();
  await name.fill('하늘별');await expect(save).toBeVisible();
  expect(await save.evaluate(node=>node.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
  expect(await noSideScroll(page)).toBe(true);
@@ -63,6 +69,10 @@ for(const size of [phone,tall,landscape,shortLandscape,tablet])test(`student see
  expect(audit.smallTargets).toEqual([]);expect(audit.horizontalScroll).toBe(false);
  await expect(page.getByText('쓰기 화면에서 작품을 만든 뒤 이곳에서 제출해요.',{exact:true})).toHaveCount(0);
  await expect(page.getByText('나의 이야기 자리',{exact:true})).toHaveCount(0);
+ // Each card's write action comes before its reference lines (edit scope, base work).
+ const card=page.locator('[data-todo="assignment"]').first();
+ const write=await card.getByRole('link',{name:'과제 쓰기',exact:true}).boundingBox(),scope=await card.locator('[data-task-scope]').boundingBox();
+ expect(write!.y).toBeLessThan(scope!.y);
 });
 
 for(const size of [phone,landscape])test(`account menu puts the class destination first ${size.width}x${size.height}`,async({page})=>{
