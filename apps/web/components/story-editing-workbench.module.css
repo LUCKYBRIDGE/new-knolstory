@@ -460,3 +460,7 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .workbench[data-screen=characters] .body:not([data-playing=true])>.previewSlot{grid-column:1;grid-row:1;min-height:0}
 .workbench[data-screen=characters] .body:not([data-playing=true])>.editingContent{grid-column:1;grid-row:2;min-height:0;overflow:auto}
 @media (max-width:700px){.workbench[data-screen=characters] .body:not([data-playing=true]){grid-template-rows:minmax(120px,30%) minmax(0,1fr)}}
+
+.actorActions{display:flex;flex-wrap:wrap;gap:8px}
+
+.actorOverlap{font-size:var(--text-caption);padding:4px 8px;border:1px solid var(--line);border-radius:8px}

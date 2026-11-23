@@ -87,12 +87,12 @@ init python:
     def knol_actor_motion_state(actor, scene):
         motion = actor.get("motion")
         alpha = actor.get("opacity", 1)
-        state = {"start_alpha": alpha, "end_alpha": alpha, "start_xoffset": 0, "end_xoffset": 0, "remaining": 0, "wait": 0}
+        state = {"start_alpha": alpha, "end_alpha": alpha, "start_xoffset": 0, "end_xoffset": 0, "remaining": 0, "wait": 0, "final_alpha": alpha}
         if not motion:
             return state
         duration = motion["durationMs"] / 1000.0
         elapsed = time.monotonic() - knol_presentation_started - motion["delayMs"] / 1000.0
-        progress = 1 if scene.get("mode") != "play" or scene.get("reducedMotion") else max(0, min(1, elapsed / max(.001, duration)))
+        progress = 1 if scene.get("mode") != "play" or scene.get("reducedMotion") else (float(elapsed >= 0) if duration == 0 else max(0, min(1, elapsed / duration)))
         if (knol_transition_active or knol_waiting_for_audio(scene)) and scene.get("mode") == "play" and not scene.get("reducedMotion"):
             progress = 0
         if motion["type"] == "fade-in":
@@ -104,7 +104,14 @@ init python:
         elif motion["type"] == "move":
             state["start_xoffset"] = motion["offsetX"] * (1 - progress)
             state["end_xoffset"] = 0
+        elif motion["type"] == "exit" and scene.get("mode") == "play" and not scene.get("reducedMotion"):
+            state["start_xoffset"] = motion["offsetX"] * progress
+            state["end_xoffset"] = motion["offsetX"]
+            state["start_alpha"] = 0 if progress >= 1 else alpha
+            state["final_alpha"] = 0
         state["wait"] = 0 if scene.get("mode") != "play" or scene.get("reducedMotion") else max(0, -elapsed)
+        if motion["type"] == "fade-out":
+            state["final_alpha"] = state["end_alpha"]
         state["remaining"] = 0 if scene.get("mode") != "play" or scene.get("reducedMotion") else max(0, duration * (1 - progress))
         return state
 
@@ -227,6 +234,7 @@ transform knol_actor_motion_atl(actor, scene):
     xoffset knol_actor_motion_value(actor, scene, "start_xoffset")
     pause knol_actor_motion_value(actor, scene, "wait")
     linear knol_actor_motion_value(actor, scene, "remaining") alpha knol_actor_motion_value(actor, scene, "end_alpha") xoffset knol_actor_motion_value(actor, scene, "end_xoffset")
+    alpha knol_actor_motion_value(actor, scene, "final_alpha")
 
 transform knol_actor_shake_transform(actor, scene):
     function renpy.curry(knol_actor_shake)(actor=actor, scene=scene)

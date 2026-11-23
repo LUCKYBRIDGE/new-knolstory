@@ -60,7 +60,17 @@ describe('canonical baseline stage geometry',()=>{
       'creative.character.onggojib-child-listening','rabbit-turtle.character.turtle-child-unified-720x900',
       'rabbit-turtle.character.turtle-child-flashback','seonnyeo.character.classic-children',
     ]);
-    expect(stageCharacterScale(fixture.id)).toBe(canvasRelativeChildren.has(fixture.id)?1:fixture.scale);
+    const reviewed = new Map([
+      ['onggojib.character.second-child-hesitant-pixel', .93],
+      ['onggojib.character.second-child-pixel', .93],
+      ['creative.character.onggojib-child-listening', .93],
+      ['onggojib.character.youngest-child-cautious-pixel', .84],
+      ['onggojib.character.youngest-child-pixel', .84],
+      ['creative.character.village-girl', .85],
+      ['creative.character.young-traveler', .89],
+      ['heungbu.character.swallow', .36],
+    ]);
+    expect(stageCharacterScale(fixture.id)).toBe(reviewed.get(fixture.id) ?? (canvasRelativeChildren.has(fixture.id)?1:fixture.scale));
     expect(stageSharedActor(fixture.id)).toBe(fixture.shared);
     expect(stageShouldMirror(fixture.id, 'left')).toBe(fixture.leftMirrored);
     expect(stageShouldMirror(fixture.id, 'right')).toBe(fixture.rightMirrored);

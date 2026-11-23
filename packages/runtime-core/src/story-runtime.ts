@@ -12,6 +12,7 @@ import {compileStoryPresentation,storyClickEffectGroupCount} from './presentatio
 import { initialStoryScores, type StoryScoreValues, availableStoryChoices, playbackScores, storyScoreCondition, applyStoryScoreEffects } from './story-scores';
 import { audioPreviewPath, compileStoryAudio, type AudioAssetResolver } from './audio';
 
+import {createBranchConditionMatcher} from './branch-conditions';
 import {storyBranchConditionReferences} from './branch-condition-references';
 
 export const orderedLines = orderedStoryFlowLines;
@@ -197,28 +198,89 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const chapter = project.chapters.find(item => item.id === line.chapterId);
   const stage = resolveStageComposition(chapter, line, project);
   const speaker = activeStageSpeaker(stage, line);
-  // A narrative cut may designate its action subject without turning it into dialogue.
-  const portraitFocus = line.flow?.type==='choice' ? undefined
-    : speaker ?? stage.speakerActorKey ?? stage.leftActors[0]?.key ?? stage.rightActors[0]?.key;
-  const sourceActors = (['left', 'right'] as const).flatMap(side => stage[side === 'left' ? 'leftActors' : 'rightActors'].filter(actor=>!viewport?.portrait || actor.key===portraitFocus).map((actor, index, group) => {
-    const asset = resolveAsset(actor.assetId);
-    if (!asset?.geometry) throw new Error(`인물 자산을 찾을 수 없어요: ${actor.assetId}`);
+  // Use the exact same path and click state for presentation and portrait framing.
+  const replayProject=options.mode==='edit'&&project.lines.some(line=>line.visibility)?{...project,lines:project.lines.map(line=>{const {visibility:_visibility,...rest}=line;return rest;})}:project;
+  const path=options.playbackState?.path??options.playbackPath??audioPreviewPath(project,lineId);
+  const choiceHistory=options.playbackState?.choiceHistory;
+  const presentation=compileStoryPresentation(replayProject,lineId,path,choiceHistory,options.mode==='edit'||options.playbackState?.status==='ended'?Infinity:options.playbackState?.effectStep??0);
+  const effectSteps=storyEffectSteps(project,options.playbackState??{lineId,path,status:'reading'});
+  const cast = (['left', 'right'] as const).flatMap(side => stage[side === 'left' ? 'leftActors' : 'rightActors'].map((actor, index, group) => {
     const override = mergeActorOverride(actor,index,line.presentation?.actors?.[side]);
     const originalMirror = stageShouldMirror(actor.assetId, side);
     const mirrored = override.facing === 'original' ? false : override.facing ? originalMirror !== (override.facing !== (side === 'left' ? 'right' : 'left')) : originalMirror;
-    return { actor, asset, side, index, groupSize: group.length, override, mirrored };
+    return { actor, side, index, groupSize: group.length, override, mirrored };
   }));
-  const layout = resolveStageLayout(width, viewport?.actorBaseHeight ?? (720 - 8) * .68, sourceActors.map(item => ({ key: item.actor.key,
-    side: item.side, geometry: item.asset.geometry!, scale: (viewport ? stageReadableCharacterScale(item.actor.assetId) : stageCharacterScale(item.actor.assetId)) * (item.override.scaleMultiplier ?? 1),
-    mirrored: item.mirrored, xAnchor: viewport?.portrait ? undefined : item.override.xAnchor, centered: viewport?.portrait || item.actor.position === 'center' || stageSharedActor(item.actor.assetId) })), undefined, height - 16, viewport?.portrait ?? false);
+  const portrait = viewport?.portrait ?? false;
+  const transitionOnly = options.mode === 'play' && line.type === 'narration' && line.speakerName === '시점 전환'
+    && !line.flow && !line.ending && line.presentation?.transition?.type === 'perspective-blackout'
+    && !!line.presentation.transition.title?.trim() && text.trim() === line.presentation.transition.title.trim();
+  const defaultFocus = speaker ?? stage.speakerActorKey ?? cast[0]?.actor.key;
+  let focus = defaultFocus;
+  if (portrait && options.mode === 'play' && line.flow?.type !== 'choice' && !transitionOnly) {
+    const effectTargets = new Set<string>();
+    for (const effect of presentation?.effects ?? []) {
+      if (effect.target?.kind === 'actor') effectTargets.add(effect.target.actorId);
+    }
+    const localTargets = new Set<string>();
+    const localEffects = line.presentation?.effects?.filter(cue => cue.target?.kind === 'actor') ?? [];
+    if (localEffects.length) {
+      const matches = createBranchConditionMatcher(path, choiceHistory ?? [], replayProject);
+      for (const cue of localEffects) {
+        if (cue.target?.kind === 'actor' && matches(cue.branchCondition,path.length-1)) localTargets.add(cue.target.actorKey);
+      }
+    }
+    // Choose one subject. Keep the usual focus when it is itself a target;
+    // otherwise the original cast order also covers simultaneous targets.
+    const choose = (matches: (key: string) => boolean) =>
+      defaultFocus && matches(defaultFocus) ? defaultFocus : cast.find(({actor}) => matches(actor.key))?.actor.key;
+    const motionTargets = new Set(cast.filter(({actor}) => actor.motion).map(({actor}) => actor.key));
+    focus = choose(key => localTargets.has(key)) ?? choose(key => effectTargets.has(key))
+      ?? choose(key => motionTargets.has(key)) ?? defaultFocus;
+  }
+  const visibleCast = !portrait ? cast : line.flow?.type === 'choice' ? [] : cast.filter(({actor}) => actor.key === focus);
+  const toLayoutActor = (item: typeof cast[number], narrow: boolean) => {
+    const {actor, side, mirrored, override} = item;
+    const asset = resolveAsset(actor.assetId);
+    if (!asset?.geometry) throw new Error(`인물 자산을 찾을 수 없어요: ${actor.assetId}`);
+    return {key: actor.key, side, geometry: asset.geometry, mirrored,
+      scale: (viewport ? stageReadableCharacterScale(actor.assetId) : stageCharacterScale(actor.assetId)) * (override.scaleMultiplier ?? 1),
+      xAnchor: narrow ? undefined : override.xAnchor, centered: narrow || actor.position === 'center' || stageSharedActor(actor.assetId)};
+  };
+  const wide = portrait && visibleCast.some(({actor}) => actor.motion?.type === 'move')
+    ? resolveStoryViewport({width:1280,height:720}) : undefined;
+  const wideActors = wide ? resolveStageLayout(wide.width,wide.actorBaseHeight,cast.map(item => toLayoutActor(item,false)),undefined,wide.height-16).actors : [];
+  const wideCenters = new Map(wideActors.map(rect => [rect.key,rect.x+rect.width/2]));
+  const layout = resolveStageLayout(width,viewport?.actorBaseHeight??(720-8)*.68,
+    visibleCast.map(item => toLayoutActor(item,portrait)),undefined,height-16,portrait);
   const actors: RuntimeActor[] = layout.actors.map(rect => {
-    const item = sourceActors.find(a => a.actor.key === rect.key)!;
-    const listener = !!speaker && speaker !== item.actor.key && !stage.speakerActorKeys?.includes(item.actor.key) && !stageSharedActor(item.actor.assetId);
-    return {handle:{x:Math.max(0,Math.min(width,rect.x+rect.width*(rect.alphaLeft+rect.alphaRight)/2)),y:Math.max((viewport?.actorHeadMargin??8),(viewport?.actorBaseline??558)-rect.height*item.asset.geometry!.bottom+rect.height*item.asset.geometry!.top)}, id: rect.key, name: item.asset.displayName || item.asset.label, imagePath: item.asset.runtimePath,
-      // Default dialogue overlaps a little lower body; preserve readable head and authored scale.
-      rect: { x: rect.x, y: Math.max((viewport?.actorHeadMargin ?? 8) - rect.height * item.asset.geometry!.top, (viewport?.actorBaseline ?? 558) - rect.height * item.asset.geometry!.bottom), width: rect.width, height: rect.height },
-      ...(item.actor.motion ? {motion:{version:1 as const,type:item.actor.motion.type,durationMs:item.actor.motion.durationMs??600,delayMs:item.actor.motion.delayMs??0,
-        offsetX:item.actor.motion.type==='move'?(width*(item.actor.motion.fromXAnchor??50)/100-(rect.x+rect.width/2)):0}} : {}),
+    const item = visibleCast.find(a => a.actor.key === rect.key)!;
+    const asset = resolveAsset(item.actor.assetId)!;
+    const geometry = rect.geometry;
+    const paintedHeight = rect.height * (geometry.bottom - geometry.top);
+    const baseline = viewport?.actorBaseline ?? 558;
+    // Lift only a naturally small, automatically placed solo figure.
+    const automaticSolo = stage.leftActors.length + stage.rightActors.length === 1 &&
+      item.override.xAnchor === undefined && item.override.scaleMultiplier === undefined && !item.actor.motion;
+    const floor = viewport && options.dialogueDock && automaticSolo &&
+      paintedHeight <= viewport.actorBaseHeight * .35
+      ? Math.min(baseline, viewport.textboxRect.y + paintedHeight * .2)
+      : baseline;
+    const y = Math.max((viewport?.actorHeadMargin ?? 8) - rect.height * geometry.top, floor - rect.height * geometry.bottom);
+    const listener = !portrait && !!speaker && speaker !== item.actor.key && !stage.speakerActorKeys?.includes(item.actor.key) && !stageSharedActor(item.actor.assetId);
+    const motion = item.actor.motion;
+    const exitOffset = motion?.type === 'exit-left' ? -rect.visibleRight - 4
+      : motion?.type === 'exit-right' ? width - rect.visibleLeft + 4 : undefined;
+    const fromX = motion?.fromXAnchor ?? 50;
+    const offsetX = motion?.type === 'move'
+      ? wide
+        ? (wide.width * fromX / 100 - wideCenters.get(rect.key)!) * width / wide.width
+        : width * fromX / 100 - (rect.x + rect.width / 2)
+      : exitOffset ?? 0;
+    return {handle:{x:Math.max(0,Math.min(width,rect.x+rect.width*(rect.alphaLeft+rect.alphaRight)/2)),y:y+rect.height*geometry.top}, id: rect.key, name: asset.displayName || asset.label, imagePath: asset.runtimePath,
+      rect: { x: rect.x, y, width: rect.width, height: rect.height },
+      ...(motion ? {motion:{version:1 as const,
+        type: motion.type === 'exit-left' || motion.type === 'exit-right' ? 'exit' as const : motion.type,
+        durationMs:motion.durationMs??600,delayMs:motion.delayMs??0,offsetX}} : {}),
       flipX: item.mirrored, opacity: item.override.opacity ?? 1, spectral: item.override.spectral ?? false,
       emphasis: item.override.emphasis ?? (listener ? 'dim' : 'normal'),
       depth: stageActorDepth(item.actor, item.index, item.groupSize, stage.speakerActorKeys?.includes(item.actor.key) ? item.actor.key : speaker) };
@@ -229,20 +291,13 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const sourceSize = background ? getBackgroundSize(background.id) : undefined;
   const backgroundFit = line.presentation?.backgroundFit ?? (viewport || background?.backgroundRole === 'scenery' ? 'cover' as const : 'contain' as const);
   const focal = line.presentation?.backgroundFocal;
-  // Editing ignores reader visibility. Without any visibility the copy would equal the project, so skip it.
-  const replayProject=options.mode==='edit'&&project.lines.some(line=>line.visibility)?{...project,lines:project.lines.map(line=>{const {visibility:_visibility,...rest}=line;return rest;})}:project;
-  const path=options.playbackState?.path??options.playbackPath??audioPreviewPath(project,lineId);const presentation=compileStoryPresentation(replayProject,lineId,path,options.playbackState?.choiceHistory,options.mode==='edit'||options.playbackState?.status==='ended'?Infinity:options.playbackState?.effectStep??0);
-  const effectSteps=storyEffectSteps(project,options.playbackState??{lineId,path,status:'reading'});
   const scene: RuntimeScene = { ...(options.controlDisplaySize?{controlTargetSize:resolveControlTargetSize({width,height},options.controlDisplaySize)}:{}), contractVersion: 1, sceneId: `${project.id}/${line.id}`, revision, width, height,
     ...(viewport ? { viewportVersion: 1 as const, textboxRect: viewport.textboxRect, dialogueStyle: viewport.dialogueStyle } : {}),
     ...(options.presentationEntry ? { presentationEntry: options.presentationEntry } : {}),
     ...(options.mode==='play'&&effectSteps.total>0?{effectSteps}:{}),
     audio: compileStoryAudio(replayProject, lineId, options.audioResolver ?? (id => resolveAudioAsset(id) ?? (customAudioRuntimePath(id) ? {runtimePath:customAudioRuntimePath(id)!} : undefined)), path,options.playbackState?.choiceHistory),
     actors, dialogue: { speaker: line.speakerName || (line.type === 'narration' ? '해설' : '화자'), text },
-    ...(options.mode === 'play' && line.type === 'narration' && line.speakerName === '시점 전환'
-      && !line.flow && !line.ending && line.presentation?.transition?.type === 'perspective-blackout'
-      && !!line.presentation.transition.title?.trim()
-      && text.trim() === line.presentation.transition.title.trim() ? {transitionOnly:true} : {}),
+    ...(transitionOnly ? {transitionOnly:true} : {}),
     ...(background ? { background: { imagePath: background.runtimePath, fit: backgroundFit, ...(focal ? { focal } : {}), ...(viewport && sourceSize ? { rect: resolveBackgroundRect(sourceSize, { width, height }, backgroundFit, focal) } : {}) } } : {}),
     choices: !line.ending?.endsStory && line.flow?.type === 'choice' ? (options.mode==='play'?availableStoryChoices(project,lineId,options.playbackState):line.flow.options).map(option => ({ id: option.id, text: option.label })) : [],
     mode: options.mode, reducedMotion: options.reducedMotion ?? false,

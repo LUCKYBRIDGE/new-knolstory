@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
+import type {RuntimeScene} from '@knolstory/runtime-contract';
 import {sceneSemanticHash} from '../../docs/architecture/evidence/catalog-native-paths-2026-11-02/scene-semantics';
 import {enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry';
 
@@ -8,9 +9,8 @@ type Step={lineId:string;textSha256:string;semanticSha256?:string[]};
 type Playback={lineId:string|null;path:string[];status:string;choiceHistory?:Array<{pathIndex:number;choiceId:string}>};
 type Route={id:string;decisions:Array<{lineId:string;choiceId:string;label:string}>;steps:Step[];terminalLineId:string;finalState:Playback};
 type Edition={workId:string;edition:'original'|'knolstory';projectId:string;title:string;projectSha256:string;routes:Route[]};
-type Scene={sceneId:string;revision:number;width:number;height:number;mode:string;ended?:boolean;dialogue:{text:string};choices:Array<{id:string;text:string}>;transitionOnly?:boolean;presentation?:{transition?:{mode?:'auto'|'confirm'}};effectSteps?:{current:number;total:number}};
 type NativeEvent={type:string;revision?:number;sceneId?:string;message?:string;choicesRect?:{x:number;y:number;width:number;height:number};dialoguePage?:{index:number;count:number};choiceId?:string};
-type ObservedWindow=Window&{__catalogPathScene?:Scene;__catalogPathEvents?:NativeEvent[]};
+type ObservedWindow=Window&{__catalogPathScene?:RuntimeScene;__catalogPathEvents?:NativeEvent[]};
 const evidenceUrl=(file:string)=>new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url);
 const readEditions=(file:string)=>(JSON.parse(readFileSync(evidenceUrl(file),'utf8')) as {editions:Edition[]}).editions;
 // KNOL_CATALOG_SEONNYEO_SCOPE=remaining: run the seonnyeo routes of the full manifest that the selected manifest has not already verified. Unset keeps the default (selected) scope.
@@ -21,6 +21,20 @@ const canonical=(value:unknown)=>JSON.stringify(value,(_key,item:unknown)=>item&
 const projectHash=(value:unknown)=>createHash('sha256').update(canonical(value)).digest('hex');
 const workspace=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
 
+async function observeNativeMessages(page:Page){
+ // Fresh Playwright contexts isolate all work. This flag only dismisses the optional browser-chrome offer.
+ await page.addInitScript(()=>{
+  if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');
+  (window as ObservedWindow).__catalogPathEvents=[];
+  window.addEventListener('message',event=>{
+   if(event.origin!==location.origin||!event.data||event.data.protocol!==1)return;
+   if(window!==window.top&&event.source===window.parent&&event.data.type==='loadScene') (window as ObservedWindow).__catalogPathScene=event.data.payload;
+   if(window===window.top&&event.source===(document.querySelector('[data-testid="story-runtime-frame"]') as HTMLIFrameElement|null)?.contentWindow){
+    const events=(window as ObservedWindow).__catalogPathEvents!;events.push(event.data);if(events.length>15000)events.shift();
+   }
+  });
+ });
+}
 async function observed(page:Page){
  return page.getByTestId('story-runtime-frame').evaluate(node=>{
   const scene=((node as HTMLIFrameElement).contentWindow as ObservedWindow).__catalogPathScene;
@@ -67,18 +81,7 @@ async function nativeChoice(page:Page,choice:{choiceId:string;label:string}){
 
 for(const edition of editions)for(const route of edition.routes)test(`${edition.workId} ${route.id}: complete native route with API unavailable`,async({page},info)=>{
  test.setTimeout(360000);await page.setViewportSize({width:1280,height:800});
- // Fresh Playwright contexts isolate all work. This flag only dismisses the optional browser-chrome offer.
- await page.addInitScript(()=>{
-  if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');
-  (window as ObservedWindow).__catalogPathEvents=[];
-  window.addEventListener('message',event=>{
-   if(event.origin!==location.origin||!event.data||event.data.protocol!==1)return;
-   if(window!==window.top&&event.source===window.parent&&event.data.type==='loadScene') (window as ObservedWindow).__catalogPathScene=event.data.payload;
-   if(window===window.top&&event.source===(document.querySelector('[data-testid="story-runtime-frame"]') as HTMLIFrameElement|null)?.contentWindow){
-    const events=(window as ObservedWindow).__catalogPathEvents!;events.push(event.data);if(events.length>15000)events.shift();
-   }
-  });
- });
+ await observeNativeMessages(page);
  let apiRequests=0;await page.route('**/api/**',async request=>{apiRequests++;await request.fulfill({status:503,contentType:'application/json',body:JSON.stringify({success:false,error:'검사 중 온라인 기능을 사용할 수 없어요.'})});});
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto('/');await enterLibrary(page);await openBuiltinEdition(page,edition.workId,edition.edition,'start');await beginSelectedBook(page);
@@ -118,4 +121,70 @@ for(const edition of editions)for(const route of edition.routes)test(`${edition.
   await info.attach('complete-path-evidence',{body:receipt,contentType:'application/json'});
   await page.screenshot({path:info.outputPath(`${route.id}-ending.png`)});
  }catch(error){await info.attach('path-progress-on-failure',{body:JSON.stringify({route:route.id,visitedCuts:visits,last:await observed(page),workspace:await workspace(page)},null,2),contentType:'application/json'});throw error;}
+});
+
+test('Onggojib built-in ghost transformation and exit play through the real branch',async({page},info)=>{
+ test.setTimeout(360000);
+ await page.setViewportSize({width:1280,height:800});
+ await observeNativeMessages(page);
+ const edition=readEditions('manifest-onggojib.json').find(item=>item.edition==='knolstory')!;
+ const route=edition.routes.find(item=>item.id==='knolstory-8')!;
+ const errors:string[]=[];
+ page.on('pageerror',error=>errors.push(error.message));
+ await page.goto('/');
+ await enterLibrary(page);
+ await openBuiltinEdition(page,'onggojib','knolstory','start');
+ await beginSelectedBook(page);
+ const sceneId=(lineId:string)=>edition.projectId+'/'+lineId;
+ const ending='review-main-003:b-fake-warning:';
+ const reached=new Set<string>();
+ for(const step of route.steps){
+  let state=await ready(page,sceneId(step.lineId));
+  if(step.lineId.startsWith(ending)){
+   reached.add(step.lineId);
+   const inspect=async()=>{
+    const scene=(await observed(page)).scene!;
+    expect(scene.sceneId).toBe(sceneId(step.lineId));
+    if(step.lineId===ending+'0')expect(scene.presentation?.effects?.map(cue=>cue.type)).toEqual(['flash','screen-crack','shake']);
+    if(step.lineId===ending+'5'){
+     expect(scene.actors.find(actor=>actor.id==='onggojib-real')).toMatchObject({spectral:true,motion:{type:'fade-in'}});
+     expect(scene.dialogue.speaker).toContain('가짜');
+     if(scene.width===720)expect(scene.actors.map(actor=>actor.id)).toEqual(['onggojib-real']);
+    }
+    if(step.lineId===ending+'10'){
+     expect(scene.actors).toHaveLength(1);
+     expect(scene.actors[0]).toMatchObject({id:'onggojib-real',spectral:true,motion:{type:'exit',durationMs:700,delayMs:200}});
+     expect(scene.actors[0].motion!.offsetX).toBeGreaterThan(0);
+     await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('ghost-exit-'+scene.width+'.png')});
+    }
+    if(step.lineId===ending+'13')expect(scene.actors[0]).toMatchObject({id:'onggojib-real',spectral:true});
+   };
+   await inspect();
+   if(step.lineId===ending+'5'||step.lineId===ending+'10'){
+    const width=state.scene!.width;
+    await page.setViewportSize(width===1280?{width:390,height:844}:{width:1280,height:800});
+    await expect.poll(async()=>(await observed(page)).scene?.width).toBe(width===1280?720:1280);
+    state=await ready(page,sceneId(step.lineId));
+    await inspect();
+   }
+  }
+  if(state.scene?.transitionOnly&&state.scene.presentation?.transition?.mode==='auto'){
+   const currentSceneId=state.scene.sceneId;
+   await expect.poll(async()=>(await observed(page)).scene?.sceneId,{timeout:15000}).not.toBe(currentSceneId);
+   continue;
+  }
+  while((state.report?.dialoguePage?.index??0)<(state.report?.dialoguePage?.count??1)-1 ||
+    (state.scene?.effectSteps?.current??0)<(state.scene?.effectSteps?.total??0)){
+   await nativeAdvance(page);
+   state=await ready(page,sceneId(step.lineId));
+  }
+  const decision=route.decisions.find(item=>item.lineId===step.lineId);
+  if(decision)await nativeChoice(page,decision);
+  else await nativeAdvance(page);
+ }
+ expect(reached.size).toBe(14);
+ await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+ expect((await observed(page)).scene?.ended).toBe(true);
+ expect(errors).toEqual([]);
+ expect(await page.evaluate(()=>(window as ObservedWindow).__catalogPathEvents?.filter(event=>event.type==='error'))).toEqual([]);
 });

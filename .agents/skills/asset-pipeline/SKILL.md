@@ -1,5 +1,7 @@
 # Asset Pipeline Skill
 
+For any new or replaced character sprite, follow the [character creation and registration rules](../../../DESIGN.md#새-인물-그림의-제작과-등록). Set the size against a reference before generating, then run `pnpm test:character-registration` and review the mixed cast in both reading formats.
+
 For the all-character minimum-five requirement follow [the emotion coverage review](../../../docs/architecture/evidence/all-character-emotions-2026-11-11/review.md). The current slot owner is `packages/asset-registry/src/character-emotions.json`: verify distinct everyday/joy/anger/sorrow/mirth images for every individual, not only file counts or group aliases. Preserve old catalogue rows; the reviewed role map supplies filters/search. The common image preparation verifies all three receipts, including `emotions-v3`; run the dedicated235card editor/native smoke after runtime and Web builds.
 
 Supporting-character expression batches also follow [the second expansion review](../../../docs/architecture/evidence/supporting-character-expansion-2026-11-11/review.md). The common preparation command checks both reviewed receipts; retain small-child/animal stature and all previous catalogue rows. The editor/native smoke accepts `KNOL_EXPRESSION_RECEIPT` to exercise each batch, including search/cancel/apply for every newly covered identity. New IDs require the matching API catalogue at an authorized deployment.

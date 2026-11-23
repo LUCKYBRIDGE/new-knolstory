@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "pnpm --filter @knolstory/web dev",
-    "build": "python3 scripts/check-service-audio.py && turbo run build",
+    "build": "pnpm test:character-registration && python3 scripts/check-service-audio.py && turbo run build",
     "typecheck": "turbo run typecheck && pnpm typecheck:server",
     "lint": "eslint .",
     "test": "vitest run",
@@ -16,6 +16,7 @@
     "test:e2e:runtime": "playwright test --project=runtime --project=runtime-dpr-1.5 --project=runtime-dpr-2",
     "test:e2e:stories": "playwright test --project=stories-runtime",
     "test:presenter": "node spikes/renpy-web/verify-presenter.mjs",
+    "test:character-registration": "python3 scripts/check-character-registration.py",
     "test:media-provenance": "python3 scripts/media-provenance.py --check",
     "env:prepare": "python3 scripts/test-environment.py prepare",
     "env:doctor": "python3 scripts/test-environment.py doctor",

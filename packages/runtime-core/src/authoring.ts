@@ -1,4 +1,4 @@
-import { createStoryDocument, parseStoryDocument, resolveStageComposition, stageProjection, type Chapter, type StoryLine, type StoryProject } from '@knolstory/story-domain';
+import { createStoryDocument, parseStoryDocument, resolveStageComposition, stageProjection, withoutActorExits, type Chapter, type StoryLine, type StoryProject } from '@knolstory/story-domain';
 
 export type BlankStoryInput = Readonly<{ id: string; chapterId: string; lineId: string; title?: string; updatedAt?: string }>;
 export type NewChapterInput = Readonly<{ chapterId: string; lineId: string; title?: string }>;
@@ -81,7 +81,7 @@ export function insertStoryCut(project: StoryProject, afterLineId: string, newLi
   const selected = requireCut(project, afterLineId);
   requireNewIds(project, undefined, newLineId);
   const chapter = project.chapters.find(item => item.id === selected.chapterId);
-  const stageComposition = resolveStageComposition(chapter, selected, project);
+  const stageComposition = withoutActorExits(resolveStageComposition(chapter, selected, project));
   const cut: StoryLine = { ...emptyCut(newLineId, selected.chapterId), stageComposition, ...stageProjection(stageComposition),
     backgroundId: selected.backgroundMode === 'none' ? '' : selected.backgroundId || chapter?.backgroundId || project.stageDefaults?.backgroundId || '',
     ...(selected.backgroundMode === 'none' ? { backgroundMode: 'none' as const } : {}),
