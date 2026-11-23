@@ -23,7 +23,7 @@ for(const [width,height] of [[320,256],[640,360],[390,740]])test(`long authored 
  }
  return {...snapshot(),attempts};
  },edge);reports.push({surface:'prose-edge',text,edge,diagnostic:reachable});expect.soft(reachable.reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
- await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').filter({hasText:subtitle}),subtitle);await prose(meta.locator('p').filter({hasText:description}),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+ await capture('focus',focus);const meta=focus.locator('section[aria-label="작품 소개"]');await prose(focus.locator('h2').first(),title);await prose(meta.locator('p').filter({hasText:subtitle}),subtitle);await prose(meta.locator('p').filter({hasText:description}),description);await prose(meta.locator('small'),`지은이 · ${author}`);
  // The shelf opens books straight into the story, so the dialog itself carries the subtitle and 작가의 말.
  await meta.getByText('작가의 말',{exact:true}).click();await prose(meta.locator('details p'),authorNote);
  await openBookMore(focus);for(const control of await focus.locator('button:visible,a:visible,summary:visible,input:visible').all()){if(await control.isEnabled())await control.click({trial:true});}

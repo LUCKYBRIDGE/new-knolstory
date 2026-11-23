@@ -1,11 +1,13 @@
 import {test,expect} from '@playwright/test';
 for(const width of [320,390,1440])test(`library header controls remain reachable at ${width}px`,async({page})=>{
  await page.setViewportSize({width,height:740});await page.goto('/?view=library');
- const tools=page.getByText('책 검색',{exact:true});await expect(tools).toBeVisible();
+ const tools=page.locator('[data-search-toggle]');await expect(tools).toBeVisible();
  const bounds=await tools.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
  await tools.click();await expect(page.getByRole('searchbox',{name:'책 찾기',exact:true})).toBeVisible();await page.keyboard.press('Escape');
  await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('region',{name:'놀스토리 계정',exact:true})).toBeVisible();await page.keyboard.press('Escape');
- const status=page.getByLabel('작품 보관 안내',{exact:true});await expect(status).toBeVisible();const statusBox=await status.boundingBox();expect(statusBox).not.toBeNull();expect(statusBox!.x).toBeGreaterThanOrEqual(0);expect(statusBox!.x+statusBox!.width).toBeLessThanOrEqual(width);
+ // The header is one row inside the viewport; routine storage sentences are not shown above the shelf (2026-11-23).
+ const header=await page.locator('[data-library-header]').boundingBox();expect(header).not.toBeNull();expect(header!.x).toBeGreaterThanOrEqual(0);expect(header!.x+header!.width).toBeLessThanOrEqual(width);expect(header!.height).toBeLessThan(60);
+ await expect(page.getByText('이 기기에 저장돼요')).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  // ShortStory's online panel is teacher-only; its account menu is the shared header control here.
  await page.goto('/shortstory');await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('region',{name:'놀스토리 계정',exact:true})).toBeVisible();

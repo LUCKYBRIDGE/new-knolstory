@@ -84,10 +84,9 @@ test('a finished book offers to start again instead of resuming into its credits
  await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  await builtinShelfCard(page,'rabbit').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();
  const dialog=page.getByRole('dialog');await expect(dialog).toHaveAttribute('data-work-id','rabbit');
- await dialog.getByRole('radio',{name:'원작',exact:true}).check();
  // A finished book offers one way in: read it again from the start, with no ‘이어읽기’ into its credits.
  await expect(dialog.getByRole('button',{name:'원작 이어읽기',exact:true})).toHaveCount(0);
- await expect(dialog.getByRole('button',{name:'처음부터 읽기',exact:true})).toHaveCount(0);
+ await expect(dialog.getByRole('button',{name:'원작 처음부터 읽기',exact:true})).toHaveCount(0);
  await expect(dialog.getByRole('button',{name:'원작 읽기',exact:true})).toBeEnabled();
 });
 

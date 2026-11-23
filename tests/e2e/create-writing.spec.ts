@@ -17,7 +17,7 @@ test('new title composition does not create a work or dismiss the library tools'
  await page.route('**/api/**',route=>route.abort());
  await page.route('**/runtime/**',route=>route.abort());
  await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
- const title=page.getByLabel('새 작품 제목',{exact:true}),tools=page.getByTestId('library-create');
+ const title=page.getByLabel('새 작품 제목',{exact:true}),tools=page.getByRole('dialog',{name:'새 작품',exact:true}),opener=page.getByRole('main',{name:'놀스토리 서재',exact:true}).getByRole('button',{name:'새 작품',exact:true});
  const before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
  await title.fill('한글 제목');
  await title.dispatchEvent('compositionstart',{data:'목'});
@@ -30,11 +30,11 @@ test('new title composition does not create a work or dismiss the library tools'
  await title.dispatchEvent('compositionend',{data:'목'});
  await title.dispatchEvent('keydown',{key:'Escape',code:'Escape',keyCode:229});
  await expect(tools).toHaveAttribute('open','');
- await title.press('Escape');await expect(tools).not.toHaveAttribute('open','');await expect(tools.locator(':scope>summary')).toBeFocused();
- await tools.locator(':scope>summary').click();await expect(title).toHaveValue('한글 제목');
+ await title.press('Escape');await expect(tools).toHaveCount(0);await expect(opener).toBeFocused();
+ await opener.click();await expect(title).toHaveValue('한글 제목');
  await title.dispatchEvent('compositionstart',{data:'목'});
  await page.getByRole('button',{name:'취소',exact:true}).click();
- await tools.locator(':scope>summary').click();await expect(title).toHaveValue('한글 제목');
+ await opener.click();await expect(title).toHaveValue('한글 제목');
  await title.press('Enter');await expect(page.locator('[data-current-cut] textarea')).toHaveValue('');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await expect(page.getByRole('heading',{name:'한글 제목',exact:true})).toBeVisible();

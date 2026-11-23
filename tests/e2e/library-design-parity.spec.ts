@@ -36,7 +36,8 @@ test('imported shelf pages retain all existing-book copies and filter back to th
   await importShelfFile(page,{name:`copy-${index}.knolstory`,mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:new Date().toISOString(),appVersion:'knolstory-next',project:copy}))});
   await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  }
- await selectShelfCollection(page,'imported');const region=page.getByRole('region',{name:'내 작품',exact:true});const capacity=Number(await page.locator('[data-capacity]').getAttribute('data-capacity'));await expect(region.getByRole('article')).toHaveCount(Math.min(9,capacity));const paging=page.getByRole('navigation',{name:'내 작품 선반 페이지'});await paging.getByRole('button',{name:'다음 선반'}).click();await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 9');await fillShelfSearch(page,'서재 1');await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 1');await fillShelfSearch(page,'');await paging.getByRole('button',{name:'이전 선반'}).click();await expect(region.getByRole('article')).toHaveCount(8);
+ await selectShelfCollection(page,'imported');const region=page.getByRole('region',{name:'내 작품',exact:true});const capacity=Number(await page.locator('[data-capacity]').getAttribute('data-capacity'));// The 내 작품 shelf opens with its ＋ 새 작품 place, so a page holds one book fewer.
+ const perPage=capacity-1;await expect(region.getByRole('article')).toHaveCount(Math.min(9,perPage));const paging=page.getByRole('navigation',{name:'내 작품 선반 페이지'});await paging.getByRole('button',{name:'다음 선반'}).click();await expect(region.getByRole('article')).toHaveCount(9-perPage);await expect(region).toContainText('흥부전 서재 9');await fillShelfSearch(page,'서재 1');await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 1');await fillShelfSearch(page,'');await paging.getByRole('button',{name:'이전 선반'}).click();await expect(region.getByRole('article')).toHaveCount(perPage);
 });
 
 test('layered front, spine and back covers keep direct edits in the draft until apply',async({page})=>{
@@ -53,7 +54,7 @@ test('all eight books start native RenPy from the library focus and retain the s
  await page.goto('/');await enterLibrary(page);
  const works=builtinEditions;
  for(const [index,[workId,edition]] of works.entries()){
-  const label=edition==='original'?'원작':'놀스토리';await builtinShelfCard(page,workId).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const dialog=page.getByRole('dialog');await dialog.getByRole('radio',{name:label,exact:true}).check();await expect(dialog.locator('[data-edition]').first()).toHaveAttribute('data-edition',edition);await dialog.getByRole('button',{name:`${label} 읽기`,exact:true}).click();
+  const label=edition==='original'?'원작':'놀스토리';await builtinShelfCard(page,workId).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const dialog=page.getByRole('dialog');await expect(dialog.getByRole('group',{name:'읽기',exact:true}).locator(`[data-edition="${edition}"]`)).toHaveCount(1);await dialog.getByRole('group',{name:'읽기',exact:true}).locator(`[data-edition="${edition}"]`).getByRole('button',{name:`${label} 읽기`,exact:true}).click();
   const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.getAttribute('data-rendered-revision'),{timeout:30000}).toBe(await status.getAttribute('data-scene-revision'));
   const frame=page.getByTestId('story-runtime-frame');if(index===0)await frame.evaluate(node=>node.setAttribute('data-design-instance','persistent'));else await expect(frame).toHaveAttribute('data-design-instance','persistent');
   const rect=(await frame.boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true');await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true}).getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
@@ -101,7 +102,7 @@ test('cabinet preserves shelf capacity and at least two rows around four books',
 test('reference introduction uses exact rectangular posters and quiet library controls',async({page})=>{
  await page.goto('/');const intro=page.getByRole('main',{name:'책 소개'});await expect(intro.getByRole('heading',{name:'옹고집전',exact:true})).toBeVisible();await expect(intro.getByRole('button',{name:'나만의 이야기',exact:true})).toBeVisible();await expect(intro.getByRole('button',{name:'서재로 가기',exact:true})).toHaveText('서재 입장');await expect(intro.getByText('이 이야기의 작가: 당신',{exact:false})).toBeVisible();
  for(const art of ['onggojib','seonnyeo','heungbu','rabbit']){const image=intro.locator('[data-intro-poster]');await expect(image).toHaveAttribute('data-intro-poster',art);await expect(image).toHaveAttribute('src',`/assets/legacy-ui/intro-${art}.webp`);const corner=await image.evaluate(node=>getComputedStyle(node.parentElement!).borderTopLeftRadius);expect(parseFloat(corner)).toBeLessThanOrEqual(16);await expect.poll(()=>image.evaluate(node=>(node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);await intro.getByRole('button',{name:'다른 이야기 표지로 바꾸기',exact:true}).click();}
- await enterLibrary(page);const tools=page.getByTestId('library-tools');await expect(tools).not.toHaveAttribute('open','');await expect(page.getByLabel('서재 작품 파일 가져오기',{exact:true})).toBeHidden();await expect(page.getByTestId('library-create').locator('summary')).toBeVisible();await expect(page.getByRole('searchbox',{name:'책 찾기'})).toBeHidden();await expect(page.locator('img[src*="legacy-cover.onggojib"]')).toHaveCount(0);await expect(page.locator('[data-shelf-room]')).toHaveCount(1);
+ await enterLibrary(page);await expect(page.locator('[data-search-toggle]')).toBeVisible();await expect(page.getByLabel('서재 작품 파일 가져오기',{exact:true})).toBeHidden();await expect(page.getByRole('searchbox',{name:'책 찾기'})).toBeHidden();await expect(page.locator('img[src*="legacy-cover.onggojib"]')).toHaveCount(0);await expect(page.locator('[data-shelf-room]')).toHaveCount(1);
  const top=await page.locator('[data-shelf-room]').evaluate(node=>node.getBoundingClientRect().top);expect(top).toBeLessThan(240);await page.getByRole('button',{name:'책 소개',exact:true}).click();await intro.getByRole('button',{name:'나만의 이야기',exact:true}).click();await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('own');
 });
 
@@ -115,7 +116,8 @@ test('compact shelf keeps all four books and drawer near the first viewport',asy
  }
  await page.setViewportSize({width:390,height:844});await expect(page.locator('[data-shelf-book]')).toHaveCount(4);
  expect(await page.locator('article[data-work-id]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-work-id')).sort())).toEqual(['heungbu','onggojib','rabbit','seonnyeo']);
- await expect(page.getByRole('button',{name:'다음 선반',exact:true})).toBeDisabled();
+ // One page of books: the drawer carries no paging controls (2026-11-23).
+ await expect(page.getByRole('button',{name:'다음 선반',exact:true})).toHaveCount(0);
  await page.setViewportSize({width:1200,height:900});await expect(page.locator('[data-shelf-book]')).toHaveCount(4);
 });
 
@@ -134,7 +136,7 @@ test('book page blocks stay narrow and rest above the shelf instead of protrudin
 });
 
 test('branded library shows word-safe cover titles and opens cover editing directly from the chosen book',async({page})=>{
- await page.goto('/');await enterLibrary(page);await expect(page.getByRole('heading',{name:'놀스토리 서재',exact:true})).toBeVisible();
+ await page.goto('/');await enterLibrary(page);await expect(page.getByRole('heading',{name:'놀스토리 서재',exact:true})).toHaveCount(0);
  await page.evaluate(()=>document.fonts.ready);
  const words=await page.locator('[data-shelf-book] h2[data-font]').evaluateAll(titles=>titles.flatMap(title=>{const text=title.firstChild;if(!text||text.nodeType!==Node.TEXT_NODE)return [];const value=text.textContent??'';return Array.from(value.matchAll(/\S+/g)).map(match=>{const tops=[];for(let i=match.index!;i<match.index!+match[0].length;i++){const range=document.createRange();range.setStart(text,i);range.setEnd(text,i+1);tops.push(range.getBoundingClientRect().top);}return Math.max(...tops)-Math.min(...tops);});}));expect(words.every(delta=>delta<=1)).toBe(true);
  const original=builtinShelfCard(page,'seonnyeo');await openShelfAction(page,original,'책 표지 편집');const editor=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await expect(editor).toBeVisible();await editor.getByLabel('작품 제목',{exact:true}).fill('겹치지 않는 나의 이야기');await editor.getByRole('button',{name:'글·그림 분리 배치',exact:true}).click();await editor.getByRole('button',{name:'표지 적용',exact:true}).click();await page.getByRole('button',{name:'서재로',exact:true}).click();
@@ -163,6 +165,6 @@ test('small shelf prints a readable title and keeps edition choices inside the b
  await card.getByRole('button').click();
  const dialog=page.getByRole('dialog');
 await expect(dialog.getByRole('button',{name:'놀스토리 읽기',exact:true})).toBeVisible();
- await dialog.getByRole('radio',{name:'원작',exact:true}).check();await expect(dialog.getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
- await dialog.getByRole('radio',{name:'숏스토리',exact:true}).check();await expect(dialog.getByRole('link',{name:'숏스토리 읽기',exact:true})).toBeVisible();
+ await expect(dialog.getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
+ await expect(dialog.getByRole('link',{name:'숏스토리 읽기',exact:true})).toBeVisible();
 });

@@ -273,7 +273,7 @@ test('local library prepares three separate works and roundtrips preparation wit
     await expect(page.getByRole('region',{name:'이야기 무대',exact:true}).getByText('바닷가에 새 이야기를 남겼다.',{exact:true})).toBeVisible();
     await open(page,'내 작품',ownTitle,'이어읽기');await ready(page);
     await expect(page.getByRole('region',{name:'이야기 무대',exact:true}).getByText('숲에서 친구에게 편지를 전했다.',{exact:true})).toBeVisible();
-    await library(page);await page.getByRole('button',{name:'내 작품',exact:true}).click();await page.getByRole('link',{name:'그림책 보관함',exact:true}).click();
+    await library(page);await page.getByLabel('책 분류',{exact:true}).selectOption('own');await page.getByRole('main',{name:'놀스토리 서재',exact:true}).getByRole('button',{name:'새 작품',exact:true}).click();await page.getByRole('link',{name:'그림책 보관함',exact:true}).click();
     await expect(page.getByRole('heading',{name:'그림책 보관함',exact:true})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
     writeFileSync(`${evidence}/run-summary.json`,JSON.stringify({browser:await browser.version(),channel:process.env.KNOL_BROWSER_CHANNEL||'bundled Chromium',authorship:'Two works created through UI; twelve-cut fixture uses two registered sound references; historical private-media fixture unchanged',works:[ownTitle,secondTitle,forestTitle],checks:['info/cover/planning/memos','linked cut jump','per-work edit position','per-work native read resume','reload','export/import exact project/audio equality','existing rich lines/chapters preserved','PC/tablet/phone purpose selection and layout','ShortStory entry'],hardware:'Browser viewport conditions; native reading in desktop viewport; no Android hardware claim'},null,2));
   } finally {
@@ -332,6 +332,8 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   await pane.getByLabel('작품 설정 항목',{exact:true}).selectOption('planning');
   await expect(pane.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('');
   await library(page);
+  // New works start from the 내 작품 shelf, so the library returns there; the whole library still holds the four books.
+  await page.getByLabel('책 분류',{exact:true}).selectOption('all');
   await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
 });
 

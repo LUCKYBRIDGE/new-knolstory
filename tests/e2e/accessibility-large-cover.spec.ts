@@ -21,8 +21,8 @@ for(const width of [390,1440])test(`original large front cover contrast on actua
  }
  for(const work of ['seonnyeo','heungbu','onggojib','rabbit']){
   await builtinShelfCard(page,work).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();
-  // The shelf opens books straight into the story, so the dialog is where the original front cover is read before reading.
-  const before=await authored();await focus.getByRole('radio',{name:'원작',exact:true}).check();await expect(focus).toHaveAttribute('data-selected-edition','original');await measure(`${work}-focus`,focus);
+  // The dialog shows the shelf's representative cover — the original front cover of every built-in work.
+  const before=await authored();await expect(focus).toHaveAttribute('data-cover-edition','original');await measure(`${work}-focus`,focus);
   await page.keyboard.press('Escape');await expect(focus).toHaveCount(0);expect(await authored()).toEqual(before);
  }
  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book dialog only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});

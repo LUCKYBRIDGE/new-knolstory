@@ -35,36 +35,59 @@ export async function openBookMore(dialog:import('@playwright/test').Locator){
  if(!await more.evaluate(node=>(node as HTMLDetailsElement).open))await more.locator('summary').click();
 }
 const moreAction:Record<string,string>={'작품 준비':'작품 정보·기획','파일로 보관':'작품 파일 내보내기','작품 파일 내보내기':'작품 파일 내보내기','책 표지 편집':'책 표지 편집','작품 정보·기획':'작품 정보·기획','사본 만들기':'사본 만들기','이 기기에서 삭제':'이 기기에서 삭제'};
+const editionLabel={original:'원작',knolstory:'놀스토리'} as const;
+/** Built-in books are edited as a copy: 편집하기, then the edition (원작으로 편집 · 놀스토리로 편집). */
+async function editBuiltin(dialog:import('@playwright/test').Locator,label:string){
+ await dialog.getByRole('button',{name:'편집하기',exact:true}).click();
+ await dialog.getByRole('button',{name:`${label}${label==='원작'?'으로':'로'} 편집`,exact:true}).click();
+}
+/** ‘더보기’ tools of a built-in book act on the edition chosen inside the sheet. */
+async function chooseMoreTarget(dialog:import('@playwright/test').Locator,label:string){
+ const target=dialog.getByRole('radio',{name:label,exact:true});
+ if(await target.count())await target.check();
+}
 /** Books expose their actions only after selection, as in the legacy shelf. Built-in books use their 원작 edition. */
 export async function openShelfAction(page:Page,book:import('@playwright/test').Locator,intent:string){
  await book.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();
  const dialog=page.getByRole('dialog');
  const builtin=!!await book.getAttribute('data-work-id');
- if(builtin)await dialog.getByRole('radio',{name:'원작',exact:true}).check();
  if(intent==='처음부터 읽기'||intent==='이어읽기'){await readFromDialog(dialog,builtin?'원작':'',intent==='이어읽기');return;}
- if(intent==='편집하기'&&!builtin){await dialog.getByRole('button',{name:'편집하기',exact:true}).click();return;}
+ if(intent==='편집하기'){if(builtin)await editBuiltin(dialog,'원작');else await dialog.getByRole('button',{name:'편집하기',exact:true}).click();return;}
  await openBookMore(dialog);
- await dialog.getByRole('button',{name:intent==='편집하기'?'내 사본으로 편집':moreAction[intent]??intent,exact:true}).click();
+ if(builtin)await chooseMoreTarget(dialog,'원작');
+ await dialog.getByRole('button',{name:moreAction[intent]??intent,exact:true}).click();
 }
-/** The one reading action: ‘이어읽기’ when there is a saved place (with ‘처음부터 읽기’ beneath), otherwise ‘읽기’. */
+/** One row per way of reading: ‘원작 읽기’, or ‘원작 이어읽기’ with ‘처음부터’ beside it when there is a saved place. */
 async function readFromDialog(dialog:import('@playwright/test').Locator,edition:string,resume:boolean){
  const prefix=edition?`${edition} `:'';
  if(resume){await dialog.getByRole('button',{name:`${prefix}이어읽기`,exact:true}).click();return;}
- const restart=dialog.getByRole('button',{name:'처음부터 읽기',exact:true});
+ const restart=dialog.getByRole('button',{name:`${prefix}처음부터 읽기`,exact:true});
  await (await restart.isVisible()?restart:dialog.getByRole('button',{name:`${prefix}읽기`,exact:true})).click();
 }
 
+/** Search is the magnifier in the library header; it turns the header row into the search field. */
 export async function openLibraryTools(page:Page,id='library-tools'){
- const tools=page.getByTestId(id);
- if(await tools.isVisible()&&!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator('summary').click();
+ if(id==='library-create'){await startShelfCreation(page);return;}
+ const field=page.getByRole('searchbox',{name:'책 찾기',exact:true});
+ if(!await field.isVisible())await page.locator('[data-search-toggle]').click();
+}
+/** New works and 작품 파일 start from the 내 작품 shelf. */
+export async function startShelfCreation(page:Page){
+ if(await page.getByRole('dialog',{name:'새 작품',exact:true}).isVisible())return;
+ const select=page.getByLabel('책 분류',{exact:true});
+ if(!await select.isVisible()){const close=page.getByRole('button',{name:'닫기',exact:true});if(await close.isVisible())await close.click();}
+ await select.selectOption('own');
+ await page.getByRole('main',{name:'놀스토리 서재',exact:true}).getByRole('button',{name:'새 작품',exact:true}).click();
+ await expect(page.getByRole('dialog',{name:'새 작품',exact:true})).toBeVisible();
 }
 export async function importShelfFile(page:Page,...args:Parameters<import('@playwright/test').Locator['setInputFiles']>){
- await openLibraryTools(page,'library-create');await page.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(...args);await confirmAuthoringImport(page);
+ await startShelfCreation(page);await page.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(...args);await confirmAuthoringImport(page);
 }
-export async function startShelfCreation(page:Page){
- await openLibraryTools(page,'library-create');
+export async function selectShelfCollection(page:Page,kind:string){
+ const select=page.getByLabel('책 분류',{exact:true});
+ if(!await select.isVisible())await page.getByRole('button',{name:'닫기',exact:true}).click();
+ await select.selectOption(kind==='original'||kind==='example'?'builtin':kind==='imported'?'own':kind);
 }
-export async function selectShelfCollection(page:Page,kind:string){await openLibraryTools(page);await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind==='imported'?'own':kind);}
 export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
 
 export const builtinEditions = (['seonnyeo','heungbu','onggojib','rabbit'] as const).flatMap(id=>[[id,'original'],[id,'knolstory']] as const);
@@ -72,8 +95,9 @@ export function builtinShelfCard(page:Page,workId:string){return page.locator(`a
 export async function openBuiltinEdition(page:Page,workId:string,edition:'original'|'knolstory',intent:'start'|'resume'|'edit'|'prepare'|'cover'|'export'='start'){
  await builtinShelfCard(page,workId).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();
  const dialog=page.getByRole('dialog');await expect(dialog).toHaveAttribute('data-work-id',workId);
- const label=edition==='original'?'원작':'놀스토리';await dialog.getByRole('radio',{name:label,exact:true}).check();
+ const label=editionLabel[edition];
  if(intent==='start'||intent==='resume'){await readFromDialog(dialog,label,intent==='resume');return;}
- await openBookMore(dialog);
- await dialog.getByRole('button',{name:({edit:'내 사본으로 편집',prepare:'작품 정보·기획',cover:'책 표지 편집',export:'작품 파일 내보내기'} as const)[intent],exact:true}).click();
+ if(intent==='edit'){await editBuiltin(dialog,label);return;}
+ await openBookMore(dialog);await chooseMoreTarget(dialog,label);
+ await dialog.getByRole('button',{name:({prepare:'작품 정보·기획',cover:'책 표지 편집',export:'작품 파일 내보내기'} as const)[intent],exact:true}).click();
 }
