@@ -1,0 +1,101 @@
+# 집중 편집 화면 — 규칙, 점검, 구현 기록 (2026-11-24 시작)
+
+사용자 결정(2026-11-23~24): 여러 일을 한 화면에서 하는 복합 화면보다, **한 가지 일(글·그림·음향·효과 등)에 집중하는 화면**을 먼저 잘 만든다. 버튼·기능·설명·해설은 과하지 않게 두고, 명확한 디자인·UI/UX 규칙 아래 보기 좋고 통일돼야 한다. 기기별 배치는 캡컷·캔바·파워포인트 편집 화면을 참고한다(폰 → 태블릿 → 컴퓨터로 갈수록 더 많이 보임).
+
+사용자가 더한 조건:
+1. 어느 집중 화면이든 장·컷 이동이 보여야 한다. 단, 공간을 많이 차지하지 않는다.
+2. 한 화면 안에 같은 일을 하는 단추·기능이 두 번 있지 않는다. 관련되거나 비슷한 기능은 비슷한 자리에 둔다.
+3. 과하게 큰 단추·글씨는 두지 않는다(예: ‘닫기’ 글자 단추 대신 작은 ×).
+4. 과하게 넉넉한 여백도, 너무 촘촘한 배치도 피한다. 4px 단위까지 세밀하게 맞춘다.
+
+선행 문서: [폰·태블릿 집중 정리](mobile-focus-pass-2026-11-23.md) 2부(편집·읽기 무대 진단).
+
+## 이어서 할 때 (인계 — 마지막 갱신 2026-11-24)
+새 세션은 이 절부터 읽는다. 진행할 때마다 이 절과 아래 ‘진행 기록’을 함께 갱신한다.
+
+- **상태**: 구현 1단계 끝·검사 통과·**커밋함**(아래 ‘1단계 결과’). 다음은 2단계(‘다음 할 일’ 5번). 커밋 뒤 새 변경이 있으면 `git -C ../new-knolstory-mobile-focus status`로 확인.
+- **바뀐 파일**
+  - 앱: `apps/web/components/story-cut-context.tsx`(위 막대 장·컷 칸), `story-workspace.tsx`(화살표 자리 `cutStepsHost` → 편집 화면 `cutStepTarget`), `story-editing-workbench.tsx`(화살표 그리기, 중복 이동 제거, 현재 컷 글, 함께 보기 칩), `story-editing-workbench.module.css`·`story-workspace.module.css`·`editor-work-tabs.module.css`(각 파일 끝의 ‘Focus screens (2026-11-24)’ 블록), `workspace-management.tsx`·`story-player-menu.tsx`(+css)(닫기 ×).
+  - 규칙: `DESIGN.md` 맨 앞 ‘집중 편집 화면 규칙’.
+  - 검사: 새 `tests/e2e/focus-editing-screens.spec.ts`(playwright.config host에 등록), 측정 도구 `tests/e2e/mobile-focus-audit.ts`(`auditDensity` 추가), 갱신한 기존 검사 `editor-view-notes`, `phone-editor-tasks`, `editor-chrome-navigation`, `editing-workbench`, `editor-range-overview`, `task-editor-current-cut`.
+- **검사 상태(2026-11-24 중간)**: 실패하던 8개 파일(keyboard-writing-focus, focus-editing-screens, phone-editor-tasks, editing-workbench, task-editor-current-cut, editor-chrome-navigation, editor-view-notes, editor-range-overview) 모두 통과. 고친 점: 키보드가 열려도 위 막대를 `‹ 1장 · n컷 ›` 한 줄로 남김, 장·컷 select를 누르는 높이 44px로, 작업 탭 높이(태블릿 36·폰 32)를 위 막대의 44px 규칙보다 강하게, 320px에서 설정은 아이콘만·화살표 36px(누르는 영역 유지)로 위 줄 한 줄. lint 오류(ref를 props로 넘김) 고침. `unified-storage-tools` 1개는 바탕 브랜치에서도 실패(무관). 다음: 편집기 관련 전체 검사 다시.
+- **다음 할 일(순서)**
+  1. (끝남) 위 검사들 통과. 명령: `cd ../new-knolstory-mobile-focus && KNOL_TEST_PORT=3170 npx playwright test tests/e2e/<파일> --project=host --workers=4 --reporter=line`(zsh에서 파일 목록 변수는 `${=FILES}`).
+  2. 편집기 관련 host 검사 전체 다시(`editing-workbench, editor-*, keyboard-writing-focus, phone-editor-tasks, task-editor-current-cut, large-manuscript, long-manuscript-workbench, work-menu-purpose, responsive-editor, menu-readability, accessibility-reader, focus-editing-screens, mobile-focus`) + stories-runtime `control-reachability`.
+  3. (끝남) 수정 후 캡처·측정(7크기 × 7화면) → `docs/architecture/evidence/focus-editing-2026-11-24/`(그림은 gitignore, json만 커밋), 이 문서에 전후 표.
+  4. (끝남) 커밋(한국어 Conventional Commits + `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`): feat(web) / test(e2e) / docs 나눠서. 푸시·배포는 사용자 요청 때만.
+  5. 2단계 후보: 남은 4px 밖 간격 정리(측정의 offGrid), 태블릿 ‘연결된 이미지 없음 · 해설’ 상시 문구(E5), 각 화면 도구 3~5개·더보기 정리, DESIGN.md ‘휴대폰 화면의 기능 기준’ 표의 편집 행을 새 규칙에 맞게 고치기.
+- **환경 메모**: 이 worktree는 `apps/web/public`의 생성물(runtime 링크, 오디오, 미리보기)을 `../new-knolstory-library-polish`에서 `rsync -a --ignore-existing`으로 채워 둠. 실제 기본 작품으로 화면을 찍는 캡처 검사는 scratchpad의 `stagecap/editor.spec.ts`(임시, 커밋 안 함) — 필요하면 `tests/e2e/mobile-focus-capture.spec.ts` 방식으로 다시 만든다.
+
+## 작업 위치
+- worktree `../new-knolstory-mobile-focus`, 브랜치 `feat/focus-editing-screens`(바탕 `feat/mobile-focus-classroom-settings` a821f187 → `feat/library-shelf-polish` → origin/main 6e4b104a).
+- 코덱스의 무대·연출 작업은 메인 체크아웃에 **커밋 전 상태**(브랜치 `codex/trusted-client-rate-20261103`, 바탕 556d1b1d = origin/main보다 221커밋 뒤)로 남아 있다. 편집 화면 UI 변경은 `story-editing-workbench.tsx` 약 53줄, `story-player-menu.tsx` 8줄, `story-workspace.tsx` 2줄로 작아서, 이 브랜치는 main 바탕으로 진행하고 코덱스 작업을 main에 옮길 때 작은 병합으로 맞춘다. 메인 체크아웃 파일은 건드리지 않는다.
+
+## 진행 기록
+- 2026-11-24 시작: 브랜치 생성, 이 문서 작성. 다음: 지금 편집 화면 6개를 7개 크기에서 캡처·측정.
+- 수정 전 측정: 7개 편집 화면 × 7개 크기(`tests/e2e/mobile-focus-audit.ts`의 `auditDensity` 추가 — 조작 수, 상시 문구, 같은 이름 조작, 4px 밖 간격, 4px보다 붙은 조작, 큰 단추). 결과는 scratchpad `editor-before/all.json`(→ 커밋 때 evidence로 옮김).
+- 찾은 것: 위 막대의 장·컷 고르기와 별도로 화면마다 `편집할 장` 줄, 폰의 `‹ 이전 컷 1/15 다음 컷 ›` 줄, 쓰기 화면 무대 위 ‹ ›, `← 쓰기로`(쓰기 탭과 같음)가 겹친다. 폰에서는 작업 화면 바꾸기가 설정 메뉴 안(2~3번 누름). 상시 문구 ‘원고 순서대로 보여 줘요…’, ‘나머지는 참고용으로만…’, 함께 보기가 큰 상자로 늘 펼쳐짐. 간격 3·5·6·7·10px가 섞여 있음.
+- 구현 1(진행 중): 위 막대 장·컷 칸 `‹ 1장 · 3컷 ▾ ›`(36px, 누르는 영역 44px) — `story-cut-context.tsx`, 화살표는 편집 화면이 위 막대 자리에 그림(`cutStepTarget` 포털, 쓰기 화면은 글상자 초점 유지). 무대 위 ‹ ›·폰 이동 줄·`← 쓰기로`·폰 `편집할 장` 제거. 함께 보기는 작은 칩. 폰에서 작업 탭을 위 막대 둘째 줄로. 폰 쓰기 화면의 일반 이전/다음 카드 숨김(갈림길·다음 컷 만들기·끝 안내는 유지).
+- 사용자 추가 조건(작업 중): 어느 집중 화면이든 현재 컷의 글이 보여야 한다 → 배경·인물·음향·연출 목록 화면의 컷 카드 머리 아래에 글 세 줄(`data-cut-text`), 음향·연출 함께 화면의 상세 칸 위에도 `n컷 · 화자 글`. 글은 늘 보이므로 함께 보기의 ‘글’ 칩은 뺐다.
+- DESIGN.md 맨 앞에 ‘집중 편집 화면 규칙’ 절(뼈대, 장·컷 이동, 현재 컷 글, 중복, 글·설명, 4px 크기·간격, 기기별).
+- 닫기 단추 3곳(읽기 메뉴, 읽기 판 머리, 편집 메뉴)을 작은 ×(보이는 32px, 누르는 44px, 읽는 이름 유지)로.
+- 기존 검사 갱신: `editor-view-notes`(← 쓰기로 → 편집화면 고르기), `phone-editor-tasks`(폰 이동 줄 → 위 막대 ‹ ›, 폰 편집할 장 숨김). 편집기 관련 host 검사 16파일 실행 중.
+
+## 1단계 결과 (2026-11-24)
+측정: 선녀와 나무꾼 놀스토리판 편집, 인물·음향·연출 편집을 켠 상태. 근거 , 캡처(로컬) ··.
+열: 조작 수(폰은 작업 탭이 새로 보여 늘어남) · 상시 문구 · 4px 밖 간격 종류 · 4px보다 붙은 조작 쌍 · 44px 미만 조작 · 장·컷 칸 위치·높이.
+폰 가로(844×390·667×375)는 쓰기 화면만 확인용으로 열리므로 모든 화면 값이 같다.
+
+| 화면 | 크기 | 조작 | 상시 문구 | 4px 밖 간격 | 붙은 조작 | 44px 미만 | 장·컷 칸 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| audio | 1024x768 | 28 → 22 | 3 → 1 | 30 → 20 | 8 → 5 | 2 → 0 | 6px·36px |
+| audio | 320x700 | 12 → 14 | 2 → 1 | 18 → 14 | 4 → 2 | 2 → 0 | 6px·36px |
+| audio | 360x720 | 12 → 14 | 2 → 1 | 18 → 15 | 4 → 1 | 2 → 0 | 6px·36px |
+| audio | 390x844 | 12 → 14 | 2 → 1 | 18 → 15 | 4 → 2 | 2 → 0 | 6px·36px |
+| audio | 667x375 | 9 → 6 | 0 → 0 | 9 → 8 | 5 → 2 | 2 → 0 | 6px·36px |
+| audio | 768x1024 | 31 → 25 | 3 → 1 | 31 → 21 | 7 → 5 | 2 → 0 | 6px·36px |
+| audio | 844x390 | 9 → 6 | 0 → 0 | 9 → 8 | 1 → 0 | 2 → 0 | 6px·36px |
+| audio-direction | 1024x768 | 48 → 47 | 3 → 2 | 25 → 23 | 30 → 27 | 2 → 0 | 6px·36px |
+| audio-direction | 320x700 | 12 → 14 | 3 → 2 | 18 → 15 | 3 → 2 | 2 → 0 | 6px·36px |
+| audio-direction | 360x720 | 12 → 14 | 3 → 2 | 18 → 16 | 3 → 1 | 2 → 0 | 6px·36px |
+| audio-direction | 390x844 | 12 → 14 | 3 → 2 | 18 → 16 | 4 → 2 | 2 → 0 | 6px·36px |
+| audio-direction | 667x375 | 9 → 6 | 0 → 0 | 9 → 8 | 5 → 2 | 2 → 0 | 6px·36px |
+| audio-direction | 768x1024 | 50 → 49 | 3 → 2 | 25 → 23 | 30 → 27 | 2 → 0 | 6px·36px |
+| audio-direction | 844x390 | 9 → 6 | 0 → 0 | 9 → 8 | 1 → 0 | 2 → 0 | 6px·36px |
+| background | 1024x768 | 28 → 22 | 1 → 0 | 29 → 20 | 11 → 6 | 2 → 0 | 6px·36px |
+| background | 320x700 | 13 → 15 | 0 → 0 | 19 → 16 | 5 → 2 | 2 → 0 | 6px·36px |
+| background | 360x720 | 13 → 15 | 0 → 0 | 19 → 17 | 5 → 1 | 2 → 0 | 6px·36px |
+| background | 390x844 | 13 → 15 | 0 → 0 | 19 → 17 | 4 → 2 | 2 → 0 | 6px·36px |
+| background | 667x375 | 9 → 6 | 0 → 0 | 9 → 8 | 5 → 2 | 2 → 0 | 6px·36px |
+| background | 768x1024 | 32 → 26 | 1 → 0 | 30 → 21 | 11 → 7 | 2 → 0 | 6px·36px |
+| background | 844x390 | 9 → 6 | 0 → 0 | 9 → 8 | 1 → 0 | 2 → 0 | 6px·36px |
+| basic | 1024x768 | 36 → 35 | 1 → 2 | 30 → 33 | 15 → 9 | 2 → 0 | 6px·36px |
+| basic | 320x700 | 13 → 17 | 0 → 1 | 22 → 21 | 6 → 2 | 2 → 0 | 6px·36px |
+| basic | 360x720 | 13 → 17 | 1 → 1 | 26 → 22 | 6 → 1 | 2 → 0 | 6px·36px |
+| basic | 390x844 | 13 → 17 | 2 → 2 | 26 → 21 | 7 → 2 | 2 → 0 | 6px·36px |
+| basic | 667x375 | 9 → 6 | 3 → 2 | 13 → 12 | 5 → 2 | 2 → 0 | 6px·36px |
+| basic | 768x1024 | 24 → 23 | 1 → 1 | 33 → 32 | 10 → 10 | 3 → 1 | 6px·36px |
+| basic | 844x390 | 9 → 6 | 3 → 3 | 13 → 12 | 1 → 0 | 2 → 0 | 6px·36px |
+| characters | 1024x768 | 34 → 28 | 1 → 0 | 30 → 21 | 10 → 6 | 2 → 0 | 6px·36px |
+| characters | 320x700 | 19 → 19 | 0 → 0 | 22 → 20 | 10 → 5 | 2 → 0 | 6px·36px |
+| characters | 360x720 | 19 → 19 | 0 → 0 | 22 → 21 | 10 → 4 | 2 → 0 | 6px·36px |
+| characters | 390x844 | 20 → 22 | 0 → 0 | 22 → 21 | 8 → 4 | 2 → 0 | 6px·36px |
+| characters | 667x375 | 12 → 9 | 0 → 0 | 10 → 9 | 6 → 3 | 2 → 0 | 6px·36px |
+| characters | 768x1024 | 37 → 31 | 1 → 0 | 30 → 21 | 6 → 6 | 2 → 0 | 6px·36px |
+| characters | 844x390 | 12 → 9 | 0 → 0 | 9 → 8 | 2 → 0 | 2 → 0 | 6px·36px |
+| direction | 1024x768 | 28 → 22 | 2 → 0 | 30 → 20 | 8 → 5 | 2 → 0 | 6px·36px |
+| direction | 320x700 | 12 → 14 | 1 → 0 | 18 → 14 | 4 → 2 | 2 → 0 | 6px·36px |
+| direction | 360x720 | 12 → 14 | 1 → 0 | 18 → 15 | 4 → 1 | 2 → 0 | 6px·36px |
+| direction | 390x844 | 12 → 14 | 1 → 0 | 18 → 15 | 4 → 2 | 2 → 0 | 6px·36px |
+| direction | 667x375 | 9 → 6 | 0 → 0 | 9 → 8 | 5 → 2 | 2 → 0 | 6px·36px |
+| direction | 768x1024 | 31 → 25 | 2 → 0 | 31 → 21 | 7 → 5 | 2 → 0 | 6px·36px |
+| direction | 844x390 | 9 → 6 | 0 → 0 | 9 → 8 | 1 → 0 | 2 → 0 | 6px·36px |
+| text | 1024x768 | 26 → 22 | 1 → 0 | 28 → 20 | 9 → 5 | 2 → 0 | 6px·36px |
+| text | 320x700 | 20 → 20 | 1 → 0 | 24 → 16 | 9 → 3 | 2 → 0 | 6px·36px |
+| text | 360x720 | 20 → 20 | 1 → 0 | 24 → 17 | 9 → 2 | 2 → 0 | 6px·36px |
+| text | 390x844 | 22 → 22 | 1 → 0 | 26 → 19 | 8 → 4 | 2 → 0 | 6px·36px |
+| text | 667x375 | 9 → 6 | 0 → 0 | 9 → 8 | 5 → 2 | 2 → 0 | 6px·36px |
+| text | 768x1024 | 29 → 25 | 1 → 0 | 29 → 21 | 8 → 5 | 2 → 0 | 6px·36px |
+| text | 844x390 | 9 → 6 | 0 → 0 | 9 → 8 | 1 → 0 | 2 → 0 | 6px·36px |
+
+남은 것(2단계): 4px 밖 간격이 아직 15~30종(무대·인물 편집 칸·음향 칸 안쪽 오래된 규칙), 목록 화면의 ‘이 컷 선택’·‘이 컷부터 재생’이 컷마다 반복(컷마다 대상이 다르므로 중복은 아니지만 한 줄로 줄일 여지), 태블릿 쓰기 화면 아래 ‘+ 이 컷 뒤에 새 컷 넣기’·‘+ 여기서 이야기 나누기’가 103px 높이(크기 규칙 밖), 태블릿 ‘연결된 이미지 없음 · 해설’ 상시 문구, 각 화면 도구 3~5개·더보기 정리.
