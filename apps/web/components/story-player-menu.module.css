@@ -143,3 +143,9 @@ details.settingsSection>summary{cursor:pointer;min-height:44px;display:flex;alig
 details.settingsSection>summary::before{content:'▸';color:#e3cda5}details.settingsSection[open]>summary::before{content:'▾'}details.settingsSection>summary::-webkit-details-marker{display:none}
 .progress{margin:2px 0 0;font-size:var(--text-caption);color:#c6d6cc}
 .installNote{margin:0;font-size:var(--text-caption);line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+
+/* One header line under 읽기 메뉴: the work and where the reader is (2026-11-23).
+   This also sits after the line clamp above, so short landscape screens really hide it. */
+.menuHeader p{margin-top:3px}
+.menuHeader p .progress{color:#c6d6cc}
+@media(max-height:500px) and (min-width:520px){.menuHeader p{display:none}}

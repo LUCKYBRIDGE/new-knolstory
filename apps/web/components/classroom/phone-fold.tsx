@@ -1,7 +1,7 @@
 'use client';
 import {useState,type ReactNode} from 'react';
 import styles from './classroom.module.css';
-const isPhone=()=>typeof window!=='undefined'&&window.matchMedia('(max-width:720px)').matches;
+const isPhone=()=>typeof window!=='undefined'&&window.matchMedia('(max-width:720px), (max-height:500px) and (orientation:landscape)').matches;
 /**
  * A card section whose heading opens and closes it. Wide screens start open; phones start folded when
  * `foldOnPhone` says the section is not the next thing to do, so the work below it stays near the top.

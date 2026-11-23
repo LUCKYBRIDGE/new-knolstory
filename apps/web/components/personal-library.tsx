@@ -49,7 +49,6 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  const storageTools=owner?<div className={styles.storageTools} role="group" aria-label="온라인 보관" data-storage-tools>
   <strong>온라인 보관{storage?` · ${storage.works}권`:''}</strong>
   {summary&&<p className={styles.storageUsage} data-warn={summary.warn||undefined}>{summary.text}</p>}
-  <p>구름 표시가 있는 책은 온라인에도 있어요.</p>
   <button disabled={unavailable} onClick={()=>void online.list(false,'active')}>온라인 목록 다시 확인</button>
   <button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}}>온라인 휴지통</button>
  </div>:null;

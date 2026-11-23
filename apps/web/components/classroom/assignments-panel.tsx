@@ -15,7 +15,7 @@ import {dateFromDueAt,dueAtFromDate,dueDateLabel,dueState} from '../../lib/due-d
 import type {TaskRequest} from './task-composer';
 import {editionLabel} from '../../lib/mission-api';
 import {StartPointPicker} from './start-point-picker';
-import {RecipientFacts,RecipientPicker,recipientProblem,type RecipientStudent,type Recipients} from './recipient-picker';
+import {RecipientChip,RecipientFacts,RecipientPicker,recipientProblem,type RecipientStudent,type Recipients} from './recipient-picker';
 import type {BuiltinWorkId} from '../../lib/builtin-works';
 import styles from './classroom.module.css';
 type Run=<T>(action:()=>Promise<T>)=>Promise<T|undefined>;
@@ -60,9 +60,8 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
   }finally{createLock.current=false;setCreating(false);}
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
-  <div className={styles.sectionHeading}><div><span className={styles.eyebrow}>쓰고, 그리고, 내는</span><h2>작품 쓰기 과제</h2>{items&&<span className={styles.taskCount}>작품 과제 {currentCount}/{TASK_LIMIT}개</span>}</div><ClassroomBook small/></div>
+  <div className={styles.sectionHeading}><div><h2>작품 쓰기 과제</h2>{items&&<span className={styles.taskCount}>작품 과제 {currentCount}/{TASK_LIMIT}개</span>}</div><ClassroomBook small/></div>
   {/* One way in: the 새 과제 내기 choices above open this form; it also stays open while there is no task yet. */}
-  {!(formOpen||items?.length===0)&&items&&<p className={styles.hint}>새 작품 쓰기 과제는 위의 ‘새 과제 내기’에서 놀스토리나 숏스토리를 골라 만들어요.</p>}
   {(formOpen||items?.length===0)&&<div ref={formRef} className={styles.assignmentCreate} role="region" aria-label="새 작품 쓰기 과제"><div className={styles.formHead}><strong>새 작품 쓰기 과제</strong>{!!items?.length&&<button type="button" className={styles.btn} onClick={()=>setFormOpen(false)}>닫기</button>}</div>{items&&currentCount>=TASK_LIMIT&&<p className={styles.error} role="status">작품을 내는 과제는 {TASK_LIMIT}개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.</p>}<form onSubmit={event=>void create(event)}><fieldset disabled={creating}>
    <label className={styles.field}>과제 유형<select aria-label="과제 유형" value={format} onChange={event=>setFormat(event.target.value as AssignmentFormat)}><option value="knolstory">놀스토리</option><option value="shortstory">숏스토리</option></select></label>
    {format==='knolstory'&&<fieldset className={styles.editScope} data-task-stage>
@@ -125,19 +124,23 @@ function AssignmentRow({item,csrf,run,onChanged,students,onContinue,followers}:{
    <p className={styles.hint}>받는 학생 · {item.recipients==null?'우리 반 모두':item.recipients.map(number=>`${number}번`).join(', ')}</p>
    {item.template&&<p className={styles.hint}>시작 작품 · <strong>{item.template.title}</strong></p>}
   </>:<><TaskGuide item={item} csrf={csrf} run={run} onChanged={onChanged} open={guideOpen} onToggle={setGuideOpen}/>
-  <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
-  <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>
-  <ScopeRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
-  {!item.after&&<TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>}
-  {item.format==='shortstory'&&item.open&&!followers.length&&<p className={styles.shareLine}><button className={styles.linkBtn} aria-label={`${item.title} 통과 뒤 놀스토리로 이어 쓰는 과제 만들기`} onClick={()=>onContinue(item)}>+ 통과하면 놀스토리로 이어 쓰는 과제 만들기</button></p>}
-  <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/></>}
+  <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/><RecipientChip value={item.recipients}/></div>
+  </>}
   <div className={styles.taskActions}>
    {progress?<button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 접기`} aria-expanded onClick={()=>{setProgress(null);setRows(null);}}>진행 접기</button>
     :<button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 보기`} aria-expanded={false} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':`진행 보기 · 작성 중 ${item.draftCount??0} · 냈어요 ${item.submittedCount??0}`}</button>}
    {progress&&<button className={styles.btn} aria-label={`${item.title} 진행 새로 고침`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':'새로 고침'}</button>}
    {!item.archived&&<button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'과제 마감':'다시 열기'}</button>}
-   {!item.archived&&!confirmDelete&&<button className={`${styles.btn} ${styles.danger}`} aria-label={`${item.title} 과제 지우기`} onClick={()=>setConfirmDelete(true)}>과제 지우기</button>}
   </div>
+  {/* Who gets it, what may change, how it starts and the hand-in link are set once; they wait under one fold. */}
+  {!item.archived&&<details className={styles.cardMore} data-task-more><summary>과제 설정 더보기</summary>
+  <div className={styles.factsRow}><RecipientFacts changeOnly title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>
+  <ScopeRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
+  {!item.after&&<TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>}
+  {item.format==='shortstory'&&item.open&&!followers.length&&<p className={styles.shareLine}><button className={styles.linkBtn} aria-label={`${item.title} 통과 뒤 놀스토리로 이어 쓰는 과제 만들기`} onClick={()=>onContinue(item)}>+ 통과하면 놀스토리로 이어 쓰는 과제 만들기</button></p>}
+  <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
+  {!confirmDelete&&<p className={styles.cardMoreDanger}><button className={`${styles.btn} ${styles.danger}`} aria-label={`${item.title} 과제 지우기`} onClick={()=>setConfirmDelete(true)}>과제 지우기</button></p>}
+  </details>}
   {confirmDelete&&<div className={styles.notice} role="group" aria-label={`${item.title} 과제 지우기 확인`}><p>‘{item.title}’ 과제와 학생들이 낸 작품을 모두 지울까요? 지운 뒤에는 되돌릴 수 없어요. 남겨 둘 작품은 먼저 ‘진행 보기’에서 내려받아 두세요.</p><div className={styles.row}><button className={styles.btn} onClick={()=>setConfirmDelete(false)}>취소</button><button className={`${styles.btn} ${styles.danger}`} onClick={()=>void remove()}>과제와 제출 작품 지우기</button></div></div>}
   {progress&&<TaskProgress item={item} rows={progress} csrf={csrf} run={run} onChanged={async()=>{await showSubmissions();}}
    review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} unlocks={followers.map(next=>next.title)} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>{setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null);/* The progress counts and the task's 통과 count follow the decision at once. */void showSubmissions().then(onChanged);}} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
