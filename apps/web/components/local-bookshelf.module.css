@@ -182,4 +182,4 @@
 @media (min-width:601px){.scope{flex:0 1 200px}.topBar>[data-search-toggle]{margin-left:auto}}
 /* 놀스토리 서재: carved into the oak crown board in the wood's own tones — part of the furniture, not a label stuck on. */
 .nameplate{position:absolute;z-index:5;top:-24px;left:50%;transform:translateX(-50%);height:24px;display:flex;align-items:center;color:#4c2e17;font:600 12px/1 "Knol Story Serif",serif;letter-spacing:.24em;white-space:nowrap;text-shadow:0 1px 0 #f2d6ad8c,0 -1px 0 #3a22102e;pointer-events:none}
-@media (min-width:601px){.nameplate{font-size:14px;letter-spacing:.3em}}
+@media (min-width:601px){.nameplate{font-size:var(--text-small);letter-spacing:.3em}}

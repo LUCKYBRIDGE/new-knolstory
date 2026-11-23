@@ -873,7 +873,7 @@
 .shell .header .cutNav .cutPosition::before{content:'';position:absolute;inset:-4px 0}
 .cutShort{display:inline-flex;align-items:center;gap:4px;min-width:0;overflow:hidden;font-size:var(--text-small);font-weight:600;line-height:1;white-space:nowrap;color:var(--ink);pointer-events:none}
 .cutShort svg{flex:none;color:var(--ink-soft)}
-.shell .header .cutNav .cutPosition select{position:absolute;inset:-5px 0;z-index:1;width:100%;max-width:none;height:auto;min-height:0;margin:0;padding:0;border:0;opacity:0;cursor:pointer;font-size:16px}
+.shell .header .cutNav .cutPosition select{position:absolute;inset:-5px 0;z-index:1;width:100%;max-width:none;height:auto;min-height:0;margin:0;padding:0;border:0;opacity:0;cursor:pointer;font-size:var(--text-body)}
 .shell .header .cutNav .cutPosition:focus-within{outline:3px solid var(--mint-strong);outline-offset:2px}
 .shell .header .cutNav .cutPosition:has(select:disabled){opacity:.6}
 /* Phones: the top bar wraps once so the work tabs get their own row under the chapter/cut slot. */
