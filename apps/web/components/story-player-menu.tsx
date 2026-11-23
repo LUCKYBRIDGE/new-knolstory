@@ -1,4 +1,5 @@
 'use client';
+import {AppInstallButton} from './app-install-button';
 import {useEffect,useId,useLayoutEffect,useMemo,useRef,useState,type CSSProperties} from 'react';
 import {createPortal} from 'react-dom';
 import {chapterLabel,cutLabel,type StoryProject} from '@knolstory/story-domain';
@@ -109,7 +110,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
    <div className={styles.menuHeader}><div><h2>읽기 메뉴</h2><p>{project.title}</p>{historyChapter&&history.entries.length>0&&<p className={styles.progress} data-reader-progress="true">{chapterLabel(historyChapter)} · {history.entries.length}번째 장면</p>}</div><button className={styles.menuClose} onClick={()=>{setTopOpen(false);trigger.current?.focus();}} aria-label="읽기 메뉴 닫기">닫기</button></div>
    <button data-menu-resume="true" className={styles.resume} onClick={()=>{setTopOpen(false);trigger.current?.focus();}}>계속 읽기<span aria-hidden="true">▶</span></button>
    <div className={styles.menuPair}><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button></div>
-   <div className={styles.menuNavigation}><button onClick={()=>open('settings')}>읽기 설정<span aria-hidden="true">›</span></button>{onFullscreen&&<button onClick={()=>{setTopOpen(false);trigger.current?.focus({preventScroll:true});onFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}<span aria-hidden="true">⛶</span></button>}</div>
+   <div className={styles.menuNavigation}><button onClick={()=>open('settings')}>읽기 설정<span aria-hidden="true">›</span></button>{onFullscreen&&<button onClick={()=>{setTopOpen(false);trigger.current?.focus({preventScroll:true});onFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}<span aria-hidden="true">⛶</span></button>}<AppInstallButton glyph noteClassName={styles.installNote}/></div>
    <div className={styles.menuDestinations}><button disabled={disabled} onClick={()=>request({kind:'restart'})}>처음부터 읽기<span aria-hidden="true">↶</span></button>{onLibrary&&<button onClick={()=>request({kind:'library'})}>서재로 돌아가기<span aria-hidden="true">›</span></button>}{onExit&&<button onClick={()=>{setTopOpen(false);onExit();}}>이 컷 편집하기<span aria-hidden="true">›</span></button>}</div>
   </div>}
   {/* A transition card covers the whole stage; the tool row would sit over its button. */}

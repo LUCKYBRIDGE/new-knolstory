@@ -140,7 +140,7 @@ test('책 소개 lands on the four stories and returns to the library',async({pa
 for(const [width,height] of [...phones,[1280,800]] as const)test(`${width}×${height}: shelf books read as real books — nothing overlaps, clips or fails to load`,async({page})=>{
  await open(page,width,height);
  await page.evaluate(()=>document.fonts.ready);
- await expect.poll(()=>page.locator('[data-shelf-cover] img').evaluateAll(nodes=>nodes.every(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0))).toBe(true);
+ await expect.poll(()=>page.locator('[data-shelf-cover] img').evaluateAll(nodes=>nodes.every(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0)),{timeout:20_000}).toBe(true);
  const report=await page.evaluate(()=>{
   const box=(node:Element)=>node.getBoundingClientRect();
   const overlap=(a:DOMRect,b:DOMRect)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));

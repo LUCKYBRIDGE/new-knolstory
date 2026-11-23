@@ -9,7 +9,8 @@ export function MobileFullscreenOffer({enabled,onEnter}:{enabled:boolean;onEnter
  const phone=usePhoneEditor(),seen=useRef(false),dialog=useRef<HTMLDialogElement>(null);
  const [open,setOpen]=useState(false);
  useEffect(()=>{
-  if(!enabled||!phone||seen.current||!document.fullscreenEnabled||!document.documentElement.requestFullscreen)return;
+  // A home screen app opened in fullscreen already has the whole screen: nothing to offer.
+  if(!enabled||!phone||seen.current||!document.fullscreenEnabled||!document.documentElement.requestFullscreen||matchMedia('(display-mode: fullscreen)').matches)return;
   let frame=0;
   const observer=new MutationObserver(()=>schedule());
   const schedule=()=>{
