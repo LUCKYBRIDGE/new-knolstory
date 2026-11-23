@@ -135,17 +135,17 @@ test('basic editing keeps previous and next cut context beside a clear current e
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:width===390?844:900});
   await expect(current.getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue(fixture.lines[1].text);
-  // Desktop shows each neighbour's picture and words; a phone keeps only a plain ‹ 이전 컷 / 다음 컷 › pair.
-  if(width===390){await expect(previous).toBeVisible();await expect(next).toBeVisible();await expect(previous.locator('[data-adjacent-scene]')).toBeHidden();}
+  // Desktop shows each neighbour's picture and words; a phone moves with ‹ › in the top bar instead (2026-11-24 focus rules).
+  if(width===390){await expect(previous).toBeHidden();await expect(next).toBeHidden();for(const name of ['이전 컷 편집','다음 컷 편집'])await expect(page.locator('[data-cut-nav]').getByRole('button',{name,exact:true})).toBeEnabled();}
   else{await expect(previous).toContainText(fixture.lines[0].text);await expect(next).toContainText(fixture.lines[2].text);await expect(previous.locator('img')).toHaveCount(1);await expect(next.locator('img')).toHaveCount(1);}
   const text=current.getByRole('textbox',{name:'2컷 글',exact:true});await text.scrollIntoViewIfNeeded();
-  const fieldBounds=(await text.boundingBox())!,neighborBounds=(await previous.boundingBox())!;
-  expect(fieldBounds.width).toBeGreaterThan(width===390?250:neighborBounds.width);
+  const fieldBounds=(await text.boundingBox())!;
+  expect(fieldBounds.width).toBeGreaterThan(width===390?250:(await previous.boundingBox())!.width);
   expect(fieldBounds.x).toBeGreaterThanOrEqual(0);expect(fieldBounds.x+fieldBounds.width).toBeLessThanOrEqual(width+1);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   await workbench(page).screenshot({path:info.outputPath(`basic-neighbors-${width}.png`)});
  }
- await next.click();await expect(workbench(page).getByRole('textbox',{name:'3컷 글',exact:true})).toHaveValue(fixture.lines[2].text);
+ await page.locator('[data-cut-nav]').getByRole('button',{name:'다음 컷 편집',exact:true}).click();await expect(workbench(page).getByRole('textbox',{name:'3컷 글',exact:true})).toHaveValue(fixture.lines[2].text);
 });
 
 test('multi-cut text composition keeps typing and caret stable while cut and screen navigation wait',async({page},info)=>{
@@ -213,21 +213,21 @@ test('phone basic editor stacks compact context around the current landscape pre
  await page.setViewportSize({width:390,height:844});await prepare(page);await mode(page,'원고');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();await mode(page,'쓰기');
  const current=workbench(page).getByRole('group',{name:'현재 컷 · 2컷',exact:true}),previous=workbench(page).getByRole('button',{name:/^이전 컷/}),next=workbench(page).getByRole('button',{name:/^다음 컷/});
  const scene=page.getByTestId('story-stage-viewport');await expect(scene).toBeVisible();
- const boxes=await Promise.all([previous,scene,current,next].map(locator=>locator.boundingBox()));const [p,s,c,n]=boxes as {x:number;y:number;width:number;height:number}[];
- const top=Math.min(s.y,c.y),bottom=Math.max(s.y+s.height,c.y+c.height),height=bottom-top;
- // Previous and next sit side by side above the stage, so the stage and the current cut stay together.
- expect(p.y+p.height).toBeLessThanOrEqual(top+2);expect(n.y+n.height).toBeLessThanOrEqual(top+2);expect(Math.abs(p.y-n.y)).toBeLessThanOrEqual(1);expect(p.x+p.width).toBeLessThanOrEqual(n.x+1);
+ // Phones move between cuts with ‹ › in the top bar (2026-11-24 focus rules): no previous/next cards, so the stage
+ // and the current cut sit together right under the top bar.
+ await expect(previous).toBeHidden();await expect(next).toBeHidden();
+ const nav=page.locator('[data-cut-nav]'),[s,c,bar]=await Promise.all([scene,current,nav].map(locator=>locator.boundingBox())) as {x:number;y:number;width:number;height:number}[];
+ expect(bar.y+bar.height).toBeLessThanOrEqual(s.y);expect(c.y-(s.y+s.height)).toBeLessThanOrEqual(16);
  await expect(workbench(page).locator('[data-editing-body]')).toHaveAttribute('data-cut-arrangement','stacked');
- expect(height).toBeGreaterThan(p.height*3);expect(height).toBeGreaterThan(n.height*3);
- expect(p.height).toBeGreaterThanOrEqual(44);expect(n.height).toBeGreaterThanOrEqual(44);
+ for(const name of ['이전 컷 편집','다음 컷 편집'])expect((await nav.getByRole('button',{name,exact:true}).boundingBox())!.width).toBeGreaterThanOrEqual(44);
  await expect(workbench(page).getByRole('textbox',{name:'현재 컷 화자',exact:true})).toBeVisible();
  // Cut list and memo summary are tablet tools; on a phone the header's cut picker and the detail panel cover them.
  await expect(workbench(page).locator('[data-stacked-context]')).toBeHidden();
  await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-width','1280');await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-height','720');
  expect(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight+2&&document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
  await page.screenshot({path:info.outputPath('phone-basic-stacked.png'),fullPage:true});
- await next.click();await expect(workbench(page).getByRole('textbox',{name:'3컷 글',exact:true})).toHaveValue(fixture.lines[2].text);
- await workbench(page).getByRole('button',{name:/^이전 컷/}).click();await expect(workbench(page).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue(fixture.lines[1].text);
+ await nav.getByRole('button',{name:'다음 컷 편집',exact:true}).click();await expect(workbench(page).getByRole('textbox',{name:'3컷 글',exact:true})).toHaveValue(fixture.lines[2].text);
+ await nav.getByRole('button',{name:'이전 컷 편집',exact:true}).click();await expect(workbench(page).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue(fixture.lines[1].text);
 });
 
 for(const [width,height] of [[360,640],[640,360],[768,1024],[1280,720]])test(`editor chrome fits ${width}x${height} while only cut list scrolls`,async({page})=>{
@@ -289,7 +289,8 @@ test('one grouped settings menu replaces scattered editor controls',async({page}
  await page.setViewportSize({width:390,height:844});const before=await prepare(page),header=page.locator('main[data-keyboard-occluded]>header');await page.keyboard.press('Escape');
  await expect(header.locator(':scope>button')).toHaveCount(2);await expect(header.getByRole('button',{name:'편집 화면 전체 화면',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'서재 · 홈으로 이동',exact:true})).toBeVisible();await expect(header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeVisible();
  await expect(header.locator('[data-work-menu]>summary')).toHaveAccessibleName('설정');await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).not.toBeVisible();await expect(page.getByText('···',{exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'기본편집',exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'글 편집',exact:true})).toHaveCount(0);
- expect((await header.boundingBox())!.height).toBeLessThanOrEqual(52);
+ // Two slim rows on a phone (2026-11-24 focus rules): settings · ‹ 1장 · n컷 › · fullscreen · home, then the work tabs.
+ expect((await header.boundingBox())!.height).toBeLessThanOrEqual(96);await expect(header.getByRole('navigation',{name:'편집 작업',exact:true})).toBeVisible();
  await openWorkMenu(page);await expect(header.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).toBeVisible();
  await header.getByLabel('보기 설정',{exact:true}).click();await expect(header.getByRole('button',{name:'장 추가',exact:true})).toBeVisible();await page.keyboard.press('Escape');
  await settings(page);await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await mode(page,'음향 편집');await expect(header.locator('[data-work-menu]')).not.toHaveAttribute('open','');

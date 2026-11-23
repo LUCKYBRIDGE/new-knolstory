@@ -49,7 +49,9 @@ for(const viewport of [{width:360,height:740},{width:800,height:1100}])test(`key
   visualViewport!.dispatchEvent(new Event('resize'));
  });
  await expect(page.locator('main[data-keyboard-occluded=false]')).toBeVisible();
- await expect(page.getByRole('complementary',{name:'다음 컷과 참고 정보'})).toBeVisible();
+ // Tablets bring the next-cut card back; phones move with ‹ › in the top bar (2026-11-24 focus rules).
+ if(viewport.width>=700)await expect(page.getByRole('complementary',{name:'다음 컷과 참고 정보'})).toBeVisible();
+ else await expect(page.locator('[data-cut-nav]').getByRole('button',{name:'다음 컷 편집',exact:true})).toBeVisible();
  await expect(page.getByRole('group',{name:'현재 컷의 화자',exact:true})).toBeVisible();
  await expect(input).toHaveValue(draft);
 });

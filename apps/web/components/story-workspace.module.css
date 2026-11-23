@@ -857,3 +857,46 @@
 /* The task a student is writing, from the editor's top bar (2026-11-18). */
 .shell.editorShell:not(.playMode)>.header>.taskAction{order:3;flex:none;position:relative}
 @media(max-width:700px){.shell.editorShell:not(.playMode)>.header>.taskAction>summary{width:44px;padding:6px}.taskAction>summary>span{display:none}}
+
+/* Focus screens (2026-11-24 rules): one chapter/cut slot in the top bar on every editing screen.
+   ‹ 1장 · 3컷 ▾ › — 36px to the eye, 44px to the finger, 4px steps between. The full list (chapter
+   titles, opening words) opens from the native select laid over the short label. */
+.shell .header .cutNav{order:1;display:flex;align-items:center;gap:0;flex:1 1 auto;min-width:0;margin:0}
+.cutSteps{display:contents}
+.shell .header .cutNav button[data-cut-step]{order:0;position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:36px;min-width:0;min-height:0;padding:0;margin:0;border:0;border-radius:8px;background:transparent;box-shadow:none;color:var(--ink);cursor:pointer}
+.shell .header .cutNav button[data-cut-step]::before{content:'';position:absolute;inset:-4px}
+.shell .header .cutNav button[data-cut-step=next]{order:2}
+.shell .header .cutNav button[data-cut-step]:hover:not(:disabled){background:color-mix(in srgb,var(--line) 45%,transparent)}
+.shell .header .cutNav button[data-cut-step]:disabled{opacity:.32;cursor:default}
+.shell .header .cutNav button[data-cut-step]:focus-visible{outline:3px solid var(--mint-strong);outline-offset:0}
+.shell .header .cutNav .cutPosition{order:1;position:relative;display:inline-flex;align-items:center;flex:0 1 auto;width:auto;min-width:0;height:36px;padding:0 8px 0 12px;margin:0;border:1px solid var(--line);border-radius:8px;background:var(--white);box-sizing:border-box}
+.shell .header .cutNav .cutPosition::before{content:'';position:absolute;inset:-4px 0}
+.cutShort{display:inline-flex;align-items:center;gap:4px;min-width:0;overflow:hidden;font-size:var(--text-small);font-weight:600;line-height:1;white-space:nowrap;color:var(--ink);pointer-events:none}
+.cutShort svg{flex:none;color:var(--ink-soft)}
+.shell .header .cutNav .cutPosition select{position:absolute;inset:-5px 0;z-index:1;width:100%;max-width:none;height:auto;min-height:0;margin:0;padding:0;border:0;opacity:0;cursor:pointer;font-size:16px}
+.shell .header .cutNav .cutPosition:focus-within{outline:3px solid var(--mint-strong);outline-offset:2px}
+.shell .header .cutNav .cutPosition:has(select:disabled){opacity:.6}
+/* Phones: the top bar wraps once so the work tabs get their own row under the chapter/cut slot. */
+@media (max-width:699px){.shell.editorShell:not(.playMode)>.header{flex-wrap:wrap;row-gap:4px}}
+/* The editor menu's close is the same small × as the reading menu. */
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button[data-close-icon]{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;min-width:32px;height:32px;min-height:32px;padding:0;border-color:transparent;background:transparent;color:var(--story-menu-muted,#c1c9ba)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button[data-close-icon]::before{content:'';position:absolute;inset:-6px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button[data-close-icon]:hover{background:#304e49;color:var(--story-menu-ink,#f5ead4)}
+/* Writing with the on-screen keyboard: the top bar folds to one slim row with only ‹ 1장 · 3컷 ›, so moving between
+   cuts stays in the same place while the image and the text keep the rest of the height. */
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;min-height:0;max-height:44px;padding-block:0;overflow:visible}
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header>:not(section){display:none}
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header [data-editor-work-tabs]{display:none}
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header .cutNav{flex:0 1 auto}
+/* Work tabs keep their own size inside the top bar (the bar's 44px rule is for its other controls). */
+.editorShell:not(.playMode)>.header [data-editor-work-tabs] button{min-height:36px;height:36px}
+@media (max-width:699px){.editorShell:not(.playMode)>.header [data-editor-work-tabs] button{min-height:32px;height:32px}}
+/* Narrowest phones (≤359px): 설정 shows its icon only (the name stays ‘설정’) and the arrows narrow to 36px
+   with the touch area kept by their transparent margin, so the top row stays one row. */
+@media (max-width:359px){
+ .shell.editorShell:not(.playMode)>.header>.management[data-work-menu]>summary>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .shell.editorShell:not(.playMode)>.header>.management[data-work-menu]>summary{min-width:44px;padding-inline:12px;justify-content:center}
+ .shell .header .cutNav button[data-cut-step]{width:36px}
+ .shell .header .cutNav button[data-cut-step]::before{inset:-4px -4px}
+ .shell .header .cutNav .cutPosition{padding:0 8px}
+}

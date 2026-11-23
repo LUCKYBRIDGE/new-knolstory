@@ -460,3 +460,44 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .workbench[data-screen=characters] .body:not([data-playing=true])>.previewSlot{grid-column:1;grid-row:1;min-height:0}
 .workbench[data-screen=characters] .body:not([data-playing=true])>.editingContent{grid-column:1;grid-row:2;min-height:0;overflow:auto}
 @media (max-width:700px){.workbench[data-screen=characters] .body:not([data-playing=true]){grid-template-rows:minmax(120px,30%) minmax(0,1fr)}}
+
+/* Focus screens (2026-11-24 rules) ---------------------------------------------------------------
+   Spacing comes in 4px steps (4 · 8 · 12 · 16 · 24); controls read 32–36px and answer a 44px touch. */
+/* List screens: one tool row — 편집할 장 to browse, 현재 컷 찾기, then 함께 보기 as small chips. */
+.workbench .options{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px;font-size:var(--text-small)}
+.workbench .options>label{display:flex;align-items:center;gap:8px;flex:0 1 auto;min-width:0;white-space:nowrap}
+.workbench .options>label select{min-height:36px;height:36px;padding:0 8px;max-width:240px}
+.workbench .options>button{min-height:36px;height:36px;padding:0 12px;position:relative}
+.workbench .options>button::before{content:'';position:absolute;inset:-4px 0}
+.workbench .options fieldset{display:flex;flex-wrap:wrap;align-items:center;gap:8px;flex:1 1 auto;min-width:0;max-height:none;margin:0;padding:0;border:0;overflow:visible}
+.workbench .options legend{float:left;margin:0 4px 0 0;padding:0;font-size:var(--text-caption);color:var(--ink-soft);font-weight:600}
+.companionChip{position:relative;display:inline-flex;align-items:center;height:32px;padding:0 12px;border:1px solid var(--line);border-radius:16px;background:var(--white);font-size:var(--text-caption);color:var(--ink-soft);cursor:pointer;user-select:none}
+.companionChip::before{content:'';position:absolute;inset:-6px -2px}
+.companionChip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.companionChip:has(input:checked){border-color:var(--mint-strong);background:var(--mint);color:var(--ink);font-weight:600}
+.companionChip:has(input:focus-visible){outline:3px solid var(--mint-strong);outline-offset:2px}
+.companionChip:has(input:disabled){opacity:.5;cursor:default}
+/* Phones: ‹ › and the chapter/cut slot live in the top bar, so the plain previous/next cards step aside.
+   What only this place offers stays: a branch fork to choose, + 다음 컷 만들기 at the end, the story's end note. */
+.workbench.workbench[data-phone-editor=true][data-screen=basic] .previousSide>:not(.pathFork){display:none}
+.workbench.workbench[data-phone-editor=true][data-screen=basic] .nextSide>:not(.pathFork):not(.addNextCut):not(.pathEnd){display:none}
+.workbench.workbench[data-phone-editor=true][data-screen=basic] .previousSide:not(:has(>.pathFork)){display:none}
+.workbench.workbench[data-phone-editor=true][data-screen=basic] .nextSide:not(:has(>.pathFork,>.addNextCut)){display:none}
+@media(max-width:700px) and (min-height:441px){
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true][data-cut-arrangement]:not(:has(.pathFork)){grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,2fr) minmax(0,2.4fr) auto;gap:8px}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body:not(:has(.pathFork)) .previewSlot{grid-column:1;grid-row:1}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body:not(:has(.pathFork)) .current{grid-column:1;grid-row:2}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body:not(:has(.pathFork)) .nextSide{grid-column:1;grid-row:3}
+}
+/* What the cut says, on every focus screen: up to three lines, the full text in 원고 or 쓰기. */
+.cutText{margin:0 0 8px;font-size:var(--text-small);line-height:1.5;color:var(--ink);white-space:pre-line;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+/* 이야기 지도 보기: 36px to the eye, 44px to the finger, like the other secondary actions. */
+.workbench .mapButton{position:relative;min-height:36px;height:auto;padding-block:8px}
+.workbench .mapButton::before{content:'';position:absolute;inset:-4px 0}
+/* Phones: 편집할 장 and 현재 컷 찾기 share one line, the 함께 보기 chips take the next. */
+@media(max-width:699px){
+ .workbench .options>label{flex:1 1 0;min-width:0}
+ .workbench .options>label select{flex:1 1 auto;width:100%;max-width:none;min-width:0}
+ .workbench .options>button{flex:none}
+ .workbench .options fieldset{flex:1 0 100%}
+}
