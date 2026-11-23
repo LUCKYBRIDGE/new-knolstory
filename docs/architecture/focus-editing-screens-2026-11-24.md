@@ -21,10 +21,10 @@
 - **검사 상태(2026-11-24 중간)**: 실패하던 8개 파일(keyboard-writing-focus, focus-editing-screens, phone-editor-tasks, editing-workbench, task-editor-current-cut, editor-chrome-navigation, editor-view-notes, editor-range-overview) 모두 통과. 고친 점: 키보드가 열려도 위 막대를 `‹ 1장 · n컷 ›` 한 줄로 남김, 장·컷 select를 누르는 높이 44px로, 작업 탭 높이(태블릿 36·폰 32)를 위 막대의 44px 규칙보다 강하게, 320px에서 설정은 아이콘만·화살표 36px(누르는 영역 유지)로 위 줄 한 줄. lint 오류(ref를 props로 넘김) 고침. `unified-storage-tools` 1개는 바탕 브랜치에서도 실패(무관). 다음: 편집기 관련 전체 검사 다시.
 - **다음 할 일(순서)**
   1. (끝남) 위 검사들 통과. 명령: `cd ../new-knolstory-mobile-focus && KNOL_TEST_PORT=3170 npx playwright test tests/e2e/<파일> --project=host --workers=4 --reporter=line`(zsh에서 파일 목록 변수는 `${=FILES}`).
-  2. 편집기 관련 host 검사 전체 다시(`editing-workbench, editor-*, keyboard-writing-focus, phone-editor-tasks, task-editor-current-cut, large-manuscript, long-manuscript-workbench, work-menu-purpose, responsive-editor, menu-readability, accessibility-reader, focus-editing-screens, mobile-focus`) + stories-runtime `control-reachability`.
+  2. (끝남 — host 24파일 통과, stories-runtime control-reachability 3개 통과) 편집기 관련 host 검사 전체 다시(`editing-workbench, editor-*, keyboard-writing-focus, phone-editor-tasks, task-editor-current-cut, large-manuscript, long-manuscript-workbench, work-menu-purpose, responsive-editor, menu-readability, accessibility-reader, focus-editing-screens, mobile-focus`) + stories-runtime `control-reachability`.
   3. (끝남) 수정 후 캡처·측정(7크기 × 7화면) → `docs/architecture/evidence/focus-editing-2026-11-24/`(그림은 gitignore, json만 커밋), 이 문서에 전후 표.
-  4. (끝남) 커밋(한국어 Conventional Commits + `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`): feat(web) / test(e2e) / docs 나눠서. 푸시·배포는 사용자 요청 때만.
-  5. 2단계 후보: 남은 4px 밖 간격 정리(측정의 offGrid), 태블릿 ‘연결된 이미지 없음 · 해설’ 상시 문구(E5), 각 화면 도구 3~5개·더보기 정리, DESIGN.md ‘휴대폰 화면의 기능 기준’ 표의 편집 행을 새 규칙에 맞게 고치기.
+  4. (끝남, d7bf6d6a feat · 17206a03 docs) 커밋(한국어 Conventional Commits + `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`): feat(web) / test(e2e) / docs 나눠서. 푸시·배포는 사용자 요청 때만.
+  5. **지금 할 일 — 2단계**: 남은 4px 밖 간격 정리(측정의 offGrid), 태블릿 ‘연결된 이미지 없음 · 해설’ 상시 문구(E5), 각 화면 도구 3~5개·더보기 정리, DESIGN.md ‘휴대폰 화면의 기능 기준’ 표의 편집 행을 새 규칙에 맞게 고치기.
 - **환경 메모**: 이 worktree는 `apps/web/public`의 생성물(runtime 링크, 오디오, 미리보기)을 `../new-knolstory-library-polish`에서 `rsync -a --ignore-existing`으로 채워 둠. 실제 기본 작품으로 화면을 찍는 캡처 검사는 scratchpad의 `stagecap/editor.spec.ts`(임시, 커밋 안 함) — 필요하면 `tests/e2e/mobile-focus-capture.spec.ts` 방식으로 다시 만든다.
 
 ## 작업 위치
@@ -42,7 +42,7 @@
 - 기존 검사 갱신: `editor-view-notes`(← 쓰기로 → 편집화면 고르기), `phone-editor-tasks`(폰 이동 줄 → 위 막대 ‹ ›, 폰 편집할 장 숨김). 편집기 관련 host 검사 16파일 실행 중.
 
 ## 1단계 결과 (2026-11-24)
-측정: 선녀와 나무꾼 놀스토리판 편집, 인물·음향·연출 편집을 켠 상태. 근거 , 캡처(로컬) ··.
+측정: 선녀와 나무꾼 놀스토리판 편집, 인물·음향·연출 편집을 켠 상태. 근거 `evidence/focus-editing-2026-11-24/{before,after}-audit.json`, 캡처(로컬, gitignore) `before/`·`after/`·`compare-*.png`.
 열: 조작 수(폰은 작업 탭이 새로 보여 늘어남) · 상시 문구 · 4px 밖 간격 종류 · 4px보다 붙은 조작 쌍 · 44px 미만 조작 · 장·컷 칸 위치·높이.
 폰 가로(844×390·667×375)는 쓰기 화면만 확인용으로 열리므로 모든 화면 값이 같다.
 
