@@ -10,6 +10,7 @@ import {BookCover} from './book-cover';
 import {shelfCoverAccessibleLabel} from '../lib/shelf-cover-label';
 import type {StoryProject} from '@knolstory/story-domain';
 import {LibraryBrowseTools} from './library-browse-tools';
+import {LibraryCreateDialog} from './library-create-dialog';
 import styles from './local-bookshelf.module.css';
 import type {OnlineDocumentMetadata} from '../lib/document-api';
 import type {OnlineShelfStatus} from '../lib/unified-library';
@@ -29,7 +30,8 @@ export type BookshelfIntent='edit'|'start'|'resume'|'prepare'|'cover';
 export type LocalBookshelfProps={recentWriting?:{title:string;location:string;open:()=>void};online?:BookshelfOnline;accountMenu?:ReactNode;navigation?:ReactNode;works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onExport?:(key:string)=>void;onDelete?:(key:string)=>void;onDuplicate?:(key:string)=>void;onIntroduction?:()=>void;deleted?:{title:string};onRestore?:()=>void};
 const sections=[{kind:'builtin',title:'기본 작품'},{kind:'own',title:'내 작품'}] as const;
 export function LocalBookshelf({recentWriting,online,accountMenu,navigation,works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction,onExport,onDelete,onDuplicate,deleted,onRestore}:LocalBookshelfProps){
- const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null),tools=useRef<HTMLDetailsElement>(null);
+ const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null);
+ const [creating,setCreating]=useState(false);
  const [layout,setLayout]=useState(()=>shelfLayoutForWidth(1000));
  const [initialView]=useState(()=>{try{return parseLibraryView(typeof window==='undefined'?null:sessionStorage.getItem(LIBRARY_VIEW_KEY));}catch{return parseLibraryView(null);}});
  const [filter,setFilter]=useState(initialView.filter),[query,setQuery]=useState(initialView.query),[pages,setPages]=useState(initialView.pages),[selected,setSelected]=useState<string|null>(null),[selectedRemote,setSelectedRemote]=useState<string|null>(null);
@@ -46,22 +48,21 @@ export function LocalBookshelf({recentWriting,online,accountMenu,navigation,work
  const needle=query.normalize('NFC').trim().toLocaleLowerCase('ko-KR');
  const remoteVisible=(filter==='all'||filter==='own')?(online?.records??[]).filter(record=>record.title.normalize('NFC').toLocaleLowerCase('ko-KR').includes(needle)):[];
  const visible=[...localVisible.map(work=>({kind:'local' as const,key:work.key,work})),...remoteVisible.map(record=>({kind:'remote' as const,key:record.recordId,record}))];
- const pageKey=filter,pagination=libraryPage(visible,pages[pageKey]??0,layout.capacity);
+ // ‘내 작품’ opens with a place to start the next one, so it is on the first shelf page however many works there are;
+ // with no works the shelf says so instead.
+ const createSlot=filter==='own'&&!query.trim()&&visible.length>0;
+ const slots=[...(createSlot?[{kind:'create' as const,key:'create'}]:[]),...visible];
+ const pageKey=filter,pagination=libraryPage(slots,pages[pageKey]??0,layout.capacity);
+ // The cabinet keeps at least two rows; an empty result says so inside the first compartment.
  const occupiedRows=Math.max(2,Math.min(layout.rows,Math.ceil(pagination.items.length/layout.columns))),displaySlots=occupiedRows*layout.columns;
  const selectedWork=localVisible.find(work=>work.key===selected),selectedOnline=remoteVisible.find(record=>record.recordId===selectedRemote);
  // Clear a removed card selection so restoring that record does not reopen its dialog.
  if(selectedRemote!==null&&!selectedOnline)setSelectedRemote(null);
  function moveSelection(delta:number){const index=visible.findIndex(entry=>entry.kind==='local'?entry.key===selected:entry.key===selectedRemote);const next=visible[(index+delta+visible.length)%visible.length];if(next?.kind==='local'){setSelected(next.key);setSelectedRemote(null);}else if(next){setSelected(null);setSelectedRemote(next.key);}}
+ const active=query.trim(),pagingLabel=`${filter==='all'?'서재':filter==='deleted'?'삭제한 작품':filter==='builtin'?'기본 작품':'내 작품'} 선반 페이지`;
  return <main ref={room} className={styles.library} aria-label="놀스토리 서재">
   {navigation&&<div className={styles.serviceNavigation}>{navigation}</div>}
-  <header className={styles.header}>
-   <h1>놀스토리 서재</h1>
-   <div className={styles.headerTools}>
-    {accountMenu}
-    {onIntroduction&&<button className={styles.introLink} onClick={onIntroduction}>책 소개</button>}
-   </div>
-  </header>
-  <LibraryBrowseTools filter={filter} query={query} onFilter={setFilter} onQuery={setQuery} createMenu={tools} disabled={disabled} canRestore={!!onRestore} onCreate={title=>onCreate(title)!==false} onImport={onImport}/>
+  <LibraryBrowseTools filter={filter} query={query} onFilter={setFilter} onQuery={setQuery} canRestore={!!onRestore} accountMenu={accountMenu} onIntroduction={onIntroduction} resultCount={visible.length}/>
   {online?.header}
   {recentWriting&&(filter==='all'||filter==='own')&&!query.trim()&&<section className={recentStyles.resume} aria-label="최근 편집한 작품">
    <div className={recentStyles.title}><small>최근 편집 · {recentWriting.location}</small><strong><NumberedTitle title={recentWriting.title}/></strong></div>
@@ -69,11 +70,14 @@ export function LocalBookshelf({recentWriting,online,accountMenu,navigation,work
   </section>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
   <div ref={cases} className={styles.bookcases} style={{'--shelf-columns':layout.columns,'--shelf-rows':occupiedRows,'--shelf-capacity-rows':layout.rows} as CSSProperties}>
+   {/* The room's name is part of the furniture: a brass plate on the bookcase crown (the main landmark carries it for assistive tech). */}
+   <span className={styles.nameplate} aria-hidden="true" data-library-nameplate>놀스토리 서재</span>
    <span className={styles.topPlant} aria-hidden="true"/><span className={`${styles.upright} ${styles.uprightLeft}`} data-cabinet-upright aria-hidden="true"/><span className={`${styles.upright} ${styles.uprightRight}`} data-cabinet-upright aria-hidden="true"/>
    <div className={styles.grid} data-shelf-room="warm" data-columns={layout.columns} data-rows={occupiedRows} data-capacity={layout.capacity}>
     {sections.filter(section=>filter==='all'||filter===section.kind||section.kind==='builtin'&&(filter==='original'||filter==='example')).map(section=><section key={section.kind} className={styles.collection} aria-label={section.title}>
      <h2 className={styles.semantic}>{section.title}</h2>
-     {pagination.items.filter(entry=>(entry.kind==='remote'?'own':sectionOf(entry.work))===section.kind).map(entry=>{
+     {pagination.items.filter(entry=>(entry.kind==='local'?sectionOf(entry.work):'own')===section.kind).map(entry=>{
+      if(entry.kind==='create')return <div key="create" className={styles.card} data-create-slot><span className={styles.plank} aria-hidden="true"/><button type="button" className={`${styles.cover} ${styles.createCover}`} disabled={disabled} onClick={()=>setCreating(true)}><span aria-hidden="true">＋</span>새 작품</button></div>;
       if(entry.kind==='remote'){const record=entry.record;return <article key={`remote:${record.recordId}`} className={styles.card} data-shelf-book="true" data-online-record={record.recordId} aria-label={`내 작품 · ${record.title}`}><span className={styles.plank} aria-hidden="true"/><button className={styles.cover} aria-label={`${record.title} 책 표지와 소개 보기 · 온라인에 있음`} disabled={disabled} onClick={()=>{setSelected(null);setSelectedRemote(record.recordId);}}><span className={styles.remoteCover} aria-hidden="true"><StorageIcon online/><strong>{record.title}</strong><small>놀스토리</small></span><LibraryStorageBadge compact status={{kind:'remote',label:'온라인에 있음',record}}/></button></article>;}
       const work=entry.work,status=online?.byLocalKey[work.key];return <article key={work.key} className={styles.card} data-shelf-book="true" data-work-id={work.builtin?.id} aria-label={`${section.title} · ${work.builtin?.title??work.project.title}`}>
        <span className={styles.plank} aria-hidden="true"/>
@@ -84,21 +88,19 @@ export function LocalBookshelf({recentWriting,online,accountMenu,navigation,work
     </section>)}
     {Array.from({length:displaySlots-pagination.items.length},(_,index)=><div key={`empty-${index}`} className={styles.emptySlot} aria-hidden="true"><span className={styles.plank}/></div>)}
     {Array.from({length:occupiedRows},(_,index)=><span key={`rail-${index}`} className={styles.rail} style={{'--shelf-index':index+1} as CSSProperties} data-cabinet-rail aria-hidden="true"/>)}
-    {!visible.length&&<div className={styles.emptyMessage} data-empty-shelf>
-     {filter==='deleted'?<><p>{deleted?`최근 삭제한 작품 · ${deleted.title}`:'삭제한 작품이 없어요.'}</p><small>가장 최근에 삭제한 내 작품 한 권을 되살릴 수 있어요.</small>{deleted&&<button type="button" disabled={disabled} onClick={()=>{onRestore?.();setFilter('own');}}>{deleted.title} 복구</button>}</>:<>
-     <p>{query.trim()?'찾는 제목의 책이 없어요.':filter==='own'?'아직 내 작품이 없어요.':'이 자리는 새로운 이야기를 기다리고 있어요.'}</p>
-     {query.trim()?<button type="button" onClick={()=>setQuery('')}>검색 지우기</button>
-      :filter==='own'?<button type="button" disabled={disabled} onClick={()=>{if(tools.current){tools.current.open=true;}}}>새 이야기 만들기</button>
-      :null}
-     </>}
-     {filter!=='all'&&!query.trim()&&<button type="button" onClick={()=>setFilter('all')}>모든 작품 보기</button>}
+    {!slots.length&&<div className={styles.emptyMessage} data-empty-shelf>
+     {active?<><p>‘{active}’와 맞는 책이 없어요.</p><button type="button" onClick={()=>setQuery('')}>검색어 지우기</button></>
+      :filter==='deleted'?<><p>{deleted?`최근 삭제 · ${deleted.title}`:'삭제한 작품이 없어요.'}</p>{deleted&&<button type="button" disabled={disabled} onClick={()=>{onRestore?.();setFilter('own');}}>{deleted.title} 복구</button>}</>
+      :filter==='own'?<><p>아직 내 작품이 없어요.</p><button type="button" disabled={disabled} onClick={()=>setCreating(true)}><span aria-hidden="true">＋ </span>새 작품</button></>
+      :<p>이 선반은 비어 있어요.</p>}
     </div>}
    </div>
-   <div className={styles.drawer} role="group" aria-label="책장 서랍" data-drawer-face><span className={styles.drawerHandle} aria-hidden="true"/><nav className={styles.paging} aria-label={`${filter==='all'?'서재':filter==='deleted'?'삭제한 작품':sections.find(section=>section.kind===filter)?.title} 선반 페이지`}><button aria-label="이전 선반" disabled={pagination.page===0} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page-1}))}>‹</button><span role="status">{pagination.page+1} / {pagination.pages} 선반 · {visible.length}권</span><button aria-label="다음 선반" disabled={pagination.page===pagination.pages-1} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page+1}))}>›</button></nav></div><span className={styles.base} data-cabinet-base aria-hidden="true"/>
+   <div className={styles.drawer} role="group" aria-label="책장 서랍" data-drawer-face data-paging={pagination.pages>1||undefined}><span className={styles.drawerHandle} aria-hidden="true"/>{pagination.pages>1&&<nav className={styles.paging} aria-label={pagingLabel}><button aria-label="이전 선반" disabled={pagination.page===0} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page-1}))}>‹</button><span role="status" aria-label={`${pagination.pages}개 선반 중 ${pagination.page+1}번째 · ${visible.length}권`}>{pagination.page+1} / {pagination.pages}</span><button aria-label="다음 선반" disabled={pagination.page===pagination.pages-1} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page+1}))}>›</button></nav>}</div><span className={styles.base} data-cabinet-base aria-hidden="true"/>
   </div>
   {online?.more&&<div className={styles.loadMore}><button disabled={online.busy||disabled} onClick={online.onMore}>온라인 작품 더 불러오기</button></div>}
   <div className={`${styles.foreground} ${styles.foregroundLeft}`} aria-hidden="true"/><div className={`${styles.foreground} ${styles.foregroundRight}`} aria-hidden="true"/>
   <footer className={styles.roomFooter}>─ ◇ ─<p>오늘도, 새로운 이야기가 기다리고 있어요.</p><small>© 놀퀴즈</small></footer>
+  <LibraryCreateDialog open={creating} disabled={disabled} onCreate={title=>onCreate(title)!==false} onImport={onImport} onClose={()=>setCreating(false)}/>
   {selectedWork&&<LibraryBookFocus works={localVisible} selected={selectedWork} onMove={moveSelection} count={visible.length} onlineTools={online?.renderLocalActions(selectedWork)??undefined} onSelect={setSelected} onClose={()=>setSelected(null)} onOpen={(key,intent)=>{setSelected(null);onOpen(key,intent);}} disabled={disabled} onExport={onExport} onDelete={onDelete} onDuplicate={onDuplicate}/>}
   {selectedOnline&&online&&<OnlineBookFocus record={selectedOnline} onClose={()=>setSelectedRemote(null)} onOpen={()=>online.onOpen(selectedOnline)} disabled={disabled||online.busy} tools={online.renderRemoteActions(selectedOnline)} onMove={moveSelection} count={visible.length}/>}
  </main>;

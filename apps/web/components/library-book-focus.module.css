@@ -1,53 +1,74 @@
-/* Book dialog: the shelf room stays visible behind a cover, a short summary and one reading action.
-   Making and managing the book open below in ‘더보기’. Shared by local and online-only books. */
-.dialog{width:min(640px,94vw);max-height:94dvh;margin:auto;border:0;border-radius:0;padding:16px clamp(16px,4vw,32px);color:#f6ecd8;background:transparent;box-shadow:none;overflow:auto}
+/* Book dialog (2026-11-23): the shelf room stays visible behind the shelf's cover, the title,
+   one row per way of reading and 편집하기 — all on the first screen of a 320×700 phone.
+   The summary, author's note and ‘더보기’ follow and scroll when there is not enough room.
+   Shared by local and online-only books. */
+.dialog{box-sizing:border-box;width:min(560px,100vw);max-width:100vw;max-height:100dvh;margin:auto;border:0;border-radius:0;padding:12px clamp(16px,4vw,32px) 20px;color:#f6ecd8;background:transparent;box-shadow:none;overflow:auto;overscroll-behavior:contain}
 .dialog::backdrop{background:radial-gradient(ellipse at 50% 35%,#442c19ee,#180d07f2);backdrop-filter:blur(3px)}
-.dialog header{display:flex;justify-content:flex-end;align-items:center;gap:18px}
-.dialog header button{flex-shrink:0;white-space:nowrap;min-height:44px;border-radius:24px;background:#3e291be6;border-color:#e1c28b;color:#fff2d8}
-.dialog button:focus-visible,.dialog a:focus-visible,.dialog summary:focus-visible,.editions label:focus-within{outline:3px solid #f0ca80;outline-offset:3px}
+.dialog button:focus-visible,.dialog a:focus-visible,.dialog summary:focus-visible,.target label:focus-within{outline:3px solid #f0ca80;outline-offset:3px}
+.dialog h2,.dialog p,.dialog small,.dialog button,.dialog a{word-break:keep-all;overflow-wrap:anywhere}
 
-.showcase{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:clamp(10px,3vw,32px);margin:8px auto 12px}
+/* A small × in the corner with a 44px target. */
+.close{position:sticky;top:0;z-index:3;float:right;display:grid;place-items:center;width:44px;height:44px;min-height:44px;margin:-4px -4px 0 0;padding:0;border:0;border-radius:50%;background:#2a1b12b3;color:#fff2d8;cursor:pointer}
+.close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+
+.showcase{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:clamp(6px,3vw,28px);margin:4px auto 6px;clear:none}
 .showcase figure{margin:0;display:flex;flex-direction:column;align-items:center;min-width:0}
-.showcase figcaption{margin-top:14px}
-.book{width:clamp(115px,min(34vw,calc((100dvh - 380px)/1.42)),180px);max-width:100%;transform:perspective(1000px) rotateY(-7deg);position:relative;z-index:1}
-.pedestal{width:clamp(160px,32vw,250px);max-width:100%;height:18px;border-radius:50% 50% 5px 5px;background:linear-gradient(#d8b59528,#28180f66),linear-gradient(#50392b66,#50392b66),url('/assets/legacy-ui/shelf.webp') center 92%/600px auto;box-shadow:0 5px 0 #684a30,0 10px 14px #0a160c55}
+.showcase figcaption{margin-top:10px}
+/* The cover takes what the first screen can spare: 700px tall phones keep every action visible. */
+.book{width:clamp(96px,min(42vw,calc((100dvh - 430px) / 1.42)),190px);max-width:100%;transform:perspective(1000px) rotateY(-7deg);position:relative;z-index:1}
+.pedestal{width:clamp(130px,34vw,240px);max-width:100%;height:14px;border-radius:50% 50% 5px 5px;background:linear-gradient(#d8b59528,#28180f66),linear-gradient(#50392b66,#50392b66),url('/assets/legacy-ui/shelf.webp') center 92%/600px auto;box-shadow:0 4px 0 #684a30,0 8px 12px #0a160c55}
 .arrow{width:44px;height:44px;padding:0;font-size:var(--text-display);line-height:1;color:#f6ecd8;background:#ffffff0a;border-color:#ffffff50;border-radius:50%}
+.arrow:disabled{visibility:hidden}
 
-.meta{text-align:center;min-width:0}
-.meta h2{font:500 clamp(20px,3vw,28px)/1.4 "Knol Story Serif",serif;margin:0 0 6px}
-.meta .description{margin:0 auto 6px;max-width:34em;line-height:1.65;font-size:var(--text-small);white-space:pre-wrap}
+.title{margin:6px 0 10px;text-align:center;font:500 clamp(20px,3vw,26px)/1.35 "Knol Story Serif",serif}
+
+/* Reading rows: same height and alignment; a word or two says how they differ. */
+.actions{display:flex;flex-direction:column;gap:8px;max-width:420px;margin:0 auto}
+.readRows{display:flex;flex-direction:column;gap:6px}
+.readRow{display:flex;gap:6px;min-width:0}
+.readButton{flex:1 1 auto;min-width:0;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;padding:6px 16px;border:1px solid #e7c58999;border-radius:12px;background:linear-gradient(120deg,#245544,#163f33);color:#fff0ce;font-size:var(--text-body);font-weight:700;text-decoration:none;text-align:left;cursor:pointer;box-shadow:0 2px 8px #26120640}
+.readButton>strong{font-weight:700}
+.readButton>small{flex:none;font-size:var(--text-caption);font-weight:500;color:#cfe2d6}
+.readButton:disabled,.readButton[aria-disabled=true]{opacity:.45}
+.restart{flex:none;min-height:48px;padding:6px 12px;border:1px solid #e7c58966;border-radius:12px;background:#3e291bcc;color:#fff2d8;font-size:var(--text-small);white-space:nowrap}
+.edit{min-height:48px;padding:6px 16px;border:1px solid #b48a55;border-radius:12px;background:linear-gradient(120deg,#fff5df,#ecd0a7);color:#54341b;font-size:var(--text-body);font-weight:700}
+.edit:disabled{opacity:.45}
+.editPick{display:grid;gap:8px;padding:10px 12px;border:1px solid #e1c28b66;border-radius:12px;background:#2a1c13f2}
+.editPick p{margin:0;font-size:var(--text-small);line-height:1.5;color:#f2e2c4}
+.editPick>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px}
+.editPick>div button{min-height:44px;padding:6px 10px;border-radius:10px;background:#fff5df;border-color:#b48a55;color:#54341b;font-size:var(--text-small);font-weight:700}
+.cancelPick{justify-self:end;min-height:44px;padding:6px 12px;background:transparent;border-color:transparent;color:#f6ecd8;font-size:var(--text-small);text-decoration:underline;text-underline-offset:4px}
+
+/* About the work: below the actions, so it never pushes them off the first screen. */
+.meta{max-width:420px;margin:14px auto 0;text-align:center;min-width:0}
+.meta:not(:has(*)){display:none}
+.subtitle{margin:0 0 4px;font-size:var(--text-small);color:#e9d6b4}
+.description{margin:0 auto 4px;line-height:1.65;font-size:var(--text-small);white-space:pre-wrap}
 .meta small{font-size:var(--text-caption);color:#d8c7aa}
-.meta h2,.meta p,.meta small{word-break:keep-all;overflow-wrap:anywhere}
+.authorNote{margin:4px auto 0;font-size:var(--text-small)}
+.authorNote summary{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;color:#f2d89e;cursor:pointer}
+.authorNote p{margin:6px 0 0;text-align:left;line-height:1.7;white-space:pre-wrap}
 
-/* Reading: edition chips, then one large action (편집하기 beside it for books the reader wrote). */
-.read{display:flex;flex-direction:column;align-items:stretch;gap:10px;max-width:440px;margin:16px auto 0}
-.editions{border:0;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
-.editions legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.editions>div{display:flex;padding:3px;gap:2px;border-radius:999px;background:#1a120cd9;border:1px solid #e1c28b55;max-width:100%}
-.editions label{position:relative;border-radius:999px}
-.editions input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
-.editions span{display:block;min-height:40px;padding:9px 16px;border-radius:999px;font-size:var(--text-small);line-height:22px;color:#e9d6b4;white-space:nowrap}
-.editions input:checked+span{background:#f6e7c8;color:#3a2618;font-weight:700}
-.editions p{margin:0;font-size:var(--text-small);color:#e9d6b4;text-align:center}
-.readRow{display:flex;gap:8px}
-.primary,.secondary{display:flex;align-items:center;justify-content:center;min-height:56px;padding:10px 18px;border-radius:12px;font-size:var(--text-body);font-weight:700;text-decoration:none;text-align:center}
-.primary{flex:1 1 0;background:linear-gradient(120deg,#245544,#123b30);border:1px solid #e7c589;color:#fff0ce;box-shadow:0 3px 10px #26120655}
-.secondary{flex:0 1 40%;background:linear-gradient(120deg,#fff5df,#ecd0a7);border:1px solid #b48a55;color:#54341b}
-.primary:disabled,.primary[aria-disabled=true],.secondary:disabled{opacity:.45}
-.restart{align-self:center;min-height:44px;padding:6px 10px;background:transparent;border-color:transparent;color:#f6ecd8;font-size:var(--text-small);text-decoration:underline;text-underline-offset:4px}
-
-/* ‘더보기’: one place for making (copy, cover, planning) and managing (online, file, deletion last). */
-.more{max-width:440px;margin:14px auto 0}
-.more summary{cursor:pointer;list-style:none;min-height:44px;padding:11px;text-align:center;border:1px solid #e1c28b66;border-radius:12px;background:#3e291b80;color:#fff2d8;font-size:var(--text-small)}
-.more summary::-webkit-details-marker{display:none}
+/* ‘더보기’: making (cover, planning) and managing (online, file, deletion last). */
+.more{max-width:420px;margin:12px auto 0}
+.more summary{display:block;cursor:pointer;list-style:none;min-height:44px;box-sizing:border-box;padding:11px;text-align:center;border:1px solid #e1c28b66;border-radius:12px;background:#3e291b80;color:#fff2d8;font-size:var(--text-small)}
+.more summary::marker{content:""}.more summary::-webkit-details-marker{display:none}
 .more summary::after{content:' ▾';font-size:.8em}.more[open] summary::after{content:' ▴'}
 .sheet{display:flex;flex-direction:column;gap:14px;margin-top:8px;padding:14px;border:1px solid #c9ae7766;border-radius:12px;background:#2a1c13f2}
 .sheet section{display:flex;flex-direction:column;gap:8px;min-width:0}
 .sheet h3{margin:0;font-size:var(--text-caption);letter-spacing:.08em;color:#f2d89e;font-weight:700}
-.sheetNote{margin:0;font-size:var(--text-caption);line-height:1.6;color:#d8c7aa;word-break:keep-all}
+.sheetNote{margin:0;font-size:var(--text-caption);line-height:1.6;color:#d8c7aa;text-align:center}
+.sheet .sheetNote{text-align:left}
 .sheetActions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .sheetActions:empty{display:none}
-.sheet button{min-height:44px;padding:8px 12px;border-radius:10px;background:#fff5df;border-color:#b48a55;color:#54341b;font-size:var(--text-small);text-align:left;word-break:keep-all;overflow-wrap:anywhere}
+.sheet button{min-height:44px;padding:8px 12px;border-radius:10px;background:#fff5df;border-color:#b48a55;color:#54341b;font-size:var(--text-small);text-align:left}
+.target{border:0;margin:0;padding:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+.target legend{float:left;margin-right:4px;font-size:var(--text-caption);color:#f2d89e;font-weight:700}
+.target>div{display:flex;padding:3px;gap:2px;border-radius:999px;background:#1a120cd9;border:1px solid #e1c28b55}
+.target label{position:relative;border-radius:999px}
+.target input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.target span{display:block;min-height:40px;padding:9px 14px;box-sizing:border-box;border-radius:999px;font-size:var(--text-small);line-height:22px;color:#e9d6b4;white-space:nowrap}
+.target input:checked+span{background:#f6e7c8;color:#3a2618;font-weight:700}
 .online{display:flex;flex-direction:column;gap:8px;min-width:0}
 .online p{margin:0;font-size:var(--text-small);line-height:1.6}
 .online [role=alert]{color:#ffe4a4}
@@ -60,21 +81,14 @@
 /* Arrow-key and Esc tips only help keyboards: hidden on touch screens and phone widths. */
 @media(hover:none) and (pointer:coarse),(max-width:600px){.hint{display:none}}
 
-@media(max-width:400px){.dialog{padding:16px}.showcase{gap:6px}.book{width:130px}.editions span{padding:9px 12px}}
+@media(max-width:400px){.dialog{padding:10px 14px 16px}.showcase{gap:4px}.readButton{padding:6px 12px}}
+/* Short landscape screens: cover on the left, everything else scrolls on the right. */
 @media(max-height:500px) and (min-width:600px){
- .dialog{width:min(860px,94vw);padding:8px 20px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:0 20px;align-content:start}
+ .dialog{width:min(860px,96vw);padding:8px 20px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 20px;align-content:start}
  .dialog:not([open]){display:none}
- .dialog header{grid-column:1/-1}
- .showcase{grid-row:2/6;margin:8px 0}.book{width:110px}
- .meta{text-align:left}.meta .description{margin-left:0}
- .read,.more{margin-left:0;margin-top:8px}.editions{align-items:flex-start}.editions p{text-align:left}
- .hint{grid-column:1/-1;margin-top:6px}
+ .close{grid-column:1/-1;justify-self:end;float:none;margin:0}
+ .showcase{grid-row:2/7;grid-column:1;margin:0;align-self:start}.book{width:110px}
+ .title,.actions,.meta,.more,.hint{grid-column:2;margin-left:0;text-align:left}
+ .title{margin-top:0}
 }
 @media(prefers-reduced-motion:reduce){.book{transform:none}}
-.read>.sheetNote{text-align:center}
-.more summary{display:block}.more summary::marker{content:""}
-.dialog header button::before{content:'✕';margin-right:6px}
-.meta .subtitle{margin:0 0 6px;font-size:var(--text-small);color:#e9d6b4}
-.authorNote{margin:6px auto 0;max-width:34em;font-size:var(--text-small)}
-.authorNote summary{display:inline-block;min-height:32px;padding:4px 8px;color:#f2d89e}
-.authorNote p{margin:6px 0 0;text-align:left;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}

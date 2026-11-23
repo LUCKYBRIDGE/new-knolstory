@@ -1,6 +1,6 @@
 'use client';
 import {storageSummary} from '../lib/online-storage';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type ReactNode} from 'react';
 import {onlineEnabled} from '../lib/online-mode';
 import {accountGoogleLink} from '../lib/account-api';
 import {rememberAccountReturn,accountCallbackNotice} from '../lib/account-return';
@@ -10,7 +10,8 @@ import {useClassroomMeFor} from './use-classroom-me';
 import {TeacherUpgradeDialog} from './classroom/teacher-upgrade-dialog';
 import styles from './account-menu.module.css';
 type AccountState=ReturnType<typeof useAccountSession>;
-type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory';account?:AccountState};
+type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory';account?:AccountState;
+ /** Signed-in tools that belong with the account, such as the library's online storage. */ children?:ReactNode};
 /** A shared account state avoids a second session request in the unified library. */
 export function AccountMenu({account,...props}:Props){
  if(!onlineEnabled)return null;
@@ -20,7 +21,7 @@ function ConnectedAccountMenu(props:Omit<Props,'account'>){
  const account=useAccountSession();
  return <AccountMenuView {...props} account={account}/>;
 }
-function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='library'}:Omit<Props,'account'>&{account:AccountState}){
+function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='library',children}:Omit<Props,'account'>&{account:AccountState}){
  const menu=useRef<HTMLDetailsElement>(null),busy=useRef(false);
  useBoundedAccountPanel(menu);
  const lifecycle=useRef({active:true}),guard=useRef(beforeNavigate),requestId=useRef(0),latestSession=useRef(account.session);
@@ -62,7 +63,8 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
  }
  const unavailable=disabled||pending||account.loading;
  const state=account.loading?'loading':account.error?'unknown':account.session?'signed-in':'signed-out';
- const summary=account.loading?'확인 중':account.session?'내 계정':'로그인';
+ // The visible label keeps its width while the session is checked; the dot and the name carry the state.
+ const summary=account.session?'내 계정':'로그인';
  const stateLabel=account.loading?'로그인 확인 중':account.error?'로그인 상태 확인 필요':account.session?'로그인됨':'로그인 전';
  const callbackMessage=account.session&&!account.loading&&!account.error&&callback.result==='success'?'로그인했어요.':account.session&&!account.loading&&!account.error&&callback.result==='linked'?'Google 계정을 연결했어요. 이제 ‘연결한 Google로 로그인’도 쓸 수 있어요.':callback.message;
  const googleAvailable=account.config?.providers.google===true;
@@ -74,7 +76,8 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
   <p>{returnTo==='shortstory'?'온라인 작품 메뉴에서 그림책을 업로드할 수 있어요.':'내 작품에서 온라인 보관 여부를 확인하고 업로드할 수 있어요.'} 작품 파일은 기기에 따로 저장해 주세요.</p>
   {callbackMessage&&<p role="status">{callbackMessage}</p>}{(notice||account.error)&&<p role="alert">{notice||account.error}</p>}
   {account.session?<>
-   {classroom.me?.storage&&(()=>{const summary=storageSummary(classroom.me.storage,{compact:true});return <p className={styles.usage} data-warn={summary.warn} aria-label="내 온라인 공간">{summary.text}</p>;})()}
+   {children}
+   {!children&&classroom.me?.storage&&(()=>{const summary=storageSummary(classroom.me.storage,{compact:true});return <p className={styles.usage} data-warn={summary.warn} aria-label="내 온라인 공간">{summary.text}</p>;})()}
    {linked&&<div className={styles.linked} aria-label="연결된 로그인"><span>연결된 로그인</span><ul>
     <li data-linked={linked.includes('kakao')}>{linked.includes('kakao')?'✓':'–'} 카카오</li>
     {(googleAvailable||linked.includes('google'))&&<li data-linked={linked.includes('google')}>{linked.includes('google')?'✓ Google 연결됨':'Google 연결 안 됨'}</li>}

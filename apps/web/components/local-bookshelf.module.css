@@ -1,6 +1,6 @@
 .library{--wood:#ad8258;--wood-finish:linear-gradient(#79451b99,#79451b99);--case-depth:6px;--shelf-wood:url('/assets/legacy-ui/shelf.webp');--oak:linear-gradient(180deg,#985f3088,#633716b3),var(--shelf-wood);min-height:100dvh;position:relative;isolation:isolate;overflow:clip;padding:28px clamp(20px,7.5vw,120px) 40px;color:var(--ink);background:#d9b98f url('/assets/legacy-ui/room.webp') center top/100% var(--room-image-height,100%) no-repeat}
-.header{max-width:1200px;margin:0 auto 22px;display:flex;gap:24px;justify-content:space-between;align-items:center}.header h1{font:500 clamp(30px,3.5vw,46px)/1.4 "Knol Story Serif",serif;margin:6px 0}.header p{margin:0;line-height:1.7}.eyebrow{font-size:var(--text-caption);letter-spacing:.12em;color:var(--ink-soft)}.header>a{color:var(--ink);text-underline-offset:5px;font-size:var(--text-small)}
-.filters{max-width:1200px;margin:0 auto 18px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.filters button{border-radius:24px;background:#fffdf8d9}.filters button[aria-pressed=true]{background:var(--ink);color:var(--white);border-color:var(--ink)}.search{white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:10px;font-size:var(--text-small)}.search input{max-width:220px}.create{max-width:1200px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding-bottom:12px}.create>p{font-size:var(--text-caption);color:var(--ink-soft);margin:0;flex-basis:100%}.import{font-size:var(--text-small);display:flex;gap:10px;align-items:center}.import input{max-width:270px;min-height:44px}.import input::file-selector-button{padding:8px;border:1px solid var(--line);background:var(--white);border-radius:8px}.notice{max-width:1200px;margin:16px auto;padding:14px;background:var(--mint);border-radius:12px}
+
+.search{white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:10px;font-size:var(--text-small)}.search input{max-width:220px}.import{font-size:var(--text-small);display:flex;gap:10px;align-items:center}.import input{max-width:270px;min-height:44px}.import input::file-selector-button{padding:8px;border:1px solid var(--line);background:var(--white);border-radius:8px}.notice{max-width:1200px;margin:16px auto;padding:14px;background:var(--mint);border-radius:12px}
 .bookcases{--stile:18px;--fascia:24px;--shelf-row:clamp(112px,calc((100svh - 330px)/var(--shelf-capacity-rows,var(--shelf-rows))),300px);position:relative;max-width:1200px;margin:100px auto 0;border:var(--stile) solid transparent;background:var(--oak) center bottom/1200px auto;border-top-width:24px;border-bottom-width:24px;border-radius:5px;box-shadow:0 22px 26px -16px #44210c80,0 5px 9px #634b3628,inset 2px 0 3px #c3a07b60,inset -3px 0 5px #23140c80}
 .bookcases::before{content:"";position:absolute;top:-24px;left:calc(-1 * var(--stile));right:calc(-1 * var(--stile));height:24px;z-index:3;background:linear-gradient(180deg,#dfc7ab38,#9b77543d 32%,#301b1380 75%),var(--wood-finish),var(--shelf-wood) center 82%/1200px auto;border-top:2px solid #c3a37e;border-radius:4px;box-shadow:0 6px 9px #29191066,inset 0 -2px 1px #28170f80}
 .grid{position:relative;display:grid;grid-template-columns:repeat(var(--shelf-columns),minmax(0,1fr));grid-template-rows:repeat(var(--shelf-rows),var(--shelf-row));gap:0 24px;padding:0 30px;background-color:#483326;background-image:linear-gradient(180deg,#1d120db3,#402b1f55 55%,#6c4e3430 78%,#22160dc2),var(--wood-finish),url('/assets/legacy-ui/shelf.webp');background-size:100% var(--shelf-row);background-repeat:repeat-y;box-shadow:inset 12px 0 18px #160e0b8c,inset -12px 0 18px #160e0b8c,inset 0 5px 10px #21140b66}
@@ -9,16 +9,16 @@
 .drawer{position:relative;min-height:76px;border-top:2px solid #d1a574;margin:6px 8px 0;border:1px solid #68402280;border-top:2px solid #68402299;border-radius:2px;background:linear-gradient(180deg,#d4b28d22,#321f174d),var(--wood-finish),var(--shelf-wood) 50% 45%/1200px auto;box-shadow:0 -2px 2px #30190d40,0 1px 0 #efcba080,inset 0 0 0 4px #9d795d50,inset 0 0 0 5px #3b271d88,inset 0 4px 6px #20130e55}.drawerHandle{position:absolute;width:76px;height:7px;border:1px solid #76532d;border-radius:3px;left:calc(50% - 38px);bottom:10px;background:linear-gradient(180deg,#f1d6a8,#ad8550 35%,#76532d 70%,#bc965e);box-shadow:0 3px 3px #321b0f70,inset 0 1px 0 #fff3}.paging{display:flex;justify-content:center;align-items:center;gap:20px;padding:8px 10px 24px;position:relative;z-index:3;color:#fff0d3;font-size:var(--text-caption)}.paging button{width:44px;min-height:44px;padding:0;border-radius:50%;background:#613c2380;color:#fff1d9;border-color:#d8b08080;font-size:var(--text-heading)}
 .topPlant{--plant-height:216px;position:absolute;right:-8px;top:calc(var(--plant-height) * -.572 - 24px + 2px);width:calc(var(--plant-height) * .75);height:var(--plant-height);background:url('/assets/legacy-ui/plant.webp') center/contain no-repeat;z-index:4;pointer-events:none;filter:blur(.35px) saturate(.76) brightness(.94) drop-shadow(3px 5px 3px #443d2220)}
 .foreground{position:absolute;width:clamp(300px,38vw,620px);aspect-ratio:3/4;bottom:-160px;z-index:4;pointer-events:none;user-select:none;background:center bottom/contain no-repeat;filter:blur(3px) saturate(.78) brightness(.94);transform:scaleX(-1)}.foregroundLeft{left:calc(clamp(36px,9vw,135px) - clamp(300px,38vw,620px));background-image:url('/assets/legacy-ui/foreground-left.webp')}.foregroundRight{right:calc(clamp(36px,9vw,135px) - clamp(300px,38vw,620px));background-image:url('/assets/legacy-ui/foreground-right.webp')}.roomFooter{text-align:center;position:relative;z-index:5;padding:22px 0 0;color:#705239;font:15px/1.8 "Knol Story Serif",serif}.roomFooter p{margin:10px 0}.roomFooter small{font:12px/1.5 sans-serif}.library button:disabled{opacity:.45;cursor:default}.library button:focus-visible,.library a:focus-visible{outline:3px solid var(--mint-strong);outline-offset:4px}
-@media(max-width:900px){.header{flex-wrap:wrap}.topPlant{--plant-height:168px}.bookcases{margin-top:90px}}
+@media(max-width:900px){.topPlant{--plant-height:168px}.bookcases{margin-top:90px}}
 @media(max-width:480px){.library{padding:20px 20px 32px}.bookcases{--stile:10px;--fascia:20px;margin-top:72px}.grid{padding:0 14px;gap:0 16px}.card,.emptySlot{padding-top:14px}.plank{left:-22px;right:-22px}.search{margin-left:0;flex-basis:100%}.search input{flex:1;max-width:none}.import{flex-wrap:wrap}.topPlant{--plant-height:123px;right:0}.foreground{width:300px;bottom:-120px;filter:blur(2.5px) saturate(.78) brightness(.94)}.foregroundLeft{left:-275px}.foregroundRight{right:-280px}}
 @media(prefers-reduced-motion:reduce){.cover{transition:none}.cover:hover,.cover:focus-visible{transform:none}}
 /* Quiet library chrome: one small heading, collection selector and optional tools. */
-.library{padding-top:18px}.header{gap:16px;align-items:center;margin-bottom:0;min-height:48px}.header h1{font:500 27px/1.4 "Knol Story Serif",serif;margin:0;flex:none}.headerTools{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-left:auto;min-width:0}.introLink{background:transparent;border:0;font-size:var(--text-small);padding:8px}.classification select{width:140px;min-height:44px;font-size:var(--text-small);background:#fff8e9d9}.tools{position:relative}.tools summary{cursor:pointer;min-height:44px;padding:10px 14px;border:1px solid #bca47d;border-radius:12px;background:#fff8e9d9;font-size:var(--text-small);list-style:none;white-space:nowrap}.tools summary::marker{content:none}.tools summary::-webkit-details-marker{display:none}.toolsPanel{position:absolute;right:0;top:calc(100% + 10px);z-index:10;width:min(360px,calc(100vw - 32px));padding:20px;border:1px solid #bca47d;border-radius:14px;background:var(--white);box-shadow:0 12px 28px #3b281b33;display:grid;gap:16px}.tools:not([open]) .toolsPanel{display:none}.toolsPanel .search{margin:0;display:grid;gap:6px;white-space:normal}.toolsPanel .search input{max-width:none}.toolsPanel .import{display:grid;gap:8px}.toolsPanel .import input{max-width:100%}.toolsPanel button{font-size:var(--text-small)}.toolsPanel p{font-size:var(--text-caption);color:var(--ink-soft);margin:0;line-height:1.7}.toolsPanel a{font-size:var(--text-small);color:var(--ink)}.bookcases{margin-top:70px}
-@media(max-width:600px){.header{display:flex;flex-wrap:wrap;gap:8px}.header h1{font-size:var(--text-heading);flex-basis:auto;order:0}.headerTools{gap:4px;flex-wrap:wrap}.introLink{padding:8px;font-size:var(--text-caption)}.classification select{width:110px}.tools summary{padding:10px;font-size:var(--text-caption)}.bookcases{margin-top:64px}}
+.library{padding-top:18px}.introLink{background:transparent;border:0;font-size:var(--text-small);padding:8px}.bookcases{margin-top:70px}
+@media(max-width:600px){.introLink{padding:8px;font-size:var(--text-caption)}.bookcases{margin-top:64px}}
 
-@media(min-width:1000px){.header{padding-right:160px}}
-.headerTools{position:relative;z-index:6}
-.headerTools{flex:none;text-align:left}
+
+
+
 
 /* Keep the three shelf tiers and drawer close to the first viewport. */
 @media(max-width:900px),(max-height:900px){.roomFooter{display:none}.library{padding-bottom:16px}}
@@ -35,7 +35,7 @@
 .plank{background:none;border:0;box-shadow:none}
 .rail{position:absolute;top:calc(var(--shelf-index) * var(--shelf-row) - var(--fascia));left:0;right:0;height:var(--fascia);z-index:1;pointer-events:none;border-top:2px solid #bda17f;background:linear-gradient(180deg,#d9bfa238,#9c785120 12%,#47302055 65%,#23150eba),var(--wood-finish),var(--shelf-wood) center 92%/1200px auto;box-shadow:0 6px 7px #3d220e55,inset 0 4px 4px #ffffff14}
 
-.header h1{font-size:var(--text-title);white-space:nowrap}@media(min-width:1100px){.header h1{font-size:var(--text-heading)}}
+
 
 /* Wood depth is applied to cabinet surfaces, never authored artwork. */
 .bookcases::after{content:"";position:absolute;top:-22px;bottom:-24px;right:calc(-1 * var(--stile) - var(--case-depth));width:var(--case-depth);z-index:2;pointer-events:none;background:linear-gradient(90deg,#4d3429b3,#1d100bd9),var(--shelf-wood) 40% top/auto 300%;border-right:1px solid #25160e80;box-shadow:4px 4px 8px #21130d45;transform:skewY(-8deg);transform-origin:left top}
@@ -53,7 +53,6 @@
 .drawer{background:var(--oak) 50% 45%/1200px auto}
 .base{background:var(--oak) center 92%/1200px auto}
 /* Bound the wrapping controls to the available wall on narrow screens. */
-@media(max-width:600px){.headerTools{max-width:100%}}
 
 /* Keep the shelf status readable over variable wood grain without changing geometry. */
 .paging>span{background:#482d1b;box-shadow:0 0 0 4px #482d1b;border-radius:2px}
@@ -79,27 +78,108 @@
 .emptyMessage button{width:100%;max-width:240px}
 @media(max-width:480px){.emptyMessage{padding:14px 12px;gap:8px}}
 /* Phone: account and introduction on the first row, filter and tools sharing the second. */
-@media(max-width:600px){.headerTools{width:100%;justify-content:flex-start;row-gap:8px}.classification{flex:1 1 55%;min-width:0}.classification select{width:100%}.tools{flex:none}}
 
 @media (max-width:600px) {
  .bookcases {margin-top:30px}
  .topPlant {--plant-height:66px}
 }
 
-.browse{position:relative;z-index:5;display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;max-width:1200px;margin:8px auto 12px}
-.switcher,.browseActions{display:flex;align-items:center;gap:4px}.switcher{padding:2px;background:#fff9ebd9;border:1px solid #bca47d;border-radius:13px}
-.switcher button{border:0;border-radius:10px;background:transparent;color:var(--ink);min-height:44px;padding:0 14px;font-size:var(--text-small);white-space:nowrap}.switcher button[aria-pressed=true]{background:#254e44;color:white}
-.browseActions{margin-left:auto}.browseActions .tools summary{display:grid;place-items:center;min-height:44px}.browseActions .tools:last-child summary{color:white;background:#254e44;border-color:#254e44}
-.browse .scope{display:grid;gap:6px;font-size:var(--text-small)}.pictureShelf,.filterSummary{font-size:var(--text-small);color:var(--ink)}.pictureShelf{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}.filterSummary{flex-basis:100%;overflow-wrap:anywhere}.filterSummary button{max-width:100%;overflow-wrap:anywhere;min-height:44px}
-@media(max-width:600px){.header{justify-content:space-between;gap:4px}.headerTools{width:auto;margin-left:auto}.browse{gap:4px}.browse .tools{position:static}.browse .toolsPanel{top:100%;margin-top:4px;width:min(360px,100%)}.switcher button{padding:0 9px}.browseActions .tools summary{padding-inline:9px}.pictureShelf{flex-basis:100%}}
+
+
+
+.pictureShelf{font-size:var(--text-small);color:var(--ink)}.pictureShelf{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
+@media(max-width:600px){.pictureShelf{flex-basis:100%}}
 
 @media (min-width:601px) {
  .bookcases {margin-top:42px}
  .topPlant {--plant-height:90px}
 }
 /* An open search or new-work panel sits above the storage notice that follows it (2026-11-21). */
-.browse:has(details[open]){z-index:7}
+
 
 /* The shelf counter stays on one line on the narrowest phones. */
 .paging>span{white-space:nowrap}
 @media (max-width:360px){.paging>span{font-size:var(--text-caption)}}
+
+/* ── One-row library header (2026-11-23) ──────────────────────────────────────────────
+   Account · 책 소개 · collection select · magnifier share one row at 320 CSS px. The
+   magnifier turns the same row into the search field. Every target is 44px; on narrow
+   screens the room margins and decorations give way before any text shrinks. */
+.topBar{position:relative;z-index:6;box-sizing:border-box;max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:6px;min-height:48px;padding:2px;border:1px solid #c9b48f;border-radius:14px;background:#fffaf0e6;box-shadow:0 2px 8px #5a3d2214}
+.topBar>*{flex:none}
+.topBar button,.topBar select,.topBar summary,.topBar input{font:600 var(--text-small)/1.2 Pretendard,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#1f3d36}
+.account summary{min-height:44px;padding:0 10px;gap:5px;border:0;border-radius:11px;background:transparent}
+.account summary svg{width:17px;height:17px}
+.introLink{min-height:44px;padding:0 10px;border:0;border-radius:11px;background:transparent;white-space:nowrap;cursor:pointer}
+.introLink:hover,.account summary:hover{background:#f3e7cf}
+.scope{flex:1 1 auto;min-width:0;display:flex}
+.scope select{box-sizing:border-box;width:100%;min-width:86px;min-height:44px;padding:0 26px 0 10px;border:1px solid #d6c3a0;border-radius:11px;background:#fffdf7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6l5-4.5' fill='none' stroke='%231f3d36' stroke-width='1.6'/%3E%3C/svg%3E") right 9px center/11px 8px no-repeat;appearance:none;-webkit-appearance:none;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.iconButton{position:relative;display:inline-grid;place-items:center;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;border:0;border-radius:11px;background:transparent;cursor:pointer}
+.iconButton:hover{background:#f3e7cf}
+.iconButton svg,.searchGlyph{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.iconButton[data-active=true]::after{content:"";position:absolute;top:9px;right:9px;width:7px;height:7px;border-radius:50%;background:#b46b1f;box-shadow:0 0 0 2px #fffaf0}
+.searchRow{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:2px;padding-left:10px}
+.searchGlyph{flex:none;color:#6a5a45}
+.searchRow input{flex:1 1 auto;min-width:0;min-height:44px;padding:0 6px;border:0;border-radius:8px;background:transparent;font-weight:500;outline:none}
+.searchRow input::-webkit-search-cancel-button{display:none}
+.searchRow:focus-within{box-shadow:inset 0 0 0 2px #2f6962;border-radius:11px}
+.closeSearch{flex:none;min-height:44px;padding:0 12px;border:0;border-radius:11px;background:#254e44;color:#fff!important;white-space:nowrap;cursor:pointer}
+.queryChip{max-width:1200px;margin:6px auto 0;display:flex;align-items:center;justify-content:flex-start;gap:2px;position:relative;z-index:5}
+.queryOpen{min-width:0;max-width:calc(100% - 46px);min-height:36px;padding:0 12px;border:1px solid #c9b48f;border-radius:18px;background:#fff4dc;color:#3a2a1c;font-size:var(--text-small);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.queryChip .iconButton{color:#3a2a1c}
+/* The header and shelf sit close: the cabinet top starts right below the bar. */
+.library{padding-top:12px}
+.bookcases{margin-top:36px}
+.topPlant{--plant-height:84px}
+@media (max-width:600px){
+ /* The cabinet keeps the owner-chosen strip of wall beside the window; only the header bar uses the full width. */
+ .library{--window-wall-gap:24px;padding:8px 12px 16px calc(8.2vw + var(--window-wall-gap))}
+ .topBar,.queryChip,.serviceNavigation{margin-left:calc(12px - 8.2vw - var(--window-wall-gap));margin-right:0}
+ .topBar{gap:2px}
+ .account summary,.introLink{padding:0 8px}
+ .bookcases{margin-top:26px}
+ .topPlant{--plant-height:56px;right:2px}
+ .foreground{display:none}
+ .grid{padding:0 10px;gap:0 12px}
+ .card,.emptySlot{padding-top:10px}
+}
+@media (max-width:360px){
+ .account summary,.introLink{padding:0 6px}
+ .account summary svg{display:none}
+ .scope select{padding-left:8px;padding-right:22px;background-position:right 7px center}
+}
+/* Without a second page the drawer is a plain wooden face; paging appears only when there is more. */
+.drawer:not([data-paging]){min-height:34px}
+.paging{gap:12px;padding:6px 10px 22px}
+.paging>span{min-width:4.5em;text-align:center;font-variant-numeric:tabular-nums}
+/* ＋ 새 작품: a book-shaped slot on the 내 작품 shelf. */
+.createCover{aspect-ratio:1/1.45;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;line-height:1.3!important;border:2px dashed #f0d6a8aa!important;border-radius:4px;background:#2b1a1080!important;color:#fff1d6;font-size:var(--text-small);font-weight:600}
+.createCover>span{font-size:1.6em;line-height:1}
+.createCover::after{display:none}
+/* Empty shelf: one row whose compartment holds the message; nothing sits on a rail. */
+.emptyMessage{top:0;left:0;right:0;bottom:auto;height:calc(var(--shelf-row) - var(--fascia) - 16px);box-sizing:border-box;width:auto;transform:none;margin:8px 12px;padding:8px 12px;border:0;border-radius:10px;background:#2b1a10cc;box-shadow:none;justify-content:center}
+.emptyMessage p{word-break:keep-all;text-align:center}
+.emptyMessage button{width:auto;max-width:100%}
+.emptyMessage button+button{background:#fff6e2;color:#3a2a1c}
+/* New-work sheet opened from the 내 작품 shelf. */
+.createDialog{box-sizing:border-box;width:min(420px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;padding:16px;border:1px solid #c9b48f;border-radius:16px;background:#fffaf0;color:#1f3d36;box-shadow:0 18px 40px #2a170c55}
+.createDialog::backdrop{background:#1f12098c}
+.createDialog header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px}
+.createDialog h2{margin:0;font:600 var(--text-lead)/1.4 "Knol Story Serif",serif}
+.dialogClose{display:inline-grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer}
+.dialogClose svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.createMore{display:grid;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #e2d4b8}
+.createMore .import{display:grid;gap:6px;font-size:var(--text-small)}
+.createMore .import input{max-width:100%;min-height:44px}
+.createMore .pictureShelf{justify-self:start}
+/* Long user titles and file names wrap inside their box instead of widening the page. */
+.library{word-break:keep-all;overflow-wrap:anywhere}
+/* Phones: rows share the height left under the header, so two rows of books grow instead of leaving bare floor. */
+@media (max-width:600px){
+ .bookcases{--shelf-row:clamp(112px,calc((100svh - 240px) / var(--shelf-rows)),205px)}
+}
+/* Wider screens: the select keeps a natural width and the magnifier sits at the row's end. */
+@media (min-width:601px){.scope{flex:0 1 200px}.topBar>[data-search-toggle]{margin-left:auto}}
+/* 놀스토리 서재: carved into the oak crown board in the wood's own tones — part of the furniture, not a label stuck on. */
+.nameplate{position:absolute;z-index:5;top:-24px;left:50%;transform:translateX(-50%);height:24px;display:flex;align-items:center;color:#4c2e17;font:600 12px/1 "Knol Story Serif",serif;letter-spacing:.24em;white-space:nowrap;text-shadow:0 1px 0 #f2d6ad8c,0 -1px 0 #3a22102e;pointer-events:none}
+@media (min-width:601px){.nameplate{font-size:14px;letter-spacing:.3em}}

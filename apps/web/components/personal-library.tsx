@@ -12,10 +12,11 @@ import {isPersonalLibraryKind} from '../lib/library-catalog';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import {AccountMenu} from './account-menu';
 import {LocalBookshelf,type LocalBookshelfProps} from './local-bookshelf';
-import {LibraryStorageBadge,StorageIcon} from './library-storage';
+import {LibraryStorageBadge} from './library-storage';
 import {useOnlineWorks,type OnlineWorksProps} from './use-online-works';
 import styles from './personal-library.module.css';
 import {trashExpiryNotice} from '../lib/trash-retention';
+const ROLE_HINT_KEY='knolstory-library-role-v1';
 
 type Props=Omit<LocalBookshelfProps,'accountMenu'|'online'>&{beforeAccountNavigation:()=>boolean;beforeServiceNavigation:()=>boolean;onlineDisabled?:boolean;onSaveOnline:OnlineWorksProps['onSaveNew'];onOpenOnline:OnlineWorksProps['onOpen']};
 export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigation,beforeServiceNavigation,onlineDisabled=false,...shelf}:Props){
@@ -44,21 +45,27 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  const unavailable=onlineDisabled||!!shelf.disabled||online.busy||online.account.loading;
  const feedback=(key:string)=>target?.key===key?{notice:online.notice,error:online.error}:{};
  const stateAction=(record:OnlineDocumentMetadata,action:'trash'|'restore',key=`remote:${record.recordId}`)=>{setTarget({key,title:record.title});void online.changeState(record,action);};
- const header=<div className={styles.statusBar} aria-label="작품 보관 안내">
-  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<details key={owner} className={styles.storageTools} data-storage-tools>
-   <summary><StorageIcon online/><span>{storage?`온라인 ${storage.works}권`:'온라인 보관'}</span><span className={styles.manage}>보관 관리</span></summary>
-   <div className={styles.storageDetails}>
-    <p>구름 표시가 있는 책은 온라인에도 있어요. 이 기기에서 고친 작품은 ‘온라인에 업로드’를 눌러 올려 주세요.</p>
-    {summary&&!summary.warn&&<p className={styles.storageUsage}>{summary.text}</p>}
-    <div className={styles.controls}><button aria-label="온라인 목록 다시 확인" disabled={unavailable} onClick={()=>void online.list(false,'active')}>새로 고침</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}} aria-label="온라인 휴지통">휴지통</button></div>
-   </div>
-  </details>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 위의 ‘내 과제’에서 해요.':'작품은 이 기기에 저장돼요.'}</span>:<span>{online.account.error||'작품은 이 기기에 저장돼요. 로그인하면 온라인에도 보관할 수 있어요.'}</span>}
-  {owner&&summary?.warn&&<p className={styles.storageUsage} data-warn={summary.warn} role={summary.warn?'status':undefined}>{summary.text}{summary.full?(storage?.classroom&&storage.classroom.bytes>=storage.classroom.limit&&classroom.role==='student'?' · 학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요.':' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.'):summary.warn?' · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.':''}</p>}
-  {online.busy&&<p role="status">온라인 작품을 확인하고 있어요.</p>}
+ // Online storage lives in the account menu: what is stored, a recheck, and the trash.
+ const storageTools=owner?<div className={styles.storageTools} role="group" aria-label="온라인 보관" data-storage-tools>
+  <strong>온라인 보관{storage?` · ${storage.works}권`:''}</strong>
+  {summary&&<p className={styles.storageUsage} data-warn={summary.warn||undefined}>{summary.text}</p>}
+  <p>구름 표시가 있는 책은 온라인에도 있어요.</p>
+  <button disabled={unavailable} onClick={()=>void online.list(false,'active')}>온라인 목록 다시 확인</button>
+  <button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}}>온라인 휴지통</button>
+ </div>:null;
+ // Above the shelf only what needs the reader: a nearly full storage, and the result of an online action.
+ const warning=owner&&summary?.warn?`${summary.text}${summary.full?(storage?.classroom&&storage.classroom.bytes>=storage.classroom.limit&&classroom.role==='student'?' · 학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요.':' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.'):' · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.'}`:'';
+ const header=<div className={styles.statusBar} aria-label="작품 보관 알림">
+  {warning&&<p className={styles.storageUsage} data-warn={summary?.warn} role="status">{warning}</p>}
+  {online.busy&&<p className={styles.quiet} role="status">온라인 작품을 확인하고 있어요.</p>}
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}
  </div>;
+ // The class tabs appear the moment the role is known; remembering the last role on this device keeps the header from jumping.
+ const [roleHint]=useState(()=>{try{return localStorage.getItem(ROLE_HINT_KEY) as typeof classroom.role|null;}catch{return null;}});
+ useEffect(()=>{if(classroom.loading)return;try{localStorage.setItem(ROLE_HINT_KEY,classroom.role);}catch{/* Only a layout hint. */}},[classroom.loading,classroom.role]);
+ const navRole=classroom.loading&&roleHint?roleHint:classroom.role;
  return <>
-  <LocalBookshelf {...shelf} navigation={serviceLinks(classroom.role).length>1&&<ServiceNavigation role={classroom.role} active="library" beforeNavigate={beforeServiceNavigation}/>} accountMenu={onlineEnabled&&<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}/>} online={onlineEnabled?{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
+  <LocalBookshelf {...shelf} navigation={serviceLinks(navRole).length>1&&<ServiceNavigation role={navRole} active="library" beforeNavigate={beforeServiceNavigation}/>} accountMenu={onlineEnabled&&<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}>{storageTools}</AccountMenu>} online={onlineEnabled?{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
    if(!isPersonalLibraryKind(work.kind))return null;
    const key=`local:${work.key}`,status=projection.byLocalKey[work.key]??{kind:'local' as const,label:'이 기기에 있음'};
    return {status:<LibraryStorageBadge status={status}/>,manage:owner?<OnlineManage key={key} status={status} disabled={unavailable} size={sizes[work.key]} {...feedback(key)} onUpload={()=>{setTarget({key,title:work.project.title});void online.save(work.key);}} onOpenOnline={status.record?()=>{setTarget({key,title:work.project.title});void online.open(status.record!);}:undefined}/>:undefined,danger:owner&&status.record?<OnlineTrash key={key} record={status.record} disabled={unavailable} onTrash={()=>stateAction(status.record!,'trash',key)}/>:undefined};

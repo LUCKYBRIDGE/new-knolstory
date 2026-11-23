@@ -21,3 +21,9 @@
 .storageUsage[data-warn=true]{color:var(--warn-ink,#8a4b00);font-weight:600}
 .workSize{margin:0;font-size:var(--text-caption);color:var(--ink-soft,#6b6257)}
 .workSize[data-level=warn],.workSize[data-level=block]{color:var(--warn-ink,#8a4b00);font-weight:600}
+/* 2026-11-23: routine storage explanations moved into the account menu; this bar only shows what needs attention. */
+.statusBar:not(:has(>p:not(.quiet))){position:absolute;width:1px;height:1px;margin:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%)}
+.quiet{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.storageTools{display:grid;gap:2px;margin-top:12px;padding-top:10px;border-top:1px solid var(--story-menu-line,#c9bda4)}
+.storageTools>strong{font-size:var(--text-small);font-weight:600}
+.storageTools>p{margin:4px 0!important}
