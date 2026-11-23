@@ -1,0 +1,189 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "focus-text",
+   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "focus-text",
+   "components": [
+    {
+     "id": "root",
+     "component": "FocusScreen",
+     "task": "text",
+     "topBar": "root-top",
+     "current": "current",
+     "work": "work"
+    },
+    {
+     "id": "root-top",
+     "component": "TopBar",
+     "settings": {
+      "event": {
+       "name": "openSettings"
+      }
+     },
+     "navigator": "cut-nav",
+     "tabs": "work-tabs",
+     "actions": [
+      "fullscreen",
+      "library"
+     ]
+    },
+    {
+     "id": "cut-nav",
+     "component": "CutNavigator",
+     "chapter": {
+      "path": "/chapter"
+     },
+     "cut": {
+      "path": "/cut"
+     },
+     "previous": {
+      "event": {
+       "name": "previousCut"
+      }
+     },
+     "next": {
+      "event": {
+       "name": "nextCut"
+      }
+     },
+     "openList": {
+      "event": {
+       "name": "openCutList"
+      }
+     }
+    },
+    {
+     "id": "work-tabs",
+     "component": "WorkTabs",
+     "tabs": [
+      "basic",
+      "text",
+      "background",
+      "characters",
+      "audio",
+      "direction"
+     ],
+     "selected": "text",
+     "change": {
+      "event": {
+       "name": "changeTask"
+      }
+     }
+    },
+    {
+     "id": "fullscreen",
+     "component": "IconButton",
+     "icon": "fullscreen",
+     "name": "전체 화면",
+     "action": {
+      "event": {
+       "name": "toggleFullscreen"
+      }
+     }
+    },
+    {
+     "id": "library",
+     "component": "IconButton",
+     "icon": "library",
+     "name": "서재로 나가기",
+     "action": {
+      "event": {
+       "name": "openLibrary"
+      }
+     }
+    },
+    {
+     "id": "current",
+     "component": "CurrentCut",
+     "cut": {
+      "path": "/cut"
+     },
+     "speaker": {
+      "path": "/speaker"
+     },
+     "text": {
+      "path": "/text"
+     },
+     "editable": true,
+     "play": {
+      "event": {
+       "name": "playFromCut"
+      }
+     }
+    },
+    {
+     "id": "work",
+     "component": "ToolGroup",
+     "name": "원고 도구",
+     "children": [
+      "find",
+      "new-cut"
+     ]
+    },
+    {
+     "id": "find",
+     "component": "Button",
+     "label": "찾기",
+     "action": {
+      "event": {
+       "name": "findInText"
+      }
+     }
+    },
+    {
+     "id": "new-cut",
+     "component": "Button",
+     "label": "+ 새 컷",
+     "variant": "primary",
+     "action": {
+      "event": {
+       "name": "insertCutAfter"
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateDataModel": {
+   "surfaceId": "focus-text",
+   "path": "/",
+   "value": {
+    "chapter": 1,
+    "cut": 3,
+    "speaker": "나무꾼",
+    "text": "사슴아, 어서 이 나뭇짐 뒤로 숨으렴.",
+    "previous": {
+     "cut": 2,
+     "text": "숲속에서 사슴 한 마리가 헐레벌떡 달려왔어요."
+    },
+    "next": {
+     "cut": 4,
+     "text": "곧이어 사냥꾼이 활을 들고 나타났어요."
+    },
+    "background": {
+     "fit": "default"
+    },
+    "character": {
+     "expression": "basic"
+    },
+    "audio": {
+     "bgm": "forest"
+    },
+    "direction": {
+     "effect": "none",
+     "transition": "cut"
+    },
+    "kind": "dialogue"
+   }
+  }
+ }
+]

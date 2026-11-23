@@ -1,0 +1,252 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "focus-background",
+   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "focus-background",
+   "components": [
+    {
+     "id": "root",
+     "component": "FocusScreen",
+     "task": "background",
+     "topBar": "root-top",
+     "current": "current",
+     "work": "work",
+     "stage": "stage",
+     "more": "more"
+    },
+    {
+     "id": "root-top",
+     "component": "TopBar",
+     "settings": {
+      "event": {
+       "name": "openSettings"
+      }
+     },
+     "navigator": "cut-nav",
+     "tabs": "work-tabs",
+     "actions": [
+      "fullscreen",
+      "library"
+     ]
+    },
+    {
+     "id": "cut-nav",
+     "component": "CutNavigator",
+     "chapter": {
+      "path": "/chapter"
+     },
+     "cut": {
+      "path": "/cut"
+     },
+     "previous": {
+      "event": {
+       "name": "previousCut"
+      }
+     },
+     "next": {
+      "event": {
+       "name": "nextCut"
+      }
+     },
+     "openList": {
+      "event": {
+       "name": "openCutList"
+      }
+     }
+    },
+    {
+     "id": "work-tabs",
+     "component": "WorkTabs",
+     "tabs": [
+      "basic",
+      "text",
+      "background",
+      "characters",
+      "audio",
+      "direction"
+     ],
+     "selected": "background",
+     "change": {
+      "event": {
+       "name": "changeTask"
+      }
+     }
+    },
+    {
+     "id": "fullscreen",
+     "component": "IconButton",
+     "icon": "fullscreen",
+     "name": "전체 화면",
+     "action": {
+      "event": {
+       "name": "toggleFullscreen"
+      }
+     }
+    },
+    {
+     "id": "library",
+     "component": "IconButton",
+     "icon": "library",
+     "name": "서재로 나가기",
+     "action": {
+      "event": {
+       "name": "openLibrary"
+      }
+     }
+    },
+    {
+     "id": "stage",
+     "component": "Stage",
+     "orientation": "landscape",
+     "name": "현재 컷 장면"
+    },
+    {
+     "id": "current",
+     "component": "CurrentCut",
+     "cut": {
+      "path": "/cut"
+     },
+     "speaker": {
+      "path": "/speaker"
+     },
+     "text": {
+      "path": "/text"
+     },
+     "editable": false,
+     "play": {
+      "event": {
+       "name": "playFromCut"
+      }
+     }
+    },
+    {
+     "id": "work",
+     "component": "ToolGroup",
+     "name": "배경",
+     "children": [
+      "pick-background",
+      "background-fit"
+     ]
+    },
+    {
+     "id": "pick-background",
+     "component": "Button",
+     "label": "배경 고르기",
+     "variant": "primary",
+     "action": {
+      "event": {
+       "name": "pickBackground"
+      }
+     }
+    },
+    {
+     "id": "background-fit",
+     "component": "Choice",
+     "label": "표시",
+     "value": {
+      "path": "/background/fit"
+     },
+     "options": [
+      {
+       "value": "default",
+       "label": "자료 기본 표시"
+      },
+      {
+       "value": "cover",
+       "label": "화면 채우기"
+      },
+      {
+       "value": "contain",
+       "label": "전체 이미지 보기"
+      }
+     ],
+     "change": {
+      "event": {
+       "name": "changeBackgroundFit"
+      }
+     }
+    },
+    {
+     "id": "more",
+     "component": "More",
+     "summary": "더보기",
+     "children": [
+      "more-tools"
+     ]
+    },
+    {
+     "id": "more-tools",
+     "component": "ToolGroup",
+     "name": "배경 정리",
+     "children": [
+      "reset-focal",
+      "remove-background"
+     ]
+    },
+    {
+     "id": "reset-focal",
+     "component": "Button",
+     "label": "중심 초기화",
+     "action": {
+      "event": {
+       "name": "resetBackgroundFocal"
+      }
+     }
+    },
+    {
+     "id": "remove-background",
+     "component": "Button",
+     "label": "배경 빼기",
+     "variant": "quiet",
+     "action": {
+      "event": {
+       "name": "removeBackground"
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateDataModel": {
+   "surfaceId": "focus-background",
+   "path": "/",
+   "value": {
+    "chapter": 1,
+    "cut": 3,
+    "speaker": "나무꾼",
+    "text": "사슴아, 어서 이 나뭇짐 뒤로 숨으렴.",
+    "previous": {
+     "cut": 2,
+     "text": "숲속에서 사슴 한 마리가 헐레벌떡 달려왔어요."
+    },
+    "next": {
+     "cut": 4,
+     "text": "곧이어 사냥꾼이 활을 들고 나타났어요."
+    },
+    "background": {
+     "fit": "default"
+    },
+    "character": {
+     "expression": "basic"
+    },
+    "audio": {
+     "bgm": "forest"
+    },
+    "direction": {
+     "effect": "none",
+     "transition": "cut"
+    },
+    "kind": "dialogue"
+   }
+  }
+ }
+]
