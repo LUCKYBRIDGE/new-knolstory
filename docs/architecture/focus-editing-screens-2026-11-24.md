@@ -68,7 +68,8 @@
   - 결과(선녀와 나무꾼 1컷, 태블릿 768): 카드 높이 원고 263→232, 음향·연출 265→223, 인물 1077→952px.
 - **검사**: `tests/e2e/a2ui-blueprint-conformance.spec.ts`(host 등록) — 폰 390·태블릿 768에서 쓰기 화면 전체와 다섯 목록 화면(목록 위 도구 + 현재 컷)의 조작 이름이 설계도(`controlNames`)와 같은지 양방향으로 본다(숫자는 #, 고른 자료 이름은 뺀다). 처음 돌렸을 때 원고 폰의 ‘컷 전체 표시’, 함께 보기 숨김 차이를 잡아 냈다.
 - **바꾼 기존 검사**: `이 컷 선택` 이름(정규식), `편집할 장` 대신 위 막대 `현재 장과 컷 이동`(large-manuscript·editor-inherited-background·preview-context·phone-editor-tasks·editing-workbench), 폰 함께 보기 없음(editing-workbench·long-manuscript-workbench·task-editor-current-cut), select 36px + label 44px(editing-workbench 인물 카드), 줄 여백 16px(editor-density, 4px 단계), 그림 고르기 설명 없음(keyboard-writing-focus), composition-intent는 읽는 중 숨은 편집 목록의 글을 세지 않게.
-- **알려진 것**: stories-runtime `creative-reading-journey`의 폰 세로 `지난기록` 단추 대기 실패는 이번 변경 전 커밋(5aec3c23)에서도 같다.
+- **쓰기 화면**: 설계도를 실제 측정값으로 다시 쓰고(머리의 화자 `TextField`·종류 `Choice`·재생, 글, 그 컷 배경, 태블릿 이상의 다음 컷 카드·`+ 이 컷 뒤에 새 컷 넣기`·`컷 더보기`, 어디서나 `현재 컷 상세·메모·정리`) 비교 검사에 넣었다. 머리의 입력·선택·재생을 보이는 36px(라벨·투명 영역 44px)로, `글상자 글` 라벨은 읽는 이름에만.
+- **알려진 것**: stories-runtime `creative-reading-journey`의 폰 세로 `지난기록` 단추 대기 실패는 이번 변경 전 커밋(5aec3c23)과 main 바탕 `feat/actor-offscreen-exit`에서도 같다(읽기 화면 문제, 이번 범위 밖).
 
 ## 1단계 결과 (2026-11-24)
 측정: 선녀와 나무꾼 놀스토리판 편집, 인물·음향·연출 편집을 켠 상태. 근거 `evidence/focus-editing-2026-11-24/{before,after}-audit.json`, 캡처(로컬, gitignore) `before/`·`after/`·`compare-*.png`.
