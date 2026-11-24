@@ -108,6 +108,9 @@
         "actions": {
           "$ref": "common_types.json#/$defs/ChildList",
           "maxItems": 2
+        },
+        "drawer": {
+          "$ref": "common_types.json#/$defs/ComponentId"
         }
       },
       "required": [
@@ -119,7 +122,7 @@
     },
     "CutNavigator": {
       "type": "object",
-      "description": "The single chapter/cut place: ‹ 1장 · 3컷 ▾ ›. Names and first words of cuts appear only inside the opened list.",
+      "description": "The single chapter/cut place: ‹ 1장 · 3컷 ▾ ›. Shows only the short position; chapter titles and first words of cuts are inside the list (a native select grouped by chapter). The arrows may come from the open screen through the `steps` Slot.",
       "allowedParents": [
         "TopBar"
       ],
@@ -141,15 +144,66 @@
         },
         "openList": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "short": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "value",
+                    "label"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "label",
+              "options"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DataBinding"
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "steps": {
+          "$ref": "common_types.json#/$defs/ComponentId"
         }
       },
       "required": [
         "component",
         "chapter",
-        "cut",
-        "previous",
-        "next",
-        "openList"
+        "cut"
       ]
     },
     "WorkTabs": {
@@ -275,25 +329,17 @@
     },
     "CutCard": {
       "type": "object",
-      "description": "Previous/next cut with a scene preview. Context only on tablet and desktop (rule 4).",
+      "description": "The neighbour place before/after the current cut. kind=cut: the neighbouring cut with a scene preview (preview Slot) — tablet/desktop context only (rule 4). kind=add: the empty next place offers the next cut. kind=none: an empty place said in one short line (story start, no cut).",
       "allowedParents": [
-        "FocusScreen"
+        "FocusScreen",
+        "Column"
       ],
       "properties": {
         "component": {
           "const": "CutCard"
         },
         "devices": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "tablet",
-              "desktop"
-            ]
-          },
-          "minItems": 1,
-          "uniqueItems": true
+          "$ref": "#/$defs/Devices"
         },
         "side": {
           "type": "string",
@@ -310,15 +356,33 @@
         },
         "select": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "cut",
+            "add",
+            "none"
+          ]
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "order": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 12
+        },
+        "preview": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
         "component",
-        "devices",
         "side",
-        "cut",
-        "text",
-        "select"
+        "text"
       ]
     },
     "Column": {
@@ -353,10 +417,11 @@
       "type": "object",
       "description": "One row of related controls. At most 4 controls (rule 6). `name` is the group's accessible name; labelVisible also shows it as a small caption (e.g. 함께 보기 before its chips).",
       "allowedParents": [
-        "FocusScreen",
         "Column",
-        "More",
-        "CutItem"
+        "CutItem",
+        "Drawer",
+        "FocusScreen",
+        "More"
       ],
       "properties": {
         "component": {
@@ -395,8 +460,8 @@
       "type": "object",
       "description": "Text button. Visible height 32–36px, touch target 44px. Font is never larger than body text. `name` is the accessible name when the visible label is shorter (e.g. ▶ 재생 → 이 컷부터 재생); an optional icon sits before the label.",
       "allowedParents": [
-        "ToolGroup",
-        "Notice"
+        "Notice",
+        "ToolGroup"
       ],
       "properties": {
         "component": {
@@ -446,11 +511,13 @@
     },
     "IconButton": {
       "type": "object",
-      "description": "Icon-only button (16–20px icon, 44px target). The name is read aloud and shown as a tooltip.",
+      "description": "Icon-only button (16–20px icon, 44px target). The name is read aloud and shown as a tooltip. keepFocus keeps the writer's text focus (pointer down does not move focus). An optional short visible label may follow the icon (e.g. ⌂ 서재); pressed marks a toggle (전체 화면).",
       "allowedParents": [
-        "TopBar",
+        "CutNavigator",
+        "Drawer",
+        "Notice",
         "ToolGroup",
-        "Notice"
+        "TopBar"
       ],
       "properties": {
         "component": {
@@ -464,9 +531,12 @@
           "enum": [
             "close",
             "fullscreen",
+            "fullscreen-exit",
+            "help",
             "library",
+            "next",
             "play",
-            "help"
+            "previous"
           ]
         },
         "name": {
@@ -475,6 +545,23 @@
         },
         "action": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "keepFocus": {
+          "type": "boolean"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 8
+        },
+        "pressed": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
@@ -611,8 +698,9 @@
       "type": "object",
       "description": "The only place for sentences: empty state, error, or before an irreversible action.",
       "allowedParents": [
-        "FocusScreen",
         "Column",
+        "FocusScreen",
+        "Fork",
         "More"
       ],
       "properties": {
@@ -855,7 +943,7 @@
     },
     "TextArea": {
       "type": "object",
-      "description": "Multi-line text of a cut (원고). The label is for assistive tech.",
+      "description": "Multi-line text of a cut (쓰기·원고). The label is for assistive tech. readOnly when the device only reviews (short landscape phone).",
       "allowedParents": [
         "CutItem",
         "Column"
@@ -876,6 +964,16 @@
         },
         "change": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "maxChars": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "readOnly": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
@@ -933,7 +1031,10 @@
       "description": "A place the screen fills with something the catalog does not own (the asset browser field, the Ren'Py stage, a timeline). The catalog decides where it sits; the host draws it by name.",
       "allowedParents": [
         "Column",
+        "CutCard",
         "CutItem",
+        "CutNavigator",
+        "Drawer",
         "FocusScreen",
         "More",
         "ToolGroup"
@@ -953,6 +1054,133 @@
       "required": [
         "component",
         "name"
+      ]
+    },
+    "Drawer": {
+      "type": "object",
+      "description": "The settings drawer of the top bar: a summary button (☰ 설정) that opens a panel with a head (subtitle, title, × close) and groups. Things outside the focus screen live here: work settings, files and saving, screen and leaving.",
+      "allowedParents": [
+        "TopBar"
+      ],
+      "properties": {
+        "component": {
+          "const": "Drawer"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "summary": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 8
+        },
+        "summaryName": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 12
+        },
+        "icon": {
+          "type": "boolean"
+        },
+        "open": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "toggle": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "subtitle": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 12
+        },
+        "title": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "closeName": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 16
+        },
+        "close": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "component",
+        "summary",
+        "open",
+        "toggle",
+        "children"
+      ]
+    },
+    "Fork": {
+      "type": "object",
+      "description": "Where the story branches or joins around the current cut: a title, an optional one-line note, and the ways to go (PathChoice) or a Notice for a way that has no cut yet.",
+      "allowedParents": [
+        "FocusScreen",
+        "Column"
+      ],
+      "properties": {
+        "component": {
+          "const": "Fork"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "title": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "note": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "component",
+        "title",
+        "children"
+      ]
+    },
+    "PathChoice": {
+      "type": "object",
+      "description": "One way through a fork: its label (A. 선택지 →, ← 이 길에서 왔어요) and where it leads. separate: copy the cut for this way only (이 길만 따로 쓰기).",
+      "allowedParents": [
+        "Fork"
+      ],
+      "properties": {
+        "component": {
+          "const": "PathChoice"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "where": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "select": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "separate": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "separateName": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "separateDisabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "where",
+        "select"
       ]
     }
   },

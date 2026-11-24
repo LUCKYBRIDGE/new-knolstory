@@ -257,6 +257,8 @@ function checkScreenRules(surface:Surface,root:A2uiComponent,catalog:A2uiCatalog
  const lists=all.filter(component=>component.component==='CutList');
  if(root.current===undefined&&!lists.length)add('root','current-cut','현재 컷의 글이 보여야 해요: current나 CutList가 필요해요');
  if(root.current!==undefined&&lists.length)add('root','current-cut','현재 컷은 한 곳에만 둬요: current와 CutList를 함께 쓰지 않아요');
+ // Rule 4: a neighbour card with a scene preview is tablet/desktop context only.
+ for(const card of all.filter(component=>component.component==='CutCard'&&(component.kind??'cut')==='cut'))if(effectiveDevices(surface,card.id).some(device=>device==='phone'||device==='phoneLandscape'))add(card.id,'cut-card-devices','장면 미리보기가 있는 이전·다음 컷 카드는 태블릿 이상에서만 둬요');
  const primaries=all.filter(component=>component.component==='Button'&&component.variant==='primary');
  if(primaries.length>1)primaries.slice(1).forEach(button=>add(button.id,'one-primary','색을 채운 주 단추는 한 화면에 하나예요'));
  // One way per job: the same action twice on a screen, on any shared device, is a duplicate.

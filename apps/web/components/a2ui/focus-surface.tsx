@@ -10,7 +10,7 @@ import styles from './focus-surface.module.css';
 export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action:A2uiAction};
 /** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
 /** A host screen keeps its tuned CSS (skin: class per part), adds its own attributes (attrs) and fills Slots (slots). */
-export type FocusSkin=Partial<Record<'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText',string>>;
+export type FocusSkin=Partial<Record<'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText'|'cutPosition'|'cutPositionLabel'|'cutShort'|'drawerPanel'|'drawerHead'|'groupLabel'|'cardAdd'|'excerpt'|'pathChoice'|'pathFrom'|'pathSeparate',string>>;
 type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;slots?:Record<string,ReactNode>;
  /** Korean IME composition in a TextField: the host must know at once (it guards navigation and saving). */
  onComposing?:(composing:boolean)=>void};
@@ -19,6 +19,16 @@ type Renderer=(component:A2uiComponent,ctx:Ctx)=>ReactNode;
 
 const TASK_LABELS={basic:'쓰기',text:'원고',background:'배경',characters:'인물',audio:'음향',direction:'연출'} as const;
 const ICONS={close:'×',fullscreen:'⛶',library:'⌂',play:'▶',help:'?'} as const;
+/** Line icons shared with the editor chrome (20px grid, currentColor). */
+function iconSvg(icon:string){
+ const line={fill:'none',stroke:'currentColor',strokeWidth:1.8,strokeLinecap:'round' as const,strokeLinejoin:'round' as const};
+ if(icon==='previous'||icon==='next')return <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d={icon==='previous'?'M10 3.5 5.5 8l4.5 4.5':'M6 3.5 10.5 8 6 12.5'} {...line}/></svg>;
+ if(icon==='fullscreen')return <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" {...line}><path d="M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6"/></svg>;
+ if(icon==='fullscreen-exit')return <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" {...line}><path d="M9 3v6H3m18 0h-6V3M3 15h6v6m6 0v-6h6"/></svg>;
+ if(icon==='library')return <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" {...line}><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7"/></svg>;
+ if(icon==='close')return <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" {...line}/></svg>;
+ return undefined;
+}
 
 function value(ctx:Ctx,raw:unknown):unknown{
  if(raw&&typeof raw==='object'&&'path' in raw)return readPointer(ctx.surface.data,String((raw as {path:unknown}).path));
@@ -46,11 +56,23 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   {ctx.render(c.tabs)}
   {list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
  </header>,
- CutNavigator:(c,ctx)=><div className={styles.cutNavigator} role="group" aria-label="장·컷 이동">
-  <button type="button" className={styles.step} aria-label="이전 컷" onClick={()=>ctx.fire(c.id,c.previous)}>‹</button>
-  <button type="button" className={styles.cutPlace} aria-haspopup="listbox" onClick={()=>ctx.fire(c.id,c.openList)}>{text(ctx,c.chapter)}장 · {text(ctx,c.cut)}컷 ▾</button>
-  <button type="button" className={styles.step} aria-label="다음 컷" onClick={()=>ctx.fire(c.id,c.next)}>›</button>
- </div>,
+ CutNavigator:(c,ctx)=>{
+  if(!Array.isArray(c.groups))return <div className={styles.cutNavigator} role="group" aria-label="장·컷 이동">
+   <button type="button" className={styles.step} aria-label="이전 컷 편집" onClick={()=>ctx.fire(c.id,c.previous)}>‹</button>
+   <button type="button" className={styles.cutPlace} aria-haspopup="listbox" onClick={()=>ctx.fire(c.id,c.openList)}>{text(ctx,c.chapter)}장 · {text(ctx,c.cut)}컷 ▾</button>
+   <button type="button" className={styles.step} aria-label="다음 컷 편집" onClick={()=>ctx.fire(c.id,c.next)}>›</button>
+  </div>;
+  // Real editor: the short position with the full list as a native select laid over it; arrows come through `steps`.
+  return <div {...host(ctx,c,styles.cutNavigator)}>
+   {c.steps!==undefined&&ctx.render(c.steps)}
+   <label className={ctx.skin.cutPosition}><span className={ctx.skin.cutPositionLabel}>현재 장 · 컷</span>
+    <span className={ctx.skin.cutShort} aria-hidden="true">{text(ctx,c.short)}<svg viewBox="0 0 12 12" width="12" height="12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
+    <select aria-label={text(ctx,c.name)||'현재 장과 컷 이동'} value={text(ctx,c.value)} disabled={value(ctx,c.disabled)===true} onChange={event=>changeWith(ctx,c,event.currentTarget.value)}>
+     {(c.groups as {label:string;options:{value:string;label:string}[]}[]).map(group=><optgroup key={group.label} label={group.label}>{group.options.map(option=><option key={option.value} value={option.value}>{option.label}</option>)}</optgroup>)}
+    </select>
+   </label>
+  </div>;
+ },
  WorkTabs:(c,ctx)=><nav className={ctx.skin.workTabs??styles.tabs} aria-label="편집 작업" {...ctx.attrs(c)}>
   {list(c.tabs).map(task=><button key={String(task)} type="button" aria-current={task===c.selected?'page':undefined}
    title={c.titles&&typeof c.titles==='object'?(c.titles as Record<string,string>)[String(task)]:undefined} disabled={value(ctx,c.disabled)===true}
@@ -75,21 +97,41 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    ?<textarea className={styles.editor} aria-label={`${text(ctx,c.cut)}컷 글`} defaultValue={text(ctx,c.text)}/>
    :<p className={styles.cutText} data-lines="3">{text(ctx,c.text)}</p>}
  </div>,
- CutCard:(c,ctx)=><button type="button" className={styles.cutCard} data-side={String(c.side)} onClick={()=>ctx.fire(c.id,c.select)}
-  aria-label={`${c.side==='previous'?'이전':'다음'} 컷 ${text(ctx,c.cut)}컷으로`}>
-  <span className={styles.cardPreview} aria-hidden="true"/>
-  <span className={styles.cutText} data-lines="2">{text(ctx,c.text)}</span>
- </button>,
+ CutCard:(c,ctx)=>{
+  const kind=String(c.kind??'cut'),excerpt=ctx.skin.excerpt??styles.cutText;
+  if(kind==='none')return <p {...host(ctx,c,styles.notice)}>{text(ctx,c.text)}</p>;
+  if(kind==='add')return <button type="button" disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)} {...host(ctx,c,`${styles.cutCard} ${ctx.skin.cardAdd??''}`)}>
+   <strong>{text(ctx,c.label)}</strong><span className={excerpt}>{text(ctx,c.text)}</span></button>;
+  if(c.label!==undefined)return <button type="button" disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)} {...host(ctx,c,styles.cutCard)}>
+   <strong>{text(ctx,c.label)}<small>{text(ctx,c.order)}</small></strong>{c.preview!==undefined?ctx.render(c.preview):<span className={styles.cardPreview} aria-hidden="true"/>}
+   <span className={excerpt}>{text(ctx,c.text)}</span></button>;
+  return <button type="button" className={styles.cutCard} data-side={String(c.side)} onClick={()=>ctx.fire(c.id,c.select)}
+   aria-label={`${c.side==='previous'?'이전':'다음'} 컷 ${text(ctx,c.cut)}컷으로`}>
+   <span className={styles.cardPreview} aria-hidden="true"/>
+   <span className={styles.cutText} data-lines="2">{text(ctx,c.text)}</span>
+  </button>;
+ },
+ Fork:(c,ctx)=><div {...host(ctx,c,styles.notice)}>
+  <strong>{text(ctx,c.title)}</strong>{c.note!==undefined&&<small>{text(ctx,c.note)}</small>}
+  {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
+ </div>,
+ PathChoice:(c,ctx)=>{
+  const choice=<button type="button" className={ctx.skin.pathChoice} disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)}><b>{text(ctx,c.label)}</b><span>{text(ctx,c.where)}</span></button>;
+  if(c.separate===undefined)return choice;
+  return <div className={ctx.skin.pathFrom}>{choice}<button type="button" className={ctx.skin.pathSeparate} disabled={value(ctx,c.separateDisabled)===true} onClick={()=>ctx.fire(c.id,c.separate)}
+   aria-label={text(ctx,c.separateName)} title="이 컷을 복사해 이 길에서만 보이게 해요. 다음 컷부터는 다시 같은 이야기예요.">이 길만 따로 쓰기</button></div>;
+ },
  Column:(c,ctx)=><div className={`${styles.column} ${gapClass(c.gap)}`}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>,
  ToolGroup:(c,ctx)=><div role="group" aria-label={text(ctx,c.name)} {...host(ctx,c,`${styles.toolGroup} ${gapClass(c.gap)}`)}>
-  {c.labelVisible===true&&<span className={styles.groupLabel} aria-hidden="true">{text(ctx,c.name)}</span>}
+  {c.labelVisible===true&&<span className={ctx.skin.groupLabel??styles.groupLabel} aria-hidden="true">{text(ctx,c.name)}</span>}
   {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
  </div>,
  Button:(c,ctx)=><button type="button" data-variant={String(c.variant??'secondary')} title={typeof c.title==='string'?c.title:undefined}
   aria-label={c.name!==undefined?text(ctx,c.name):undefined} disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.action)} {...host(ctx,c,styles.button)}>
   {c.icon==='play'&&<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2 L13 8 L4 14 Z" fill="currentColor"/></svg>}{text(ctx,c.label)}</button>,
- IconButton:(c,ctx)=><button type="button" className={styles.icon} aria-label={text(ctx,c.name)} title={text(ctx,c.name)} onClick={()=>ctx.fire(c.id,c.action)}>
-  <span aria-hidden="true">{ICONS[c.icon as keyof typeof ICONS]}</span>
+ IconButton:(c,ctx)=><button type="button" aria-label={text(ctx,c.name)} title={typeof c.title==='string'?c.title:text(ctx,c.name)} disabled={value(ctx,c.disabled)===true}
+  aria-pressed={c.pressed!==undefined?value(ctx,c.pressed)===true:undefined} onPointerDown={c.keepFocus===true?event=>event.preventDefault():undefined} onClick={()=>ctx.fire(c.id,c.action)} {...host(ctx,c,styles.icon)}>
+  {iconSvg(String(c.icon))??<span aria-hidden="true">{ICONS[c.icon as keyof typeof ICONS]}</span>}{c.label!==undefined&&<span>{text(ctx,c.label)}</span>}
  </button>,
  Choice:(c,ctx)=><label {...host(ctx,c,styles.choice)}>
   <span>{text(ctx,c.label)}</span>
@@ -141,12 +183,26 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.checked}}});}}/>
   {text(ctx,c.label)}
  </label>,
- TextArea:(c,ctx)=><textarea className={styles.editor} aria-label={text(ctx,c.label)} defaultValue={text(ctx,c.value)}
-  onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.value}}});}}/>,
- Notice:(c,ctx)=><div className={styles.notice} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'}>
-  <p>{text(ctx,c.text)}</p>
-  {list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
- </div>,
+ TextArea:(c,ctx)=><textarea aria-label={text(ctx,c.label)} value={text(ctx,c.value)} maxLength={typeof c.maxChars==='number'?c.maxChars:undefined} readOnly={value(ctx,c.readOnly)===true} disabled={value(ctx,c.disabled)===true}
+  onCompositionStart={()=>ctx.composing(true)} onCompositionEnd={()=>ctx.composing(false)} onChange={event=>changeWith(ctx,c,event.currentTarget.value)} {...host(ctx,c,styles.editor)}/>,
+ Drawer:(c,ctx)=>{
+  const open=value(ctx,c.open)===true;
+  return <details open={open} {...host(ctx,c,styles.more)} onToggle={event=>{const now=event.currentTarget.open;if(now!==open&&c.toggle&&typeof c.toggle==='object'&&'event' in c.toggle)ctx.fire(c.id,{event:{...(c.toggle as {event:{context?:object}}).event,context:{...((c.toggle as {event:{context?:object}}).event.context??{}),open:now}}});}}>
+   <summary aria-label={c.summaryName!==undefined?text(ctx,c.summaryName):undefined}>{c.icon===true&&<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>}{c.icon===true?<span>{text(ctx,c.summary)}</span>:text(ctx,c.summary)}</summary>
+   <div className={ctx.skin.drawerPanel??styles.moreBody} data-system-menu={c.close!==undefined?'editor':undefined}>
+    {c.close!==undefined&&<div className={ctx.skin.drawerHead}><div><span>{text(ctx,c.subtitle)}</span><strong>{text(ctx,c.title)}</strong></div>
+     <button type="button" aria-label={text(ctx,c.closeName)||'닫기'} title="닫기" data-close-icon onClick={event=>{const details=event.currentTarget.closest('details');if(details)details.open=false;details?.querySelector<HTMLElement>(':scope>summary')?.focus();ctx.fire(c.id,c.close);}}>{iconSvg('close')}</button></div>}
+    {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
+   </div>
+  </details>;
+ },
+ Notice:(c,ctx)=>{const {className,...rest}=ctx.attrs(c);
+  // Inside a screen a Notice is one line of the host's own type (className given); in the catalog view it is a boxed notice.
+  if(className!==undefined)return <p className={className} role={c.kind==='error'?'alert':undefined} {...rest}>{text(ctx,c.text)}</p>;
+  return <div className={styles.notice} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'}>
+   <p>{text(ctx,c.text)}</p>
+   {list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
+  </div>;},
 };
 
 /** Draws the surface's root for one device. Components hidden on that device are left out. */
@@ -162,6 +218,8 @@ export function FocusSurface({surface,device,onAction,rootId='root',inline=false
    return renderer?<Fragment key={id}>{renderer(component,ctx)}</Fragment>:null;
   },
  };
- return <div className={inline?styles.inline:styles.surface} data-a2ui-surface={surface.surfaceId} data-a2ui-root={rootId} data-device={device}>{ctx.render(rootId)}</div>;
+ // Embedded parts are drawn bare, so the host's child selectors (.nextSide>.adjacent, :first-child …) still hold.
+ if(inline)return <>{ctx.render(rootId)}</>;
+ return <div className={styles.surface} data-a2ui-surface={surface.surfaceId} data-a2ui-root={rootId} data-device={device}>{ctx.render(rootId)}</div>;
 }
 

@@ -153,3 +153,43 @@ describe('쓰기 head drawn by the catalog renderer',()=>{
   expect(markup).toContain('<span class="empty"></span>');
  });
 });
+
+describe('top bar, text box and neighbour places drawn by the catalog renderer',()=>{
+ it('draws the cut place with grouped options and the steps Slot, and arrows that keep focus',async()=>{
+  const {cutPlaceSurface,cutStepsSurface}=await import('./editor-surfaces');
+  const place=cutPlaceSurface({short:'1장 · 3컷',value:'b',groups:[{label:'1장',options:[{value:'a',label:'1컷'},{value:'b',label:'2컷'}]}],disabled:false,chapter:1,cut:3});
+  expect(validateSurface(place).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface:place,device:'tablet',rootId:'place',inline:true,slots:{steps:createElement('span',{className:'steps'})}}));
+  expect(markup).toContain('<span class="steps"></span>');
+  expect(markup).toMatch(/<select aria-label="현재 장과 컷 이동"><optgroup label="1장"><option value="a">1컷<\/option><option value="b" selected="">2컷<\/option>/);
+  const steps=cutStepsSurface({previousDisabled:true,nextDisabled:false});
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:steps,device:'tablet',rootId:'previous',inline:true}))).toContain('aria-label="이전 컷 편집" title="이전 컷" disabled=""');
+ });
+
+ it('draws the settings drawer with its head, groups and Slots, and the shortcuts',async()=>{
+  const {topBarSurface}=await import('./editor-surfaces');
+  const surface=topBarSurface({unified:true,title:'작품',open:true,disabled:false,scores:false,fullscreen:true,fullscreenAvailable:true,loadComplete:true});
+  expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
+  const drawer=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'drawer',inline:true,skin:{drawerPanel:'panel'},slots:{settings:'S',files:'F',leave:'L'}}));
+  expect(drawer).toMatch(/<details open=""[^>]*><summary aria-label="설정">/);
+  expect(drawer).toContain('<div class="panel" data-system-menu="editor">');
+  expect(drawer).toContain('aria-label="편집 설정 닫기"');
+  expect(drawer).not.toContain('이야기 점수');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'fullscreen',inline:true}))).toContain('aria-label="편집 화면 전체 화면 해제"');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'library',inline:true}))).toContain('<span>서재</span>');
+ });
+
+ it('draws the text box, neighbour cards and forks; scene cards stay off phones',async()=>{
+  const {textBoxSurface,cutCardSurface,forkSurface}=await import('./editor-surfaces');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:textBoxSurface({lineId:'a',label:'1컷 글',value:'글',readOnly:true,disabled:false}),device:'phone',rootId:'text',inline:true,attrs:()=>({'data-cut-id':'a'})})))
+   .toMatch(/aria-label="1컷 글" maxLength="20000" readOnly=""[^>]*data-cut-id="a">글<\/textarea>/);
+  const card=cutCardSurface({side:'next',kind:'cut',label:'다음 컷',order:'원고 순서',text:'글',lineId:'b'});
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:card,device:'tablet',rootId:'card',inline:true,slots:{preview:'P'}}))).toContain('<strong>다음 컷<small>원고 순서</small></strong>P');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:card,device:'phone',rootId:'card',inline:true}))).toBe('');
+  const fork=forkSurface({kind:'choice',title:'갈림길',choices:[{id:'x',label:'A. 가 →',where:'2장',lineId:'c',separateName:'2장 길만 따로 쓰기'},{id:'y',label:'B. 나',pending:'B. 나 · 도착 컷을 정해 주세요'}],disabled:false,separateDisabled:false});
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface:fork,device:'phone',rootId:'fork',inline:true,attrs:c=>c.component==='Notice'?{className:'pending'}:undefined}));
+  expect(markup).toContain('<b>A. 가 →</b><span>2장</span>');
+  expect(markup).toContain('aria-label="2장 길만 따로 쓰기"');
+  expect(markup).toContain('<p class="pending">B. 나 · 도착 컷을 정해 주세요</p>');
+ });
+});

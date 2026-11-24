@@ -57,7 +57,7 @@ describe('focus editor A2UI catalog',()=>{
   edit(surface,'next-card',{devices:['phone','tablet']});
   surface.components.set('nav-in-work',{id:'nav-in-work',component:'CutNavigator',chapter:1,cut:1,previous:{event:{name:'p2'}},next:{event:{name:'n2'}},openList:{event:{name:'l2'}}});
   edit(surface,'work',{children:['speaker-tools','background-pick','cut-tools','nav-in-work']});
-  expect(rules(surface)).toEqual(expect.arrayContaining(['enum:next-card','allowed-parents:nav-in-work']));
+  expect(rules(surface)).toEqual(expect.arrayContaining(['cut-card-devices:next-card','allowed-parents:nav-in-work']));
  });
 
  it('checks the skeleton: root, tabs, children and cycles',()=>{
