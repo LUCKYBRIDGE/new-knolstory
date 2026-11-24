@@ -33,12 +33,12 @@ export function WorkspaceManagement(p:Props){
  };
  const draw=(rootId:string)=><FocusSurface inline surface={surface} rootId={rootId} device="tablet" attrs={attrs} onAction={onAction}
   skin={{drawerPanel:styles.controls,drawerHead:styles.systemMenuHeader,groupLabel:styles.workMenuHeading}}
-  slots={{
-   settings:<div role="group" aria-label="현재 컷과 편집 설정" className={styles.systemMenuSettings}>{p.settingsExtras}</div>,
-   files:<>{p.localFileActions??<button onClick={p.onExport}>작품 파일 내보내기</button>}
+  custom={{
+   CutSettings:()=><div role="group" aria-label="현재 컷과 편집 설정" className={styles.systemMenuSettings}>{p.settingsExtras}</div>,
+   FileTools:()=><>{p.localFileActions??<button onClick={p.onExport}>작품 파일 내보내기</button>}
     <label className={styles.import}>작품 파일 가져오기<input aria-label="작품 파일 가져오기" disabled={!p.loadComplete||p.disabled} type="file" accept=".knolstory,.knolsotry,.nolstory,.json,.xlsx,.tsv,.csv" onChange={event=>{p.onImportFile(event.target.files?.[0]);event.target.value='';}}/></label>
     <small className={styles.workMenuHint}>가져온 파일은 확인 후 내 사본으로 열어요.</small><details data-file-exchange><summary>파일 교환·보관 도구</summary>{p.localFileActions&&<button onClick={p.onExport}>작품 파일 내보내기</button>}<button disabled={!p.hydrated} onClick={p.onSave}>임시 보관 다시 시도</button><StoryTransferPanel key={p.project.id} project={p.project} onError={p.onError} onImport={p.onImportArchive}/></details>{p.recovery&&<div data-storage-recovery>{p.recovery}</div>}</>,
-   leave:<>{p.exitActions}<AppInstallButton noteClassName={styles.workMenuHint}/></>,
+   LeaveActions:()=><>{p.exitActions}<AppInstallButton noteClassName={styles.workMenuHint}/></>,
   }}/>;
  return <header className={styles.header}>
   {!unified&&<><div className={styles.brand}>놀스토리</div><button disabled={p.disabled} onClick={p.onLibrary}>서재로</button></>}

@@ -858,7 +858,7 @@ export function StoryWorkspace() {
     if(composing){setError('한글 입력을 마친 뒤 읽기를 시작해 주세요.');return;}
     let nextPlayback:typeof playback;
     try{nextPlayback=createPlayback(project,sourceLineId??(fromStart?undefined:line.id));}catch(issue){setError(`재생할 컷을 찾지 못했어요. ${issueText(issue)}`);return;}
-    if(next==='play')try{persistWorkspace();previewEditor.beforePreview();}catch(issue){setError(`지금 글을 임시 보관하지 못해 읽기를 시작하지 않았어요. ${issueText(issue)}`);return;}
+    if(next==='play')try{persistWorkspace();previewEditor.beforePreview();}catch(issue){setError(`지금 글을 임시 보관하지 못해 읽기를 시작하지 않았어요. ${workspaceSaveFailure(issue)}`);return;}
     if(next==='edit'&&protectAuthoring('editor'))return;
     rememberCurrent();
     setPresentationEntry(value=>value+1);

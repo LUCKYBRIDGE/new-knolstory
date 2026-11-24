@@ -1,8 +1,9 @@
 'use client';
 /* eslint-disable @next/next/no-img-element -- Material thumbnails only; official story preview is supplied by Ren'Py. */
 import {FocusSurface,type FocusSurfaceAction} from './a2ui/focus-surface';
+import type {A2uiComponent} from '@knolstory/ui';
 import {listToolsSurface,LIST_TOOLS_EVENTS} from './a2ui/list-tools-surface';
-import {cutItemSurface,CUT_EVENTS,basicHeadSurface,BASIC_HEAD_EVENTS,cutStepsSurface,CUT_STEP_EVENT,textBoxSurface,TEXT_EVENT,cutCardSurface,forkSurface,lineNoticeSurface,NEIGHBOUR_EVENTS,type ForkChoice} from './a2ui/editor-surfaces';
+import {cutItemSurface,CUT_EVENTS,basicHeadSurface,BASIC_HEAD_EVENTS,cutStepsSurface,CUT_STEP_EVENT,textBoxSurface,TEXT_EVENT,backgroundDisplaySurface,BACKGROUND_DISPLAY_EVENTS,actorCardSurface,ACTOR_EVENTS,cutPanelSurface,PANEL_TOGGLE_EVENT,stagingImportSurface,textVariantsSurface,companionSurface,companionsSurface,type CompanionView,cutCardSurface,forkSurface,lineNoticeSurface,NEIGHBOUR_EVENTS,type ForkChoice} from './a2ui/editor-surfaces';
 import {createPortal} from 'react-dom';
 import {usePhoneEditor} from './use-phone-editor';
 import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type ReactNode} from 'react';
@@ -169,17 +170,17 @@ export function StoryEditingWorkbench(p:Props){
  const textEditor=(line:StoryLine,index:number,basic=false)=><><label className={styles.text}><span className={styles.srOnly}>글상자 글</span>{/* A2UI: the text box is the catalog's TextArea (IME composition reaches the screen through onComposing). */}<FocusSurface inline rootId="text" device={phone?'phone':'tablet'} onComposing={p.onComposing}
    surface={textBoxSurface({lineId:line.id,label:`${index+1}컷 글`,value:line.text,readOnly:basic&&phone&&shortLandscape,disabled:basic?p.basicTextDisabled:busy})}
    attrs={()=>({className:'','data-cut-id':line.id})}
-   onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;if(event?.name!==TEXT_EVENT||typeof value!=='string')return;if(basic){if(!p.basicTextDisabled)p.onBasicTextChange(value);}else patch(line,{text:value});}}/>{basic&&phone&&shortLandscape&&<small>{requestedScreen==='basic'?'글을 수정하려면 휴대폰을 세로로 돌려 주세요.':'세부 편집은 휴대폰을 세로로 돌려 주세요.'}</small>}</label>{p.preferences.logic.scores&&p.preferences.logic.branches&&<StoryTextVariants key={`${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} onComposing={p.onComposing} onChange={textVariants=>patch(line,{textVariants})}/>}{p.preferences.logic.branches&&<StorySceneVisibilityEditor key={`visibility/${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} scoresEnabled={p.preferences.logic.scores} onComposing={p.onComposing} onChange={visibility=>patch(line,{visibility})}/>}</>;
+   onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;if(event?.name!==TEXT_EVENT||typeof value!=='string')return;if(basic){if(!p.basicTextDisabled)p.onBasicTextChange(value);}else patch(line,{text:value});}}/>{basic&&phone&&shortLandscape&&<small>{requestedScreen==='basic'?'글을 수정하려면 휴대폰을 세로로 돌려 주세요.':'세부 편집은 휴대폰을 세로로 돌려 주세요.'}</small>}</label>{(p.preferences.logic.branches)&&<FocusSurface inline surface={textVariantsSurface(line.id)} rootId="variants" device="tablet" custom={{TextVariants:()=><>{p.preferences.logic.scores&&p.preferences.logic.branches&&<StoryTextVariants key={`${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} onComposing={p.onComposing} onChange={textVariants=>patch(line,{textVariants})}/>}{p.preferences.logic.branches&&<StorySceneVisibilityEditor key={`visibility/${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} scoresEnabled={p.preferences.logic.scores} onComposing={p.onComposing} onChange={visibility=>patch(line,{visibility})}/>}</>}}/>}</>;
  const basicSpeaker=(line:StoryLine)=>{
   const stage=resolveStageComposition(p.project.chapters.find(chapter=>chapter.id===line.chapterId),line,p.project);
   const primary=activeStageSpeaker(stage,line);
   const speakingKeys=primary?new Set([primary,...stage.speakerActorKeys??[]]):new Set<string>();
   const linked=[...stage.leftActors,...stage.rightActors].filter(actor=>speakingKeys.has(actor.key));
   // A2UI: the head is drawn from the focus editor catalog (editor-surfaces.ts); linked art fills its Slot.
-  const surface=basicHeadSurface({speaker:line.speakerName,kind:line.type,busy,kindDisabled:p.composing,playDisabled:p.composing});
+  const surface=basicHeadSurface({speaker:line.speakerName,kind:line.type,busy,kindDisabled:p.composing,playDisabled:p.composing,images:linked.map(actor=>{const asset=resolveAsset(actor.assetId);return {key:actor.key,assetId:asset?actor.assetId:undefined,name:asset?assetDisplayName(asset):'이미지 확인 필요'};})});
   return <FocusSurface inline surface={surface} rootId="head" device={phone?'phone':'tablet'} onComposing={p.onComposing}
-   attrs={component=>component.id==='head'?{className:styles.basicSpeaker}:component.id==='speaker'?{className:styles.speakerName}:component.id==='kind'?{className:styles.speakerKind}:undefined}
-   slots={{linked:linked.length?<div className={styles.speakerImage} role="group" aria-label="현재 컷 화자에 연결된 이미지" title="현재 컷 화자에 연결된 이미지"><div>{linked.map(actor=>{const asset=resolveAsset(actor.assetId);return <span key={actor.key}>{asset&&<AssetPreviewImage asset={asset} width={18} height={24}/>}<span>{asset?assetDisplayName(asset):'이미지 확인 필요'}</span></span>;})}</div></div>:<span className={styles.speakerImage} aria-hidden="true"/>}}
+   attrs={component=>component.id==='head'?{className:styles.basicSpeaker}:component.id==='speaker'?{className:styles.speakerName}:component.id==='kind'?{className:styles.speakerKind}:component.id==='linked'?{className:styles.speakerImage,...(linked.length?{}:{'aria-hidden':'true'})}:component.component==='Column'||component.component==='Chip'?{className:''}:undefined}
+   custom={{AssetThumbnail:component=>{const asset=resolveAsset(String(component.assetId));return asset?<AssetPreviewImage asset={asset} width={18} height={24}/>:null;}}}
    onAction={({action})=>{const event='event' in action?action.event:undefined;const value=event?.context?.value;
     if(event?.name===BASIC_HEAD_EVENTS.speaker&&typeof value==='string')patch(line,{speakerName:value});
     if(event?.name===BASIC_HEAD_EVENTS.kind&&typeof value==='string')patch(line,{type:value as StoryLine['type'],...(value==='narration'?{speaker:'narration' as const}:{})});
@@ -187,13 +188,33 @@ export function StoryEditingWorkbench(p:Props){
  };
  const backgroundEditor=(line:StoryLine,index:number)=><fieldset disabled={busy||p.composing} className={styles.primary}><AssetPickerField label={`${index+1}컷 배경`} labelHidden={screen==='background'} type="background" value={line.backgroundMode==='none'?'__none':line.backgroundId} allowDefault allowNone inheritedPreviewId={backgroundId(p.project,line)} defaultLabel={p.project.chapters.find(c=>c.id===line.chapterId)?.backgroundId?'장의 기본 이미지':p.project.stageDefaults?.backgroundId?'작품의 기본 이미지':'장의 기본 이미지'} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.backgroundAssetIds} onChange={id=>patch(line,id==='__none'?{backgroundId:'',backgroundMode:'none'}:{backgroundId:id,backgroundMode:undefined})}/>{screen==='background'&&<BackgroundDisplayControls line={line} index={index} onChange={presentation=>patch(line,{presentation})}/>}</fieldset>;
  const stageFor=(line:StoryLine)=>resolveStageComposition(p.project.chapters.find(c=>c.id===line.chapterId),line,p.project);
- const companion=(kind:Companion,line:StoryLine):ReactNode=>kind==='text'?<p className={styles.excerpt}>{line.text||'아직 글이 없어요.'}</p>:kind==='background'?<Material id={backgroundId(p.project,line)}/>:kind==='characters'?<div className={styles.materials}>{[...stageFor(line).leftActors,...stageFor(line).rightActors].map(a=><span key={a.key}><small>{a.position==='center'?'중앙':stageFor(line).leftActors.some(x=>x.key===a.key)?'왼쪽':'오른쪽'}</small><Material id={a.assetId}/></span>)}</div>:kind==='audio'?<p className={styles.rangeSummary}>{audioSummary(line)}</p>:<p className={styles.rangeSummary}>{directionSummary(line)}</p>;
+ // A2UI: reference views of a cut are catalog parts (Chip, Column, AssetThumbnail drawn by Material).
+ const companionView=(kind:Companion,line:StoryLine):CompanionView=>kind==='text'?{kind,text:line.text||'아직 글이 없어요.'}:kind==='background'?{kind,assetId:backgroundId(p.project,line)}
+  :kind==='characters'?{kind,actors:[...stageFor(line).leftActors,...stageFor(line).rightActors].map(a=>({key:a.key,side:a.position==='center'?'중앙':stageFor(line).leftActors.some(x=>x.key===a.key)?'왼쪽':'오른쪽',assetId:a.assetId}))}
+  :{kind,text:kind==='audio'?audioSummary(line):directionSummary(line)};
+ const companionAttrs=(kindOf:(id:string)=>string)=>(component:A2uiComponent)=>{
+  if(component.id==='companions')return {className:styles.companions};
+  if(component.component==='Column')return {className:kindOf(component.id)==='characters'&&!String(component.id).startsWith('section')?styles.materials:''};
+  if(component.component==='Chip'){if(component.iconSide==='end')return {className:''};const kind=kindOf(component.id);return {className:kind==='text'?styles.excerpt:styles.rangeSummary};}
+  return undefined;
+ };
+ const companionCustom={AssetThumbnail:(component:A2uiComponent)=><Material id={String(component.assetId??'')}/>};
+ const companion=(kind:Companion,line:StoryLine):ReactNode=><FocusSurface inline surface={companionSurface(`${kind}-${line.id}`,companionView(kind,line))} rootId="companion" device="tablet" attrs={companionAttrs(()=>kind)} custom={companionCustom}/>;
+ // A2UI: 음향·연출 화면의 컷 도구 — 상태 한 줄(Chip)과 열 때만 그리는 판(More + SoundEditor/DirectionEditor).
+ const cutPanel=(kind:'audio'|'direction',line:StoryLine,index:number,summary:string,editor:ReactNode)=>{
+  const key=`${p.project.id}/${kind}/${line.id}`,surface=cutPanelSurface({kind,lineId:line.id,cut:index+1,summary,open:!!expanded[key]});
+  const draw=(rootId:string)=><FocusSurface key={`${key}/${rootId}`} inline surface={surface} rootId={rootId} device={phone?'phone':'tablet'}
+   attrs={component=>component.id==='summary'?{className:styles.rangeSummary}:component.id==='edit'?{className:''}:undefined} skin={{srOnly:styles.srOnly}}
+   custom={{SoundEditor:()=>editor,DirectionEditor:()=>editor}}
+   onAction={({action})=>{const event='event' in action?action.event:undefined;if(event?.name===PANEL_TOGGLE_EVENT){const open=event.context?.open===true;setExpanded(prev=>({...prev,[key]:open}));}}}/>;
+  return <>{draw('summary')}{draw('edit')}</>;
+ };
  const primary=(line:StoryLine,index:number)=>{
   if(screen==='text')return textEditor(line,index);
   if(screen==='background')return backgroundEditor(line,index);
-  if(screen==='characters')return <><CharacterEditors project={p.project} line={line} stage={stageFor(line)} index={index} onReset={key=>changeProject(resetActorPlacement(p.project,line.id,key))} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.characterAssetIds} onChange={stageComposition=>patch(line,{stageComposition})}/><StoryStagingImport project={p.project} line={line} ordered={[...p.project.lines].sort((a,b)=>(p.project.chapters.find(c=>c.id===a.chapterId)?.order??0)-(p.project.chapters.find(c=>c.id===b.chapterId)?.order??0)||a.order-b.order)} onChange={changeProject}/></>;
-  if(screen==='audio')return <><p className={styles.rangeSummary}>{audioSummary(line)}</p><details key={`${p.project.id}/audio/${line.id}`} onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`${p.project.id}/audio/${line.id}`]:open}));}}><summary><span className={styles.srOnly}>{index+1}컷 </span>음향 수정</summary>{expanded[`${p.project.id}/audio/${line.id}`]&&<StoryAudioControls value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>}</details></>;
-  return <><p className={styles.rangeSummary}>{directionSummary(line)}</p><details key={`${p.project.id}/direction/${line.id}`} onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`${p.project.id}/direction/${line.id}`]:open}));}}><summary><span className={styles.srOnly}>{index+1}컷 </span>연출 수정</summary>{expanded[`${p.project.id}/direction/${line.id}`]&&<><StoryDirectionPanel project={p.project} line={line} stage={stageFor(line)} onChange={presentation=>patch(line,{presentation})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview} onMotion={()=>{const stage=stageFor(line);if(stage.leftActors.length+stage.rightActors.length){const details=document.querySelector<HTMLDetailsElement>(`[data-testid="editing-cut-${CSS.escape(line.id)}"] details[data-actor-motion]`);if(details){details.open=true;requestAnimationFrame(()=>details.querySelector<HTMLElement>('select,input')?.focus());}return;}if(!enabled.characters)p.onPreferencesChange(prefs=>({...prefs,enabled:{...prefs.enabled,characters:true}}));p.onScreenChange('characters');}}/><details data-actor-motion><summary>인물 동작 수정</summary><ActorMotionEditors stage={stageFor(line)} index={index} onChange={stageComposition=>patch(line,{stageComposition})}/></details></>}</details></>;
+  if(screen==='characters')return <><CharacterEditors project={p.project} line={line} stage={stageFor(line)} index={index} onReset={key=>changeProject(resetActorPlacement(p.project,line.id,key))} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.characterAssetIds} onChange={stageComposition=>patch(line,{stageComposition})}/><FocusSurface inline surface={stagingImportSurface(line.id)} rootId="staging" device="tablet" custom={{StagingImport:()=><StoryStagingImport project={p.project} line={line} ordered={[...p.project.lines].sort((a,b)=>(p.project.chapters.find(c=>c.id===a.chapterId)?.order??0)-(p.project.chapters.find(c=>c.id===b.chapterId)?.order??0)||a.order-b.order)} onChange={changeProject}/>}}/></>;
+  if(screen==='audio')return cutPanel('audio',line,index,audioSummary(line),<StoryAudioControls value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>);
+  return cutPanel('direction',line,index,directionSummary(line),<><StoryDirectionPanel project={p.project} line={line} stage={stageFor(line)} onChange={presentation=>patch(line,{presentation})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview} onMotion={()=>{const stage=stageFor(line);if(stage.leftActors.length+stage.rightActors.length){const details=document.querySelector<HTMLDetailsElement>(`[data-testid="editing-cut-${CSS.escape(line.id)}"] details[data-actor-motion]`);if(details){details.open=true;requestAnimationFrame(()=>details.querySelector<HTMLElement>('select,input')?.focus());}return;}if(!enabled.characters)p.onPreferencesChange(prefs=>({...prefs,enabled:{...prefs.enabled,characters:true}}));p.onScreenChange('characters');}}/><details data-actor-motion><summary>인물 동작 수정</summary><ActorMotionEditors stage={stageFor(line)} index={index} onChange={stageComposition=>patch(line,{stageComposition})}/></details></>);
  };
  // A2UI: the neighbour places, forks and joins are catalog parts (CutCard, Fork, PathChoice, Notice); the scene
  // preview image fills the card's Slot and the screen keeps its own classes through attrs.
@@ -213,7 +234,7 @@ export function StoryEditingWorkbench(p:Props){
   return <FocusSurface key={`${next?'next':'previous'}-${line.id}`} inline rootId="card" device={neighbourDevice} onAction={neighbourAction}
    surface={cutCardSurface({side:next?'next':'previous',kind:'cut',label,order,text:line.text||'아직 글이 없어요.',lineId:line.id,disabled:busy||p.composing})}
    attrs={component=>component.id==='card'?{className:styles.adjacent}:undefined} skin={{excerpt:styles.excerpt}}
-   slots={{preview:<span className={styles.sceneThumbnail} data-adjacent-scene={line.id} data-thumbnail-status={thumbnail?.status??'pending'}>{thumbnail?.status==='ready'?<img src={thumbnail.dataUrl} width={320} height={180} alt={`${label} 장면 미리보기 · 인물 배치와 첫 글상자`}/>:<span>{thumbnail?.status==='unavailable'?'장면을 열어 확인해 주세요.':'장면 미리보기 준비 중'}</span>}</span>}}/>;
+   custom={{ScenePreview:()=><span className={styles.sceneThumbnail} data-adjacent-scene={line.id} data-thumbnail-status={thumbnail?.status??'pending'}>{thumbnail?.status==='ready'?<img src={thumbnail.dataUrl} width={320} height={180} alt={`${label} 장면 미리보기 · 인물 배치와 첫 글상자`}/>:<span>{thumbnail?.status==='unavailable'?'장면을 열어 확인해 주세요.':'장면 미리보기 준비 중'}</span>}</span>}}/>;
  };
  const fork=(kind:string,title:string,choices:ForkChoice[],note?:string)=><FocusSurface key={`fork-${kind}`} inline rootId="fork" device={neighbourDevice} onAction={neighbourAction}
   surface={forkSurface({kind,title,note,choices,disabled:busy||p.composing,separateDisabled:busy||p.composing||!!p.disabled})}
@@ -304,7 +325,7 @@ export function StoryEditingWorkbench(p:Props){
    <div className={styles.rows} data-writer-scroll>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<FocusSurface key={`${p.project.id}/${line.id}`} inline rootId="cut" device={phone?'phone':'tablet'}
     surface={cutItemSurface({lineId:line.id,cut:index+1,speaker:line.speakerName??'',text:line.text.trim()||'아직 글이 없어요.',current:line.id===p.lineId,disabled:busy||p.composing,showText:screen!=='text',phoneShowsAll:!phoneSingle})}
     skin={{cutItem:styles.row,cutSelect:styles.rowSelect,cutPlay:styles.rowPlay,cutText:styles.cutText}} attrs={component=>component.component==='CutItem'?{'data-testid':`editing-cut-${line.id}`}:undefined}
-    slots={{tools:<><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phone&&selected.some(id=>id!=='text')&&<aside className={styles.companions} aria-label="확인용 함께 보기">{selected.filter(id=>id!=='text').map(id=><section key={id}><strong>{names[id]}</strong>{companion(id,line)}</section>)}</aside>}</>}}
+    slots={{tools:<><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phone&&selected.some(id=>id!=='text')&&<FocusSurface inline rootId="companions" device="tablet" surface={companionsSurface(line.id,selected.filter(id=>id!=='text').map(id=>({...companionView(id,line),title:names[id]})))} attrs={companionAttrs(id=>String(id).replace(/^(section|part)-/,'').split('-')[0]!)} custom={companionCustom}/>}</>}}
     onAction={({action})=>{const event='event' in action?action.event:undefined,lineId=event?.context?.lineId;if(typeof lineId!=='string')return;if(event?.name===CUT_EVENTS.select)p.onSelectCut(lineId);if(event?.name===CUT_EVENTS.play)p.onPreview(lineId);}}/>)}</div>
   </>}
   </div>
@@ -314,18 +335,16 @@ export function StoryEditingWorkbench(p:Props){
  </section>;
 }
 function BackgroundDisplayControls({line,index,onChange}:{line:StoryLine;index:number;onChange:(presentation:StoryLine['presentation'])=>void}){
+ // A2UI: a catalog More with Choice, two Sliders and a Button (editor-surfaces.ts → backgroundDisplaySurface).
  const presentation=line.presentation;
  const focal=presentation?.backgroundFocal??{x:0.5,y:0.5};
- const setFocal=(axis:'x'|'y',value:string)=>onChange({...presentation,backgroundFocal:{...focal,[axis]:Number(value)/100}});
- return <details className={styles.backgroundDisplay}>
-  <summary title="작은 자료 이미지는 그대로예요. 결과는 재생으로 확인해요."><span className={styles.srOnly}>{index+1}컷 배경 </span>표시 조정</summary>
-  <label>배경 표시<select aria-label={`${index+1}컷 배경 표시`} value={presentation?.backgroundFit??''} onChange={event=>onChange({...presentation,backgroundFit:event.target.value?event.target.value as 'cover'|'contain':undefined})}>
-   <option value="">자료 기본 표시</option><option value="cover">화면 채우기</option><option value="contain">전체 이미지 보기</option>
-  </select></label>
-  <label>배경 중심 가로 · {Math.round(focal.x*100)}%<input type="range" min="0" max="100" aria-label={`${index+1}컷 배경 중심 가로`} value={focal.x*100} onChange={event=>setFocal('x',event.target.value)}/></label>
-  <label>배경 중심 세로 · {Math.round(focal.y*100)}%<input type="range" min="0" max="100" aria-label={`${index+1}컷 배경 중심 세로`} value={focal.y*100} onChange={event=>setFocal('y',event.target.value)}/></label>
-  <button type="button" disabled={!presentation?.backgroundFocal} onClick={()=>onChange({...presentation,backgroundFocal:undefined})}><span className={styles.srOnly}>{index+1}컷 배경 </span>중심 초기화</button>
- </details>;
+ const surface=backgroundDisplaySurface({cut:index+1,fit:presentation?.backgroundFit??'',x:focal.x*100,y:focal.y*100,focalSet:!!presentation?.backgroundFocal});
+ return <FocusSurface inline surface={surface} rootId="display" device="tablet" attrs={component=>component.id==='display'?{className:styles.backgroundDisplay}:component.component==='Button'||component.component==='Choice'||component.component==='Slider'?{className:''}:undefined} skin={{srOnly:styles.srOnly}}
+  onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;
+   if(event?.name===BACKGROUND_DISPLAY_EVENTS.fit)onChange({...presentation,backgroundFit:value?value as 'cover'|'contain':undefined});
+   if(event?.name===BACKGROUND_DISPLAY_EVENTS.x&&typeof value==='number')onChange({...presentation,backgroundFocal:{...focal,x:value/100}});
+   if(event?.name===BACKGROUND_DISPLAY_EVENTS.y&&typeof value==='number')onChange({...presentation,backgroundFocal:{...focal,y:value/100}});
+   if(event?.name===BACKGROUND_DISPLAY_EVENTS.reset)onChange({...presentation,backgroundFocal:undefined});}}/>;
 }
 function heavilyOverlappedActors(preview:ReturnType<typeof compileStoryScene>,stage:StageComposition){
  const assetsByActor = new Map([...stage.leftActors,...stage.rightActors].map(actor=>[actor.key,actor.assetId]));
@@ -371,18 +390,26 @@ function CharacterEditors({project,line,stage,index,onChange,onReset,chapterAsse
  };
  const remove=(key:string)=>onChange({...stage,leftActors:stage.leftActors.filter(a=>a.key!==key),rightActors:stage.rightActors.filter(a=>a.key!==key),speakerActorKey:stage.speakerActorKey===key?undefined:stage.speakerActorKey,speakerActorKeys:stage.speakerActorKeys?.filter(id=>id!==key)});
  const add=(assetId:string)=>{const side=stage.leftActors.length<=stage.rightActors.length?'leftActors':'rightActors';if(stage[side].length>=2)return;onChange({...stage,[side]:[...stage[side],{key:`actor-${crypto.randomUUID()}`,assetId}]});};
+ // A2UI: each actor is a catalog card (editor-surfaces.ts → actorCardSurface); its image field is the shared AssetPickerField.
  return <div className={styles.characters}>{actors.map((actor,i)=>{
   const rendered=preview.actors.find(item=>item.id===actor.key);
   const x=actor.xAnchor??(rendered?(rendered.rect.x+rendered.rect.width/2)/preview.width*100:50);
   const scale=Math.round((actor.scaleMultiplier??1)*100);
-  return <section key={actor.key}>
-  <strong>{actor.position==='center'?'중앙':stage.leftActors.some(a=>a.key===actor.key)?'왼쪽':'오른쪽'} 인물 {i+1}</strong><AssetPickerField label={`${index+1}컷 인물 ${i+1}`} labelHidden type="character" value={actor.assetId} chapterAssetIds={chapterAssetIds} onChange={assetId=>update(actor.key,{assetId})}/>
-  {overlapped.has(actor.key)&&<div role="status" className={styles.actorOverlap}>다른 인물과 많이 겹쳐요.</div>}
-  <label>가로 위치 · {actor.xAnchor===undefined?'자동':`${Math.round(x)}%`}<input aria-label={`${index+1}컷 인물 ${i+1} 가로 위치`} type="range" min="5" max="95" value={x} onChange={e=>update(actor.key,{xAnchor:Number(e.target.value)})}/></label>
-  <label>배치 위치<select aria-label={`${index+1}컷 인물 ${i+1} 배치 위치`} value={actor.position==='center'?'center':stage.leftActors.some(a=>a.key===actor.key)?'left':'right'} onChange={e=>move(actor,e.target.value as 'left'|'center'|'right')}><option value="left" disabled={!stage.leftActors.some(a=>a.key===actor.key)&&stage.leftActors.length>=2}>왼쪽</option><option value="center">중앙</option><option value="right" disabled={!stage.rightActors.some(a=>a.key===actor.key)&&stage.rightActors.length>=2}>오른쪽</option></select></label>
-  <label>방향<select aria-label={`${index+1}컷 인물 ${i+1} 방향`} value={actor.facing??'auto'} onChange={e=>update(actor.key,{facing:e.target.value==='auto'?undefined:e.target.value as StageActorEntry['facing']})}><option value="auto">자료 기본 방향</option><option value="original">원본 방향</option><option value="left">왼쪽 보기</option><option value="right">오른쪽 보기</option></select></label>
-  <label>크기 · {scale}%<input aria-label={`${index+1}컷 인물 ${i+1} 크기`} type="range" min="50" max="140" value={scale} onChange={e=>update(actor.key,{scaleMultiplier:Number(e.target.value)/100})}/></label><div className={styles.actorActions}><button type="button" onClick={()=>onReset(actor.key)}><span className={styles.srOnly}>인물 {i+1} </span>기본 배치로</button><button type="button" onClick={()=>remove(actor.key)}><span className={styles.srOnly}>인물 {i+1} </span>빼기</button></div>
- </section>;})}{actors.length<4&&<div className={styles.characterAdd}><AssetPickerField label={`${index+1}컷 인물 추가`} type="character" value="" chapterAssetIds={chapterAssetIds} onChange={add}/></div>}</div>;
+  const inLeft=stage.leftActors.some(a=>a.key===actor.key),inRight=stage.rightActors.some(a=>a.key===actor.key);
+  const side=actor.position==='center'?'center':inLeft?'left':'right';
+  const surface=actorCardSurface({cut:index+1,actor:{key:actor.key,number:i+1,side,heading:`${side==='center'?'중앙':side==='left'?'왼쪽':'오른쪽'} 인물 ${i+1}`,x,xText:actor.xAnchor===undefined?'자동':`${Math.round(x)}%`,scale,facing:actor.facing??'auto',leftFull:stage.leftActors.length>=2,rightFull:stage.rightActors.length>=2,overlapped:overlapped.has(actor.key),inLeft,inRight}});
+  return <FocusSurface key={actor.key} inline surface={surface} rootId="card" device="tablet"
+   attrs={component=>component.component==='Notice'?{className:styles.actorOverlap}:component.component==='ToolGroup'?{className:styles.actorActions}:component.component==='Slider'||component.component==='Choice'||component.component==='Button'||component.component==='Column'?{className:''}:undefined}
+   skin={{srOnly:styles.srOnly}}
+   custom={{AssetPicker:()=><AssetPickerField label={`${index+1}컷 인물 ${i+1}`} labelHidden type="character" value={actor.assetId} chapterAssetIds={chapterAssetIds} onChange={assetId=>update(actor.key,{assetId})}/>}}
+   onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;
+    if(event?.name===ACTOR_EVENTS.x&&typeof value==='number')update(actor.key,{xAnchor:value});
+    if(event?.name===ACTOR_EVENTS.side&&typeof value==='string')move(actor,value as 'left'|'center'|'right');
+    if(event?.name===ACTOR_EVENTS.facing&&typeof value==='string')update(actor.key,{facing:value==='auto'?undefined:value as StageActorEntry['facing']});
+    if(event?.name===ACTOR_EVENTS.scale&&typeof value==='number')update(actor.key,{scaleMultiplier:value/100});
+    if(event?.name===ACTOR_EVENTS.reset)onReset(actor.key);
+    if(event?.name===ACTOR_EVENTS.remove)remove(actor.key);}}/>;
+ })}{actors.length<4&&<div className={styles.characterAdd}><AssetPickerField label={`${index+1}컷 인물 추가`} type="character" value="" chapterAssetIds={chapterAssetIds} onChange={add}/></div>}</div>;
 }
 
 function ActorMotionEditors({stage,index,onChange}:{stage:StageComposition;index:number;onChange:(stage:StageComposition)=>void}){

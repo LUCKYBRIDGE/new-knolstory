@@ -582,3 +582,5 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 
 /* The current-cut fieldset's own parts are named (the catalog-drawn head sits in a wrapper div). */
 .currentPreview{min-width:0}
+/* The cut's state line is a catalog Chip (span) in the list rows. */
+.row .rangeSummary{display:block}
