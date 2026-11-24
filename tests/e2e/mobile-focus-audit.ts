@@ -20,7 +20,19 @@ export async function auditScreen(page:Page,scope:Locator,primary?:Locator):Prom
   const label=(node:Element)=>(node.getAttribute('aria-label')||node.textContent||'').replace(/\s+/g,' ').trim().slice(0,40);
   const controls=[...root.querySelectorAll('button,a[href],summary,select,input:not([type=hidden]):not([type=checkbox]):not([type=radio]),textarea,[role=button],label:has(>input[type=checkbox]),label:has(>input[type=radio])')].filter(visible);
   // A transparent ::before can carry the touch area beyond a small visible control (the × close, ‹ ›).
-  const touch=(node:Element)=>{const box=node.getBoundingClientRect(),pseudo=getComputedStyle(node,'::before');if(pseudo.content==='none'||pseudo.position!=='absolute')return box;const px=(v:string)=>parseFloat(v)||0;return {width:box.width-px(pseudo.left)-px(pseudo.right),height:box.height-px(pseudo.top)-px(pseudo.bottom)};};
+  // A field's touch target is its wrapping label; a button may carry a transparent ::before inset or a fixed 44px ::after
+  // (DESIGN 집중 편집 규칙 6: visible 32–36px, touch 44px).
+  const touch=(node:Element)=>{
+   const box=node.getBoundingClientRect(),px=(v:string)=>parseFloat(v)||0;let width=box.width,height=box.height;
+   for(const which of ['::before','::after']){
+    const pseudo=getComputedStyle(node,which);if(pseudo.content==='none'||pseudo.position!=='absolute')continue;
+    if(px(pseudo.width)&&px(pseudo.height)&&!pseudo.left.endsWith('px')){width=Math.max(width,px(pseudo.width));height=Math.max(height,px(pseudo.height));}
+    else if(pseudo.left.endsWith('px')&&pseudo.right.endsWith('px')){width=Math.max(width,box.width-px(pseudo.left)-px(pseudo.right));height=Math.max(height,box.height-px(pseudo.top)-px(pseudo.bottom));}
+    else{width=Math.max(width,px(pseudo.width));height=Math.max(height,px(pseudo.height));}
+   }
+   if(/^(INPUT|SELECT|TEXTAREA)$/.test(node.tagName)){const wrap=node.closest('label');if(wrap){const outer=wrap.getBoundingClientRect();width=Math.max(width,outer.width);height=Math.max(height,outer.height);}}
+   return {width,height};
+  };
   const smallTargets=controls.filter(node=>{const box=touch(node);if(node.closest('p,li')&&node.tagName==='A'&&getComputedStyle(node).display==='inline')return false;return box.height<43.5||box.width<43.5;}).map(node=>{const box=node.getBoundingClientRect();return `${label(node)} (${Math.round(box.width)}×${Math.round(box.height)})`;});
   const hangul=/[가-힣]/;
   const brokenWords=[...root.querySelectorAll('*')].filter(node=>visible(node)&&[...node.childNodes].some(child=>child.nodeType===3&&hangul.test(child.textContent??'')&&/[가-힣]{2,}/.test(child.textContent??''))).filter(node=>{const style=getComputedStyle(node);if(style.wordBreak==='keep-all'||style.whiteSpace==='nowrap')return false;const range=document.createRange();range.selectNodeContents(node);return range.getClientRects().length>1&&node.getBoundingClientRect().height>parseFloat(style.lineHeight||'20')*1.5;}).map(node=>label(node));

@@ -43,7 +43,7 @@ for(const {device,width,height} of SIZES)test(`real focus screens match their A2
  // 쓰기 first (the screen the editor opens on): the cut head, the text, the cut's background and what follows.
  {
   const surface=[...applyMessages(focusScreenBlueprints.basic).values()][0]!;
-  const expected=[...new Set(['current','next-card','work','more-column'].flatMap(id=>controlNames(surface,device,id)).map(normal))];
+  const expected=[...new Set(['stage','current','next-card','work','more-column'].flatMap(id=>controlNames(surface,device,id)).map(normal))];
   const real=(await realControlNames(page,true)).map(normal);
   const extra=[...new Set(real.filter(name=>!expected.some(want=>name.endsWith(want))))];
   const missing=expected.filter(want=>!real.some(name=>name.endsWith(want)));
