@@ -3,7 +3,7 @@
   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json",
   "title": "KnolStory 집중 편집 화면 카탈로그",
   "description": "A2UI v0.9 catalog for KnolStory's focus editing screens. Screens are composed only from these components. Source rules: DESIGN.md '집중 편집 화면 규칙 — 2026-11-24'.",
-  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed.",
+  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Use Slot for parts the screen draws itself (asset browser, stage, timeline); never put controls of the catalog inside a Slot.",
   "$defs": {
     "Device": {
       "type": "string",
@@ -176,6 +176,16 @@
         },
         "change": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "titles": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "maxLength": 40
+          }
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
@@ -651,7 +661,7 @@
     },
     "CutItem": {
       "type": "object",
-      "description": "One cut in a list screen. Header: the cut label (number · speaker) selects the cut; ▶ plays from it. Then the cut's text (3 lines) and the task's tools for this cut. No other header buttons.",
+      "description": "One cut in a list screen. Header: the cut label (number · speaker) selects the cut; ▶ plays from it. Then the cut's text (3 lines) and the task's tools for this cut. No other header buttons. showText=false when the tools edit the text itself (원고).",
       "allowedParents": [
         "CutList"
       ],
@@ -680,6 +690,12 @@
         "children": {
           "$ref": "common_types.json#/$defs/ChildList",
           "maxItems": 4
+        },
+        "showText": {
+          "type": "boolean"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
@@ -886,6 +902,32 @@
         "label",
         "value",
         "change"
+      ]
+    },
+    "Slot": {
+      "type": "object",
+      "description": "A place the screen fills with something the catalog does not own (the asset browser field, the Ren'Py stage, a timeline). The catalog decides where it sits; the host draws it by name.",
+      "allowedParents": [
+        "CutItem",
+        "Column",
+        "More",
+        "FocusScreen"
+      ],
+      "properties": {
+        "component": {
+          "const": "Slot"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 60
+        }
+      },
+      "required": [
+        "component",
+        "name"
       ]
     }
   },

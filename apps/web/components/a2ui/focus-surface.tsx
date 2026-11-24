@@ -9,8 +9,10 @@ import styles from './focus-surface.module.css';
 
 export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action:A2uiAction};
 /** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
-type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean};
-type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode};
+/** A host screen keeps its tuned CSS (skin: class per part), adds its own attributes (attrs) and fills Slots (slots). */
+export type FocusSkin=Partial<Record<'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText',string>>;
+type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;slots?:Record<string,ReactNode>};
+type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;slots:Record<string,ReactNode>};
 type Renderer=(component:A2uiComponent,ctx:Ctx)=>ReactNode;
 
 const TASK_LABELS={basic:'쓰기',text:'원고',background:'배경',characters:'인물',audio:'음향',direction:'연출'} as const;
@@ -44,8 +46,9 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   <button type="button" className={styles.cutPlace} aria-haspopup="listbox" onClick={()=>ctx.fire(c.id,c.openList)}>{text(ctx,c.chapter)}장 · {text(ctx,c.cut)}컷 ▾</button>
   <button type="button" className={styles.step} aria-label="다음 컷" onClick={()=>ctx.fire(c.id,c.next)}>›</button>
  </div>,
- WorkTabs:(c,ctx)=><nav className={styles.tabs} aria-label="편집 작업">
+ WorkTabs:(c,ctx)=><nav className={ctx.skin.workTabs??styles.tabs} aria-label="편집 작업" {...ctx.attrs(c)}>
   {list(c.tabs).map(task=><button key={String(task)} type="button" aria-current={task===c.selected?'page':undefined}
+   title={c.titles&&typeof c.titles==='object'?(c.titles as Record<string,string>)[String(task)]:undefined} disabled={value(ctx,c.disabled)===true}
    onClick={()=>{if(task!==c.selected&&c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{task}}});}}>
    {TASK_LABELS[task as keyof typeof TASK_LABELS]}</button>)}
  </nav>,
@@ -102,18 +105,20 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   {list(c.children).filter(id=>ctx.device!=='phone'||c.phoneShows==='all'||value(ctx,ctx.surface.components.get(String(id))?.current)===true).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
  </div>,
  CutItem:(c,ctx)=>{
-  const label=`${text(ctx,c.cut)}컷 · ${text(ctx,c.speaker)}`;
-  const current=value(ctx,c.current)===true;
+  const label=`${text(ctx,c.cut)}컷${text(ctx,c.speaker)?` · ${text(ctx,c.speaker)}`:''}`;
+  const current=value(ctx,c.current)===true,disabled=value(ctx,c.disabled)===true;
   const all=[...ctx.surface.components.values()].some(list=>list.component==='CutList'&&list.phoneShows==='all'&&list.children!==undefined&&(list.children as unknown[]).includes(c.id));
-  return <article className={styles.cutItem} aria-current={current?'step':undefined} aria-label={`${text(ctx,c.cut)}컷 편집`}>
-   <header className={styles.cutItemHead}>
-    {ctx.device==='phone'&&!all?<strong>{label}</strong>:<button type="button" className={styles.cutSelect} aria-pressed={current} aria-label={`${label} · 이 컷 선택`} onClick={()=>ctx.fire(c.id,c.select)}>{label}</button>}
-    <button type="button" className={styles.icon} aria-label="이 컷부터 재생" title="이 컷부터 재생" onClick={()=>ctx.fire(c.id,c.play)}>{ICONS.play}</button>
+  const single=ctx.device==='phone'&&!all;
+  return <article className={ctx.skin.cutItem??styles.cutItem} aria-current={current?'step':undefined} aria-label={`${text(ctx,c.cut)}컷 편집`} {...ctx.attrs(c)}>
+   <header className={ctx.skin.cutItem?undefined:styles.cutItemHead}>
+    {single?<strong>{label}</strong>:<button type="button" className={ctx.skin.cutSelect??styles.cutSelect} disabled={disabled} aria-pressed={current} aria-label={`${label} · 이 컷 선택`} onClick={()=>ctx.fire(c.id,c.select)}>{label}</button>}
+    <button type="button" className={ctx.skin.cutPlay??styles.icon} disabled={disabled} aria-label="이 컷부터 재생" title="이 컷부터 재생" onClick={()=>ctx.fire(c.id,c.play)}><span aria-hidden="true">{ICONS.play}</span></button>
    </header>
-   <p className={styles.cutText} data-lines="3">{text(ctx,c.text)}</p>
+   {c.showText!==false&&<p className={ctx.skin.cutText??styles.cutText} data-cut-text data-lines="3">{text(ctx,c.text)}</p>}
    {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
   </article>;
  },
+ Slot:(c,ctx)=><Fragment>{ctx.slots[String(c.name)]??null}</Fragment>,
  AssetPicker:(c,ctx)=><div className={styles.assetPicker}>
   {c.labelVisible===true&&<span className={styles.fieldLabel}>{text(ctx,c.label)}</span>}
   <button type="button" aria-label={`${text(ctx,c.label)} 이미지 찾기 · ${text(ctx,c.value)}`} onClick={()=>ctx.fire(c.id,c.action)}>
@@ -139,9 +144,9 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
 };
 
 /** Draws the surface's root for one device. Components hidden on that device are left out. */
-export function FocusSurface({surface,device,onAction,rootId='root',inline=false}:Props){
+export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,slots={}}:Props){
  const ctx:Ctx={
-  surface,device,
+  surface,device,skin,slots,attrs:component=>attrs?.(component)??{},
   fire:(id,action)=>{if(action)onAction?.({surfaceId:surface.surfaceId,sourceComponentId:id,action:action as A2uiAction});},
   render:id=>{
    if(typeof id!=='string')return null;

@@ -112,3 +112,29 @@ describe('list toolbar drawn in the real editor',()=>{
   expect(busy.components.has('companions')).toBe(false);
  });
 });
+
+describe('real editor parts drawn by the catalog renderer',()=>{
+ it('draws work tabs with the host skin, hints and the real attribute',async()=>{
+  const {workTabsSurface}=await import('./editor-surfaces');
+  const surface=workTabsSurface({tabs:['basic','text','background'],current:'text',titles:{basic:'지금 컷'},disabled:false});
+  // A part of a screen has no FocusScreen root or parent; every other catalog rule holds.
+  expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'work-tabs',inline:true,skin:{workTabs:'host-tabs'},attrs:()=>({'data-editor-work-tabs':''})}));
+  expect(markup).toContain('<nav class="host-tabs" aria-label="편집 작업" data-editor-work-tabs="">');
+  expect(markup).toContain('title="지금 컷"');
+  expect(markup.match(/aria-current="page"/g)).toHaveLength(1);
+ });
+
+ it('draws a cut card and puts the screen tools in its Slot',async()=>{
+  const {cutItemSurface}=await import('./editor-surfaces');
+  const make=(phoneShowsAll:boolean)=>cutItemSurface({lineId:'a',cut:2,speaker:'',text:'글',current:true,disabled:false,showText:false,phoneShowsAll});
+  expect(validateSurface(make(false)).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
+  const tablet=renderToStaticMarkup(createElement(FocusSurface,{surface:make(false),device:'tablet',rootId:'cut',skin:{cutItem:'row'},attrs:c=>c.component==='CutItem'?{'data-testid':'editing-cut-a'}:undefined,slots:{tools:createElement('i',null,'도구')}}));
+  expect(tablet).toContain('class="row" aria-current="step" aria-label="2컷 편집" data-testid="editing-cut-a"');
+  expect(tablet).toContain('aria-label="2컷 · 이 컷 선택"');
+  expect(tablet).toContain('<i>도구</i>');
+  expect(tablet).not.toContain('data-cut-text');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:make(false),device:'phone',rootId:'cut'}))).toContain('<strong>2컷</strong>');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:make(true),device:'phone',rootId:'cut'}))).toContain('이 컷 선택');
+ });
+});
