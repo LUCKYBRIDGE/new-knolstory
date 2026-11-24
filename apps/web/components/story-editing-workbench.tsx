@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element -- Material thumbnails only; official story preview is supplied by Ren'Py. */
 import {FocusSurface,type FocusSurfaceAction} from './a2ui/focus-surface';
 import {listToolsSurface,LIST_TOOLS_EVENTS} from './a2ui/list-tools-surface';
+import {cutItemSurface,CUT_EVENTS} from './a2ui/editor-surfaces';
 import {createPortal} from 'react-dom';
 import {usePhoneEditor} from './use-phone-editor';
 import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type ReactNode} from 'react';
@@ -275,7 +276,12 @@ export function StoryEditingWorkbench(p:Props){
     };
     return <><FocusSurface inline surface={surface} rootId="list-tools" device={phone?'phone':'tablet'} onAction={onAction}/><FocusSurface inline surface={surface} rootId="companions" device={phone?'phone':'tablet'} onAction={onAction}/></>;
    })()}</div>
-   <div className={styles.rows} data-writer-scroll>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<article key={`${p.project.id}/${line.id}`} data-testid={`editing-cut-${line.id}`} aria-current={line.id===p.lineId?'step':undefined} className={styles.row} aria-label={`${index+1}컷 편집`}><header>{(()=>{const label=`${index+1}컷${line.speakerName?` · ${line.speakerName}`:''}`;return phoneSingle?<strong>{label}</strong>:<button type="button" className={styles.rowSelect} disabled={busy||p.composing} aria-pressed={line.id===p.lineId} aria-label={`${label} · 이 컷 선택`} onClick={()=>p.onSelectCut(line.id)}>{label}</button>;})()}<button type="button" className={styles.rowPlay} disabled={busy||p.composing} aria-label="이 컷부터 재생" title="이 컷부터 재생" onClick={()=>p.onPreview(line.id)}><span aria-hidden="true">▶</span></button></header>{/* Every focus screen shows what the cut says: the editing is about it. */}{screen!=='text'&&<p className={styles.cutText} data-cut-text>{line.text.trim()||'아직 글이 없어요.'}</p>}<fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phone&&selected.some(id=>id!=='text')&&<aside className={styles.companions} aria-label="확인용 함께 보기">{selected.filter(id=>id!=='text').map(id=><section key={id}><strong>{names[id]}</strong>{companion(id,line)}</section>)}</aside>}</article>)}</div>
+   {/* A2UI: each cut card (frame, head, text) is drawn from the focus editor catalog; this screen's tools fill its Slot. */}
+   <div className={styles.rows} data-writer-scroll>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<FocusSurface key={`${p.project.id}/${line.id}`} inline rootId="cut" device={phone?'phone':'tablet'}
+    surface={cutItemSurface({lineId:line.id,cut:index+1,speaker:line.speakerName??'',text:line.text.trim()||'아직 글이 없어요.',current:line.id===p.lineId,disabled:busy||p.composing,showText:screen!=='text',phoneShowsAll:!phoneSingle})}
+    skin={{cutItem:styles.row,cutSelect:styles.rowSelect,cutPlay:styles.rowPlay,cutText:styles.cutText}} attrs={component=>component.component==='CutItem'?{'data-testid':`editing-cut-${line.id}`}:undefined}
+    slots={{tools:<><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phone&&selected.some(id=>id!=='text')&&<aside className={styles.companions} aria-label="확인용 함께 보기">{selected.filter(id=>id!=='text').map(id=><section key={id}><strong>{names[id]}</strong>{companion(id,line)}</section>)}</aside>}</>}}
+    onAction={({action})=>{const event='event' in action?action.event:undefined,lineId=event?.context?.lineId;if(typeof lineId!=='string')return;if(event?.name===CUT_EVENTS.select)p.onSelectCut(lineId);if(event?.name===CUT_EVENTS.play)p.onPreview(lineId);}}/>)}</div>
   </>}
   </div>
   </div>
