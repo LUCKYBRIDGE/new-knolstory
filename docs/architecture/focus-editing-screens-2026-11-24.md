@@ -15,7 +15,7 @@
 
 - **상태**: 1·2·3단계 끝(커밋함, 푸시 안 함). 여섯 집중 화면이 A2UI 카탈로그 설계도와 같고(비교 검사 통과), E2·E6·R1과 7크기 재측정까지 마쳤다. 코덱스 작업은 `feat/actor-offscreen-exit`(f076de5d)로 옮겨 병합함(2131218c). 메인 체크아웃의 코덱스 미커밋 파일은 그대로(정리는 사용자 확인 뒤).
 - **다음 할 일**: 큰 할 일은 없다. 남은 작은 것: 목록 화면 컷마다 같은 이름 ▶(‘이 컷부터 재생’ ×컷 수 — 대상이 컷마다 달라 중복은 아니다), 실제 화면의 다른 부분(컷 머리, 작업 탭)을 카탈로그 렌더러로 옮길지는 필요할 때. 메인 체크아웃의 코덱스 미커밋 파일은 옮긴 내용과 같아 이 브랜치 작업에는 필요 없다.
-- **알려진 것**: 선녀와 나무꾼 긴 경로 4개(`catalog-reading-paths`, 360초 제한 초과)는 main 바탕에서도 같다. 이 worktree의 `stature-v2` 그림(생성물, gitignore)은 main 바탕 worktree에서 채웠다. 읽기 화면 검사 3개(creative-reading-journey, reader-max-fit ×2)는 고쳤다(아래 3단계). 런타임은 `../new-knolstory-codex-port/apps/web/public/runtime`에 링크.
+- **알려진 것**: 실패로 남은 검사 없음. stories-runtime `existing-score-runtime` 10개, `catalog-reading-paths` 선녀와 나무꾼 15경로(경로 길이 비례 시간 제한) 통과. 이 worktree의 `stature-v2` 그림(생성물, gitignore)은 main 바탕 worktree에서 채웠다. 런타임은 `../new-knolstory-codex-port/apps/web/public/runtime`에 링크.
 - **바뀐 파일**
   - 앱: `apps/web/components/story-cut-context.tsx`(위 막대 장·컷 칸), `story-workspace.tsx`(화살표 자리 `cutStepsHost` → 편집 화면 `cutStepTarget`), `story-editing-workbench.tsx`(화살표 그리기, 중복 이동 제거, 현재 컷 글, 함께 보기 칩), `story-editing-workbench.module.css`·`story-workspace.module.css`·`editor-work-tabs.module.css`(각 파일 끝의 ‘Focus screens (2026-11-24)’ 블록), `workspace-management.tsx`·`story-player-menu.tsx`(+css)(닫기 ×).
   - 규칙: `DESIGN.md` 맨 앞 ‘집중 편집 화면 규칙’.
