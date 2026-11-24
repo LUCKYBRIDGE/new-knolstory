@@ -125,11 +125,11 @@ describe('real editor parts drawn by the catalog renderer',()=>{
   expect(markup.match(/aria-current="page"/g)).toHaveLength(1);
  });
 
- it('draws a cut card and puts the screen tools in its Slot',async()=>{
+ it('draws a cut card and puts the screen tools in its CutTools',async()=>{
   const {cutItemSurface}=await import('./editor-surfaces');
   const make=(phoneShowsAll:boolean)=>cutItemSurface({lineId:'a',cut:2,speaker:'',text:'글',current:true,disabled:false,showText:false,phoneShowsAll});
   expect(validateSurface(make(false)).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
-  const tablet=renderToStaticMarkup(createElement(FocusSurface,{surface:make(false),device:'tablet',rootId:'cut',skin:{cutItem:'row'},attrs:c=>c.component==='CutItem'?{'data-testid':'editing-cut-a'}:undefined,slots:{tools:createElement('i',null,'도구')}}));
+  const tablet=renderToStaticMarkup(createElement(FocusSurface,{surface:make(false),device:'tablet',rootId:'cut',skin:{cutItem:'row'},attrs:c=>c.component==='CutItem'?{'data-testid':'editing-cut-a'}:undefined,custom:{CutTools:()=>createElement('i',null,'도구')}}));
   expect(tablet).toContain('class="row" aria-current="step" aria-label="2컷 편집" data-testid="editing-cut-a"');
   expect(tablet).toContain('aria-label="2컷 · 이 컷 선택"');
   expect(tablet).toContain('<i>도구</i>');
@@ -159,18 +159,19 @@ describe('쓰기 head drawn by the catalog renderer',()=>{
 });
 
 describe('top bar, text box and neighbour places drawn by the catalog renderer',()=>{
- it('draws the cut place with grouped options and the steps Slot, and arrows that keep focus',async()=>{
+ it('draws the cut place with grouped options and its arrows that keep focus',async()=>{
   const {cutPlaceSurface,cutStepsSurface}=await import('./editor-surfaces');
-  const place=cutPlaceSurface({short:'1장 · 3컷',value:'b',groups:[{label:'1장',options:[{value:'a',label:'1컷'},{value:'b',label:'2컷'}]}],disabled:false,chapter:1,cut:3});
+  const place=cutPlaceSurface({short:'1장 · 3컷',value:'b',groups:[{label:'1장',options:[{value:'a',label:'1컷'},{value:'b',label:'2컷'}]}],disabled:false,chapter:1,cut:3,steps:{previousDisabled:true,nextDisabled:false}});
   expect(validateSurface(place).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
-  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface:place,device:'tablet',rootId:'place',inline:true,slots:{steps:createElement('span',{className:'steps'})}}));
-  expect(markup).toContain('<span class="steps"></span>');
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface:place,device:'tablet',rootId:'place',inline:true}));
+  expect(markup).toContain('aria-label="이전 컷 편집" title="이전 컷" disabled=""');
+  expect(markup).toContain('aria-label="다음 컷 편집" title="다음 컷"');
   expect(markup).toMatch(/<select aria-label="현재 장과 컷 이동"><optgroup label="1장"><option value="a">1컷<\/option><option value="b" selected="">2컷<\/option>/);
   const steps=cutStepsSurface({previousDisabled:true,nextDisabled:false});
   expect(renderToStaticMarkup(createElement(FocusSurface,{surface:steps,device:'tablet',rootId:'previous',inline:true}))).toContain('aria-label="이전 컷 편집" title="이전 컷" disabled=""');
  });
 
- it('draws the settings drawer with its head, groups and Slots, and the shortcuts',async()=>{
+ it('draws the settings drawer with its head, groups and custom parts, and the shortcuts',async()=>{
   const {topBarSurface}=await import('./editor-surfaces');
   const surface=topBarSurface({unified:true,title:'작품',open:true,disabled:false,scores:false,fullscreen:true,fullscreenAvailable:true,loadComplete:true});
   expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);

@@ -45,6 +45,8 @@ for(const {device,width,height} of SIZES)test(`real focus screens match their A2
   const surface=[...applyMessages(focusScreenBlueprints.basic).values()][0]!;
   const expected=[...new Set(['stage','current','next-card','work','more-column'].flatMap(id=>controlNames(surface,device,id)).map(normal))];
   const real=(await realControlNames(page,true)).map(normal);
+  // Every custom (x-host) catalog component is registered by the real editor: no placeholder may be drawn.
+  await expect(page.locator('[data-host-part]')).toHaveCount(0);
   const extra=[...new Set(real.filter(name=>!expected.some(want=>name.endsWith(want))))];
   const missing=expected.filter(want=>!real.some(name=>name.endsWith(want)));
   expect({task:'basic',extra,missing},`basic · ${device}: 실제 화면과 설계도의 조작이 달라요`).toEqual({task:'basic',extra:[],missing:[]});
@@ -57,6 +59,7 @@ for(const {device,width,height} of SIZES)test(`real focus screens match their A2
   const surface=[...applyMessages(focusScreenBlueprints[task]).values()][0]!;
   const expected=[...new Set(['list-tools','companions','cut-1'].flatMap(id=>controlNames(surface,device,id)).map(normal))];
   const real=(await realControlNames(page)).map(normal);
+  await expect(page.locator('[data-host-part]')).toHaveCount(0);
   const extra=[...new Set(real.filter(name=>!expected.some(want=>name.endsWith(want))))];
   const missing=expected.filter(want=>!real.some(name=>name.endsWith(want)));
   expect({task,extra,missing},`${task} · ${device}: 실제 화면과 설계도의 조작이 달라요`).toEqual({task,extra:[],missing:[]});
