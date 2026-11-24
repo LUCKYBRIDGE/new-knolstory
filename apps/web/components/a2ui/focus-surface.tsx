@@ -27,7 +27,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  FocusScreen:(c,ctx)=><section className={styles.screen} data-a2ui-screen={String(c.task)} aria-label={`${TASK_LABELS[c.task as keyof typeof TASK_LABELS]} 편집`}>
   {ctx.render(c.topBar)}
   {c.stage!==undefined&&ctx.render(c.stage)}
-  {ctx.render(c.current)}
+  {c.current!==undefined&&ctx.render(c.current)}
   {list(c.context).length>0&&<div className={styles.context}>{list(c.context).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>}
   <div className={styles.work}>{ctx.render(c.work)}</div>
   {c.more!==undefined&&ctx.render(c.more)}
@@ -52,12 +52,12 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  CurrentCut:(c,ctx)=><div className={styles.current} data-a2ui-current-cut>
   <div className={styles.currentHead}>
    <span className={styles.cutNumber}>{text(ctx,c.cut)}컷</span>
-   <span className={styles.speaker}>{text(ctx,c.speaker)}</span>
+   {list(c.tools).length?list(c.tools).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>):<span className={styles.speaker}>{text(ctx,c.speaker)}</span>}
    {list(c.linkedImages).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
    {c.play!==undefined&&<button type="button" className={styles.icon} aria-label="이 컷부터 재생" title="이 컷부터 재생" onClick={()=>ctx.fire(c.id,c.play)}>{ICONS.play}</button>}
   </div>
   {c.editable===true
-   ?<textarea className={styles.editor} aria-label="현재 컷 글" defaultValue={text(ctx,c.text)}/>
+   ?<textarea className={styles.editor} aria-label={`${text(ctx,c.cut)}컷 글`} defaultValue={text(ctx,c.text)}/>
    :<p className={styles.cutText} data-lines="3">{text(ctx,c.text)}</p>}
  </div>,
  CutCard:(c,ctx)=><button type="button" className={styles.cutCard} data-side={String(c.side)} onClick={()=>ctx.fire(c.id,c.select)}
@@ -76,7 +76,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  </button>,
  Choice:(c,ctx)=><label className={styles.choice}>
   <span>{text(ctx,c.label)}</span>
-  <select defaultValue={text(ctx,c.value)} onChange={event=>{if(c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{value:event.currentTarget.value}}});}}>
+  <select aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)} onChange={event=>{if(c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{value:event.currentTarget.value}}});}}>
    {list(c.options).map(option=>{const {value:optionValue,label}=option as {value:string;label:string};return <option key={optionValue} value={optionValue}>{label}</option>;})}
   </select>
  </label>,
@@ -85,6 +85,45 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   <summary>{text(ctx,c.summary)}</summary>
   <div className={styles.moreBody}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>
  </details>,
+ TextField:(c,ctx)=><label className={styles.choice}>
+  <span>{text(ctx,c.label)}</span>
+  <input className={styles.textField} aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)}
+   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:event.currentTarget.value}}});}}/>
+ </label>,
+ CutList:(c,ctx)=><div className={styles.cutList} data-a2ui-cut-list>
+  {list(c.children).filter(id=>ctx.device!=='phone'||c.phoneShows==='all'||value(ctx,ctx.surface.components.get(String(id))?.current)===true).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
+ </div>,
+ CutItem:(c,ctx)=>{
+  const label=`${text(ctx,c.cut)}컷 · ${text(ctx,c.speaker)}`;
+  const current=value(ctx,c.current)===true;
+  const all=[...ctx.surface.components.values()].some(list=>list.component==='CutList'&&list.phoneShows==='all'&&list.children!==undefined&&(list.children as unknown[]).includes(c.id));
+  return <article className={styles.cutItem} aria-current={current?'step':undefined} aria-label={`${text(ctx,c.cut)}컷 편집`}>
+   <header className={styles.cutItemHead}>
+    {ctx.device==='phone'&&!all?<strong>{label}</strong>:<button type="button" className={styles.cutSelect} aria-pressed={current} aria-label={`${label} · 이 컷 선택`} onClick={()=>ctx.fire(c.id,c.select)}>{label}</button>}
+    <button type="button" className={styles.icon} aria-label="이 컷부터 재생" title="이 컷부터 재생" onClick={()=>ctx.fire(c.id,c.play)}>{ICONS.play}</button>
+   </header>
+   <p className={styles.cutText} data-lines="3">{text(ctx,c.text)}</p>
+   {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
+  </article>;
+ },
+ AssetPicker:(c,ctx)=><div className={styles.assetPicker}>
+  {c.labelVisible===true&&<span className={styles.fieldLabel}>{text(ctx,c.label)}</span>}
+  <button type="button" aria-label={`${text(ctx,c.label)} 이미지 찾기 · ${text(ctx,c.value)}`} onClick={()=>ctx.fire(c.id,c.action)}>
+   <span className={styles.thumb} data-kind={String(c.kind)} aria-hidden="true"/><strong>{text(ctx,c.value)}</strong>
+  </button>
+ </div>,
+ Slider:(c,ctx)=>{const current=Number(value(ctx,c.value)??c.min);return <label className={styles.slider}>
+  <span>{text(ctx,c.label)} · {current}{typeof c.unit==='string'?c.unit:''}</span>
+  <input type="range" min={Number(c.min)} max={Number(c.max)} defaultValue={current} aria-label={text(ctx,c.label)}
+   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:Number(event.currentTarget.value)}}});}}/>
+ </label>;},
+ Toggle:(c,ctx)=><label className={styles.toggle}>
+  <input type="checkbox" defaultChecked={value(ctx,c.value)===true} aria-label={c.name!==undefined?text(ctx,c.name):undefined}
+   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:event.currentTarget.checked}}});}}/>
+  {text(ctx,c.label)}
+ </label>,
+ TextArea:(c,ctx)=><textarea className={styles.editor} aria-label={text(ctx,c.label)} defaultValue={text(ctx,c.value)}
+  onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:event.currentTarget.value}}});}}/>,
  Notice:(c,ctx)=><div className={styles.notice} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'}>
   <p>{text(ctx,c.text)}</p>
   {list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}

@@ -22,64 +22,82 @@ describe('focus editor A2UI catalog',()=>{
   const surface=surfaceOf(messages);
   expect(validateSurface(surface)).toEqual([]);
   expect(surface.components.get('root')).toMatchObject({component:'FocusScreen',task});
-  expect(readPointer(surface.data,'/cut')).toBe(3);
+  expect(readPointer(surface.data,'/cut')).toBe(1);
  });
 
  it('rejects components, props and values outside the catalog',()=>{
   const surface=basic();
   surface.components.set('hint',{id:'hint',component:'Text',text:'여기에 글을 써요'});
   edit(surface,'new-cut',{size:'large'});
-  edit(surface,'more',{summary:'가끔 쓰는 도구 더 보기와 정리'});
+  edit(surface,'cut-more',{summary:'가끔 쓰는 도구를 더 보고 정리하기'});
   surface.components.set('tip',{id:'tip',component:'Notice',kind:'info',text:'도움말'});
-  edit(surface,'work',{children:['speaker-tools','cut-tools','tip'],gap:10});
-  expect(rules(surface)).toEqual(expect.arrayContaining(['unknown-component:hint','orphan:hint','unknown-prop:new-cut','max-length:more','enum:tip','enum:work']));
+  edit(surface,'work',{children:['speaker-tools','background-pick','cut-tools','tip'],gap:10});
+  expect(rules(surface)).toEqual(expect.arrayContaining(['unknown-component:hint','orphan:hint','unknown-prop:new-cut','max-length:cut-more','enum:tip','enum:work']));
  });
 
  it('keeps one way per job, one primary and four controls per group',()=>{
   const surface=basic();
   surface.components.set('second-map',{id:'second-map',component:'Button',label:'지도',variant:'primary',action:{event:{name:'openMap'}}});
-  surface.components.set('a',{id:'a',component:'Button',label:'가',action:{event:{name:'a'}}});
+  surface.components.set('a',{id:'a',component:'Button',label:'가',variant:'primary',action:{event:{name:'a'}}});
   surface.components.set('b',{id:'b',component:'Button',label:'나',action:{event:{name:'b'}}});
   edit(surface,'cut-tools',{children:['new-cut','second-map','a','b','speaker']});
-  expect(rules(surface)).toEqual(expect.arrayContaining(['one-way:second-map','one-primary:second-map','max-items:cut-tools','one-parent:speaker']));
+  expect(rules(surface)).toEqual(expect.arrayContaining(['one-way:second-map','one-primary:a','max-items:cut-tools','one-parent:speaker']));
  });
 
  it('allows the same job twice only when the devices never meet',()=>{
   const surface=basic();
   surface.components.set('phone-map',{id:'phone-map',component:'Button',label:'지도',devices:['phone'],action:{event:{name:'openMap'}}});
-  edit(surface,'cut-tools',{children:['new-cut','phone-map']});
-  edit(surface,'more',{devices:['tablet','desktop']});
+  edit(surface,'cut-tools',{devices:undefined,children:['new-cut','phone-map']});
   expect(validateSurface(surface)).toEqual([]);
   expect(effectiveDevices(surface,'story-map')).toEqual(['tablet','desktop']);
  });
 
  it('keeps cut cards off phones and parents within allowedParents',()=>{
   const surface=basic();
-  edit(surface,'previous-card',{devices:['phone','tablet']});
+  edit(surface,'next-card',{devices:['phone','tablet']});
   surface.components.set('nav-in-work',{id:'nav-in-work',component:'CutNavigator',chapter:1,cut:1,previous:{event:{name:'p2'}},next:{event:{name:'n2'}},openList:{event:{name:'l2'}}});
-  edit(surface,'work',{children:['speaker-tools','cut-tools','nav-in-work']});
-  expect(rules(surface)).toEqual(expect.arrayContaining(['enum:previous-card','allowed-parents:nav-in-work']));
+  edit(surface,'work',{children:['speaker-tools','background-pick','cut-tools','nav-in-work']});
+  expect(rules(surface)).toEqual(expect.arrayContaining(['enum:next-card','allowed-parents:nav-in-work']));
  });
 
  it('checks the skeleton: root, tabs, children and cycles',()=>{
   const surface=basic();
   edit(surface,'work-tabs',{selected:'audio'});
   edit(surface,'more-tools',{children:['split-story','missing']});
-  edit(surface,'more',{children:['more-tools','more']});
+  edit(surface,'cut-more',{children:['more-tools','cut-more']});
   surface.components.delete('root-top');
-  expect(rules(surface)).toEqual(expect.arrayContaining(['selected-task:work-tabs','missing-child:more-tools','missing-child:root','orphan:cut-nav','cycle:more']));
+  expect(rules(surface)).toEqual(expect.arrayContaining(['selected-task:work-tabs','missing-child:more-tools','missing-child:root','orphan:cut-nav','cycle:cut-more']));
   const empty=surfaceOf([{version:'v0.9',createSurface:{surfaceId:'x',catalogId:'other'}}]);
   expect(rules(empty)).toEqual(['catalog:x','root:x']);
+ });
+
+ it('shows the current cut once: CurrentCut on 쓰기, the current CutItem on list screens',()=>{
+  const list=surfaceOf(structuredClone(focusScreenBlueprints.background));
+  expect(list.components.get('root')!.current).toBeUndefined();
+  expect(effectiveDevices(list,'find-current')).toEqual(['tablet','desktop']);
+  const text=surfaceOf(structuredClone(focusScreenBlueprints.text));
+  expect(effectiveDevices(text,'find-current')).toContain('phone');
+  list.components.set('extra',{id:'extra',component:'CurrentCut',cut:1,speaker:'해설',text:'글'});
+  edit(list,'root',{current:'extra'});
+  expect(rules(list)).toContain('current-cut:root');
+  const bare=basic();
+  edit(bare,'root',{current:undefined});
+  bare.components.delete('current');
+  expect(rules(bare)).toContain('current-cut:root');
+  const crowded=surfaceOf(structuredClone(focusScreenBlueprints.text));
+  edit(crowded,'list-tools',{children:['find-current','companion-background','companion-characters','companion-audio','companion-direction']});
+  expect(rules(crowded)).toEqual(expect.arrayContaining(['max-items:list-tools','one-parent:companion-background']));
  });
 
  it('validates A2UI common types',()=>{
   const surface=basic();
   edit(surface,'new-cut',{label:3,action:{go:'x'},disabled:{call:'isLast',returnType:'boolean'}});
-  edit(surface,'speaker',{value:'나무꾼',options:[{value:'a',label:'가',extra:1}]});
-  edit(surface,'more',{children:{componentId:'more-tools'}});
-  edit(surface,'root',{context:'previous-card'});
+  edit(surface,'line-kind',{value:'대사',options:[{value:'a',label:'가',extra:1}]});
+  edit(surface,'speaker',{options:[]});
+  edit(surface,'cut-more',{children:{componentId:'more-tools'}});
+  edit(surface,'root',{context:'next-card'});
   edit(surface,'work-tabs',{tabs:['basic','basic']});
-  expect(rules(surface)).toEqual(expect.arrayContaining(['type:new-cut','type:speaker','min-items:speaker','unknown-prop:speaker','type:more','type:root','unique:work-tabs']));
+  expect(rules(surface)).toEqual(expect.arrayContaining(['type:new-cut','type:line-kind','min-items:line-kind','unknown-prop:line-kind','unknown-prop:speaker','type:cut-more','type:root','unique:work-tabs']));
  });
 
  it('applies data model updates and deletes surfaces',()=>{

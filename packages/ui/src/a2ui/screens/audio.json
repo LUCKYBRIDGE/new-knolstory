@@ -16,9 +16,8 @@
      "component": "FocusScreen",
      "task": "audio",
      "topBar": "root-top",
-     "current": "current",
      "work": "work",
-     "more": "more"
+     "more": "cut-detail"
     },
     {
      "id": "root-top",
@@ -82,7 +81,7 @@
      "id": "fullscreen",
      "component": "IconButton",
      "icon": "fullscreen",
-     "name": "전체 화면",
+     "name": "편집 화면 전체 화면",
      "action": {
       "event": {
        "name": "toggleFullscreen"
@@ -93,7 +92,7 @@
      "id": "library",
      "component": "IconButton",
      "icon": "library",
-     "name": "서재로 나가기",
+     "name": "서재 · 홈으로 이동",
      "action": {
       "event": {
        "name": "openLibrary"
@@ -101,89 +100,317 @@
      }
     },
     {
-     "id": "current",
-     "component": "CurrentCut",
-     "cut": {
-      "path": "/cut"
-     },
-     "speaker": {
-      "path": "/speaker"
-     },
-     "text": {
-      "path": "/text"
-     },
-     "editable": false,
-     "play": {
-      "event": {
-       "name": "playFromCut"
-      }
-     }
-    },
-    {
      "id": "work",
-     "component": "ToolGroup",
-     "name": "음향",
+     "component": "Column",
+     "gap": 12,
      "children": [
-      "pick-bgm",
-      "add-sfx"
+      "list-tools",
+      "companions",
+      "cut-list"
      ]
     },
     {
-     "id": "pick-bgm",
+     "id": "list-tools",
+     "component": "ToolGroup",
+     "name": "목록 도구",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
+     "children": [
+      "find-current"
+     ]
+    },
+    {
+     "id": "find-current",
      "component": "Button",
-     "label": "배경음 고르기",
-     "variant": "primary",
+     "label": "현재 컷 찾기",
      "action": {
       "event": {
-       "name": "pickBgm"
+       "name": "revealCurrentCut"
       }
      }
     },
     {
-     "id": "add-sfx",
+     "id": "companions",
+     "component": "ToolGroup",
+     "name": "함께 보기",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
+     "children": [
+      "companion-background",
+      "companion-characters",
+      "companion-direction"
+     ]
+    },
+    {
+     "id": "companion-background",
+     "component": "Toggle",
+     "label": "배경",
+     "name": "배경 함께 보기",
+     "value": {
+      "path": "/companions/background"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "background"
+       }
+      }
+     }
+    },
+    {
+     "id": "companion-characters",
+     "component": "Toggle",
+     "label": "인물",
+     "name": "인물 함께 보기",
+     "value": {
+      "path": "/companions/characters"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "characters"
+       }
+      }
+     }
+    },
+    {
+     "id": "companion-direction",
+     "component": "Toggle",
+     "label": "연출",
+     "name": "연출 함께 보기",
+     "value": {
+      "path": "/companions/direction"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "direction"
+       }
+      }
+     }
+    },
+    {
+     "id": "cut-list",
+     "component": "CutList",
+     "children": [
+      "cut-1",
+      "cut-2"
+     ]
+    },
+    {
+     "id": "cut-1",
+     "component": "CutItem",
+     "cut": {
+      "path": "/cuts/0/cut"
+     },
+     "speaker": {
+      "path": "/cuts/0/speaker"
+     },
+     "text": {
+      "path": "/cuts/0/text"
+     },
+     "current": {
+      "path": "/cuts/0/current"
+     },
+     "select": {
+      "event": {
+       "name": "selectCut",
+       "context": {
+        "cut": 1
+       }
+      }
+     },
+     "play": {
+      "event": {
+       "name": "playFromCut",
+       "context": {
+        "cut": 1
+       }
+      }
+     },
+     "children": [
+      "audio-summary-1",
+      "audio-edit-1"
+     ]
+    },
+    {
+     "id": "audio-summary-1",
+     "component": "Chip",
+     "label": {
+      "path": "/cuts/0/audio"
+     }
+    },
+    {
+     "id": "audio-edit-1",
+     "component": "More",
+     "summary": "음향 수정",
+     "children": [
+      "audio-tools-1"
+     ]
+    },
+    {
+     "id": "audio-tools-1",
+     "component": "ToolGroup",
+     "name": "1컷 음향",
+     "children": [
+      "bgm-1",
+      "sfx-1"
+     ]
+    },
+    {
+     "id": "bgm-1",
+     "component": "Button",
+     "label": "배경음 고르기",
+     "action": {
+      "event": {
+       "name": "pickBgm",
+       "context": {
+        "cut": 1
+       }
+      }
+     }
+    },
+    {
+     "id": "sfx-1",
      "component": "Button",
      "label": "효과음 넣기",
      "action": {
       "event": {
-       "name": "addSfx"
+       "name": "addSfx",
+       "context": {
+        "cut": 1
+       }
       }
      }
     },
     {
-     "id": "more",
+     "id": "cut-2",
+     "component": "CutItem",
+     "cut": {
+      "path": "/cuts/1/cut"
+     },
+     "speaker": {
+      "path": "/cuts/1/speaker"
+     },
+     "text": {
+      "path": "/cuts/1/text"
+     },
+     "current": {
+      "path": "/cuts/1/current"
+     },
+     "select": {
+      "event": {
+       "name": "selectCut",
+       "context": {
+        "cut": 2
+       }
+      }
+     },
+     "play": {
+      "event": {
+       "name": "playFromCut",
+       "context": {
+        "cut": 2
+       }
+      }
+     },
+     "children": [
+      "audio-summary-2",
+      "audio-edit-2"
+     ]
+    },
+    {
+     "id": "audio-summary-2",
+     "component": "Chip",
+     "label": {
+      "path": "/cuts/1/audio"
+     }
+    },
+    {
+     "id": "audio-edit-2",
      "component": "More",
-     "summary": "더보기",
+     "summary": "음향 수정",
      "children": [
-      "more-tools"
+      "audio-tools-2"
      ]
     },
     {
-     "id": "more-tools",
+     "id": "audio-tools-2",
      "component": "ToolGroup",
-     "name": "음향 정리",
+     "name": "2컷 음향",
      "children": [
-      "audio-range",
-      "remove-audio"
+      "bgm-2",
+      "sfx-2"
      ]
     },
     {
-     "id": "audio-range",
+     "id": "bgm-2",
      "component": "Button",
-     "label": "음원 구간",
+     "label": "배경음 고르기",
      "action": {
       "event": {
-       "name": "editAudioRange"
+       "name": "pickBgm",
+       "context": {
+        "cut": 2
+       }
       }
      }
     },
     {
-     "id": "remove-audio",
+     "id": "sfx-2",
      "component": "Button",
-     "label": "소리 빼기",
+     "label": "효과음 넣기",
+     "action": {
+      "event": {
+       "name": "addSfx",
+       "context": {
+        "cut": 2
+       }
+      }
+     }
+    },
+    {
+     "id": "cut-detail",
+     "component": "More",
+     "summary": "현재 컷 상세·메모·정리",
+     "children": [
+      "detail-tools"
+     ]
+    },
+    {
+     "id": "detail-tools",
+     "component": "ToolGroup",
+     "name": "현재 컷 정리",
+     "children": [
+      "split-cut",
+      "delete-cut"
+     ]
+    },
+    {
+     "id": "split-cut",
+     "component": "Button",
+     "label": "컷 나누기",
+     "action": {
+      "event": {
+       "name": "splitCut"
+      }
+     }
+    },
+    {
+     "id": "delete-cut",
+     "component": "Button",
+     "label": "컷 지우기",
      "variant": "quiet",
      "action": {
       "event": {
-       "name": "removeAudio"
+       "name": "deleteCut"
       }
      }
     }
@@ -197,31 +424,64 @@
    "path": "/",
    "value": {
     "chapter": 1,
-    "cut": 3,
-    "speaker": "나무꾼",
-    "text": "사슴아, 어서 이 나뭇짐 뒤로 숨으렴.",
+    "cut": 1,
+    "speaker": "해설",
+    "kind": "narration",
+    "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.",
     "previous": {
-     "cut": 2,
-     "text": "숲속에서 사슴 한 마리가 헐레벌떡 달려왔어요."
+     "cut": 0,
+     "text": ""
     },
     "next": {
-     "cut": 4,
-     "text": "곧이어 사냥꾼이 활을 들고 나타났어요."
+     "cut": 2,
+     "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
     },
-    "background": {
-     "fit": "default"
+    "companions": {
+     "background": false,
+     "characters": false,
+     "audio": false,
+     "direction": false
     },
-    "character": {
-     "expression": "basic"
-    },
-    "audio": {
-     "bgm": "forest"
-    },
-    "direction": {
-     "effect": "none",
-     "transition": "cut"
-    },
-    "kind": "dialogue"
+    "cuts": [
+     {
+      "cut": 1,
+      "speaker": "해설",
+      "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.",
+      "current": true,
+      "background": "산속 계곡",
+      "fit": "",
+      "fx": 50,
+      "fy": 50,
+      "actor": "막내 선녀",
+      "ax": 50,
+      "scale": 100,
+      "place": "left",
+      "facing": "auto",
+      "audio": "배경음 계곡의 평온 · 계곡 기본",
+      "direction": "연출 없음",
+      "effect": "none",
+      "transition": "cut"
+     },
+     {
+      "cut": 2,
+      "speaker": "선녀 1",
+      "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”",
+      "current": false,
+      "background": "산속 계곡",
+      "fit": "",
+      "fx": 50,
+      "fy": 50,
+      "actor": "큰언니 선녀",
+      "ax": 50,
+      "scale": 100,
+      "place": "right",
+      "facing": "auto",
+      "audio": "배경음 계곡의 평온 · 계곡 기본",
+      "direction": "연출 없음",
+      "effect": "none",
+      "transition": "cut"
+     }
+    ]
    }
   }
  }

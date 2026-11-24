@@ -16,14 +16,13 @@
      "component": "FocusScreen",
      "task": "basic",
      "topBar": "root-top",
-     "current": "current",
-     "work": "work",
      "stage": "stage",
+     "current": "current",
      "context": [
-      "previous-card",
       "next-card"
      ],
-     "more": "more"
+     "work": "work",
+     "more": "more-column"
     },
     {
      "id": "root-top",
@@ -87,7 +86,7 @@
      "id": "fullscreen",
      "component": "IconButton",
      "icon": "fullscreen",
-     "name": "전체 화면",
+     "name": "편집 화면 전체 화면",
      "action": {
       "event": {
        "name": "toggleFullscreen"
@@ -98,7 +97,7 @@
      "id": "library",
      "component": "IconButton",
      "icon": "library",
-     "name": "서재로 나가기",
+     "name": "서재 · 홈으로 이동",
      "action": {
       "event": {
        "name": "openLibrary"
@@ -128,28 +127,47 @@
       "event": {
        "name": "playFromCut"
       }
+     },
+     "tools": [
+      "speaker",
+      "line-kind"
+     ]
+    },
+    {
+     "id": "speaker",
+     "component": "TextField",
+     "label": "화자",
+     "name": "현재 컷 화자",
+     "value": {
+      "path": "/speaker"
+     },
+     "change": {
+      "event": {
+       "name": "changeSpeaker"
+      }
      }
     },
     {
-     "id": "previous-card",
-     "component": "CutCard",
-     "devices": [
-      "tablet",
-      "desktop"
+     "id": "line-kind",
+     "component": "Choice",
+     "label": "종류",
+     "name": "현재 컷 글 종류",
+     "value": {
+      "path": "/kind"
+     },
+     "options": [
+      {
+       "value": "dialogue",
+       "label": "대사"
+      },
+      {
+       "value": "narration",
+       "label": "해설"
+      }
      ],
-     "side": "previous",
-     "cut": {
-      "path": "/previous/cut"
-     },
-     "text": {
-      "path": "/previous/text"
-     },
-     "select": {
+     "change": {
       "event": {
-       "name": "selectCut",
-       "context": {
-        "side": "previous"
-       }
+       "name": "changeLineKind"
       }
      }
     },
@@ -181,62 +199,22 @@
      "component": "Column",
      "gap": 12,
      "children": [
-      "speaker-tools",
+      "background-pick",
       "cut-tools"
      ]
     },
     {
-     "id": "speaker-tools",
-     "component": "ToolGroup",
-     "name": "화자와 글 종류",
-     "children": [
-      "speaker",
-      "line-kind"
-     ]
-    },
-    {
-     "id": "speaker",
-     "component": "Choice",
-     "label": "화자",
+     "id": "background-pick",
+     "component": "AssetPicker",
+     "kind": "background",
+     "label": "1컷 배경",
+     "labelVisible": true,
      "value": {
-      "path": "/speaker"
+      "path": "/cuts/0/background"
      },
-     "options": [
-      {
-       "value": "나무꾼",
-       "label": "나무꾼"
-      },
-      {
-       "value": "사슴",
-       "label": "사슴"
-      }
-     ],
-     "change": {
+     "action": {
       "event": {
-       "name": "changeSpeaker"
-      }
-     }
-    },
-    {
-     "id": "line-kind",
-     "component": "Choice",
-     "label": "종류",
-     "value": {
-      "path": "/kind"
-     },
-     "options": [
-      {
-       "value": "dialogue",
-       "label": "대사"
-      },
-      {
-       "value": "narration",
-       "label": "해설"
-      }
-     ],
-     "change": {
-      "event": {
-       "name": "changeLineKind"
+       "name": "pickBackground"
       }
      }
     },
@@ -244,6 +222,10 @@
      "id": "cut-tools",
      "component": "ToolGroup",
      "name": "컷 만들기",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
      "children": [
       "new-cut"
      ]
@@ -251,8 +233,7 @@
     {
      "id": "new-cut",
      "component": "Button",
-     "label": "+ 새 컷",
-     "variant": "primary",
+     "label": "+ 이 컷 뒤에 새 컷 넣기",
      "action": {
       "event": {
        "name": "insertCutAfter"
@@ -260,9 +241,22 @@
      }
     },
     {
-     "id": "more",
+     "id": "more-column",
+     "component": "Column",
+     "gap": 8,
+     "children": [
+      "cut-more",
+      "cut-detail"
+     ]
+    },
+    {
+     "id": "cut-more",
      "component": "More",
      "summary": "컷 더보기",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
      "children": [
       "more-tools"
      ]
@@ -289,10 +283,48 @@
     {
      "id": "story-map",
      "component": "Button",
-     "label": "이야기 지도",
+     "label": "이야기 지도 보기",
      "action": {
       "event": {
        "name": "openMap"
+      }
+     }
+    },
+    {
+     "id": "cut-detail",
+     "component": "More",
+     "summary": "현재 컷 상세·메모·정리",
+     "children": [
+      "detail-tools"
+     ]
+    },
+    {
+     "id": "detail-tools",
+     "component": "ToolGroup",
+     "name": "현재 컷 정리",
+     "children": [
+      "split-cut",
+      "delete-cut"
+     ]
+    },
+    {
+     "id": "split-cut",
+     "component": "Button",
+     "label": "컷 나누기",
+     "action": {
+      "event": {
+       "name": "splitCut"
+      }
+     }
+    },
+    {
+     "id": "delete-cut",
+     "component": "Button",
+     "label": "컷 지우기",
+     "variant": "quiet",
+     "action": {
+      "event": {
+       "name": "deleteCut"
       }
      }
     }
@@ -306,31 +338,64 @@
    "path": "/",
    "value": {
     "chapter": 1,
-    "cut": 3,
-    "speaker": "나무꾼",
-    "text": "사슴아, 어서 이 나뭇짐 뒤로 숨으렴.",
+    "cut": 1,
+    "speaker": "해설",
+    "kind": "narration",
+    "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.",
     "previous": {
-     "cut": 2,
-     "text": "숲속에서 사슴 한 마리가 헐레벌떡 달려왔어요."
+     "cut": 0,
+     "text": ""
     },
     "next": {
-     "cut": 4,
-     "text": "곧이어 사냥꾼이 활을 들고 나타났어요."
+     "cut": 2,
+     "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
     },
-    "background": {
-     "fit": "default"
+    "companions": {
+     "background": false,
+     "characters": false,
+     "audio": false,
+     "direction": false
     },
-    "character": {
-     "expression": "basic"
-    },
-    "audio": {
-     "bgm": "forest"
-    },
-    "direction": {
-     "effect": "none",
-     "transition": "cut"
-    },
-    "kind": "dialogue"
+    "cuts": [
+     {
+      "cut": 1,
+      "speaker": "해설",
+      "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.",
+      "current": true,
+      "background": "산속 계곡",
+      "fit": "",
+      "fx": 50,
+      "fy": 50,
+      "actor": "막내 선녀",
+      "ax": 50,
+      "scale": 100,
+      "place": "left",
+      "facing": "auto",
+      "audio": "배경음 계곡의 평온 · 계곡 기본",
+      "direction": "연출 없음",
+      "effect": "none",
+      "transition": "cut"
+     },
+     {
+      "cut": 2,
+      "speaker": "선녀 1",
+      "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”",
+      "current": false,
+      "background": "산속 계곡",
+      "fit": "",
+      "fx": 50,
+      "fy": 50,
+      "actor": "큰언니 선녀",
+      "ax": 50,
+      "scale": 100,
+      "place": "right",
+      "facing": "auto",
+      "audio": "배경음 계곡의 평온 · 계곡 기본",
+      "direction": "연출 없음",
+      "effect": "none",
+      "transition": "cut"
+     }
+    ]
    }
   }
  }

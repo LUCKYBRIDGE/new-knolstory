@@ -72,3 +72,25 @@
 .notice[data-kind=irreversible]{border-color:var(--gold)}
 
 .icon:focus-visible,.step:focus-visible,.cutPlace:focus-visible,.button:focus-visible,.tabs>button:focus-visible,.cutCard:focus-visible,.more>summary:focus-visible,.choice>select:focus-visible{outline:2px solid var(--mint-strong);outline-offset:2px}
+
+/* List screens: CutList → CutItem (header = select by the cut label + ▶), text, the task's tools. */
+.cutList{display:flex;flex-direction:column;gap:12px}
+.cutItem{display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--white)}
+.cutItem[aria-current=step]{border-color:var(--mint-strong);box-shadow:inset 3px 0 var(--mint-strong)}
+.cutItemHead{display:flex;align-items:center;gap:8px;min-height:36px}
+.cutItemHead>strong{flex:1 1 auto}
+.cutSelect{position:relative;flex:1 1 auto;min-width:0;min-height:0;height:36px;margin-left:-8px;padding:0 8px;border:1px solid transparent;border-radius:var(--radius-control);background:transparent;font:inherit;font-weight:700;text-align:left;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cutSelect[aria-pressed=true]{color:var(--mint-strong)}
+.cutSelect::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
+.assetPicker>button{display:flex;align-items:center;gap:12px;width:100%;min-height:0;padding:8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);font:inherit;text-align:left;cursor:pointer}
+.thumb{flex:none;width:56px;height:36px;border-radius:4px;background:linear-gradient(160deg,var(--mint-strong),var(--mint))}
+.thumb[data-kind=character]{width:36px;border-radius:50%}
+.fieldLabel{display:block;margin-bottom:4px;font-size:var(--text-small)}
+.slider{display:grid;gap:4px;min-width:120px;flex:1 1 120px;font-size:var(--text-small)}
+.slider>input{width:100%;min-height:44px;margin:0;padding:0;border:0;background:transparent}
+.toggle{display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 8px;font-size:var(--text-small)}
+.toggle>input{width:auto;min-height:0;margin:0}
+.cutItem .more{border-top:0}
+.cutItem .more>summary{padding:0 8px;border:1px solid var(--line);border-radius:var(--radius-control)}
+.cutItem .moreBody{padding-top:8px}
+.textField{width:8em;height:36px;min-height:0;padding:0 8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);font:inherit}

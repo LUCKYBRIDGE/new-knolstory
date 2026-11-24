@@ -3,229 +3,878 @@
   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json",
   "title": "KnolStory 집중 편집 화면 카탈로그",
   "description": "A2UI v0.9 catalog for KnolStory's focus editing screens. Screens are composed only from these components. Source rules: DESIGN.md '집중 편집 화면 규칙 — 2026-11-24'.",
-  "instructions": "Compose one FocusScreen per editing task (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed.",
+  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed.",
   "$defs": {
-    "Device": { "type": "string", "enum": ["phone", "phoneLandscape", "tablet", "desktop"] },
+    "Device": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "phoneLandscape",
+        "tablet",
+        "desktop"
+      ]
+    },
     "Devices": {
       "type": "array",
       "description": "Devices that show this component. Omit to show it everywhere.",
-      "items": { "$ref": "#/$defs/Device" },
+      "items": {
+        "$ref": "#/$defs/Device"
+      },
       "minItems": 1,
       "uniqueItems": true
     },
-    "Task": { "type": "string", "enum": ["basic", "text", "background", "characters", "audio", "direction"] },
-    "Gap": { "type": "integer", "enum": [4, 8, 12, 16, 24] }
+    "Task": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "text",
+        "background",
+        "characters",
+        "audio",
+        "direction"
+      ]
+    },
+    "Gap": {
+      "type": "integer",
+      "enum": [
+        4,
+        8,
+        12,
+        16,
+        24
+      ]
+    }
   },
   "components": {
     "FocusScreen": {
       "type": "object",
-      "description": "One focus editing screen. Must be the component with id 'root'.",
+      "description": "One focus editing screen. Must be the component with id 'root'. Single-cut screens (쓰기) put the current cut in `current`; list screens (원고·배경·인물·음향·연출) put a CutList in `work`, and its current CutItem is the current cut.",
       "allowedParents": [],
       "properties": {
-        "component": { "const": "FocusScreen" },
-        "task": { "$ref": "#/$defs/Task" },
-        "topBar": { "$ref": "common_types.json#/$defs/ComponentId" },
-        "stage": { "$ref": "common_types.json#/$defs/ComponentId" },
-        "current": { "$ref": "common_types.json#/$defs/ComponentId" },
-        "context": { "$ref": "common_types.json#/$defs/ChildList" },
-        "work": { "$ref": "common_types.json#/$defs/ComponentId" },
-        "more": { "$ref": "common_types.json#/$defs/ComponentId" }
+        "component": {
+          "const": "FocusScreen"
+        },
+        "task": {
+          "$ref": "#/$defs/Task"
+        },
+        "topBar": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "stage": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "current": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "context": {
+          "$ref": "common_types.json#/$defs/ChildList"
+        },
+        "work": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "more": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        }
       },
-      "required": ["component", "task", "topBar", "current", "work"]
+      "required": [
+        "component",
+        "task",
+        "topBar",
+        "work"
+      ]
     },
     "TopBar": {
       "type": "object",
       "description": "설정 · ‹ 1장 · 3컷 ▾ › · 작업 탭 · 전체 화면 · 서재. One row on tablet and up, two rows on phone portrait.",
-      "allowedParents": ["FocusScreen"],
+      "allowedParents": [
+        "FocusScreen"
+      ],
       "properties": {
-        "component": { "const": "TopBar" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "settings": { "$ref": "common_types.json#/$defs/Action" },
-        "navigator": { "$ref": "common_types.json#/$defs/ComponentId" },
-        "tabs": { "$ref": "common_types.json#/$defs/ComponentId" },
-        "actions": { "$ref": "common_types.json#/$defs/ChildList", "maxItems": 2 }
+        "component": {
+          "const": "TopBar"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "settings": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "navigator": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "tabs": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "actions": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "maxItems": 2
+        }
       },
-      "required": ["component", "settings", "navigator", "tabs"]
+      "required": [
+        "component",
+        "settings",
+        "navigator",
+        "tabs"
+      ]
     },
     "CutNavigator": {
       "type": "object",
       "description": "The single chapter/cut place: ‹ 1장 · 3컷 ▾ ›. Names and first words of cuts appear only inside the opened list.",
-      "allowedParents": ["TopBar"],
+      "allowedParents": [
+        "TopBar"
+      ],
       "properties": {
-        "component": { "const": "CutNavigator" },
-        "chapter": { "$ref": "common_types.json#/$defs/DynamicNumber" },
-        "cut": { "$ref": "common_types.json#/$defs/DynamicNumber" },
-        "previous": { "$ref": "common_types.json#/$defs/Action" },
-        "next": { "$ref": "common_types.json#/$defs/Action" },
-        "openList": { "$ref": "common_types.json#/$defs/Action" }
+        "component": {
+          "const": "CutNavigator"
+        },
+        "chapter": {
+          "$ref": "common_types.json#/$defs/DynamicNumber"
+        },
+        "cut": {
+          "$ref": "common_types.json#/$defs/DynamicNumber"
+        },
+        "previous": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "next": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "openList": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
       },
-      "required": ["component", "chapter", "cut", "previous", "next", "openList"]
+      "required": [
+        "component",
+        "chapter",
+        "cut",
+        "previous",
+        "next",
+        "openList"
+      ]
     },
     "WorkTabs": {
       "type": "object",
       "description": "쓰기·원고·배경·인물·음향·연출. Shows only the tasks the author opened.",
-      "allowedParents": ["TopBar"],
+      "allowedParents": [
+        "TopBar"
+      ],
       "properties": {
-        "component": { "const": "WorkTabs" },
-        "tabs": { "type": "array", "items": { "$ref": "#/$defs/Task" }, "minItems": 1, "maxItems": 6, "uniqueItems": true },
-        "selected": { "$ref": "#/$defs/Task" },
-        "change": { "$ref": "common_types.json#/$defs/Action" }
+        "component": {
+          "const": "WorkTabs"
+        },
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Task"
+          },
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "selected": {
+          "$ref": "#/$defs/Task"
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
       },
-      "required": ["component", "tabs", "selected", "change"]
+      "required": [
+        "component",
+        "tabs",
+        "selected",
+        "change"
+      ]
     },
     "Stage": {
       "type": "object",
       "description": "The single Ren'Py scene for the current cut. Only on tasks that need the scene.",
-      "allowedParents": ["FocusScreen"],
+      "allowedParents": [
+        "FocusScreen"
+      ],
       "properties": {
-        "component": { "const": "Stage" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "orientation": { "type": "string", "enum": ["landscape", "portrait"] },
-        "name": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 24 }
+        "component": {
+          "const": "Stage"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "orientation": {
+          "type": "string",
+          "enum": [
+            "landscape",
+            "portrait"
+          ]
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        }
       },
-      "required": ["component", "orientation", "name"]
+      "required": [
+        "component",
+        "orientation",
+        "name"
+      ]
     },
     "CurrentCut": {
       "type": "object",
-      "description": "Work-area head: number, speaker, the cut's text and play. Visible on every focus screen. List screens clamp text to 3 lines; 쓰기·원고 edit the full text.",
-      "allowedParents": ["FocusScreen"],
+      "description": "Work-area head: number, speaker, the cut's text and play. Visible on every single-cut focus screen. On 쓰기 the head holds the speaker and kind fields (tools) and the full text is edited in place.",
+      "allowedParents": [
+        "FocusScreen"
+      ],
       "properties": {
-        "component": { "const": "CurrentCut" },
-        "cut": { "$ref": "common_types.json#/$defs/DynamicNumber" },
-        "speaker": { "$ref": "common_types.json#/$defs/DynamicString" },
-        "text": { "$ref": "common_types.json#/$defs/DynamicString" },
-        "editable": { "type": "boolean" },
-        "play": { "$ref": "common_types.json#/$defs/Action" },
-        "linkedImages": { "$ref": "common_types.json#/$defs/ChildList", "maxItems": 4 }
+        "component": {
+          "const": "CurrentCut"
+        },
+        "cut": {
+          "$ref": "common_types.json#/$defs/DynamicNumber"
+        },
+        "speaker": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "text": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "editable": {
+          "type": "boolean"
+        },
+        "play": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "linkedImages": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "maxItems": 4
+        },
+        "tools": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "maxItems": 3
+        }
       },
-      "required": ["component", "cut", "speaker", "text"]
+      "required": [
+        "component",
+        "cut",
+        "speaker",
+        "text"
+      ]
     },
     "CutCard": {
       "type": "object",
       "description": "Previous/next cut with a scene preview. Context only on tablet and desktop (rule 4).",
-      "allowedParents": ["FocusScreen"],
+      "allowedParents": [
+        "FocusScreen"
+      ],
       "properties": {
-        "component": { "const": "CutCard" },
-        "devices": { "type": "array", "items": { "type": "string", "enum": ["tablet", "desktop"] }, "minItems": 1, "uniqueItems": true },
-        "side": { "type": "string", "enum": ["previous", "next"] },
-        "cut": { "$ref": "common_types.json#/$defs/DynamicNumber" },
-        "text": { "$ref": "common_types.json#/$defs/DynamicString" },
-        "select": { "$ref": "common_types.json#/$defs/Action" }
+        "component": {
+          "const": "CutCard"
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "tablet",
+              "desktop"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "side": {
+          "type": "string",
+          "enum": [
+            "previous",
+            "next"
+          ]
+        },
+        "cut": {
+          "$ref": "common_types.json#/$defs/DynamicNumber"
+        },
+        "text": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "select": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
       },
-      "required": ["component", "devices", "side", "cut", "text", "select"]
+      "required": [
+        "component",
+        "devices",
+        "side",
+        "cut",
+        "text",
+        "select"
+      ]
     },
     "Column": {
       "type": "object",
       "description": "Vertical group of tool groups inside the work area or More.",
-      "allowedParents": ["FocusScreen", "More"],
+      "allowedParents": [
+        "FocusScreen",
+        "More",
+        "CutItem"
+      ],
       "properties": {
-        "component": { "const": "Column" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "gap": { "$ref": "#/$defs/Gap" },
-        "children": { "$ref": "common_types.json#/$defs/ChildList", "minItems": 1 }
+        "component": {
+          "const": "Column"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "gap": {
+          "$ref": "#/$defs/Gap"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1
+        }
       },
-      "required": ["component", "children"]
+      "required": [
+        "component",
+        "children"
+      ]
     },
     "ToolGroup": {
       "type": "object",
       "description": "One row of related controls. At most 4 controls (rule 6).",
-      "allowedParents": ["FocusScreen", "Column", "More"],
+      "allowedParents": [
+        "FocusScreen",
+        "Column",
+        "More",
+        "CutItem"
+      ],
       "properties": {
-        "component": { "const": "ToolGroup" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "name": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 20 },
-        "gap": { "type": "integer", "enum": [4, 8] },
-        "children": { "$ref": "common_types.json#/$defs/ChildList", "minItems": 1, "maxItems": 4 }
+        "component": {
+          "const": "ToolGroup"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "gap": {
+          "type": "integer",
+          "enum": [
+            4,
+            8
+          ]
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1,
+          "maxItems": 4
+        }
       },
-      "required": ["component", "name", "children"]
+      "required": [
+        "component",
+        "name",
+        "children"
+      ]
     },
     "Button": {
       "type": "object",
       "description": "Text button. Visible height 32–36px, touch target 44px. Font is never larger than body text.",
-      "allowedParents": ["ToolGroup", "Notice"],
+      "allowedParents": [
+        "ToolGroup",
+        "Notice"
+      ],
       "properties": {
-        "component": { "const": "Button" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "label": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 16 },
-        "title": { "type": "string", "maxLength": 60 },
-        "variant": { "type": "string", "enum": ["primary", "secondary", "quiet"] },
-        "disabled": { "$ref": "common_types.json#/$defs/DynamicBoolean" },
-        "action": { "$ref": "common_types.json#/$defs/Action" }
+        "component": {
+          "const": "Button"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 16
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "variant": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "secondary",
+            "quiet"
+          ]
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "action": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
       },
-      "required": ["component", "label", "action"]
+      "required": [
+        "component",
+        "label",
+        "action"
+      ]
     },
     "IconButton": {
       "type": "object",
       "description": "Icon-only button (16–20px icon, 44px target). The name is read aloud and shown as a tooltip.",
-      "allowedParents": ["TopBar", "ToolGroup", "Notice"],
+      "allowedParents": [
+        "TopBar",
+        "ToolGroup",
+        "Notice"
+      ],
       "properties": {
-        "component": { "const": "IconButton" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "icon": { "type": "string", "enum": ["close", "fullscreen", "library", "play", "help"] },
-        "name": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 24 },
-        "action": { "$ref": "common_types.json#/$defs/Action" }
+        "component": {
+          "const": "IconButton"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "icon": {
+          "type": "string",
+          "enum": [
+            "close",
+            "fullscreen",
+            "library",
+            "play",
+            "help"
+          ]
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "action": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
       },
-      "required": ["component", "icon", "name", "action"]
+      "required": [
+        "component",
+        "icon",
+        "name",
+        "action"
+      ]
     },
     "Choice": {
       "type": "object",
-      "description": "Pick one value (select). The label is visible and short.",
-      "allowedParents": ["ToolGroup"],
+      "description": "Pick one value (select). The label is visible and short; `name` is the accessible name when it differs.",
+      "allowedParents": [
+        "ToolGroup",
+        "CurrentCut"
+      ],
       "properties": {
-        "component": { "const": "Choice" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "label": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 12 },
-        "value": { "$ref": "common_types.json#/$defs/DataBinding" },
+        "component": {
+          "const": "Choice"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 12
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DataBinding"
+        },
         "options": {
           "type": "array",
           "minItems": 2,
           "items": {
             "type": "object",
-            "properties": { "value": { "type": "string" }, "label": { "type": "string", "maxLength": 20 } },
-            "required": ["value", "label"],
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 20
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
             "additionalProperties": false
           }
         },
-        "change": { "$ref": "common_types.json#/$defs/Action" }
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        }
       },
-      "required": ["component", "label", "value", "options", "change"]
+      "required": [
+        "component",
+        "label",
+        "value",
+        "options",
+        "change"
+      ]
     },
     "Chip": {
       "type": "object",
       "description": "Small status token, e.g. an image linked to the speaker. Shown only when there is something to show.",
-      "allowedParents": ["CurrentCut", "ToolGroup"],
+      "allowedParents": [
+        "CurrentCut",
+        "ToolGroup",
+        "CutItem"
+      ],
       "properties": {
-        "component": { "const": "Chip" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "label": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 16 },
-        "image": { "$ref": "common_types.json#/$defs/DynamicString" }
+        "component": {
+          "const": "Chip"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 40
+        },
+        "image": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        }
       },
-      "required": ["component", "label"]
+      "required": [
+        "component",
+        "label"
+      ]
     },
     "More": {
       "type": "object",
       "description": "Collapsed disclosure for rarely used tools. Starts closed; one open panel at a time; Escape closes the innermost.",
-      "allowedParents": ["FocusScreen", "Column"],
+      "allowedParents": [
+        "FocusScreen",
+        "Column",
+        "CutItem"
+      ],
       "properties": {
-        "component": { "const": "More" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "summary": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 12 },
-        "children": { "$ref": "common_types.json#/$defs/ChildList", "minItems": 1 }
+        "component": {
+          "const": "More"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "summary": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 16
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1
+        }
       },
-      "required": ["component", "summary", "children"]
+      "required": [
+        "component",
+        "summary",
+        "children"
+      ]
     },
     "Notice": {
       "type": "object",
       "description": "The only place for sentences: empty state, error, or before an irreversible action.",
-      "allowedParents": ["FocusScreen", "Column", "More"],
+      "allowedParents": [
+        "FocusScreen",
+        "Column",
+        "More"
+      ],
       "properties": {
-        "component": { "const": "Notice" },
-        "devices": { "$ref": "#/$defs/Devices" },
-        "kind": { "type": "string", "enum": ["empty", "error", "irreversible"] },
-        "text": { "$ref": "common_types.json#/$defs/DynamicString", "maxLength": 60 },
-        "actions": { "$ref": "common_types.json#/$defs/ChildList", "maxItems": 2 }
+        "component": {
+          "const": "Notice"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "empty",
+            "error",
+            "irreversible"
+          ]
+        },
+        "text": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 60
+        },
+        "actions": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "maxItems": 2
+        }
       },
-      "required": ["component", "kind", "text"]
+      "required": [
+        "component",
+        "kind",
+        "text"
+      ]
+    },
+    "CutList": {
+      "type": "object",
+      "description": "Cuts of the current cut's chapter, in manuscript order, scrolling inside the list. On phones, phoneShows='current' (default) keeps only the current CutItem; 'all' keeps the whole list (원고).",
+      "allowedParents": [
+        "FocusScreen",
+        "Column"
+      ],
+      "properties": {
+        "component": {
+          "const": "CutList"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1
+        },
+        "phoneShows": {
+          "type": "string",
+          "enum": [
+            "current",
+            "all"
+          ]
+        }
+      },
+      "required": [
+        "component",
+        "children"
+      ]
+    },
+    "CutItem": {
+      "type": "object",
+      "description": "One cut in a list screen. Header: the cut label (number · speaker) selects the cut; ▶ plays from it. Then the cut's text (3 lines) and the task's tools for this cut. No other header buttons.",
+      "allowedParents": [
+        "CutList"
+      ],
+      "properties": {
+        "component": {
+          "const": "CutItem"
+        },
+        "cut": {
+          "$ref": "common_types.json#/$defs/DynamicNumber"
+        },
+        "speaker": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "text": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "current": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "select": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "play": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "maxItems": 4
+        }
+      },
+      "required": [
+        "component",
+        "cut",
+        "speaker",
+        "text",
+        "current",
+        "select",
+        "play"
+      ]
+    },
+    "AssetPicker": {
+      "type": "object",
+      "description": "Thumbnail + name button that opens the asset browser. `label` is the field name for assistive tech; it is visible only when the screen does not already say what is picked. No standing hint text.",
+      "allowedParents": [
+        "CutItem",
+        "ToolGroup",
+        "Column"
+      ],
+      "properties": {
+        "component": {
+          "const": "AssetPicker"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "background",
+            "character"
+          ]
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 16
+        },
+        "labelVisible": {
+          "type": "boolean"
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "action": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
+      },
+      "required": [
+        "component",
+        "kind",
+        "label",
+        "value",
+        "action"
+      ]
+    },
+    "Slider": {
+      "type": "object",
+      "description": "Range input with a short visible label and its value.",
+      "allowedParents": [
+        "ToolGroup"
+      ],
+      "properties": {
+        "component": {
+          "const": "Slider"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 12
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DataBinding"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "%",
+            "초"
+          ]
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "value",
+        "min",
+        "max",
+        "change"
+      ]
+    },
+    "Toggle": {
+      "type": "object",
+      "description": "Small on/off chip, e.g. 함께 보기 인물.",
+      "allowedParents": [
+        "ToolGroup"
+      ],
+      "properties": {
+        "component": {
+          "const": "Toggle"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 8
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DataBinding"
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "value",
+        "change"
+      ]
+    },
+    "TextArea": {
+      "type": "object",
+      "description": "Multi-line text of a cut (원고). The label is for assistive tech.",
+      "allowedParents": [
+        "CutItem",
+        "Column"
+      ],
+      "properties": {
+        "component": {
+          "const": "TextArea"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 16
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DataBinding"
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "value",
+        "change"
+      ]
+    },
+    "TextField": {
+      "type": "object",
+      "description": "Single-line text input with a short visible label; `name` is the accessible name when it differs.",
+      "allowedParents": [
+        "ToolGroup",
+        "CurrentCut"
+      ],
+      "properties": {
+        "component": {
+          "const": "TextField"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "label": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 12
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "value": {
+          "$ref": "common_types.json#/$defs/DataBinding"
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        }
+      },
+      "required": [
+        "component",
+        "label",
+        "value",
+        "change"
+      ]
     }
   },
   "functions": {}

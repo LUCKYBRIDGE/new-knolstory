@@ -140,7 +140,7 @@ type Add=(id:string,rule:string,message:string)=>void;
 function checkObject(value:Record<string,unknown>,schema:JsonSchema,catalog:A2uiCatalog,id:string,at:string,add:Add,component=false){
  for(const key of schema.required??[])if(value[key]===undefined)add(id,'required',`${at}${key}가 필요해요`);
  for(const [key,propValue] of Object.entries(value)){
-  if(component&&key==='id')continue;
+  if(component&&key==='id'||propValue===undefined)continue;
   const propSchema=schema.properties?.[key];
   if(!propSchema){if(component||schema.additionalProperties===false)add(id,'unknown-prop',`${at}${key}는 카탈로그에 없는 속성이에요`);continue;}
   checkValue(propValue,propSchema,catalog,id,`${at}${key}`,add);
@@ -253,6 +253,10 @@ function checkScreenRules(surface:Surface,root:A2uiComponent,catalog:A2uiCatalog
   if(tabs.selected!==root.task)add(tabs.id,'selected-task',`작업 탭은 이 화면(${String(root.task)})을 골라 두어야 해요`);
   if(Array.isArray(tabs.tabs)&&!tabs.tabs.includes(root.task))add(tabs.id,'selected-task','작업 탭에 이 화면이 없어요');
  }
+ // Rule 3: every focus screen shows the current cut's text — in CurrentCut, or as the current CutItem of a list.
+ const lists=all.filter(component=>component.component==='CutList');
+ if(root.current===undefined&&!lists.length)add('root','current-cut','현재 컷의 글이 보여야 해요: current나 CutList가 필요해요');
+ if(root.current!==undefined&&lists.length)add('root','current-cut','현재 컷은 한 곳에만 둬요: current와 CutList를 함께 쓰지 않아요');
  const primaries=all.filter(component=>component.component==='Button'&&component.variant==='primary');
  if(primaries.length>1)primaries.slice(1).forEach(button=>add(button.id,'one-primary','색을 채운 주 단추는 한 화면에 하나예요'));
  // One way per job: the same action twice on a screen, on any shared device, is a duplicate.
@@ -267,4 +271,41 @@ function checkScreenRules(surface:Surface,root:A2uiComponent,catalog:A2uiCatalog
    seen.set(key,[...seen.get(key)??[],{id:component.id,devices}]);
   }
  }
+}
+
+/**
+ * Accessible names of the controls a blueprint shows on a device under `fromId`, with every More closed
+ * (its summary counts, its contents do not). Used to compare a blueprint with the real screen.
+ */
+export function controlNames(surface:Surface,device:Device,fromId='root'):string[]{
+ const names:string[]=[];
+ const read=(raw:unknown)=>{const resolved=raw&&typeof raw==='object'&&'path' in raw?readPointer(surface.data,String((raw as {path:unknown}).path)):raw;return resolved===undefined||resolved===null?'':String(resolved);};
+ const visit=(id:string)=>{
+  const c=surface.components.get(id);
+  if(!c||!effectiveDevices(surface,id).includes(device))return;
+  switch(c.component){
+   case 'Button':case 'Slider':case 'TextArea':names.push(read(c.label));break;
+   case 'Choice':case 'TextField':names.push(read(c.name??c.label));break;
+   case 'CutCard':names.push(c.side==='previous'?'이전 컷':'다음 컷');break;
+   case 'CurrentCut':
+    for(const child of childIds(c))visit(child);
+    names.push('이 컷부터 재생');
+    if(c.editable===true)names.push(`${read(c.cut)}컷 글`);
+    return;
+   case 'IconButton':names.push(read(c.name));break;
+   case 'Toggle':names.push(read(c.name??c.label));break;
+   case 'AssetPicker':names.push(`${read(c.label)} 이미지 찾기 · ${read(c.value)}`);break;
+   case 'More':names.push(read(c.summary));return;
+   case 'CutList':
+    for(const child of childIds(c))if(device!=='phone'||c.phoneShows==='all'||read(surface.components.get(child)?.current)==='true')visit(child);
+    return;
+   case 'CutItem':
+    if(device!=='phone'||[...surface.components.values()].some(list=>list.component==='CutList'&&list.phoneShows==='all'&&childIds(list).includes(c.id)))names.push(`${read(c.cut)}컷 · ${read(c.speaker)} · 이 컷 선택`);
+    names.push('이 컷부터 재생');
+    break;
+  }
+  for(const child of childIds(c))visit(child);
+ };
+ visit(fromId);
+ return names;
 }
