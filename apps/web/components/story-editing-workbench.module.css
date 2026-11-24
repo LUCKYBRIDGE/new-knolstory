@@ -555,3 +555,23 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){height:36px;min-height:0;padding-block:0}
 .workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker>button{position:relative;height:36px;min-height:0;padding-block:0}
 .workbench[data-screen=basic] .current>fieldset.basicSpeaker>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
+
+/* E2 (2026-11-24): portrait-phone 쓰기 stage strip. The preview keeps its 16:9 size and the strip shows its upper middle
+   (background and characters, above the dialogue box); one toggle opens and closes it. Only the plain writing grid
+   (no path fork) has a strip row, so every strip rule is scoped to it. */
+.stageStripToggle{display:none}
+@media(max-width:700px) and (min-height:441px){
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true][data-cut-arrangement]:not(:has(.pathFork)):has(>.previewSlot[data-stage-strip=strip]){grid-template-rows:96px minmax(0,1fr) auto}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip]{position:relative}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip=strip]{height:96px;border-radius:var(--radius-panel)}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip=strip]>:not(.stageStripToggle){position:absolute;left:0;right:0;top:48px;height:auto;aspect-ratio:16/9;transform:translateY(-40%)}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot>.stageStripToggle{display:inline-grid;place-items:center;position:absolute;z-index:3;min-height:0;padding:0;border:1px solid #fff8;background:#183331d9;color:#fff;font-size:var(--text-small)}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip=open]>.stageStripToggle{top:8px;right:8px;width:36px;height:36px;border-radius:50%}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip=open]>.stageStripToggle::after{content:'';position:absolute;inset:-4px}
+ /* Collapsed, the whole strip is the button; the visible chip sits at the right edge. */
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip=strip]>.stageStripToggle{inset:0;width:auto;height:auto;border:0;background:transparent;justify-items:end;align-items:end;padding:8px}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot[data-stage-strip=strip]>.stageStripToggle>span{display:inline-grid;place-items:center;width:28px;height:28px;border:1px solid #fff8;border-radius:50%;background:#183331d9}
+ .workbench.workbench[data-phone-editor=true][data-screen=basic] .body.body[data-basic=true]:not(:has(.pathFork))>.previewSlot>.stageStripToggle:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+}
+/* While the keyboard covers the screen the stage and the current cut share one cell; the strip toggle must not cover the cut's controls. */
+[data-keyboard-occluded=true] .workbench .previewSlot>.stageStripToggle{display:none}
