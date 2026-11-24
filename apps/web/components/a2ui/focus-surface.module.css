@@ -94,3 +94,6 @@
 .cutItem .more>summary{padding:0 8px;border:1px solid var(--line);border-radius:var(--radius-control)}
 .cutItem .moreBody{padding-top:8px}
 .textField{width:8em;height:36px;min-height:0;padding:0 8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);font:inherit}
+/* In a tool row every field puts its label above the control, like the real list screens; the CurrentCut head keeps them inline. */
+.toolGroup>.choice{display:grid;gap:4px;flex:1 1 120px;min-height:0}
+.toolGroup>.choice>select{width:100%}
