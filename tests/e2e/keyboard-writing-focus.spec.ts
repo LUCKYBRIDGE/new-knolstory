@@ -78,7 +78,7 @@ test('keyboard prioritizes the focused speaker name rather than the cut body and
  await page.setViewportSize({width:360,height:740});await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');
  const field=page.getByRole('textbox',{name:'현재 컷 화자',exact:true});await field.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:260});visualViewport!.dispatchEvent(new Event('resize'));});
  await expect(page.locator('main[data-keyboard-occluded=true]')).toBeVisible();await expect(page.getByRole('complementary',{name:'다음 컷과 참고 정보'})).toBeHidden();await expect(page.locator('[data-current-cut] textarea')).toBeHidden();await expect(field).toBeFocused();
- const rect=await field.boundingBox();expect(rect!.height).toBeGreaterThanOrEqual(44);expect(rect!.y).toBeGreaterThanOrEqual(0);expect(rect!.y+rect!.height).toBeLessThanOrEqual(261);
+ const rect=await field.boundingBox();expect(rect!.height).toBeGreaterThanOrEqual(36);expect(await field.evaluate(el=>el.closest('label')!.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);expect(rect!.y).toBeGreaterThanOrEqual(0);expect(rect!.y+rect!.height).toBeLessThanOrEqual(261);
  await field.fill('화자 검사');await expect(field).toHaveValue('화자 검사');await page.evaluate(()=>{delete (visualViewport as unknown as {height?:number}).height;visualViewport!.dispatchEvent(new Event('resize'));});await expect(page.locator('[data-current-cut] textarea')).toBeVisible();await expect(field).toHaveValue('화자 검사');
 });
 
