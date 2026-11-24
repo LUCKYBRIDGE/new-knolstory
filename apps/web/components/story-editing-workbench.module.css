@@ -575,3 +575,7 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 }
 /* While the keyboard covers the screen the stage and the current cut share one cell; the strip toggle must not cover the cut's controls. */
 [data-keyboard-occluded=true] .workbench .previewSlot>.stageStripToggle{display:none}
+/* Folded cut tools keep a visible open/closed mark (the flex summary drops the browser's marker); the list toolbar keeps 8px from the top bar. */
+.primary>details>summary::after{content:'▾';margin-left:auto;padding-left:8px;color:var(--ink-soft)}
+.primary>details[open]>summary::after{content:'▴'}
+.editingContent>.options:not([hidden]){padding-top:8px}
