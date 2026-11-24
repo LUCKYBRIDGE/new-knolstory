@@ -900,3 +900,10 @@ main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-par
  .shell .header .cutNav button[data-cut-step]::before{inset:-4px -4px}
  .shell .header .cutNav .cutPosition{padding:0 8px}
 }
+
+/* E6 (2026-11-24): short landscape phones lay the settings drawer out in two columns, like the reader menu.
+   Group order stays 편집 → 작품 설정 → 파일·저장 → 화면·나가기 (row by row); the drawer head spans both columns. */
+@media (max-height:500px) and (min-width:560px){
+ .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;align-content:start;gap:12px;position:fixed;left:12px;right:12px;top:var(--work-menu-top,52px);width:auto;max-width:none;max-height:calc(100dvh - var(--work-menu-top,52px) - 8px)}
+ .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor]>:first-child{grid-column:1/-1}
+}
