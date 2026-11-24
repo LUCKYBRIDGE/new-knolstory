@@ -6,15 +6,45 @@ import type {WorkSection} from '../lib/memo-navigation';
 import {AppInstallButton} from './app-install-button';
 import {StoryTransferPanel} from './story-transfer-panel';
 import styles from './story-workspace.module.css';
+import type {A2uiComponent} from '@knolstory/ui';
+import {FocusSurface,type FocusSurfaceAction} from './a2ui/focus-surface';
+import {topBarSurface,TOP_BAR_EVENTS} from './a2ui/editor-surfaces';
 type Props={onlineAction?:ReactNode;exitActions?:ReactNode;fullscreen?:boolean;onFullscreen?:()=>void;unifiedSettings?:boolean;settingsExtras?:ReactNode;scoresEnabled?:boolean;disabled?:boolean;children?:ReactNode;localFileActions?:ReactNode;recovery?:ReactNode;project:StoryProject;compact:boolean;manageOpen:boolean;hydrated:boolean;loadComplete:boolean;onManage:(open:boolean)=>void;onExport:()=>void;onSave:()=>void;onImportFile:(file?:File)=>void;onImportArchive:(archive:AuthoringArchive)=>void;onError:(message:string)=>void;onLibrary:()=>void;onPrepare:(section:WorkSection)=>void};
-export function WorkspaceManagement(p:Props){return <header className={styles.header}>
- {!p.unifiedSettings&&<><div className={styles.brand}>놀스토리</div><button disabled={p.disabled} onClick={p.onLibrary}>서재로</button></>}
- <details data-work-menu className={styles.management} open={!p.compact||p.manageOpen} onToggle={event=>{if(event.currentTarget.open)event.currentTarget.style.setProperty('--work-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);if(p.compact&&event.currentTarget.open!==p.manageOpen)p.onManage(event.currentTarget.open);}}><summary aria-label={p.unifiedSettings?'설정':undefined}>{p.unifiedSettings?<><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg><span>설정</span></>:'작품'}</summary><div data-system-menu={p.unifiedSettings?'editor':undefined} className={styles.controls}>{p.unifiedSettings&&<div className={styles.systemMenuHeader}><div><span>편집 메뉴</span><strong>{p.project.title}</strong></div><button type="button" aria-label="편집 설정 닫기" onClick={event=>{const menu=event.currentTarget.closest('details');if(menu){menu.open=false;p.onManage(false);menu.querySelector<HTMLElement>(':scope > summary')?.focus();}}} data-close-icon title="닫기"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></button></div>}<div role="group" aria-label="현재 컷과 편집 설정" className={styles.systemMenuSettings}>{p.settingsExtras}</div>
- <div role="group" aria-label="작품 설정" className={styles.workMenuGroup}><span className={styles.workMenuHeading}>작품 설정</span><button disabled={p.disabled} onClick={()=>p.onPrepare('info')}>작품 정보·표지</button><button disabled={p.disabled} onClick={()=>p.onPrepare('planning')}>이야기 기획</button><button disabled={p.disabled} onClick={()=>p.onPrepare('memos')}>창작 메모</button>{p.scoresEnabled!==false&&<button disabled={p.disabled} onClick={()=>p.onPrepare('scores')}>이야기 점수</button>}</div>
- <div role="group" aria-label="파일·저장" className={styles.workMenuGroup}><span className={styles.workMenuHeading}>파일·저장</span>{p.localFileActions??<button onClick={p.onExport}>작품 파일 내보내기</button>}
- <label className={styles.import}>작품 파일 가져오기<input aria-label="작품 파일 가져오기" disabled={!p.loadComplete||p.disabled} type="file" accept=".knolstory,.knolsotry,.nolstory,.json,.xlsx,.tsv,.csv" onChange={event=>{p.onImportFile(event.target.files?.[0]);event.target.value='';}}/></label>
- <small className={styles.workMenuHint}>가져온 파일은 확인 후 내 사본으로 열어요.</small><details data-file-exchange><summary>파일 교환·보관 도구</summary>{p.localFileActions&&<button onClick={p.onExport}>작품 파일 내보내기</button>}<button disabled={!p.hydrated} onClick={p.onSave}>임시 보관 다시 시도</button><StoryTransferPanel key={p.project.id} project={p.project} onError={p.onError} onImport={p.onImportArchive}/></details>{p.recovery&&<div data-storage-recovery>{p.recovery}</div>}</div>{p.unifiedSettings&&<div role="group" aria-label="화면·나가기" className={styles.workMenuGroup}><span className={styles.workMenuHeading}>화면·나가기</span>{p.exitActions}<AppInstallButton noteClassName={styles.workMenuHint}/><button disabled={p.disabled} onClick={p.onLibrary}>서재로</button></div>}</div></details>{p.children}
- {p.unifiedSettings&&p.onlineAction}
- {p.unifiedSettings&&p.onFullscreen&&<button type="button" data-fullscreen-shortcut className={styles.fullscreenShortcut} aria-label={p.fullscreen?'편집 화면 전체 화면 해제':'편집 화면 전체 화면'} title={p.fullscreen?'전체 화면 해제':'전체 화면'} aria-pressed={!!p.fullscreen} disabled={p.disabled||!p.loadComplete} onClick={p.onFullscreen}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{p.fullscreen?<path d="M9 3v6H3m18 0h-6V3M3 15h6v6m6 0v-6h6"/>:<path d="M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6"/>}</svg></button>}
- {p.unifiedSettings&&<button type="button" className={styles.libraryHome} aria-label="서재 · 홈으로 이동" title="서재로 이동" disabled={p.disabled||!p.loadComplete} onClick={p.onLibrary}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-7h6v7"/></svg><span>서재</span></button>}
- </header>;}
+export function WorkspaceManagement(p:Props){
+ // A2UI: the drawer, its group heads and buttons, and the 전체 화면·서재 shortcuts come from the focus editor catalog
+ // (editor-surfaces.ts → topBarSurface); file tools, the current-cut settings and leaving actions fill its Slots.
+ const unified=!!p.unifiedSettings,open=!p.compact||p.manageOpen;
+ const surface=topBarSurface({unified,title:p.project.title,open,disabled:!!p.disabled,scores:p.scoresEnabled!==false,fullscreen:!!p.fullscreen,fullscreenAvailable:unified&&!!p.onFullscreen,loadComplete:p.loadComplete});
+ const onAction=({action}:FocusSurfaceAction)=>{
+  const event='event' in action?action.event:undefined;
+  if(event?.name===TOP_BAR_EVENTS.toggle){const now=event.context?.open===true;const menu=document.querySelector<HTMLElement>('[data-work-menu]');if(now&&menu)menu.style.setProperty('--work-menu-top',`${menu.getBoundingClientRect().bottom+4}px`);if(p.compact&&now!==p.manageOpen)p.onManage(now);}
+  if(event?.name===TOP_BAR_EVENTS.close)p.onManage(false);
+  if(event?.name===TOP_BAR_EVENTS.prepare&&typeof event.context?.section==='string')p.onPrepare(event.context.section as WorkSection);
+  if(event?.name===TOP_BAR_EVENTS.library)p.onLibrary();
+  if(event?.name===TOP_BAR_EVENTS.fullscreen)p.onFullscreen?.();
+ };
+ const attrs=(component:A2uiComponent)=>{
+  if(component.id==='drawer')return {className:styles.management,'data-work-menu':''};
+  if(component.component==='ToolGroup')return {className:styles.workMenuGroup};
+  if(component.component==='Button')return {className:''};
+  if(component.id==='fullscreen')return {className:styles.fullscreenShortcut,'data-fullscreen-shortcut':''};
+  if(component.id==='library')return {className:styles.libraryHome};
+  return undefined;
+ };
+ const draw=(rootId:string)=><FocusSurface inline surface={surface} rootId={rootId} device="tablet" attrs={attrs} onAction={onAction}
+  skin={{drawerPanel:styles.controls,drawerHead:styles.systemMenuHeader,groupLabel:styles.workMenuHeading}}
+  slots={{
+   settings:<div role="group" aria-label="현재 컷과 편집 설정" className={styles.systemMenuSettings}>{p.settingsExtras}</div>,
+   files:<>{p.localFileActions??<button onClick={p.onExport}>작품 파일 내보내기</button>}
+    <label className={styles.import}>작품 파일 가져오기<input aria-label="작품 파일 가져오기" disabled={!p.loadComplete||p.disabled} type="file" accept=".knolstory,.knolsotry,.nolstory,.json,.xlsx,.tsv,.csv" onChange={event=>{p.onImportFile(event.target.files?.[0]);event.target.value='';}}/></label>
+    <small className={styles.workMenuHint}>가져온 파일은 확인 후 내 사본으로 열어요.</small><details data-file-exchange><summary>파일 교환·보관 도구</summary>{p.localFileActions&&<button onClick={p.onExport}>작품 파일 내보내기</button>}<button disabled={!p.hydrated} onClick={p.onSave}>임시 보관 다시 시도</button><StoryTransferPanel key={p.project.id} project={p.project} onError={p.onError} onImport={p.onImportArchive}/></details>{p.recovery&&<div data-storage-recovery>{p.recovery}</div>}</>,
+   leave:<>{p.exitActions}<AppInstallButton noteClassName={styles.workMenuHint}/></>,
+  }}/>;
+ return <header className={styles.header}>
+  {!unified&&<><div className={styles.brand}>놀스토리</div><button disabled={p.disabled} onClick={p.onLibrary}>서재로</button></>}
+  {draw('drawer')}{p.children}
+  {unified&&p.onlineAction}
+  {unified&&p.onFullscreen&&draw('fullscreen')}
+  {unified&&draw('library')}
+ </header>;
+}

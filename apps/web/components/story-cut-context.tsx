@@ -2,6 +2,8 @@
 import {chapterLabel,chaptersForDisplay,cutLabel,type StoryProject,type StoryLine} from '@knolstory/story-domain';
 import {adjacentManuscriptCuts} from './editor-context';
 import styles from './story-workspace.module.css';
+import {FocusSurface} from './a2ui/focus-surface';
+import {cutPlaceSurface,CUT_PLACE_EVENT} from './a2ui/editor-surfaces';
 type Props={project:StoryProject;line:StoryLine;ordered:StoryLine[];onSelect:(id:string)=>void|boolean;disabled:boolean};
 /** ‘2장A · 3컷’: the chapter's number and branch with the cut number, without the chapter title. */
 function shortPosition(project:StoryProject,line:StoryLine){
@@ -15,7 +17,15 @@ function shortPosition(project:StoryProject,line:StoryLine){
  * select lies over the label, so the full list (chapter title, opening words) opens on demand only.
  */
 export function StoryCutPosition({stepsTarget,...p}:Props&{stepsTarget?:(node:HTMLSpanElement|null)=>void}){
- return <div className={styles.cutNav} data-cut-nav><span ref={stepsTarget} className={styles.cutSteps}/><label className={styles.cutPosition}><span className={styles.cutPositionLabel}>현재 장 · 컷</span><span className={styles.cutShort} aria-hidden="true">{shortPosition(p.project,p.line)}<svg viewBox="0 0 12 12" width="12" height="12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span><select aria-label="현재 장과 컷 이동" value={p.line.id} disabled={p.disabled} onChange={event=>{if(p.onSelect(event.target.value)===false)event.currentTarget.value=p.line.id;}}>{chaptersForDisplay(p.project.chapters).map(chapter=><optgroup key={chapter.id} label={chapterLabel(chapter)}>{p.ordered.filter(cut=>cut.chapterId===chapter.id).map(cut=><option key={cut.id} value={cut.id}>{cutLabel(chapter,cut)} · {cut.text.slice(0,36)||'빈 컷'}</option>)}</optgroup>)}</select></label></div>;
+ // A2UI: drawn from the focus editor catalog (CutNavigator); the open screen's ‹ › arrive through the `steps` Slot.
+ const chapter=p.project.chapters.find(item=>item.id===p.line.chapterId);
+ const groups=chaptersForDisplay(p.project.chapters).map(item=>({label:chapterLabel(item),options:p.ordered.filter(cut=>cut.chapterId===item.id).map(cut=>({value:cut.id,label:`${cutLabel(item,cut)} · ${cut.text.slice(0,36)||'빈 컷'}`}))}));
+ const surface=cutPlaceSurface({short:shortPosition(p.project,p.line),value:p.line.id,groups,disabled:p.disabled,chapter:chapter?.chapterNumber??chapter?.order??1,cut:p.line.order});
+ return <FocusSurface inline surface={surface} rootId="place" device="tablet"
+  attrs={component=>component.id==='place'?{className:styles.cutNav,'data-cut-nav':''}:undefined}
+  skin={{cutPosition:styles.cutPosition,cutPositionLabel:styles.cutPositionLabel,cutShort:styles.cutShort}}
+  slots={{steps:<span ref={stepsTarget} className={styles.cutSteps}/>}}
+  onAction={({action})=>{const event='event' in action?action.event:undefined;const id=event?.context?.value;if(event?.name===CUT_PLACE_EVENT&&typeof id==='string')p.onSelect(id);}}/>;
 }
 export function StoryAdjacentCut(p:Props&{direction:'previous'|'next'}){
  const cut=adjacentManuscriptCuts(p.ordered,p.line.id)[p.direction];
