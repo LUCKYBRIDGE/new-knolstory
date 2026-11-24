@@ -10,4 +10,4 @@
 
 카탈로그 ID `https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json`은 호환을 깨는 변경 때만 v2로 올린다. 사양 출처: [google/A2UI](https://github.com/google/A2UI), [카탈로그 개념](https://a2ui.org/concepts/catalogs/), [v0.9 소개](https://developers.googleblog.com/a2ui-v0-9-generative-ui/).
 
-실제 화면에 카탈로그 부분을 직접 그릴 때는 [list-tools-surface.ts](../../../apps/web/components/a2ui/list-tools-surface.ts)처럼 A2UI 메시지를 만들고 `FocusSurface`(`rootId`로 부분만, `inline`으로 화면 배치에 맡김)로 그린 뒤 `onAction`의 이벤트 이름으로 실제 동작을 잇는다. 편집 셸의 단추·입력 규칙이 더 구체적이므로 크기는 렌더러 CSS의 `.inline` 규칙이 지킨다.
+실제 화면에 카탈로그 부분을 직접 그릴 때는 [list-tools-surface.ts](../../../apps/web/components/a2ui/list-tools-surface.ts)처럼 A2UI 메시지를 만들고 `FocusSurface`(`rootId`로 부분만, `inline`으로 화면 배치에 맡김)로 그린 뒤 `onAction`의 이벤트 이름으로 실제 동작을 잇는다. 편집 셸의 단추·입력 규칙이 더 구체적이므로 크기는 렌더러 CSS의 `.inline` 규칙이 지킨다. 화면이 직접 그려야 하는 부분(그림 고르기, 무대 등)은 `Slot`에 `slots`로 채우고, 기기별 CSS는 `skin`, 화면 속성은 `attrs`로 넘긴다([editor-surfaces.ts](../../../apps/web/components/a2ui/editor-surfaces.ts)).
