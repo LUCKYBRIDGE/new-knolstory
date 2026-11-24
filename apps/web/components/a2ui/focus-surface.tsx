@@ -9,14 +9,14 @@ import styles from './focus-surface.module.css';
 
 export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action:A2uiAction};
 /** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
-/** A host screen keeps its tuned CSS (skin: class per part), adds its own attributes (attrs) and fills Slots (slots). */
+/** A host screen keeps its tuned CSS (skin: class per part) and adds its own attributes (attrs); custom components are registered with `custom`. */
 export type FocusSkin=Partial<Record<'pickerLabel'|'pickerButton'|'srOnly'|'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText'|'cutPosition'|'cutPositionLabel'|'cutShort'|'drawerPanel'|'drawerHead'|'groupLabel'|'cardAdd'|'excerpt'|'pathChoice'|'pathFrom'|'pathSeparate',string>>;
-type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;slots?:Record<string,ReactNode>;
+type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;
  /** Korean IME composition in a TextField: the host must know at once (it guards navigation and saving). */
  onComposing?:(composing:boolean)=>void;
  /** Implementations of the catalog's custom (x-host) components, by component name. */
  custom?:Partial<Record<string,(component:A2uiComponent)=>ReactNode>>};
-type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;slots:Record<string,ReactNode>;composing:(on:boolean)=>void;custom:Partial<Record<string,(component:A2uiComponent)=>ReactNode>>};
+type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;composing:(on:boolean)=>void;custom:Partial<Record<string,(component:A2uiComponent)=>ReactNode>>};
 type Renderer=(component:A2uiComponent,ctx:Ctx)=>ReactNode;
 
 const TASK_LABELS={basic:'쓰기',text:'원고',background:'배경',characters:'인물',audio:'음향',direction:'연출'} as const;
@@ -69,7 +69,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   </div>;
   // Real editor: the short position with the full list as a native select laid over it; arrows come through `steps`.
   return <div {...host(ctx,c,styles.cutNavigator)}>
-   {c.steps!==undefined&&ctx.render(c.steps)}
+   {c.previousButton!==undefined&&ctx.render(c.previousButton)}{c.nextButton!==undefined&&ctx.render(c.nextButton)}
    <label className={ctx.skin.cutPosition}><span className={ctx.skin.cutPositionLabel}>현재 장 · 컷</span>
     <span className={ctx.skin.cutShort} aria-hidden="true">{text(ctx,c.short)}<svg viewBox="0 0 12 12" width="12" height="12"><path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></span>
     <select aria-label={text(ctx,c.name)||'현재 장과 컷 이동'} value={text(ctx,c.value)} disabled={value(ctx,c.disabled)===true} onChange={event=>changeWith(ctx,c,event.currentTarget.value)}>
@@ -173,7 +173,6 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
   </article>;
  },
- Slot:(c,ctx)=><Fragment>{ctx.slots[String(c.name)]??null}</Fragment>,
  AssetPicker:(c,ctx)=>{
   const field=text(ctx,c.label),name=`${field.endsWith('이미지')?`${field} 찾기`:`${field} 이미지 찾기`} · ${text(ctx,c.value)}`,hint=text(ctx,c.hint),hintId=`${ctx.surface.surfaceId}-${c.id}-hint`;
   return <div {...host(ctx,c,styles.assetPicker)}>
@@ -209,7 +208,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    </div>
   </details>;
  },
- AssetThumbnail:hostPart,ScenePreview:hostPart,SoundEditor:hostPart,DirectionEditor:hostPart,TextVariants:hostPart,StagingImport:hostPart,CutSettings:hostPart,FileTools:hostPart,LeaveActions:hostPart,HostPanel:hostPart,
+ AssetThumbnail:hostPart,CutTools:hostPart,ScenePreview:hostPart,SoundEditor:hostPart,DirectionEditor:hostPart,TextVariants:hostPart,StagingImport:hostPart,CutSettings:hostPart,FileTools:hostPart,LeaveActions:hostPart,HostPanel:hostPart,
  Notice:(c,ctx)=>{const {className,...rest}=ctx.attrs(c);
   // Inside a screen a Notice is one line of the host's own type (className given); in the catalog view it is a boxed notice.
   if(className!==undefined)return c.kind==='warning'?<div className={className} role="status" {...rest}>{text(ctx,c.text)}</div>:<p className={className} role={c.kind==='error'?'alert':undefined} {...rest}>{text(ctx,c.text)}</p>;
@@ -220,9 +219,9 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
 };
 
 /** Draws the surface's root for one device. Components hidden on that device are left out. */
-export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,slots={},onComposing,custom}:Props){
+export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,onComposing,custom}:Props){
  const ctx:Ctx={
-  surface,device,skin,slots,attrs:component=>attrs?.(component)??{},composing:on=>onComposing?.(on),custom:custom??{},
+  surface,device,skin,attrs:component=>attrs?.(component)??{},composing:on=>onComposing?.(on),custom:custom??{},
   fire:(id,action)=>{if(action)onAction?.({surfaceId:surface.surfaceId,sourceComponentId:id,action:action as A2uiAction});},
   render:id=>{
    if(typeof id!=='string')return null;

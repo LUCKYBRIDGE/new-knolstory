@@ -3,7 +3,7 @@
   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json",
   "title": "KnolStory 집중 편집 화면 카탈로그",
   "description": "A2UI v0.9 catalog for KnolStory's focus editing screens. Screens are composed only from these components. Source rules: DESIGN.md '집중 편집 화면 규칙 — 2026-11-24'.",
-  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Use Slot for parts the screen draws itself (asset browser, stage, timeline); never put controls of the catalog inside a Slot. Components marked x-host are custom catalog components: the catalog fixes their place and props; the screen registers how they are drawn. Use them instead of Slot whenever a named one fits.",
+  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Components marked x-host are custom catalog components: the catalog fixes their place and props; the screen registers how they are drawn. Every part of a screen is either a catalog component or one of these named custom components.",
   "$defs": {
     "Device": {
       "type": "string",
@@ -122,7 +122,7 @@
     },
     "CutNavigator": {
       "type": "object",
-      "description": "The single chapter/cut place: ‹ 1장 · 3컷 ▾ ›. Shows only the short position; chapter titles and first words of cuts are inside the list (a native select grouped by chapter). The arrows may come from the open screen through the `steps` Slot.",
+      "description": "The single chapter/cut place: ‹ 1장 · 3컷 ▾ ›. Shows only the short position; chapter titles and first words of cuts are inside the list (a native select grouped by chapter). The arrows are IconButtons (previousButton/nextButton) that follow the open screen's path.",
       "allowedParents": [
         "TopBar"
       ],
@@ -196,7 +196,10 @@
         "disabled": {
           "$ref": "common_types.json#/$defs/DynamicBoolean"
         },
-        "steps": {
+        "previousButton": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "nextButton": {
           "$ref": "common_types.json#/$defs/ComponentId"
         }
       },
@@ -329,7 +332,7 @@
     },
     "CutCard": {
       "type": "object",
-      "description": "The neighbour place before/after the current cut. kind=cut: the neighbouring cut with a scene preview (preview Slot) — tablet/desktop context only (rule 4). kind=add: the empty next place offers the next cut. kind=none: an empty place said in one short line (story start, no cut).",
+      "description": "The neighbour place before/after the current cut. kind=cut: the neighbouring cut with a scene preview (preview: the custom ScenePreview) — tablet/desktop context only (rule 4). kind=add: the empty next place offers the next cut. kind=none: an empty place said in one short line (story start, no cut).",
       "allowedParents": [
         "FocusScreen",
         "Column"
@@ -1107,36 +1110,6 @@
         "change"
       ]
     },
-    "Slot": {
-      "type": "object",
-      "description": "A place the screen fills with something the catalog does not own (the asset browser field, the Ren'Py stage, a timeline). The catalog decides where it sits; the host draws it by name.",
-      "allowedParents": [
-        "Column",
-        "CutCard",
-        "CutItem",
-        "CutNavigator",
-        "Drawer",
-        "FocusScreen",
-        "More",
-        "ToolGroup"
-      ],
-      "properties": {
-        "component": {
-          "const": "Slot"
-        },
-        "devices": {
-          "$ref": "#/$defs/Devices"
-        },
-        "name": {
-          "type": "string",
-          "maxLength": 60
-        }
-      },
-      "required": [
-        "component",
-        "name"
-      ]
-    },
     "Drawer": {
       "type": "object",
       "description": "The settings drawer of the top bar: a summary button (☰ 설정) that opens a panel with a head (subtitle, title, × close) and groups. Things outside the focus screen live here: work settings, files and saving, screen and leaving.",
@@ -1511,6 +1484,33 @@
       "required": [
         "component",
         "name"
+      ]
+    },
+    "CutTools": {
+      "type": "object",
+      "x-host": true,
+      "description": "The task's tools for one cut of a list screen (text box, background picker and display, character cards, sound or direction panel) and its reference views. A custom catalog component: the screen registers its implementation, built from catalog parts.",
+      "allowedParents": [
+        "CutItem"
+      ],
+      "properties": {
+        "component": {
+          "const": "CutTools"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "lineId": {
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/$defs/Task"
+        }
+      },
+      "required": [
+        "component",
+        "lineId",
+        "task"
       ]
     }
   },

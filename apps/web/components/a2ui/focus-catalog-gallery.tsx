@@ -1,9 +1,13 @@
 'use client';
 import {useMemo,useState} from 'react';
-import {applyMessages,focusScreenBlueprints,validateSurface,type Device} from '@knolstory/ui';
+import {applyMessages,focusEditorCatalog,focusScreenBlueprints,validateSurface,type A2uiComponent,type Device} from '@knolstory/ui';
 import {FocusSurface,type FocusSurfaceAction} from './focus-surface';
 import styles from './focus-catalog-gallery.module.css';
 
+/** Catalog view: each custom (x-host) component is drawn as a labelled sample of what the editor registers there. */
+const sample=(component:A2uiComponent)=>{const schema=(focusEditorCatalog.components as Record<string,{description?:string}>)[component.component];
+ return <div className={styles.hostSample} data-host-sample={component.component}><strong>{component.component}</strong><small>{schema?.description?.split('. ')[0]}</small></div>;};
+const SAMPLES=Object.fromEntries(Object.entries(focusEditorCatalog.components as Record<string,{['x-host']?:boolean}>).filter(([,schema])=>schema['x-host']).map(([name])=>[name,sample]));
 const DEVICES:{device:Device;label:string;width:number}[]=[{device:'phone',label:'폰 360',width:360},{device:'tablet',label:'태블릿 768',width:768}];
 type Task=keyof typeof focusScreenBlueprints;
 
@@ -26,7 +30,7 @@ export function FocusCatalogGallery(){
   <div className={styles.frames}>
    {DEVICES.map(({device,label,width})=><figure key={device} className={styles.frame} style={{width}}>
     <figcaption>{label}</figcaption>
-    <FocusSurface surface={surface} device={device} onAction={setLast}/>
+    <FocusSurface surface={surface} device={device} onAction={setLast} custom={SAMPLES}/>
    </figure>)}
   </div>
  </main>;
