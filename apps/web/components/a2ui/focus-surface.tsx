@@ -11,8 +11,10 @@ export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action
 /** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
 /** A host screen keeps its tuned CSS (skin: class per part), adds its own attributes (attrs) and fills Slots (slots). */
 export type FocusSkin=Partial<Record<'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText',string>>;
-type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;slots?:Record<string,ReactNode>};
-type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;slots:Record<string,ReactNode>};
+type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;slots?:Record<string,ReactNode>;
+ /** Korean IME composition in a TextField: the host must know at once (it guards navigation and saving). */
+ onComposing?:(composing:boolean)=>void};
+type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;slots:Record<string,ReactNode>;composing:(on:boolean)=>void};
 type Renderer=(component:A2uiComponent,ctx:Ctx)=>ReactNode;
 
 const TASK_LABELS={basic:'쓰기',text:'원고',background:'배경',characters:'인물',audio:'음향',direction:'연출'} as const;
@@ -25,6 +27,9 @@ function value(ctx:Ctx,raw:unknown):unknown{
 const text=(ctx:Ctx,raw:unknown)=>{const resolved=value(ctx,raw);return resolved===undefined||resolved===null?'':String(resolved);};
 const list=(raw:unknown)=>Array.isArray(raw)?raw:[];
 const gapClass=(gap:unknown)=>styles[`gap${typeof gap==='number'?gap:8}`];
+/** A host may give a part its own class (attrs → className) to keep the screen's tuned CSS; other attrs pass through. */
+const host=(ctx:Ctx,c:A2uiComponent,fallback:string|undefined)=>{const {className,...rest}=ctx.attrs(c);return {className:className??fallback,...rest};};
+const changeWith=(ctx:Ctx,c:A2uiComponent,value:unknown)=>{const change=c.change as {event?:{context?:object}}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...(change.event.context??{}),value}}});};
 
 export const focusRenderers:Record<FocusComponentName,Renderer>={
  FocusScreen:(c,ctx)=><section className={styles.screen} data-a2ui-screen={String(c.task)} aria-label={`${TASK_LABELS[c.task as keyof typeof TASK_LABELS]} 편집`}>
@@ -76,18 +81,19 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   <span className={styles.cutText} data-lines="2">{text(ctx,c.text)}</span>
  </button>,
  Column:(c,ctx)=><div className={`${styles.column} ${gapClass(c.gap)}`}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>,
- ToolGroup:(c,ctx)=><div className={`${styles.toolGroup} ${gapClass(c.gap)}`} role="group" aria-label={text(ctx,c.name)}>
+ ToolGroup:(c,ctx)=><div role="group" aria-label={text(ctx,c.name)} {...host(ctx,c,`${styles.toolGroup} ${gapClass(c.gap)}`)}>
   {c.labelVisible===true&&<span className={styles.groupLabel} aria-hidden="true">{text(ctx,c.name)}</span>}
   {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
  </div>,
- Button:(c,ctx)=><button type="button" className={styles.button} data-variant={String(c.variant??'secondary')} title={typeof c.title==='string'?c.title:undefined}
-  disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.action)}>{text(ctx,c.label)}</button>,
+ Button:(c,ctx)=><button type="button" data-variant={String(c.variant??'secondary')} title={typeof c.title==='string'?c.title:undefined}
+  aria-label={c.name!==undefined?text(ctx,c.name):undefined} disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.action)} {...host(ctx,c,styles.button)}>
+  {c.icon==='play'&&<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2 L13 8 L4 14 Z" fill="currentColor"/></svg>}{text(ctx,c.label)}</button>,
  IconButton:(c,ctx)=><button type="button" className={styles.icon} aria-label={text(ctx,c.name)} title={text(ctx,c.name)} onClick={()=>ctx.fire(c.id,c.action)}>
   <span aria-hidden="true">{ICONS[c.icon as keyof typeof ICONS]}</span>
  </button>,
- Choice:(c,ctx)=><label className={styles.choice}>
+ Choice:(c,ctx)=><label {...host(ctx,c,styles.choice)}>
   <span>{text(ctx,c.label)}</span>
-  <select aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)} onChange={event=>{if(c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{...((c.change as {event:{context?:object}}).event.context??{}),value:event.currentTarget.value}}});}}>
+  <select aria-label={c.name!==undefined?text(ctx,c.name):undefined} title={typeof c.title==='string'?c.title:undefined} value={text(ctx,c.value)} disabled={value(ctx,c.disabled)===true} onChange={event=>changeWith(ctx,c,event.currentTarget.value)}>
    {list(c.options).map(option=>{const {value:optionValue,label}=option as {value:string;label:string};return <option key={optionValue} value={optionValue}>{label}</option>;})}
   </select>
  </label>,
@@ -96,10 +102,10 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   <summary>{text(ctx,c.summary)}</summary>
   <div className={styles.moreBody}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>
  </details>,
- TextField:(c,ctx)=><label className={styles.choice}>
+ TextField:(c,ctx)=><label {...host(ctx,c,styles.choice)}>
   <span>{text(ctx,c.label)}</span>
-  <input className={styles.textField} aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)}
-   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.value}}});}}/>
+  <input className={styles.textField} aria-label={c.name!==undefined?text(ctx,c.name):undefined} value={text(ctx,c.value)} maxLength={typeof c.maxChars==='number'?c.maxChars:undefined} disabled={value(ctx,c.disabled)===true}
+   onCompositionStart={()=>ctx.composing(true)} onCompositionEnd={()=>ctx.composing(false)} onChange={event=>changeWith(ctx,c,event.currentTarget.value)}/>
  </label>,
  CutList:(c,ctx)=><div className={styles.cutList} data-a2ui-cut-list>
   {list(c.children).filter(id=>ctx.device!=='phone'||c.phoneShows==='all'||value(ctx,ctx.surface.components.get(String(id))?.current)===true).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
@@ -144,9 +150,9 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
 };
 
 /** Draws the surface's root for one device. Components hidden on that device are left out. */
-export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,slots={}}:Props){
+export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,slots={},onComposing}:Props){
  const ctx:Ctx={
-  surface,device,skin,slots,attrs:component=>attrs?.(component)??{},
+  surface,device,skin,slots,attrs:component=>attrs?.(component)??{},composing:on=>onComposing?.(on),
   fire:(id,action)=>{if(action)onAction?.({surfaceId:surface.surfaceId,sourceComponentId:id,action:action as A2uiAction});},
   render:id=>{
    if(typeof id!=='string')return null;

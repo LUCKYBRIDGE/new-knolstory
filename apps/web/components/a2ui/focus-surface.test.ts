@@ -138,3 +138,18 @@ describe('real editor parts drawn by the catalog renderer',()=>{
   expect(renderToStaticMarkup(createElement(FocusSurface,{surface:make(true),device:'phone',rootId:'cut'}))).toContain('이 컷 선택');
  });
 });
+
+describe('쓰기 head drawn by the catalog renderer',()=>{
+ it('keeps names, the play icon, host classes and the linked-art Slot',async()=>{
+  const {basicHeadSurface}=await import('./editor-surfaces');
+  const surface=basicHeadSurface({speaker:'해설',kind:'narration',busy:false,kindDisabled:true});
+  expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'head',inline:true,
+   attrs:c=>c.id==='head'?{className:'head'}:c.id==='kind'?{className:'kind'}:undefined,slots:{linked:createElement('span',{className:'empty'})}}));
+  expect(markup).toContain('<div role="group" aria-label="현재 컷의 화자" class="head">');
+  expect(markup).toContain('aria-label="현재 컷 화자" maxLength="200" value="해설"');
+  expect(markup).toMatch(/<label class="kind"><span>종류<\/span><select aria-label="현재 컷 글 종류" title="글 종류 설정" disabled=""/);
+  expect(markup).toMatch(/aria-label="이 컷부터 재생"[^>]*><svg/);
+  expect(markup).toContain('<span class="empty"></span>');
+ });
+});

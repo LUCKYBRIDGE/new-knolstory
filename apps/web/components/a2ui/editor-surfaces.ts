@@ -32,3 +32,17 @@ export function cutItemSurface({lineId,cut,speaker,text,current,disabled,showTex
   {id:'tools',component:'Slot',name:'tools'},
  ],{cut,speaker,text,current,disabled});
 }
+
+export const BASIC_HEAD_EVENTS={speaker:'changeSpeaker',kind:'changeLineKind',play:'playFromCut'} as const;
+
+/** 쓰기: the current cut's head — 화자, (linked images Slot), 종류, ▶ 재생. */
+/** The linked-art Slot is always there so the head keeps its four columns (the screen leaves it empty when nothing is linked). */
+export function basicHeadSurface({speaker,kind,busy,kindDisabled}:{speaker:string;kind:string;busy:boolean;kindDisabled:boolean}):Surface{
+ return surfaceFrom('basic-head',[
+  {id:'head',component:'ToolGroup',name:'현재 컷의 화자',children:['speaker','linked','kind','play']},
+  {id:'speaker',component:'TextField',label:'화자',name:'현재 컷 화자',value:{path:'/speaker'},maxChars:200,disabled:{path:'/busy'},change:{event:{name:BASIC_HEAD_EVENTS.speaker}}},
+  {id:'linked',component:'Slot',name:'linked'},
+  {id:'kind',component:'Choice',label:'종류',name:'현재 컷 글 종류',title:'글 종류 설정',value:{path:'/kind'},disabled:{path:'/kindDisabled'},options:[{value:'dialogue',label:'대사'},{value:'narration',label:'해설'}],change:{event:{name:BASIC_HEAD_EVENTS.kind}}},
+  {id:'play',component:'Button',label:'재생',name:'이 컷부터 재생',icon:'play',title:'현재 컷부터 실제 이야기 재생',disabled:{path:'/busy'},action:{event:{name:BASIC_HEAD_EVENTS.play}}},
+ ],{speaker,kind,busy,kindDisabled:busy||kindDisabled});
+}

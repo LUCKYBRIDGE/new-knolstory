@@ -393,7 +393,7 @@
     },
     "Button": {
       "type": "object",
-      "description": "Text button. Visible height 32–36px, touch target 44px. Font is never larger than body text.",
+      "description": "Text button. Visible height 32–36px, touch target 44px. Font is never larger than body text. `name` is the accessible name when the visible label is shorter (e.g. ▶ 재생 → 이 컷부터 재생); an optional icon sits before the label.",
       "allowedParents": [
         "ToolGroup",
         "Notice"
@@ -426,6 +426,16 @@
         },
         "action": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "icon": {
+          "type": "string",
+          "enum": [
+            "play"
+          ]
         }
       },
       "required": [
@@ -522,6 +532,13 @@
         "name": {
           "$ref": "common_types.json#/$defs/DynamicString",
           "maxLength": 24
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
@@ -895,6 +912,13 @@
         },
         "change": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "maxChars": {
+          "type": "integer",
+          "minimum": 1
         }
       },
       "required": [
@@ -908,10 +932,11 @@
       "type": "object",
       "description": "A place the screen fills with something the catalog does not own (the asset browser field, the Ren'Py stage, a timeline). The catalog decides where it sits; the host draws it by name.",
       "allowedParents": [
-        "CutItem",
         "Column",
+        "CutItem",
+        "FocusScreen",
         "More",
-        "FocusScreen"
+        "ToolGroup"
       ],
       "properties": {
         "component": {
