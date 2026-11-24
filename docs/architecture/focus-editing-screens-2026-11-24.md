@@ -54,7 +54,21 @@
 - 조사: [google/A2UI](https://github.com/google/A2UI)(`a2ui-project/a2ui`로 옮겨 가는 중), v0.9 공개(2026-04, [소개](https://developers.googleblog.com/a2ui-v0-9-generative-ui/)), v1.0 후보. UI를 JSON 데이터(평평한 컴포넌트 목록 + id 참조 + 데이터 모델 JSON Pointer 연결)로 보내고, 클라이언트는 미리 정한 [카탈로그](https://a2ui.org/concepts/catalogs/)(컴포넌트마다 JSON Schema, `catalogId`, `instructions`)로만 그린다. 공식 React 렌더러 `@a2ui/react`(0.16, zod 필요)는 아직 0.x라 들이지 않고, 메시지·카탈로그 형식만 v0.9에 맞췄다 — 나중에 AI 기능이 생기면 같은 카탈로그를 그대로 넘길 수 있다.
 - 만든 것: `packages/ui`(`@knolstory/ui`) — 카탈로그 JSON(15개 컴포넌트), 메시지 적용·검사기 `surface.ts`, 여섯 화면 설계도 `screens/*.json`. `apps/web/components/a2ui/focus-surface.tsx` — 컴포넌트마다 렌더러 하나(4px·32–36px·44px 누르는 영역). 개발용 `/a2ui-catalog`(배포 빌드에서는 404). 절차는 [A2UI 카탈로그 스킬](../../.agents/skills/a2ui-focus-catalog/SKILL.md).
 - 규칙을 어떻게 막나: 자유 글 컴포넌트가 없다(문장은 `Notice` 빈 상태·오류·되돌릴 수 없는 일만). `ToolGroup` 4개까지, 간격 4·8·12·16·24만, 닫기는 아이콘, `CutCard`는 태블릿·컴퓨터만, `allowedParents`로 자리 고정. 스키마로 못 쓰는 것은 검사기가: 주 단추 하나, 같은 동작이 겹치는 기기에서 두 번(`one-way`), 작업 탭이 그 화면을 고름.
-- 한계: 설계도는 지금 화면의 뼈대와 대표 도구를 적은 것이고, 실제 편집 화면 코드는 아직 이 렌더러로 그리지 않는다. 다음 단계는 화면 하나(예: 배경)를 설계도와 맞추고 실제 화면의 조작 목록을 설계도와 비교하는 검사를 더하는 것.
+- 한계: 실제 편집 화면 코드는 이 렌더러로 그리지 않는다(렌더러는 설계도 보기·검사용). 대신 아래 ‘설계도와 실제 화면 맞추기’ 검사로 둘이 어긋나지 않게 한다.
+
+### 설계도와 실제 화면 맞추기 (2026-11-24 저녁, 자가개선 순환)
+순환: 실제 화면을 폰·태블릿에서 재기 → 카탈로그 규칙과 비교 → 실제 화면과 설계도를 함께 고치기 → 다시 재기.
+- **카탈로그 확장**: 실제 화면 5개(원고·배경·인물·음향·연출)는 컷 목록 화면이라 `CutList`·`CutItem`·`AssetPicker`·`Slider`·`Toggle`·`TextArea`·`TextField`를 더했다. 규칙 추가: 현재 컷은 `CurrentCut`이나 현재 `CutItem` 한 곳에만(`current-cut`), 폰은 원고만 컷 전체(`phoneShows:'all'`).
+- **실제 화면을 고친 것**(측정에서 찾은 규칙 위반):
+  - 목록 위 `편집할 장` 줄 삭제 — 위 막대 장·컷 칸과 같은 일(규칙 2·4). 목록은 현재 컷의 장을 따른다. 음향·연출 함께 편집의 통합 시간축은 그대로.
+  - 컷 머리 `이 컷 선택`·`이 컷부터 재생` 글자 단추 두 개 → `n컷 · 화자`를 누르면 선택(읽는 이름 ‘… · 이 컷 선택’), 재생은 ▶ 아이콘(보이는 36px, 누르는 44px).
+  - `함께 보기`는 태블릿 이상만(폰에서는 칩과 참고 칸 모두 없음, 규칙 4·7). 원고의 `현재 컷 찾기` + 칩 4개가 한 묶음 5개였던 것을 두 묶음으로.
+  - 상시 안내·중복 이름 걷기: 그림 고르기의 ‘썸네일로 이미지 찾기’, 배경 표시 조정 안의 설명 문장, 카드 안 ‘1컷 배경’·‘글상자 글’·‘인물 1’ 앞말(읽는 이름에는 남김). 접힘 머리는 `표시 조정`·`음향 수정`·`연출 수정`처럼 짧게.
+  - 크기: 인물 배치 select·기본 배치로·빼기, 배경 중심 초기화를 보이는 36px(누르는 44px, select는 감싼 label이 44px)로. 작업 셸의 `button`/`select` 44px 규칙이 더 구체적이라 선택자를 높였다. 음향·연출 요약은 작은 글씨.
+  - 결과(선녀와 나무꾼 1컷, 태블릿 768): 카드 높이 원고 263→232, 음향·연출 265→223, 인물 1077→952px.
+- **검사**: `tests/e2e/a2ui-blueprint-conformance.spec.ts`(host 등록) — 폰 390·태블릿 768에서 쓰기 화면 전체와 다섯 목록 화면(목록 위 도구 + 현재 컷)의 조작 이름이 설계도(`controlNames`)와 같은지 양방향으로 본다(숫자는 #, 고른 자료 이름은 뺀다). 처음 돌렸을 때 원고 폰의 ‘컷 전체 표시’, 함께 보기 숨김 차이를 잡아 냈다.
+- **바꾼 기존 검사**: `이 컷 선택` 이름(정규식), `편집할 장` 대신 위 막대 `현재 장과 컷 이동`(large-manuscript·editor-inherited-background·preview-context·phone-editor-tasks·editing-workbench), 폰 함께 보기 없음(editing-workbench·long-manuscript-workbench·task-editor-current-cut), select 36px + label 44px(editing-workbench 인물 카드), 줄 여백 16px(editor-density, 4px 단계), 그림 고르기 설명 없음(keyboard-writing-focus), composition-intent는 읽는 중 숨은 편집 목록의 글을 세지 않게.
+- **알려진 것**: stories-runtime `creative-reading-journey`의 폰 세로 `지난기록` 단추 대기 실패는 이번 변경 전 커밋(5aec3c23)에서도 같다.
 
 ## 1단계 결과 (2026-11-24)
 측정: 선녀와 나무꾼 놀스토리판 편집, 인물·음향·연출 편집을 켠 상태. 근거 `evidence/focus-editing-2026-11-24/{before,after}-audit.json`, 캡처(로컬, gitignore) `before/`·`after/`·`compare-*.png`.
