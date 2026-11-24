@@ -287,6 +287,7 @@ export function controlNames(surface:Surface,device:Device,fromId='root'):string
    case 'Button':case 'Slider':case 'TextArea':names.push(read(c.label));break;
    case 'Choice':case 'TextField':names.push(read(c.name??c.label));break;
    case 'CutCard':names.push(c.side==='previous'?'이전 컷':'다음 컷');break;
+   case 'Stage':if(c.phoneStrip===true&&device==='phone')names.push('무대 펼치기');break;
    case 'CurrentCut':
     for(const child of childIds(c))visit(child);
     names.push('이 컷부터 재생');

@@ -187,7 +187,7 @@
     },
     "Stage": {
       "type": "object",
-      "description": "The single Ren'Py scene for the current cut. Only on tasks that need the scene.",
+      "description": "The single Ren'Py scene for the current cut. Only on tasks that need the scene. With phoneStrip, a portrait phone starts with a 96px strip (background and characters) and one toggle opens or closes it; the choice is remembered on the device.",
       "allowedParents": [
         "FocusScreen"
       ],
@@ -208,6 +208,12 @@
         "name": {
           "$ref": "common_types.json#/$defs/DynamicString",
           "maxLength": 24
+        },
+        "phoneStrip": {
+          "type": "boolean"
+        },
+        "toggle": {
+          "$ref": "common_types.json#/$defs/Action"
         }
       },
       "required": [

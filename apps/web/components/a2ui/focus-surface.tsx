@@ -48,7 +48,13 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    onClick={()=>{if(task!==c.selected&&c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{task}}});}}>
    {TASK_LABELS[task as keyof typeof TASK_LABELS]}</button>)}
  </nav>,
- Stage:(c,ctx)=><div className={styles.stage} data-orientation={String(c.orientation)} role="img" aria-label={text(ctx,c.name)}/>,
+ Stage:(c,ctx)=>{
+  const strip=c.phoneStrip===true&&ctx.device==='phone';
+  return <div className={styles.stageWrap} data-stage-strip={strip?'strip':undefined}>
+   <div className={styles.stage} data-orientation={String(c.orientation)} role="img" aria-label={text(ctx,c.name)}/>
+   {strip&&<button type="button" className={styles.stageToggle} aria-expanded={false} aria-label="무대 펼치기" title="무대 펼치기" onClick={()=>ctx.fire(c.id,c.toggle)}><span aria-hidden="true">▾</span></button>}
+  </div>;
+ },
  CurrentCut:(c,ctx)=><div className={styles.current} data-a2ui-current-cut>
   <div className={styles.currentHead}>
    <span className={styles.cutNumber}>{text(ctx,c.cut)}컷</span>

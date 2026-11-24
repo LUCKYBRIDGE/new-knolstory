@@ -97,3 +97,8 @@
 /* In a tool row every field puts its label above the control, like the real list screens; the CurrentCut head keeps them inline. */
 .toolGroup>.choice{display:grid;gap:4px;flex:1 1 120px;min-height:0}
 .toolGroup>.choice>select{width:100%}
+.stageWrap{position:relative}
+.stageWrap[data-stage-strip=strip]{height:96px;overflow:hidden;border-radius:var(--radius-panel)}
+.stageWrap[data-stage-strip=strip]>.stage{position:absolute;left:0;right:0;top:48px;transform:translateY(-40%)}
+.stageToggle{position:absolute;inset:0;display:grid;justify-items:end;align-items:end;padding:8px;min-height:0;border:0;background:transparent;color:var(--white);cursor:pointer}
+.stageToggle>span{display:inline-grid;place-items:center;width:28px;height:28px;border:1px solid #fff8;border-radius:50%;background:#183331d9}

@@ -85,3 +85,11 @@ describe('list screens',()=>{
   expect(html('basic','tablet')).toMatch(/<span class="[^"]*">1컷 배경<\/span>/);
  });
 });
+
+describe('stage strip',()=>{
+ it('starts the 쓰기 stage as a strip on phones only',()=>{
+  expect(html('basic','phone')).toContain('aria-label="무대 펼치기"');
+  expect(html('basic','tablet')).not.toContain('무대 펼치기');
+  expect(html('characters','phone')).not.toContain('무대 펼치기');
+ });
+});

@@ -108,7 +108,13 @@
      "id": "stage",
      "component": "Stage",
      "orientation": "landscape",
-     "name": "현재 컷 장면"
+     "name": "현재 컷 장면",
+     "phoneStrip": true,
+     "toggle": {
+      "event": {
+       "name": "toggleStageStrip"
+      }
+     }
     },
     {
      "id": "current",
