@@ -17,6 +17,8 @@ test('story settings keep file save visible and reveal exchange tools only when 
 test('picture book keeps file saving separate from exchange and book management',async({page})=>{
  await page.setViewportSize({width:390,height:850});
  await page.goto('/shortstory/');
+ // The tools panel starts folded on phones (2026-11-23 phone focus pass); open it like a writer would.
+ const toggle=page.locator('[aria-controls="shortstory-tools"]');if(await toggle.getAttribute('aria-expanded')!=='true')await toggle.click();
  const tools=page.getByRole('region',{name:'그림책 파일과 이름'});
  await expect(tools.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();
  await expect(tools.getByRole('button',{name:'파일 가져오기',exact:true})).toBeHidden();
