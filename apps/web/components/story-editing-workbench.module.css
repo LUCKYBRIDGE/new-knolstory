@@ -97,7 +97,7 @@
  .adjacent strong { display:block; font-size:var(--text-caption); }
  .adjacent .excerpt { line-height:1.4; }
  .current .text textarea { height:72px; min-height:60px; }
- .current>div { font-size:var(--text-caption); }
+ .current>.currentPreview { font-size:var(--text-caption); }
  .current .materials { display:none; }
  .hint { font-size:var(--text-caption); line-height:1.3; }
  .options { gap:4px; }
@@ -118,7 +118,7 @@
  .current>.text { grid-column:1/-1; gap:4px; font-size:var(--text-small); }
  .current>.text textarea { min-height:60px; height:60px; }
  .current>.primary { grid-column:1; }
- .current>.primary [data-asset-value]>img,.current>.primary [data-asset-value] small,.current>div { display:none; }
+ .current>.primary [data-asset-value]>img,.current>.primary [data-asset-value] small,.current>.currentPreview { display:none; }
  .current>.primary [data-asset-value] { padding:4px 8px; min-height:44px; }
  .current>.primary [data-asset-value] strong { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
  .current>button { grid-column:2; align-self:end; max-width:128px; padding:4px 8px; font-size:var(--text-caption); min-height:44px; }
@@ -195,7 +195,7 @@
  .body[data-cut-arrangement=columns] .adjacent{height:100%;max-height:100%;padding:8px;font-size:var(--text-caption)}
  .body[data-cut-arrangement=columns] .adjacent .material{display:none}
  .body[data-cut-arrangement=columns] .adjacent .excerpt{max-height:6em;overflow:hidden}
- .body[data-cut-arrangement=columns] .current>div{display:none}
+ .body[data-cut-arrangement=columns] .current>.currentPreview{display:none}
  .body[data-cut-arrangement=columns] .current .text textarea{font-size:var(--text-body);min-height:72px;height:96px}
  .stackedContext[data-arrangement=columns]{display:flex;flex-wrap:wrap;gap:8px;flex:none;position:relative;font-size:var(--text-caption)}
 }
@@ -205,7 +205,7 @@
 .basicSpeaker legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .basicSpeaker label{min-width:0;font-size:var(--text-caption)}
 .basicSpeaker input,.basicSpeaker select{width:100%;min-width:0;min-height:44px;box-sizing:border-box;font:inherit;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--white);color:var(--ink)}
-.workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){height:44px;margin:0;padding:8px;font-size:var(--text-caption)}
+.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker :is(input,select){height:44px;margin:0;padding:8px;font-size:var(--text-caption)}
 .speakerName{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .speakerImage{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-width:0;font-size:var(--text-caption)}
 .speakerImage:empty{display:block;min-width:0}
@@ -215,11 +215,11 @@
 .speakerKind{display:flex;align-items:center}
 .speakerKind>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .basicSpeaker button{display:inline-flex;gap:4px;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;white-space:nowrap;font-size:var(--text-caption)}
-.workbench[data-screen=basic] .current>fieldset.basicSpeaker button{height:44px;min-height:44px;margin:0;align-self:center}
+.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker button{height:44px;min-height:44px;margin:0;align-self:center}
 @media(max-width:700px),(max-width:1000px) and (max-height:500px){
- .current>.basicSpeaker{grid-column:1/-1}
+ .current .basicSpeaker{grid-column:1/-1}
  .basicSpeaker{gap:4px 8px;grid-template-columns:minmax(0,1fr) 66px auto}
- .workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){font-size:var(--text-body)}
+ .workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker :is(input,select){font-size:var(--text-body)}
  .speakerImage{grid-column:1/-1;grid-row:2}
  .speakerImage:empty{display:none}
  .basicSpeaker button{padding:8px 8px}
@@ -388,7 +388,7 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .additional>details[open]>summary::after,.stackedContext>details[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
 .additional>details[open]>summary,.stackedContext>details[open]>summary{border:0;border-bottom:1px solid var(--line);border-radius:0;margin:-8px -8px 8px;padding:0 12px}
 /* Section names inside the current cut share one size: 글상자 글, 1컷 배경, 현재 인물 · 자료 미리보기. */
-.current>div>strong:first-child{display:block;font-size:var(--text-small);font-weight:600;margin-bottom:4px}
+.current>.currentPreview>strong:first-child{display:block;font-size:var(--text-small);font-weight:600;margin-bottom:4px}
 /* Phones: only the essentials. The current cut's words and picture, and a clear way to the previous and
    next cut. Everything secondary (new cut in the middle, branching, cut list, memo summary, story map,
    linked-image note) lives in the menu or the 현재 컷 상세 panel instead of crowding the screen. */
@@ -447,8 +447,8 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
  .basicSpeaker{grid-template-columns:minmax(140px,220px) minmax(0,1fr) 128px auto;gap:8px}
  .speakerKind{gap:8px}.speakerKind select{flex:1;min-width:0}
  .basicSpeaker label,.speakerImage,.speakerImage>span{font-size:var(--text-small)}
- .workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){font-size:var(--text-body)}
- .basicSpeaker button,.workbench[data-screen=basic] .current>fieldset.basicSpeaker button{font-size:var(--text-small);padding:8px 16px}
+ .workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker :is(input,select){font-size:var(--text-body)}
+ .basicSpeaker button,.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker button{font-size:var(--text-small);padding:8px 16px}
 }
 /* Focus plan step 3 — writing comes first on 기본편집 at tablet and desktop sizes: the stage gives up some height and the text box takes it (about a third of the screen). */
 @media (min-width:701px) and (min-height:501px){
@@ -551,10 +551,10 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .workbench .characters .actorActions>button::after,.workbench .backgroundDisplay>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
 /* A2UI catalog pass on 쓰기 (2026-11-24): the cut head's fields and play show 36px boxes; the labels around the fields
    and a transparent area around play keep 44px touch targets (DESIGN 집중 편집 규칙 6). */
-.workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(.speakerName,.speakerKind){min-height:44px}
-.workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){height:36px;min-height:0;padding-block:0}
-.workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker>button{position:relative;height:36px;min-height:0;padding-block:0}
-.workbench[data-screen=basic] .current>fieldset.basicSpeaker>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
+.workbench.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker :is(.speakerName,.speakerKind){min-height:44px}
+.workbench.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker :is(input,select){height:36px;min-height:0;padding-block:0}
+.workbench.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker>button{position:relative;height:36px;min-height:0;padding-block:0}
+.workbench[data-screen=basic] .current .basicSpeaker.basicSpeaker>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
 
 /* E2 (2026-11-24): portrait-phone 쓰기 stage strip. The preview keeps its 16:9 size and the strip shows its upper middle
    (background and characters, above the dialogue box); one toggle opens and closes it. Only the plain writing grid
@@ -579,3 +579,6 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .primary>details>summary::after{content:'▾';margin-left:auto;padding-left:8px;color:var(--ink-soft)}
 .primary>details[open]>summary::after{content:'▴'}
 .editingContent>.options:not([hidden]){padding-top:8px}
+
+/* The current-cut fieldset's own parts are named (the catalog-drawn head sits in a wrapper div). */
+.currentPreview{min-width:0}
