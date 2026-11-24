@@ -549,3 +549,9 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .workbench[data-screen=characters] .characters>section>strong{font-size:var(--text-small)}
 .workbench.workbench .characters .actorActions>button,.workbench.workbench .backgroundDisplay>button{position:relative;min-height:0;height:36px;padding:0 12px}
 .workbench .characters .actorActions>button::after,.workbench .backgroundDisplay>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
+/* A2UI catalog pass on 쓰기 (2026-11-24): the cut head's fields and play show 36px boxes; the labels around the fields
+   and a transparent area around play keep 44px touch targets (DESIGN 집중 편집 규칙 6). */
+.workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(.speakerName,.speakerKind){min-height:44px}
+.workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker :is(input,select){height:36px;min-height:0;padding-block:0}
+.workbench.workbench[data-screen=basic] .current>fieldset.basicSpeaker>button{position:relative;height:36px;min-height:0;padding-block:0}
+.workbench[data-screen=basic] .current>fieldset.basicSpeaker>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
