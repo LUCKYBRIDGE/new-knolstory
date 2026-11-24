@@ -8,7 +8,8 @@ import {effectiveDevices,readPointer,type A2uiAction,type A2uiComponent,type Dev
 import styles from './focus-surface.module.css';
 
 export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action:A2uiAction};
-type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void};
+/** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
+type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean};
 type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode};
 type Renderer=(component:A2uiComponent,ctx:Ctx)=>ReactNode;
 
@@ -73,6 +74,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  </button>,
  Column:(c,ctx)=><div className={`${styles.column} ${gapClass(c.gap)}`}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>,
  ToolGroup:(c,ctx)=><div className={`${styles.toolGroup} ${gapClass(c.gap)}`} role="group" aria-label={text(ctx,c.name)}>
+  {c.labelVisible===true&&<span className={styles.groupLabel} aria-hidden="true">{text(ctx,c.name)}</span>}
   {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
  </div>,
  Button:(c,ctx)=><button type="button" className={styles.button} data-variant={String(c.variant??'secondary')} title={typeof c.title==='string'?c.title:undefined}
@@ -82,7 +84,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  </button>,
  Choice:(c,ctx)=><label className={styles.choice}>
   <span>{text(ctx,c.label)}</span>
-  <select aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)} onChange={event=>{if(c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{value:event.currentTarget.value}}});}}>
+  <select aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)} onChange={event=>{if(c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{...((c.change as {event:{context?:object}}).event.context??{}),value:event.currentTarget.value}}});}}>
    {list(c.options).map(option=>{const {value:optionValue,label}=option as {value:string;label:string};return <option key={optionValue} value={optionValue}>{label}</option>;})}
   </select>
  </label>,
@@ -94,7 +96,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  TextField:(c,ctx)=><label className={styles.choice}>
   <span>{text(ctx,c.label)}</span>
   <input className={styles.textField} aria-label={c.name!==undefined?text(ctx,c.name):undefined} defaultValue={text(ctx,c.value)}
-   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:event.currentTarget.value}}});}}/>
+   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.value}}});}}/>
  </label>,
  CutList:(c,ctx)=><div className={styles.cutList} data-a2ui-cut-list>
   {list(c.children).filter(id=>ctx.device!=='phone'||c.phoneShows==='all'||value(ctx,ctx.surface.components.get(String(id))?.current)===true).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
@@ -121,15 +123,15 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  Slider:(c,ctx)=>{const current=Number(value(ctx,c.value)??c.min);return <label className={styles.slider}>
   <span>{text(ctx,c.label)} · {current}{typeof c.unit==='string'?c.unit:''}</span>
   <input type="range" min={Number(c.min)} max={Number(c.max)} defaultValue={current} aria-label={text(ctx,c.label)}
-   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:Number(event.currentTarget.value)}}});}}/>
+   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:Number(event.currentTarget.value)}}});}}/>
  </label>;},
  Toggle:(c,ctx)=><label className={styles.toggle}>
-  <input type="checkbox" defaultChecked={value(ctx,c.value)===true} aria-label={c.name!==undefined?text(ctx,c.name):undefined}
-   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:event.currentTarget.checked}}});}}/>
+  <input type="checkbox" className={styles.toggleInput} checked={value(ctx,c.value)===true} disabled={value(ctx,c.disabled)===true} aria-label={c.name!==undefined?text(ctx,c.name):undefined}
+   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.checked}}});}}/>
   {text(ctx,c.label)}
  </label>,
  TextArea:(c,ctx)=><textarea className={styles.editor} aria-label={text(ctx,c.label)} defaultValue={text(ctx,c.value)}
-  onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{value:event.currentTarget.value}}});}}/>,
+  onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.value}}});}}/>,
  Notice:(c,ctx)=><div className={styles.notice} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'}>
   <p>{text(ctx,c.text)}</p>
   {list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
@@ -137,7 +139,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
 };
 
 /** Draws the surface's root for one device. Components hidden on that device are left out. */
-export function FocusSurface({surface,device,onAction}:Props){
+export function FocusSurface({surface,device,onAction,rootId='root',inline=false}:Props){
  const ctx:Ctx={
   surface,device,
   fire:(id,action)=>{if(action)onAction?.({surfaceId:surface.surfaceId,sourceComponentId:id,action:action as A2uiAction});},
@@ -149,6 +151,6 @@ export function FocusSurface({surface,device,onAction}:Props){
    return renderer?<Fragment key={id}>{renderer(component,ctx)}</Fragment>:null;
   },
  };
- return <div className={styles.surface} data-a2ui-surface={surface.surfaceId} data-device={device}>{ctx.render('root')}</div>;
+ return <div className={inline?styles.inline:styles.surface} data-a2ui-surface={surface.surfaceId} data-a2ui-root={rootId} data-device={device}>{ctx.render(rootId)}</div>;
 }
 

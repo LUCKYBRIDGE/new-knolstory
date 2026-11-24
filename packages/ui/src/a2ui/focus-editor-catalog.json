@@ -341,7 +341,7 @@
     },
     "ToolGroup": {
       "type": "object",
-      "description": "One row of related controls. At most 4 controls (rule 6).",
+      "description": "One row of related controls. At most 4 controls (rule 6). `name` is the group's accessible name; labelVisible also shows it as a small caption (e.g. 함께 보기 before its chips).",
       "allowedParents": [
         "FocusScreen",
         "Column",
@@ -370,6 +370,9 @@
           "$ref": "common_types.json#/$defs/ChildList",
           "minItems": 1,
           "maxItems": 4
+        },
+        "labelVisible": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -805,6 +808,9 @@
         },
         "change": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [

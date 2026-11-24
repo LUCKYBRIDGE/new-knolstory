@@ -93,3 +93,22 @@ describe('stage strip',()=>{
   expect(html('characters','phone')).not.toContain('무대 펼치기');
  });
 });
+
+describe('list toolbar drawn in the real editor',()=>{
+ it('is built from catalog components only and fires the real events',async()=>{
+  const {listToolsSurface,LIST_TOOLS_EVENTS}=await import('./list-tools-surface');
+  const surface=listToolsSurface({task:'text',busy:false,findDisabled:false,companions:[{id:'background',label:'배경',checked:true},{id:'characters',label:'인물',checked:false}]});
+  // A toolbar fragment has no FocusScreen root; every other catalog rule must hold.
+  expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
+  const tablet=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'companions',inline:true}));
+  expect(tablet).toContain('aria-label="배경 함께 보기"');
+  expect(tablet).toMatch(/aria-label="배경 함께 보기"[^>]*checked=""|checked=""[^>]*aria-label="배경 함께 보기"/);
+  expect(tablet).toContain('함께 보기</span>');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface,device:'phone',rootId:'companions',inline:true}))).not.toContain('함께 보기');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface,device:'phone',rootId:'list-tools',inline:true}))).toContain('>현재 컷 찾기<');
+  expect(LIST_TOOLS_EVENTS.companion).toBe('toggleCompanion');
+  const busy=listToolsSurface({task:'text',busy:true,findDisabled:false,companions:[]});
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:busy,device:'tablet',rootId:'list-tools'}))).toContain('disabled=""');
+  expect(busy.components.has('companions')).toBe(false);
+ });
+});
