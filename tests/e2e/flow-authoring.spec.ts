@@ -1,3 +1,4 @@
+import {openConnections} from './story-connections-panel';
 import {openEditorDetails} from './native-reader';
 import {resolveStageComposition,type StoryProject} from '../../packages/story-domain/src';
 import {expectIndependentImportedProject,parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
@@ -63,22 +64,22 @@ test('flow overview navigates nested branches and diagnoses pending and unreacha
   await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
   test.setTimeout(180000);page.setDefaultTimeout(12000);await page.route('**/api/**',route=>route.abort());await page.route('**/runtime/**',route=>route.abort());
   const { ids, unreachableId, backgroundId, characterId } = await createNestedStory(page);
-  await openEditorDetails(page,'현재 컷의 선택지·분기조건 편집');
-  await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();const context=page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});
-  await expect(context).toContainText('여러 길이 다시 만나는 지점');await expect(context).toContainText('모든 길에 반영');await page.keyboard.press('Escape');
+  // 이야기 연결 opens in place on 쓰기 and names the join without opening any rule editor.
+  const connections=await openConnections(page);await expect(connections).toContainText('갈래가 만나는 곳');await connections.locator(':scope>summary').click();
   const original = (await exportStory(page)).project;
   await flowTool(page);
   await page.getByRole('button', { name: '선택지 추가', exact: true }).click();
   await page.getByLabel('선택지 3 문구').fill('아직 연결하지 않은 갈래');
   const dialog = await openMap(page);
-  await expect(dialog.locator('[data-flow-map-line-id]')).toHaveCount(9);
-  await expect.poll(async () => dialog.getByTestId('story-flow-diagram-scroll').evaluate((node) => node.scrollHeight <= node.clientHeight + 1)).toBe(true);
+  // 갈래 구조: start, branch points and joins are blocks; the rest fold into ways. No sideways scrolling.
+  const structure=dialog.getByTestId('story-structure');await expect(structure).toBeVisible();
+  await expect.poll(async () => structure.evaluate((node) => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
   await expect(dialog).toContainText('갈림길과 만남');
   await expect(dialog).toContainText('아직 연결하지 않은 장');
-  await expect(dialog.locator(`[data-flow-map-line-id="${ids[5]}"]`)).toHaveAttribute('aria-current', 'true');
-  await expect(dialog.locator(`[data-flow-map-line-id="${ids[5]}"]`)).toContainText('여러 갈래에서 함께 쓰는 컷');
-  await expect(dialog.locator(`[data-flow-map-line-id="${ids[0]}"]`)).toContainText('분기');
-  await expect(dialog.locator(`[data-flow-map-line-id="${ids[6]}"]`)).toContainText('엔딩');
+  await expect(dialog.locator(`[id="structure-${ids[5]}"] [data-structure-head]`)).toHaveAttribute('aria-current', 'true');
+  await expect(dialog.locator(`[id="structure-${ids[5]}"]`)).toContainText('갈래가 만나요');
+  await expect(dialog.locator(`[id="structure-${ids[0]}"]`)).toContainText('◆ 갈림길');
+  await expect(dialog.locator(`[id="structure-${ids[5]}"]`)).toContainText('이야기 끝');
   await expect(dialog).toContainText('도착 컷을 정해 주세요');
   await page.screenshot({ path: testInfo.outputPath('flow-map-desktop.png'), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -95,7 +96,7 @@ test('flow overview navigates nested branches and diagnoses pending and unreacha
   await page.getByLabel('선택지 3 도착 컷').selectOption(unreachableId);
   const connected = await openMap(page);
   await expect(connected.locator(`[data-flow-issue-line-id="${unreachableId}"]`)).toHaveCount(0);
-  await connected.locator(`[data-flow-map-line-id="${ids[5]}"]`).click();await flowTool(page);
+  await connected.locator(`[id="structure-${ids[5]}"] [data-structure-head]`).click();await flowTool(page);
   await page.getByRole('button', { name: '선택지 3 삭제', exact: true }).click();
   const disconnected = await openMap(page);
   await disconnected.locator(`[data-flow-issue-line-id="${unreachableId}"]`).first().click();
@@ -116,7 +117,7 @@ test('flow overview navigates nested branches and diagnoses pending and unreacha
   await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');await page.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();await saved(page); await page.reload();
   expectIndependentImportedProject((await exportStory(page)).project,exported.project);
   const restored = await openMap(page);
-  await restored.locator(`[data-flow-map-line-id="${ids[5]}"]`).click();
+  await restored.locator(`[id="structure-${ids[5]}"] [data-structure-head]`).click();
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue(texts[5]!);
   await page.screenshot({ path: testInfo.outputPath('flow-host.png'), fullPage: true });
 });
@@ -244,7 +245,7 @@ test('split the story here, write one path on its own and arrange chapters by re
   const copy=await page.getByLabel('현재 장과 컷 이동').inputValue();expect(copy).not.toBe(ids[2]);
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue('모두 다리에서 만났어요.');
   await page.locator('[data-current-cut] textarea').fill('숲 끝에서 다리를 건넜어요.');await saved(page);
-  await page.getByRole('button',{name:'이야기 지도 보기',exact:true}).click();
+  await (await openConnections(page)).getByRole('button',{name:'이야기 흐름 지도 열기',exact:true}).click();
   const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});await map.getByRole('button',{name:'장 지도',exact:true}).click();
   // The chapter that used to be 2장 now reads after the fork, the paths and the meeting chapter.
   await expect(map.locator('[data-chapter-arrange]')).toContainText('읽는 단계와 번호가 다른 장 1개');
