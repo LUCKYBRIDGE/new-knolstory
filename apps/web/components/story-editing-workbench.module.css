@@ -527,3 +527,25 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .actorActions{display:flex;flex-wrap:wrap;gap:8px}
 
 .actorOverlap{font-size:var(--text-caption);padding:4px 8px;border:1px solid var(--line);border-radius:8px}
+
+/* A2UI focus catalog — list screens (2026-11-24): CutItem header = select by the cut label, play as an icon. */
+.srOnly{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.options[hidden]{display:none}
+.row>header{flex-wrap:nowrap;gap:8px}
+.workbench .rows .row>header>.rowSelect{position:relative;flex:1 1 auto;min-width:0;min-height:0;height:36px;margin-left:-8px;padding:0 8px;border:1px solid transparent;background:transparent;text-align:left;font-weight:700;font-size:var(--text-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.workbench .rows .row>header>.rowSelect[aria-pressed=true]{border-color:transparent;background:transparent;color:var(--mint-strong)}
+.workbench .rows .row>header>.rowSelect:hover{border-color:var(--line)}
+.workbench .rows .row>header>.rowPlay{position:relative;display:inline-grid;place-items:center;flex:none;width:36px;height:36px;min-height:0;padding:0;font-size:var(--text-small)}
+.row>header>:is(.rowSelect,.rowPlay)::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
+.row>header>strong{flex:1 1 auto}
+.backgroundDisplay>summary{display:flex;align-items:center}
+/* Measured pass (2026-11-24): list-row details read like the catalog's More, summaries are small status text,
+   人物 placement controls use the 36px visible height with small labels. */
+.row .rangeSummary{margin:0;font-size:var(--text-small);color:var(--ink-soft);line-height:1.5}
+.primary>details{padding-top:8px}
+.primary>details>summary{display:flex;align-items:center;min-height:44px;box-sizing:border-box}
+.workbench[data-screen=characters] .characters>section>label{font-size:var(--text-small)}
+.workbench.workbench[data-screen=characters] .characters>section>label select{min-height:0;height:36px;padding-block:0}
+.workbench[data-screen=characters] .characters>section>strong{font-size:var(--text-small)}
+.workbench.workbench .characters .actorActions>button,.workbench.workbench .backgroundDisplay>button{position:relative;min-height:0;height:36px;padding:0 12px}
+.workbench .characters .actorActions>button::after,.workbench .backgroundDisplay>button::after{content:'';position:absolute;left:50%;top:50%;width:max(100%,44px);height:44px;transform:translate(-50%,-50%)}
