@@ -19,7 +19,8 @@
      "stage": "stage",
      "current": "current",
      "context": [
-      "next-card"
+      "next-card",
+      "connections"
      ],
      "work": "work",
      "more": "more-column"
@@ -201,6 +202,119 @@
      }
     },
     {
+     "id": "connections",
+     "component": "More",
+     "summary": "이야기 연결",
+     "title": "앞 갈림길, 지금 컷, 다음 선택지와 도착 컷",
+     "open": {
+      "path": "/connections/open"
+     },
+     "toggle": {
+      "event": {
+       "name": "toggleConnections"
+      }
+     },
+     "children": [
+      "connections-trail"
+     ]
+    },
+    {
+     "id": "connections-trail",
+     "component": "Column",
+     "gap": 8,
+     "children": [
+      "connections-upstream",
+      "connections-here",
+      "connections-tools"
+     ]
+    },
+    {
+     "id": "connections-upstream",
+     "component": "Column",
+     "element": "section",
+     "name": "앞 갈림길",
+     "gap": 8,
+     "children": [
+      "connections-branch"
+     ]
+    },
+    {
+     "id": "connections-branch",
+     "component": "Fork",
+     "title": "1장 2컷 갈림길",
+     "note": "왼쪽에서는 물소리가, 오른쪽에서는 새소리가 들렸다.",
+     "children": [
+      "connections-branch-way"
+     ]
+    },
+    {
+     "id": "connections-branch-way",
+     "component": "PathChoice",
+     "label": "‘강 쪽으로 간다’ 고르면",
+     "where": "1장 2컷에서 바로 여기로",
+     "select": {
+      "event": {
+       "name": "selectConnectedCut",
+       "context": {
+        "way": "up"
+       }
+      }
+     }
+    },
+    {
+     "id": "connections-here",
+     "component": "Fork",
+     "title": "지금 · 2장A 1컷",
+     "children": [
+      "connections-next"
+     ]
+    },
+    {
+     "id": "connections-next",
+     "component": "PathChoice",
+     "label": "다음 →",
+     "where": "2장A 2컷",
+     "select": {
+      "event": {
+       "name": "selectConnectedCut",
+       "context": {
+        "way": "next"
+       }
+      }
+     }
+    },
+    {
+     "id": "connections-tools",
+     "component": "ToolGroup",
+     "name": "이야기 연결 도구",
+     "children": [
+      "connections-back",
+      "story-map"
+     ]
+    },
+    {
+     "id": "connections-back",
+     "component": "Button",
+     "label": "← 방금 보던 컷",
+     "name": "방금 보던 컷으로 돌아가기",
+     "action": {
+      "event": {
+       "name": "returnToPreviousVisit"
+      }
+     }
+    },
+    {
+     "id": "story-map",
+     "component": "Button",
+     "label": "전체 지도",
+     "name": "이야기 흐름 지도 열기",
+     "action": {
+      "event": {
+       "name": "openStoryMap"
+      }
+     }
+    },
+    {
      "id": "work",
      "component": "Column",
      "gap": 12,
@@ -272,8 +386,7 @@
      "component": "ToolGroup",
      "name": "이야기 흐름",
      "children": [
-      "split-story",
-      "story-map"
+      "split-story"
      ]
     },
     {
@@ -283,16 +396,6 @@
      "action": {
       "event": {
        "name": "splitStory"
-      }
-     }
-    },
-    {
-     "id": "story-map",
-     "component": "Button",
-     "label": "이야기 지도 보기",
-     "action": {
-      "event": {
-       "name": "openMap"
       }
      }
     },

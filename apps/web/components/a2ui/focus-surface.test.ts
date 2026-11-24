@@ -198,3 +198,43 @@ describe('top bar, text box and neighbour places drawn by the catalog renderer',
   expect(markup).toContain('<p class="pending">B. 나 · 도착 컷을 정해 주세요</p>');
  });
 });
+
+describe('이야기 연결 drawn by the catalog renderer',()=>{
+ const build=async(open:boolean)=>{
+  const {connectionsSurface}=await import('./editor-surfaces');
+  return connectionsSurface({open,summary:'이야기 연결 · 확인 필요',
+   upstream:[{id:'up-a',title:'1장 2컷 갈림길',note:'물소리',ways:[{id:'w1',label:'‘숲으로’ 고르면',where:'바로 여기로',lineId:'c2'}]},{id:'up-b',title:'1장 5컷 갈림길',ways:[{id:'w2',label:'‘강’ 고르면',where:'2컷 지나 여기로',lineId:'c5'}]}],
+   incoming:[{id:'i1',label:'← 이동',where:'2장A 2컷',lineId:'c4'},{id:'i2',label:'← 조건이 맞지 않으면',where:'2장B 1컷',lineId:'c5'}],
+   here:'지금 · 3장 1컷',marks:'갈림길 · 2갈래가 만나는 곳',
+   outgoing:[{id:'o1',label:'A. ‘돕는다’ →',where:'4장A 1컷 · 이야기 끝',lineId:'c7'},{id:'o2',label:'B. ‘떠난다’',notice:{kind:'warning',text:'B. ‘떠난다’ · 도착 컷을 정해 주세요',repair:{choiceId:'b',kind:'pending'}}},{id:'o3',label:'이야기 끝',notice:{kind:'empty',text:'여기서 이야기가 끝나요'}}],
+   back:{name:'방금 보던 컷으로 돌아가기 · 2장A 2컷'},visits:[{index:0,label:'1. 1장 1컷',where:'길 앞'}],map:true,disabled:false});
+ };
+ it('keeps the catalog rules: allowed parents, short summaries, one way per job',async()=>{
+  // The panel is one part of the 쓰기 screen, so its own root is not inside a FocusScreen here.
+  for(const open of [true,false])expect(validateSurface(await build(open)).filter(issue=>issue.rule!=='root'&&!(issue.rule==='orphan'&&issue.id==='connections'))).toEqual([]);
+ });
+ it('reads 앞 갈림길 → 지금 → 다음 in order, folds the other ways, and keeps a repair beside a missing target',async()=>{
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface:await build(true),device:'phone',rootId:'connections',inline:true,attrs:c=>c.component==='Notice'?{className:'line'}:undefined}));
+  const at=(text:string)=>markup.indexOf(text);
+  expect(at('1장 2컷 갈림길')).toBeGreaterThan(-1);
+  expect(at('1장 2컷 갈림길')).toBeLessThan(at('지금 · 3장 1컷'));
+  expect(at('지금 · 3장 1컷')).toBeLessThan(at('A. ‘돕는다’ →'));
+  expect(markup).toContain('다른 길 더 보기 · 3');
+  expect(markup).toMatch(/<p>B\. ‘떠난다’ · 도착 컷을 정해 주세요<\/p><button[^>]*aria-label="B\. ‘떠난다’ 연결 정하기"/);
+  expect(markup).toContain('aria-label="방금 보던 컷으로 돌아가기 · 2장A 2컷"');
+  expect(markup).toContain('내 편집 이동 경로 · 1');
+  // Folded: only the summary is drawn, so a closed panel costs one row.
+  const closed=renderToStaticMarkup(createElement(FocusSurface,{surface:await build(false),device:'phone',rootId:'connections',inline:true}));
+  expect(closed).toMatch(/^<details[^>]*><summary[^>]*>이야기 연결 · 확인 필요<\/summary><\/details>$/);
+ });
+});
+
+describe('갈래 구조 place in the flow map',()=>{
+ it('is a named section holding the custom StoryStructure the map registers',async()=>{
+  const {structureSurface}=await import('./editor-surfaces');
+  const surface=structureSurface({currentLineId:'c3',grouped:false});
+  expect(validateSurface(surface).filter(issue=>!(issue.rule==='orphan'&&issue.id==='structure-place')&&issue.rule!=='root')).toEqual([]);
+  const markup=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'structure-place',inline:true,custom:{StoryStructure:c=>`structure:${String(c.currentLineId)}`}}));
+  expect(markup).toMatch(/^<section[^>]*aria-label="갈래 구조"[^>]*>structure:c3<\/section>$/);
+ });
+});
