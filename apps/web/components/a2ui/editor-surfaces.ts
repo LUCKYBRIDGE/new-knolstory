@@ -23,20 +23,20 @@ export function workTabsSurface({tabs,current,titles,disabled}:{tabs:readonly Wo
 
 export const CUT_EVENTS={select:'selectCut',play:'playFromCut'} as const;
 
-/** One cut of a list screen: the catalog draws the card, its head and text; the screen's own tools go in the `tools` Slot. */
-export function cutItemSurface({lineId,cut,speaker,text,current,disabled,showText,phoneShowsAll}:{lineId:string;cut:number;speaker:string;text:string;current:boolean;disabled:boolean;showText:boolean;phoneShowsAll:boolean}):Surface{
+/** One cut of a list screen: the catalog draws the card, its head and text; the task's tools are the custom CutTools component. */
+export function cutItemSurface({lineId,cut,speaker,text,current,disabled,showText,phoneShowsAll,task='text'}:{lineId:string;cut:number;speaker:string;text:string;current:boolean;disabled:boolean;showText:boolean;phoneShowsAll:boolean;task?:string}):Surface{
  return surfaceFrom(`cut-${lineId}`,[
   {id:'cut-list',component:'CutList',...(phoneShowsAll?{phoneShows:'all'}:{}),children:['cut']},
   {id:'cut',component:'CutItem',cut:{path:'/cut'},speaker:{path:'/speaker'},text:{path:'/text'},current:{path:'/current'},disabled:{path:'/disabled'},showText,
    select:{event:{name:CUT_EVENTS.select,context:{lineId}}},play:{event:{name:CUT_EVENTS.play,context:{lineId}}},children:['tools']},
-  {id:'tools',component:'Slot',name:'tools'},
+  {id:'tools',component:'CutTools',lineId,task},
  ],{cut,speaker,text,current,disabled});
 }
 
 export const BASIC_HEAD_EVENTS={speaker:'changeSpeaker',kind:'changeLineKind',play:'playFromCut'} as const;
 
-/** 쓰기: the current cut's head — 화자, (linked images Slot), 종류, ▶ 재생. */
-/** The linked-art Slot is always there so the head keeps its four columns (the screen leaves it empty when nothing is linked). */
+/** 쓰기: the current cut's head — 화자, linked images, 종류, ▶ 재생. */
+/** The linked-art place is always there so the head keeps its four columns (empty when nothing is linked). */
 export function basicHeadSurface({speaker,kind,busy,kindDisabled,playDisabled=false,images=[]}:{speaker:string;kind:string;busy:boolean;kindDisabled:boolean;playDisabled?:boolean;images?:{key:string;assetId?:string;name:string}[]}):Surface{
  return surfaceFrom('basic-head',[
   {id:'head',component:'ToolGroup',name:'현재 컷의 화자',children:['speaker','linked','kind','play']},
@@ -53,12 +53,14 @@ export function basicHeadSurface({speaker,kind,busy,kindDisabled,playDisabled=fa
 export const CUT_PLACE_EVENT='selectCutFromList';
 export type CutPlaceGroup={label:string;options:{value:string;label:string}[]};
 
-/** Top bar: the short ‘1장 · 3컷’ place with the full list; the open screen's arrows fill the `steps` Slot. */
-export function cutPlaceSurface({short,value,groups,disabled,chapter,cut}:{short:string;value:string;groups:CutPlaceGroup[];disabled:boolean;chapter:number;cut:number}):Surface{
+/** Top bar: the short ‘1장 · 3컷’ place with the full list and the open screen's ‹ › arrows. */
+export type CutSteps={previousDisabled:boolean;nextDisabled:boolean};
+export function cutPlaceSurface({short,value,groups,disabled,chapter,cut,steps}:{short:string;value:string;groups:CutPlaceGroup[];disabled:boolean;chapter:number;cut:number;steps?:CutSteps|null}):Surface{
+ const arrow=(direction:'previous'|'next')=>({id:direction,component:'IconButton',icon:direction,name:direction==='previous'?'이전 컷 편집':'다음 컷 편집',title:direction==='previous'?'이전 컷':'다음 컷',keepFocus:true,disabled:{path:`/${direction}Disabled`},action:{event:{name:CUT_STEP_EVENT,context:{direction}}}});
  return surfaceFrom('cut-place',[
-  {id:'place',component:'CutNavigator',chapter,cut,short:{path:'/short'},name:'현재 장과 컷 이동',groups,value:{path:'/value'},disabled:{path:'/disabled'},change:{event:{name:CUT_PLACE_EVENT}},steps:'steps'},
-  {id:'steps',component:'Slot',name:'steps'},
- ],{short,value,disabled});
+  {id:'place',component:'CutNavigator',chapter,cut,short:{path:'/short'},name:'현재 장과 컷 이동',groups,value:{path:'/value'},disabled:{path:'/disabled'},change:{event:{name:CUT_PLACE_EVENT}},...(steps?{previousButton:'previous',nextButton:'next'}:{})},
+  ...(steps?[arrow('previous'),arrow('next')]:[]),
+ ],{short,value,disabled,previousDisabled:steps?.previousDisabled??true,nextDisabled:steps?.nextDisabled??true});
 }
 
 export const CUT_STEP_EVENT='stepCut';
@@ -74,7 +76,7 @@ export const TOP_BAR_EVENTS={toggle:'toggleDrawer',close:'closeDrawer',prepare:'
 
 /**
  * The top bar's settings drawer and its two shortcuts (전체 화면, 서재). The drawer's groups are catalog parts;
- * file tools, the current-cut settings panel and leaving actions are the screen's own and fill Slots.
+ * file tools, the current-cut settings panel and leaving actions are custom components the screen registers.
  */
 export function topBarSurface({unified,title,open,disabled,scores,fullscreen,fullscreenAvailable,loadComplete}:{unified:boolean;title:string;open:boolean;disabled:boolean;scores:boolean;fullscreen:boolean;fullscreenAvailable:boolean;loadComplete:boolean}):Surface{
  const prepare=(section:string,label:string)=>({id:`prepare-${section}`,component:'Button',label,disabled:{path:'/disabled'},action:{event:{name:TOP_BAR_EVENTS.prepare,context:{section}}}});
@@ -106,7 +108,7 @@ export function textBoxSurface({lineId,label,value,readOnly,disabled}:{lineId:st
 
 export const NEIGHBOUR_EVENTS={select:'selectNeighbour',add:'addCutAfter',separate:'separatePath'} as const;
 
-/** The place before/after the current cut: the neighbouring cut (scene preview in its Slot), the add-next offer, or a short empty line. */
+/** The place before/after the current cut: the neighbouring cut (scene preview as the custom ScenePreview), the add-next offer, or a short empty line. */
 export function cutCardSurface({side,kind,label,order,text,lineId,disabled=false}:{side:'previous'|'next';kind:'cut'|'add'|'none';label?:string;order?:string;text:string;lineId?:string;disabled?:boolean}):Surface{
  const select={event:{name:kind==='add'?NEIGHBOUR_EVENTS.add:NEIGHBOUR_EVENTS.select,context:{lineId:lineId??''}}};
  return surfaceFrom(`card-${side}-${kind}-${lineId??''}`,[

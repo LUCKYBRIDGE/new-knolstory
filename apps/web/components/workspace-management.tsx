@@ -12,7 +12,7 @@ import {topBarSurface,TOP_BAR_EVENTS} from './a2ui/editor-surfaces';
 type Props={onlineAction?:ReactNode;exitActions?:ReactNode;fullscreen?:boolean;onFullscreen?:()=>void;unifiedSettings?:boolean;settingsExtras?:ReactNode;scoresEnabled?:boolean;disabled?:boolean;children?:ReactNode;localFileActions?:ReactNode;recovery?:ReactNode;project:StoryProject;compact:boolean;manageOpen:boolean;hydrated:boolean;loadComplete:boolean;onManage:(open:boolean)=>void;onExport:()=>void;onSave:()=>void;onImportFile:(file?:File)=>void;onImportArchive:(archive:AuthoringArchive)=>void;onError:(message:string)=>void;onLibrary:()=>void;onPrepare:(section:WorkSection)=>void};
 export function WorkspaceManagement(p:Props){
  // A2UI: the drawer, its group heads and buttons, and the 전체 화면·서재 shortcuts come from the focus editor catalog
- // (editor-surfaces.ts → topBarSurface); file tools, the current-cut settings and leaving actions fill its Slots.
+ // (editor-surfaces.ts → topBarSurface); file tools, the current-cut settings and leaving actions are custom components.
  const unified=!!p.unifiedSettings,open=!p.compact||p.manageOpen;
  const surface=topBarSurface({unified,title:p.project.title,open,disabled:!!p.disabled,scores:p.scoresEnabled!==false,fullscreen:!!p.fullscreen,fullscreenAvailable:unified&&!!p.onFullscreen,loadComplete:p.loadComplete});
  const onAction=({action}:FocusSurfaceAction)=>{

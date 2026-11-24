@@ -3,7 +3,7 @@ import {chapterLabel,chaptersForDisplay,cutLabel,type StoryProject,type StoryLin
 import {adjacentManuscriptCuts} from './editor-context';
 import styles from './story-workspace.module.css';
 import {FocusSurface} from './a2ui/focus-surface';
-import {cutPlaceSurface,CUT_PLACE_EVENT} from './a2ui/editor-surfaces';
+import {cutPlaceSurface,CUT_PLACE_EVENT,CUT_STEP_EVENT,type CutSteps} from './a2ui/editor-surfaces';
 type Props={project:StoryProject;line:StoryLine;ordered:StoryLine[];onSelect:(id:string)=>void|boolean;disabled:boolean};
 /** ‘2장A · 3컷’: the chapter's number and branch with the cut number, without the chapter title. */
 function shortPosition(project:StoryProject,line:StoryLine){
@@ -16,16 +16,16 @@ function shortPosition(project:StoryProject,line:StoryLine){
  * ‹ and › from the open editing screen (`stepsTarget`) around a short ‘1장 · 3컷’ label. The native
  * select lies over the label, so the full list (chapter title, opening words) opens on demand only.
  */
-export function StoryCutPosition({stepsTarget,...p}:Props&{stepsTarget?:(node:HTMLSpanElement|null)=>void}){
- // A2UI: drawn from the focus editor catalog (CutNavigator); the open screen's ‹ › arrive through the `steps` Slot.
+export function StoryCutPosition({steps,...p}:Props&{steps?:(CutSteps&{step:(direction:'previous'|'next')=>void})|null}){
+ // A2UI: drawn from the focus editor catalog (CutNavigator), with the open screen's ‹ › as its IconButtons.
  const chapter=p.project.chapters.find(item=>item.id===p.line.chapterId);
  const groups=chaptersForDisplay(p.project.chapters).map(item=>({label:chapterLabel(item),options:p.ordered.filter(cut=>cut.chapterId===item.id).map(cut=>({value:cut.id,label:`${cutLabel(item,cut)} · ${cut.text.slice(0,36)||'빈 컷'}`}))}));
- const surface=cutPlaceSurface({short:shortPosition(p.project,p.line),value:p.line.id,groups,disabled:p.disabled,chapter:chapter?.chapterNumber??chapter?.order??1,cut:p.line.order});
+ const surface=cutPlaceSurface({short:shortPosition(p.project,p.line),value:p.line.id,groups,disabled:p.disabled,chapter:chapter?.chapterNumber??chapter?.order??1,cut:p.line.order,steps});
  return <FocusSurface inline surface={surface} rootId="place" device="tablet"
-  attrs={component=>component.id==='place'?{className:styles.cutNav,'data-cut-nav':''}:undefined}
+  attrs={component=>component.id==='place'?{className:styles.cutNav,'data-cut-nav':''}:component.component==='IconButton'?{className:'','data-cut-step':String(component.id)}:undefined}
   skin={{cutPosition:styles.cutPosition,cutPositionLabel:styles.cutPositionLabel,cutShort:styles.cutShort}}
-  slots={{steps:<span ref={stepsTarget} className={styles.cutSteps}/>}}
-  onAction={({action})=>{const event='event' in action?action.event:undefined;const id=event?.context?.value;if(event?.name===CUT_PLACE_EVENT&&typeof id==='string')p.onSelect(id);}}/>;
+  onAction={({action})=>{const event='event' in action?action.event:undefined;const id=event?.context?.value;if(event?.name===CUT_PLACE_EVENT&&typeof id==='string')p.onSelect(id);
+   const direction=event?.context?.direction;if(event?.name===CUT_STEP_EVENT&&(direction==='previous'||direction==='next'))steps?.step(direction);}}/>;
 }
 export function StoryAdjacentCut(p:Props&{direction:'previous'|'next'}){
  const cut=adjacentManuscriptCuts(p.ordered,p.line.id)[p.direction];
