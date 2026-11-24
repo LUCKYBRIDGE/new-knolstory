@@ -22,7 +22,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
  useEffect(()=>()=>{confirmationEpoch.current++;},[]);
  const [saving,setSaving]=useState(false),saveInFlight=useRef(false),saveContext=useRef('');
  const [panel,setPanel]=useState<Panel>(null),[saves,setSaves]=useState<PlayerSaves>({version:2,works:{}}),[error,setError]=useState(''),[notice,setNotice]=useState('');
- const [confirm,setConfirm]=useState<Confirmation>(null),[topOpen,setTopOpen]=useState(false),[viewportPhone,setViewportPhone]=useState(false),[page,setPage]=useState(1),[tab,setTab]=useState<'manual'|'auto'|'quick'>('manual');
+ const [confirm,setConfirm]=useState<Confirmation>(null),[topOpen,setTopOpen]=useState(false),[viewportPhone,setViewportPhone]=useState(false),[viewportShort,setViewportShort]=useState(false),[page,setPage]=useState(1),[tab,setTab]=useState<'manual'|'auto'|'quick'>('manual');
  const [auto,setAuto]=useState(false),[delay,setDelay]=useState(3),[visible,setVisible]=useState(true);
  const [imagePreloadInput,setImagePreloadInput]=useState({count:imagePreloadCount,value:String(imagePreloadCount)});
  const imagePreloadDraft=imagePreloadInput.count===imagePreloadCount?imagePreloadInput.value:String(imagePreloadCount);
@@ -36,7 +36,9 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
  useEffect(()=>{advanceRef.current=onAdvance;interactionRef.current=onInteractionChange;toolsRef.current=onToolsExpandedChange;},[onAdvance,onInteractionChange,onToolsExpandedChange]);
  const fingerprint=useMemo(()=>projectPlaybackFingerprint(project),[project]),progressKey=playerProgressKey(playback,dialoguePosition),busy=!!panel||!!confirm||topOpen||saving;
  useLayoutEffect(()=>{saveContext.current=JSON.stringify([project.id,fingerprint,progressKey,presentationKey]);},[project.id,fingerprint,progressKey,presentationKey]);
- const phone=textboxBounds?textboxBounds.width<660:viewportPhone;
+ // R1 (2026-11-24): short landscape phones (height ≤500px) get the same three tools as portrait phones; the rest live in 읽기 메뉴·설정.
+ const phone=(textboxBounds?textboxBounds.width<660:viewportPhone)||viewportShort;
+ useEffect(()=>{const query=matchMedia('(max-height:500px)');const update=()=>setViewportShort(query.matches);update();query.addEventListener('change',update);return()=>query.removeEventListener('change',update);},[]);
  useEffect(()=>{const query=matchMedia('(max-width:720px)');const update=()=>setViewportPhone(query.matches);update();query.addEventListener('change',update);return()=>query.removeEventListener('change',update);},[]);
  useEffect(()=>{toolsRef.current?.(phone);},[phone]);
  useEffect(()=>()=>toolsRef.current?.(false),[]);
