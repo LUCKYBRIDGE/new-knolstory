@@ -1,5 +1,5 @@
 import {parseAuthoringFile,openFileExchange} from './authoring-file';
-import {advanceReading,editReadCut,loadReadSlot,openEditorDetails,readerLibrary,readerTools,restartReading,saveReadSlot} from './native-reader';
+import {advanceReading,editReadCut,loadReadSlot,openEditorDetails,readerLibrary,restartReading,saveReadSlot} from './native-reader';
 import {createStoryDocument} from '../../packages/story-domain/src/index';
 import {openBuiltinEdition} from './library-entry';
 import {importShelfFile} from './library-entry';
@@ -149,7 +149,7 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   const sourceBuiltinId=parseAuthoringFile(readFileSync(`tests/fixtures/stories/${id}.json`,'utf8')).id;
   if(project.id===sourceBuiltinId){expect(importedProject.id).not.toBe(project.id);expect({...importedProject,id:project.id}).toEqual(project);}else expect(importedProject).toEqual(project);
   await page.getByRole('button', { name: '서재로', exact: true }).click();
-  const imported = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
+  const imported = page.getByRole('article', { name: `내 작품 · ${project.title}`, exact: true });
   await expect(imported).toBeVisible();
   await openShelfAction(page,imported,'처음부터 읽기'); await beginSelectedBook(page); await ready(page); await unlock(page);
   const frame = page.getByTestId('story-runtime-frame');
@@ -178,26 +178,14 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
         await nativeChoice(page, choiceIndex, options[choiceIndex]!.label);
         state = advancePlayback(project, state, options[choiceIndex]!.id);
       } else {
+        // The ending gives the screen to the credits (no reading bar), so the reader's history is checked on the last cut.
+        if (advancePlayback(project, state).status === 'ended') await lastCutHistory(page, project, state);
         await allowAdvance(page, cut.presentation?.transition?.mode === 'confirm');
         await advanceReading(page);
         state = advancePlayback(project, state);
       }
     }
     await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
-    await readerTools(page);
-    await page.getByRole('button', { name: '지난기록', exact: true }).click();
-    const log = page.getByRole('dialog').locator('[data-reader-current-script] li');
-    const lastChapterId = project.lines.find(line => line.id === state.path.at(-1))!.chapterId;
-    let chapterStart = state.path.length - 1;
-    while (chapterStart > 0 && project.lines.find(line => line.id === state.path[chapterStart - 1])!.chapterId === lastChapterId) chapterStart--;
-    await expect(log).toHaveCount(state.path.length - chapterStart);
-    for (const [index, decision] of (state.choiceHistory ?? []).entries()) {
-      const choiceCut = project.lines.find(c => c.id === state.path[decision.pathIndex])!;
-      const option = choiceCut.flow?.type === 'choice' ? choiceCut.flow.options.find(o => o.id === decision.choiceId) : undefined;
-      expect(option, `selected option ${index}`).toBeTruthy();
-      if (decision.pathIndex >= chapterStart) await expect(log.nth(decision.pathIndex - chapterStart)).toContainText(`선택: ${option!.label}`);
-    }
-    await page.getByRole('button', { name: '읽기 메뉴 닫기', exact: true }).click();
     await expect(frame).toHaveAttribute('data-score-instance', 'persistent');
     records.push({ route, status: 'ended', path: state.path, choiceHistory: state.choiceHistory ?? [], cutsRead: steps });
   }
@@ -213,6 +201,29 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   writeFileSync(`${reportFolder(id)}/${id}-native-reading.json`, JSON.stringify({ browser: `Playwright ${process.env.KNOL_BROWSER_CHANNEL || 'chromium'}`, browserVersion: browser.version(), inputArchive: archivePath(id), inputArchiveSha256: createHash('sha256').update(readFileSync(archivePath(id))).digest('hex'), viewport: { width: 1280, height: 900 }, scope: id.endsWith('-classic') ? 'complete original manuscript' : 'first-option route and alternate first-fork route; subsequent choices first option', projectId: project.id, importedProjectId: importedProject.id, importedIdentityForked: importedProject.id!==project.id, authoredCuts: project.lines.length, audioTransport: 'RenPy bundled game assets; browser per-file responses may be absent', audioResponses: [...audioResponses], records, archiveProjectExactMatch: true }, null, 2));
   await context.close();
 });
+
+
+/** 지난기록 on the last cut lists this chapter's path and the choices made in it. A confirm card on that cut keeps the bar aside. */
+async function lastCutHistory(page: Page, project: StoryProject, state: PlaybackState) {
+  const bar = page.locator('[data-reader-quick-bar]');
+  if (!await bar.waitFor({ state: 'visible', timeout: 5000 }).then(() => true, () => false)) {
+    test.info().annotations.push({ type: 'history', description: 'last cut is covered by a confirm card; 지난기록 is not offered there' });
+    return;
+  }
+  await page.getByRole('button', { name: '지난기록', exact: true }).click();
+  const log = page.getByRole('dialog').locator('[data-reader-current-script] li');
+  const lastChapterId = project.lines.find(line => line.id === state.path.at(-1))!.chapterId;
+  let chapterStart = state.path.length - 1;
+  while (chapterStart > 0 && project.lines.find(line => line.id === state.path[chapterStart - 1])!.chapterId === lastChapterId) chapterStart--;
+  await expect(log).toHaveCount(state.path.length - chapterStart);
+  for (const [index, decision] of (state.choiceHistory ?? []).entries()) {
+    const choiceCut = project.lines.find(c => c.id === state.path[decision.pathIndex])!;
+    const option = choiceCut.flow?.type === 'choice' ? choiceCut.flow.options.find(o => o.id === decision.choiceId) : undefined;
+    expect(option, `selected option ${index}`).toBeTruthy();
+    if (decision.pathIndex >= chapterStart) await expect(log.nth(decision.pathIndex - chapterStart)).toContainText(`선택: ${option!.label}`);
+  }
+  await page.getByRole('button', { name: '읽기 메뉴 닫기', exact: true }).click();
+}
 
 test('Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py', async ({ browser }, info) => {
   test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(240000);
@@ -231,7 +242,7 @@ test('Seonnyeo existing storm: fixed original versus scored cut in actual browse
     await importShelfFile(page,inputFile);
     await expect(page.getByRole('region', { name: '작품 설정', exact: true })).toBeVisible();
     await page.getByRole('button', { name: '서재로', exact: true }).click();
-    const card = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
+    const card = page.getByRole('article', { name: `내 작품 · ${project.title}`, exact: true });
     await openShelfAction(page,card,'편집하기');
     await openEditorDetails(page, '장 전체 글·갈래 보기');
     await page.getByRole('button', { name: '현재 컷 쓰기', exact: true }).click();

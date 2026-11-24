@@ -72,7 +72,7 @@ test('memo fields survive reorder, delete undo, filters, device save and fresh-c
  try {
   const imported=await fresh.newPage();await imported.goto('/');await enterLibrary(imported);await importShelfFile(imported,path);
   if(!await imported.getByRole('region',{name:'작품 설정',exact:true}).isVisible()) {
-   const book=imported.getByRole('article',{name:`가져온 작품 · ${title}`,exact:true});
+   const book=imported.getByRole('article',{name:`내 작품 · ${title}`,exact:true});
    await openShelfAction(imported,book,'작품 준비');
   }
   const restored=await prepare(imported);
