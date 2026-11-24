@@ -14,7 +14,7 @@
 새 세션은 이 절부터 읽는다. 진행할 때마다 이 절과 아래 ‘진행 기록’을 함께 갱신한다.
 
 - **상태**: 1·2·3단계 끝(커밋함, 푸시 안 함). 여섯 집중 화면이 A2UI 카탈로그 설계도와 같고(비교 검사 통과), E2·E6·R1과 7크기 재측정까지 마쳤다. 코덱스 작업은 `feat/actor-offscreen-exit`(f076de5d)로 옮겨 병합함(2131218c). 메인 체크아웃의 코덱스 미커밋 파일은 그대로(정리는 사용자 확인 뒤).
-- **다음 할 일**: 큰 할 일은 없다. 남은 작은 것: 목록 화면 컷마다 같은 이름 ▶(‘이 컷부터 재생’ ×컷 수 — 대상이 컷마다 달라 중복은 아니지만 읽는 이름에 컷 번호를 넣을지), stories-runtime `existing-score-runtime`의 ‘가져온 작품’ 카드 이름 대기 실패(서재 쪽, main에서도 같은지 확인 필요).
+- **다음 할 일**: 큰 할 일은 없다. 남은 작은 것: 목록 화면 컷마다 같은 이름 ▶(‘이 컷부터 재생’ ×컷 수 — 대상이 컷마다 달라 중복은 아니다), 실제 화면의 다른 부분(컷 머리, 작업 탭)을 카탈로그 렌더러로 옮길지는 필요할 때. 메인 체크아웃의 코덱스 미커밋 파일은 옮긴 내용과 같아 이 브랜치 작업에는 필요 없다.
 - **알려진 것**: 선녀와 나무꾼 긴 경로 4개(360초 제한 초과)는 main 바탕에서도 같다. 읽기 화면 검사 3개(creative-reading-journey, reader-max-fit ×2)는 고쳤다(아래 3단계). 런타임은 `../new-knolstory-codex-port/apps/web/public/runtime`에 링크.
 - **바뀐 파일**
   - 앱: `apps/web/components/story-cut-context.tsx`(위 막대 장·컷 칸), `story-workspace.tsx`(화살표 자리 `cutStepsHost` → 편집 화면 `cutStepTarget`), `story-editing-workbench.tsx`(화살표 그리기, 중복 이동 제거, 현재 컷 글, 함께 보기 칩), `story-editing-workbench.module.css`·`story-workspace.module.css`·`editor-work-tabs.module.css`(각 파일 끝의 ‘Focus screens (2026-11-24)’ 블록), `workspace-management.tsx`·`story-player-menu.tsx`(+css)(닫기 ×).
@@ -78,6 +78,9 @@
 - **읽기 중 전체 화면 제안 없음**: 폰 크기로 바뀐 읽기 화면 위에 ‘휴대폰 전체 화면 안내’가 떠 읽기 메뉴를 가리던 문제를 고침(제안은 편집에서만).
 - **읽기 검사 정리**(main에서도 실패하던 것): `reader-max-fit` — 전체 화면 대상은 2026-10-29부터 문서 전체(HTML), 편집 복귀는 `main`이 보이는 창 크기와 같은지로 확인, 쓰기 글상자 선택자 갱신. `creative-reading-journey` — 장 카드·확인 전환 카드가 무대를 덮는 동안 빠른 막대가 비키는 설계에 맞춰 도우미(`native-reader.ts`)가 읽기 메뉴의 저장·불러오기를 쓰고, 확인 카드는 한 번 넘긴다.
 - **측정 도구**: `mobile-focus-audit.ts`의 누르는 영역 계산에 고정 44px `::after`와 입력란을 감싼 라벨을 더했다(보이는 36px + 누르는 44px 규칙).
+
+- **실제 편집기에 A2UI 렌더러 연결**: 목록 화면 위 도구 줄(`현재 컷 찾기` + `함께 보기` 칩)을 A2UI 메시지(`components/a2ui/list-tools-surface.ts`)로 만들고 `FocusSurface`(부분 그리기 `rootId`, 화면 배치에 맡기는 `inline`)로 그린다. 동작은 이벤트 이름(`revealCurrentCut`, `toggleCompanion` + 맥락 `task`·`value`)으로 실제 함수에 잇는다. 렌더러는 이벤트 맥락을 합치고(칩의 `task` 유지), 칩은 제어 컴포넌트로, `ToolGroup.labelVisible`(보이는 묶음 이름)·`Toggle.disabled`를 카탈로그에 더했다. 작업 탭은 1단계에서 기기별 크기를 맞춰 둔 것이라 그대로 두었다.
+- **서재 카드 이름·엔딩**: 2026-11-23 서재 결정 뒤 가져온 작품도 `내 작품` 칸에 꽂혀 카드 이름이 `내 작품 · 제목`이다. `existing-score-runtime`·`memo-authoring`이 예전 이름을 기다려 main 바탕(`feat/actor-offscreen-exit`)에서도 실패하던 것을 고쳤다. 엔딩은 크레딧에 화면을 주어 읽기 막대가 없으므로(ending-credits), `existing-score-runtime`의 지난기록 확인을 마지막 컷으로 옮겼다(마지막 컷이 확인 카드로 덮이면 기록만 남김). 그 뒤 남은 실패 3개(rabbit-classic·storm의 240초 초과, seonnyeo의 이어읽기 위치 `C1-A-v106-1` 기대 · `C1-v162-1` 실제)는 긴 읽기 경로 검사의 더 깊은 단계로, 편집 화면과 무관해 이번 범위에서 고치지 않았다.
 
 ### 재측정 (7크기 × 7화면, 1단계 뒤 → 지금)
 근거 `evidence/focus-editing-2026-11-24/a2ui-audit.json`. 합계: 4px 밖 간격 801 → 514, 붙은 조작 190 → 130, 44px 미만 누르는 영역 0 → 0(1단계 뒤 측정은 보이는 크기, 지금은 누르는 영역 기준), 조작 수 836 → 858(폰 무대 띠 단추, 원고 폰의 컷 머리 선택 단추가 늘고 목록 머리 글자 단추가 줄어 거의 같다). 상시 문구로 잡힌 것은 무대 로딩 화면의 안내 문장과 작가가 쓴 메모 내용뿐이다.
