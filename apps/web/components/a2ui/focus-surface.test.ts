@@ -44,7 +44,7 @@ describe('FocusSurface',()=>{
   const basicSurface=surfaceOf(structuredClone(focusScreenBlueprints.basic));
   basicSurface.components.set('chip',{id:'chip',component:'Chip',label:'선녀',image:'/a.png'});
   basicSurface.components.set('current',{...basicSurface.components.get('current')!,linkedImages:['chip']});
-  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:basicSurface,device:'desktop'}))).toContain('<img src="/a.png" alt=""/>선녀');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:basicSurface,device:'desktop'}))).toContain('<img src="/a.png" alt=""/><span>선녀</span>');
   surface.components.delete('chip');
   surface.components.set('work',{...surface.components.get('work')!,children:['list-tools','companions','cut-list','empty']});
   surface.components.set('audio-summary-1',{...surface.components.get('audio-summary-1')!,label:'배경음'});
@@ -53,8 +53,8 @@ describe('FocusSurface',()=>{
   const markup=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'desktop'}));
   expect(markup).toContain('role="status"');
   expect(markup).toContain('아직 소리가 없어요');
-  expect(markup).toMatch(/<details[^>]*data-a2ui-more="true"><summary>음향 수정<\/summary>/);
-  expect(markup).toMatch(/<details[^>]*data-a2ui-more="true"><summary>현재 컷 상세·메모·정리<\/summary>/);
+  expect(markup).toMatch(/<details[^>]*data-a2ui-more="true"[^>]*><summary>음향 수정<\/summary>/);
+  expect(markup).toMatch(/<details[^>]*data-a2ui-more="true"[^>]*><summary>현재 컷 상세·메모·정리<\/summary>/);
  });
 });
 
@@ -140,17 +140,21 @@ describe('real editor parts drawn by the catalog renderer',()=>{
 });
 
 describe('쓰기 head drawn by the catalog renderer',()=>{
- it('keeps names, the play icon, host classes and the linked-art Slot',async()=>{
+ it('keeps names, the play icon, host classes and the linked-art place',async()=>{
   const {basicHeadSurface}=await import('./editor-surfaces');
   const surface=basicHeadSurface({speaker:'해설',kind:'narration',busy:false,kindDisabled:true});
   expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
   const markup=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'head',inline:true,
-   attrs:c=>c.id==='head'?{className:'head'}:c.id==='kind'?{className:'kind'}:undefined,slots:{linked:createElement('span',{className:'empty'})}}));
+   attrs:c=>c.id==='head'?{className:'head'}:c.id==='kind'?{className:'kind'}:c.id==='linked'?{className:'empty'}:undefined}));
   expect(markup).toContain('<div role="group" aria-label="현재 컷의 화자" class="head">');
   expect(markup).toContain('aria-label="현재 컷 화자" maxLength="200" value="해설"');
   expect(markup).toMatch(/<label class="kind"><span>종류<\/span><select aria-label="현재 컷 글 종류" title="글 종류 설정" disabled=""/);
   expect(markup).toMatch(/aria-label="이 컷부터 재생"[^>]*><svg/);
-  expect(markup).toContain('<span class="empty"></span>');
+  expect(markup).toContain('</label><span class="empty"></span><label class="kind">');
+  const linked=basicHeadSurface({speaker:'나무꾼',kind:'dialogue',busy:false,kindDisabled:false,images:[{key:'a',assetId:'x',name:'나무꾼'}]});
+  const withImages=renderToStaticMarkup(createElement(FocusSurface,{surface:linked,device:'tablet',rootId:'head',inline:true,custom:{AssetThumbnail:()=>createElement('img',{alt:''})}}));
+  expect(withImages).toContain('role="group" aria-label="현재 컷 화자에 연결된 이미지"');
+  expect(withImages).toContain('<img alt=""/><span>나무꾼</span>');
  });
 });
 
@@ -170,7 +174,7 @@ describe('top bar, text box and neighbour places drawn by the catalog renderer',
   const {topBarSurface}=await import('./editor-surfaces');
   const surface=topBarSurface({unified:true,title:'작품',open:true,disabled:false,scores:false,fullscreen:true,fullscreenAvailable:true,loadComplete:true});
   expect(validateSurface(surface).filter(issue=>issue.rule!=='root'&&issue.rule!=='orphan')).toEqual([]);
-  const drawer=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'drawer',inline:true,skin:{drawerPanel:'panel'},slots:{settings:'S',files:'F',leave:'L'}}));
+  const drawer=renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'drawer',inline:true,skin:{drawerPanel:'panel'},custom:{CutSettings:()=>'S',FileTools:()=>'F',LeaveActions:()=>'L'}}));
   expect(drawer).toMatch(/<details open=""[^>]*><summary aria-label="설정">/);
   expect(drawer).toContain('<div class="panel" data-system-menu="editor">');
   expect(drawer).toContain('aria-label="편집 설정 닫기"');
@@ -184,7 +188,7 @@ describe('top bar, text box and neighbour places drawn by the catalog renderer',
   expect(renderToStaticMarkup(createElement(FocusSurface,{surface:textBoxSurface({lineId:'a',label:'1컷 글',value:'글',readOnly:true,disabled:false}),device:'phone',rootId:'text',inline:true,attrs:()=>({'data-cut-id':'a'})})))
    .toMatch(/aria-label="1컷 글" maxLength="20000" readOnly=""[^>]*data-cut-id="a">글<\/textarea>/);
   const card=cutCardSurface({side:'next',kind:'cut',label:'다음 컷',order:'원고 순서',text:'글',lineId:'b'});
-  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:card,device:'tablet',rootId:'card',inline:true,slots:{preview:'P'}}))).toContain('<strong>다음 컷<small>원고 순서</small></strong>P');
+  expect(renderToStaticMarkup(createElement(FocusSurface,{surface:card,device:'tablet',rootId:'card',inline:true,custom:{ScenePreview:()=>'P'}}))).toContain('<strong>다음 컷<small>원고 순서</small></strong>P');
   expect(renderToStaticMarkup(createElement(FocusSurface,{surface:card,device:'phone',rootId:'card',inline:true}))).toBe('');
   const fork=forkSurface({kind:'choice',title:'갈림길',choices:[{id:'x',label:'A. 가 →',where:'2장',lineId:'c',separateName:'2장 길만 따로 쓰기'},{id:'y',label:'B. 나',pending:'B. 나 · 도착 컷을 정해 주세요'}],disabled:false,separateDisabled:false});
   const markup=renderToStaticMarkup(createElement(FocusSurface,{surface:fork,device:'phone',rootId:'fork',inline:true,attrs:c=>c.component==='Notice'?{className:'pending'}:undefined}));

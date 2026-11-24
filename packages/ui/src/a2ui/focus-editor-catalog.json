@@ -3,7 +3,7 @@
   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json",
   "title": "KnolStory 집중 편집 화면 카탈로그",
   "description": "A2UI v0.9 catalog for KnolStory's focus editing screens. Screens are composed only from these components. Source rules: DESIGN.md '집중 편집 화면 규칙 — 2026-11-24'.",
-  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Use Slot for parts the screen draws itself (asset browser, stage, timeline); never put controls of the catalog inside a Slot.",
+  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Use Slot for parts the screen draws itself (asset browser, stage, timeline); never put controls of the catalog inside a Slot. Components marked x-host are custom catalog components: the catalog fixes their place and props; the screen registers how they are drawn. Use them instead of Slot whenever a named one fits.",
   "$defs": {
     "Device": {
       "type": "string",
@@ -389,9 +389,11 @@
       "type": "object",
       "description": "Vertical group of tool groups inside the work area or More.",
       "allowedParents": [
+        "Column",
+        "CutItem",
         "FocusScreen",
         "More",
-        "CutItem"
+        "ToolGroup"
       ],
       "properties": {
         "component": {
@@ -404,8 +406,22 @@
           "$ref": "#/$defs/Gap"
         },
         "children": {
-          "$ref": "common_types.json#/$defs/ChildList",
-          "minItems": 1
+          "$ref": "common_types.json#/$defs/ChildList"
+        },
+        "title": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "element": {
+          "type": "string",
+          "enum": [
+            "div",
+            "section",
+            "span",
+            "aside"
+          ]
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString"
         }
       },
       "required": [
@@ -460,6 +476,7 @@
       "type": "object",
       "description": "Text button. Visible height 32–36px, touch target 44px. Font is never larger than body text. `name` is the accessible name when the visible label is shorter (e.g. ▶ 재생 → 이 컷부터 재생); an optional icon sits before the label.",
       "allowedParents": [
+        "More",
         "Notice",
         "ToolGroup"
       ],
@@ -575,8 +592,10 @@
       "type": "object",
       "description": "Pick one value (select). The label is visible and short; `name` is the accessible name when it differs.",
       "allowedParents": [
-        "ToolGroup",
-        "CurrentCut"
+        "Column",
+        "CurrentCut",
+        "More",
+        "ToolGroup"
       ],
       "properties": {
         "component": {
@@ -604,6 +623,9 @@
               "label": {
                 "type": "string",
                 "maxLength": 20
+              },
+              "disabled": {
+                "type": "boolean"
               }
             },
             "required": [
@@ -640,9 +662,10 @@
       "type": "object",
       "description": "Small status token, e.g. an image linked to the speaker. Shown only when there is something to show.",
       "allowedParents": [
+        "Column",
         "CurrentCut",
-        "ToolGroup",
-        "CutItem"
+        "CutItem",
+        "ToolGroup"
       ],
       "properties": {
         "component": {
@@ -657,6 +680,16 @@
         },
         "image": {
           "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "icon": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "iconSide": {
+          "type": "string",
+          "enum": [
+            "start",
+            "end"
+          ]
         }
       },
       "required": [
@@ -666,11 +699,11 @@
     },
     "More": {
       "type": "object",
-      "description": "Collapsed disclosure for rarely used tools. Starts closed; one open panel at a time; Escape closes the innermost.",
+      "description": "Collapsed disclosure for rarely used tools. Starts closed; one open panel at a time; Escape closes the innermost. lead is read before the summary by assistive tech only (e.g. ‘1컷 배경’ + 표시 조정). open/toggle let the screen render heavy contents only when opened. contentShown: the browser keeps the open/closed state (a re-opened screen starts folded) while the screen decides whether the heavy contents are drawn yet; toggle reports each change.",
       "allowedParents": [
-        "FocusScreen",
         "Column",
-        "CutItem"
+        "CutItem",
+        "FocusScreen"
       ],
       "properties": {
         "component": {
@@ -686,6 +719,25 @@
         "children": {
           "$ref": "common_types.json#/$defs/ChildList",
           "minItems": 1
+        },
+        "lead": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "open": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "toggle": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "wrap": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "contentShown": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },
       "required": [
@@ -696,9 +748,10 @@
     },
     "Notice": {
       "type": "object",
-      "description": "The only place for sentences: empty state, error, or before an irreversible action.",
+      "description": "The only place for sentences: empty state, error, a warning about the current work (e.g. 인물이 많이 겹쳐요), or before an irreversible action.",
       "allowedParents": [
         "Column",
+        "CutItem",
         "FocusScreen",
         "Fork",
         "More"
@@ -715,7 +768,8 @@
           "enum": [
             "empty",
             "error",
-            "irreversible"
+            "irreversible",
+            "warning"
           ]
         },
         "text": {
@@ -794,7 +848,7 @@
         },
         "children": {
           "$ref": "common_types.json#/$defs/ChildList",
-          "maxItems": 4
+          "maxItems": 8
         },
         "showText": {
           "type": "boolean"
@@ -817,9 +871,9 @@
       "type": "object",
       "description": "Thumbnail + name button that opens the asset browser. `label` is the field name for assistive tech; it is visible only when the screen does not already say what is picked. No standing hint text.",
       "allowedParents": [
+        "Column",
         "CutItem",
-        "ToolGroup",
-        "Column"
+        "ToolGroup"
       ],
       "properties": {
         "component": {
@@ -847,6 +901,21 @@
         },
         "action": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "preview": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        },
+        "hint": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "assetValue": {
+          "type": "string"
+        },
+        "inherited": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -861,6 +930,8 @@
       "type": "object",
       "description": "Range input with a short visible label and its value.",
       "allowedParents": [
+        "Column",
+        "More",
         "ToolGroup"
       ],
       "properties": {
@@ -872,7 +943,7 @@
         },
         "label": {
           "$ref": "common_types.json#/$defs/DynamicString",
-          "maxLength": 12
+          "maxLength": 16
         },
         "value": {
           "$ref": "common_types.json#/$defs/DataBinding"
@@ -892,6 +963,16 @@
         },
         "change": {
           "$ref": "common_types.json#/$defs/Action"
+        },
+        "valueText": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "step": {
+          "type": "number"
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
         }
       },
       "required": [
@@ -945,8 +1026,8 @@
       "type": "object",
       "description": "Multi-line text of a cut (쓰기·원고). The label is for assistive tech. readOnly when the device only reviews (short landscape phone).",
       "allowedParents": [
-        "CutItem",
-        "Column"
+        "Column",
+        "CutItem"
       ],
       "properties": {
         "component": {
@@ -1181,6 +1262,255 @@
         "label",
         "where",
         "select"
+      ]
+    },
+    "AssetThumbnail": {
+      "type": "object",
+      "x-host": true,
+      "description": "A small preview of a picked image (background or character art). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "AssetPicker",
+        "Chip",
+        "Column",
+        "CurrentCut",
+        "CutItem"
+      ],
+      "properties": {
+        "component": {
+          "const": "AssetThumbnail"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "assetId": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string",
+          "enum": [
+            "picker",
+            "chip"
+          ]
+        }
+      },
+      "required": [
+        "component",
+        "assetId"
+      ]
+    },
+    "ScenePreview": {
+      "type": "object",
+      "x-host": true,
+      "description": "A neighbour cut's rendered scene thumbnail (or its pending/unavailable state). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "CutCard"
+      ],
+      "properties": {
+        "component": {
+          "const": "ScenePreview"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "lineId": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "lineId"
+      ]
+    },
+    "SoundEditor": {
+      "type": "object",
+      "x-host": true,
+      "description": "A cut's or chapter's sound editor (배경음·주변 소리·효과음). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "Column",
+        "CutItem",
+        "More"
+      ],
+      "properties": {
+        "component": {
+          "const": "SoundEditor"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "lineId": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "cut",
+            "chapter"
+          ]
+        }
+      },
+      "required": [
+        "component",
+        "lineId"
+      ]
+    },
+    "DirectionEditor": {
+      "type": "object",
+      "x-host": true,
+      "description": "A cut's direction editor (효과·전환·인물 동작). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "Column",
+        "CutItem",
+        "More"
+      ],
+      "properties": {
+        "component": {
+          "const": "DirectionEditor"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "lineId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "lineId"
+      ]
+    },
+    "TextVariants": {
+      "type": "object",
+      "x-host": true,
+      "description": "Branch/score text variants and scene visibility of a cut (shown when those features are on). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "Column",
+        "CurrentCut",
+        "CutItem"
+      ],
+      "properties": {
+        "component": {
+          "const": "TextVariants"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "lineId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "lineId"
+      ]
+    },
+    "StagingImport": {
+      "type": "object",
+      "x-host": true,
+      "description": "Copy the staging of another cut (다른 컷 배치 가져오기). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "Column",
+        "CutItem"
+      ],
+      "properties": {
+        "component": {
+          "const": "StagingImport"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "lineId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "lineId"
+      ]
+    },
+    "CutSettings": {
+      "type": "object",
+      "x-host": true,
+      "description": "The current cut and editing settings panel inside the settings drawer (컷·장 추가, 편집화면, 편집 설정). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "Drawer"
+      ],
+      "properties": {
+        "component": {
+          "const": "CutSettings"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        }
+      },
+      "required": [
+        "component"
+      ]
+    },
+    "FileTools": {
+      "type": "object",
+      "x-host": true,
+      "description": "Work file saving, importing, exchange and recovery inside the settings drawer. A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "ToolGroup"
+      ],
+      "properties": {
+        "component": {
+          "const": "FileTools"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        }
+      },
+      "required": [
+        "component"
+      ]
+    },
+    "LeaveActions": {
+      "type": "object",
+      "x-host": true,
+      "description": "Screen and leaving actions inside the settings drawer (전체 화면, 홈 화면 앱). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "ToolGroup"
+      ],
+      "properties": {
+        "component": {
+          "const": "LeaveActions"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        }
+      },
+      "required": [
+        "component"
+      ]
+    },
+    "HostPanel": {
+      "type": "object",
+      "x-host": true,
+      "description": "An editor panel this catalog places but does not draw (chapter settings, combined timeline). A custom catalog component: the screen registers its implementation with the renderer.",
+      "allowedParents": [
+        "FocusScreen",
+        "Column",
+        "More",
+        "CutItem"
+      ],
+      "properties": {
+        "component": {
+          "const": "HostPanel"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "name"
       ]
     }
   },

@@ -10,11 +10,13 @@ import styles from './focus-surface.module.css';
 export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action:A2uiAction};
 /** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
 /** A host screen keeps its tuned CSS (skin: class per part), adds its own attributes (attrs) and fills Slots (slots). */
-export type FocusSkin=Partial<Record<'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText'|'cutPosition'|'cutPositionLabel'|'cutShort'|'drawerPanel'|'drawerHead'|'groupLabel'|'cardAdd'|'excerpt'|'pathChoice'|'pathFrom'|'pathSeparate',string>>;
+export type FocusSkin=Partial<Record<'pickerLabel'|'pickerButton'|'srOnly'|'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText'|'cutPosition'|'cutPositionLabel'|'cutShort'|'drawerPanel'|'drawerHead'|'groupLabel'|'cardAdd'|'excerpt'|'pathChoice'|'pathFrom'|'pathSeparate',string>>;
 type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;slots?:Record<string,ReactNode>;
  /** Korean IME composition in a TextField: the host must know at once (it guards navigation and saving). */
- onComposing?:(composing:boolean)=>void};
-type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;slots:Record<string,ReactNode>;composing:(on:boolean)=>void};
+ onComposing?:(composing:boolean)=>void;
+ /** Implementations of the catalog's custom (x-host) components, by component name. */
+ custom?:Partial<Record<string,(component:A2uiComponent)=>ReactNode>>};
+type Ctx={surface:Surface;device:Device;fire:(id:string,action:unknown)=>void;render:(id:unknown)=>ReactNode;skin:FocusSkin;attrs:(component:A2uiComponent)=>Record<string,string|undefined>;slots:Record<string,ReactNode>;composing:(on:boolean)=>void;custom:Partial<Record<string,(component:A2uiComponent)=>ReactNode>>};
 type Renderer=(component:A2uiComponent,ctx:Ctx)=>ReactNode;
 
 const TASK_LABELS={basic:'쓰기',text:'원고',background:'배경',characters:'인물',audio:'음향',direction:'연출'} as const;
@@ -40,6 +42,9 @@ const gapClass=(gap:unknown)=>styles[`gap${typeof gap==='number'?gap:8}`];
 /** A host may give a part its own class (attrs → className) to keep the screen's tuned CSS; other attrs pass through. */
 const host=(ctx:Ctx,c:A2uiComponent,fallback:string|undefined)=>{const {className,...rest}=ctx.attrs(c);return {className:className??fallback,...rest};};
 const changeWith=(ctx:Ctx,c:A2uiComponent,value:unknown)=>{const change=c.change as {event?:{context?:object}}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...(change.event.context??{}),value}}});};
+
+/** Default drawing of a custom (x-host) component when the screen has not registered one: a named placeholder. */
+const hostPart:Renderer=(c)=><span className={styles.hostPart} data-host-part={c.component}>{c.component}</span>;
 
 export const focusRenderers:Record<FocusComponentName,Renderer>={
  FocusScreen:(c,ctx)=><section className={styles.screen} data-a2ui-screen={String(c.task)} aria-label={`${TASK_LABELS[c.task as keyof typeof TASK_LABELS]} 편집`}>
@@ -121,7 +126,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   return <div className={ctx.skin.pathFrom}>{choice}<button type="button" className={ctx.skin.pathSeparate} disabled={value(ctx,c.separateDisabled)===true} onClick={()=>ctx.fire(c.id,c.separate)}
    aria-label={text(ctx,c.separateName)} title="이 컷을 복사해 이 길에서만 보이게 해요. 다음 컷부터는 다시 같은 이야기예요.">이 길만 따로 쓰기</button></div>;
  },
- Column:(c,ctx)=><div className={`${styles.column} ${gapClass(c.gap)}`}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>,
+ Column:(c,ctx)=>{const Tag=c.element==='section'?'section':c.element==='span'?'span':c.element==='aside'?'aside':'div';const named=c.name===undefined?{}:c.element==='aside'?{'aria-label':text(ctx,c.name)}:{role:'group','aria-label':text(ctx,c.name),title:text(ctx,c.name)};return <Tag {...named} {...host(ctx,c,`${styles.column} ${gapClass(c.gap)}`)}>{c.title!==undefined&&<strong>{text(ctx,c.title)}</strong>}{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</Tag>;},
  ToolGroup:(c,ctx)=><div role="group" aria-label={text(ctx,c.name)} {...host(ctx,c,`${styles.toolGroup} ${gapClass(c.gap)}`)}>
   {c.labelVisible===true&&<span className={ctx.skin.groupLabel??styles.groupLabel} aria-hidden="true">{text(ctx,c.name)}</span>}
   {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
@@ -136,14 +141,16 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  Choice:(c,ctx)=><label {...host(ctx,c,styles.choice)}>
   <span>{text(ctx,c.label)}</span>
   <select aria-label={c.name!==undefined?text(ctx,c.name):undefined} title={typeof c.title==='string'?c.title:undefined} value={text(ctx,c.value)} disabled={value(ctx,c.disabled)===true} onChange={event=>changeWith(ctx,c,event.currentTarget.value)}>
-   {list(c.options).map(option=>{const {value:optionValue,label}=option as {value:string;label:string};return <option key={optionValue} value={optionValue}>{label}</option>;})}
+   {list(c.options).map(option=>{const {value:optionValue,label,disabled}=option as {value:string;label:string;disabled?:boolean};return <option key={optionValue} value={optionValue} disabled={disabled===true}>{label}</option>;})}
   </select>
  </label>,
- Chip:(c,ctx)=><span className={styles.chip}>{c.image!==undefined&&<img src={text(ctx,c.image)} alt=""/>}{text(ctx,c.label)}</span>,
- More:(c,ctx)=><details className={styles.more} data-a2ui-more>
-  <summary>{text(ctx,c.summary)}</summary>
-  <div className={styles.moreBody}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>
- </details>,
+ Chip:(c,ctx)=>{const icon=c.icon!==undefined?ctx.render(c.icon):c.image!==undefined?<img src={text(ctx,c.image)} alt=""/>:null;const label=text(ctx,c.label);
+  return <span {...host(ctx,c,styles.chip)}>{c.iconSide!=='end'&&icon}{label&&(c.iconSide==='end'?<small>{label}</small>:<span>{label}</span>)}{c.iconSide==='end'&&icon}</span>;},
+ More:(c,ctx)=>{const controlled=c.open!==undefined,open=value(ctx,c.open)===true,gated=c.contentShown!==undefined,shown=value(ctx,c.contentShown)===true;
+  return <details data-a2ui-more {...(controlled?{open}:{})} onToggle={controlled||gated?event=>{const now=event.currentTarget.open;if((gated||now!==open)&&c.toggle&&typeof c.toggle==='object'&&'event' in c.toggle)ctx.fire(c.id,{event:{...(c.toggle as {event:{context?:object}}).event,context:{...((c.toggle as {event:{context?:object}}).event.context??{}),open:now}}});}:undefined} {...host(ctx,c,styles.more)}>
+  <summary title={typeof c.title==='string'?c.title:undefined}>{c.lead!==undefined&&<span className={ctx.skin.srOnly??styles.srOnly}>{text(ctx,c.lead)} </span>}{text(ctx,c.summary)}</summary>
+  {(gated?shown:(!controlled||open))&&(c.wrap===false?list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>):<div className={styles.moreBody}>{list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>)}
+ </details>;},
  TextField:(c,ctx)=><label {...host(ctx,c,styles.choice)}>
   <span>{text(ctx,c.label)}</span>
   <input className={styles.textField} aria-label={c.name!==undefined?text(ctx,c.name):undefined} value={text(ctx,c.value)} maxLength={typeof c.maxChars==='number'?c.maxChars:undefined} disabled={value(ctx,c.disabled)===true}
@@ -167,16 +174,22 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   </article>;
  },
  Slot:(c,ctx)=><Fragment>{ctx.slots[String(c.name)]??null}</Fragment>,
- AssetPicker:(c,ctx)=><div className={styles.assetPicker}>
-  {c.labelVisible===true&&<span className={styles.fieldLabel}>{text(ctx,c.label)}</span>}
-  <button type="button" aria-label={`${text(ctx,c.label)} 이미지 찾기 · ${text(ctx,c.value)}`} onClick={()=>ctx.fire(c.id,c.action)}>
-   <span className={styles.thumb} data-kind={String(c.kind)} aria-hidden="true"/><strong>{text(ctx,c.value)}</strong>
-  </button>
- </div>,
- Slider:(c,ctx)=>{const current=Number(value(ctx,c.value)??c.min);return <label className={styles.slider}>
-  <span>{text(ctx,c.label)} · {current}{typeof c.unit==='string'?c.unit:''}</span>
-  <input type="range" min={Number(c.min)} max={Number(c.max)} defaultValue={current} aria-label={text(ctx,c.label)}
-   onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:Number(event.currentTarget.value)}}});}}/>
+ AssetPicker:(c,ctx)=>{
+  const field=text(ctx,c.label),name=`${field.endsWith('이미지')?`${field} 찾기`:`${field} 이미지 찾기`} · ${text(ctx,c.value)}`,hint=text(ctx,c.hint),hintId=`${ctx.surface.surfaceId}-${c.id}-hint`;
+  return <div {...host(ctx,c,styles.assetPicker)}>
+   <span className={c.labelVisible===true?(ctx.skin.pickerLabel??styles.fieldLabel):(ctx.skin.srOnly??styles.srOnly)}>{text(ctx,c.label)}</span>
+   <button type="button" className={ctx.skin.pickerButton} aria-label={name} aria-describedby={hint?hintId:undefined} disabled={value(ctx,c.disabled)===true}
+    data-asset-value={typeof c.assetValue==='string'?c.assetValue:undefined} data-asset-inherited={c.inherited===true?true:undefined} onClick={()=>ctx.fire(c.id,c.action)}>
+    {c.preview!==undefined?ctx.render(c.preview):null}
+    <span><strong>{text(ctx,c.value)}</strong>{hint&&<small id={hintId}>{hint}</small>}</span>
+   </button>
+  </div>;
+ },
+ Slider:(c,ctx)=>{const current=Number(value(ctx,c.value)??c.min);const shown=c.valueText!==undefined?text(ctx,c.valueText):`${current}${typeof c.unit==='string'?c.unit:''}`;
+  return <label {...host(ctx,c,styles.slider)}>
+  <span>{text(ctx,c.label)} · {shown}</span>
+  <input type="range" min={Number(c.min)} max={Number(c.max)} step={typeof c.step==='number'?c.step:undefined} value={current} aria-label={c.name!==undefined?text(ctx,c.name):text(ctx,c.label)}
+   onChange={event=>changeWith(ctx,c,Number(event.currentTarget.value))}/>
  </label>;},
  Toggle:(c,ctx)=><label className={styles.toggle}>
   <input type="checkbox" className={styles.toggleInput} checked={value(ctx,c.value)===true} disabled={value(ctx,c.disabled)===true} aria-label={c.name!==undefined?text(ctx,c.name):undefined}
@@ -196,9 +209,10 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    </div>
   </details>;
  },
+ AssetThumbnail:hostPart,ScenePreview:hostPart,SoundEditor:hostPart,DirectionEditor:hostPart,TextVariants:hostPart,StagingImport:hostPart,CutSettings:hostPart,FileTools:hostPart,LeaveActions:hostPart,HostPanel:hostPart,
  Notice:(c,ctx)=>{const {className,...rest}=ctx.attrs(c);
   // Inside a screen a Notice is one line of the host's own type (className given); in the catalog view it is a boxed notice.
-  if(className!==undefined)return <p className={className} role={c.kind==='error'?'alert':undefined} {...rest}>{text(ctx,c.text)}</p>;
+  if(className!==undefined)return c.kind==='warning'?<div className={className} role="status" {...rest}>{text(ctx,c.text)}</div>:<p className={className} role={c.kind==='error'?'alert':undefined} {...rest}>{text(ctx,c.text)}</p>;
   return <div className={styles.notice} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'}>
    <p>{text(ctx,c.text)}</p>
    {list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
@@ -206,14 +220,16 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
 };
 
 /** Draws the surface's root for one device. Components hidden on that device are left out. */
-export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,slots={},onComposing}:Props){
+export function FocusSurface({surface,device,onAction,rootId='root',inline=false,skin={},attrs,slots={},onComposing,custom}:Props){
  const ctx:Ctx={
-  surface,device,skin,slots,attrs:component=>attrs?.(component)??{},composing:on=>onComposing?.(on),
+  surface,device,skin,slots,attrs:component=>attrs?.(component)??{},composing:on=>onComposing?.(on),custom:custom??{},
   fire:(id,action)=>{if(action)onAction?.({surfaceId:surface.surfaceId,sourceComponentId:id,action:action as A2uiAction});},
   render:id=>{
    if(typeof id!=='string')return null;
    const component=surface.components.get(id);
    if(!component||!effectiveDevices(surface,id).includes(device))return null;
+   const registered=custom?.[component.component];
+   if(registered)return <Fragment key={id}>{registered(component)}</Fragment>;
    const renderer=focusRenderers[component.component as FocusComponentName];
    return renderer?<Fragment key={id}>{renderer(component,ctx)}</Fragment>:null;
   },

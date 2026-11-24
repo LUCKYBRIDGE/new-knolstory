@@ -297,7 +297,7 @@ export function controlNames(surface:Surface,device:Device,fromId='root'):string
     return;
    case 'IconButton':names.push(read(c.name));break;
    case 'Toggle':names.push(read(c.name??c.label));break;
-   case 'AssetPicker':names.push(`${read(c.label)} 이미지 찾기 · ${read(c.value)}`);break;
+   case 'AssetPicker':{const field=read(c.label);names.push(`${field.endsWith('이미지')?`${field} 찾기`:`${field} 이미지 찾기`} · ${read(c.value)}`);break;}
    case 'More':names.push(read(c.summary));return;
    case 'CutList':
     for(const child of childIds(c))if(device!=='phone'||c.phoneShows==='all'||read(surface.components.get(child)?.current)==='true')visit(child);
