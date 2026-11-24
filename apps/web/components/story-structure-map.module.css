@@ -1,0 +1,39 @@
+/* 갈래 구조: blocks read top to bottom; each way says its choice, the folded cuts and where it ends. */
+.structure{display:grid;gap:12px;min-width:0}
+.blocks{list-style:none;margin:0;padding:0;display:grid;gap:12px;min-width:0}
+.block{min-width:0;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--white);padding:8px;display:grid;gap:8px;scroll-margin:16px}
+.block[data-current]{border-color:var(--story-menu-accent,var(--mint-strong));box-shadow:0 0 0 1px var(--story-menu-accent,var(--mint-strong)) inset}
+.head{display:grid;gap:2px;width:100%;min-height:44px;text-align:left;padding:6px 10px;border:0;background:var(--paper);border-radius:10px;overflow-wrap:anywhere;word-break:keep-all}
+.head strong{font-size:var(--text-body)}
+.head[aria-current=true]{outline:2px solid var(--story-menu-accent,var(--mint-strong))}
+.excerpt{font-size:var(--text-small);color:var(--ink-soft);font-weight:400}
+.roles{display:flex;flex-wrap:wrap;gap:4px;font-size:var(--text-caption);font-weight:700;color:var(--ink)}
+.roles>span{padding:1px 6px;border-radius:var(--radius-control);border:1px solid var(--story-menu-accent,#b9852a);background:transparent}
+.roles>[data-role=join]{border-style:dashed}
+.roles>[data-role=detached]{background:var(--paper);border:1px solid var(--coral);color:var(--ink)}
+.roles>[data-role=current]{background:var(--story-menu-accent,var(--mint-strong));border-color:transparent;color:var(--story-menu-bg,var(--white))}
+.legs{list-style:none;margin:0;padding:0 0 0 12px;display:grid;gap:6px;border-left:2px solid var(--story-menu-accent,#e3c68f);margin-left:10px}
+.leg{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-width:0;padding:4px 0 4px 8px;font-size:var(--text-small);word-break:keep-all;overflow-wrap:anywhere}
+.leg[data-current]{outline:1px dashed var(--story-menu-accent,var(--mint-strong));border-radius:8px}
+.way{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px;min-width:0}
+.way b{font-weight:700}
+.condition{font-size:var(--text-caption);padding:1px 6px;border-radius:var(--radius-control);border:1px solid var(--story-menu-accent,#d8b46e);color:var(--ink)}
+.run{min-width:0}
+.run>summary{display:inline-flex;align-items:center;min-height:36px;padding:0 10px;border:1px dashed var(--line);border-radius:var(--radius-control);cursor:pointer;font-size:var(--text-small)}
+.run>summary::before{content:'→ ';margin-right:2px}
+.run[open]{flex-basis:100%}
+.run ol{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px}
+.run button{width:100%;display:grid;gap:2px;text-align:left;min-height:40px;padding:4px 10px;font-size:var(--text-small)}
+.run button span{font-size:var(--text-caption);color:var(--ink-soft);white-space:pre-wrap;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.run button[aria-current=true]{outline:2px solid var(--story-menu-accent,var(--mint-strong))}
+.end{min-height:36px;padding:0 10px;font-size:var(--text-small);font-weight:700;text-align:left}
+.end::before{content:'→ ';font-weight:400}
+span.end{display:inline-flex;align-items:center;border-radius:var(--radius-control);border:1px solid var(--line)}
+.ending{border-style:double}
+.problem.problem{border-color:var(--story-menu-danger,var(--coral))}
+.end[aria-current=true]{outline:2px solid var(--mint-strong)}
+.chapter{min-width:0;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--paper)}
+.chapter>summary{cursor:pointer;min-height:44px;padding:10px 12px;font-weight:700;overflow-wrap:anywhere}
+.chapter>summary span{font-size:var(--text-small);color:var(--ink-soft);font-weight:400}
+.chapter>.blocks{padding:0 8px 8px}
+.more{min-height:40px;margin:4px 0;width:100%;font-size:var(--text-small)}
