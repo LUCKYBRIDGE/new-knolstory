@@ -10,8 +10,10 @@ export type EditorPreferences=Readonly<{
  enabled:Readonly<{characters:boolean;audio:boolean;direction:boolean}>;
  logic:Readonly<{choices:boolean;scores:boolean;branches:boolean}>;
  companions:Readonly<Partial<Record<EditingScreen,readonly Companion[]>>>;
+ /** 쓰기의 ‘이야기 연결’ stays open across cuts while the author keeps it open (UI only). */
+ connections?:boolean;
 }>;
-export const defaultEditorPreferences:EditorPreferences={screen:'basic',arrangement:'auto',effectAssistance:{showGuides:true,snap:true},enabled:{characters:false,audio:false,direction:false},logic:{choices:false,scores:false,branches:false},companions:{}};
+export const defaultEditorPreferences:EditorPreferences={screen:'basic',arrangement:'auto',effectAssistance:{showGuides:true,snap:true},enabled:{characters:false,audio:false,direction:false},logic:{choices:false,scores:false,branches:false},companions:{},connections:false};
 const screens:readonly EditingScreen[]=['basic','text','background','characters','audio','direction','audio-direction'];
 const companionNames:readonly Companion[]=['text','background','characters','audio','direction'];
 const record=(value:unknown):Record<string,unknown>=>value!==null&&typeof value==='object'&&!Array.isArray(value)?value as Record<string,unknown>:{};
@@ -29,7 +31,7 @@ export function normalizeEditorPreferences(value:unknown):EditorPreferences {
  }));
  const arrangement=raw.arrangement==='columns'||raw.arrangement==='stacked'?raw.arrangement:'auto';
  const effectAssistance={showGuides:typeof assistanceRaw.showGuides==='boolean'?assistanceRaw.showGuides:true,snap:typeof assistanceRaw.snap==='boolean'?assistanceRaw.snap:true};
- return {screen,arrangement,effectAssistance,enabled,logic,companions};
+ return {screen,arrangement,effectAssistance,enabled,logic,companions,connections:raw.connections===true};
 }
 export const editorPreferencesKey=(projectId:string)=>`knolstory-editor-session-v1:${encodeURIComponent(projectId)}`;
 export function readEditorPreferences(storage:Pick<Storage,'getItem'>,projectId:string):EditorPreferences {

@@ -1,0 +1,35 @@
+/* 쓰기 · 이야기 연결: 앞 갈림길 → 지금 → 다음, read top to bottom along one rail. */
+.connections{flex:none;min-width:0;border:1px solid #efd9b0;border-radius:var(--radius-panel,12px);background:#fffaf0;padding:0 12px}
+.connections>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;font-size:var(--text-small);font-weight:700;color:#7a5414;cursor:pointer;list-style:none}
+.connections>summary::-webkit-details-marker{display:none}
+.connections>summary::after{content:'▾';font-weight:400}
+.connections[open]>summary::after{content:'▴'}
+.connections>div{display:flex;flex-direction:column;gap:0;padding:0 0 12px;max-height:min(70dvh,640px);overflow:auto;overscroll-behavior:contain}
+.group{display:flex;flex-direction:column;gap:8px;min-width:0}
+.step{position:relative;display:grid;gap:4px;min-width:0;padding:0 0 12px 18px;border:0;background:none}
+.step::before{content:'';position:absolute;left:5px;top:6px;bottom:0;border-left:2px solid #e3c68f}
+.step::after{content:'';position:absolute;left:0;top:2px;width:8px;height:8px;border:2px solid #b9852a;border-radius:2px;background:#fffaf0;transform:rotate(45deg)}
+.step>strong{font-size:var(--text-small);color:#7a5414;line-height:1.4}
+.step>small{font-size:var(--text-caption);color:var(--ink-soft);line-height:1.5;overflow-wrap:anywhere}
+.here{padding-top:4px}
+.here::before{top:12px}
+.here::after{top:4px;border-radius:50%;transform:none;background:#b9852a;width:10px;height:10px;left:-1px}
+.here:last-child::before,.tools+.here::before{display:none}
+.here>strong{color:var(--ink);font-size:var(--text-body)}
+.way{display:grid;gap:2px;min-width:0;min-height:44px;text-align:left;padding:6px 10px;border:1px solid #efd9b0;border-radius:10px;background:var(--white);word-break:keep-all;overflow-wrap:anywhere}
+.way b{font-size:var(--text-small);line-height:1.4}.way span{font-size:var(--text-caption);color:var(--ink-soft);line-height:1.5}
+.way:not(:disabled):hover{border-color:#b9852a}
+.notice{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:6px 10px;border:1px dashed #d8b46e;border-radius:10px;background:var(--white);font-size:var(--text-small)}
+.notice>p{margin:0;flex:1 1 12em;overflow-wrap:anywhere}
+.notice[data-kind=warning]{border-style:solid;border-color:var(--coral,#d46a4f)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px}
+.tools>button{flex:1 1 auto;min-height:44px}
+.connections details{border:0}
+.connections details>summary{min-height:36px;font-size:var(--text-caption)}
+.connections.connections>summary{border:0;background:none;box-shadow:none;padding:0;margin:0}
+/* Narrow screens: the trail reads in one glance — the branch excerpt folds away and each way is a compact row. */
+@media(max-width:700px){
+ .step:not(.here)>small{display:none}
+ .way{min-height:40px;padding:4px 10px}
+ .connections>div{max-height:none}
+}
