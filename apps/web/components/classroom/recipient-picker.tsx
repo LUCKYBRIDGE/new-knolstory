@@ -37,7 +37,10 @@ export function RecipientPicker({students,value,onChange,disabled=false}:{studen
 }
 
 /** On a task card: who gets it, changeable in place. */
-export function RecipientFacts({title,value,students,onSave}:{title:string;value:Recipients|undefined;students:readonly RecipientStudent[];onSave:(next:Recipients)=>Promise<boolean>}){
+/** Who gets a task, as one chip. */
+export function RecipientChip({value}:{value:Recipients|undefined}){const current=value??null;return <span className={styles.factChip} data-recipients={current===null?'all':'some'}>받는 학생 · <b>{recipientsLabel(current)}</b></span>;}
+/** `changeOnly` leaves the chip to the card's fact line and keeps just the change action (task card fold). */
+export function RecipientFacts({title,value,students,onSave,changeOnly=false}:{title:string;value:Recipients|undefined;students:readonly RecipientStudent[];onSave:(next:Recipients)=>Promise<boolean>;changeOnly?:boolean}){
  const [editing,setEditing]=useState(false),[draft,setDraft]=useState<Recipients>(value??null),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const current=value??null;
  async function save(){
@@ -51,7 +54,7 @@ export function RecipientFacts({title,value,students,onSave}:{title:string;value
   <div className={styles.row}><button className={`${styles.btn} ${styles.primary}`} disabled={busy}>저장</button><button type="button" className={styles.btn} disabled={busy} onClick={()=>{setEditing(false);setError('');}}>취소</button></div>
  </form>;
  return <div className={styles.taskFacts}>
-  <span className={styles.factChip} data-recipients={current===null?'all':'some'}>받는 학생 · <b>{recipientsLabel(current)}</b></span>
+  {!changeOnly&&<RecipientChip value={current}/>}
   <button className={styles.linkBtn} aria-label={`${title} 받는 학생 바꾸기`} onClick={()=>{setDraft(current);setEditing(true);}}>받는 학생 바꾸기</button>
  </div>;
 }

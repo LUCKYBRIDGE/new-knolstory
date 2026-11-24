@@ -9,7 +9,8 @@ export function MobileFullscreenOffer({enabled,onEnter}:{enabled:boolean;onEnter
  const phone=usePhoneEditor(),seen=useRef(false),dialog=useRef<HTMLDialogElement>(null);
  const [open,setOpen]=useState(false);
  useEffect(()=>{
-  if(!enabled||!phone||seen.current||!document.fullscreenEnabled||!document.documentElement.requestFullscreen)return;
+  // A home screen app opened in fullscreen already has the whole screen: nothing to offer.
+  if(!enabled||!phone||seen.current||!document.fullscreenEnabled||!document.documentElement.requestFullscreen||matchMedia('(display-mode: fullscreen)').matches)return;
   let frame=0;
   const observer=new MutationObserver(()=>schedule());
   const schedule=()=>{
@@ -26,10 +27,12 @@ export function MobileFullscreenOffer({enabled,onEnter}:{enabled:boolean;onEnter
   observer.observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['open']});
   schedule();return()=>{cancelAnimationFrame(frame);observer.disconnect();};
  },[enabled,phone]);
+ // The offer belongs to the phone editor: leaving it (to the library, say) withdraws the question.
+ const [shownFor,setShownFor]=useState(enabled);if(shownFor!==enabled){setShownFor(enabled);if(!enabled&&open)setOpen(false);}
  useEffect(()=>{if(!open)return;const element=dialog.current,origin=document.activeElement as HTMLElement|null;element?.showModal();return()=>{element?.close();if(origin?.isConnected)origin.focus({preventScroll:true});};},[open]);
  if(!open)return null;
  return <dialog ref={dialog} aria-label="휴대폰 전체 화면 안내" className={`${styles.dialog} ${surface.surface}`} onCancel={event=>{event.preventDefault();setOpen(false);}} onKeyDown={event=>trapDialogTab(event,dialog.current)}>
-  <h2>전체 화면으로 볼까요?</h2><p>주소창을 숨기면 화면이 더 넓어져요.</p><p>나중에 설정에서 켜거나 끌 수 있어요.</p>
+  <h2>전체 화면으로 볼까요?</h2><p>주소창을 숨겨 넓게 봐요. 설정에서도 바꿀 수 있어요.</p>
   <div className={styles.actions}><button type="button" onClick={()=>setOpen(false)}>지금은 그대로</button><button type="button" onClick={()=>{setOpen(false);onEnter();}}>전체 화면 시작</button></div>
  </dialog>;
 }

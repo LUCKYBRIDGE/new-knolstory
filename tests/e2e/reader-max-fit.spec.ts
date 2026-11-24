@@ -47,7 +47,7 @@ test('visible viewport resize and pan keep the frame inside the currently visibl
 
 test('real fullscreen enter and exit retain maximum fit and restore editor sizing',async({page},info)=>{
  test.setTimeout(150000);await page.setViewportSize({width:1180,height:740});await page.goto('/?view=editor');
- const input=page.getByRole('textbox',{name:'대사 / 해설',exact:true});await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const input=page.locator('[data-current-cut] textarea').first();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const authored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
  const before=await authored(),frame=page.getByTestId('story-runtime-frame'),identity=await frame.elementHandle();
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
@@ -55,11 +55,12 @@ test('real fullscreen enter and exit retain maximum fit and restore editor sizin
  async function ready(){await expect.poll(async()=>{const r=await status.getAttribute('data-rendered-revision');return r!==null&&Number(r)>=0&&r===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);}
  async function fit(){await expect.poll(()=>frame.evaluate(node=>{const r=node.getBoundingClientRect(),w=innerWidth<innerHeight?720:1280,h=innerWidth<innerHeight?1280:720,scale=Math.min(innerWidth/w,innerHeight/h);return Math.max(Math.abs(r.width-w*scale),Math.abs(r.height-h*scale),Math.abs(r.x-(innerWidth-r.width)/2),Math.abs(r.y-(innerHeight-r.height)/2));})).toBeLessThan(1);await ready();}
  await ready();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'전체 화면',exact:true}).click();
- await expect.poll(()=>page.evaluate(()=>document.fullscreenElement?.tagName)).toBe('MAIN');await fit();await page.screenshot({path:info.outputPath('fullscreen.png')});
+ await expect.poll(()=>page.evaluate(()=>document.fullscreenElement?.tagName)).toBe('HTML');await fit();await page.screenshot({path:info.outputPath('fullscreen.png')});
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'전체 화면 해제',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>document.fullscreenElement===null)).toBe(true);await fit();
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(input).toBeVisible();
- expect(await page.locator('main[data-keyboard-occluded]').evaluate(n=>({position:(n as HTMLElement).style.position,width:(n as HTMLElement).style.width}))).toEqual({position:'',width:''});
+ // The editor shell follows the visible viewport (keyboard-safe sizing since 2026-10-20); after fullscreen it must match the window again.
+ await expect.poll(()=>page.locator('main[data-keyboard-occluded]').evaluate(n=>{const r=n.getBoundingClientRect();return {width:Math.round(r.width)===document.documentElement.clientWidth,height:Math.round(r.height)===innerHeight};}),{timeout:10_000}).toEqual({width:true,height:true});
  expect(await authored()).toEqual(before);expect(await identity!.evaluate(n=>n===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);
  await page.screenshot({path:info.outputPath('editor-restored.png')});
 });

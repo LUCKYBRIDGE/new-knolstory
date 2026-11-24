@@ -45,7 +45,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  const setDefault=(value:EditingPermissions)=>void mutate(()=>classroomUpdate({defaultPermissions:value},csrf),'학급 기본값을 바꿨어요.');
  return <>
   {error&&<p className={styles.error} role="alert">{error}</p>}{notice&&<p className={styles.notice} role="status">{notice}</p>}
-  <section className={styles.classBanner} aria-label="학급"><div className={styles.classIdentity}><span className={styles.eyebrow}>함께 쓰고, 함께 읽는</span><h2>{classroom.name}</h2><span className={styles.classCount}>학생 {classroom.students.length}명</span></div>
+  <section className={styles.classBanner} aria-label="학급"><div className={styles.classIdentity}><h2>{classroom.name}</h2><span className={styles.classCount}>학생 {classroom.students.length}명</span></div>
    {/* Students need this code to log in, so it stays in view on every tab; changing it lives in settings. */}
    <div className={styles.classAccess}><span className={styles.hint}>학생 접속 코드</span><span className={styles.code} aria-label="학급 코드">{classroom.classCode}</span>
    {panel==='settings'&&<details><summary>학급 코드 바꾸기</summary>{confirmCode?<div className={styles.row}><span>새 코드를 만들면 학생은 새 코드로 로그인해야 해요.</span><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>{setConfirmCode(false);void mutate(()=>classroomUpdate({regenerateCode:true},csrf),'학급 코드를 새로 만들었어요.');}}>새로 만들기</button><button className={styles.btn} onClick={()=>setConfirmCode(false)}>취소</button></div>
@@ -62,10 +62,11 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
      <button className={`${styles.btn} ${styles.primary}`} disabled={busy||remaining<1}>학생 만들기</button>
     </form>
    </PhoneFold></section>
-   <ClassStorage classroom={classroom}/>
    <section className={`${styles.card} ${styles.roster}`} aria-label="학생 목록"><h2>학생</h2>
     <StudentTable classroom={classroom} csrf={csrf} run={run} onChanged={next=>void reload(next)}/>
    </section>
+   {/* The roster is what this tab is for; the shared storage follows it. */}
+   <ClassStorage classroom={classroom}/>
    {newQr&&<StudentQrPrintWorkspace numbers={newQr} csrf={csrf} onClose={()=>{setNewQr(null);void reload();}}/>}
   </>}
   {panel==='settings'&&<>

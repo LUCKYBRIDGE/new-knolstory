@@ -521,7 +521,7 @@
 .shell:not(.playMode) .context h1{font-size:var(--text-small);line-height:1.4;margin:0;max-width:30ch}
 .shell:not(.playMode) .context p{margin:0;font-size:var(--text-caption);line-height:1.4}
 .shell:not(.playMode) .context>.controls{flex:0 1 auto;gap:4px;justify-content:flex-start;overflow:visible;max-width:100%}
-.shell:not(.playMode) .header>.management{margin-left:auto}
+.shell:not(.playMode) .header .management{margin-left:auto}
 .shell:not(.playMode) button:not(.handle),.shell:not(.playMode) summary{border:1px solid var(--line);border-radius:8px;background-color:var(--white)}
 .shell:not(.playMode) button[aria-pressed=true]{border-color:var(--mint-strong);background-color:var(--mint)}
 .shell:not(.playMode) summary{min-height:32px;padding:6px 8px;font-size:var(--text-caption);line-height:1.5;cursor:pointer}
@@ -689,7 +689,7 @@
 .editorShell:not(.playMode)>.header .cutPosition select { width:100%; max-width:100%; text-overflow:ellipsis; margin:0; }
 .editorShell:not(.playMode)>.header>.context>.controls>button { order:3; flex:none; }
 .editorShell:not(.playMode)>.header .viewTools { order:4; flex:none; }
-.editorShell:not(.playMode)>.header>.management { order:1; flex:none; margin-left:0; }
+.editorShell:not(.playMode)>.header .management { order:1; flex:none; margin-left:0; }
 .editorShell:not(.playMode)>.header .editorMoreLabel { display:none; }
 .editorShell:not(.playMode)>.header .editorMoreIcon { display:inline; font-size:var(--text-title); line-height:1; }
 .editorShell:not(.playMode)>.header .viewTools>summary::after { display:none; }
@@ -708,13 +708,13 @@
 .shell.editorShell:not(.playMode)>.header :is(button,summary,select) { min-height:44px; }
 /* One grouped settings entry; only chapter/cut navigation stays alongside it. */
 .shell.editorShell:not(.playMode)>.header { justify-content:flex-start; }
-.shell.editorShell:not(.playMode)>.header>.management { order:0; }
-.shell.editorShell:not(.playMode)>.header>.libraryHome{order:99;flex:none;margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:44px;height:44px;padding:6px 10px}
-@media(max-width:700px){.shell.editorShell:not(.playMode)>.header>.libraryHome{width:44px;padding:6px}.libraryHome>span{display:none}}
-.shell.editorShell:not(.playMode)>.header>.management>summary { display:flex; align-items:center; gap:6px; min-width:76px; }
-.shell.editorShell:not(.playMode)>.header>.management>summary::after { display:none; }
+.shell.editorShell:not(.playMode)>.header .management { order:0; }
+.shell.editorShell:not(.playMode)>.header .libraryHome{order:99;flex:none;margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:44px;height:44px;padding:6px 10px}
+@media(max-width:700px){.shell.editorShell:not(.playMode)>.header .libraryHome{width:44px;padding:6px}.libraryHome>span{display:none}}
+.shell.editorShell:not(.playMode)>.header .management>summary { display:flex; align-items:center; gap:6px; min-width:76px; }
+.shell.editorShell:not(.playMode)>.header .management>summary::after { display:none; }
 .shell.editorShell:not(.playMode)>.header .cutPosition { order:1; }
-.shell.editorShell:not(.playMode)>.header>.management>.controls { max-height:calc(100dvh - 64px); overflow:auto; }
+.shell.editorShell:not(.playMode)>.header .management>.controls { max-height:calc(100dvh - 64px); overflow:auto; }
 .shell.editorShell:not(.playMode) .viewTools .editorMoreIcon { display:none; }
 .shell.editorShell:not(.playMode)>.header .management .viewTools>summary { font-size:var(--text-small); justify-content:flex-start; }
 .shell.editorShell:not(.playMode)>.header .management .viewTools>.controls { position:static; width:auto; max-width:100%; box-shadow:none; border:0; }
@@ -815,8 +815,8 @@
 .shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:has([data-system-menu=editor] :is(input,textarea):focus) [data-work-menu][open]>[data-system-menu=editor] { position:absolute; top:4px; left:4px; right:4px; width:auto; max-height:calc(var(--keyboard-visible-height) - 8px); box-sizing:border-box; overflow:auto; margin:0; }
 
 /* Fullscreen stays in the header flow, never over the preview or cut controls. */
-.shell.editorShell:not(.playMode)>.header>.fullscreenShortcut { order:3; flex:0 0 44px; width:44px; min-width:44px; max-width:44px; height:44px; padding:6px; display:inline-flex; align-items:center; justify-content:center; }
-.shell.editorShell:not(.playMode)>.header>.fullscreenShortcut[aria-pressed=true] { background:var(--mint); border-color:var(--mint-strong); }
+.shell.editorShell:not(.playMode)>.header .fullscreenShortcut { order:3; flex:0 0 44px; width:44px; min-width:44px; max-width:44px; height:44px; padding:6px; display:inline-flex; align-items:center; justify-content:center; }
+.shell.editorShell:not(.playMode)>.header .fullscreenShortcut[aria-pressed=true] { background:var(--mint); border-color:var(--mint-strong); }
 /* The chapter label over the scene uses the same dark halo as the transparent reader tools (2026-10-31). */
 .readerContext { text-shadow:0 0 2px #183331,0 0 2px #183331,0 1px 3px #183331; }
 
@@ -857,3 +857,53 @@
 /* The task a student is writing, from the editor's top bar (2026-11-18). */
 .shell.editorShell:not(.playMode)>.header>.taskAction{order:3;flex:none;position:relative}
 @media(max-width:700px){.shell.editorShell:not(.playMode)>.header>.taskAction>summary{width:44px;padding:6px}.taskAction>summary>span{display:none}}
+
+/* Focus screens (2026-11-24 rules): one chapter/cut slot in the top bar on every editing screen.
+   ‹ 1장 · 3컷 ▾ › — 36px to the eye, 44px to the finger, 4px steps between. The full list (chapter
+   titles, opening words) opens from the native select laid over the short label. */
+.shell .header .cutNav{order:1;display:flex;align-items:center;gap:0;flex:1 1 auto;min-width:0;margin:0}
+.cutSteps{display:contents}
+.shell .header .cutNav button[data-cut-step]{order:0;position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:36px;min-width:0;min-height:0;padding:0;margin:0;border:0;border-radius:8px;background:transparent;box-shadow:none;color:var(--ink);cursor:pointer}
+.shell .header .cutNav button[data-cut-step]::before{content:'';position:absolute;inset:-4px}
+.shell .header .cutNav button[data-cut-step=next]{order:2}
+.shell .header .cutNav button[data-cut-step]:hover:not(:disabled){background:color-mix(in srgb,var(--line) 45%,transparent)}
+.shell .header .cutNav button[data-cut-step]:disabled{opacity:.32;cursor:default}
+.shell .header .cutNav button[data-cut-step]:focus-visible{outline:3px solid var(--mint-strong);outline-offset:0}
+.shell .header .cutNav .cutPosition{order:1;position:relative;display:inline-flex;align-items:center;flex:0 1 auto;width:auto;min-width:0;height:36px;padding:0 8px 0 12px;margin:0;border:1px solid var(--line);border-radius:8px;background:var(--white);box-sizing:border-box}
+.shell .header .cutNav .cutPosition::before{content:'';position:absolute;inset:-4px 0}
+.cutShort{display:inline-flex;align-items:center;gap:4px;min-width:0;overflow:hidden;font-size:var(--text-small);font-weight:600;line-height:1;white-space:nowrap;color:var(--ink);pointer-events:none}
+.cutShort svg{flex:none;color:var(--ink-soft)}
+.shell .header .cutNav .cutPosition select{position:absolute;inset:-5px 0;z-index:1;width:100%;max-width:none;height:auto;min-height:0;margin:0;padding:0;border:0;opacity:0;cursor:pointer;font-size:var(--text-body)}
+.shell .header .cutNav .cutPosition:focus-within{outline:3px solid var(--mint-strong);outline-offset:2px}
+.shell .header .cutNav .cutPosition:has(select:disabled){opacity:.6}
+/* Phones: the top bar wraps once so the work tabs get their own row under the chapter/cut slot. */
+@media (max-width:699px){.shell.editorShell:not(.playMode)>.header{flex-wrap:wrap;row-gap:4px}}
+/* The editor menu's close is the same small × as the reading menu. */
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button[data-close-icon]{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;min-width:32px;height:32px;min-height:32px;padding:0;border-color:transparent;background:transparent;color:var(--story-menu-muted,#c1c9ba)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button[data-close-icon]::before{content:'';position:absolute;inset:-6px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button[data-close-icon]:hover{background:#304e49;color:var(--story-menu-ink,#f5ead4)}
+/* Writing with the on-screen keyboard: the top bar folds to one slim row with only ‹ 1장 · 3컷 ›, so moving between
+   cuts stays in the same place while the image and the text keep the rest of the height. */
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;min-height:0;max-height:44px;padding-block:0;overflow:visible}
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header>:not(section){display:none}
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header [data-editor-work-tabs]{display:none}
+main.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:not([data-parked=true]):not([aria-hidden=true]):has([data-editor-inputs] :is(input,textarea):focus)>.header .cutNav{flex:0 1 auto}
+/* Work tabs keep their own size inside the top bar (the bar's 44px rule is for its other controls). */
+.editorShell:not(.playMode)>.header [data-editor-work-tabs] button{min-height:36px;height:36px}
+@media (max-width:699px){.editorShell:not(.playMode)>.header [data-editor-work-tabs] button{min-height:32px;height:32px}}
+/* Narrowest phones (≤359px): 설정 shows its icon only (the name stays ‘설정’) and the arrows narrow to 36px
+   with the touch area kept by their transparent margin, so the top row stays one row. */
+@media (max-width:359px){
+ .shell.editorShell:not(.playMode)>.header .management[data-work-menu]>summary>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .shell.editorShell:not(.playMode)>.header .management[data-work-menu]>summary{min-width:44px;padding-inline:12px;justify-content:center}
+ .shell .header .cutNav button[data-cut-step]{width:36px}
+ .shell .header .cutNav button[data-cut-step]::before{inset:-4px -4px}
+ .shell .header .cutNav .cutPosition{padding:0 8px}
+}
+
+/* E6 (2026-11-24): short landscape phones lay the settings drawer out in two columns, like the reader menu.
+   Group order stays 편집 → 작품 설정 → 파일·저장 → 화면·나가기 (row by row); the drawer head spans both columns. */
+@media (max-height:500px) and (min-width:560px){
+ .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;align-content:start;gap:12px;position:fixed;left:12px;right:12px;top:var(--work-menu-top,52px);width:auto;max-width:none;max-height:calc(100dvh - var(--work-menu-top,52px) - 8px)}
+ .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor]>:first-child{grid-column:1/-1}
+}

@@ -19,7 +19,7 @@ export function StudentTable({classroom,csrf,run,onChanged}:Props){
  return <>
   <div className={styles.row}><button className={styles.btn} onClick={()=>setNamesOpen(true)}>이름 한꺼번에 넣기</button><button className={styles.btn} onClick={()=>setPrintNumbers(numbers)}>전체 학생 QR 보기</button></div>
   <div className={styles.tableWrap}><table className={styles.table}>
-   <caption className={styles.hint} style={{textAlign:'left'}}>학생 {classroom.students.length}명</caption>
+   <caption className={styles.srOnly}>학생 {classroom.students.length}명</caption>
    <thead><tr><th><input type="checkbox" className={styles.check} checked={all} aria-label="학생 모두 선택" onChange={()=>setSelected(all?new Set():new Set(numbers))}/></th><th>번호</th><th>이름</th><th>비밀번호</th><th>QR</th><th>편집 허용</th><th>관리</th></tr></thead>
    <tbody>{classroom.students.map(student=><StudentRow key={`${student.number}:${student.name}`} student={student} classroom={classroom} checked={selected.has(student.number)} onToggle={()=>toggle(student.number)} csrf={csrf} run={run} onChanged={onChanged} open={kind=>setDialog({kind,student})}/>)}</tbody>
   </table></div>

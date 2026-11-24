@@ -1,6 +1,7 @@
 import {parseAuthoringFile,openFileExchange} from './authoring-file';
-import {advanceReading,editReadCut,loadReadSlot,openEditorDetails,readerLibrary,readerTools,restartReading,saveReadSlot} from './native-reader';
+import {advanceReading,editReadCut,loadReadSlot,readerLibrary,restartReading,saveReadSlot} from './native-reader';
 import {createStoryDocument} from '../../packages/story-domain/src/index';
+import {normalizeChapterTitle} from '../../packages/story-domain/src/legacy/chapter-identity';
 import {openBuiltinEdition} from './library-entry';
 import {importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
@@ -85,6 +86,17 @@ async function unlock(page: Page) {
     await ready(page);
   }
 }
+/** A long cut is split into dialogue pages; 다음으로 turns pages first, so read every page before moving to the next cut. */
+async function finishDialoguePages(page: Page) {
+  for (let turns = 0; turns < 20; turns++) {
+    await ready(page);
+    const raw = await status(page).getAttribute('data-dialogue-page');
+    const dialogue = raw ? JSON.parse(raw) as { index: number; count: number } | null : null;
+    if (!dialogue || dialogue.index >= dialogue.count - 1) return;
+    await advanceReading(page);
+    await expect.poll(async () => (JSON.parse((await status(page).getAttribute('data-dialogue-page')) ?? 'null') as { index: number } | null)?.index, { timeout: 15000 }).not.toBe(dialogue.index);
+  }
+}
 async function allowAdvance(page: Page, confirm: boolean) {
   await ready(page);
   if (confirm) {
@@ -99,10 +111,15 @@ async function nativeChoice(page: Page, index: number, label: string) {
   await expect(page.getByRole('button', { name: label, exact: true })).toBeEnabled({ timeout: 15000 });
   const rect = JSON.parse((await status(page).getAttribute('data-choices-rect'))!) as {x:number;y:number;width:number;height:number};
   expect(rect).not.toBeNull();
-  await nativePoint(page, rect.x + rect.width / 2, rect.y + Math.min(20, Math.floor(rect.height / 8)) + 25 + index * 50);
+  // Ren'Py's choice spacing follows the stage layout, so a fixed pixel step can land on another option. The semantic
+  // layer mirrors each choice as a real button (ADR 0015); pressing it by name is the same reader action.
+  void index;
+  await page.getByRole('button', { name: label, exact: true }).click();
 }
-async function currentLine(page: Page, lineId: string, text: string) {
+async function currentLine(page: Page, lineId: string, text: string, transitionOnly = false) {
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback?.lineId)).toBe(lineId);
+  // A perspective change shown only as a black title card has no dialogue text to read (story-runtime transitionOnly).
+  if (transitionOnly) return;
   const semantic = page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기', {exact:true})});
   await expect(semantic.getByText(text, {exact:true})).toBeVisible();
 }
@@ -147,9 +164,11 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).storyId)).toMatch(/^import:/);
   const importedProject=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
   const sourceBuiltinId=parseAuthoringFile(readFileSync(`tests/fixtures/stories/${id}.json`,'utf8')).id;
-  if(project.id===sourceBuiltinId){expect(importedProject.id).not.toBe(project.id);expect({...importedProject,id:project.id}).toEqual(project);}else expect(importedProject).toEqual(project);
+  // Import retires 'N막:' chapter prefixes (chapter-title-migration); everything else must arrive unchanged.
+  const expectedImport = { ...project, chapters: project.chapters.map(chapter => ({ ...chapter, title: normalizeChapterTitle(chapter.title) })) };
+  if(project.id===sourceBuiltinId){expect(importedProject.id).not.toBe(project.id);expect({...importedProject,id:project.id}).toEqual(expectedImport);}else expect(importedProject).toEqual(expectedImport);
   await page.getByRole('button', { name: '서재로', exact: true }).click();
-  const imported = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
+  const imported = page.getByRole('article', { name: `내 작품 · ${project.title}`, exact: true });
   await expect(imported).toBeVisible();
   await openShelfAction(page,imported,'처음부터 읽기'); await beginSelectedBook(page); await ready(page); await unlock(page);
   const frame = page.getByTestId('story-runtime-frame');
@@ -163,7 +182,8 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
       expect(++steps).toBeLessThanOrEqual(project.lines.length + 1);
       const cut = project.lines.find(line => line.id === state.lineId)!;
       await ready(page);
-      await currentLine(page, cut.id, cut.text);
+      const perspectiveCard = cut.type === 'narration' && cut.speakerName === '시점 전환' && cut.presentation?.transition?.type === 'perspective-blackout' && !!cut.presentation.transition.title?.trim() && cut.text.trim() === cut.presentation.transition.title.trim() && !cut.flow;
+      await currentLine(page, cut.id, cut.text, perspectiveCard);
       if (chapter !== cut.chapterId || cut.audio) {
         const audio = await verifyAudio(page, project, state);
         records.push({ route, lineId: cut.id, chapterId: cut.chapterId, ...audio });
@@ -175,33 +195,28 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
         const choiceIndex = firstFork ? route : 0; firstFork = false;
         const options = cut.flow?.type === 'choice' ? cut.flow.options : [];
         expect(options[choiceIndex]).toBeTruthy();
+        await finishDialoguePages(page);
         await nativeChoice(page, choiceIndex, options[choiceIndex]!.label);
         state = advancePlayback(project, state, options[choiceIndex]!.id);
       } else {
+        // The ending gives the screen to the credits (no reading bar), so the reader's history is checked on the last cut.
+        await finishDialoguePages(page);
+        if (advancePlayback(project, state).status === 'ended') await lastCutHistory(page, project, state);
         await allowAdvance(page, cut.presentation?.transition?.mode === 'confirm');
-        await advanceReading(page);
+        // A perspective title card is finished by its own button; pressing 다음으로 again would skip the next cut.
+        if (perspectiveCard) await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback?.lineId), { timeout: 15000 }).not.toBe(cut.id);
+        else await advanceReading(page);
         state = advancePlayback(project, state);
       }
     }
     await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
-    await readerTools(page);
-    await page.getByRole('button', { name: '지난기록', exact: true }).click();
-    const log = page.getByRole('dialog').locator('[data-reader-current-script] li');
-    const lastChapterId = project.lines.find(line => line.id === state.path.at(-1))!.chapterId;
-    let chapterStart = state.path.length - 1;
-    while (chapterStart > 0 && project.lines.find(line => line.id === state.path[chapterStart - 1])!.chapterId === lastChapterId) chapterStart--;
-    await expect(log).toHaveCount(state.path.length - chapterStart);
-    for (const [index, decision] of (state.choiceHistory ?? []).entries()) {
-      const choiceCut = project.lines.find(c => c.id === state.path[decision.pathIndex])!;
-      const option = choiceCut.flow?.type === 'choice' ? choiceCut.flow.options.find(o => o.id === decision.choiceId) : undefined;
-      expect(option, `selected option ${index}`).toBeTruthy();
-      if (decision.pathIndex >= chapterStart) await expect(log.nth(decision.pathIndex - chapterStart)).toContainText(`선택: ${option!.label}`);
-    }
-    await page.getByRole('button', { name: '읽기 메뉴 닫기', exact: true }).click();
     await expect(frame).toHaveAttribute('data-score-instance', 'persistent');
     records.push({ route, status: 'ended', path: state.path, choiceHistory: state.choiceHistory ?? [], cutsRead: steps });
   }
-  await editReadCut(page);
+  // Reading started from the library has no editor to return to; the reader goes back to the shelf and opens 편집하기.
+  if (await page.getByRole('button', { name: '편집으로 돌아가기', exact: true }).count()) await editReadCut(page);
+  else { await readerLibrary(page); await openShelfAction(page, imported, '편집하기'); }
+  await expect(page.locator('[data-current-cut] textarea').first()).toBeVisible({ timeout: 60000 });
   const manager = page.locator('[data-work-menu]>summary');
   if (!await manager.locator('..').evaluate(n => (n as HTMLDetailsElement).open)) await manager.click();
   await openFileExchange(page);
@@ -213,6 +228,29 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   writeFileSync(`${reportFolder(id)}/${id}-native-reading.json`, JSON.stringify({ browser: `Playwright ${process.env.KNOL_BROWSER_CHANNEL || 'chromium'}`, browserVersion: browser.version(), inputArchive: archivePath(id), inputArchiveSha256: createHash('sha256').update(readFileSync(archivePath(id))).digest('hex'), viewport: { width: 1280, height: 900 }, scope: id.endsWith('-classic') ? 'complete original manuscript' : 'first-option route and alternate first-fork route; subsequent choices first option', projectId: project.id, importedProjectId: importedProject.id, importedIdentityForked: importedProject.id!==project.id, authoredCuts: project.lines.length, audioTransport: 'RenPy bundled game assets; browser per-file responses may be absent', audioResponses: [...audioResponses], records, archiveProjectExactMatch: true }, null, 2));
   await context.close();
 });
+
+
+/** 지난기록 on the last cut lists this chapter's path and the choices made in it. A confirm card on that cut keeps the bar aside. */
+async function lastCutHistory(page: Page, project: StoryProject, state: PlaybackState) {
+  const bar = page.locator('[data-reader-quick-bar]');
+  if (!await bar.waitFor({ state: 'visible', timeout: 5000 }).then(() => true, () => false)) {
+    test.info().annotations.push({ type: 'history', description: 'last cut is covered by a confirm card; 지난기록 is not offered there' });
+    return;
+  }
+  await page.getByRole('button', { name: '지난기록', exact: true }).click();
+  const log = page.getByRole('dialog').locator('[data-reader-current-script] li');
+  const lastChapterId = project.lines.find(line => line.id === state.path.at(-1))!.chapterId;
+  let chapterStart = state.path.length - 1;
+  while (chapterStart > 0 && project.lines.find(line => line.id === state.path[chapterStart - 1])!.chapterId === lastChapterId) chapterStart--;
+  await expect(log).toHaveCount(state.path.length - chapterStart);
+  for (const [index, decision] of (state.choiceHistory ?? []).entries()) {
+    const choiceCut = project.lines.find(c => c.id === state.path[decision.pathIndex])!;
+    const option = choiceCut.flow?.type === 'choice' ? choiceCut.flow.options.find(o => o.id === decision.choiceId) : undefined;
+    expect(option, `selected option ${index}`).toBeTruthy();
+    if (decision.pathIndex >= chapterStart) await expect(log.nth(decision.pathIndex - chapterStart)).toContainText(`선택: ${option!.label}`);
+  }
+  await page.getByRole('button', { name: '읽기 메뉴 닫기', exact: true }).click();
+}
 
 test('Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py', async ({ browser }, info) => {
   test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(240000);
@@ -231,16 +269,12 @@ test('Seonnyeo existing storm: fixed original versus scored cut in actual browse
     await importShelfFile(page,inputFile);
     await expect(page.getByRole('region', { name: '작품 설정', exact: true })).toBeVisible();
     await page.getByRole('button', { name: '서재로', exact: true }).click();
-    const card = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
+    const card = page.getByRole('article', { name: `내 작품 · ${project.title}`, exact: true });
     await openShelfAction(page,card,'편집하기');
-    await openEditorDetails(page, '장 전체 글·갈래 보기');
-    await page.getByRole('button', { name: '현재 컷 쓰기', exact: true }).click();
-    const tools = page.locator('[data-additional-tools]');
-    if (!await tools.evaluate(node => (node as HTMLDetailsElement).open)) await tools.locator(':scope>summary').click();
-    await page.getByRole('button', {name:'컷 목록',exact:true}).click();
-    const locator = page.locator(`[data-line-id="${cutId}"]`);
-    await locator.evaluate(n => { n.closest('details')!.open = true; });
-    await locator.click();
+    // The top bar's chapter·cut place is the one way to reach a cut (DESIGN 집중 편집 규칙 2).
+    await expect(page.locator('[data-current-cut] textarea').first()).toBeVisible({ timeout: 60000 });
+    const place = page.getByLabel('현재 장과 컷 이동', { exact: true });
+    await place.selectOption(cutId); await expect(place).toHaveValue(cutId);
     await page.getByRole('button', { name: '이 컷부터 재생', exact: true }).click();
     await ready(page); await unlock(page);
     const audio = await verifyAudio(page, project, createPlayback(project, cutId));

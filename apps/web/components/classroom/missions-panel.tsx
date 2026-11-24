@@ -51,9 +51,7 @@ export function MissionsPanel({csrf,request=null,students=[]}:{csrf:string;reque
  },[request]);
 
  return <section ref={panel} className={`${shared.card} ${styles.panel}`} aria-label="읽기·활동 과제">
-  <div className={shared.sectionHeading}><div><span className={shared.eyebrow}>읽고, 생각하고, 확인받는</span><h2>읽기·활동 과제</h2></div><MissionSeal small/></div>
-  <p className={shared.hint}>학생이 읽거나 활동지를 내면 선생님이 확인해요. 통과시키면 학생 화면에 ‘과제 통과’가 표시돼요.</p>
-  {!draft&&!picker&&!!missions?.length&&<p className={shared.hint}>새 읽기·활동 과제는 위의 ‘새 과제 내기’에서 골라요.</p>}
+  <div className={shared.sectionHeading}><div><h2>읽기·활동 과제</h2></div><MissionSeal small/></div>
   {picker&&!draft&&<ProvidedPicker onPick={mission=>begin(mission,'provided')} onClose={()=>setPicker(false)}/>}
   {draft&&<div ref={editor}><MissionEditor key={origin+draft.title} initial={draft} origin={origin} csrf={csrf} students={students} onCancel={()=>setDraft(null)}
    onCreated={mission=>{setDraft(null);setMissions(current=>[mission,...(current??[])]);setNotice(mission.recipients?`‘${mission.title}’ 과제를 ${mission.recipients.length}명에게 냈어요. 고른 학생의 ‘할 일’에 바로 보여요.`:`‘${mission.title}’ 과제를 냈어요. 학생의 ‘할 일’에 바로 보여요.`);}}/></div>}

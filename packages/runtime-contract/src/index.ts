@@ -4,7 +4,7 @@ export * from "./audio";
 export type Point = Readonly<{ x: number; y: number }>;
 export type Rect = Readonly<Point & { width: number; height: number }>;
 export type RuntimeActor = Readonly<{ handle?:Point; id: string; name: string; rect: Rect; imagePath?: string;
-  motion?:Readonly<{version:1;type:"fade-in"|"fade-out"|"move";offsetX:number;durationMs:number;delayMs:number}>;
+  motion?:Readonly<{version:1;type:"fade-in"|"fade-out"|"move"|"exit";offsetX:number;durationMs:number;delayMs:number}>;
   flipX?: boolean; opacity?: number; emphasis?: 'normal' | 'dim'; spectral?: boolean; depth?: number }>;
 export type RuntimeEffect = Readonly<{ target?:Readonly<{kind:'screen'|'background'}|{kind:'actor';actorId:string}>; repeat?:'once'|'loop';periodMs?:number;originEntry?:string; id?: string; type: 'shake' | 'flash-red' | 'fade-black' | 'crack' | 'spotlight' | 'flash' | 'screen-crack';
   intensity?: 'soft' | 'normal' | 'strong'; trigger?: 'scene-enter' | 'with-dialogue' | 'after-delay'; delayMs?: number; durationMs?: number }>;
@@ -49,7 +49,7 @@ export type RuntimeEvent =
   | Readonly<{protocol:1;type:'imagesPrepared';requestId:string;ok:boolean;prepared:number;total:number}>
   | (Readonly<{protocol:1;type:'sceneThumbnail';requestId:string;sceneId:string;revision:number}>&RuntimeSceneThumbnail)
   | Readonly<{protocol:1;type:'sceneThumbnailFailed';requestId:string;sceneId:string;revision:number}>
-  | Readonly<{ protocol: 1; type: 'ready'; runtimeVersion: string; contractVersion: 1; imagePreparationVersion?:1 }>
+  | Readonly<{ protocol: 1; type: 'ready'; runtimeVersion: string; contractVersion: 1; imagePreparationVersion?:1; actorExitVersion?:1 }>
   | Readonly<{ protocol: 1; type: 'sceneRendered'; revision: number; sceneId: string;
       renderMs: number; rendererRect: Rect; textboxRect: Rect; dialogueRects?:Readonly<{speaker:Rect;body:Rect}>; choicesRect?:Rect;
       /** offset is the resume anchor; endOffset is the exclusive displayed-page end in Unicode code points. */
@@ -431,7 +431,7 @@ export function isRuntimeScene(value: unknown): value is RuntimeScene {
       && actor.rect.x + actor.rect.width <= width && actor.rect.y + actor.rect.height <= height
       : isRuntimeImagePath(actor.imagePath) && actor.rect.x >= -width && actor.rect.y >= -height
         && actor.rect.width <= width * 3 && actor.rect.height <= height * 3 && actor.rect.x <= width * 2 && actor.rect.y <= height * 2)
-    && (actor.motion===undefined || record(actor.motion) && actor.motion.version===1 && ['fade-in','fade-out','move'].includes(actor.motion.type as string) && finite(actor.motion.offsetX) && Math.abs(actor.motion.offsetX)<=width && optionalNumber(actor.motion.durationMs,0,10000) && actor.motion.durationMs!==undefined && optionalNumber(actor.motion.delayMs,0,10000) && actor.motion.delayMs!==undefined)
+    && (actor.motion===undefined || record(actor.motion) && actor.motion.version===1 && ['fade-in','fade-out','move','exit'].includes(actor.motion.type as string) && finite(actor.motion.offsetX) && Math.abs(actor.motion.offsetX)<=(actor.motion.type==='exit'?width*2:width) && optionalNumber(actor.motion.durationMs,0,10000) && actor.motion.durationMs!==undefined && optionalNumber(actor.motion.delayMs,0,10000) && actor.motion.delayMs!==undefined)
     && (actor.handle===undefined||record(actor.handle)&&finite(actor.handle.x)&&finite(actor.handle.y)&&actor.handle.x>=0&&actor.handle.x<=width&&actor.handle.y>=0&&actor.handle.y<=height)
     && optionalNumber(actor.opacity, 0, 1) && optionalNumber(actor.depth, 0, 4)
     && optionalChoice(actor.flipX, [true, false]) && optionalChoice(actor.spectral, [true, false])
@@ -452,7 +452,8 @@ export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
     case 'imagesPrepared': return text(value.requestId,160)&&!!value.requestId&&typeof value.ok==='boolean'&&revision(value.prepared)&&revision(value.total)&&value.total<=8&&value.prepared<=value.total;
     case 'sceneThumbnail': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision)&&value.width===320&&value.height===180&&text(value.dataUrl,550000)&&/^data:image\/png;base64,[A-Za-z0-9+/]+={0,2}$/.test(value.dataUrl);
     case 'sceneThumbnailFailed': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision);
-    case 'ready': return value.contractVersion === 1 && text(value.runtimeVersion, 100) && !!value.runtimeVersion&&(value.imagePreparationVersion===undefined||value.imagePreparationVersion===1);
+    case 'ready': return value.contractVersion === 1 && text(value.runtimeVersion, 100) && !!value.runtimeVersion&&(value.imagePreparationVersion===undefined||value.imagePreparationVersion===1)
+      && (value.actorExitVersion===undefined||value.actorExitVersion===1);
     case 'viewportChanged': return isRect(value.rendererRect);
     case 'loadProgress': return value.stage === 'start' ? value.ratio === undefined : value.stage === 'download' && finite(value.ratio) && value.ratio >= 0 && value.ratio <= 1;
     case 'error': return text(value.message, 2000);

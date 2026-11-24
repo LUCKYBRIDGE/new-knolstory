@@ -49,7 +49,9 @@ for(const viewport of [{width:360,height:740},{width:800,height:1100}])test(`key
   visualViewport!.dispatchEvent(new Event('resize'));
  });
  await expect(page.locator('main[data-keyboard-occluded=false]')).toBeVisible();
- await expect(page.getByRole('complementary',{name:'다음 컷과 참고 정보'})).toBeVisible();
+ // Tablets bring the next-cut card back; phones move with ‹ › in the top bar (2026-11-24 focus rules).
+ if(viewport.width>=700)await expect(page.getByRole('complementary',{name:'다음 컷과 참고 정보'})).toBeVisible();
+ else await expect(page.locator('[data-cut-nav]').getByRole('button',{name:'다음 컷 편집',exact:true})).toBeVisible();
  await expect(page.getByRole('group',{name:'현재 컷의 화자',exact:true})).toBeVisible();
  await expect(input).toHaveValue(draft);
 });
@@ -76,7 +78,7 @@ test('keyboard prioritizes the focused speaker name rather than the cut body and
  await page.setViewportSize({width:360,height:740});await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');
  const field=page.getByRole('textbox',{name:'현재 컷 화자',exact:true});await field.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:260});visualViewport!.dispatchEvent(new Event('resize'));});
  await expect(page.locator('main[data-keyboard-occluded=true]')).toBeVisible();await expect(page.getByRole('complementary',{name:'다음 컷과 참고 정보'})).toBeHidden();await expect(page.locator('[data-current-cut] textarea')).toBeHidden();await expect(field).toBeFocused();
- const rect=await field.boundingBox();expect(rect!.height).toBeGreaterThanOrEqual(44);expect(rect!.y).toBeGreaterThanOrEqual(0);expect(rect!.y+rect!.height).toBeLessThanOrEqual(261);
+ const rect=await field.boundingBox();expect(rect!.height).toBeGreaterThanOrEqual(36);expect(await field.evaluate(el=>el.closest('label')!.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);expect(rect!.y).toBeGreaterThanOrEqual(0);expect(rect!.y+rect!.height).toBeLessThanOrEqual(261);
  await field.fill('화자 검사');await expect(field).toHaveValue('화자 검사');await page.evaluate(()=>{delete (visualViewport as unknown as {height?:number}).height;visualViewport!.dispatchEvent(new Event('resize'));});await expect(page.locator('[data-current-cut] textarea')).toBeVisible();await expect(field).toHaveValue('화자 검사');
 });
 
@@ -177,7 +179,7 @@ for(const width of [1280,390])test(`flow map wraps keyboard focus and returns to
 
 
 test('asset picker name includes the visible selected image and keeps search action context',async({page})=>{
- await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const picker=page.locator('button[data-asset-value]').filter({has:page.locator('strong')}).filter({hasText:'산속 계곡'}).first();const visible=await picker.locator('strong').innerText();await expect(picker).toHaveAccessibleName(new RegExp(visible));await expect(picker).toHaveAccessibleName(/1컷 배경 이미지 찾기/);await expect(picker).toHaveAccessibleDescription(await picker.locator('small').innerText());const hintId=await picker.getAttribute('aria-describedby');expect(await page.locator(`[id="${hintId}"]`).count()).toBe(1);const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);await picker.click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(picker).toBeFocused();expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
+ await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const picker=page.locator('button[data-asset-value]').filter({has:page.locator('strong')}).filter({hasText:'산속 계곡'}).first();const visible=await picker.locator('strong').innerText();await expect(picker).toHaveAccessibleName(new RegExp(visible));await expect(picker).toHaveAccessibleName(/1컷 배경 이미지 찾기/);await expect(picker.locator('small')).toHaveCount(0);expect(await picker.getAttribute('aria-describedby')).toBeNull();const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);await picker.click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(picker).toBeFocused();expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
 });
 
 test('editor save shortcuts use actual work file downloads and preserve latest authored text',async({page})=>{

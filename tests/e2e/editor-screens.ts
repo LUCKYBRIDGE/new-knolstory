@@ -78,3 +78,9 @@ export async function openChapterSound(page:Page){
  if(!await sound.evaluate(node=>(node as HTMLDetailsElement).open))await sound.locator(':scope>summary').click();
  return sound.getByRole('group',{name:'장 소리 설정',exact:true});
 }
+
+/** Tablet stacked writing folds branching, the story map, the cut list and the memo summary into one '컷 더보기'. Opens it when present. */
+export async function openCutMore(page:Page){
+ const more=page.locator('[data-cut-more]').first();
+ if(await more.isVisible()&&!await more.evaluate(node=>(node as HTMLDetailsElement).open))await more.locator(':scope>summary').click();
+}

@@ -1,13 +1,14 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {confirmAuthoringImport,parseAuthoringFile,openFileExchange} from './authoring-file';
+import {openCutMore} from './editor-screens';
 // Short landscape phones are review-only for the basic editor (DESIGN: 휴대폰 가로는 검토 전용), so memo editing is checked on writable sizes.
 for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844}])test(`related memo opens exact note and returns to the same cut ${size.width}`,async({page},info)=>{
  const source=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8')),cut=source.lines[0],other=source.lines[1],now='2026-10-11T00:00:00.000Z';const memo=(id:string,title:string,lineId:string)=>({id,kind:'free',title,order:id==='mine'?2:1,createdAt:now,updatedAt:now,linkedLineId:lineId,linkedChapterId:cut.chapterId,fields:[{id:`${id}-body`,label:'메모 내용',value:`${title}의 내용을 유지해요.`,source:'default',order:1}]});const project={...source,id:`related-${size.width}`,creativeMemos:[memo('other','다른 컷의 생각',other.id),memo('mine','현재 장면의 약속',cut.id)]};
  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
  await page.setViewportSize(size);await page.goto('/?view=editor');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'memos.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:now,appVersion:'test',project}))});await confirmAuthoringImport(page);
- const stackedNotes=page.locator('[data-stacked-context] > details > summary').filter({hasText:'메모·연결 요약'});
- const revealRelated=async()=>{if(await stackedNotes.isVisible()&&!await stackedNotes.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await stackedNotes.click();};
+ const stackedNotes=page.locator('[data-stacked-context] details > summary').filter({hasText:'메모·연결 요약'});
+ const revealRelated=async()=>{await openCutMore(page);if(await stackedNotes.isVisible()&&!await stackedNotes.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await stackedNotes.click();};
  // Related memos are a tablet-and-up companion; a phone keeps the screen for the current cut (memos stay in the menu).
  if(size.width<700){await expect(page.locator('[data-related-memos]')).toBeHidden();return;}
  await revealRelated();

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { representativeStories } from '@knolstory/compatibility';
-import { resolveAsset } from '@knolstory/asset-registry';
+import { classicStories, representativeStories, resolveProvidedCatalogStory } from '@knolstory/compatibility';
+import { ASSET_CATALOG, isSelectableAsset, resolveAsset } from '@knolstory/asset-registry';
 import { compileStoryScene, createBlankStoryProject, patchStoryLine, resolveBackgroundRect, resolveStoryViewport } from '../src/index';
 const child = 'onggojib.character.child-pixel';
 const adult = 'onggojib.character.classic-master';
@@ -85,4 +85,157 @@ it('keeps reference text and actors unchanged while reserving usable tools when 
  expect(viewport.actorBaseHeight).toBe(full.actorBaseHeight);
  expect(viewport.actorBaseline).toBe(full.actorBaseline);
  expect(viewport.dialogueStyle.toolsHeight).toBeGreaterThan(full.dialogueStyle.toolsHeight);
+});
+
+it('keeps selectable center cards inside both stages without stretching', () => {
+ const cards = ASSET_CATALOG.filter(asset => asset.type === 'character' && asset.geometry && isSelectableAsset(asset));
+ for (const viewport of [{width:390,height:844},{width:844,height:390}]) for (const card of cards) {
+  const id = card.id;
+  const project = patchStoryLine(source(), 'cut', {
+   stageComposition:{leftActors:[{key:'actor',assetId:id,position:'center',facing:'original'}],rightActors:[]},
+  });
+  const scene = compileStoryScene(project, 'cut', 1, {mode:'play',viewport});
+  const {rect} = scene.actors[0];
+  const g = resolveAsset(id)!.geometry!;
+  expect(rect.x + rect.width*g.left).toBeGreaterThanOrEqual(19.99);
+  expect(rect.x + rect.width*g.right).toBeLessThanOrEqual(scene.width-19.99);
+  expect(rect.width/rect.height).toBeCloseTo(g.width/g.height, 8);
+  expect(rect.y+rect.height*g.top).toBeGreaterThanOrEqual(8);
+  expect(rect.y+rect.height*g.bottom).toBeLessThanOrEqual(scene.height);
+ }
+});
+
+it('keeps most of a small solo sprite above the landscape dialogue panel', () => {
+ const id = 'heungbu.character.swallow';
+ const project = patchStoryLine(source(), 'cut', {
+  stageComposition:{leftActors:[{key:'bird',assetId:id,position:'center'}],rightActors:[]},
+ });
+ const viewport = {width:844,height:390};
+ const scene = compileStoryScene(project, 'cut', 1, {mode:'play',viewport,dialogueDock:{bottomInsetPx:0}});
+ const {rect} = scene.actors[0];
+ const g = resolveAsset(id)!.geometry!;
+ const top = rect.y + rect.height*g.top;
+ expect(scene.textboxRect!.y-top).toBeGreaterThanOrEqual(.8*rect.height*(g.bottom-g.top)-1e-8);
+});
+
+it('preserves the floor of small actors in authored compositions and portrait focus', () => {
+ const bird = {key:'bird',assetId:'heungbu.character.swallow'};
+ const cases = [
+  {actor:{...bird,xAnchor:38},rightActors:[],viewport:{width:844,height:390}},
+  {actor:{...bird,scaleMultiplier:.8},rightActors:[],viewport:{width:844,height:390}},
+  {actor:{...bird,motion:{type:'move' as const,fromXAnchor:25}},rightActors:[],viewport:{width:844,height:390}},
+  {actor:bird,rightActors:[{key:'adult',assetId:adult}],viewport:{width:390,height:844}},
+ ];
+ const geometry = resolveAsset(bird.assetId)!.geometry!;
+ for (const {actor,rightActors,viewport} of cases) {
+  const project = patchStoryLine(source(), 'cut', {stageComposition:{leftActors:[actor],rightActors}});
+  const scene = compileStoryScene(project, 'cut', 1, {mode:'play',viewport,dialogueDock:{bottomInsetPx:0}});
+  const {rect} = scene.actors[0];
+  expect(rect.y+rect.height*geometry.bottom).toBeCloseTo(resolveStoryViewport(viewport).actorBaseline, 6);
+  if ('xAnchor' in actor) expect(rect.x+rect.width/2).toBeCloseTo(scene.width*.38, 6);
+ }
+});
+
+describe('portrait reading adapts authored direction', () => {
+ const wide = {width:1280,height:720};
+ const tall = {width:720,height:1280};
+ const read = (project: ReturnType<typeof source>, viewport: typeof wide, effectStep=0) =>
+  compileStoryScene(project,'cut',1,{mode:'play',viewport,playbackState:{lineId:'cut',path:['cut'],status:'reading',effectStep}});
+
+ it('centers just one actor in portrait for ordinary dialogue and narration', () => {
+  const project = source();
+  const narration = patchStoryLine(project,'cut',{type:'narration',speaker:'narration'});
+  const coSpeakers = patchStoryLine(project,'cut',{stageComposition:{
+   ...project.lines[0].stageComposition!,speakerActorKeys:['child','adult'],
+  }});
+  for (const cut of [project,narration,coSpeakers]) {
+   const scene = read(cut,tall);
+   expect(scene.actors.map(actor=>actor.id)).toEqual(['child']);
+   expect(scene.actors[0].handle!.x).toBeCloseTo(tall.width/2);
+   expect(read(cut,wide).actors.map(actor=>actor.id)).toEqual(['child','adult']);
+  }
+ });
+
+ it('keeps one subject with simultaneous targets and a click replacing an inherited effect', () => {
+  const base = source();
+  const cut = base.lines[0];
+  const target = (actorKey: string) => ({kind:'actor' as const,actorKey});
+  const project = {...base,lines:[
+   {...cut,id:'earlier',order:1,presentation:{effects:[
+    {id:'shared',type:'flash' as const,scope:'following' as const,target:target('child')},
+   ]}},
+   {...cut,order:2,presentation:{effects:[
+    {id:'shared',type:'flash' as const,scope:'following' as const,trigger:'on-click' as const,target:target('adult')},
+   ]}},
+  ]};
+  for (const effectStep of [0,1]) {
+   const scene = compileStoryScene(project,'cut',1,{mode:'play',viewport:tall,
+    playbackState:{lineId:'cut',path:['earlier','cut'],status:'reading',effectStep}});
+   expect(scene.actors.map(actor=>actor.id)).toEqual(['adult']);
+  }
+ });
+
+ it('centers the effect target alone before a click and preserves the dialogue and timing', () => {
+  const project = patchStoryLine(source(),'cut',{presentation:{effects:[
+   {type:'flash',target:{kind:'actor',actorKey:'adult'},trigger:'on-click',durationMs:450},
+  ]}});
+  const before = read(project,tall);
+  const after = read(project,tall,1);
+  expect(before.actors.map(actor=>actor.id)).toEqual(['adult']);
+  expect(before.actors[0].emphasis).toBe('normal');
+  expect(before.dialogue).toEqual(read(project,wide).dialogue);
+  expect(after.actors).toEqual(before.actors);
+  expect(before.presentation?.effects).toEqual([]);
+  expect(after.presentation?.effects).toMatchObject([{target:{kind:'actor',actorId:'adult'},durationMs:450}]);
+ });
+
+ it('uses the visited branch for pending and continuing effects', () => {
+  const base = source();
+  const cut = base.lines[0];
+  const target = {kind:'actor',actorKey:'adult'} as const;
+  const branchCondition = {sourceLineId:'choice',choiceId:'directed'};
+  const project = {...base,lines:[
+   {...cut,id:'choice',order:1,flow:{type:'choice' as const,options:[
+    {id:'directed',label:'연출',targetLineId:'cut'},
+    {id:'plain',label:'일반',targetLineId:'cut'},
+   ]}},
+   {...cut,order:2,presentation:{effects:[{
+    type:'flash' as const,trigger:'on-click' as const,scope:'following' as const,target,branchCondition,
+   }]}},
+   {...cut,id:'follow',order:3},
+  ]};
+  const at = (lineId: string, path: string[], choiceId: string) =>
+   compileStoryScene(project,lineId,1,{mode:'play',viewport:tall,
+    playbackState:{lineId,path,status:'reading',choiceHistory:[{pathIndex:0,choiceId}]}});
+  expect(at('cut',['choice','cut'],'plain').actors.map(actor=>actor.id)).toEqual(['child']);
+  expect(at('cut',['choice','cut'],'directed').actors.map(actor=>actor.id)).toEqual(['adult']);
+  const following = at('follow',['choice','cut','follow'],'directed');
+  expect(following.actors.map(actor=>actor.id)).toEqual(['adult']);
+  expect(following.presentation?.effects).toMatchObject([{target:{kind:'actor',actorId:'adult'}}]);
+ });
+
+ it('keeps the original Onggojib courthouse and screen flash in a one-actor portrait', () => {
+  const original = classicStories.find(item=>item.project.id==='classic-onggojib-tale')!;
+  const project = resolveProvidedCatalogStory(original.project);
+  for (const id of ['4-line-01','6-line-08']) {
+   const cut = 'classic-onggojib-' + id;
+   const scene = compileStoryScene(project,cut,1,{mode:'play',viewport:tall,playbackPath:[cut]});
+   expect(scene.actors).toHaveLength(1);
+   if (id === '6-line-08') expect(scene.presentation?.effects).toMatchObject([{type:'flash'}]);
+  }
+ });
+
+ it('preserves the authored movement direction and timing when the subject is centered', () => {
+  const project = patchStoryLine(source(),'cut',{stageComposition:{
+   leftActors:[{key:'child',assetId:child}],
+   rightActors:[{key:'adult',assetId:adult,motion:{type:'move',fromXAnchor:50,durationMs:450,delayMs:80}}],
+  },type:'narration',speaker:'narration'});
+  const landscape = read(project,wide).actors.find(actor=>actor.id==='adult')!.motion!;
+  const scene = read(project,tall);
+  expect(scene.actors.map(actor=>actor.id)).toEqual(['adult']);
+  const portrait = scene.actors[0].motion!;
+  expect(landscape.offsetX).toBeLessThan(0);
+  expect(portrait.offsetX).toBeCloseTo(landscape.offsetX * 720 / 1280);
+  expect(portrait).toMatchObject({durationMs:450,delayMs:80});
+ });
 });

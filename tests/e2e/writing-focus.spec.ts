@@ -1,10 +1,11 @@
 import {test,expect,type Page} from '@playwright/test';
-import {openEditingScreen,openChoiceEditing} from './editor-screens';
+import {openEditingScreen,openChoiceEditing,openCutMore} from './editor-screens';
 import {currentCutText,currentCutRow} from './authoring-file';
 import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 /** Wide layouts keep the memo list beside the cut; stacked ones fold it inside "메모·연결 요약". Returns the memo list once its summary is visible. */
 async function relatedMemos(page:Page){
  const related=page.locator('[data-related-memos]').first(),summary=related.locator(':scope>summary');
+ if(!await summary.isVisible())await openCutMore(page);
  if(!await summary.isVisible()){const folded=page.locator('details').filter({has:page.locator(':scope>summary',{hasText:'메모·연결 요약'})}).first();if(!await folded.evaluate(node=>(node as HTMLDetailsElement).open))await folded.locator(':scope>summary').click();}
  return related;
 }
@@ -15,12 +16,13 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await page.locator('[data-work-menu]>summary').click();await expect(page.getByRole('combobox',{name:'편집화면 선택',exact:true}).locator('option')).toHaveText(['쓰기','원고','배경 편집']);await page.locator('[data-work-menu]>summary').click();
  await expect(page.locator('[data-screen]')).toHaveAttribute('data-screen','basic');
  // Branching starts from a tablet or larger; a phone keeps basic writing uncluttered.
- await expect(page.getByRole('button',{name:'+ 여기서 이야기 나누기',exact:true})).toBeVisible({visible:size.width>=700});await expect(page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true})).toHaveCount(0);
+ await openCutMore(page); await expect(page.getByRole('button',{name:'+ 여기서 이야기 나누기',exact:true})).toBeVisible({visible:size.width>=700});await expect(page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true})).toHaveCount(0);
  await expect(page.locator('summary').filter({hasText:/컷 (음향|연출) 수정$/})).toHaveCount(0);
  // The short landscape arrangement only offers the cut's own memo with "메모 수정"; the full list is beside or below the cut elsewhere.
  // Phones keep memos in the menu and the 현재 컷 상세 panel; the memo summary is a tablet-and-up companion.
  if(size.width<700)await expect(page.locator('[data-stacked-context]')).toBeHidden();else{const related=await relatedMemos(page);if(await related.locator(':scope>summary').isVisible())await expect(related.locator(':scope>summary')).toBeVisible();else await expect(page.getByRole('region',{name:'메모·연결 요약',exact:true}).getByRole('button',{name:'메모 수정',exact:true})).toBeVisible();}
- await page.getByRole('button',{name:/^다음 컷/}).click();const nextId=await position.inputValue(),field=await currentCutText(page),original=await field.inputValue();await expect(page.getByRole('button',{name:/^이전 컷/})).toBeVisible();await expect(page.getByRole('button',{name:/^다음 컷/})).toBeVisible();
+ // Moving between cuts is ‹ › in the top bar on every size (2026-11-24 focus rules).
+ const cutNav=page.locator('[data-cut-nav]');await cutNav.getByRole('button',{name:'다음 컷 편집',exact:true}).click();const nextId=await position.inputValue(),field=await currentCutText(page),original=await field.inputValue();await expect(cutNav.getByRole('button',{name:'이전 컷 편집',exact:true})).toBeEnabled();await expect(cutNav.getByRole('button',{name:'다음 컷 편집',exact:true})).toBeVisible();
  await field.fill(original+'\n글쓰기 중심 확인');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.reload();await expect(position).toHaveValue(nextId);await expect(await currentCutText(page)).toHaveValue(original+'\n글쓰기 중심 확인');
  // The whole-chapter writing screen shows the edited cut and returns to the same text.
  await openEditingScreen(page,'원고');await expect(page.locator('[data-screen="text"]')).toBeVisible();await expect(page.locator(`[data-screen="text"] textarea[data-cut-id="${nextId}"]`)).toHaveValue(original+'\n글쓰기 중심 확인');

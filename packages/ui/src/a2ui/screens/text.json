@@ -1,0 +1,433 @@
+[
+ {
+  "version": "v0.9",
+  "createSurface": {
+   "surfaceId": "focus-text",
+   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json"
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateComponents": {
+   "surfaceId": "focus-text",
+   "components": [
+    {
+     "id": "root",
+     "component": "FocusScreen",
+     "task": "text",
+     "topBar": "root-top",
+     "work": "work",
+     "more": "cut-detail"
+    },
+    {
+     "id": "root-top",
+     "component": "TopBar",
+     "settings": {
+      "event": {
+       "name": "openSettings"
+      }
+     },
+     "navigator": "cut-nav",
+     "tabs": "work-tabs",
+     "actions": [
+      "fullscreen",
+      "library"
+     ]
+    },
+    {
+     "id": "cut-nav",
+     "component": "CutNavigator",
+     "chapter": {
+      "path": "/chapter"
+     },
+     "cut": {
+      "path": "/cut"
+     },
+     "previous": {
+      "event": {
+       "name": "previousCut"
+      }
+     },
+     "next": {
+      "event": {
+       "name": "nextCut"
+      }
+     },
+     "openList": {
+      "event": {
+       "name": "openCutList"
+      }
+     }
+    },
+    {
+     "id": "work-tabs",
+     "component": "WorkTabs",
+     "tabs": [
+      "basic",
+      "text",
+      "background",
+      "characters",
+      "audio",
+      "direction"
+     ],
+     "selected": "text",
+     "change": {
+      "event": {
+       "name": "changeTask"
+      }
+     }
+    },
+    {
+     "id": "fullscreen",
+     "component": "IconButton",
+     "icon": "fullscreen",
+     "name": "편집 화면 전체 화면",
+     "action": {
+      "event": {
+       "name": "toggleFullscreen"
+      }
+     }
+    },
+    {
+     "id": "library",
+     "component": "IconButton",
+     "icon": "library",
+     "name": "서재 · 홈으로 이동",
+     "action": {
+      "event": {
+       "name": "openLibrary"
+      }
+     }
+    },
+    {
+     "id": "work",
+     "component": "Column",
+     "gap": 12,
+     "children": [
+      "list-tools",
+      "companions",
+      "cut-list"
+     ]
+    },
+    {
+     "id": "list-tools",
+     "component": "ToolGroup",
+     "name": "목록 도구",
+     "children": [
+      "find-current"
+     ]
+    },
+    {
+     "id": "find-current",
+     "component": "Button",
+     "label": "현재 컷 찾기",
+     "action": {
+      "event": {
+       "name": "revealCurrentCut"
+      }
+     }
+    },
+    {
+     "id": "companions",
+     "component": "ToolGroup",
+     "name": "함께 보기",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
+     "children": [
+      "companion-background",
+      "companion-characters",
+      "companion-audio",
+      "companion-direction"
+     ]
+    },
+    {
+     "id": "companion-background",
+     "component": "Toggle",
+     "label": "배경",
+     "name": "배경 함께 보기",
+     "value": {
+      "path": "/companions/background"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "background"
+       }
+      }
+     }
+    },
+    {
+     "id": "companion-characters",
+     "component": "Toggle",
+     "label": "인물",
+     "name": "인물 함께 보기",
+     "value": {
+      "path": "/companions/characters"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "characters"
+       }
+      }
+     }
+    },
+    {
+     "id": "companion-audio",
+     "component": "Toggle",
+     "label": "음향",
+     "name": "음향 함께 보기",
+     "value": {
+      "path": "/companions/audio"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "audio"
+       }
+      }
+     }
+    },
+    {
+     "id": "companion-direction",
+     "component": "Toggle",
+     "label": "연출",
+     "name": "연출 함께 보기",
+     "value": {
+      "path": "/companions/direction"
+     },
+     "change": {
+      "event": {
+       "name": "toggleCompanion",
+       "context": {
+        "task": "direction"
+       }
+      }
+     }
+    },
+    {
+     "id": "cut-list",
+     "component": "CutList",
+     "phoneShows": "all",
+     "children": [
+      "cut-1",
+      "cut-2"
+     ]
+    },
+    {
+     "id": "cut-1",
+     "component": "CutItem",
+     "cut": {
+      "path": "/cuts/0/cut"
+     },
+     "speaker": {
+      "path": "/cuts/0/speaker"
+     },
+     "text": {
+      "path": "/cuts/0/text"
+     },
+     "current": {
+      "path": "/cuts/0/current"
+     },
+     "select": {
+      "event": {
+       "name": "selectCut",
+       "context": {
+        "cut": 1
+       }
+      }
+     },
+     "play": {
+      "event": {
+       "name": "playFromCut",
+       "context": {
+        "cut": 1
+       }
+      }
+     },
+     "children": [
+      "text-1"
+     ]
+    },
+    {
+     "id": "text-1",
+     "component": "TextArea",
+     "label": "1컷 글",
+     "value": {
+      "path": "/cuts/0/text"
+     },
+     "change": {
+      "event": {
+       "name": "changeText",
+       "context": {
+        "cut": 1
+       }
+      }
+     }
+    },
+    {
+     "id": "cut-2",
+     "component": "CutItem",
+     "cut": {
+      "path": "/cuts/1/cut"
+     },
+     "speaker": {
+      "path": "/cuts/1/speaker"
+     },
+     "text": {
+      "path": "/cuts/1/text"
+     },
+     "current": {
+      "path": "/cuts/1/current"
+     },
+     "select": {
+      "event": {
+       "name": "selectCut",
+       "context": {
+        "cut": 2
+       }
+      }
+     },
+     "play": {
+      "event": {
+       "name": "playFromCut",
+       "context": {
+        "cut": 2
+       }
+      }
+     },
+     "children": [
+      "text-2"
+     ]
+    },
+    {
+     "id": "text-2",
+     "component": "TextArea",
+     "label": "2컷 글",
+     "value": {
+      "path": "/cuts/1/text"
+     },
+     "change": {
+      "event": {
+       "name": "changeText",
+       "context": {
+        "cut": 2
+       }
+      }
+     }
+    },
+    {
+     "id": "cut-detail",
+     "component": "More",
+     "summary": "현재 컷 상세·메모·정리",
+     "children": [
+      "detail-tools"
+     ]
+    },
+    {
+     "id": "detail-tools",
+     "component": "ToolGroup",
+     "name": "현재 컷 정리",
+     "children": [
+      "split-cut",
+      "delete-cut"
+     ]
+    },
+    {
+     "id": "split-cut",
+     "component": "Button",
+     "label": "컷 나누기",
+     "action": {
+      "event": {
+       "name": "splitCut"
+      }
+     }
+    },
+    {
+     "id": "delete-cut",
+     "component": "Button",
+     "label": "컷 지우기",
+     "variant": "quiet",
+     "action": {
+      "event": {
+       "name": "deleteCut"
+      }
+     }
+    }
+   ]
+  }
+ },
+ {
+  "version": "v0.9",
+  "updateDataModel": {
+   "surfaceId": "focus-text",
+   "path": "/",
+   "value": {
+    "chapter": 1,
+    "cut": 1,
+    "speaker": "해설",
+    "kind": "narration",
+    "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.",
+    "previous": {
+     "cut": 0,
+     "text": ""
+    },
+    "next": {
+     "cut": 2,
+     "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
+    },
+    "companions": {
+     "background": false,
+     "characters": false,
+     "audio": false,
+     "direction": false
+    },
+    "cuts": [
+     {
+      "cut": 1,
+      "speaker": "해설",
+      "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.",
+      "current": true,
+      "background": "산속 계곡",
+      "fit": "",
+      "fx": 50,
+      "fy": 50,
+      "actor": "막내 선녀",
+      "ax": 50,
+      "scale": 100,
+      "place": "left",
+      "facing": "auto",
+      "audio": "배경음 계곡의 평온 · 계곡 기본",
+      "direction": "연출 없음",
+      "effect": "none",
+      "transition": "cut"
+     },
+     {
+      "cut": 2,
+      "speaker": "선녀 1",
+      "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”",
+      "current": false,
+      "background": "산속 계곡",
+      "fit": "",
+      "fx": 50,
+      "fy": 50,
+      "actor": "큰언니 선녀",
+      "ax": 50,
+      "scale": 100,
+      "place": "right",
+      "facing": "auto",
+      "audio": "배경음 계곡의 평온 · 계곡 기본",
+      "direction": "연출 없음",
+      "effect": "none",
+      "transition": "cut"
+     }
+    ]
+   }
+  }
+ }
+]

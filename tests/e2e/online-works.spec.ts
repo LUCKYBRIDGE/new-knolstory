@@ -28,12 +28,13 @@ async function onlineHarness(page:Page,me:Record<string,unknown>={role:'teacher'
 }
 async function local(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,works:{...value.works,[value.storyId]:value.document}};});}
 const library=(page:Page)=>page.getByRole('main',{name:'놀스토리 서재',exact:true});
-async function onlineReady(page:Page){await expect(page.locator('[data-storage-tools] button[aria-label="온라인 목록 다시 확인"]')).toBeEnabled();}
+/** Online storage tools live in the account menu (2026-11-23); ready means its recheck is enabled. */
+async function onlineReady(page:Page){await expect(page.locator('[data-storage-tools] button',{hasText:'온라인 목록 다시 확인'})).toBeEnabled();}
 async function focusWork(page:Page,title:string){
- await page.getByRole('button',{name:'내 작품',exact:true}).click();
+ await page.getByLabel('책 분류',{exact:true}).selectOption('own');
  await shelfCoverButton(page,title).click();const dialog=page.getByRole('dialog');await openBookMore(dialog);return dialog;
 }
-async function openRemote(page:Page){const focus=await focusWork(page,'온라인에 보관한 원고');await focus.getByRole('button',{name:/^이 기기에 열기/}).click();}
+async function openRemote(page:Page){const focus=await focusWork(page,'온라인에 보관한 원고');await focus.getByRole('button',{name:/^이 기기로 가져와 열기/}).click();}
 async function returnToLibrary(page:Page){await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true}).filter({visible:true})).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await onlineReady(page);}
 async function createLocal(page:Page,title:string,text?:string){
  await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
@@ -96,10 +97,10 @@ test('deleting a local work while online copy validation awaits preserves the de
 });
 test('switching accounts hides the previous owner online titles before loading the new account',async({page})=>{
  await onlineHarness(page);let account='11111111-1111-4111-8111-111111111111';await page.route('**/api/v1/me',route=>route.fulfill({json:{success:true,data:{accountId:account,csrf:'csrf'}}}));
- await page.goto('/?view=library');await onlineReady(page);await page.getByRole('button',{name:'내 작품',exact:true}).click();await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toBeVisible();
+ await page.goto('/?view=library');await onlineReady(page);await page.getByLabel('책 분류',{exact:true}).selectOption('own');await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toBeVisible();
  account='33333333-3333-4333-8333-333333333333';await page.route('**/api/v1/documents',route=>route.fulfill({json:{success:true,data:{documents:[],nextCursor:null}}}));
- await page.evaluate(()=>{const target=window as unknown as {leakedOnlineTitle?:boolean};const observer=new MutationObserver(()=>{const bar=document.querySelector('[aria-label="작품 보관 안내"]');const refresh=bar&&Array.from(bar.querySelectorAll('button')).find(button=>button.textContent==='온라인 목록 다시 확인');if(bar&&!bar.textContent?.includes('로그인 확인 중')&&refresh&&!refresh.disabled&&document.querySelector('[data-online-record]')?.textContent?.includes('온라인에 보관한 원고'))target.leakedOnlineTitle=true;});observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true});window.dispatchEvent(new Event('focus'));});
- await onlineReady(page);await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toHaveCount(0);expect(await page.evaluate(()=>(window as unknown as {leakedOnlineTitle?:boolean}).leakedOnlineTitle)).not.toBe(true);await page.locator('[data-storage-tools]>summary').click();await page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true}).click();await onlineReady(page);await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toHaveCount(0);
+ await page.evaluate(()=>{const target=window as unknown as {leakedOnlineTitle?:boolean};const observer=new MutationObserver(()=>{const bar=document.querySelector('[data-storage-tools]');const refresh=bar&&Array.from(bar.querySelectorAll('button')).find(button=>button.textContent==='온라인 목록 다시 확인');if(bar&&!document.querySelector('[data-account-menu]>summary')?.getAttribute('aria-label')?.includes('확인 중')&&refresh&&!refresh.disabled&&document.querySelector('[data-online-record]')?.textContent?.includes('온라인에 보관한 원고'))target.leakedOnlineTitle=true;});observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true});window.dispatchEvent(new Event('focus'));});
+ await onlineReady(page);await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toHaveCount(0);expect(await page.evaluate(()=>(window as unknown as {leakedOnlineTitle?:boolean}).leakedOnlineTitle)).not.toBe(true);await page.locator('[data-account-menu]>summary').click();await page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true}).click();await page.keyboard.press('Escape');await onlineReady(page);await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toHaveCount(0);
 });
 test('deleting the selected local work during online save preparation sends no request',async({page})=>{
  await onlineHarness(page);let posts=0;await page.route('**/api/v1/documents',route=>{if(route.request().method()==='POST')posts++;return route.fulfill({status:503,json:{success:false,error:{code:'SERVICE_UNAVAILABLE'}}});});
@@ -107,24 +108,24 @@ test('deleting the selected local work during online save preparation sends no r
  await page.evaluate(()=>{const target=window as unknown as {savePreparationPaused?:boolean;releaseSavePreparation?:()=>void};const digest=crypto.subtle.digest.bind(crypto.subtle);let first=true;crypto.subtle.digest=async(...args:Parameters<SubtleCrypto['digest']>)=>{if(first){first=false;target.savePreparationPaused=true;await new Promise<void>(resolve=>{target.releaseSavePreparation=resolve;});}return digest(...args);};});
  await focus.getByRole('button',{name:'온라인에 업로드',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as unknown as {savePreparationPaused?:boolean}).savePreparationPaused)).toBe(true);await page.keyboard.press('Escape');
  const deletion=await focusWork(page,'준비 중 삭제할 원고');await openBookMore(deletion);await deletion.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
- await page.evaluate(()=>(window as unknown as {releaseSavePreparation:()=>void}).releaseSavePreparation());await onlineReady(page);expect(posts).toBe(0);expect((await local(page)).deletedWork).toEqual(deleted.deletedWork);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(deleted.works));await expect(page.locator('[aria-label="작품 보관 안내"]').getByRole('status').filter({hasText:'업로드했어요'})).toHaveCount(0);
+ await page.evaluate(()=>(window as unknown as {releaseSavePreparation:()=>void}).releaseSavePreparation());await onlineReady(page);expect(posts).toBe(0);expect((await local(page)).deletedWork).toEqual(deleted.deletedWork);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(deleted.works));await expect(page.locator('[aria-label="작품 보관 알림"]').getByRole('status').filter({hasText:'업로드했어요'})).toHaveCount(0);
 });
 test('stale account expectation rejects an online list without changing device manuscripts',async({page})=>{
  await onlineHarness(page);let expected='';await page.route('**/api/v1/documents',route=>{expected=route.request().headers()['x-knolstory-account-id']??'';return route.fulfill({status:409,json:{success:false,error:{code:'ACCOUNT_SESSION_CHANGED'}}});});
  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await local(page);await onlineReady(page);
- const tools=page.locator('[data-storage-tools]');await expect(tools).not.toHaveAttribute('open','');
- await expect(page.getByLabel('작품 보관 안내',{exact:true}).getByRole('alert')).toBeVisible();
- await tools.locator('summary').click();await page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true}).click();
- await expect(page.locator('[aria-label="작품 보관 안내"]').getByRole('alert')).toContainText('로그인 계정이 바뀌었어요');expect(expected).toBe('11111111-1111-4111-8111-111111111111');expect((await local(page)).document.project).toEqual(before.document.project);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(before.works));
+ const tools=page.locator('[data-storage-tools]');await expect(tools).toBeHidden();
+ await expect(page.getByLabel('작품 보관 알림',{exact:true}).getByRole('alert')).toBeVisible();
+ await page.locator('[data-account-menu]>summary').click();await page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true}).click();await page.keyboard.press('Escape');
+ await expect(page.locator('[aria-label="작품 보관 알림"]').getByRole('alert')).toContainText('로그인 계정이 바뀌었어요');expect(expected).toBe('11111111-1111-4111-8111-111111111111');expect((await local(page)).document.project).toEqual(before.document.project);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(before.works));
 });
 test('account menu session recheck recovers online shelf after initial service failure',async({page})=>{
  await onlineHarness(page);let available=false,failedReads=0,listReads=0;
  await page.route('**/api/v1/me',route=>{if(!available){failedReads++;return route.fulfill({status:503,json:{success:false,error:{code:'SERVICE_UNAVAILABLE'}}});}return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});});
  await page.route('**/api/v1/documents',route=>{listReads++;return route.fallback();});
- await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await local(page);await expect(page.locator('[aria-label="작품 보관 안내"]')).toContainText('계정 서비스를 확인하지 못했어요');
+ await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await local(page);await expect(page.locator('[data-account-menu]>summary')).toHaveAccessibleName('계정 · 로그인 상태 확인 필요');
  // The shared session now performs one initial account read rather than two independent menu reads.
  await expect.poll(()=>failedReads).toBeGreaterThanOrEqual(1);expect(listReads).toBe(0);await page.locator('[data-account-menu]>summary').click();await expect(page.getByText('로그인 상태 확인 필요',{exact:true})).toBeVisible();available=true;
- await page.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();await expect(page.getByText('로그인됨',{exact:true})).toBeVisible();await page.keyboard.press('Escape');await onlineReady(page);await page.getByRole('button',{name:'내 작품',exact:true}).click();await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toBeVisible();expect(listReads).toBe(1);expect((await local(page)).document.project).toEqual(before.document.project);expect((await local(page)).works).toEqual(before.works);
+ await page.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();await expect(page.getByText('로그인됨',{exact:true})).toBeVisible();await page.keyboard.press('Escape');await onlineReady(page);await page.getByLabel('책 분류',{exact:true}).selectOption('own');await expect(shelfCoverButton(page,'온라인에 보관한 원고')).toBeVisible();expect(listReads).toBe(1);expect((await local(page)).document.project).toEqual(before.document.project);expect((await local(page)).works).toEqual(before.works);
 });
 for(const logoutFailure of [false,true])test(`session recheck during delayed logout cannot retain a revoked session ${logoutFailure?'response failure':'success'}`,async({page})=>{
  await onlineHarness(page);let signedIn=true,started=false,release:()=>void=()=>{};const gate=new Promise<void>(resolve=>{release=resolve;});
@@ -134,13 +135,13 @@ for(const logoutFailure of [false,true])test(`session recheck during delayed log
  // A single shared session disables competing rechecks while its logout is unresolved.
  await expect(page.getByRole('button',{name:'로그인 상태 다시 확인',exact:true})).toBeDisabled();release();
  if(logoutFailure){await expect(page.locator('[data-account-menu]').getByRole('alert')).toContainText('로그아웃을 확인하지 못했어요');await page.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();}
- await expect(page.getByText('로그인 전',{exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true})).toHaveCount(0);await expect(page.locator('[aria-label="작품 보관 안내"]')).toContainText('작품은 이 기기에 저장돼요.');expect((await local(page)).works).toEqual(before.works);
+ await expect(page.getByText('로그인 전',{exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true})).toHaveCount(0);await expect(page.getByText('이 기기에 저장돼요')).toHaveCount(0);expect((await local(page)).works).toEqual(before.works);
 });
 test('logout completion updates newly mounted menus after leaving and returning to the library',async({page})=>{
  await onlineHarness(page);let signedIn=true,started=false,release:()=>void=()=>{};const gate=new Promise<void>(resolve=>{release=resolve;});
  await page.route('**/api/v1/me',route=>route.fulfill(signedIn?{json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}}));
  await page.route('**/api/v1/auth/logout',async route=>{started=true;await gate;signedIn=false;await route.fulfill({json:{success:true,data:{loggedOut:true}}});});
- await page.goto('/?view=library');await onlineReady(page);await page.locator('[data-account-menu]>summary').click();await page.getByRole('button',{name:'로그아웃',exact:true}).click();await expect.poll(()=>started).toBe(true);await page.keyboard.press('Escape');await createLocal(page,'로그아웃 중에도 남는 원고');await expect(page.locator('[data-account-menu]')).toHaveCount(0);await returnToLibrary(page);const before=await local(page);release();await expect(page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true})).toHaveCount(0);await expect(page.locator('[aria-label="작품 보관 안내"]')).toContainText('작품은 이 기기에 저장돼요.');
+ await page.goto('/?view=library');await onlineReady(page);await page.locator('[data-account-menu]>summary').click();await page.getByRole('button',{name:'로그아웃',exact:true}).click();await expect.poll(()=>started).toBe(true);await page.keyboard.press('Escape');await createLocal(page,'로그아웃 중에도 남는 원고');await expect(page.locator('[data-account-menu]')).toHaveCount(0);await returnToLibrary(page);const before=await local(page);release();await expect(page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true})).toHaveCount(0);await expect(page.getByText('이 기기에 저장돼요')).toHaveCount(0);
  const after=await local(page);expect(Object.keys(after.works)).toEqual(Object.keys(before.works));for(const key of Object.keys(before.works))expect(after.works[key].project).toEqual(before.works[key].project);expect((await local(page)).document.project).toEqual(before.document.project);
 });
 

@@ -1,6 +1,6 @@
 import type { Chapter, StoryLine, StoryProject } from './story-data';
 
-export type StoryActorMotion = {type:"fade-in"|"fade-out"|"move";durationMs?:number;delayMs?:number;fromXAnchor?:number};
+export type StoryActorMotion = {type:"fade-in"|"fade-out"|"move"|"exit-left"|"exit-right";durationMs?:number;delayMs?:number;fromXAnchor?:number};
 export type StageActorEntry = {
   motion?:StoryActorMotion;
   position?: "center";
@@ -23,6 +23,16 @@ export type StageComposition = {
   speakerActorKey?: string;
 };
 export const stageActors = (stage: StageComposition) => [...stage.leftActors, ...stage.rightActors];
+/** A new setup or the first half of a split cut keeps the actor without reusing this exit. */
+export function withoutActorExits(stage: StageComposition): StageComposition {
+  if (!stageActors(stage).some(actor => actor.motion?.type === 'exit-left' || actor.motion?.type === 'exit-right')) return stage;
+  const withoutExit = (actor: StageActorEntry): StageActorEntry => {
+    if (actor.motion?.type !== 'exit-left' && actor.motion?.type !== 'exit-right') return actor;
+    const {motion:_exit,...placement} = actor;
+    return placement;
+  };
+  return {...stage,leftActors:stage.leftActors.map(withoutExit),rightActors:stage.rightActors.map(withoutExit)};
+}
 export function isStageComposition(value: unknown): value is StageComposition {
   if (!value || typeof value !== 'object') return false;
   const s = value as StageComposition;
@@ -31,7 +41,7 @@ export function isStageComposition(value: unknown): value is StageComposition {
   const bounded = (v: unknown, min: number, max: number) => v === undefined || (typeof v === 'number' && Number.isFinite(v) && v >= min && v <= max);
   if (!actors.every(a => a && typeof a.key === 'string' && a.key.trim() && typeof a.assetId === 'string' && a.assetId.trim()
     && (a.position === undefined || a.position === 'center')
-    && (a.motion === undefined || a.motion && ["fade-in","fade-out","move"].includes(a.motion.type) && bounded(a.motion.durationMs,0,10000) && bounded(a.motion.delayMs,0,10000) && bounded(a.motion.fromXAnchor,5,95))
+    && (a.motion === undefined || a.motion && ["fade-in","fade-out","move","exit-left","exit-right"].includes(a.motion.type) && bounded(a.motion.durationMs,0,10000) && bounded(a.motion.delayMs,0,10000) && bounded(a.motion.fromXAnchor,5,95))
     && bounded(a.positionOrder, 1, 2)
     && (a.characterKey === undefined || typeof a.characterKey === 'string')
     && (a.placementPreset === undefined || ['single-left','single-right','double-left','double-right'].includes(a.placementPreset))

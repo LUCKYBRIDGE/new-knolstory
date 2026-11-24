@@ -14,8 +14,7 @@ const CHOICES:readonly {kind:TaskRequest['kind'];title:string;hint:string}[]=[
 export function TaskComposer({onPick}:{onPick:(kind:TaskRequest['kind'])=>void}){
  // Phones fold the six choices into one line so the class's tasks stay near the top; a pick folds it again.
  return <section className={`${styles.card} ${styles.composer}`} aria-label="새 과제 내기">
-  <PhoneFold eyebrow="무엇을 낼까요?" title="새 과제 내기">
-   <p className={styles.hint}>종류를 고르면 그 과제를 만드는 칸이 열려요. 마감일은 선택이에요. 학생은 모든 과제를 ‘할 일’ 한 목록에서 봐요.</p>
+  <PhoneFold title="새 과제 내기">
    <ul className={styles.composerChoices}>{CHOICES.map(choice=><li key={choice.kind}><button type="button" className={styles.composerChoice} data-kind={choice.kind} data-fold-after onClick={()=>onPick(choice.kind)}><strong>{choice.title}</strong><small>{choice.hint}</small></button></li>)}</ul>
   </PhoneFold>
  </section>;

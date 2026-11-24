@@ -36,7 +36,7 @@ for(const width of [1440,768,390,844])test(`account login return and logout pres
 });
 test('unconfigured account providers remain optional and service failure is retryable',async({page})=>{
  await mockedAccount(page,false);await page.goto('/?view=library');const menu=await openAccount(page);await expect(menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true})).toBeDisabled();await expect(menu).toContainText('아직 준비 중이에요');await expect(menu.getByRole('button',{name:'연결한 Google로 로그인',exact:true})).toHaveCount(0);
- await page.route('**/api/v1/me',route=>route.fulfill({status:503,json:{success:false,error:{code:'AUTH_UNAVAILABLE'}}}));await menu.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();await expect(menu.getByRole('alert')).toContainText('기기의 작품은 계속');await expect(page.getByTestId('library-tools')).toBeVisible();
+ await page.route('**/api/v1/me',route=>route.fulfill({status:503,json:{success:false,error:{code:'AUTH_UNAVAILABLE'}}}));await menu.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();await expect(menu.getByRole('alert')).toContainText('기기의 작품은 계속');await expect(page.locator('[data-search-toggle]')).toBeVisible();
 });
 test('failed local storage blocks account navigation without losing local works',async({page})=>{
  const calls=await mockedAccount(page);await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await authored(page);const menu=await openAccount(page);

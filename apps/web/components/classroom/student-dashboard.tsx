@@ -36,9 +36,8 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
  useEffect(()=>{const timer=window.setTimeout(()=>{void load();},0);return()=>window.clearTimeout(timer);},[load]);
  const limits=describeEditingPermissions(student.permissions);
  return <>
-  <section className={styles.studentBanner} aria-label="내 정보"><div className={styles.studentNumber} aria-hidden="true">{student.number}<small>번</small></div><div><span className={styles.eyebrow}>나의 이야기 자리</span><h2>{student.className} {student.number}번 {student.name}</h2>
-   {storage?.bytesLimit&&storage.submissions&&<p className={styles.hint} aria-label="내 온라인 공간">개인 {formatBytes(storage.bytes)} / {formatBytes(storage.bytesLimit)} · 제출 {formatBytes(storage.submissions.bytes)} / {formatBytes(storage.submissions.limit)}</p>}</div></section>
-  <StudentTodo key={session.accountId} accountId={session.accountId} csrf={session.csrf} assignments={assignments} assignmentError={error} onReload={load}
+  <StudentTodo who={<div className={styles.studentBanner} role="group" aria-label="내 정보"><div className={styles.studentNumber} aria-hidden="true">{student.number}<small>번</small></div><div><h2>{student.className} {student.number}번 {student.name}</h2>
+   {storage?.bytesLimit&&storage.submissions&&<p className={styles.hint} aria-label="내 온라인 공간">개인 {formatBytes(storage.bytes)} / {formatBytes(storage.bytesLimit)} · 제출 {formatBytes(storage.submissions.bytes)} / {formatBytes(storage.submissions.limit)}</p>}</div></div>} key={session.accountId} accountId={session.accountId} csrf={session.csrf} assignments={assignments} assignmentError={error} onReload={load}
    card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} online={online.filter(work=>work.format===item.format)} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
   {/* What to do comes first; the rules and the season's end date follow the tasks. */}
   <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
@@ -127,11 +126,12 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {assignment.draftComment&&phase!=='passed'&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
   {(phase==='working'||phase==='revise')&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage?'done':index===stage?'current':'todo'} aria-current={index===stage?'step':undefined}>{step}</li>)}</ol>}
   {phase==='working'||phase==='revise'||phase==='locked'?brief:<details className={styles.taskGuide}><summary>과제 안내 다시 보기</summary>{brief}</details>}
+  {/* The write action follows what to do; the scope and base work are reference lines under it. */}
+  {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
   {assignment.editScope&&<p className={styles.hint} data-task-scope>이 과제에서 고칠 수 있는 것 · <b>{editScopeLabel(assignment.editScope)}</b></p>}
   {assignment.after&&!locked&&phase==='working'&&!draftKey&&<p className={styles.hint}>통과한 그림책 ‘{assignment.after.title}’의 쪽마다 놀스토리 장이 하나씩 만들어져요. 장마다 ‘그림책 구상’(그 쪽의 글과 삽화)을 펼쳐 보며 대사와 장면을 써요.</p>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
-  {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
-  {assignment.open&&phase!=='passed'&&phase!=='locked'&&(works.length===0&&online.length===0?<p className={styles.hint}>{canStart?'쓰기 화면에서 작품을 만든 뒤 이곳에서 제출해요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
+  {assignment.open&&phase!=='passed'&&phase!=='locked'&&(works.length===0&&online.length===0?(canStart?null:<p className={styles.hint}>제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.</p>)
    :<HandInFold folded={phase==='waiting'}><div className={styles.handIn}>
     <label className={styles.field}>낼 작품<select aria-label="제출할 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
     <div className={styles.handInActions}>
@@ -167,7 +167,7 @@ const GROUPS:readonly {group:TodoGroup;title:string;empty:string}[]=[
  {group:'done',title:'끝났어요',empty:''},
 ];
 /** One list for writing tasks and missions: what to do now first, nearest due date first. */
-function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:{accountId:string;csrf:string;assignments:Assignment[]|null;assignmentError:string;onReload:()=>Promise<void>;card:(item:Assignment)=>React.ReactNode}){
+function StudentTodo({who,accountId,csrf,assignments,assignmentError,onReload,card}:{accountId:string;csrf:string;assignments:Assignment[]|null;assignmentError:string;onReload:()=>Promise<void>;card:(item:Assignment)=>React.ReactNode;who:React.ReactNode}){
  const missions=useStudentMissions();
  const [now]=useState(()=>Date.now());
  const loading=(assignments===null&&!assignmentError)||(missions.missions===null&&!missions.error);
@@ -179,7 +179,7 @@ function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:
   {entry.type==='assignment'?<div className={styles.assignmentCard}>{card(entry.item)}</div>:<MissionCard accountId={accountId} csrf={csrf} mission={entry.item} onProgress={progress=>missions.setProgress(entry.item.id,progress)}/>}
  </li>;};
  return <section className={styles.todo} aria-label="할 일">
-  <div className={styles.todoHead}><div><span className={styles.eyebrow}>오늘의 이야기 숙제</span><h2 className={styles.studentTasksTitle}>할 일</h2></div>
+  {/* Who is signed in and how far they are share one line; the tab already says these are the tasks. */}<div className={styles.todoHead}>{who}
    {total>0&&<span className={styles.todoCount} aria-label={`할 일 ${total}개 가운데 ${finished}개 끝냄`}><MissionSeal small earned={finished>0&&finished===total}/><span><b>{finished}</b> / {total}개 끝냈어요</span></span>}</div>
   {assignmentError&&<div role="alert"><p className={styles.error}>{assignmentError}</p><button className={styles.btn} onClick={()=>void onReload()}>다시 불러오기</button></div>}
   {missions.error&&<div role="alert"><p className={styles.error}>{missions.error}</p><button className={styles.btn} disabled={missions.loading} onClick={()=>void missions.load()}>과제 다시 불러오기</button></div>}

@@ -24,7 +24,8 @@ for(const state of ['unavailable'] as const)test(`basic current-cut Korean draft
  await field.dispatchEvent('compositionstart');await expect(field).toBeEnabled();
  const draft='저장소를 덮어쓰지 않는 한글 초안이에요.\n이 글은 작품 파일에 그대로 남아요.';await field.fill(draft);
  await expect(draftPage.getByRole('button',{name:/컷 배경 이미지 찾기/})).toBeDisabled();
- await expect(draftPage.getByRole('button',{name:/^다음 컷/})).toBeDisabled();
+ // Both ways to the next cut (top-bar arrow and the next-cut card) stay locked while the draft is unsaved.
+ const nextButtons=draftPage.getByRole('button',{name:/^다음 컷/});await expect(nextButtons.first()).toBeDisabled();for(const button of await nextButtons.all())await expect(button).toBeDisabled();
  await draftPage.locator('[data-work-menu]>summary').click();
  await expect(draftPage.getByLabel('편집화면 선택',{exact:true})).toBeDisabled();
  await expect(draftPage.getByRole('group',{name:'로컬 작품 파일',exact:true}).getByRole('button',{name:'작품 파일 저장',exact:true})).toBeDisabled();

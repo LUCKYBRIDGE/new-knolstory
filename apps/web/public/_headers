@@ -17,6 +17,10 @@
   Cache-Control: no-cache
 /loading-stories.json
   Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
+/app-icons/*
+  Cache-Control: no-cache
 
 # Only filenames containing build hashes receive a long immutable lifetime.
 /_next/static/*

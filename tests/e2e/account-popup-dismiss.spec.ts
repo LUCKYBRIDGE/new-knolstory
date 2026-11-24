@@ -29,13 +29,11 @@ test('signed-in account popover and online trash dialog coordinate and preserve 
  });
  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await expect.poll(()=>activeReads).toBeGreaterThanOrEqual(1);
  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project),account=page.locator('[data-account-menu]'),trashButton=page.getByRole('button',{name:'온라인 휴지통',exact:true});
- const storage=page.locator('[data-storage-tools]'),toggle=storage.locator('summary');
- await expect(toggle).toBeVisible();await expect(storage).not.toHaveAttribute('open','');
- await expect(trashButton).toBeHidden();const collapsed=await storage.boundingBox();expect(collapsed!.height).toBeLessThanOrEqual(48);
- await toggle.focus();await toggle.press('Enter');await expect(trashButton).toBeVisible();
- await expect(trashButton).toBeEnabled();await account.locator('summary').click();await expect(account).toHaveAttribute('open','');await expect(account.getByText('로그인됨',{exact:true})).toBeVisible();
- await page.keyboard.press('Escape');await expect(account).not.toHaveAttribute('open','');
- await trashButton.click();const dialog=page.getByRole('dialog',{name:'온라인 휴지통',exact:true});await expect(dialog).toBeVisible();await expect(account).not.toHaveAttribute('open','');await expect.poll(()=>trashReads).toBe(1);
+ // Online storage lives in the account menu (2026-11-23): nothing about it sits above the shelf until the menu opens.
+ const storage=page.locator('[data-storage-tools]');await expect(storage).toBeHidden();
+ await account.locator('summary').click();await expect(account).toHaveAttribute('open','');await expect(account.getByText('로그인됨',{exact:true})).toBeVisible();
+ await expect(storage).toBeVisible();await expect(trashButton).toBeEnabled();
+ await trashButton.click();const dialog=page.getByRole('dialog',{name:'온라인 휴지통',exact:true});await expect(dialog).toBeVisible();await expect.poll(()=>trashReads).toBe(1);
  const bounds=await dialog.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(390);expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
  await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(trashButton).toBeFocused();
  const refresh=page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true});await expect(refresh).toBeEnabled();const reads=activeReads;await refresh.click();await expect.poll(()=>activeReads).toBe(reads+1);await expect(refresh).toBeEnabled();

@@ -1,6 +1,6 @@
 'use client';
 import {storageSummary} from '../lib/online-storage';
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type ReactNode} from 'react';
 import {onlineEnabled} from '../lib/online-mode';
 import {accountGoogleLink} from '../lib/account-api';
 import {rememberAccountReturn,accountCallbackNotice} from '../lib/account-return';
@@ -10,7 +10,8 @@ import {useClassroomMeFor} from './use-classroom-me';
 import {TeacherUpgradeDialog} from './classroom/teacher-upgrade-dialog';
 import styles from './account-menu.module.css';
 type AccountState=ReturnType<typeof useAccountSession>;
-type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory';account?:AccountState};
+type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory';account?:AccountState;
+ /** Signed-in tools that belong with the account, such as the library's online storage. */ children?:ReactNode};
 /** A shared account state avoids a second session request in the unified library. */
 export function AccountMenu({account,...props}:Props){
  if(!onlineEnabled)return null;
@@ -20,7 +21,7 @@ function ConnectedAccountMenu(props:Omit<Props,'account'>){
  const account=useAccountSession();
  return <AccountMenuView {...props} account={account}/>;
 }
-function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='library'}:Omit<Props,'account'>&{account:AccountState}){
+function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='library',children}:Omit<Props,'account'>&{account:AccountState}){
  const menu=useRef<HTMLDetailsElement>(null),busy=useRef(false);
  useBoundedAccountPanel(menu);
  const lifecycle=useRef({active:true}),guard=useRef(beforeNavigate),requestId=useRef(0),latestSession=useRef(account.session);
@@ -62,7 +63,8 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
  }
  const unavailable=disabled||pending||account.loading;
  const state=account.loading?'loading':account.error?'unknown':account.session?'signed-in':'signed-out';
- const summary=account.loading?'확인 중':account.session?'내 계정':'로그인';
+ // The visible label keeps its width while the session is checked; the dot and the name carry the state.
+ const summary=account.session?'내 계정':'로그인';
  const stateLabel=account.loading?'로그인 확인 중':account.error?'로그인 상태 확인 필요':account.session?'로그인됨':'로그인 전';
  const callbackMessage=account.session&&!account.loading&&!account.error&&callback.result==='success'?'로그인했어요.':account.session&&!account.loading&&!account.error&&callback.result==='linked'?'Google 계정을 연결했어요. 이제 ‘연결한 Google로 로그인’도 쓸 수 있어요.':callback.message;
  const googleAvailable=account.config?.providers.google===true;
@@ -71,19 +73,21 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
  const noProviders=account.config&&!account.config.providers.kakao&&!googleAvailable;
  return <><details ref={menu} className={styles.menu} data-account-menu><summary aria-label={`계정 · ${stateLabel}`}><svg className={styles.userIcon} viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21v-2.5a7.5 7.5 0 0 1 15 0V21"/></svg><span>{summary}</span><span className={styles.stateDot} data-state={state} aria-hidden="true"/></summary><section aria-label="놀스토리 계정" className={styles.panel}>
   <strong>{stateLabel}</strong>
-  <p>{returnTo==='shortstory'?'온라인 작품 메뉴에서 그림책을 업로드할 수 있어요.':'내 작품에서 온라인 보관 여부를 확인하고 업로드할 수 있어요.'} 작품 파일은 기기에 따로 저장해 주세요.</p>
+  {!account.session&&<p>{returnTo==='shortstory'?'로그인하면 온라인 작품 메뉴에서 그림책을 올릴 수 있어요.':'로그인하면 작품을 온라인에도 보관할 수 있어요.'}</p>}
   {callbackMessage&&<p role="status">{callbackMessage}</p>}{(notice||account.error)&&<p role="alert">{notice||account.error}</p>}
   {account.session?<>
-   {classroom.me?.storage&&(()=>{const summary=storageSummary(classroom.me.storage,{compact:true});return <p className={styles.usage} data-warn={summary.warn} aria-label="내 온라인 공간">{summary.text}</p>;})()}
+   {/* Where this account goes next comes first; storage and sign-in links follow. */}
+   {(classroom.role==='teacher'||classroom.role==='admin')&&<button className={styles.primary} disabled={unavailable} onClick={()=>go('/teacher')}>교사 대시보드</button>}
+   {classroom.role==='student'&&<button className={styles.primary} disabled={unavailable} onClick={()=>go('/student')}>내 학급·과제</button>}
+   {classroom.role==='admin'&&<button disabled={unavailable} onClick={()=>go('/admin')}>관리자</button>}
+   {classroom.role==='member'&&<button disabled={unavailable} onClick={()=>setUpgrading(true)}>교사 등록</button>}
+   {children}
+   {!children&&classroom.me?.storage&&(()=>{const summary=storageSummary(classroom.me.storage,{compact:true});return <p className={styles.usage} data-warn={summary.warn} aria-label="내 온라인 공간">{summary.text}</p>;})()}
+   {googleAvailable&&!linked?.includes('google')&&<button disabled={unavailable} onClick={()=>void start('google',true)}>Google 계정 연결</button>}
    {linked&&<div className={styles.linked} aria-label="연결된 로그인"><span>연결된 로그인</span><ul>
     <li data-linked={linked.includes('kakao')}>{linked.includes('kakao')?'✓':'–'} 카카오</li>
     {(googleAvailable||linked.includes('google'))&&<li data-linked={linked.includes('google')}>{linked.includes('google')?'✓ Google 연결됨':'Google 연결 안 됨'}</li>}
    </ul></div>}
-   {googleAvailable&&!linked?.includes('google')&&<button disabled={unavailable} onClick={()=>void start('google',true)}>Google 계정 연결</button>}
-   {classroom.role==='member'&&<button disabled={unavailable} onClick={()=>setUpgrading(true)}>교사 등록</button>}
-   {(classroom.role==='teacher'||classroom.role==='admin')&&<button disabled={unavailable} onClick={()=>go('/teacher')}>교사 대시보드</button>}
-   {classroom.role==='student'&&<button disabled={unavailable} onClick={()=>go('/student')}>내 학급·과제</button>}
-   {classroom.role==='admin'&&<button disabled={unavailable} onClick={()=>go('/admin')}>관리자</button>}
    <button disabled={unavailable} onClick={()=>void account.logout()}>로그아웃</button>
    <p className={styles.keepLocal}>로그아웃해도 이 기기의 원고는 유지돼요.</p>
   </>:<>

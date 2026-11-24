@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {PNG} from 'pngjs';
+import type {RuntimeScene} from '@knolstory/runtime-contract';
 import {patchStageLine,type StoryLine} from '../../packages/story-domain/src/index';
 import {parseAuthoringFile,confirmAuthoringImport,openFileExchange,openCutEditor,currentCutRow} from './authoring-file';
 async function useChoice(page:Page){await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();}
@@ -46,9 +47,70 @@ test('native side opacity hides both left actors and matches an empty left stage
  const ready=async()=>{await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status'),rendered=await state.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);};
  const canvas=page.frameLocator('iframe').locator('canvas').first();await importWork();await ready();await closeSettings();const visible=PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-both-visible.png')}));
  await openCutEditor(page,'direction');await page.getByLabel('조정할 연출',{exact:true}).selectOption('actors');
- await page.getByLabel('왼쪽 인물 전체 보이는 정도 (%)',{exact:true}).fill('0');await page.getByLabel('왼쪽 인물 전체 강조',{exact:true}).focus();await page.getByRole('button',{name:'← 쓰기로',exact:true}).click();await ready();const hidden=PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-both-hidden.png')}));
+ await page.getByLabel('왼쪽 인물 전체 보이는 정도 (%)',{exact:true}).fill('0');await page.getByLabel('왼쪽 인물 전체 강조',{exact:true}).focus();await page.getByRole('navigation',{name:'편집 작업',exact:true}).getByRole('button',{name:'쓰기',exact:true}).click();await ready();const hidden=PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-both-hidden.png')}));
  line.presentation={actors:{left:{opacity:0}}};line.stageComposition.leftActors=[];await importWork();await ready();await closeSettings();const empty=PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-empty-left.png')}));
  expect([visible.width,visible.height,hidden.width,hidden.height]).toEqual([empty.width,empty.height,empty.width,empty.height]);
  const difference=(a:PNG,b:PNG)=>{let changed=0,total=0;for(let y=0;y<a.height*.55;y++)for(let x=0;x<a.width*.6;x++){const index=(y*a.width+x)*4;total++;if(Math.max(...[0,1,2].map(channel=>Math.abs(a.data[index+channel]-b.data[index+channel])))>8)changed++;}return changed/total;};
  expect(difference(visible,empty)).toBeGreaterThan(.01);expect(difference(hidden,empty)).toBeLessThan(.001);
+});
+
+for(const size of [{width:1280,height:800},{width:390,height:844}])test(`authors a reusable horizontal exit through one motion choice and reopens the saved work at ${size.width}`,async({page})=>{
+ await page.setViewportSize(size);
+ await page.addInitScript(()=>{
+  if(window===window.top)return;
+  window.addEventListener('message',event=>{
+   if(event.origin===location.origin&&event.source===window.parent&&event.data?.protocol===1&&event.data.type==='loadScene')
+    (window as Window&{__exitScene?:RuntimeScene}).__exitScene=event.data.payload;
+  });
+ });
+ await page.goto('/?view=editor');
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await openCutEditor(page,'direction');
+ await page.getByLabel('조정할 연출',{exact:true}).selectOption('motion');
+ const row=await currentCutRow(page);
+ const motion=row.getByRole('combobox',{name:/컷 인물 1 동작$/});
+ await motion.selectOption('exit-right');
+ await expect(motion).toHaveValue('exit-right');
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await page.reload();
+ await openCutEditor(page,'direction');
+ await page.getByLabel('조정할 연출',{exact:true}).selectOption('motion');
+ await expect((await currentCutRow(page)).getByRole('combobox',{name:/컷 인물 1 동작$/})).toHaveValue('exit-right');
+ const menu=page.locator('[data-work-menu]');
+ if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+ await openFileExchange(page);
+ const pending=page.waitForEvent('download');
+ await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+ const file=await pending;
+ const document=parseAuthoringFile(readFileSync((await file.path())!,'utf8'));
+ expect(document.project.lines[0].stageComposition?.leftActors[0].motion).toMatchObject({type:'exit-right',durationMs:600});
+ await page.getByLabel('작품 파일 가져오기').setInputFiles((await file.path())!);
+ await confirmAuthoringImport(page);
+ await openCutEditor(page,'direction');
+ await page.getByLabel('조정할 연출',{exact:true}).selectOption('motion');
+ await expect((await currentCutRow(page)).getByRole('combobox',{name:/컷 인물 1 동작$/})).toHaveValue('exit-right');
+ await page.setViewportSize({width:1280,height:800});
+ await (await currentCutRow(page)).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
+ const status=page.getByTestId('story-runtime-status');
+ const rendered=async(width:number)=>{
+  await expect(status).toHaveAttribute('data-scene-width',String(width));
+  await expect.poll(async()=>{
+   const revision=await status.getAttribute('data-scene-revision');
+   return revision!==null&&Number(revision)>=0&&revision===await status.getAttribute('data-rendered-revision');
+  },{timeout:60000}).toBe(true);
+  const scene=await page.getByTestId('story-runtime-frame').evaluate(node=>
+   ((node as HTMLIFrameElement).contentWindow as Window&{__exitScene?:RuntimeScene}).__exitScene);
+  expect(scene).toMatchObject({width,mode:'play'});
+  const actor=scene!.actors.find(item=>item.motion?.type==='exit');
+  expect(actor?.motion).toMatchObject({type:'exit',durationMs:600});
+  expect(actor!.motion!.offsetX).toBeGreaterThan(0);
+  if(width===720)expect(scene!.actors).toHaveLength(1);
+ };
+ await rendered(1280);
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
+ await page.getByRole('button',{name:'읽기 설정',exact:true}).click();
+ const settings=page.getByRole('dialog');
+ await settings.getByRole('combobox',{name:'화면 비율',exact:true}).selectOption('portrait');
+ await settings.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+ await rendered(720);
 });

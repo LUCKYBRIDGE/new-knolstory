@@ -10,3 +10,15 @@
 @media(min-width:960px),(min-width:740px) and (orientation:landscape){.poster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto 1fr auto auto;column-gap:clamp(24px,4vw,64px);max-width:1360px;min-height:clamp(600px,80dvh,820px);padding:clamp(28px,4vw,56px)}.brand{grid-column:1}.subtitle{max-width:400px}.subtitle br{display:none}.brandTitle h1{font-size:var(--text-display)}.mainMenu{grid-column:1;margin-top:28px}.mainMenu button{font-size:clamp(15px,1.5vw,20px)}.heading{grid-column:1;margin:32px 0}.heading h2{font-size:clamp(42px,4.6vw,68px)}.author{font-size:clamp(16px,1.6vw,23px)}.description{font-size:clamp(15px,1.5vw,20px)}.posterScene{grid-column:2;grid-row:1/6;aspect-ratio:auto;height:100%;margin:0}.readButton{grid-column:1;margin-top:0;font-size:clamp(20px,1.9vw,28px)}.footer{grid-column:1}.notice{grid-column:1/-1}}
 @media(min-width:740px) and (max-width:959px) and (orientation:landscape){.poster{padding:28px;column-gap:20px}.mainMenu{gap:8px}.mainMenu button{gap:6px;font-size:var(--text-small);padding:12px 8px}.heading{margin:22px 0}.heading h2{font-size:clamp(34px,4.6vw,38px)}.author{gap:6px;font-size:var(--text-body)}}
 @media(max-width:600px){.introduction{padding:0;background:#fbf5e9}.poster{padding:28px 24px;border-radius:0;box-shadow:none}.poster::after{inset:6px;border-radius:12px}.mainMenu button{font-size:var(--text-small);gap:6px;padding:12px 8px}.brandTitle{gap:8px}.brandTitle h1{font-size:var(--text-display)}.heading h2{font-size:clamp(32px,10vw,52px)}}
+/* The four stories, one line each (2026-11-23): where the library's ‘책 소개’ lands. */
+.introduction{grid-template-rows:auto auto;align-content:start;gap:clamp(12px,2vw,24px)}
+.books{box-sizing:border-box;width:100%;max-width:680px;padding:20px 20px 24px;border-radius:20px;background:#fbf5e9;color:#103452;scroll-margin-top:8px}
+.books h2{margin:0 0 10px;font:700 var(--text-title)/1.4 "Knol Story Serif",serif;outline:none}
+.books ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.books li button{box-sizing:border-box;width:100%;min-height:56px;display:grid;gap:2px;padding:10px 14px;text-align:left;border:1px solid #d9bf8f;border-radius:12px;background:#fffdf6;color:inherit;cursor:pointer;word-break:keep-all;overflow-wrap:anywhere}
+.books li button:hover{border-color:#bc852e}
+.books strong{font-size:var(--text-body)}
+.books span{font-size:var(--text-small);color:#4d5a63;line-height:1.5}
+.backToLibrary{margin-top:14px;min-height:44px;padding:0 16px;border:1px solid #bc852e;border-radius:999px;background:#fff6dc;color:#251b0b;font-weight:600;cursor:pointer}
+.books button:focus-visible{outline:3px solid #2f6962;outline-offset:2px}
+@media(max-width:600px){.introduction{gap:0}.books{border-radius:0;border-top:1px solid #c8a46c}}

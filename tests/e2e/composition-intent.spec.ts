@@ -209,7 +209,8 @@ test('actual Ren’Py preserves authored bodies, front center and empty POV acro
   await settleStageFocus(page);
   const textOnly = PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' }));
   expect(sceneryColors(textOnly)).toBeLessThan(5);
-  await expect(page.getByText(source.lines[0].text, { exact: true })).toHaveCount(0);
+  // The hidden editing list keeps each cut's text in the DOM while reading; only what the reader sees counts.
+  await expect(page.getByText(source.lines[0].text, { exact: true }).filter({ visible: true })).toHaveCount(0);
   await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath('first-person-text-only-native.png') });
   await previousReadCut(page);await expect.poll(()=>readingAt(page)).toBe(ids[3]);
   await rendered(page);

@@ -4,16 +4,18 @@ import {mkdirSync} from 'node:fs';
 const evidence=`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/walnut-library`;
 test('phone search closes its panel and leaves the matching book usable',async({page})=>{
  await page.setViewportSize({width:360,height:677});await page.goto('/');await enterLibrary(page);
- const own=page.getByRole('button',{name:'내 작품',exact:true});await own.click();
- await expect(own).toHaveAttribute('aria-pressed','true');await expect(page.getByRole('link',{name:'그림책 보관함',exact:true})).toBeVisible();
- await page.getByRole('button',{name:'모든 작품',exact:true}).click();
- const tools=page.getByTestId('library-tools');await tools.locator(':scope>summary').click();
+ // 2026-11-23: the collection is a select in the one-row header; 그림책 보관함 opens from the 내 작품 shelf's new-work sheet.
+ const scope=page.getByLabel('책 분류',{exact:true});await scope.selectOption('own');
+ await page.getByRole('main',{name:'놀스토리 서재',exact:true}).getByRole('button',{name:'새 작품',exact:true}).click();
+ await expect(page.getByRole('dialog',{name:'새 작품',exact:true}).getByRole('link',{name:'그림책 보관함',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+ await scope.selectOption('all');
+ await page.locator('[data-search-toggle]').click();
  const search=page.getByRole('searchbox',{name:'책 찾기',exact:true});await search.fill('별주부전');
- await search.dispatchEvent('keydown',{key:'Enter',isComposing:true});await expect(tools).toHaveAttribute('open','');await expect(search).toHaveValue('별주부전');
+ await search.dispatchEvent('keydown',{key:'Enter',isComposing:true});await expect(search).toBeVisible();await expect(search).toHaveValue('별주부전');
  await search.press('Enter');
- await expect(tools).not.toHaveAttribute('open','');
+ await expect(search).toHaveCount(0);
  const book=page.locator('[data-shelf-book]');await expect(book).toHaveCount(1);await book.getByRole('button').click();
- await expect(page.getByRole('dialog').getByRole('button',{name:/^(놀스토리|원작) 읽기$/})).toBeVisible();
+ await expect(page.getByRole('dialog').getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
 });
 test('owner-selected legacy honey oak finish keeps window wall clearance',async({page},info)=>{
  await page.setViewportSize({width:1200,height:900});await page.goto('/');await enterLibrary(page);
@@ -27,14 +29,15 @@ for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]
  expect(contact.potFoot-contact.top).toBeGreaterThanOrEqual(0);expect(contact.potFoot-contact.top).toBeLessThan(3);expect(contact.shadow).toContain('radial-gradient');expect(contact.plantPointer).toBe('none');expect(contact.sidePointer).toBe('none');
  const books=page.locator('[data-shelf-book]');await expect(books).toHaveCount(4);
  const touching=await books.evaluateAll(nodes=>nodes.map(book=>Math.abs(book.querySelector('[data-shelf-cover]')!.getBoundingClientRect().bottom-book.querySelector('[class*=plank]')!.getBoundingClientRect().top)));expect(Math.max(...touching)).toBeLessThanOrEqual(2);
- const sideGaps=await cabinet.boundingBox();expect(sideGaps!.x).toBeGreaterThanOrEqual(width>900?width*.07:20);expect(width-sideGaps!.x-sideGaps!.width).toBeGreaterThanOrEqual(width>900?width*.07:20);
+ const sideGaps=await cabinet.boundingBox();// Phones give the books the room first (2026-11-23): narrower outer margins, still clear of the window trim.
+ expect(sideGaps!.x).toBeGreaterThanOrEqual(width>900?width*.07:width<=600?width*.082+23:20);expect(width-sideGaps!.x-sideGaps!.width).toBeGreaterThanOrEqual(width>900?width*.07:width<=600?8:20);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);mkdirSync(evidence,{recursive:true});await page.screenshot({path:`${evidence}/after-${width}.png`,fullPage:true});
- await books.first().getByRole('button').click();await expect(page.getByRole('dialog').getByRole('button',{name:/^(놀스토리|원작) 읽기$/})).toBeVisible();await page.keyboard.press('Escape');await expect(books.first().getByRole('button')).toBeFocused();await context.close();
+ await books.first().getByRole('button').click();await expect(page.getByRole('dialog').getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(books.first().getByRole('button')).toBeFocused();await context.close();
 });
 
 test('cabinet keeps two shelf rows with four books, a single match or an empty collection',async({page})=>{
  await page.setViewportSize({width:1365,height:900});await page.goto('/');await enterLibrary(page);
  const shelf=page.locator('[data-shelf-room]');await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
- await page.getByRole('button',{name:'내 작품',exact:true}).click();await expect(page.locator('[data-shelf-book]')).toHaveCount(0);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
- await page.getByRole('button',{name:'모든 작품',exact:true}).click();await page.getByTestId('library-tools').locator('summary').click();await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill('별주부전');await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');await expect(page.locator('[data-shelf-book]')).toHaveCount(1);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
+ await page.getByLabel('책 분류',{exact:true}).selectOption('own');await expect(page.locator('[data-shelf-book]')).toHaveCount(0);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
+ await page.getByLabel('책 분류',{exact:true}).selectOption('all');await page.locator('[data-search-toggle]').click();await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill('별주부전');await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');await expect(page.locator('[data-shelf-book]')).toHaveCount(1);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
 });

@@ -142,3 +142,14 @@
 details.settingsSection>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px}details.settingsSection>summary h3{margin:0;display:inline}details.settingsSection:not([open]){gap:0}
 details.settingsSection>summary::before{content:'▸';color:#e3cda5}details.settingsSection[open]>summary::before{content:'▾'}details.settingsSection>summary::-webkit-details-marker{display:none}
 .progress{margin:2px 0 0;font-size:var(--text-caption);color:#c6d6cc}
+.installNote{margin:0;font-size:var(--text-caption);line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+
+/* One header line under 읽기 메뉴: the work and where the reader is (2026-11-23).
+   This also sits after the line clamp above, so short landscape screens really hide it. */
+.menuHeader p{margin-top:3px}
+.menuHeader p .progress{color:#c6d6cc}
+@media(max-height:500px) and (min-width:520px){.menuHeader p{display:none}}
+/* Close is a small × (2026-11-24 focus rules): 32px to the eye, 44px to the finger, the name stays ‘읽기 메뉴 닫기’. */
+.menu .topMenu button[data-close-icon],.menu .dialog .header>button[data-close-icon]{position:relative;flex:none;width:32px;min-width:32px;height:32px;min-height:32px;padding:0;justify-content:center;align-items:center;display:inline-flex;border-color:transparent;background:transparent;color:#c1c9ba}
+.menu .topMenu button[data-close-icon]::before,.menu .dialog .header>button[data-close-icon]::before{content:'';position:absolute;inset:-6px}
+.menu .topMenu button[data-close-icon]:hover:not(:disabled),.menu .dialog .header>button[data-close-icon]:hover:not(:disabled){background:#304e49;border-color:transparent;color:#f5ead4}

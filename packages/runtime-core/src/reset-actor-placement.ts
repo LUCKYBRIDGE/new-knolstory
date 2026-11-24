@@ -2,7 +2,7 @@ import {resolveStageComposition,type StoryProject,type StageActorEntry,type Stor
 import {patchStoryLine} from './story-runtime';
 function defaultPlacement<T extends StageActorEntry|StoryActorOverride>(actor:T):T {
  const {xAnchor:_x,scaleMultiplier:_scale,facing:_facing,...remaining}=actor;
- const {position:_position,...rest}=remaining as typeof remaining & {position?:'center'};
+ const {position:_position,positionOrder:_order,...rest}=remaining as typeof remaining & Pick<StageActorEntry,'position'|'positionOrder'>;
  return rest as T;
 }
 /** Old side overrides must be cleared too, or they return when JSON strips undefined actor fields. */

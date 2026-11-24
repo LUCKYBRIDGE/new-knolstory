@@ -1,11 +1,19 @@
 /* Work tabs sit in the editor's top row next to the cut picker: no extra row on tablets and desktops. */
-.tabs{display:flex;flex:none;gap:2px;padding:2px;border-radius:10px;background:color-mix(in srgb,var(--line) 45%,transparent)}
-.tabs button{flex:none;min-height:40px;min-width:48px;padding:6px 12px;margin:0;border:0;border-radius:8px;background:transparent;color:var(--ink-soft);font-size:var(--text-small);font-weight:600;cursor:pointer;box-shadow:none}
+.tabs{display:flex;flex:none;gap:4px;padding:4px;border-radius:10px;background:color-mix(in srgb,var(--line) 45%,transparent)}
+.tabs button{flex:none;min-height:40px;min-width:48px;padding:8px 12px;margin:0;border:0;border-radius:8px;background:transparent;color:var(--ink-soft);font-size:var(--text-small);font-weight:600;cursor:pointer;box-shadow:none}
 .tabs button:hover:not(:disabled){color:var(--ink);background:color-mix(in srgb,var(--white) 70%,transparent)}
 .tabs button[aria-current=page]{color:var(--ink);background:var(--white);box-shadow:0 1px 2px #18333133}
 .tabs button:focus-visible{outline:3px solid var(--mint-strong);outline-offset:-3px}
 .tabs button:disabled{opacity:.5;cursor:default}
-/* Phones keep the one-row top bar (the screen is mostly 기본 there); the kind of work changes from 설정 as before. */
-@media (max-width:699px){.tabs{display:none}}
 /* Short landscape phones review on 기본 only (the workbench locks it), so the tabs would only take height. */
+
+/* Focus screens (2026-11-24): the kind of work is one tap away on phones too — a full-width second row
+   of equal tabs, 36px to the eye with a 44px touch, 4px apart. Short landscape phones stay review-only. */
+.tabs.tabs button{position:relative;min-height:36px;height:36px;padding:0 12px}
+.tabs button::before{content:'';position:absolute;inset:-4px 0}
+@media (max-width:699px){
+ .tabs{order:100;flex:1 0 100%;gap:4px;padding:4px;margin:0}
+ .tabs.tabs button{flex:1 1 0;min-width:0;height:32px;min-height:32px;padding:0 4px}
+ .tabs button::before{inset:-6px 0}
+}
 @media (orientation:landscape) and (max-height:440px){.tabs{display:none}}

@@ -18,7 +18,7 @@ describe('portrait primary speaker only',()=>{
  });
 });
 
-it('uses a narrative subject without a speaker and keeps choice overlays clear',()=>{
+it('uses the first actor without a designated narrative subject and keeps choice overlays clear',()=>{
  const p=project(),stage={leftActors:p.lines[0].stageComposition!.leftActors,rightActors:p.lines[0].stageComposition!.rightActors};
  const narrated=patchStoryLine(p,'l',{type:'narration',speaker:'narration',stageComposition:stage});
  expect(compileStoryScene(narrated,'l',1,{mode:'play',viewport:{width:390,height:844}}).actors.map(a=>a.id)).toEqual(['child']);

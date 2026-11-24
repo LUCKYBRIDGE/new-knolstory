@@ -54,3 +54,7 @@ it('finds local originals and online/file imports together in My Works without r
  expect(['own','imported','original','example'].filter(isPersonalLibraryKind)).toEqual(['own','imported']);
  expect(parseLibraryView('{"version":1,"filter":"imported","query":"내 책","pages":{"imported":2}}')).toEqual({filter:'own',query:'내 책',pages:{imported:2,own:2}});
 });
+
+it('starts a fresh library on all works with no hidden search or page',()=>{
+ expect(parseLibraryView(null)).toEqual({filter:'all',query:'',pages:{}});
+});

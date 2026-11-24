@@ -11,6 +11,8 @@ Before UI work:
 
 Do not invent arbitrary per-screen colors, radii or button sizes.
 
+Focus editing screens are composed first as A2UI blueprints from the [focus editor catalog](../a2ui-focus-catalog/SKILL.md).
+
 For editor terminology/time changes read [current contract](../../../docs/architecture/editor-terminology-and-time.md). Use seconds in authoring inputs, keep document milliseconds/IDs intact, and verify nested guide dismissal preserves parent drafts.
 
 ## 작업별 편집 UI

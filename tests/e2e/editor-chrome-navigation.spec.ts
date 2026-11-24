@@ -3,17 +3,18 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await page.setViewportSize(size);await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.goto('/?view=editor');await expect(page.getByLabel('1컷 글',{exact:true})).toBeVisible();
  const stage=page.getByTestId('story-stage-viewport');const top=(await stage.boundingBox())!.y;expect(top).toBeLessThan(size.width>1000?150:240);
  const settings=page.locator('[data-work-menu]>summary');expect(await settings.evaluate(node=>{const style=getComputedStyle(node);return parseFloat(style.borderTopWidth)>0&&style.borderTopStyle!=='none'&&style.borderTopColor!=='rgba(0, 0, 0, 0)';})).toBe(true);
- const next=page.getByRole('button',{name:/^다음 컷/}),previous=page.getByRole('button',{name:/^이전 컷/});await expect(next).toBeVisible();await expect(page.getByText('이야기의 시작이에요.',{exact:true})).toBeVisible();await expect(previous).toHaveCount(0);
- const position=page.getByLabel('현재 장과 컷 이동'),ids=await position.locator('option').evaluateAll(options=>options.map(node=>(node as HTMLOptionElement).value));await next.click();await expect(position).toHaveValue(ids[1]);await expect(previous).toBeVisible();
- const box=(await stage.boundingBox())!,left=(await previous.boundingBox())!,right=(await next.boundingBox())!;
- if(size.width===1440||size.width===844){expect(left.x+left.width).toBeLessThanOrEqual(box.x+1);expect(right.x).toBeGreaterThanOrEqual(box.x+box.width-1);}else if(size.width===390){expect(left.y+left.height).toBeLessThanOrEqual(box.y+1);expect(right.y+right.height).toBeLessThanOrEqual(box.y+1);}else{expect(left.y+left.height).toBeLessThanOrEqual(box.y+1);expect(right.y).toBeGreaterThanOrEqual(box.y+box.height-1);}
+ // One chapter/cut slot in the top bar on every size (2026-11-24 focus rules): ‹ › above the stage, never beside it.
+ const nav=page.locator('[data-cut-nav]'),next=nav.getByRole('button',{name:'다음 컷 편집',exact:true}),previous=nav.getByRole('button',{name:'이전 컷 편집',exact:true});
+ await expect(next).toBeEnabled();await expect(previous).toBeDisabled();await expect(nav).toContainText('1장 · 1컷');
+ const position=page.getByLabel('현재 장과 컷 이동'),ids=await position.locator('option').evaluateAll(options=>options.map(node=>(node as HTMLOptionElement).value));await next.click();await expect(position).toHaveValue(ids[1]);await expect(previous).toBeEnabled();await expect(nav).toContainText('1장 · 2컷');
+ const box=(await stage.boundingBox())!;for(const arrow of [previous,next]){const rect=(await arrow.boundingBox())!;expect(rect.y+rect.height).toBeLessThanOrEqual(box.y+1);expect(rect.width).toBeGreaterThanOrEqual(44);}
+ expect((await nav.boundingBox())!.height).toBeLessThanOrEqual(44);
  await previous.click();await expect(position).toHaveValue(ids[0]);
- const text=page.getByLabel('1컷 글',{exact:true});await text.dispatchEvent('compositionstart');await expect(next).toBeDisabled();await text.dispatchEvent('compositionend');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`compact-editor-${size.width}.png`),fullPage:true});
 });
 test('next-cut card follows the reading path into the next chapter and protects failed saves',async({page})=>{
  await page.goto('/?view=editor');const position=page.getByLabel('현재 장과 컷 이동');const boundary=await position.locator('optgroup').evaluateAll(groups=>({last:(groups[0].lastElementChild as HTMLOptionElement).value,next:(groups[1].firstElementChild as HTMLOptionElement).value}));
- await position.selectOption(boundary.last);await expect(page.getByRole('button',{name:/^다음 컷/})).toHaveCount(0);const onward=page.getByRole('button',{name:/^다음 장으로/});await expect(onward).toBeVisible();await onward.click();await expect(position).toHaveValue(boundary.next);
+ const cards=page.getByRole('region',{name:'여러 컷 편집',exact:true});await position.selectOption(boundary.last);await expect(cards.getByRole('button',{name:/^다음 컷/})).toHaveCount(0);const onward=cards.getByRole('button',{name:/^다음 장으로/});await expect(onward).toBeVisible();await onward.click();await expect(position).toHaveValue(boundary.next);
  const ids=await position.locator('option').evaluateAll(options=>options.map(node=>(node as HTMLOptionElement).value));await position.selectOption(ids[0]);
- await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await page.getByRole('textbox',{name:'1컷 글',exact:true}).fill('저장 실패 때 이동하지 않을 글');await page.getByRole('button',{name:/^다음 컷/}).click();await expect(position).toHaveValue(ids[0]);await expect(page.getByTestId('save-status')).toContainText('임시 보관 실패');
+ await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await page.getByRole('textbox',{name:'1컷 글',exact:true}).fill('저장 실패 때 이동하지 않을 글');await cards.getByRole('button',{name:/^다음 컷/}).click();await expect(position).toHaveValue(ids[0]);await expect(page.getByTestId('save-status')).toContainText('임시 보관 실패');
 });

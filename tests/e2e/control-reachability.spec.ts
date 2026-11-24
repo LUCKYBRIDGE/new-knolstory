@@ -55,7 +55,7 @@ for(const size of sizes)test(`main screens keep every control reachable · ${siz
   await page.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true}).getByRole('button',{name:'보관하고 서재로',exact:true}).click();
   await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
 
-  await startShelfCreation(page);await probe(page,found,'library create','[data-testid="library-create"]');
+  await startShelfCreation(page);await probe(page,found,'library create','[aria-labelledby="library-create-title"]');
   await page.getByLabel('새 작품 제목',{exact:true}).fill('누르기 검사');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
   await expect(page.locator('[data-current-cut] textarea')).toBeVisible();await probe(page,found,'editor');
   await page.locator('[data-work-menu]>summary').click();await probe(page,found,'editor work menu','[data-work-menu]');

@@ -1,5 +1,5 @@
 // Ported from story-maker baseline 18da4fc:app/story-stage-view.ts.
-import { ASSET_CATALOG } from "@knolstory/asset-registry";
+import { ASSET_CATALOG, assetCharacterIds } from "@knolstory/asset-registry";
 const assets = new Map(ASSET_CATALOG.map(asset => [asset.id, asset]));
 export const CHARACTER_FACING = new Map<string, "left" | "right">([
   ["seonnyeo.character.classic-woodcutter-holding-robe", "right"],
@@ -78,18 +78,39 @@ export function stageSharedActor(id: string) {
 // transparent padding in the prepared child artwork. Never expand silhouettes
 // to equal height or apply the source artwork reduction a second time.
 // Art registered with a placement review is drawn at true stature on the
-// standard canvas; the legacy group corrections below must not shrink it again.
+// standard canvas; the legacy corrections below must not shrink it again.
 function placedToStandard(id: string) {
   return Boolean(assets.get(id)?.metadata.placementReview);
 }
 
+// Legacy (unreviewed) art, compared against the same stage and floor across all story packs.
+const characterStature = new Map([
+  ["creative.village-girl", .85],
+  ["creative.young-traveler", .89],
+  ["onggojib.second-child", .93],
+  ["onggojib.youngest-child", .84],
+  ["heungbu.swallow", .36],
+]);
+const expressionStature = new Map([
+  ["onggojib.character.emotion-magistrate-sorrow-v3", .92],
+  ["onggojib.character.emotion-stranger-anger-v3", .92],
+  ["onggojib.character.emotion-stranger-mirth-v3", .92],
+]);
+
 export function stageCharacterScale(id: string) {
   const asset = assets.get(id);
   if (placedToStandard(id)) return 1;
-  return SEONNYEO_MOUNTED.has(id) ? 1.4
-        : asset?.story === "선녀와 나무꾼" && asset.group === "사슴" ? 0.72
-        : asset?.story === "선녀와 나무꾼" && asset.group === "수탉" ? 0.48
-        : asset?.story === "선녀와 나무꾼" && asset.group === "날개옷" ? 0.65 : 1;
+  if (SEONNYEO_MOUNTED.has(id)) return 1.4;
+  if (asset?.story === "선녀와 나무꾼") {
+    if (asset.group === "사슴") return .72;
+    if (asset.group === "수탉") return .48;
+    if (asset.group === "날개옷") return .65;
+  }
+  if (asset?.type !== "character" || stagePlacementClass(id) !== "framing-full") return 1;
+  const identities = assetCharacterIds(asset);
+  // Shared artwork carries its own internal proportions.
+  if (identities.length !== 1) return 1;
+  return expressionStature.get(id) ?? characterStature.get(identities[0]) ?? 1;
 }
 
 /** Preserve full-body stature/pose; only cropped upper-body art needs margin normalization. */

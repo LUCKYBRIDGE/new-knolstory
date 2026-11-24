@@ -57,7 +57,8 @@ it('shows the actual inherited speaking actor image and keeps narration unlinked
  expect(html).toContain(assetDisplayName(resolveAsset(imageId)!));
  expect(html).toContain('글 종류 설정');expect(project).toEqual(before);
  Object.assign(project.lines[0],{type:'narration',speaker:'narration'});
- expect(render()).toContain('없음 · 해설');
+ // An unlinked speaker shows no standing status text (focus rule 5).
+ expect(render()).not.toContain('현재 컷 화자에 연결된 이미지');expect(render()).not.toContain('없음 · 해설');
  Object.assign(project.lines[0],{type:'dialogue',speaker:'narration'});
- expect(render()).toContain('없음 · 화면 밖 목소리');
+ expect(render()).not.toContain('현재 컷 화자에 연결된 이미지');expect(render()).not.toContain('화면 밖 목소리');
 });

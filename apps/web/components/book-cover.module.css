@@ -469,3 +469,12 @@
 [data-small-cover] .book[data-compact] .art { top:39%!important;height:51%!important }
 /* Cover copy never breaks inside a Korean word (별주부 / 전): a word wider than its box makes the fitter shrink the type instead. */
 .copyBox>*{word-break:keep-all;overflow-wrap:normal}
+/* Small shelf covers of the four built-in works (2026-11-23). The classic hardcover stays as designed —
+   its own paper, ink and accent, serif title printed on the paper, thin rule, spine and page block.
+   At shelf size only the proportions change: the title is printed on one line and the illustration
+   window takes more of the face, so the book reads as itself from across the room.
+   Display only: stored covers, layers and coordinates are untouched. */
+[data-work-id] .book[data-compact] .tagline,[data-work-id] .book[data-compact] .edition,[data-work-id] .book[data-compact] .bottomAuthor,[data-work-id] .book[data-compact] .titleBox .author { display:none }
+[data-work-id] .book[data-compact] .titleBox { top:7%!important;left:16%!important;width:72%!important;height:13%!important;padding:0;background:transparent!important }
+[data-work-id] .book[data-compact] .title { margin:0;white-space:nowrap;font-size:2.2em;font-weight:600;line-height:1.2;letter-spacing:-.03em }
+[data-work-id] .book[data-compact] .art { top:23%!important;left:16%!important;width:72%!important;height:69%!important;border-radius:1px;box-shadow:0 0 0 1px color-mix(in srgb,var(--cover-accent) 70%,transparent) }

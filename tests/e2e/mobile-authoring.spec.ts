@@ -113,9 +113,12 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
     ['이 컷부터 재생', page.getByRole('button', { name: '이 컷부터 재생', exact: true })],
   ] as const) {
     await locator.scrollIntoViewIfNeeded();
+    // Visible boxes may be 32–36px; the touch target (a transparent ::after) stays 44px (DESIGN 집중 편집 규칙 6).
     const bounds = (await locator.boundingBox())!;
-    expect(bounds.width, name).toBeGreaterThanOrEqual(44);
-    expect(bounds.height, name).toBeGreaterThanOrEqual(44);
+    const target = await locator.evaluate(el => { const after = getComputedStyle(el, '::after'), box = el.getBoundingClientRect(); return after.content !== 'none' && after.position === 'absolute' ? { width: Math.max(box.width, parseFloat(after.width)), height: Math.max(box.height, parseFloat(after.height)) } : { width: box.width, height: box.height }; });
+    expect(bounds.height, name).toBeGreaterThanOrEqual(32);
+    expect(target.width, name).toBeGreaterThanOrEqual(44);
+    expect(target.height, name).toBeGreaterThanOrEqual(44);
   }
   await noOverflow(page);
   // Keyboard focus stays visible on the settings menu button and Enter opens it.
