@@ -80,7 +80,8 @@ async function nativeChoice(page:Page,choice:{choiceId:string;label:string}){
 }
 
 for(const edition of editions)for(const route of edition.routes)test(`${edition.workId} ${route.id}: complete native route with API unavailable`,async({page},info)=>{
- test.setTimeout(360000);await page.setViewportSize({width:1280,height:800});
+ // Each step is a real native render; long routes (선녀와 나무꾼 340~412 steps) need time in proportion to their length.
+ test.setTimeout(Math.max(360000,route.steps.length*1200));await page.setViewportSize({width:1280,height:800});
  await observeNativeMessages(page);
  let apiRequests=0;await page.route('**/api/**',async request=>{apiRequests++;await request.fulfill({status:503,contentType:'application/json',body:JSON.stringify({success:false,error:'검사 중 온라인 기능을 사용할 수 없어요.'})});});
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
