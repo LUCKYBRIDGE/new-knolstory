@@ -12,7 +12,7 @@ async function exported(page:Page){await expect(page.getByTestId('save-status'))
 test('long manuscript keeps last-cut editing, cursor, file and internal scrolling across screen changes',async({page},info)=>{
  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',route=>route.abort());await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'long.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
- const before=await exported(page);await screen(page,'text');await page.getByRole('checkbox',{name:'배경 함께 보기',exact:true}).check();
+ const before=await exported(page);await screen(page,'text');await expect(page.getByRole('checkbox',{name:'배경 함께 보기',exact:true})).toBeHidden();
  const field=page.getByTestId('editing-cut-long-cut-119').getByRole('textbox',{name:'120컷 글',exact:true});await field.scrollIntoViewIfNeeded();
  const next=before.lines[119].text+'\n끝부분에서 계속 고친 문장이에요.';await field.fill(next);await field.evaluate(node=>(node as HTMLTextAreaElement).setSelectionRange(7,12));
  await screen(page,'background');await screen(page,'text');await expect(field).toHaveValue(next);

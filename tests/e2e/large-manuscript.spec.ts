@@ -18,16 +18,16 @@ test('three hundred cuts retain late edits, chapter navigation and full file reo
  await setup(page);
  for(const viewport of [{width:1280,height:800},{width:390,height:844},{width:844,height:390},{width:820,height:1180}]){
   await page.setViewportSize(viewport);
-  const chapters=page.getByRole('combobox',{name:'편집할 장',exact:true});
-  await chapters.selectOption('ch0');const first=page.getByTestId('editing-cut-cut99');await first.getByRole('button',{name:'이 컷 선택',exact:true}).click();
+  // The top bar's chapter·cut place is the one way to change chapters (the list follows the current cut).
+  const place=page.getByLabel('현재 장과 컷 이동',{exact:true});
+  await place.selectOption('cut99');const first=page.getByTestId('editing-cut-cut99');await expect(first).toHaveAttribute('aria-current','step');
   await first.locator('textarea[data-cut-id]').fill(project.lines[99].text+`\n첫 장 교정 ${viewport.width}`);
-  await chapters.selectOption('ch2');await expect(page.getByRole('button',{name:'현재 컷 찾기',exact:true})).toBeDisabled();
-  const last=page.getByTestId('editing-cut-cut299');await last.getByRole('button',{name:'이 컷 선택',exact:true}).click();await last.locator('textarea[data-cut-id]').fill(project.lines[299].text+`\n마지막 장 교정 ${viewport.width}`);
-  await chapters.selectOption('ch1');const middle=page.getByTestId('editing-cut-cut150');await middle.getByRole('button',{name:'이 컷 선택',exact:true}).click();
+  await place.selectOption('cut299');const last=page.getByTestId('editing-cut-cut299');await expect(last).toHaveAttribute('aria-current','step');await last.locator('textarea[data-cut-id]').fill(project.lines[299].text+`\n마지막 장 교정 ${viewport.width}`);
+  await place.selectOption('cut100');const middle=page.getByTestId('editing-cut-cut150');await middle.getByRole('button',{name:/· 이 컷 선택$/}).click();
   const list=page.locator('[data-writer-scroll]').last();await list.evaluate(el=>{el.scrollTop=0;});await page.getByRole('button',{name:'현재 컷 찾기',exact:true}).click();
   await expect(middle).toHaveAttribute('aria-current','step');
   const position=await middle.locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),list=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,listTop:list.top,listBottom:list.bottom};});expect(position.top).toBeGreaterThanOrEqual(position.listTop-1);expect(position.top).toBeLessThan(position.listBottom);
-  await screen(page,'background');await screen(page,'text');await expect(middle).toHaveAttribute('aria-current','step');await expect(chapters).toHaveValue('ch1');
+  await screen(page,'background');await screen(page,'text');await expect(middle).toHaveAttribute('aria-current','step');await expect(place).toHaveValue('cut150');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
  }
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const after=await stored(page);
@@ -41,7 +41,7 @@ test('three hundred cuts retain late edits, chapter navigation and full file reo
 test('large manuscript native playback crosses chapter and returns to its current editor cut',async({page},info)=>{
  await setup(page,undefined,true);
  await page.setViewportSize({width:390,height:844});
- const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();
+ const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:/· 이 컷 선택$/}).click();
  const text=row.locator('textarea[data-cut-id]');await text.fill('첫 장 마지막 컷에서 다음 장으로 이어져요.');await text.blur();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await stored(page);
  const frame=await page.getByTestId('story-runtime-frame').elementHandle();
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
@@ -52,7 +52,7 @@ test('large manuscript native playback crosses chapter and returns to its curren
  for(let i=0;i<20;i++){if(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)==='cut100')break;await advance.focus();await advance.press('Enter');await rendered();}
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('cut100');await rendered();
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
- await expect(page.getByLabel('편집할 장',{exact:true})).toHaveValue('ch1');await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('cut100');const current=page.getByTestId('editing-cut-cut100').locator('textarea[data-cut-id]');await expect(current).toHaveValue(project.lines[100].text);await expect(current).toBeFocused();
+ await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('cut100');const current=page.getByTestId('editing-cut-cut100').locator('textarea[data-cut-id]');await expect(current).toHaveValue(project.lines[100].text);await expect(current).toBeFocused();
  const visible=await page.getByTestId('editing-cut-cut100').locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),area=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,areaTop:area.top,areaBottom:area.bottom};});expect(visible.top).toBeGreaterThanOrEqual(visible.areaTop-1);expect(visible.top).toBeLessThan(visible.areaBottom);
  expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await rendered();
  expect(await stored(page)).toEqual(before);await page.screenshot({path:info.outputPath('large-native-return-390.png')});
@@ -60,20 +60,20 @@ test('large manuscript native playback crosses chapter and returns to its curren
 
 for(const target of ['background','characters','audio','direction'])test(`advanced ${target} native return reveals current cut without a text field`,async({page},info)=>{
  await setup(page,undefined,true);await page.setViewportSize({width:390,height:844});
- const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();await row.locator('textarea[data-cut-id]').fill('이 장을 마치고 다음 장으로 이어져요.');
+ const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:/· 이 컷 선택$/}).click();await row.locator('textarea[data-cut-id]').fill('이 장을 마치고 다음 장으로 이어져요.');
  await menu(page);await page.getByText('편집 설정',{exact:true}).click();for(const name of ['인물','음향','연출'])await page.getByRole('checkbox',{name:`${name} 편집 사용`,exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(target);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await stored(page);
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');
  const rendered=()=>expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision'),{timeout:120000}).toBe(true);await rendered();
  const advance=page.getByRole('button',{name:'다음으로',exact:true});await advance.focus();await advance.press('Enter');await rendered();await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('cut100');
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
- const current=page.getByTestId('editing-cut-cut100');await expect(current).toHaveAttribute('aria-current','step');await expect(page.getByLabel('편집할 장',{exact:true})).toHaveValue('ch1');
+ const current=page.getByTestId('editing-cut-cut100');await expect(current).toHaveAttribute('aria-current','step');await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('cut100');
  const visible=await current.locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),area=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,areaTop:area.top,areaBottom:area.bottom};});expect(visible.top).toBeGreaterThanOrEqual(visible.areaTop-1);expect(visible.top).toBeLessThan(visible.areaBottom);
  await expect(current.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeFocused();expect(await stored(page)).toEqual(before);await page.screenshot({path:info.outputPath(`advanced-return-${target}-390.png`)});
 });
 
 test('same-cut closed detail preview preserves an already visible row position',async({page})=>{
- await setup(page,undefined,true);await page.setViewportSize({width:390,height:844});const row=page.getByTestId('editing-cut-cut50');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();await menu(page);await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('audio');
+ await setup(page,undefined,true);await page.setViewportSize({width:390,height:844});const row=page.getByTestId('editing-cut-cut50');await row.getByRole('button',{name:/· 이 컷 선택$/}).click();await menu(page);await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('audio');
  const summary=row.getByText('51컷 음향 수정',{exact:true});await summary.click();const field=row.getByLabel('조정할 소리',{exact:true});await field.focus();await summary.click();
  const list=page.locator('[data-writer-scroll]').last();await list.evaluate(el=>{const header=el.querySelector('[aria-current="step"] header')!.getBoundingClientRect(),bounds=el.getBoundingClientRect();el.scrollTop+=header.top-bounds.top-90;});const before=await list.evaluate(el=>el.scrollTop),projectBefore=await stored(page);
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision'),{timeout:120000}).toBe(true);

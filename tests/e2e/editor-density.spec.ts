@@ -22,10 +22,11 @@ for(const size of sizes)test(`editor writing and preparation stay compact and pr
  await expect(writer(page)).toBeVisible();await writer(page).getByLabel('1컷 글',{exact:true}).fill(manuscript);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await noOverflow(page);
  const writerPadding=await writer(page).locator('article').first().evaluate(node=>parseFloat(getComputedStyle(node).paddingLeft));
- expect(writerPadding).toBeLessThanOrEqual(14);// The screen itself is unpadded; each cut row keeps 14px of framing.
+ expect(writerPadding).toBeLessThanOrEqual(16);// The screen itself is unpadded; each cut row keeps 16px of framing (4px scale).
  // Keep real touch targets while reducing the framing around the manuscript.
- const editCut=writer(page).getByRole('button',{name:'이 컷 선택',exact:true}).first();await editCut.scrollIntoViewIfNeeded();
- expect((await editCut.boundingBox())!.height).toBeGreaterThanOrEqual(await page.evaluate(()=>matchMedia('(pointer:coarse),(max-width:720px)').matches?44:30));
+ const editCut=writer(page).getByRole('button',{name:/· 이 컷 선택$/}).first();await editCut.scrollIntoViewIfNeeded();
+ // Visible 36px, with a transparent 44px touch area (DESIGN 집중 편집 규칙 6).
+ expect((await editCut.boundingBox())!.height).toBeGreaterThanOrEqual(30);expect(await editCut.evaluate(el=>parseFloat(getComputedStyle(el,'::after').height))).toBeGreaterThanOrEqual(44);
  const management=page.locator('[data-work-menu]>summary');
  if(await management.isVisible()&&!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();
  await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();

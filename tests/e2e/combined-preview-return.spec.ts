@@ -13,7 +13,7 @@ async function setup(page:Page,file?:string,native=false){
 }
 
 test('combined editor returns focus to current-cut controls after crossing a chapter',async({page})=>{
- await page.setViewportSize({width:800,height:1100});await setup(page,undefined,true);const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();await row.locator('textarea[data-cut-id]').fill('다음 장으로 이어가요.');
+ await page.setViewportSize({width:800,height:1100});await setup(page,undefined,true);const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:/· 이 컷 선택$/}).click();await row.locator('textarea[data-cut-id]').fill('다음 장으로 이어가요.');
  await menu(page);await page.getByText('편집 설정',{exact:true}).click();for(const name of ['음향','연출'])await page.getByRole('checkbox',{name:`${name} 편집 사용`,exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');
  const before=await stored(page),details=page.locator('[data-combined-details]');await details.getByRole('button',{name:'이 컷 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');const rendered=()=>expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision'),{timeout:120000}).toBe(true);await rendered();
  const advance=page.getByRole('button',{name:'다음으로',exact:true});await advance.focus();await advance.press('Enter');await rendered();await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('cut100');
