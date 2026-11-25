@@ -180,6 +180,11 @@ describe('top bar, text box and neighbour places drawn by the catalog renderer',
   expect(drawer).toContain('<div class="panel" data-system-menu="editor">');
   expect(drawer).toContain('aria-label="편집 설정 닫기"');
   expect(drawer).not.toContain('이야기 점수');
+  // One way to the library: the bar's icon. The drawer does not repeat it.
+  expect(drawer).not.toContain('>서재로<');
+  const {TOP_BAR_EVENTS}=await import('./editor-surfaces');
+  const events:string[]=[];const walk=(value:unknown,seen=new Set<unknown>())=>{if(!value||typeof value!=='object'||seen.has(value))return;seen.add(value);const item=value as Record<string,unknown>;if(item.event&&typeof item.event==='object'&&typeof (item.event as {name?:unknown}).name==='string')events.push((item.event as {name:string}).name);for(const child of value instanceof Map?value.values():Object.values(item))walk(child,seen);};walk(surface);
+  expect(events.filter(name=>name===TOP_BAR_EVENTS.library)).toHaveLength(1);
   expect(renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'fullscreen',inline:true}))).toContain('aria-label="편집 화면 전체 화면 해제"');
   expect(renderToStaticMarkup(createElement(FocusSurface,{surface,device:'tablet',rootId:'library',inline:true}))).toContain('<span>서재</span>');
  });

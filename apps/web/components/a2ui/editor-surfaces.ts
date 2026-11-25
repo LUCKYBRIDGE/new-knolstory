@@ -89,9 +89,9 @@ export function topBarSurface({unified,title,open,disabled,scores,fullscreen,ful
   {id:'files',component:'ToolGroup',name:'파일·저장',labelVisible:true,children:['file-tools']},
   {id:'file-tools',component:'FileTools'},
   ...(unified?[
-   {id:'leave',component:'ToolGroup',name:'화면·나가기',labelVisible:true,children:['leave-tools','to-library']},
+   // The library is the always-visible icon in the bar; the drawer does not repeat it.
+   {id:'leave',component:'ToolGroup',name:'화면·나가기',labelVisible:true,children:['leave-tools']},
    {id:'leave-tools',component:'LeaveActions'},
-   {id:'to-library',component:'Button',label:'서재로',disabled:{path:'/disabled'},action:{event:{name:TOP_BAR_EVENTS.library}}},
    ...(fullscreenAvailable?[{id:'fullscreen',component:'IconButton',icon:fullscreen?'fullscreen-exit':'fullscreen',name:fullscreen?'편집 화면 전체 화면 해제':'편집 화면 전체 화면',title:fullscreen?'전체 화면 해제':'전체 화면',pressed:{path:'/fullscreen'},disabled:{path:'/shortcutDisabled'},action:{event:{name:TOP_BAR_EVENTS.fullscreen}}}]:[]),
    {id:'library',component:'IconButton',icon:'library',label:'서재',name:'서재 · 홈으로 이동',title:'서재로 이동',disabled:{path:'/shortcutDisabled'},action:{event:{name:TOP_BAR_EVENTS.library}}},
   ]:[]),
@@ -260,7 +260,7 @@ export function connectionsSurface({open,summary,upstream,incoming,here,marks,ou
    :[{id:`out-${way.id}`,component:'PathChoice',label:way.label,where:way.where??'',disabled:{path:'/disabled'},select:select({id:way.id,lineId:way.lineId??''})}]),
   ...(tools.length?<A2uiComponent[]>[{id:'trail-tools',component:'ToolGroup',name:'이야기 연결 도구',children:tools},
    ...(back?<A2uiComponent[]>[{id:'back',component:'Button',label:'← 방금 보던 컷',name:back.name,disabled:{path:'/disabled'},action:{event:{name:CONNECTION_EVENTS.back}}}]:[]),
-   ...(map?<A2uiComponent[]>[{id:'map',component:'Button',label:'전체 지도',name:'이야기 흐름 지도 열기',disabled:{path:'/disabled'},action:{event:{name:CONNECTION_EVENTS.map}}}]:[])]:[]),
+   ...(map?<A2uiComponent[]>[{id:'map',component:'Button',label:'이야기 지도',name:'이야기 지도 열기',disabled:{path:'/disabled'},action:{event:{name:CONNECTION_EVENTS.map}}}]:[])]:[]),
   // 내 편집 이동 경로: the cuts the author moved through (not a reader's path); any earlier visit can be returned to.
   ...(visits.length?<A2uiComponent[]>[{id:'visits',component:'More',summary:`내 편집 이동 경로 · ${visits.length}`,title:'내가 편집하며 이동한 컷이에요. 이야기 연결이나 독자의 진행은 바꾸지 않아요.',children:['visits-list']},
    {id:'visits-list',component:'Column',gap:8,children:['fork-visits']},

@@ -1,5 +1,5 @@
 'use client';
-import {chapterLabel,chaptersForDisplay,cutLabel,type StoryProject,type StoryLine} from '@knolstory/story-domain';
+import {chapterLabel,chaptersInStoryOrder,cutLabel,type StoryProject,type StoryLine} from '@knolstory/story-domain';
 import {adjacentManuscriptCuts} from './editor-context';
 import styles from './story-workspace.module.css';
 import {FocusSurface} from './a2ui/focus-surface';
@@ -19,7 +19,7 @@ function shortPosition(project:StoryProject,line:StoryLine){
 export function StoryCutPosition({steps,...p}:Props&{steps?:(CutSteps&{step:(direction:'previous'|'next')=>void})|null}){
  // A2UI: drawn from the focus editor catalog (CutNavigator), with the open screen's ‹ › as its IconButtons.
  const chapter=p.project.chapters.find(item=>item.id===p.line.chapterId);
- const groups=chaptersForDisplay(p.project.chapters).map(item=>({label:chapterLabel(item),options:p.ordered.filter(cut=>cut.chapterId===item.id).map(cut=>({value:cut.id,label:`${cutLabel(item,cut)} · ${cut.text.slice(0,36)||'빈 컷'}`}))}));
+ const groups=chaptersInStoryOrder(p.project).map(item=>({label:chapterLabel(item),options:p.ordered.filter(cut=>cut.chapterId===item.id).map(cut=>({value:cut.id,label:`${cutLabel(item,cut)} · ${cut.text.slice(0,36)||'빈 컷'}`}))}));
  const surface=cutPlaceSurface({short:shortPosition(p.project,p.line),value:p.line.id,groups,disabled:p.disabled,chapter:chapter?.chapterNumber??chapter?.order??1,cut:p.line.order,steps});
  return <FocusSurface inline surface={surface} rootId="place" device="tablet"
   attrs={component=>component.id==='place'?{className:styles.cutNav,'data-cut-nav':''}:component.component==='IconButton'?{className:'','data-cut-step':String(component.id)}:undefined}

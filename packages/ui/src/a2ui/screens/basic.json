@@ -306,8 +306,8 @@
     {
      "id": "story-map",
      "component": "Button",
-     "label": "전체 지도",
-     "name": "이야기 흐름 지도 열기",
+     "label": "이야기 지도",
+     "name": "이야기 지도 열기",
      "action": {
       "event": {
        "name": "openStoryMap"
@@ -366,6 +366,9 @@
      "gap": 8,
      "children": [
       "cut-more",
+      "chapter-cuts",
+      "notes-summary",
+      "phone-branch",
       "cut-detail"
      ]
     },
@@ -391,6 +394,69 @@
     },
     {
      "id": "split-story",
+     "component": "Button",
+     "label": "이야기 나누기",
+     "action": {
+      "event": {
+       "name": "splitStory"
+      }
+     }
+    },
+    {
+     "id": "chapter-cuts",
+     "component": "More",
+     "summary": "이 장의 컷 목록",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
+     "children": [
+      "chapter-cuts-panel"
+     ]
+    },
+    {
+     "id": "chapter-cuts-panel",
+     "component": "HostPanel",
+     "name": "이 장의 컷 목록"
+    },
+    {
+     "id": "notes-summary",
+     "component": "More",
+     "summary": "메모·연결 요약",
+     "devices": [
+      "tablet",
+      "desktop"
+     ],
+     "children": [
+      "notes-summary-panel"
+     ]
+    },
+    {
+     "id": "notes-summary-panel",
+     "component": "HostPanel",
+     "name": "메모·연결 요약"
+    },
+    {
+     "id": "phone-branch",
+     "component": "More",
+     "summary": "이야기 갈래",
+     "devices": [
+      "phone"
+     ],
+     "children": [
+      "phone-branch-tools"
+     ]
+    },
+    {
+     "id": "phone-branch-tools",
+     "component": "ToolGroup",
+     "name": "이야기 흐름",
+     "children": [
+      "phone-split-story"
+     ]
+    },
+    {
+     "id": "phone-split-story",
      "component": "Button",
      "label": "이야기 나누기",
      "action": {

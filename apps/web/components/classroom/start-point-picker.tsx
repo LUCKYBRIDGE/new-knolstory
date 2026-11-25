@@ -30,7 +30,7 @@ export function StartPointPicker({storyKey,edition,value,onChange}:{storyKey:Bui
  const scopes=loaded&&parsed?.kind==='choice'?loaded.start.branchScopeOptions(loaded.project,point):[];
  const choose=(next:string)=>onChange(next,next&&loaded?loaded.start.startPointLabel(loaded.project,next)??'':'');
  return <>
-  <label className={styles.field}>{edition==='original'?'어느 장부터 쓸까요':'어느 분기점부터 쓸까요'}
+  <label className={styles.field}>{edition==='original'?'어느 장부터 쓸까요':'어느 선택지부터 쓸까요'}
    <select aria-label="시작 지점" value={point} disabled={!options} onChange={event=>choose(event.target.value)}>
     <option value="">처음부터 · 작품 전체를 고쳐 써요</option>
     {options?.map(option=><option key={option.value} value={option.value}>{option.label}</option>)}

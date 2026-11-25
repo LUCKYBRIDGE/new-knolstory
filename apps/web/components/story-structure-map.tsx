@@ -1,6 +1,6 @@
 'use client';
 import {useMemo,useState} from 'react';
-import {chaptersForDisplay,chapterLabel,type StoryProject} from '@knolstory/story-domain';
+import {branchChapterNumbering,type StoryProject} from '@knolstory/story-domain';
 import type {StoryFlowGraph} from '@knolstory/runtime-core';
 import {storyStructure,type StoryStructure,type StructureBlock,type StructureEnd,type StructureLeg} from '../lib/story-structure-map';
 import styles from './story-structure-map.module.css';
@@ -47,9 +47,18 @@ export function StoryStructureMap({project,graph,structure:given,currentLineId,o
  const nodes=useMemo(()=>new Map(graph.nodes.map(node=>[node.lineId,node])),[graph]);
  const current=structure.member.get(currentLineId);
  const currentBlock=current?.block??structure.blocks.find(block=>block.legs.some(leg=>'lineId' in leg.end&&leg.end.lineId===currentLineId))?.lineId;
- // Long works read chapter by chapter; the chapter of the current cut starts open.
- const grouped=structure.blocks.length>STRUCTURE_GROUPED_AFTER;
- const chapters=chaptersForDisplay(project.chapters).map(chapter=>({chapter,blocks:structure.blocks.filter(block=>block.chapterId===chapter.id)})).filter(item=>item.blocks.length);
+ // Ways may meet again or stay apart to the end: blocks are grouped by storyline (공통 줄기, 갈래 A, 갈래 A › B …),
+ // each read from its start to its endings; with many blocks only the current storyline starts open.
+ const numbering=useMemo(()=>branchChapterNumbering(project),[project]);
+ const storylines=useMemo(()=>{
+  const at=new Map(numbering.order.map((id,index)=>[id,index]));
+  const groups=new Map<string,StructureBlock[]>();
+  for(const block of structure.blocks){const key=numbering.reachable.has(block.chapterId)?numbering.identities.get(block.chapterId)?.branchLabel??'':'·';groups.set(key,[...(groups.get(key)??[]),block]);}
+  return [...groups].map(([key,blocks])=>({key,blocks,first:Math.min(...blocks.map(block=>at.get(block.chapterId)??Number.MAX_SAFE_INTEGER))})).sort((a,b)=>a.first-b.first);
+ },[structure,numbering]);
+ const grouped=storylines.length>1;
+ const folded=structure.blocks.length>STRUCTURE_GROUPED_AFTER;
+ const storylineName=(key:string)=>key==='·'?'시작부터 이어지지 않는 부분':key?`갈래 ${[...key].join(' › ')}`:'공통 줄기';
  const leg=(block:StructureBlock,item:StructureLeg,index:number)=>{
   const inRun=current?.block===block.lineId&&current.leg===index,atEnd='lineId' in item.end&&item.end.lineId===currentLineId&&item.end.kind==='ending';
   const end=item.end;
@@ -71,9 +80,10 @@ export function StoryStructureMap({project,graph,structure:given,currentLineId,o
   <ul className={styles.legs}>{block.legs.map((item,index)=>leg(block,item,index))}</ul>
  </li>;
  return <div className={styles.structure} data-testid="story-structure">
-  {grouped?chapters.map(({chapter,blocks})=><details key={chapter.id} className={styles.chapter} open={blocks.some(block=>block.lineId===currentBlock)||undefined}>
-   <summary>{chapterLabel(chapter)} <span>{blocks.filter(block=>block.roles.includes('branch')).length?`갈림길 ${blocks.filter(block=>block.roles.includes('branch')).length}`:''}{blocks.some(block=>block.roles.includes('join'))?` · 만나는 곳 ${blocks.filter(block=>block.roles.includes('join')).length}`:''}{blocks.some(block=>block.lineId===currentBlock)?' · 현재 편집':''}</span></summary>
-   <ol className={styles.blocks}>{blocks.map(card)}</ol></details>)
+  {grouped?storylines.map(({key,blocks})=>{const branches=blocks.filter(block=>block.roles.includes('branch')).length,endings=blocks.reduce((sum,block)=>sum+block.legs.filter(leg=>leg.end.kind==='ending'||leg.end.kind==='story-end').length,0),here=blocks.some(block=>block.lineId===currentBlock);
+   return <details key={key} className={styles.chapter} data-storyline={key} open={!folded||here||undefined}>
+   <summary>{storylineName(key)} <span>{[branches?`갈림길 ${branches}`:'',endings?`끝 ${endings}`:'',here?'현재 편집':''].filter(Boolean).join(' · ')}</span></summary>
+   <ol className={styles.blocks}>{blocks.map(card)}</ol></details>;})
    :<ol className={styles.blocks}>{structure.blocks.map(card)}</ol>}
  </div>;
 }

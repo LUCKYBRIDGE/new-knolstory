@@ -492,7 +492,7 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 }
 /* What the cut says, on every focus screen: up to three lines, the full text in 원고 or 쓰기. */
 .cutText{margin:0 0 8px;font-size:var(--text-small);line-height:1.5;color:var(--ink);white-space:pre-line;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
-/* 이야기 지도 보기: 36px to the eye, 44px to the finger, like the other secondary actions. */
+/* 이야기 지도: 36px to the eye, 44px to the finger, like the other secondary actions. */
 .workbench .mapButton{position:relative;min-height:36px;height:auto;padding-block:8px}
 .workbench .mapButton::before{content:'';position:absolute;inset:-4px 0}
 /* Phones: 편집할 장 and 현재 컷 찾기 share one line, the 함께 보기 chips take the next. */

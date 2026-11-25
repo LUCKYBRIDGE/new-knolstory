@@ -113,7 +113,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
    <button data-menu-resume="true" className={styles.resume} onClick={()=>{setTopOpen(false);trigger.current?.focus();}}>계속 읽기<span aria-hidden="true">▶</span></button>
    <div className={styles.menuPair}><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button></div>
    <div className={styles.menuNavigation}><button onClick={()=>open('settings')}>읽기 설정<span aria-hidden="true">›</span></button>{onFullscreen&&<button onClick={()=>{setTopOpen(false);trigger.current?.focus({preventScroll:true});onFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}<span aria-hidden="true">⛶</span></button>}<AppInstallButton glyph noteClassName={styles.installNote}/></div>
-   <div className={styles.menuDestinations}><button disabled={disabled} onClick={()=>request({kind:'restart'})}>처음부터 읽기<span aria-hidden="true">↶</span></button>{onLibrary&&<button onClick={()=>request({kind:'library'})}>서재로 돌아가기<span aria-hidden="true">›</span></button>}{onExit&&<button onClick={()=>{setTopOpen(false);onExit();}}>이 컷 편집하기<span aria-hidden="true">›</span></button>}</div>
+   <div className={styles.menuDestinations}><button disabled={disabled} onClick={()=>request({kind:'restart'})}>처음부터 읽기<span aria-hidden="true">↶</span></button>{onLibrary&&<button onClick={()=>request({kind:'library'})}>서재로 돌아가기<span aria-hidden="true">›</span></button>}</div>
   </div>}
   {/* A transition card covers the whole stage; the tool row would sit over its button. */}
   {!toolsHidden&&<div style={{...barStyle,'--reader-tool-font-size':`${Math.max(12,Math.min(13,toolFontSizePx))}px`} as CSSProperties} className={styles.quick} data-reader-quick-bar>

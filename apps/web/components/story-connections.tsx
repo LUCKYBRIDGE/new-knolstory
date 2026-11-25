@@ -1,6 +1,6 @@
 'use client';
 import {useMemo} from 'react';
-import type {StoryProject} from '@knolstory/story-domain';
+import {branchChapterNumbering,type StoryProject} from '@knolstory/story-domain';
 import type {StoryFlowGraph} from '@knolstory/runtime-core';
 import {FocusSurface,type FocusSurfaceAction} from './a2ui/focus-surface';
 import {connectionsSurface,CONNECTION_EVENTS,type ConnectionFork,type ConnectionOut,type ConnectionWay} from './a2ui/editor-surfaces';
@@ -26,7 +26,12 @@ const chose=(words:EdgeWords)=>/^[“"‘'「『]/u.test(words.label)?`${words.l
  */
 export function StoryConnections(p:Props){
  const trail=useMemo(()=>connectionTrail(p.project,p.graph,p.lineId),[p.project,p.graph,p.lineId]);
+ // Ways may stay apart to the end, so say which storyline the cut is on (갈래 A › B), named like the chapter letters.
+ const numbering=useMemo(()=>branchChapterNumbering(p.project),[p.project]);
  if(!trail)return null;
+ const currentChapter=p.graph.nodes.find(node=>node.lineId===trail.lineId)?.chapterId??'';
+ const letters=numbering.identities.get(currentChapter)?.branchLabel??'';
+ const storyline=[...numbering.identities.values()].some(identity=>identity.branchLabel)?numbering.reachable.has(currentChapter)?letters?`갈래 ${[...letters].join(' › ')}`:'공통 줄기':'':'';
  const nodes=new Map(p.graph.nodes.map(node=>[node.lineId,node]));
  const incomingSources=new Set(trail.incoming.map(way=>way.lineId));
  // The nearest branch point leads with its shortest way here; its other ways and further branch points fold away.
@@ -41,11 +46,11 @@ export function StoryConnections(p:Props){
   if(way.status==='connected'&&way.lineId)return {id:way.edgeId,label:`${head||'다음'} →`,where:`${way.place} · ${way.excerpt}${way.ending?' · 이야기 끝':''}`,lineId:way.lineId};
   if(way.status==='ending')return {id:way.edgeId,label:head||'이야기 끝',notice:{kind:'empty',text:head?`${short(head,40)} → 이야기 끝`:'여기서 이야기가 끝나요'}};
   const problem=way.status==='pending'?'도착 컷을 정해 주세요':'도착 컷을 찾을 수 없어요';
-  return {id:way.edgeId,label:head||'다음',notice:{kind:'warning',text:`${short(head||'다음 컷',30)} · ${problem}`,...(p.canRepair?{repair:{...(way.choiceId?{choiceId:way.choiceId}:{}),kind:way.status==='pending'?'pending':'missing'}}:{})}};
+  return {id:way.edgeId,label:head||'다음',notice:{kind:'warning',text:`${short(head||'다음 컷',30)} · ${problem}${p.canRepair?'':' (설정의 ‘이야기 규칙 편집’에서 ‘선택지’를 켜면 고칠 수 있어요)'}`,...(p.canRepair?{repair:{...(way.choiceId?{choiceId:way.choiceId}:{}),kind:way.status==='pending'?'pending':'missing'}}:{})}};
  });
  const previous=p.editingPath.length>1?p.editingPath[p.editingPath.length-2]:undefined,previousNode=previous&&previous!==p.lineId?nodes.get(previous):undefined;
  const surface=connectionsSurface({open:p.open,summary:trail.warning?'이야기 연결 · 확인 필요':'이야기 연결',upstream,incoming,
-  here:`지금 · ${trail.place}`,...(trail.marks.length?{marks:trail.marks.join(' · ')}:{}),outgoing,
+  here:`지금 · ${trail.place}`,...(trail.marks.length||storyline?{marks:[storyline,...trail.marks].filter(Boolean).join(' · ')}:{}),outgoing,
   ...(previousNode?{back:{name:`방금 보던 컷으로 돌아가기 · ${previousNode.chapterLabel.split(' · ')[0]} ${previousNode.order}컷`}}:{}),
   visits:p.editingPath.slice(0,-1).map((id,index)=>({id,index,node:nodes.get(id)})).filter(visit=>visit.node).reverse().slice(0,12)
    .map(visit=>({index:visit.index,label:`${visit.index+1}. ${visit.node!.chapterLabel.split(' · ')[0]} ${visit.node!.order}컷`,where:short(visit.node!.text.replace(/\s+/g,' ').trim()||'아직 글이 없는 컷',40)})),

@@ -47,9 +47,9 @@ function NodeBadges({ node, current, start }: { node: FlowNode; current: boolean
   return <span className={styles.badges}>
     {current && <span className={styles.currentBadge}>현재 편집</span>}
     {start && <span>시작</span>}
-    {node.kind === "choice" && <span>선택 · 분기</span>}
+    {node.kind === "choice" && <span>선택지</span>}
     {node.shared && <span className={styles.sharedBadge}>여러 갈래에서 함께 쓰는 컷</span>}
-    {node.kind === "ending" && <span>이야기 끝 · 엔딩</span>}
+    {node.kind === "ending" && <span>이야기 끝</span>}
     {!node.reachable && <span className={styles.issueBadge}>시작부터 이어지는 길 없음</span>}
   </span>;
 }
@@ -154,7 +154,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose, onA
         <button type="button" className={styles.toCurrent} disabled={!currentBlock} onClick={() => { if (view !== "structure") setView("structure"); requestAnimationFrame(() => { if (currentBlock) revealStructureBlock(currentBlock, currentLineId); }); }}>현재 컷으로</button></div>
       <p className={styles.context}>현재 위치: <strong>{current ? location(current) : "선택한 컷 없음"}</strong> · 전체 {graph.nodes.length}컷 · 여러 갈래에서 함께 쓰는 컷 {graph.nodes.filter(node => node.shared).length}개 · 확인할 항목 {graph.issues.length}개</p>
       {graph.nodes.some(node=>node.shared)&&<details><summary>여러 길이 다시 만나는 지점 · {graph.nodes.filter(node=>node.shared).length}곳</summary><p>둘 이상의 선택이나 이동이 같은 컷으로 이어지는 곳이에요. 같은 갈림길의 서로 다른 선택도 포함해요.</p><ul>{graph.nodes.filter(node=>node.shared).map(node=><li key={node.lineId}><button type="button" onClick={()=>openCut(node.lineId)}>{location(node)} · {node.text.slice(0,40)||'아직 글이 없는 컷'}</button><ul>{node.incoming.map(edge=><li key={edge.id}>{describeStoryEdge(project,edge)}</li>)}</ul></li>)}</ul></details>}
-      <p id={legendId} className={styles.legend}>위에서 아래로 읽어요. ◆ 갈림길에서 선택지·점수 조건별로 길이 나뉘고, 순서대로 이어지는 컷은 한 줄로 묶었어요(누르면 펼쳐져요). ● 다시 만나는 컷을 고치면 그곳을 지나는 모든 길에 반영돼요. 원고에 정한 연결이며, 독자가 실제로 어떤 길을 갈지는 선택과 점수에 따라 달라요.</p>
+      <p id={legendId} className={styles.legend}>위에서 아래로 읽어요. ◆ 갈림길에서 선택지·점수 조건별로 길이 나뉘고, 순서대로 이어지는 컷은 한 줄로 묶었어요(누르면 펼쳐져요). 길은 ● 다시 만날 수도, 끝까지 따로 갈 수도 있어요. 따로 가는 줄거리는 ‘갈래 A’, ‘갈래 B › A’처럼 묶어 보여요. 다시 만나는 컷을 고치면 그곳을 지나는 모든 길에 반영돼요. 원고에 정한 연결이며, 독자가 실제로 어떤 길을 갈지는 선택과 점수에 따라 달라요.</p>
       <div className={styles.filters}>
         <label>흐름 검색<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="장 제목, 컷 내용, 선택지" /></label>
         <label>표시 범위<select value={scope} onChange={event => setScope(event.target.value as Scope)}><option value="all">전체 컷</option><option value="issues">확인할 연결</option><option value="unreachable">시작부터 이어지는 길이 없는 컷</option></select></label>
