@@ -64,4 +64,19 @@ describe('ShortStory → KnolStory stage tasks and task edit scope',()=>{
   expect((await service.patchAssignment(teacher,task.id,{editScope:null})).editScope).toBeNull();
   expect((await service.listAssignments(teacher,'teacher'))[0]!.editScope).toBeNull();
  });
+ it('keeps a passed picture book and its stage students consistent',async()=>{
+  const {teacher,student}=await classroom();await service.addStudents(teacher,1);
+  const first=await service.createAssignment(teacher,{title:'그림책',description:'',storyKey:null,format:'shortstory',recipients:[1]});
+  // A stage that reaches students who never get the picture book task would stay locked for them.
+  expect(await code(service.createAssignment(teacher,{title:'이어 쓰기',description:'',storyKey:null,format:'knolstory',afterAssignmentId:first.id}))).toBe('STAGE_RECIPIENTS');
+  const second=await service.createAssignment(teacher,{title:'이어 쓰기',description:'',storyKey:null,format:'knolstory',afterAssignmentId:first.id,recipients:[1]});
+  expect(await code(service.patchAssignment(teacher,second.id,{recipients:null}))).toBe('STAGE_RECIPIENTS');
+  expect(await code(service.patchAssignment(teacher,first.id,{recipients:[2]}))).toBe('STAGE_RECIPIENTS');
+  now+=1000;const {submittedAt}=await service.submit(student,first.id,await book());
+  await service.reviewSubmission(teacher,first.id,1,{reviewStatus:'passed',feedback:'',expectedSubmittedAt:submittedAt});
+  // Replacing the passed book would undo the pass and lock the stage again.
+  now+=1000;expect(await code(service.submit(student,first.id,await book()))).toBe('SUBMISSION_PASSED');
+  expect(await code(service.submit(student,second.id,await story()))).toBe('ok');
+ });
 });
+
