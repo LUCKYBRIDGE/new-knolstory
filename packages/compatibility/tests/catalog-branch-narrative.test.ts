@@ -52,12 +52,14 @@ describe('reviewed catalog choice memory',()=>{
    expect(result.read).not.toContain('잔치 이야기를 했든…');expect(result.read).not.toContain('병든 이를 도와달라고 했든…');
   }
  },30000);
- it('changes only nine reviewed cuts and preserves old official editions, authored works and both file formats',async()=>{
+ it('changes only the reviewed cuts (22) and 선녀 past-tense narration, and preserves old official editions, authored works and both file formats',async()=>{
   let changed=0;for(const entry of [...representativeStories,...classicStories]){
    const before=prior(entry.project),after=resolveProvidedCatalogStory(entry.project,before);changed+=after.lines.filter((l,i)=>l.text!==before.lines[i].text).length;
    const edited={...before,title:before.title+' 내가 편집함'};expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);
    const document={documentType:'story-maker-project' as const,schemaVersion:9 as const,savedAt:'2026-11-01T00:00:00.000Z',appVersion:'test',project:after};
    const archive=await createAuthoringArchive({format:'knolstory',document});expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
-  }expect(changed).toBe(9);
+  }
+  // 22 reviewed cuts, plus every copy of 선녀's present-tense narration cuts put into the past (2026-11-26).
+  expect(changed).toBe(273);
  },60000);
 });

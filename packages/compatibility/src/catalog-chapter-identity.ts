@@ -11,6 +11,8 @@ export function connectCatalogChapterIdentity(project:StoryProject):StoryProject
  // The preserved, disconnected Onggojib verdict manuscripts correspond to later reachable copies.
  for(const chapter of project.chapters.filter(chapter=>!active.has(chapter.id))){const peers=project.chapters.filter(peer=>active.has(peer.id)&&baseId(peer.id)===baseId(chapter.id));if(peers.length)rank.set(chapter.id,Math.max(...peers.map(peer=>rank.get(peer.id)!)));}
  const chapters=project.chapters.map(chapter=>{const chapterNumber=rank.get(chapter.id)!,branchLabel=!active.has(chapter.id)?'미연결 원고':numbering.identities.get(chapter.id)?.branchLabel;return {...chapter,chapterNumber,...(branchLabel?{branchLabel}:{})};});
- chapters.sort((a,b)=>a.chapterNumber-b.chapterNumber||Number(!active.has(a.id))-Number(!active.has(b.id))||String(a.branchLabel??'').localeCompare(String(b.branchLabel??''))||a.order-b.order);
+ // Story order: each storyline to its end before the next (A before B); disconnected manuscripts after their peers' number.
+ const at=new Map(numbering.order.map((id,index)=>[id,index]));
+ chapters.sort((a,b)=>Number(!active.has(a.id))-Number(!active.has(b.id))||(active.has(a.id)?at.get(a.id)!-at.get(b.id)!:a.chapterNumber-b.chapterNumber||a.order-b.order));
  return renameProvidedChapterTitles({...project,chapters});
 }

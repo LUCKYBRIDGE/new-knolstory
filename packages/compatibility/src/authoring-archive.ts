@@ -63,7 +63,8 @@ function assertProvenance(value:unknown,id:string){
  ||!['permitted','restricted','unknown'].includes(String(value.redistribution))||value.sourceSha256!==id.split(':')[2])throw Error(`${id}: 자료 출처와 원본 해시를 확인해 주세요.`);
 }
 export async function validateAuthoringAudioResources(value:unknown):Promise<AuthoringAudioResource[]>{
- if(!Array.isArray(value)||value.length>50)throw Error('오디오 자료 목록은 50개 이하로 구성해 주세요.');
+ if(!Array.isArray(value))throw Error('작품 파일에 오디오 자료 목록(audioResources)이 없어요. 놓스토리에서 다시 내보낸 파일을 써 주세요.');
+ if(value.length>50)throw Error('오디오 자료 목록은 50개 이하로 구성해 주세요.');
  const ids=new Set<string>();let total=0;
  for(const [index,item]of value.entries()){
   const path=`audioResources[${index}]`;
@@ -119,6 +120,8 @@ function validatedDocument(input:unknown):StoryDocumentEnvelope{
  if(currentAuthored(value.schemaVersion))assertAuthoringFields('knolstory',value.project);
  const parsed=parseStoryDocument(value);
  if(!parsed.ok)throw Error(parsed.issues.map(issue=>`${issue.path}: ${issue.message}`).join('\n'));
+ // Every way in (file, workbook, server submission) needs at least one cut to open and read.
+ if(!parsed.document.project.lines.length)throw Error('document.project.lines: 컷이 하나도 없는 작품이에요. 컷을 하나 이상 쓴 뒤 다시 내보내 주세요.');
  if(!currentAuthored(value.schemaVersion))assertAuthoringFields('knolstory',parsed.document.project);
  if(currentAuthored(value.schemaVersion))assertPreservedValues(value.project,parsed.document.project,'document.project');
  // Current authored values must survive exactly. Explicit Next schema migrations use the domain normalizer.

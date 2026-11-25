@@ -289,7 +289,7 @@ function normalizeChapters(value: unknown, issues: StoryDocumentIssue[]): Chapte
     const path = `$.project.chapters[${index}]`;
     const record = asRecord(rawChapter);
     if (!record) {
-      addIssue(issues, "invalid-type", path, "chapter must be an object.");
+      addIssue(issues, "invalid-type", path, "장 정보를 읽을 수 없어요. 작품 파일이 손상되었을 수 있어요.");
       return emptyChapter(index);
     }
     if (record.chapterNumber !== undefined && (!Number.isSafeInteger(record.chapterNumber) || (record.chapterNumber as number) < 1)) addIssue(issues, "invalid-value", `${path}.chapterNumber`, "장 번호는 1 이상의 정수로 입력해 주세요.");
@@ -352,21 +352,21 @@ function normalizeLines(value: unknown, issues: StoryDocumentIssue[]): StoryLine
     const path = `$.project.lines[${index}]`;
     const record = asRecord(rawLine);
     if (!record) {
-      addIssue(issues, "invalid-type", path, "line must be an object.");
+      addIssue(issues, "invalid-type", path, "컷 정보를 읽을 수 없어요. 작품 파일이 손상되었을 수 있어요.");
       return emptyLine(index);
     }
     if(record.visibility!==undefined&&!isStorySceneVisibility(record.visibility))addIssue(issues,"invalid-value",`${path}.visibility`,"컷 표시 조건을 확인해 주세요.");
     if(record.textVariants!==undefined&&!isStoryTextVariants(record.textVariants))addIssue(issues,"invalid-value",`${path}.textVariants`,"조건별 글의 ID·글·점수 조건을 확인해 주세요.");
     if (record.audio !== undefined && !isStoryAudio(record.audio)) addIssue(issues, "invalid-value", `${path}.audio`, "컷 오디오 설정을 확인해 주세요.");
     if (record.effect !== undefined && !isStorySceneEffect(record.effect)) {
-      addIssue(issues, "invalid-value", `${path}.effect`, "Invalid scene effect settings.");
+      addIssue(issues, "invalid-value", `${path}.effect`, "컷의 장면 효과 설정을 읽을 수 없어요. 효과를 다시 골라 주세요.");
     }
     if (record.presentation !== undefined && !isStoryPresentation(record.presentation)) {
-      addIssue(issues, "invalid-value", `${path}.presentation`, "Invalid presentation settings.");
+      addIssue(issues, "invalid-value", `${path}.presentation`, "컷의 연출 설정을 읽을 수 없어요. 연출을 다시 골라 주세요.");
     }
     if (record.effect !== undefined && record.presentation !== undefined) addIssue(issues, "invalid-value", path, "Conflicting legacy effect and presentation.");
     if (record.flow !== undefined && !isStoryFlow(record.flow)) {
-      addIssue(issues, "invalid-value", `${path}.flow`, "선택지는 2개 또는 3개이며 문구와 도착 컷이 있어야 해요.");
+      addIssue(issues, "invalid-value", `${path}.flow`, "선택지는 2~4개이며, 저마다 다른 이름·문구와 도착 컷, 올바른 점수·조건이 있어야 해요.");
     }
     if (record.stageComposition !== undefined && !isStageComposition(record.stageComposition)) addIssue(issues, "invalid-value", `${path}.stageComposition`, "무대에는 각 영역에 두 명까지, 서로 다른 인물 키와 유효한 화자가 필요해요.");
     if (record.inheritActors !== undefined && typeof record.inheritActors !== "boolean") addIssue(issues, "invalid-type", `${path}.inheritActors`, "인물 상속 설정을 확인해 주세요.");
@@ -438,7 +438,7 @@ function validateUniqueIds(
         issues,
         "duplicate-id",
         `${path}[${index}].id`,
-        `${label} ID '${value.id}' is duplicated.`,
+        `같은 ${label} ID('${value.id}')가 두 번 있어요. 작품 파일이 손상되었을 수 있어요.`,
       );
     }
     seen.add(value.id);
@@ -493,10 +493,10 @@ export function normalizeAndValidateStoryProject(value: unknown) {
   const continuation = normalizeContinuation(record.continuation, issues);
   if (continuation) project.continuation = continuation;
 
-  validateUniqueIds(project.chapters, "$.project.chapters", "chapter", issues);
-  validateUniqueIds(project.lines, "$.project.lines", "line", issues);
-  if (project.characters) validateUniqueIds(project.characters, "$.project.characters", "character", issues);
-  validateUniqueIds(project.creativeMemos, "$.project.creativeMemos", "memo", issues);
+  validateUniqueIds(project.chapters, "$.project.chapters", "장", issues);
+  validateUniqueIds(project.lines, "$.project.lines", "컷", issues);
+  if (project.characters) validateUniqueIds(project.characters, "$.project.characters", "인물", issues);
+  validateUniqueIds(project.creativeMemos, "$.project.creativeMemos", "창작 메모", issues);
   const chapterIds = new Set(project.chapters.map((chapter) => chapter.id));
   const linesById = new Map(project.lines.map((line) => [line.id, line]));
   project.lines.forEach((line, index) => {
@@ -505,7 +505,7 @@ export function normalizeAndValidateStoryProject(value: unknown) {
         issues,
         "broken-reference",
         `$.project.lines[${index}].chapterId`,
-        `line '${line.id}' references missing chapter '${line.chapterId}'.`,
+        `컷 '${line.id}'이 속한 장('${line.chapterId}')을 찾을 수 없어요.`,
       );
     }
   });
@@ -528,7 +528,7 @@ export function normalizeAndValidateStoryProject(value: unknown) {
         issues,
         "broken-reference",
         "$.project.continuation.chapterId",
-        `continuation references missing chapter '${project.continuation.chapterId}'.`,
+        `이어쓰기 시작점의 장('${project.continuation.chapterId}')을 찾을 수 없어요.`,
       );
     }
     const line = linesById.get(project.continuation.lineId);
