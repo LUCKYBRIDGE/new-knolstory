@@ -1,5 +1,5 @@
 import {describe,expect,it} from 'vitest';
-import {branchChapterNumbering,branchLetter,chapterLabel,type StoryProject} from '../src/index';
+import {branchChapterNumbering,branchLetter,chapterLabel,chaptersInStoryOrder,type StoryProject} from '../src/index';
 
 type Flow=Record<string,unknown>|undefined;
 /** chapters: [id, stored order], each with one cut `${id}1` unless more are given; flows by cut id. */
@@ -36,6 +36,19 @@ describe('branch chapter numbering',()=>{
  it('treats a branch point inside one chapter (both ways in the same chapter) as no chapter branch',()=>{
   const project=work([['a',1],['b',2]],{a1:choice('a2','a2'),a2:go('b1')},{a:1});
   expect(names(project)).toEqual({a:'1',b:'2'});
+ });
+ it('keeps storylines that never meet apart to their endings, and lists each storyline before the next',()=>{
+  // Stored order mixes the two storylines; neither way comes back.
+  const project=work([['fork',1],['sky',2],['land',3],['palace',4],['village',5],['trial',6],['partner',7],['alone',8],['pass',9],['fail',10]],{
+   fork1:choice('sky1','land1'),sky1:go('palace1'),palace1:go('trial1'),trial1:choice('pass1','fail1'),pass1:go(null),fail1:go(null),
+   land1:go('village1'),village1:choice('partner1','alone1'),partner1:go(null),alone1:go(null)});
+  expect(names(project)).toEqual({fork:'1',sky:'2A',land:'2B',palace:'3A',village:'3B',trial:'4A',partner:'4BA',alone:'4BB',pass:'5AA',fail:'5AB'});
+  expect(branchChapterNumbering(project).order).toEqual(['fork','sky','palace','trial','pass','fail','land','village','partner','alone']);
+  expect(chaptersInStoryOrder(project).map(chapter=>chapter.id)).toEqual(['fork','sky','palace','trial','pass','fail','land','village','partner','alone']);
+ });
+ it('puts a chapter where ways meet after every way into it',()=>{
+  const project=work([['a',1],['l',2],['r',3],['meet',4],['after',5]],{a1:choice('l1','r1'),l1:go('meet1'),r1:go('meet1'),meet1:choice('after1','a1'),after1:go(null)});
+  expect(branchChapterNumbering(project).order).toEqual(['a','l','r','meet','after']);
  });
  it('labels read as 11A장 with the shared chapter label',()=>{
   expect(chapterLabel({order:9,title:'숲',chapterNumber:11,branchLabel:'AB'})).toBe('11장AB · 숲');

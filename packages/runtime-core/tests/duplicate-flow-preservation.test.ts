@@ -12,6 +12,8 @@ it.each(flows)('duplication preserves the full source goto and copy through a la
  expect(duplicated.lines.find(line=>line.id==='a')).toEqual(original);
  expect(duplicated.lines.find(line=>line.id==='copy')).toEqual({...original,id:'copy',order:2});
  expect({...duplicated,updatedAt:project.updatedAt,lines:project.lines.map(old=>({...duplicated.lines.find(line=>line.id===old.id)!,order:old.order}))}).toEqual(project);
+ // A copy that goes back to b, moved after the chapter b reads into, would make b → other → copy → b repeat forever.
+ if(flow?.type==='goto'&&flow.targetLineId){expect(()=>moveStoryCutToChapter(duplicated,'copy','other')).toThrow('계속 되풀이');expect(project).toEqual(before);return;}
  const moved=moveStoryCutToChapter(duplicated,'copy','other');expect(moved.lines.find(line=>line.id==='a')).toEqual(original);expect(project).toEqual(before);
  const next=advancePlayback(moved,createPlayback(moved,'a'));expect(next.lineId).toBe(flow?.type==='goto'?flow.targetLineId:null);expect(next.path).not.toContain('copy');
 });

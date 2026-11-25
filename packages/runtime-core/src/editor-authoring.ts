@@ -3,6 +3,7 @@ import { insertStoryCut } from './authoring';
 import {cutRangeEndReferences,type CutRangeReference} from './cut-range-references';
 import {storyBranchConditionReferences,type StoryBranchConditionReference} from './branch-condition-references';
 import {remapClonedCutReferences} from './clone-cut-references';
+import {assertNoNewLoop} from './flow-loop-guard';
 export type ChapterAuthoringPatch = Partial<Pick<Chapter, 'chapterNumber' | 'branchLabel' | 'title' | 'summary' | 'chapterSpeakerNames' | 'backgroundId' | 'leftAssetId' | 'rightAssetId' | 'characterAssetIds' | 'backgroundAssetIds'>>;
 function validate(project: StoryProject): StoryProject {
  const candidate={...project,updatedAt:new Date().toISOString()};
@@ -48,7 +49,7 @@ export function moveStoryCutToChapter(project:StoryProject,id:string,chapterId:s
  const moved={...selected,chapterId,order:Math.max(0,...project.lines.filter(l=>l.chapterId===chapterId).map(l=>l.order))+1,
   inheritActors:false,stageComposition:stage,...stageProjection(stage),backgroundId:bg,...(!bg?{backgroundMode:'none' as const}:{})};
  const lines=renumber(renumber(project.lines.map(l=>l.id===id?moved:l),selected.chapterId),chapterId);
- return validate({...project,lines,...(project.continuation?.lineId===id?{continuation:{...project.continuation,chapterId}}:{})});
+ return assertNoNewLoop(project,validate({...project,lines,...(project.continuation?.lineId===id?{continuation:{...project.continuation,chapterId}}:{})}));
 }
 export function getStoryCutDeletionImpact(project:StoryProject,id:string):Readonly<{incomingLinks:number;isContinuation:boolean;rangeEnds:readonly CutRangeReference[];branchConditions:readonly StoryBranchConditionReference[]}> {
  cut(project,id);
@@ -58,7 +59,15 @@ export function deleteStoryCut(project:StoryProject,id:string):StoryProject {
  const selected=cut(project,id); if(project.lines.length===1) throw new Error('작품의 마지막 컷은 삭제할 수 없어요.');
  if(cutRangeEndReferences(project,id).length)throw new Error('이 컷을 연출·소리의 종료 컷으로 사용 중이에요. 종료 컷을 다른 컷으로 바꾼 뒤 삭제해 주세요.');
  if(storyBranchConditionReferences(project,id).length)throw new Error('이 컷의 선택을 연출·소리 조건으로 사용 중이에요. 선택 조건을 바꾼 뒤 삭제해 주세요.');
- const lines=renumber(disconnectStoryFlowTargets(project.lines.filter(l=>l.id!==id),new Set([id])),selected.chapterId);
+ const siblings=project.lines.filter(l=>l.chapterId===selected.chapterId).sort((a,b)=>a.order-b.order);
+ // An emptied chapter cannot be refilled or removed, and choices that led there would point nowhere.
+ if(siblings.length===1)throw new Error('이 장에 남은 마지막 컷이라 지울 수 없어요. 글을 고쳐 쓰거나 이 장에 컷을 먼저 더해 주세요.');
+ // Like insertion, deletion keeps the authored exit: the cut before inherits an explicit goto or story ending.
+ const previous=siblings[siblings.findIndex(l=>l.id===id)-1];
+ const exitTargets=selected.flow?.type==='goto'?[selected.flow.targetLineId,...(selected.flow.routes??[]).map(route=>route.targetLineId)]:[];
+ const inherit=!!previous&&!previous.flow&&!previous.ending?.endsStory&&(selected.flow?.type==='goto'||!!selected.ending?.endsStory)&&!exitTargets.includes(previous.id);
+ const kept=project.lines.filter(l=>l.id!==id).map(l=>inherit&&l.id===previous!.id?{...l,...(selected.flow?.type==='goto'?{flow:structuredClone(selected.flow)}:{}),...(selected.ending?.endsStory?{ending:structuredClone(selected.ending)}:{})}:l);
+ const lines=renumber(disconnectStoryFlowTargets(kept,new Set([id])),selected.chapterId);
  return validate({...project,lines,...(project.continuation?.lineId===id?{continuation:undefined}:{})});
 }
 export type StorySpeakerInput=Readonly<{id:string;name:string;defaultImageId:string}>;

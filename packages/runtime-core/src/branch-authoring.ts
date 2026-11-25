@@ -1,5 +1,6 @@
 import {withoutPicturebookSketch,createStoryDocument,normalizeChapterTitle,orderedStoryFlowLines,parseStoryDocument,resolveStageComposition,stageProjection,type Chapter,type StoryLine,type StoryProject} from '@knolstory/story-domain';
 import {duplicateStoryCut} from './editor-authoring';
+import {syncBranchNumbering} from './branch-numbering-sync';
 
 /**
  * Branch authoring: whole-structure edits that writers ask for in story words
@@ -103,7 +104,7 @@ export function splitStoryHere(project:StoryProject,lineId:string,input:{labels:
  const at=sorted.indexOf(chapter.id)+1;
  const added=newChapters.map(item=>item.id),after=following?keepFirst?[following.id,...added]:[...added,following.id]:added;
  const ids=[...sorted.slice(0,at),...after,...sorted.slice(at)];
- return {project:reorderStoryChapters(pinned,ids),newLineIds:newLines.map(line=>line.id)};
+ return {project:syncBranchNumbering(project,reorderStoryChapters(pinned,ids)),newLineIds:newLines.map(line=>line.id)};
 }
 
 /**

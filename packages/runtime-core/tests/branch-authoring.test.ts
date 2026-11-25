@@ -1,6 +1,7 @@
 import {describe,expect,it} from 'vitest';
 import {chapterLabel,orderedStoryFlowLines,type StoryProject} from '@knolstory/story-domain';
 import {addStoryChapter,createBlankStoryProject,insertStoryCut} from '../src/authoring';
+import {followsBranchNumbering} from '../src/branch-numbering-sync';
 import {checkStorySplit,reorderStoryChapters,separatePathCut,splitStoryHere} from '../src/branch-authoring';
 
 const ids=()=>{let i=0;return ()=>`new-${++i}`;};
@@ -35,8 +36,8 @@ describe('split the story here',()=>{
   expect(chapterLabel(forest)).toBe('2장A · 숲으로 간다');
   expect(read(project,[0])).toEqual(['a1','a2',left,'b1','b2','c1','c2']);
   expect(read(project,[1])).toEqual(['a1','a2',right,'b1','b2','c1','c2']);
-  // Existing chapters keep their names although their stored position moved.
-  expect(chapterLabel(project.chapters.find(chapter=>chapter.id==='b')!)).toBe('2장 · B');
+  // The work followed the branch numbering, so chapters after the fork move on a step: no two chapters read as 2장.
+  expect(chapterLabel(project.chapters.find(chapter=>chapter.id==='b')!)).toBe('3장 · B');
  });
  it('separate: the existing story stays the first path and new paths end on their own',()=>{
   const {project,newLineIds}=splitStoryHere(story(),'b1',{labels:['문을 연다','돌아선다','기다린다'],mode:'separate'},ids());
@@ -44,8 +45,18 @@ describe('split the story here',()=>{
   expect(read(project,[0])).toEqual(['a1','a2','b1','b2','c1','c2']);
   expect(read(project,[1])).toEqual(['a1','a2','b1',newLineIds[0]]);
   expect(read(project,[2])).toEqual(['a1','a2','b1',newLineIds[1]]);
-  const labels=project.chapters.filter(chapter=>chapter.branchLabel).map(chapterLabel);
-  expect(labels).toEqual(['3장A · 문을 연다','3장B · 돌아선다','3장C · 기다린다']);
+  const labels=[...project.chapters].sort((a,b)=>a.order-b.order).map(chapterLabel);
+  // The rest of B becomes the first way (3장A); C goes on along it, so it reads as 4장A.
+  expect(labels).toEqual(['1장 · A','2장 · B','3장A · 문을 연다','3장B · 돌아선다','3장C · 기다린다','4장A · C']);
+ });
+ it('a split inside a way keeps the stored names on the same rule as 장 정리 (3장AA·3장AB)',()=>{
+  const once=splitStoryHere(story(),'a2',{labels:['숲','강'],mode:'rejoin'},ids());
+  const forest=once.project.lines.find(line=>line.id===once.newLineIds[0])!;
+  const twice=splitStoryHere(once.project,forest.id,{labels:['낮','밤'],mode:'rejoin'},()=>`deep-${Math.random().toString(36).slice(2)}`).project;
+  expect(followsBranchNumbering(twice)).toBe(true);
+  const labels=twice.chapters.map(chapterLabel);
+  expect(labels).toEqual(expect.arrayContaining(['2장A · 숲','3장AA · 낮','3장AB · 밤','2장B · 강']));
+  expect(new Set(labels.map(label=>label.split(' · ')[0])).size).toBe(labels.length);
  });
  it('a cut that writers add after a new path cut keeps the path ending at the last cut',()=>{
   const {project,newLineIds}=splitStoryHere(story(),'c2',{labels:['웃는다','운다'],mode:'separate'},ids());

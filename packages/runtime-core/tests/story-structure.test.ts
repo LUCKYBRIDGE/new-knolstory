@@ -1,6 +1,6 @@
 import {describe,expect,it} from 'vitest';
 import {getShortStoryOriginal} from '../../compatibility/src/shortstory-originals';
-import {chapterLabel,type StoryProject} from '@knolstory/story-domain';
+import {branchChapterNumbering,chapterLabel,type StoryProject} from '@knolstory/story-domain';
 import {convertPicturebookToChapters,type PicturebookBook} from '../src/picturebook-chapters';
 import {splitStoryHere} from '../src/branch-authoring';
 import {insertStoryCut} from '../src/authoring';
@@ -42,13 +42,35 @@ describe('moving chapters',()=>{
   // Behind 1장 is fine: the choice still leads to it.
   expect(places.find(place=>place.afterChapterId===a.chapterId)).toMatchObject({ok:true});
  });
- it('keeps numbers a writer set in a branching story',()=>{
+ it('keeps a branching story on its branch numbers after moving a chapter, with no two chapters on one name',()=>{
   const project=story(3),cut=first(project,2);
   const split=splitStoryHere(project,cut.id,{labels:['가','나'],mode:'rejoin'},ids('b')).project;
-  const labelled=split.chapters.filter(chapter=>chapter.branchLabel||chapter.chapterNumber!==undefined);
-  const ok=split.chapters.map(chapter=>chapterMovePlaces(split,chapter.id).find(place=>place.ok)&&chapter).find(Boolean);
-  if(ok){const place=chapterMovePlaces(split,ok.id).find(item=>item.ok)!;const moved=moveStoryChapter(split,ok.id,place.afterChapterId);
-   for(const chapter of labelled)expect(moved.chapters.find(item=>item.id===chapter.id)!.chapterNumber).toBe(chapter.chapterNumber);}
+  const ok=split.chapters.find(chapter=>chapterMovePlaces(split,chapter.id).some(place=>place.ok))!;
+  const place=chapterMovePlaces(split,ok.id).find(item=>item.ok)!;
+  const moved=moveStoryChapter(split,ok.id,place.afterChapterId);
+  const reachable=branchChapterNumbering(moved);
+  for(const chapter of moved.chapters){const identity=reachable.identities.get(chapter.id);if(identity)expect({chapterNumber:chapter.chapterNumber,branchLabel:chapter.branchLabel}).toEqual({chapterNumber:identity.chapterNumber,branchLabel:identity.branchLabel});}
+  expect(new Set(titles(moved).map(label=>label.split(' · ')[0])).size).toBe(moved.chapters.length);
+ });
+ it('keeps numbers a writer set by hand',()=>{
+  const project=story(3),custom={...project,chapters:project.chapters.map(chapter=>({...chapter,chapterNumber:chapter.order+10}))};
+  const last=custom.chapters.find(chapter=>chapter.order===3)!;
+  const moved=moveStoryChapter(custom,last.id,null);
+  expect(moved.chapters.find(chapter=>chapter.id===last.id)!.chapterNumber).toBe(13);
+ });
+});
+
+describe('putting picture-book chapters into a branching story',()=>{
+ it('gives the new chapters and the chapters after them names no other chapter has',()=>{
+  const project=story(3),cut=first(project,2);
+  const split=splitStoryHere(project,cut.id,{labels:['가','나'],mode:'rejoin'},ids('b')).project;
+  const pages=convertPicturebookToChapters({book:book(2),stages:{},workId:'work',createId:ids('c'),updatedAt:NOW}).project;
+  const opening=[...split.chapters].sort((a,b)=>a.order-b.order)[0]!;
+  const next=insertStoryChapters(split,{chapters:pages.chapters,lines:pages.lines},opening.id);
+  const names=titles(next).map(label=>label.split(' · ')[0]);
+  expect(new Set(names).size).toBe(names.length);
+  // 1장 → two new chapters → the old 2장 (now 4장) → its two ways → where they meet.
+  expect(names).toEqual(['1장','2장','3장','4장','5장A','5장B','6장']);
  });
 });
 
