@@ -44,7 +44,7 @@ test('CC0 Korean labels and source facets select real files and native runtime p
  const box=(await frame.boundingBox())!;
  await page.mouse.click(box.x+box.width*.5,box.y+box.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:20000});
  await ready(page);await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect(status).toHaveAttribute('data-music-path','assets/audio/cc0/oga-forest.mp3');await expect(status).toHaveAttribute('data-ambience-path','assets/audio/cc0/oga-rain-1.ogg');await expect.poll(async()=>Number(await status.getAttribute('data-sound-play-count'))).toBe(1);await expect.poll(async()=>Number(await status.getAttribute('data-music-position')),{timeout:15000}).toBeGreaterThan(0);await expect(page.getByTestId('story-runtime-status')).not.toContainText('찾을 수 없어요');
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  await sound(page,'sounds');
  await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toHaveText('책장넘기는소리2');
 });

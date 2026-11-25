@@ -32,7 +32,7 @@ for(const width of [390,1280])test(`layered action scenes render and survive fil
   const cast=stageActors(resolveStageComposition(project.chapters.find(c=>c.id===line.chapterId),line,project));
   await expect.poll(async()=>JSON.parse((await status.getAttribute('data-actor-rects'))??'[]').length,{timeout:30000}).toBe(width===390?1:cast.length);
   await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`${sample.story}-${sample.line.split(':').at(-1)}-${width}.png`)});
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
   await page.locator('[data-work-menu]>summary').click();
   const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,path=info.outputPath(sample.story+'.knolstory');await file.saveAs(path);
   expect(parseAuthoringFile(readFileSync(path,'utf8')).project).toEqual(imported);

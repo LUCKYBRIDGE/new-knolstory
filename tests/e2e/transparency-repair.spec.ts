@@ -37,8 +37,7 @@ for(const width of [390,1280])test(`existing Heungbu work resolves transparent r
   const row=receipt.assets.find((asset:{output:string})=>asset.output.endsWith('/'+sample.name+'.webp'));
   expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(row.outputSha256);
   await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`${sample.name}-${width}.png`)});
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
-  await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  }
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await openWorkFileExchange(page);

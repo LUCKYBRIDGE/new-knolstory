@@ -8,7 +8,7 @@ import {createStoryDocument} from '../../packages/story-domain/src';
 async function management(page:Page){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();}
 async function exported(page:Page){await management(page);await openFileExchange(page);const event=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await event).path())!,'utf8')).project;}
 async function start(page:Page){await startReading(page);await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toBeVisible();}
-async function exit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(await currentCutText(page)).toBeVisible();}
+async function exit(page:Page){await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(await currentCutText(page)).toBeVisible();}
 async function enableRule(page:Page,name:string){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const box=menu.getByRole('checkbox',{name,exact:true});if(!await box.isVisible())await menu.getByText('편집 설정',{exact:true}).click();await box.check();await menu.getByRole('button',{name:'편집 설정 닫기',exact:true}).click();}
 async function unavailable(page:Page){await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
 
@@ -17,7 +17,7 @@ test('reading gives the stage full width and keeps an exit while runtime is prep
  test.skip(info.project.name!=='host');await unavailable(page);const before=await exported(page);await start(page);
  await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toBeHidden();await expect(page.getByRole('button',{name:'새 작품 만들기',exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'장 전체 글 고치기',exact:true})).toBeHidden();
  const stage=await page.getByTestId('story-stage-viewport').boundingBox();expect(stage!.width).toBeGreaterThan(1150);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await expect(page.getByRole('button',{name:'전체 화면',exact:true})).toBeEnabled();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(await currentCutText(page)).toBeVisible();expect(await exported(page)).toEqual(before);
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await expect(page.getByRole('button',{name:'전체 화면',exact:true})).toBeEnabled();await page.keyboard.press('Escape');await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(await currentCutText(page)).toBeVisible();expect(await exported(page)).toEqual(before);
 });
 test('current cut exposes outgoing destination and local chapter cut count',async({page},info)=>{
  test.skip(info.project.name!=='host');await unavailable(page);const before=await exported(page),first=before.lines[0],target=before.lines.filter((line:typeof first)=>line.chapterId===first.chapterId).sort((a:typeof first,b:typeof first)=>a.order-b.order)[1];

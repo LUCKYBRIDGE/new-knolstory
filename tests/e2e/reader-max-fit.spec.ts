@@ -58,7 +58,7 @@ test('real fullscreen enter and exit retain maximum fit and restore editor sizin
  await expect.poll(()=>page.evaluate(()=>document.fullscreenElement?.tagName)).toBe('HTML');await fit();await page.screenshot({path:info.outputPath('fullscreen.png')});
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'전체 화면 해제',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>document.fullscreenElement===null)).toBe(true);await fit();
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(input).toBeVisible();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(input).toBeVisible();
  // The editor shell follows the visible viewport (keyboard-safe sizing since 2026-10-20); after fullscreen it must match the window again.
  await expect.poll(()=>page.locator('main[data-keyboard-occluded]').evaluate(n=>{const r=n.getBoundingClientRect();return {width:Math.round(r.width)===document.documentElement.clientWidth,height:Math.round(r.height)===innerHeight};}),{timeout:10_000}).toEqual({width:true,height:true});
  expect(await authored()).toEqual(before);expect(await identity!.evaluate(n=>n===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);

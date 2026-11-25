@@ -26,7 +26,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await loaded(page);const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).contexts);
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rendered=await status.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
  const next=page.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await expect(page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})})).toContainText(a.text);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await loaded(page);
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await loaded(page);
  // The return to editing is stored a moment after the screen changes; wait for it instead of reading an earlier save.
  await expect.poll(()=>page.evaluate(id=>Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).contexts as Record<string,{lineId:string}>).some(([key,value])=>key.startsWith('import:')&&value.lineId===id),a.id)).toBe(true);
  const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).contexts);const key=Object.keys(after).find(key=>after[key].lineId===a.id&&key.startsWith('import:'))!;expect(after[key].editingPath).toEqual(before[key].editingPath);

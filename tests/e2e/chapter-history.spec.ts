@@ -14,7 +14,8 @@ const project={...base,chapters:[{...chapter,title:'지난 장'},{...chapter,id:
  ]};
 async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-scene-revision');return revision!==null&&revision===await status.getAttribute('data-rendered-revision');},{timeout:120000}).toBe(true);return status;}
 async function workspace(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));}
-async function openHistory(page:Page){await page.getByRole('button',{name:'지난기록',exact:true}).click();return page.getByRole('dialog');}
+// The reading bar hides while the keyboard text view holds focus, so leave that view first as a keyboard reader would.
+async function openHistory(page:Page){await page.evaluate(()=>(document.activeElement as HTMLElement|null)?.blur());await page.getByRole('button',{name:'지난기록',exact:true}).click();return page.getByRole('dialog');}
 test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 test('chapter script opens at newest text and only previous chapter starts can rewind choices and scores',async({page},info)=>{
  await page.setViewportSize({width:1280,height:800});await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');

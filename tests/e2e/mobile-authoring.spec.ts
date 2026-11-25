@@ -104,7 +104,7 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
   expect(await input.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
   // Phone basic editing keeps only the current cut and the way to the next one; inserting and branching wait for a larger screen or the menu.
   await expect(page.getByRole('button', { name: '+ 이 컷 뒤에 새 컷 넣기', exact: true })).toBeHidden();
-  await expect(page.getByRole('button', { name: /^(\+ 여기서 이야기 나누기|선택지 고치기)$/ })).toBeHidden();
+  await expect(page.getByRole('button', { name: /^(이야기 나누기|선택지 정하기|선택지 고치기)$/ })).toBeHidden();
   // Phone touch targets: the settings menu, previous/next cut, the folded cut detail and playback are all at least 44px.
   for (const [name, locator] of [
     ['설정', page.locator('[data-work-menu]>summary')],
@@ -247,6 +247,6 @@ test('phone file-restored work renders real assets and both native Ren’Py endi
   }
   await noOverflow(page);
   await page.screenshot({ path: testInfo.outputPath('phone-renpy-ending.png'), fullPage: true });
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
   const returned=(await exported(page)).document.project;expect(returned.lines[0].flow.options.map((option: { targetLineId: string }) => option.targetLineId)).toEqual(ids.slice(1));expectIndependentImportedProject(returned,original.document.project);await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(ids[2]!);
 });

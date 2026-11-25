@@ -52,6 +52,6 @@ for(const native of [false,true])test(native?'authored score choices show or ski
    if(choice==='도와준다'){if(!await semantic.locator('..').evaluate(node=>(node as HTMLDetailsElement).open)){await semantic.focus();await semantic.press('Enter');}const next=page.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe(ids[2]);await ready();}
    await expect(page.getByTestId('playback-status')).toHaveText('읽는 중');await expect(page.getByRole('region',{name:'이야기 무대',exact:true})).toContainText(texts[2]!);expect(await identity!.evaluate(e=>e===document.querySelector('[data-testid=story-runtime-frame]'))).toBe(true);
   }
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(ids[2]!);expectIndependentImportedProject(await download(page,info.outputPath('after-native.knolstory')),authored);
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(ids[2]!);expectIndependentImportedProject(await download(page,info.outputPath('after-native.knolstory')),authored);
  }
 });

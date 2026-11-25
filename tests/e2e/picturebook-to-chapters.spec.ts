@@ -189,6 +189,40 @@ test('선생님이 새 작품 만들기를 막으면 새 놀스토리로는 보�
  const blocked=await page.context().newPage();
  await account(blocked,{me:'error'});
  await blocked.goto('/shortstory');
- await expect(blocked.getByRole('button',{name:'놀스토리로 보내기',exact:true})).toBeDisabled();
+ // A failed account check is never a guest permission: pressing explains why and what to do, and nothing is sent.
+ await blocked.getByRole('button',{name:'놀스토리로 보내기',exact:true}).click();
+ await expect(blocked.getByRole('alert').filter({hasText:'로그인 상태를 확인하지 못해 아직 보낼 수 없어요'})).toBeVisible();
+ await expect(blocked).toHaveURL(/\/shortstory/);
  expect(await workspace(blocked)).toBeNull();
+});
+
+test('휴대폰에서 그림책으로 만든 놀스토리에 갈래를 만들고 갈래 이름으로 이어 쓴다',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});
+ await account(page);
+ await ownRabbitAtPage4(page);
+ await prepare(page);
+ await send(page);
+ const position=page.getByLabel('현재 장과 컷 이동',{exact:true});
+ const third=position.locator('option').filter({hasText:/^3장 · /});
+ await position.selectOption((await third.getAttribute('value'))!);
+ await page.locator('[data-current-cut] textarea').fill('토끼는 자라의 말을 듣고 망설였어요.');
+ // The page the chapter came from stays one fold away on the phone.
+ await expect(page.locator('[data-picturebook-reference]').filter({visible:true}).locator('summary')).toHaveText('그림책 구상');
+ // Phones hide the stacked ‘컷 더보기’ row: branching waits, folded, with the cut details.
+ const split=page.getByRole('button',{name:'이야기 나누기',exact:true});
+ await expect(split).toBeHidden();
+ const tools=page.locator('[data-phone-cut-tools]');
+ await tools.locator('summary').click();
+ await split.click();
+ const dialog=page.getByRole('dialog',{name:'여기서 이야기 나누기',exact:true});
+ await dialog.getByLabel('선택지 A 문구',{exact:true}).fill('용궁에 따라간다');
+ await dialog.getByLabel('선택지 B 문구',{exact:true}).fill('육지에 남는다');
+ await dialog.getByRole('button',{name:'나누고 첫 갈래 쓰기',exact:true}).click();
+ await expect(dialog).toHaveCount(0);
+ await page.locator('[data-current-cut] textarea').fill('토끼는 자라 등에 올라탔어요.');
+ await expect(position.locator('option:checked')).toHaveText(/^4장A · 용궁에 따라간다 · 1컷/);
+ await expect(position.locator('option').filter({hasText:/^4장B · 육지에 남는다 · 1컷/})).toHaveCount(1);
+ // A new branch chapter did not come from a page, so it has no 그림책 구상.
+ await expect(page.locator('[data-picturebook-reference]').filter({visible:true})).toHaveCount(0);
 });

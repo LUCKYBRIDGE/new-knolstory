@@ -34,7 +34,7 @@ test('cut notes edit in both views, save, export, reimport and return from nativ
  const line=saved.project.lines.find((cut:{id:string})=>cut.id===id);expect(line).toMatchObject({workingTitle:values['컷 작업 제목'],purposeNote:values['이 컷의 목적'],emotionNote:'장 대본에서 수정한 안도감',directionNote:values['연출 메모']});
  await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'cut-notes.knolstory',mimeType:'application/json',buffer:Buffer.from(raw)});await confirmAuthoringImport(page);await page.getByLabel('현재 장과 컷 이동').selectOption(id);
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await openNotes(page);await expect(page.getByLabel('컷 작업 제목',{exact:true})).toHaveValue(values['컷 작업 제목']);
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await openNotes(page);await expect(page.getByLabel('컷 작업 제목',{exact:true})).toHaveValue(values['컷 작업 제목']);
 });
 
 test('failed storage keeps the author in the current editing screen',async({page})=>{

@@ -16,7 +16,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await page.locator('[data-work-menu]>summary').click();await expect(page.getByRole('combobox',{name:'편집화면 선택',exact:true}).locator('option')).toHaveText(['쓰기','원고','배경 편집']);await page.locator('[data-work-menu]>summary').click();
  await expect(page.locator('[data-screen]')).toHaveAttribute('data-screen','basic');
  // Branching starts from a tablet or larger; a phone keeps basic writing uncluttered.
- await openCutMore(page); await expect(page.getByRole('button',{name:'+ 여기서 이야기 나누기',exact:true})).toBeVisible({visible:size.width>=700});await expect(page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true})).toHaveCount(0);
+ await openCutMore(page); await expect(page.getByRole('button',{name:'이야기 나누기',exact:true})).toBeVisible({visible:size.width>=700});await expect(page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true})).toHaveCount(0);
  await expect(page.locator('summary').filter({hasText:/컷 (음향|연출) 수정$/})).toHaveCount(0);
  // The short landscape arrangement only offers the cut's own memo with "메모 수정"; the full list is beside or below the cut elsewhere.
  // Phones keep memos in the menu and the 현재 컷 상세 panel; the memo summary is a tablet-and-up companion.

@@ -16,8 +16,7 @@ export async function restartReading(page:Page){
  await page.getByRole('dialog',{name:'처음부터 읽을까요?',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true}).click();
 }
 export async function editReadCut(page:Page){
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
- await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
 }
 export async function advanceReading(page:Page){
  const button=page.getByRole('button',{name:'다음으로',exact:true});

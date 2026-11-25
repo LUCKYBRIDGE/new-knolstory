@@ -52,5 +52,5 @@ for(const [mode,a,b,active] of [['all',true,true,true],['all',true,false,false],
  const status=page.getByTestId('story-runtime-status');if(active){const gate=frame.contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});if(await gate.count())await gate.press('Enter');}
  const scene=JSON.parse((await frame.getAttribute('data-compound-scene'))!);expect(scene.presentation?.effects??[]).toHaveLength(active?1:0);expect(scene.audio?.sounds??[]).toHaveLength(active?1:0);await expect(status).toHaveAttribute('data-music-path',active?/forest/:'');await expect(status).toHaveAttribute('data-ambience-path',active?/forest/:'');
  if(active){expect(scene.presentation.effects[0]).not.toHaveProperty('branchCondition');await expect.poll(async()=>Number(await status.getAttribute('data-sound-play-count'))).toBeGreaterThan(0);}
- await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`compound-${mode}-${a}-${b}.png`)});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect(await work(page)).toEqual(authored);
+ await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`compound-${mode}-${a}-${b}.png`)});await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();expect(await work(page)).toEqual(authored);
 });

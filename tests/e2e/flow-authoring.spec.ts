@@ -183,7 +183,7 @@ test('native Ren’Py follows all six nested and merged routes to two independen
     }
   }
   await rendered(page);await page.screenshot({ path: testInfo.outputPath('flow-native.png'), fullPage: true });
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(ids[7]!);await expect(page.locator('[data-current-cut] textarea')).toHaveValue(texts[7]!);expectIndependentImportedProject((await exportStory(page)).project,exported.project);await expect(frame).toHaveAttribute('data-flow-instance','persistent');
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(ids[7]!);await expect(page.locator('[data-current-cut] textarea')).toHaveValue(texts[7]!);expectIndependentImportedProject((await exportStory(page)).project,exported.project);await expect(frame).toHaveAttribute('data-flow-instance','persistent');
 });
 
 
@@ -226,7 +226,7 @@ test('split the story here, write one path on its own and arrange chapters by re
   await menu(page);await openEditorDetails(page,'보기 설정');await page.getByRole('button',{name:'장 추가',exact:true}).click();
   const homeCut=await page.getByLabel('현재 장과 컷 이동').inputValue();await page.locator('[data-current-cut] textarea').fill('집으로 돌아왔어요.');await saved(page);
   await page.getByLabel('현재 장과 컷 이동').selectOption(ids[1]!);
-  await page.getByRole('button',{name:'+ 여기서 이야기 나누기',exact:true}).click();
+  await page.getByRole('button',{name:'이야기 나누기',exact:true}).click();
   const split=page.getByRole('dialog',{name:'여기서 이야기 나누기',exact:true});await expect(split).toBeVisible();
   await expect(split.getByRole('button',{name:'선택지 문구를 모두 적어 주세요',exact:true})).toBeDisabled();
   await split.getByLabel('선택지 A 문구',{exact:true}).fill('숲으로 간다');await split.getByLabel('선택지 B 문구',{exact:true}).fill('강으로 간다');
@@ -245,12 +245,11 @@ test('split the story here, write one path on its own and arrange chapters by re
   const copy=await page.getByLabel('현재 장과 컷 이동').inputValue();expect(copy).not.toBe(ids[2]);
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue('모두 다리에서 만났어요.');
   await page.locator('[data-current-cut] textarea').fill('숲 끝에서 다리를 건넜어요.');await saved(page);
-  await (await openConnections(page)).getByRole('button',{name:'이야기 흐름 지도 열기',exact:true}).click();
+  await (await openConnections(page)).getByRole('button',{name:'이야기 지도 열기',exact:true}).click();
   const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});await map.getByRole('button',{name:'장 지도',exact:true}).click();
   // The chapter that used to be 2장 now reads after the fork, the paths and the meeting chapter.
-  await expect(map.locator('[data-chapter-arrange]')).toContainText('읽는 단계와 번호가 다른 장 1개');
-  await map.getByRole('button',{name:'읽는 순서로 장 정리',exact:true}).click();
-  await expect(map.locator('[data-chapter-arrange="done"]')).toBeVisible();
+  // Splitting already named the chapters by the reading step, so 장 정리 has nothing left to do.
+  await expect(map.locator('[data-chapter-arrange]')).toContainText('장이 읽는 순서대로 정리돼 있어요.');
   await page.keyboard.press('Escape');await saved(page);
   const {project}=await exportStory(page);
   const fork=project.lines.find(cut=>cut.id===ids[1])!;expect(fork.flow?.type).toBe('choice');

@@ -48,7 +48,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await page.getByLabel('현재 컷 화자',{exact:true}).fill(cut.speakerName);await nativeReady(page);await page.screenshot({path:info.outputPath('viewpoint-edit.png'),fullPage:true});
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await nativeReady(page);await page.screenshot({path:info.outputPath('viewpoint-read-before-glyph.png')});await expect.poll(()=>nativeGlyphPixels(page,'speaker'),{timeout:8000}).toBeGreaterThan(50);await expect.poll(()=>nativeGlyphPixels(page,'body'),{timeout:8000}).toBeGreaterThan(80);await page.screenshot({path:info.outputPath('viewpoint-read.png')});
  rects=JSON.parse((await report())!);expect(rects.speaker.y+rects.speaker.height).toBeLessThanOrEqual(rects.body.y-8);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(await currentCutText(page)).toHaveValue(cut.text);
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(await currentCutText(page)).toHaveValue(cut.text);
 });
 for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`clear tools stay reachable and form rows do not overlap ${size.width}`,async({page})=>{
  page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.goto('/?view=editor');

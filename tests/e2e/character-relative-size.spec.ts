@@ -54,7 +54,7 @@ for(const viewport of [{width:1280,height:800},{width:390,height:844}])test(`rel
   records.push({mode:'edit',...await measure(page,index,previousEdit)});const previousPlay=await page.getByTestId('story-runtime-status').getAttribute('data-scene-revision');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
   records.push({mode:'play',...await measure(page,index,previousPlay)});
   if(index===2||index===3)await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`${viewport.width}-${index}-native.png`)});
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  }
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(imported);
  await openWorkFileExchange(page);
@@ -80,7 +80,7 @@ test('three and four automatic actors retain child/adult proportions on both sid
    const child=geometry('rabbit-turtle.character.turtle-child-unified-720x900'),king=geometry('rabbit-turtle.character.dragonking-unified-720x900');
    const ratio=actors.find(a=>a.id==='child')!.rect.height*(child.bottom-child.top)/(actors.find(a=>a.id==='king')!.rect.height*(king.bottom-king.top));
    expect(ratio).toBeLessThan(.8);expect(ratio).toBeCloseTo((child.bottom-child.top)/(king.bottom-king.top),5);evidence.push({index,mode,ratio,actors});
-   if(mode==='play'){await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`multi-${index+3}-native.png`)});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
+   if(mode==='play'){await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`multi-${index+3}-native.png`)});await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();}
   }
  }
  const actual=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect(actual).toEqual({...project,id:actual.id});writeFileSync(info.outputPath('multi-stature-evidence.json'),JSON.stringify(evidence,null,2));

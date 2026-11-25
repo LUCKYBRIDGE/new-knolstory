@@ -9,7 +9,7 @@ test('catalog edit copies receive numbered titles and identical blue covers',asy
   await openBuiltinEdition(page,'seonnyeo','knolstory','edit');
   await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();
   await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
-  await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).click();
+  await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).click();
   await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  }
  await selectShelfCollection(page,'own');
@@ -34,7 +34,7 @@ test('catalog edit copies receive numbered titles and identical blue covers',asy
  await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');
  await page.reload();
  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue('내가 지은 제목');
- await page.getByRole('button',{name:'서재로',exact:true}).click();
+ await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).click();
  const renamed=page.getByRole('button',{name:/^내가 지은 제목 책 표지와 소개 보기/});
  await expect(renamed.locator('[data-cover-face="front"]')).toHaveCSS('--cover-paper','#743e4e');
  await expect(covers).toHaveCount(2);

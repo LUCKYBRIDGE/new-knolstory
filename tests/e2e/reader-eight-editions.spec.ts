@@ -2,12 +2,15 @@ import {readFileSync} from 'node:fs';
 import {test,expect,type Page} from '@playwright/test';
 import {builtinEditions,enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry';
 import {readerLibrary} from './native-reader';
+import {catalogBranchNarrativeChanges} from '../../packages/compatibility/src/catalog-branch-narrative';
 
 type TextEdit={projectId:string;lineId:string;after:string};
 type Project={id:string;lines:Array<{id:string;text:string;flow?:{type:string};ending?:{endsStory?:boolean}}>};
 const readEdits=(name:string)=>JSON.parse(readFileSync(new URL(`../../packages/compatibility/src/${name}.json`,import.meta.url),'utf8')) as TextEdit[];
 const additional=['rabbit','heungbu','seonnyeo','onggojib'].flatMap(id=>readEdits(`reader-edit-${id}`));
-const edits=[...readEdits('reader-text-rabbit-heungbu'),...readEdits('reader-text-seonnyeo-onggojib'),...additional];
+// A later branch-aware rewrite (catalog-branch-narrative) supersedes the earlier correction of the same cut.
+const branchAware=(edit:TextEdit):TextEdit=>{const change=catalogBranchNarrativeChanges[edit.projectId]?.[edit.lineId];return change&&change[0]===edit.after?{...edit,after:change[1]}:edit;};
+const edits=[...readEdits('reader-text-rabbit-heungbu'),...readEdits('reader-text-seonnyeo-onggojib'),...additional].map(branchAware);
 const workspaceKey='knolstory-next-workspace-v1';
 
 async function rendered(page:Page){
@@ -76,7 +79,7 @@ for(const [workId,edition] of builtinEditions){
    localStorage.setItem(key,JSON.stringify({...stored,lineId,editingPath:[lineId],mode:'edit',view:'editor',editorView:'cut',activeTool:'text',contexts:{...stored.contexts,[stored.storyId]:nextContext}}));
   },{key:workspaceKey,lineId:representative.lineId});
   await page.goto('/?view=editor');
-  await expect(page.getByRole('textbox',{name:'대사 / 해설',exact:true})).toHaveValue(representative.after);
+  await expect(page.locator('[data-current-cut] textarea')).toHaveValue(representative.after);
   await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
   await unlockNative(page);await assertNativeText(page,representative.after);
   await page.getByRole('button',{name:'빠른 저장',exact:true}).click();
@@ -91,6 +94,8 @@ for(const [workId,edition] of builtinEditions){
   await expect(next).toBeEnabled({timeout:120000});await next.press('Enter');
   await expect.poll(()=>status.getAttribute('data-scene-revision')).not.toBe(savedRevision);
   await rendered(page);
+  // The reading bar hides while the keyboard text view holds focus; leave it first as a keyboard reader would.
+  await page.evaluate(()=>(document.activeElement as HTMLElement|null)?.blur());
   await page.getByRole('button',{name:'빠른 불러오기',exact:true}).click();
   await page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true}).getByRole('button',{name:'확인',exact:true}).click();
   await assertNativeText(page,representative.after);

@@ -223,6 +223,6 @@ test('actual Ren’Py preserves authored bodies, front center and empty POV acro
   await rendered(page);
   expect(sceneryColors(PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' })))).toBeGreaterThan(150);
   await expect(frame).toHaveAttribute('data-composition-instance', 'original');
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
   expectIndependentImportedProject((await exported(page)).project,original.project);
 });

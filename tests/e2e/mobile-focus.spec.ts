@@ -110,7 +110,7 @@ for(const size of [tall,landscape])test(`reader menu keeps one header line and e
  const header=menu.locator('h2+p');
  if(size.height<500)await expect(header).toBeHidden();
  else{await expect(header).toHaveCount(1);await expect(header).toContainText('읽고 쓰는 이야기');}
- const last=menu.getByRole('button',{name:'이 컷 편집하기',exact:true});await last.scrollIntoViewIfNeeded();
+ const last=menu.locator('button').last();await last.scrollIntoViewIfNeeded();
  const box=(await last.boundingBox())!;expect(box.y+box.height).toBeLessThanOrEqual(size.height+1);
  expect((await auditScreen(page,menu)).smallTargets).toEqual([]);
 });

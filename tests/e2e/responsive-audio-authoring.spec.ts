@@ -26,7 +26,7 @@ async function read(page:Page){
 async function restart(page:Page){const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});if(await trigger.getAttribute('aria-expanded')!=='true')await trigger.click();await page.getByRole('group',{name:'읽기 메뉴',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true}).click();await page.getByRole('dialog',{name:'처음부터 읽을까요?',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true}).click();return rendered(page);}
 async function next(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await expect(button).toBeEnabled();await button.focus();await button.press('Enter');return rendered(page);}
 async function reduced(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByRole('button',{name:/^동작 줄이기 · /}).click();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();return rendered(page);}
-async function edit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
+async function edit(page:Page){await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();}
 /** The reader is on this cut (the saved reading position; the old cut list with data-line-id no longer exists). */
 async function readingAt(page:Page,lineId:string){await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback?.lineId)).toBe(lineId);}
 async function choose(page:Page,index:number,target:string){

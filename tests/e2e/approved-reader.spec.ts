@@ -13,7 +13,7 @@ async function ackRuntime(page:Page){
  </script>`}));
 }
 async function start(page:Page){await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await startReading(page);await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toBeEnabled();}
-async function edit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
+async function edit(page:Page){await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();}
 const labels=['지난기록','저장','불러오기','자동 넘기기 · 꺼짐','빠른 저장','빠른 불러오기'];
 
 test('approved reader manual/quick slots, load confirmation, reopen and history use Core',async({page})=>{
@@ -50,7 +50,7 @@ test('approved phone bar is compact, always visible and exposes secondary action
 
 test('reader failure cannot leave for library and preparing stage has an exit',async({page})=>{
  await ackRuntime(page);await start(page);await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='knolstory-player-v1')throw Error('quota injected');original.call(this,key,value);};});
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('button',{name:'보관하고 서재로'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('dialog').getByRole('alert')).toContainText('quota');await expect(page.getByTestId('story-stage-viewport')).toBeVisible();await page.getByRole('button',{name:'취소',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('1컷 글',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('button',{name:'보관하고 서재로'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('dialog').getByRole('alert')).toContainText('quota');await expect(page.getByTestId('story-stage-viewport')).toBeVisible();await page.getByRole('button',{name:'취소',exact:true}).click();await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(page.getByLabel('1컷 글',{exact:true})).toBeVisible();
 });
 
 test('editor manuscript edit, file roundtrip, reopen and reading return preserve other fields',async({page})=>{

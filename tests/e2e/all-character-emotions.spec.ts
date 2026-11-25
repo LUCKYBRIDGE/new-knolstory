@@ -38,7 +38,7 @@ for(const width of [390,1280])test(`all235cards render through native RenPy and 
   if(index%25===0||index===cards.length-1)await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`card-${index+1}-${width}.png`)});
   if(index+1<cards.length)await advanceReading(page);
  }
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,path=info.outputPath('all-emotions.knolstory');await file.saveAs(path);
  expect(parseAuthoringFile(readFileSync(path,'utf8')).project).toEqual(imported);await page.keyboard.press('Escape');await page.reload();
  await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('cut-235');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(imported);
