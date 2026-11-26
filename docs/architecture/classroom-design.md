@@ -221,3 +221,9 @@ type MissionStudentProgress = MissionProgress & {number:number; name:string};
 
 API: `POST /classroom/assignments`에 `editScope?`·`afterAssignmentId?`, `PATCH /classroom/assignments/{id}`에 `editScope?`(null은 학급 설정대로). 오류 코드 `STAGE_LOCKED`·`STAGE_NOT_ALLOWED`. 검사: `server/classroom/task-stage.integration.ts`, `apps/web/lib/task-scope.test.ts`, `tests/e2e/classroom.spec.ts`의 단계 과제 시나리오.
 
+
+## 독후 활동지와 제출 기록 — 2026-11-26
+
+**제공 활동지.** 제공 작품 4개마다 읽는 형식(원작·각색·숏스토리)별로 2개씩, 모두 24개다(`apps/web/lib/provided-worksheets.ts`, 초등 3~6학년, 질문 3~4개). 원작은 ‘줄거리·인물’과 ‘생각 넓히기’, 각색은 갈림길의 실제 선택지 문구를 묻는 ‘내가 고른 길’과 두 번 읽어 견주는 ‘다른 길과 견주기’, 숏스토리는 실제 쪽 제목으로 묻는 ‘그림 읽기’와 ‘한 쪽 바꿔 쓰기’다. 질문은 각 판본의 실제 내용과 대조해 고쳤다(학생이 고른 길에 따라 나오지 않는 장면은 그 길을 고르도록 안내). 예전 원작 활동지 하나는 같은 id(`<작품>-worksheet`)의 ‘생각 넓히기’로 남겼다. 교사는 ‘제공 과제 가져오기’에서 작품과 형식으로 골라 질문을 미리 보고, 사본을 고쳐 배정한다.
+
+**제출 기록.** `mission_progress`는 최신 상태만 둔다. `022-mission-history.sql`의 `mission_history`는 학생이 낸 활동지(답과 남긴 말)와 교사의 결정(통과·다시 쓰기·확인 상태 지움, 피드백)을 쓴 차례(`seq`)대로 학생·과제마다 최근 30개까지 온라인에 남긴다. 과제나 학생이 지워지면 함께 지워진다. 교사는 학생 확인 칸의 ‘지난 기록’(`GET …/missions/{id}/progress/{번호}/history`), 학생은 자기 활동지 카드의 ‘지난 기록’(`GET …/missions/{id}/history`)에서 본다. 학생은 쓰는 동안 기기에 임시 보관하고, 다시 쓰기를 받으면 마지막에 낸 답이 채워진 채로 고쳐 다시 낸다. 통과된 활동지는 다시 낼 수 없다(409 `MISSION_PASSED`).
