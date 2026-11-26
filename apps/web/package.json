@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "python3 ../../scripts/build-image-previews.py && next dev --hostname 127.0.0.1",
+    "dev": "python3 ../../scripts/build-image-previews.py && NODE_OPTIONS=\"--require ../../scripts/dev-stdio-guard.cjs ${NODE_OPTIONS:-}\" next dev --hostname 127.0.0.1",
     "build": "python3 ../../scripts/check-service-audio.py && python3 ../../scripts/build-image-previews.py --strict && next build",
     "typecheck": "tsc --noEmit",
     "build:source": "next build"
