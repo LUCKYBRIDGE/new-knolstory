@@ -803,14 +803,16 @@ test('student submits a worksheet, rewrites after feedback and sees mission succ
  Object.assign(state.missionRows.m1![2]!,{reviewStatus:'revise',feedback:'까닭을 더 써 주세요.',reviewedAt:5});
  await page.reload();
  await expect(card).toHaveAttribute('data-status','revise');await expect(card.getByText('선생님 피드백')).toBeVisible();await expect(card.getByText('까닭을 더 써 주세요.')).toBeVisible();
+ // 지난 기록 opened before rewriting shows the first hand-in.
+ await card.getByLabel('별주부전 독후 활동지 지난 기록',{exact:true}).click();
+ const history=card.locator('ol').filter({hasText:'낸 활동지'});
+ await expect(history.locator('li')).toHaveCount(1);
  await card.getByLabel('토끼의 선택을 어떻게 생각하나요?').fill('살려면 어쩔 수 없었어요.');
  await card.getByRole('button',{name:'별주부전 독후 활동지 다시 확인 요청',exact:true}).click();
  await expect(card).toHaveAttribute('data-status','pending');
  await expect(card.getByText('지난 피드백')).toBeVisible();await expect(card.getByText('까닭을 더 써 주세요.')).toBeVisible();
  expect(state.missionRows.m1![2]!.answers.q2).toBe('살려면 어쩔 수 없었어요.');
- // 지난 기록 keeps both hand-ins online, oldest first.
- await card.getByLabel('별주부전 독후 활동지 지난 기록',{exact:true}).click();
- const history=card.locator('ol').filter({hasText:'낸 활동지'});
+ // The open list loads again without a reload: both hand-ins, oldest first.
  await expect(history.locator('li')).toHaveCount(2);await expect(history.locator('li').last()).toContainText('살려면 어쩔 수 없었어요.');
  Object.assign(state.missionRows.m1![2]!,{reviewStatus:'passed',feedback:'잘 썼어요!'});
  await page.reload();

@@ -89,7 +89,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
   {mission.description&&<p className={styles.copy}>{mission.description}</p>}
   {mission.criteria&&<details className={styles.criteria}><summary>통과 기준</summary><p className={styles.copy}>{mission.criteria}</p></details>}
   {progress?.feedback&&<div className={styles.feedback}><strong>{progress.reviewStatus===null?'지난 피드백':'선생님 피드백'}</strong><p>{progress.feedback}</p></div>}
-  {progress?.submittedAt&&<MissionHistory mission={mission} label={`${mission.title} 지난 기록`} load={()=>myMissionHistory(mission.id)}/>}
+  {progress?.submittedAt&&<MissionHistory mission={mission} label={`${mission.title} 지난 기록`} version={`${progress.submittedAt}-${progress.reviewedAt??''}`} load={()=>myMissionHistory(mission.id)}/>}
   {href&&work&&<p className={styles.read}><a className={`${shared.btn} ${again||passed?'':shared.primary}`} href={href}>{work.title} 읽으러 가기</a><span>{readingFormatLabel(mission.readingFormat)}</span></p>}
   {state==='pending'&&!notice&&<p className={styles.waiting}>선생님 확인을 기다리고 있어요.</p>}
   {!mission.open&&<p className={shared.hint}>마감된 과제예요. 작성한 내용과 선생님 확인을 볼 수 있어요.</p>}
