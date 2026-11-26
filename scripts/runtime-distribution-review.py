@@ -4,7 +4,7 @@ import json
 import zipfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-REVIEW='docs/architecture/evidence/picturebook-release-2026-11-21/runtime-review.json'
+REVIEW='docs/architecture/evidence/actor-exit-release-2026-11-26/runtime-review.json'
 
 def digest(data):return hashlib.sha256(data).hexdigest()
 def safe(root,name):
