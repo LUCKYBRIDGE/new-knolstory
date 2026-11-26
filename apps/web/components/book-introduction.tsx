@@ -9,8 +9,9 @@ function Icon({kind}:{kind:'pen'|'shelf'|'book'|'refresh'|'user'}){
  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[kind]}/></svg>;
 }
 /**
- * The title screen, and below it the four stories with a line each (2026-11-23). The library's
- * ‘책 소개’ lands on that list; ‘서재로 돌아가기’ ends it.
+ * The title screen. The four stories with a line each appear below it only when the library's
+ * ‘책 소개’ brings the reader here (2026-11-23); ‘서재로 돌아가기’ ends it. A first visit shows the
+ * title screen alone: its own buttons already lead to the library and to reading (2026-11-27).
  */
 export function BookIntroduction({works,onLibrary,onBook,disabled,notice,onMyWorks,focusBooks=false}:{works:readonly BookshelfWork[];onLibrary:()=>void;onBook:(key:string)=>void;disabled:boolean;notice?:string;onMyWorks?:()=>void;focusBooks?:boolean}){
  const books=useRef<HTMLElement>(null);
@@ -28,9 +29,9 @@ export function BookIntroduction({works,onLibrary,onBook,disabled,notice,onMyWor
   <footer className={styles.footer}>© 놀퀴즈</footer>
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
  </section>
- <section ref={books} id="intro-books" className={styles.books} aria-labelledby="intro-books-title">
+ {focusBooks&&<section ref={books} id="intro-books" className={styles.books} aria-labelledby="intro-books-title">
   <h2 id="intro-books-title" tabIndex={-1}>놀스토리의 네 이야기</h2>
   <ul>{examples.map(work=><li key={work.key}><button type="button" disabled={disabled} onClick={()=>onBook(work.key)}><strong>{titles[work.key]?.title??work.project.title}</strong><span>{work.project.cover?.subtitle||work.project.description}</span></button></li>)}</ul>
   <button type="button" className={styles.backToLibrary} disabled={disabled} onClick={onLibrary}>서재로 돌아가기</button>
- </section></main>;
+ </section>}</main>;
 }
