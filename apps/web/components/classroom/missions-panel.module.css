@@ -15,6 +15,9 @@
 .provided ol{margin:0 0 12px;padding-left:1.2em;font-size:var(--text-small);color:#415951;display:grid;gap:4px}
 .provided .kind+h3{margin-top:0}
 .provided>li>button{margin-top:auto}
+.preview{margin:0 0 12px;width:100%;font-size:var(--text-small);color:#415951}
+.preview>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:600}
+.preview ol{margin:6px 0 0}
 .picker>p{margin:14px 0 0}
 .editor{margin:0 0 20px;padding:20px;border:1px solid #e6dcc0;border-radius:14px;background:#fcf8ec}
 .editor fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:16px}
@@ -84,3 +87,12 @@
  .starters>button{flex:1 1 100%}
 }
 @media(prefers-reduced-motion:reduce){.student>summary::before,.kindChoice{transition:none}}
+
+.history{margin:10px 0;border-top:1px solid #e3dcc6;padding-top:8px;font-size:var(--text-small)}
+.history>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:600}
+.historyList{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.historyList>li{padding:10px 12px;border-left:3px solid #c9c0a6;background:#fffefa;border-radius:8px}
+.historyList>li[data-event=revise]{border-left-color:#c9874b}
+.historyList>li[data-event=passed]{border-left-color:#4f8a6b}
+.historyHead{display:flex;justify-content:space-between;gap:8px;margin:0 0 6px}
+.historyHead span{color:#62716b}
