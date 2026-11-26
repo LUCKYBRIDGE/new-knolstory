@@ -78,3 +78,12 @@ it('plays one-shot cues once and keeps music and ranges across a split',()=>{
  expect(second.presentation).toEqual({backgroundFit:'contain'});
  expect(first.presentation?.effects?.[0].endLineId).toBe('second');
 });
+it('keeps actor overrides on both halves and moves a chapter music range that ended at the split cut',()=>{
+ const p=createBlankStoryProject({id:'split-stage',chapterId:'ch',lineId:'a'});
+ const project={...p,chapters:p.chapters.map(c=>({...c,audio:{music:{action:'play' as const,assetId:'audio:music:calm',endLineId:'a'}}})),
+  lines:p.lines.map(l=>l.id==='a'?{...l,text:'첫째 문장. 둘째 문장.',presentation:{actors:{left:{opacity:0.25}}}}:l)} as typeof p;
+ const result=splitStoryCut(project,'a','second',6);
+ expect(result.lines.find(l=>l.id==='second')!.presentation?.actors).toEqual({left:{opacity:0.25}});
+ expect(result.lines.find(l=>l.id==='a')!.presentation?.actors).toEqual({left:{opacity:0.25}});
+ expect(result.chapters[0]!.audio?.music).toMatchObject({endLineId:'second'});
+});

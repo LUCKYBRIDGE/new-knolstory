@@ -18,6 +18,13 @@ describe('deleting a cut keeps the story shape',()=>{
   const next=deleteStoryCut(p,'b2');
   expect(line(next,'b1').ending?.endsStory).toBe(true);
  });
+ it('keeps a conditional ending to itself: readers who skip that cut must still read on',()=>{
+  let p=threeChapters();
+  p={...p,scores:[{id:'trust',name:'trust',description:'',initial:0}],lines:p.lines.map(l=>l.id==='b2'?{...l,ending:{endsStory:true},visibility:{scores:{mode:'all',terms:[{scoreId:'trust',operator:'gte',value:1}]}}}:l)} as StoryProject;
+  const next=deleteStoryCut(p,'b2');
+  expect(line(next,'b1').ending).toBeUndefined();
+  expect(line(next,'b1').flow).toBeUndefined();
+ });
  it('passes an explicit jump on to the cut before it',()=>{
   let p=threeChapters();p={...p,lines:p.lines.map(l=>l.id==='a2'?{...l,flow:{type:'goto',targetLineId:'c1'}}:l)} as StoryProject;
   const next=deleteStoryCut(p,'a2');

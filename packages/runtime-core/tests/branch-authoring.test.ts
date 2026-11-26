@@ -121,3 +121,12 @@ describe('splitting in the middle of a chapter',()=>{
   expect(read(project,[1])).toEqual(['a1','a2',newLineIds[0]]);
  });
 });
+describe('chapter names a writer put in the title',()=>{
+ it('keeps “7장 · 동굴” as written when the story is split',()=>{
+  // An older file: the number lives only in the title (no chapterNumber).
+  const base=story(),titled={...base,chapters:base.chapters.map(chapter=>{if(chapter.id!=='b')return chapter;const {chapterNumber:_n,...rest}=chapter;return {...rest,title:'7장 · 동굴'};})};
+  expect(chapterLabel(titled.chapters.find(chapter=>chapter.id==='b')!)).toBe('7장 · 동굴');
+  const {project}=splitStoryHere(titled,'a2',{labels:['숲','강'],mode:'rejoin'},ids());
+  expect(chapterLabel(project.chapters.find(chapter=>chapter.id==='b')!)).toBe('7장 · 동굴');
+ });
+});

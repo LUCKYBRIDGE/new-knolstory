@@ -104,7 +104,8 @@ export function splitStoryHere(project:StoryProject,lineId:string,input:{labels:
  const at=sorted.indexOf(chapter.id)+1;
  const added=newChapters.map(item=>item.id),after=following?keepFirst?[following.id,...added]:[...added,following.id]:added;
  const ids=[...sorted.slice(0,at),...after,...sorted.slice(at)];
- return {project:syncBranchNumbering(project,reorderStoryChapters(pinned,ids)),newLineIds:newLines.map(line=>line.id)};
+ // Renamed chapters are checked again: a name past the format's length is refused here, not saved.
+ return {project:validate(syncBranchNumbering(project,reorderStoryChapters(pinned,ids))),newLineIds:newLines.map(line=>line.id)};
 }
 
 /**

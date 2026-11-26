@@ -65,7 +65,8 @@ export function deleteStoryCut(project:StoryProject,id:string):StoryProject {
  // Like insertion, deletion keeps the authored exit: the cut before inherits an explicit goto or story ending.
  const previous=siblings[siblings.findIndex(l=>l.id===id)-1];
  const exitTargets=selected.flow?.type==='goto'?[selected.flow.targetLineId,...(selected.flow.routes??[]).map(route=>route.targetLineId)]:[];
- const inherit=!!previous&&!previous.flow&&!previous.ending?.endsStory&&(selected.flow?.type==='goto'||!!selected.ending?.endsStory)&&!exitTargets.includes(previous.id);
+ // A cut shown only on some readings (visibility) is skipped on the others, so its exit is not every reader's exit: never pass it on.
+ const inherit=!!previous&&!previous.flow&&!previous.ending?.endsStory&&!previous.visibility&&!selected.visibility&&(selected.flow?.type==='goto'||!!selected.ending?.endsStory)&&!exitTargets.includes(previous.id);
  const kept=project.lines.filter(l=>l.id!==id).map(l=>inherit&&l.id===previous!.id?{...l,...(selected.flow?.type==='goto'?{flow:structuredClone(selected.flow)}:{}),...(selected.ending?.endsStory?{ending:structuredClone(selected.ending)}:{})}:l);
  const lines=renumber(disconnectStoryFlowTargets(kept,new Set([id])),selected.chapterId);
  return validate({...project,lines,...(project.continuation?.lineId===id?{continuation:undefined}:{})});

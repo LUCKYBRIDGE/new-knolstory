@@ -1,10 +1,12 @@
-import {branchChapterNumbering,type Chapter,type StoryProject} from '@knolstory/story-domain';
+import {branchChapterNumbering,normalizeChapterTitle,type Chapter,type StoryProject} from '@knolstory/story-domain';
 
 type Numbered=Pick<StoryProject,'chapters'|'lines'>;
 const same=(chapter:Chapter,identity:{chapterNumber:number;branchLabel?:string})=>(chapter.chapterNumber??chapter.order)===identity.chapterNumber&&(chapter.branchLabel?.trim()??'')===(identity.branchLabel??'');
 
 /** Whether every chapter a reader can reach already carries the number and letters the links give it. */
 export function followsBranchNumbering(project:Numbered):boolean{
+ // A number written into a title (“7장 · 동굴”) is the writer's own name for the chapter: leave such works as written.
+ if(project.chapters.some(chapter=>/^\d+\s*장/u.test(normalizeChapterTitle(chapter.title).trim())))return false;
  const numbering=branchChapterNumbering(project);
  return project.chapters.every(chapter=>{const identity=numbering.identities.get(chapter.id);return !identity||same(chapter,identity);});
 }

@@ -32,10 +32,11 @@ export function splitStoryCut(project:StoryProject,lineId:string,newId:string,po
  const first={...source,text:source.text.slice(0,position),flow:undefined,ending:undefined,
   ...(source.stageComposition ? {stageComposition:withoutActorExits(source.stageComposition)} : {})};
  // One-shot cues (sounds, effects, transitions, actor motion) belong to the moment the cut starts, so only the first half keeps them;
- // the second half keeps any music or ambience playing and the background look.
+ // the second half keeps any music or ambience playing, the background look and actor overrides.
  const {audio:sourceAudio,presentation:sourcePresentation,...rest}=structuredClone(source);
  const audio=sourceAudio?.music||sourceAudio?.ambience?{...(sourceAudio.music?{music:{action:'maintain' as const}}:{}),...(sourceAudio.ambience?{ambience:{action:'maintain' as const}}:{})}:undefined;
- const {effects:_effects,transition:_transition,actors:_actors,clearFollowingEffects:_clear,...look}=sourcePresentation??{};
+ // Actor overrides (position, size, opacity) describe how the stage looks, so both halves keep them.
+ const {effects:_effects,transition:_transition,clearFollowingEffects:_clear,...look}=sourcePresentation??{};
  const second:StoryLine={...rest,id:newId,text:source.text.slice(position),...(audio?{audio}:{}),...(Object.keys(look).length?{presentation:look}:{})};
  // A range that ended at the source cut covered all of its text; keep covering both halves.
  const extend=<T extends {endLineId?:string}>(cue:T):T=>cue.endLineId===lineId?{...cue,endLineId:newId}:cue;
@@ -43,7 +44,9 @@ export function splitStoryCut(project:StoryProject,lineId:string,newId:string,po
  const lines=project.lines.map(line=>line.id===lineId?first:line).map(line=>({...line,
   ...(line.presentation?.effects?{presentation:{...line.presentation,effects:line.presentation.effects.map(extend)}}:{}),
   ...(line.audio?{audio:{...line.audio,...(line.audio.music?{music:music(line.audio.music)}:{}),...(line.audio.ambience?{ambience:music(line.audio.ambience)}:{})}}:{})}));
- const extended={...project,lines};
+ // A chapter's own music or ambience that ended at the source cut also goes on to the end of the second half.
+ const chapters=project.chapters.map(chapter=>chapter.audio&&(chapter.audio.music||chapter.audio.ambience)?{...chapter,audio:{...chapter.audio,...(chapter.audio.music?{music:music(chapter.audio.music)}:{}),...(chapter.audio.ambience?{ambience:music(chapter.audio.ambience)}:{})}}:chapter);
+ const extended={...project,chapters,lines};
  return replaceCuts(extended,source.chapterId,ordered(extended,source.chapterId).flatMap(line=>line.id===lineId?[line,second]:[line]),{source,to:newId});
 }
 function targets(line:StoryLine,id:string):boolean {
