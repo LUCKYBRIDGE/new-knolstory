@@ -72,6 +72,21 @@ describe('real PostgreSQL classroom missions',()=>{
   expect(passed).toMatchObject({reviewStatus:'passed',feedback:'잘 썼어요!',reviewedAt:now});
   expect((await service.listMissions(one,'student'))[0]!.progress).toMatchObject({reviewStatus:'passed',feedback:'잘 썼어요!'});
   expect((await service.listMissions(two,'student'))[0]!.progress!.reviewStatus).toBeNull();
+  // A passed sheet stays as the teacher passed it.
+  expect(await failure(service.submitMission(one,mission.id,{answers:{q1:'다시',q2:'다시'},note:''}))).toBe('409 MISSION_PASSED');
+  // Everything handed in and decided stays online, oldest first, for the teacher and for the student only.
+  const history=await service.missionHistoryFor(teacher,mission.id,1);
+  expect(history.map(entry=>entry.event)).toEqual(['submitted','revise','submitted','passed']);
+  expect(history[0]).toMatchObject({answers:{q1:'용궁 장면',q2:'꾀가 좋아요'},note:'재미있었어요'});
+  expect(history[1]).toMatchObject({feedback:'까닭을 더 써 주세요.'});
+  expect(history[2]).toMatchObject({answers:{q1:'용궁 장면',q2:'살려고 꾀를 냈어요'},at:second.submittedAt});
+  expect(history[3]).toMatchObject({feedback:'잘 썼어요!',at:now});
+  expect(await service.myMissionHistory(one,mission.id)).toEqual(history);
+  expect(await service.myMissionHistory(two,mission.id)).toEqual([]);
+  expect(await service.missionHistoryFor(teacher,mission.id,2)).toEqual([]);
+  const other=await classroom(1);
+  expect(await failure(service.missionHistoryFor(other.teacher,mission.id,1))).toBe('404 MISSION_NOT_FOUND');
+  expect(await failure(service.myMissionHistory(other.students[1]!,mission.id))).toBe('404 MISSION_NOT_FOUND');
  });
 
  it('lets the teacher pass paper or classroom work directly, clear a decision, and close a mission',async()=>{

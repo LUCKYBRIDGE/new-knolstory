@@ -45,7 +45,7 @@ async function harness(overrides:Partial<ClassroomRouterOptions>={}){
   listSubmissions:vi.fn(async()=>[]),reviewSubmission:vi.fn(async()=>({number:12,name:'',submittedAt:1,reviewStatus:'passed',feedback:'',reviewedAt:2})),readSubmissionFor:vi.fn(async()=>({document:{},submittedAt:1})),readOwnSubmission:vi.fn(async()=>({document:{},submittedAt:1})),
   submit:vi.fn(async()=>({submittedAt:9})),
   listMissions:vi.fn(async()=>[]),createMission:vi.fn(async()=>({id:missionId})),setMissionOpen:vi.fn(async()=>({id:missionId,open:false})),
-  submitMission:vi.fn(async()=>({submittedAt:11})),listMissionProgress:vi.fn(async()=>[]),reviewMission:vi.fn(async()=>({number:3,reviewStatus:'passed'})),
+  submitMission:vi.fn(async()=>({submittedAt:11})),listMissionProgress:vi.fn(async()=>[]),reviewMission:vi.fn(async()=>({number:3,reviewStatus:'passed'})),missionHistoryFor:vi.fn(async()=>[]),myMissionHistory:vi.fn(async()=>[]),
  };
  const router=createClassroomRouter({origin,authState,classroom:service as unknown as ClassroomService,clock:()=>now,...overrides});
  const server=createServer((req,res)=>{void router(req,res);});servers.push(server);
@@ -370,6 +370,11 @@ describe('classroom routes: missions',()=>{
   expect((await teacher(`/classroom/missions/${missionId}/progress/3`,'PUT',review)).status).toBe(200);expect(h.service.reviewMission).toHaveBeenCalledWith(teacherId,missionId,3,review);
   expect(await code(await student(`/classroom/missions/${missionId}/progress/3`,'PUT',review))).toBe('ROLE_NOT_ALLOWED');
   expect(await code(await teacher(`/classroom/missions/${missionId}/progress/31`,'PUT',review))).toBe('INVALID_REQUEST');
+  // 지난 기록: a teacher reads one student's records, a student reads only their own.
+  expect((await teacher(`/classroom/missions/${missionId}/progress/3/history`)).status).toBe(200);expect(h.service.missionHistoryFor).toHaveBeenCalledWith(teacherId,missionId,3);
+  expect(await code(await student(`/classroom/missions/${missionId}/progress/3/history`))).toBe('ROLE_NOT_ALLOWED');
+  expect((await student(`/classroom/missions/${missionId}/history`)).status).toBe(200);expect(h.service.myMissionHistory).toHaveBeenCalledWith(studentId,missionId);
+  expect(await code(await teacher(`/classroom/missions/${missionId}/history`))).toBe('ROLE_NOT_ALLOWED');
   expect((await teacher('/classroom/missions/not-a-uuid/progress')).status).toBe(404);
  });
  it('requires a session and CSRF for mission writes',async()=>{

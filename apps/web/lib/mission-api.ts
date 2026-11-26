@@ -10,7 +10,7 @@ export type MissionDraft=Pick<Mission,'title'|'description'|'criteria'|'kind'|'s
 export type MissionStudentProgress=MissionProgress&{number:number;name:string};
 export type MissionReviewInput={reviewStatus:'passed'|'revise'|null;feedback:string;expectedSubmittedAt:number|null};
 export const MISSION_LIMITS={title:80,text:2000,prompt:400,questions:8} as const;
-const message:Record<string,string>={MISSION_CLOSED:'마감된 과제예요.',MISSION_NOT_FOUND:'과제를 찾지 못했어요.',MISSION_SUBMISSION_CHANGED:'학생이 활동지를 다시 제출했어요. 새 답변을 확인해 주세요.',MISSION_UNAVAILABLE:'과제를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.',REQUEST_TOO_LARGE:'글이 너무 길어요. 조금 줄여서 다시 보내 주세요.'};
+const message:Record<string,string>={MISSION_CLOSED:'마감된 과제예요.',MISSION_PASSED:'선생님이 이미 통과시킨 활동지라 다시 낼 수 없어요.',MISSION_NOT_FOUND:'과제를 찾지 못했어요.',MISSION_SUBMISSION_CHANGED:'학생이 활동지를 다시 제출했어요. 새 답변을 확인해 주세요.',MISSION_UNAVAILABLE:'과제를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.',REQUEST_TOO_LARGE:'글이 너무 길어요. 조금 줄여서 다시 보내 주세요.'};
 export class MissionError extends ClassroomError{
  constructor(code:string,status:number){super(code,status);this.message=message[code]??this.message;}
 }
@@ -69,3 +69,15 @@ export const missionKindLabel=(kind:MissionKind)=>kind==='reading'?'읽기 과�
 export const readingFormatLabel=(format:ReadingFormat)=>format==='original'?'원작':format==='knolstory'?'각색':'숏스토리';
 /** Built-in works have two KnolStory editions; older tasks without one start from the adaptation. */
 export const editionLabel=(edition:'original'|'knolstory'|null|undefined)=>edition==='original'?'원작':'각색';
+
+/** One record of what a student handed in or what the teacher decided, oldest first. */
+export type MissionHistoryEntry=Readonly<{event:'submitted'|'passed'|'revise'|'cleared';at:number;answers?:Readonly<Record<string,string>>;note?:string;feedback?:string}>;
+const isHistory=(value:unknown):value is MissionHistoryEntry[]=>Array.isArray(value)&&value.every(entry=>!!entry&&typeof entry==='object'&&['submitted','passed','revise','cleared'].includes((entry as MissionHistoryEntry).event)&&Number.isSafeInteger((entry as MissionHistoryEntry).at));
+/** Teacher: one student's records for a mission. */
+export async function missionHistoryFor(id:string,number:number,fetcher:typeof fetch=fetch):Promise<MissionHistoryEntry[]>{
+ const data=await request(`/${encodeURIComponent(id)}/progress/${encodeURIComponent(String(number))}/history`,fetcher);if(!isHistory(data))throw new MissionError('INVALID_RESPONSE',502);return data;
+}
+/** Student: my own records for a mission. */
+export async function myMissionHistory(id:string,fetcher:typeof fetch=fetch):Promise<MissionHistoryEntry[]>{
+ const data=await request(`/${encodeURIComponent(id)}/history`,fetcher);if(!isHistory(data))throw new MissionError('INVALID_RESPONSE',502);return data;
+}

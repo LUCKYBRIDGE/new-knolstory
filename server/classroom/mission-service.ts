@@ -8,6 +8,9 @@ import {forStudentSql,readRecipients,recipientIds,recipientNumbers,recipientNumb
 export type MissionProgress={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:null|'passed'|'revise';feedback:string;reviewedAt:number|null};
 export type MissionView=MissionInput&{archived?:true;id:string;open:boolean;createdAt:number;dueAt:number|null;recipients?:number[]|null;progress?:MissionProgress};
 export type MissionStudentProgress=MissionProgress&{number:number;name:string};
+/** One entry of what a student handed in and what the teacher decided, oldest first. */
+export type MissionHistoryEntry={event:'submitted'|'passed'|'revise'|'cleared';at:number;answers?:Record<string,string>;note?:string;feedback?:string};
+const HISTORY_LIMIT=30;
 const unavailable=()=>new ClassroomError(503,'MISSION_UNAVAILABLE');
 const id=(value:unknown)=>{if(typeof value!=='string'||!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value))throw new ClassroomError(400,'INVALID_REQUEST');return value;};
 const text=(value:unknown)=>{if(typeof value!=='string')throw unavailable();return value;};
@@ -24,6 +27,22 @@ function mission(row:Record<string,unknown>,own=false):MissionView{
  if(typeof row.open!=='boolean')throw unavailable();
  return {...input,id:text(row.id),open:row.open,createdAt:time(row.created_at),dueAt:nullableTime(row.due_at),...(own?{progress:progress(row)}:{recipients:readRecipients(row)})};
 }
+function historyEntry(row:Record<string,unknown>):MissionHistoryEntry{
+ const event=row.event;if(event!=='submitted'&&event!=='passed'&&event!=='revise'&&event!=='cleared')throw unavailable();
+ if(event==='submitted'){
+  const answers=row.answers;
+  if(!answers||typeof answers!=='object'||Array.isArray(answers)||Object.values(answers).some(v=>typeof v!=='string'))throw unavailable();
+  return {event,at:time(row.at),answers:answers as Record<string,string>,note:text(row.note)};
+ }
+ return {event,at:time(row.at),feedback:text(row.feedback)};
+}
+async function recordHistory(client:SqlClient,missionId:string,studentId:string,entry:Readonly<{event:MissionHistoryEntry['event'];at:number;answers?:Record<string,string>;note?:string;feedback?:string}>){
+ await client.query('INSERT INTO knolstory_class.mission_history(id,mission_id,student_account_id,event,answers,note,feedback,at) VALUES($1,$2,$3,$4,$5::jsonb,$6,$7,$8)',
+  [randomUUID(),missionId,studentId,entry.event,entry.answers?JSON.stringify(entry.answers):null,entry.note??'',entry.feedback??'',entry.at]);
+ // Keep each student's latest records for a mission; the newest state also lives in mission_progress.
+ await client.query('DELETE FROM knolstory_class.mission_history WHERE id IN (SELECT id FROM knolstory_class.mission_history WHERE mission_id=$1 AND student_account_id=$2 ORDER BY seq DESC OFFSET $3)',[missionId,studentId,HISTORY_LIMIT]);
+}
+const readHistory=async(client:SqlClient,missionId:string,studentId:string)=>(await client.query('SELECT event,answers,note,feedback,at FROM knolstory_class.mission_history WHERE mission_id=$1 AND student_account_id=$2 ORDER BY seq',[missionId,studentId])).rows.map(historyEntry);
 /** Missions are service data: none of these operations reads or changes authored StoryDocuments. */
 export function createMissionService(pool:SqlPool,clock:()=>number=Date.now){
  const now=()=>time(clock());
@@ -78,9 +97,12 @@ export function createMissionService(pool:SqlPool,clock:()=>number=Date.now){
     if(Array.isArray(row.recipient_ids)&&!row.recipient_ids.includes(accountId.toLowerCase()))throw new ClassroomError(404,'MISSION_NOT_FOUND');
     if(!row.open)throw new ClassroomError(409,'MISSION_CLOSED');
     const input=missionSubmission(value,mission(row).questions);
-    const previous=(await client.query('SELECT submitted_at FROM knolstory_class.mission_progress WHERE mission_id=$1 AND student_account_id=$2 FOR UPDATE',[missionId,accountId])).rows[0];
+    const previous=(await client.query('SELECT submitted_at,review_status FROM knolstory_class.mission_progress WHERE mission_id=$1 AND student_account_id=$2 FOR UPDATE',[missionId,accountId])).rows[0];
+    // A passed sheet is finished; handing it in again would silently undo the teacher's pass.
+    if(previous?.review_status==='passed')throw new ClassroomError(409,'MISSION_PASSED');
     const prior=nullableTime(previous?.submitted_at),submittedAt=time(Math.max(now(),prior===null?0:prior+1));
     await client.query(`INSERT INTO knolstory_class.mission_progress(mission_id,student_account_id,answers,note,submitted_at) VALUES($1,$2,$3::jsonb,$4,$5) ON CONFLICT(mission_id,student_account_id) DO UPDATE SET answers=EXCLUDED.answers,note=EXCLUDED.note,submitted_at=EXCLUDED.submitted_at,review_status=NULL`,[missionId,accountId,JSON.stringify(input.answers),input.note,submittedAt]);
+    await recordHistory(client,missionId,accountId,{event:'submitted',at:submittedAt,answers:input.answers,note:input.note});
     return {submittedAt};
    });
   },
@@ -100,7 +122,28 @@ export function createMissionService(pool:SqlPool,clock:()=>number=Date.now){
     const previous=(await client.query('SELECT * FROM knolstory_class.mission_progress WHERE mission_id=$1 AND student_account_id=$2 FOR UPDATE',[missionId,student.account_id])).rows[0];
     if(nullableTime(previous?.submitted_at)!==input.expectedSubmittedAt)throw new ClassroomError(409,'MISSION_SUBMISSION_CHANGED');
     const result=await client.query(`INSERT INTO knolstory_class.mission_progress(mission_id,student_account_id,review_status,feedback,reviewed_at) VALUES($1,$2,$3,$4,$5) ON CONFLICT(mission_id,student_account_id) DO UPDATE SET review_status=EXCLUDED.review_status,feedback=EXCLUDED.feedback,reviewed_at=EXCLUDED.reviewed_at RETURNING *`,[missionId,student.account_id,input.reviewStatus,input.feedback,now()]);
-    return {...progress(result.rows[0]!),number,name:text(student.name)};
+    const saved=progress(result.rows[0]!);
+    await recordHistory(client,missionId,text(student.account_id),{event:input.reviewStatus??'cleared',at:saved.reviewedAt??now(),feedback:saved.feedback});
+    return {...saved,number,name:text(student.name)};
+   });
+  },
+  /** A student's handed-in sheets and the teacher's decisions for one mission, oldest first. */
+  async missionHistoryFor(teacherId:string,missionId:string,number:number):Promise<MissionHistoryEntry[]>{
+   if(!Number.isInteger(number)||number<1||number>30)throw new ClassroomError(400,'INVALID_REQUEST');
+   return read(async client=>{
+    const room=await teacherRoom(client,teacherId);id(missionId);
+    if(!(await client.query('SELECT 1 FROM knolstory_class.missions WHERE id=$1 AND classroom_id=$2',[missionId,room])).rows[0])throw new ClassroomError(404,'MISSION_NOT_FOUND');
+    const student=(await client.query('SELECT account_id FROM knolstory_class.students WHERE classroom_id=$1 AND number=$2',[room,number])).rows[0];
+    if(!student)throw new ClassroomError(404,'STUDENT_NOT_FOUND');
+    return readHistory(client,missionId,text(student.account_id));
+   });
+  },
+  async myMissionHistory(accountId:string,missionId:string):Promise<MissionHistoryEntry[]>{
+   return read(async client=>{
+    const room=await studentRoom(client,accountId);id(missionId);
+    const row=(await client.query('SELECT recipient_ids FROM knolstory_class.missions WHERE id=$1 AND classroom_id=$2',[missionId,room])).rows[0];
+    if(!row||Array.isArray(row.recipient_ids)&&!row.recipient_ids.includes(accountId.toLowerCase()))throw new ClassroomError(404,'MISSION_NOT_FOUND');
+    return readHistory(client,missionId,accountId);
    });
   },
  };

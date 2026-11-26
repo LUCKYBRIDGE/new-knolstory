@@ -337,6 +337,8 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   {method:'PUT',pattern:new RegExp(`^/classroom/missions/(${UUID})/submission$`),access:'student',body:'mission',run:({accountId,params,body})=>classroom.submitMission(accountId,params[0]!,body)},
   {method:'GET',pattern:new RegExp(`^/classroom/missions/(${UUID})/progress$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listMissionProgress(accountId,params[0]!)},
   {method:'PUT',pattern:new RegExp(`^/classroom/missions/(${UUID})/progress/(\\d+)$`),access:'teacher',body:'json',run:({accountId,params,body})=>classroom.reviewMission(accountId,params[0]!,studentNumber(params[1]!),body)},
+  {method:'GET',pattern:new RegExp(`^/classroom/missions/(${UUID})/progress/(\\d+)/history$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.missionHistoryFor(accountId,params[0]!,studentNumber(params[1]!))},
+  {method:'GET',pattern:new RegExp(`^/classroom/missions/(${UUID})/history$`),access:'student',body:'none',run:({accountId,params})=>classroom.myMissionHistory(accountId,params[0]!)},
  ];
 
  function match(req:IncomingMessage){

@@ -1,9 +1,11 @@
 'use client';
 import {SeasonItems} from './season-items';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
-import {missionCreate,missionList,missionProgress,missionReview,missionSetDue,missionSetOpen,missionSetRecipients,missionKindLabel,readingFormatLabel,MissionError,MISSION_LIMITS,
+import {missionCreate,missionHistoryFor,missionList,missionProgress,missionReview,missionSetDue,missionSetOpen,missionSetRecipients,missionKindLabel,readingFormatLabel,MissionError,MISSION_LIMITS,
  type Mission,type MissionDraft,type MissionKind,type MissionStudentProgress,type ReadingFormat} from '../../lib/mission-api';
 import {PROVIDED_MISSIONS,copyProvidedMission} from '../../lib/provided-missions';
+import {WORKSHEET_FOCUS_LABEL} from '../../lib/provided-worksheets';
+import {MissionHistory} from './mission-history';
 import {BUILTIN_WORKS,type BuiltinWorkId} from '../../lib/builtin-works';
 import {formatSubmittedAt} from '../../lib/classroom-local';
 import type {TaskRequest} from './task-composer';
@@ -65,18 +67,21 @@ export function MissionsPanel({csrf,request=null,students=[]}:{csrf:string;reque
 }
 
 function ProvidedPicker({onPick,onClose}:{onPick:(mission:MissionDraft)=>void;onClose:()=>void}){
- const [work,setWork]=useState<BuiltinWorkId>(BUILTIN_WORKS[0].id);
+ const [work,setWork]=useState<BuiltinWorkId>(BUILTIN_WORKS[0].id),[format,setFormat]=useState<ReadingFormat|'all'>('all');
+ // Reading and classroom tasks belong to every way of reading; worksheets are made for one.
+ const items=PROVIDED_MISSIONS.filter(mission=>mission.storyKey===work&&(format==='all'||mission.kind!=='worksheet'||mission.readingFormat===format));
  return <div className={styles.picker} role="region" aria-label="놀스토리 제공 과제">
   <div className={styles.pickerHead}><strong>어떤 작품의 과제를 가져올까요?</strong><button className={shared.btn} onClick={onClose}>닫기</button></div>
   <div className={styles.works} role="group" aria-label="작품 고르기">{BUILTIN_WORKS.map(item=><button key={item.id} className={shared.btn} aria-pressed={work===item.id} onClick={()=>setWork(item.id)}>{item.title}</button>)}</div>
-  <ul className={styles.provided}>{PROVIDED_MISSIONS.filter(mission=>mission.storyKey===work).map(mission=><li key={mission.providedId}>
-   <span className={styles.kind} data-kind={mission.kind}>{missionKindLabel(mission.kind)}</span>
+  <div className={styles.works} role="group" aria-label="활동지 읽는 형식">{(['all','original','knolstory','shortstory'] as const).map(item=><button key={item} className={shared.btn} aria-pressed={format===item} onClick={()=>setFormat(item)}>{item==='all'?'모든 형식':readingFormatLabel(item)}</button>)}</div>
+  <ul className={styles.provided}>{items.map(mission=><li key={mission.providedId}>
+   <span className={styles.kind} data-kind={mission.kind}>{missionKindLabel(mission.kind)}{mission.kind==='worksheet'&&` · ${readingFormatLabel(mission.readingFormat)}`}{mission.focus&&` · ${WORKSHEET_FOCUS_LABEL[mission.focus]}`}</span>
    <h3>{mission.title}</h3>
    <p>{mission.description}</p>
-   {mission.questions.length>0&&<ol>{mission.questions.map(question=><li key={question.id}>{question.prompt}</li>)}</ol>}
+   {mission.questions.length>0&&<details className={styles.preview}><summary>질문 {mission.questions.length}개 미리 보기</summary><ol>{mission.questions.map(question=><li key={question.id}>{question.prompt}</li>)}</ol></details>}
    <button className={shared.btn} aria-label={`${mission.title} 가져와서 고치기`} onClick={()=>onPick(copyProvidedMission(mission))}>가져와서 고치기</button>
   </li>)}</ul>
-  <p className={shared.hint}>가져온 과제는 내 학급용 사본이에요. 제목·안내·통과 기준·질문을 고친 뒤 배정해요.</p>
+  <p className={shared.hint}>가져온 과제는 내 학급용 사본이에요. 제목·안내·통과 기준·질문을 고친 뒤 배정해요. 각색 활동지는 학생이 고른 길에 따라 답이 달라요.</p>
  </div>;
 }
 
@@ -190,6 +195,7 @@ function StudentReview({mission,row,csrf,onSaved,onStale}:{mission:Mission;row:M
     {row.note&&<div className={styles.answer}><p className={styles.prompt}>{mission.questions.length?'선생님께 남긴 말':'읽고 남긴 말'}</p><p className={styles.reply}>{row.note}</p></div>}
     {!mission.questions.length&&!row.note&&<p className={shared.hint}>남긴 말 없이 확인을 요청했어요.</p>}
    </>:<p className={shared.hint}>온라인으로 낸 답변이 없어요. 종이 활동지나 교실 활동을 직접 확인했다면 바로 통과시킬 수 있어요.</p>}
+   {row.submittedAt&&<MissionHistory mission={mission} label={`${who} 지난 기록`} load={()=>missionHistoryFor(mission.id,row.number)}/>}
    {(mission.archived||!row.reviewStatus)&&row.feedback&&<div className={styles.answer}><p className={styles.prompt}>지난 피드백</p><p className={styles.reply}>{row.feedback}</p></div>}
    {!mission.archived&&<><label className={shared.field}>학생에게 남길 말 <textarea aria-label={`${who} 학생에게 남길 말`} rows={2} value={feedback} maxLength={MISSION_LIMITS.text} disabled={busy} onChange={event=>setFeedback(event.target.value)} placeholder="잘한 점이나 다시 쓸 점을 적어 주세요."/></label>
    <div className={styles.decide}>

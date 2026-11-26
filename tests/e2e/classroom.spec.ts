@@ -755,14 +755,22 @@ test('teacher imports a provided mission, edits it and assigns it',async({page})
  const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
  await expect(panel.getByText('아직 낸 읽기·활동 과제가 없어요.',{exact:false})).toBeVisible();
  await compose(page,/^제공 과제 가져오기/);
- await panel.getByRole('button',{name:'별주부전 독후 활동지 가져와서 고치기'}).click();
- const title=panel.getByLabel('과제 제목');await expect(title).toHaveValue('별주부전 독후 활동지');await title.fill('별주부전 독후 활동지 · 우리 반');
+ // Worksheets come for each way of reading: the format filter keeps only the 각색 (놀스토리 edition) ones (reading and classroom tasks stay).
+ const picker=panel.getByRole('region',{name:'놀스토리 제공 과제',exact:true});
+ await expect(picker.getByRole('button',{name:/가져와서 고치기$/})).toHaveCount(8);
+ await picker.getByRole('group',{name:'활동지 읽는 형식',exact:true}).getByRole('button',{name:'각색',exact:true}).click();
+ await expect(picker.getByRole('button',{name:/가져와서 고치기$/})).toHaveCount(4);
+ await expect(picker.getByRole('button',{name:'별주부전 생각 넓히기 가져와서 고치기'})).toHaveCount(0);
+ await picker.getByText('질문 4개 미리 보기').first().click();
+ await expect(picker.getByText('용왕 앞에서 자라는 어떤 말을 골랐나요?',{exact:false})).toBeVisible();
+ await panel.getByRole('button',{name:'별주부전 각색: 내가 고른 길 가져와서 고치기'}).click();
+ const title=panel.getByLabel('과제 제목');await expect(title).toHaveValue('별주부전 각색: 내가 고른 길');await title.fill('내가 고른 길 · 우리 반');
  await panel.getByRole('button',{name:'과제 내기'}).click();
  await expect(panel.getByRole('status')).toContainText('과제를 냈어요');
- await expect(panel.getByRole('heading',{name:'별주부전 독후 활동지 · 우리 반'})).toBeVisible();
+ await expect(panel.getByRole('heading',{name:'내가 고른 길 · 우리 반'})).toBeVisible();
  const body=state.bodies.at(-1) as Mission;
- expect(body).toMatchObject({title:'별주부전 독후 활동지 · 우리 반',kind:'worksheet',storyKey:'rabbit',readingFormat:'original'});
- expect(body.questions.map(question=>question.id)).toEqual(['q1','q2','q3']);
+ expect(body).toMatchObject({title:'내가 고른 길 · 우리 반',kind:'worksheet',storyKey:'rabbit',readingFormat:'knolstory'});
+ expect(body.questions.map(question=>question.id)).toEqual(['q1','q2','q3','q4']);
 });
 test('teacher writes a reading mission and must choose a work',async({page})=>{
  const state=await mockClassroom(page,'teacher');
@@ -800,6 +808,10 @@ test('student submits a worksheet, rewrites after feedback and sees mission succ
  await expect(card).toHaveAttribute('data-status','pending');
  await expect(card.getByText('지난 피드백')).toBeVisible();await expect(card.getByText('까닭을 더 써 주세요.')).toBeVisible();
  expect(state.missionRows.m1![2]!.answers.q2).toBe('살려면 어쩔 수 없었어요.');
+ // 지난 기록 keeps both hand-ins online, oldest first.
+ await card.getByLabel('별주부전 독후 활동지 지난 기록',{exact:true}).click();
+ const history=card.locator('ol').filter({hasText:'낸 활동지'});
+ await expect(history.locator('li')).toHaveCount(2);await expect(history.locator('li').last()).toContainText('살려면 어쩔 수 없었어요.');
  Object.assign(state.missionRows.m1![2]!,{reviewStatus:'passed',feedback:'잘 썼어요!'});
  await page.reload();
  await expect(card).toHaveAttribute('data-status','passed');await expect(card.getByText('과제 통과')).toBeVisible();
@@ -815,8 +827,8 @@ test('teacher reviews answers, handles a changed submission, and passes paper wo
  const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
  await panel.getByRole('button',{name:'별주부전 독후 활동지 학생 확인'}).click();
  await expect(panel.getByText('확인 대기 1')).toBeVisible();
- const first=panel.locator('details',{hasText:'2번 하늘'}),second=panel.locator('details',{hasText:'3번 바다'});
- await first.locator('summary').click();await expect(first.getByText('용궁 장면')).toBeVisible();
+ const first=panel.locator('details[data-status]',{hasText:'2번 하늘'}),second=panel.locator('details[data-status]',{hasText:'3번 바다'});
+ await first.locator(':scope>summary').click();await expect(first.getByText('용궁 장면')).toBeVisible();
  await first.getByRole('button',{name:'2번 하늘 다시 쓰기'}).click();
  await expect(first.getByRole('alert')).toHaveText('다시 쓸 점을 학생에게 남길 말에 적어 주세요.');
  // The student answers again while the teacher still has the earlier answer on screen.
@@ -826,7 +838,7 @@ test('teacher reviews answers, handles a changed submission, and passes paper wo
  expect(state.missionRows.m1[2]!.reviewStatus).toBeNull();
  await first.getByRole('button',{name:'2번 하늘 통과',exact:true}).click();
  await expect(first.getByRole('status')).toContainText('통과시켰어요');expect(state.missionRows.m1[2]!.reviewStatus).toBe('passed');
- await second.locator('summary').click();await expect(second.getByText('온라인으로 낸 답변이 없어요.',{exact:false})).toBeVisible();
+ await second.locator(':scope>summary').click();await expect(second.getByText('온라인으로 낸 답변이 없어요.',{exact:false})).toBeVisible();
  await second.getByRole('button',{name:'3번 바다 통과',exact:true}).click();
  await expect(second.getByRole('status')).toContainText('통과시켰어요');
  expect(state.bodies.at(-1)).toEqual({reviewStatus:'passed',feedback:'',expectedSubmittedAt:null});
