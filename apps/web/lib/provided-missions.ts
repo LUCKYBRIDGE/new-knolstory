@@ -1,8 +1,9 @@
 /** Missions 놀스토리 offers for the four provided works. A teacher copies one, edits it freely and assigns the copy. */
 import {BUILTIN_WORKS,type BuiltinWorkId} from './builtin-works';
 import type {MissionDraft} from './mission-api';
+import {PROVIDED_WORKSHEETS,type WorksheetFocus} from './provided-worksheets';
 
-export type ProvidedMission=Readonly<MissionDraft&{providedId:string;storyKey:BuiltinWorkId}>;
+export type ProvidedMission=Readonly<MissionDraft&{providedId:string;storyKey:BuiltinWorkId;focus?:WorksheetFocus}>;
 type WorkCopy=Readonly<{choice:string;otherPath:string;activityTitle:string;activity:string}>;
 
 /** Per-work wording: the choice a character makes, a different turn of the plot, and a classroom activity. */
@@ -36,20 +37,14 @@ const copy:Record<BuiltinWorkId,WorkCopy>={
 /** 별주부전 → 별주부전을, 흥부와 놀부 → 흥부와 놀부를. */
 function object(title:string){const last=title.charCodeAt(title.length-1)-0xac00;return `${title}${last>=0&&last<=11171&&last%28===0?'를':'을'}`;}
 
+/** Per work: reading, the 독후 활동지 for each way of reading it (provided-worksheets), then a classroom activity. */
 export const PROVIDED_MISSIONS:readonly ProvidedMission[]=BUILTIN_WORKS.flatMap(work=>{
  const text=copy[work.id];
  return [
   {providedId:`${work.id}-reading`,kind:'reading' as const,storyKey:work.id,readingFormat:'original' as const,title:`${work.title} 끝까지 읽기`,
    description:`${object(work.title)} 처음부터 끝까지 읽어요. 다 읽으면 가장 기억에 남는 장면을 한 줄로 남겨 주세요.`,
    criteria:'끝까지 읽고, 기억에 남는 장면을 한 줄 넘게 남기면 통과예요.',questions:[]},
-  {providedId:`${work.id}-worksheet`,kind:'worksheet' as const,storyKey:work.id,readingFormat:'original' as const,title:`${work.title} 독후 활동지`,
-   description:`${object(work.title)} 읽고 세 가지 질문에 내 생각을 써요. 정답은 없어요. 생각한 까닭을 함께 쓰는 것이 중요해요.`,
-   criteria:'세 질문에 모두 답하고, 생각한 까닭을 이야기 속 장면과 함께 쓰면 통과예요.',
-   questions:[
-    {id:'q1',prompt:'가장 기억에 남는 장면은 어디인가요? 그 장면이 왜 기억에 남았는지도 써 보세요.'},
-    {id:'q2',prompt:text.choice},
-    {id:'q3',prompt:text.otherPath},
-   ]},
+  ...PROVIDED_WORKSHEETS.filter(sheet=>sheet.storyKey===work.id),
   {providedId:`${work.id}-activity`,kind:'custom' as const,storyKey:work.id,readingFormat:'original' as const,title:text.activityTitle,
    description:text.activity,criteria:'교실에서 선생님이 확인하면 통과예요. 온라인으로 낼 것은 없어요.',questions:[]},
  ];
