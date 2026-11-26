@@ -21,7 +21,7 @@ test('fresh browser entry introduces existing books and explicit navigation ente
  await page.goto('/');await intro.getByRole('button',{name:/이야기 읽기/}).click();
  await expect(page.getByRole('main',{name:'책 표지와 소개',exact:true})).toBeVisible();
  await expect(page.getByTestId('story-runtime-frame')).toHaveCount(0);
- await page.getByRole('button',{name:'서재로',exact:true}).click();
+ await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();
  await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
 });
 

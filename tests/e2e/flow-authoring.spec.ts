@@ -56,7 +56,7 @@ async function createNestedStory(page: Page) {
 async function openMap(page: Page) {
   await menu(page);await openEditorDetails(page,'편집 설정');await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();
   await page.getByRole('button', { name: '전체 흐름 보기', exact: true }).click({ timeout: 10000 });
-  const dialog = page.getByRole('dialog', { name: '이야기 흐름 지도',exact:true });await expect(dialog).toBeVisible();return dialog;
+  const dialog = page.getByRole('dialog', { name: '이야기 지도',exact:true });await expect(dialog).toBeVisible();return dialog;
 }
 
 test('flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content', async ({ page }, testInfo) => {
@@ -246,7 +246,7 @@ test('split the story here, write one path on its own and arrange chapters by re
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue('모두 다리에서 만났어요.');
   await page.locator('[data-current-cut] textarea').fill('숲 끝에서 다리를 건넜어요.');await saved(page);
   await (await openConnections(page)).getByRole('button',{name:'이야기 지도 열기',exact:true}).click();
-  const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});await map.getByRole('button',{name:'장 지도',exact:true}).click();
+  const map=page.getByRole('dialog',{name:'이야기 지도',exact:true});await map.getByRole('button',{name:'장 지도',exact:true}).click();
   // The chapter that used to be 2장 now reads after the fork, the paths and the meeting chapter.
   // Splitting already named the chapters by the reading step, so 장 정리 has nothing left to do.
   await expect(map.locator('[data-chapter-arrange]')).toContainText('장이 읽는 순서대로 정리돼 있어요.');

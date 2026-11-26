@@ -17,6 +17,8 @@ export function writtenAmount(items:readonly Item[],baseline:ReadonlyMap<string,
  return {amount,chars};
 }
 /** The (id, words) pairs of a KnolStory project or ShortStory book. */
-export function workItems(work:{lines?:readonly {id:string;text?:string}[];pages?:readonly {id:string;text:string}[]}):Item[]{
- return (work.pages??work.lines??[]).map(item=>[item.id,item.text??''] as const);
+/** Score-conditioned variants (textVariants) count as the cut's words too, the same way the server counts them. */
+export function workItems(work:{lines?:readonly {id:string;text?:string;textVariants?:readonly {text:string}[]}[];pages?:readonly {id:string;text:string}[]}):Item[]{
+ if(work.pages)return work.pages.map(item=>[item.id,item.text] as const);
+ return (work.lines??[]).map(item=>[item.id,[(item.text??'').trim(),...(item.textVariants??[]).map(variant=>variant.text.trim())].filter(Boolean).join('\n')] as const);
 }

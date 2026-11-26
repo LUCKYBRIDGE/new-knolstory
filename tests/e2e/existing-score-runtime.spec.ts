@@ -167,7 +167,7 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   // Import retires 'N막:' chapter prefixes (chapter-title-migration); everything else must arrive unchanged.
   const expectedImport = { ...project, chapters: project.chapters.map(chapter => ({ ...chapter, title: normalizeChapterTitle(chapter.title) })) };
   if(project.id===sourceBuiltinId){expect(importedProject.id).not.toBe(project.id);expect({...importedProject,id:project.id}).toEqual(expectedImport);}else expect(importedProject).toEqual(expectedImport);
-  await page.getByRole('button', { name: '서재로', exact: true }).click();
+  await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();
   const imported = page.getByRole('article', { name: `내 작품 · ${project.title}`, exact: true });
   await expect(imported).toBeVisible();
   await openShelfAction(page,imported,'처음부터 읽기'); await beginSelectedBook(page); await ready(page); await unlock(page);
@@ -268,7 +268,7 @@ test('Seonnyeo existing storm: fixed original versus scored cut in actual browse
     const inputFile = version === 'before' ? { name: 'baseline.knolstory', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({format:'knolstory',formatVersion:2,document:createStoryDocument({project,savedAt:'2026-10-08T00:00:00.000Z',appVersion:'before-after-baseline'}),audioResources:[]})) } : await currentArchiveFile(sourceFile);
     await importShelfFile(page,inputFile);
     await expect(page.getByRole('region', { name: '작품 설정', exact: true })).toBeVisible();
-    await page.getByRole('button', { name: '서재로', exact: true }).click();
+    await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();
     const card = page.getByRole('article', { name: `내 작품 · ${project.title}`, exact: true });
     await openShelfAction(page,card,'편집하기');
     // The top bar's chapter·cut place is the one way to reach a cut (DESIGN 집중 편집 규칙 2).

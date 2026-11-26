@@ -61,7 +61,8 @@ if assets.exists():
     approvals = json.loads((ROOT / 'packages/asset-registry/src/audio-service-approvals.json').read_text())
     streamed = {row['src'] for row in approvals['assets'] if row.get('delivery') == 'on-demand'}
     def ignore_service_assets(folder, names):
-        web_only = {'cover-fonts', 'legacy-ui', 'loading'}
+        # previews: Web card thumbnails built by scripts/build-image-previews.py; the runtime loads full images itself.
+        web_only = {'cover-fonts', 'legacy-ui', 'loading', 'previews'}
         if Path(folder) == assets / 'illustrations':
             web_only.add('shortstory-v1')
         return [name for name in names if name in web_only or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]

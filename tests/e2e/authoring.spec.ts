@@ -20,7 +20,7 @@ async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!a
 async function closeMenu(page:Page){const root=page.locator('[data-work-menu]');if(await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();}
 async function tool(page:Page,name:string){const pane=page.getByRole('region',{name:'작품 설정',exact:true});if(await pane.isVisible())await pane.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();const root=page.locator('[data-additional-tools]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();await page.getByRole('button',{name,exact:true}).click();}
 async function chooseCut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);}
-async function shelf(page:Page){await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();}
+async function shelf(page:Page){await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();}
 async function createBranchingStory(page: Page) {
   await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
   await page.getByLabel('새 작품 제목', { exact: true }).fill(title);
@@ -213,7 +213,7 @@ test('corrupt stored workspace preserves raw bytes and blocks applying a pending
   expect(await page.evaluate(() => localStorage.getItem('knolstory-next-workspace-v1'))).toBe(originalRaw);
   await preview.getByRole('button',{name:'가져오기 취소',exact:true}).click();await expect(preview).toHaveCount(0);
   expect(await exportedProject(page)).toEqual(before);
-  await menu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();
+  await menu(page);await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();
   const leaving=page.getByRole('dialog',{name:'서재로 이동할까요?',exact:true});await expect(leaving).toContainText('지금 원고는 이 탭에 그대로 있어요');await expect(leaving).not.toContainText('Error:');
   await leaving.getByRole('button',{name:'계속 편집하기',exact:true}).click();await expect(leaving).toHaveCount(0);
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue(draft);

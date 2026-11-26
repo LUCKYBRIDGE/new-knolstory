@@ -1516,7 +1516,7 @@
     "StoryStructure": {
       "type": "object",
       "x-host": true,
-      "description": "이야기 흐름 지도의 갈래 구조: start, branch points (◆) and joins (●) as blocks read top to bottom; each way names its choice or score rule, folds the cuts that simply follow one another (‘2장A 1~2컷’) and says where it ends (다시 만나요, 이야기 끝, 도착 미지정). Long works fold by chapter. A custom catalog component: the editor registers its implementation; it only reads the authored links.",
+      "description": "이야기 지도의 갈래 구조: start, branch points (◆) and joins (●) as blocks read top to bottom; each way names its choice or score rule, folds the cuts that simply follow one another (‘2장A 1~2컷’) and says where it ends (다시 만나요, 이야기 끝, 도착 미지정). Long works fold by chapter. A custom catalog component: the editor registers its implementation; it only reads the authored links.",
       "allowedParents": [
         "Column"
       ],

@@ -13,3 +13,10 @@ describe('counting only what the student wrote in a task copy',()=>{
   expect(workItems({pages:[{id:'p',text:'쪽'}]})).toEqual([['p','쪽']]);
  });
 });
+it('counts score-conditioned variants as the cut’s words, the same on the device and on the server',async()=>{
+ const {workAmount}=await import('../../../server/classroom/work-amount');
+ const lines=[{id:'a',text:'처음',textVariants:[{text:'다른 길'}]},{id:'b',text:'',textVariants:[{text:'조건 글'}]},{id:'c',text:'  '}];
+ const local=writtenAmount(workItems({lines}),null);
+ expect(local).toEqual({amount:2,chars:[...'처음\n다른 길'].length+[...'조건 글'].length});
+ expect(workAmount({content:{format:'knolstory',document:{project:{lines}}}})).toEqual(local);
+});

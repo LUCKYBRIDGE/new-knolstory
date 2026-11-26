@@ -98,7 +98,7 @@ test('a story written by its reader ends with its own credits',async({page})=>{
  const project={...source,id:'reader-written-ending',title:'달빛 바다의 약속',chapters:[{...chapter,order:1}],lines:cuts,cover:{...source.cover,author:'3학년 2반 하늘',authorNote:'끝까지 읽어 줘서 고마워요.'}};
  await importShelfFile(page,{name:'ending.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-11-22T00:00:00.000Z',appVersion:'ending-test',project}))});
  await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');
- await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
+ await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await shelfCoverButton(page,'달빛 바다의 약속').click();await page.getByRole('dialog').getByRole('button',{name:'읽기',exact:true}).click();
  await readerReady(page);await startSound(page);await readerReady(page);
  await readToEnding(page);
