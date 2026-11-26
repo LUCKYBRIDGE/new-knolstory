@@ -26,8 +26,7 @@ async function readAndReturn(page:Page){
  const status=page.getByTestId('story-runtime-status');
  await expect(status).toContainText('연결됨',{timeout:120000});
  await expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision')),{timeout:120000}).toBe(true);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
- await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  await expect(frame).toHaveAttribute('data-direction-instance','original');
  await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('shake');
 }

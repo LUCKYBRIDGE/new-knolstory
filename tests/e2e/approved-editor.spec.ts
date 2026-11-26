@@ -77,7 +77,7 @@ for(const hasChoices of [false,true])for(const hasScores of [false,true])test(`c
   await expect(await currentCutText(page)).toHaveValue(project.lines[0].text);
   const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-combination-instance','original'));
   await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered();
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
   await expect(frame).toHaveAttribute('data-combination-instance','original');await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(project.lines[0].id);await expect(await currentCutText(page)).toHaveValue(project.lines[0].text);
 });
 

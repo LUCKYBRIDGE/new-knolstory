@@ -20,8 +20,8 @@ describe('chapter arrangement',()=>{
   const {project}=splitStoryHere(story(),'a2',{labels:['숲','강'],mode:'rejoin'},ids());
   const plan=chapterArrangement(project,analyzeStoryFlow(project));
   expect(plan.moved).toBe(0);
-  // B and C were 2장·3장 but now read at steps 3 and 4.
-  expect(plan.renamed).toBe(2);
+  // Splitting already moved B and C on to steps 3 and 4, so nothing is left to rename.
+  expect(plan.renamed).toBe(0);
   const arranged=reorderStoryChapters(project,plan.ids,plan.labels);
   const labels=[...arranged.chapters].sort((x,y)=>x.order-y.order).map(chapterLabel);
   expect(labels).toEqual(['1장 · A','2장A · 숲','2장B · 강','3장 · B','4장 · C']);

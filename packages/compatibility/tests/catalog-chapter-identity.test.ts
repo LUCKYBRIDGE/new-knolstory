@@ -1,3 +1,4 @@
+import {chaptersInStoryOrder} from '@knolstory/story-domain';
 import {currentCatalogVisuals} from './current-catalog-visuals';
 import {simplifyCatalogPerspectiveCard as previousCard} from '../src/catalog-perspective-card';
 import {connectCatalogLayeredScenes} from '../src/catalog-layered-scenes';
@@ -19,7 +20,9 @@ it('labels sibling branches at the same narrative stage and sorts the displayed 
  expect(heungbu.chapters.filter(c=>c.chapterNumber===5).map(c=>chapterLabel(c))).toEqual(['5장A · 빌린 곡식','5장B · 빈손의 겨울']);
  expect(heungbu.chapters.find(c=>c.id==='chapter-6')?.chapterNumber).toBe(6);
  expect(rabbit.chapters.filter(c=>c.chapterNumber===2)).toHaveLength(2);
- for(const entry of representativeStories){const p=resolveProvidedCatalogStory(entry.project);const numbers=p.chapters.map(c=>c.chapterNumber);expect(numbers.every(Number.isSafeInteger)).toBe(true);expect(numbers).toEqual([...numbers].sort((a,b)=>a!-b!));}
+ // Story order (2026-11-25): each storyline to its end before the next, a meeting chapter after every way into it.
+ for(const entry of representativeStories){const p=resolveProvidedCatalogStory(entry.project);const numbers=p.chapters.map(c=>c.chapterNumber);expect(numbers.every(Number.isSafeInteger)).toBe(true);
+  const active=p.chapters.filter(c=>c.branchLabel!=='미연결 원고');expect(active.map(c=>c.id)).toEqual(chaptersInStoryOrder(p).filter(c=>c.branchLabel!=='미연결 원고').map(c=>c.id));}
 });
 it('keeps disconnected Onggojib manuscripts explicitly marked and every original cut intact',()=>{
  const original=representativeStories.find(s=>s.id==='onggojib')!.project,p=resolveProvidedCatalogStory(original);expect(p.chapters.filter(c=>c.branchLabel==='미연결 원고')).toHaveLength(5);expect(p.lines).toHaveLength(original.lines.length);
@@ -32,4 +35,13 @@ it('keeps originals unchanged and does not rewrite any personally edited chapter
 });
 it('changes chapter presentation only: preserves every cut, runtime order and all other authored fields',()=>{
  for(const entry of representativeStories){const before=simplifyCatalogPerspectiveCard(connectCatalogBranchNarrative(connectCatalogNarrativeSeams(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))))),after=resolveProvidedCatalogStory(entry.project);expect(after.lines).toEqual(before.lines);expect({...after,chapters:before.chapters}).toEqual(before);const strip=(p:StoryProject)=>p.chapters.map(({chapterNumber:_n,branchLabel:_b,title:_t,...chapter})=>chapter).sort((a,b)=>a.id.localeCompare(b.id));expect(strip(after)).toEqual(strip(before));}
+});
+for(const entry of representativeStories)it(`${entry.id}: chapters a reader can reach never share a name`,()=>{
+ const current=resolveProvidedCatalogStory(entry.project),names=current.chapters.filter(chapter=>chapter.branchLabel!=='미연결 원고').map(chapter=>chapterLabel(chapter).split(' · ')[0]);
+ expect(names.filter((name,index)=>names.indexOf(name)!==index)).toEqual([]);
+});
+it('onggojib: chapters two branch points split into together keep the choice letter (7장A·7장B, not 7장·7장A)',()=>{
+ const current=resolveProvidedCatalogStory(representativeStories.find(entry=>entry.id==='onggojib')!.project);
+ const label=(title:string)=>chapterLabel(current.chapters.find(chapter=>chapter.title.endsWith(title)&&chapter.branchLabel!=='미연결 원고')!).split(' · ')[0];
+ expect([label('아이의 이야기를 듣다'),label('말을 삼킨 아이들')]).toEqual(['7장A','7장B']);
 });

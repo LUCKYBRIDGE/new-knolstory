@@ -2,7 +2,7 @@ import {CURRENT_SCHEMA_VERSION} from '../../packages/story-domain/src';
 import {advanceReading,editReadCut,restartReading} from './native-reader';
 import {previousReadCut} from './reader-actions';
 import {confirmAuthoringImport,expectIndependentImportedProject,openFileExchange} from './authoring-file';
-import {openChoiceEditing} from './editor-screens';
+import {enableEditing,openChoiceEditing} from './editor-screens';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import type {StoryProject} from '@knolstory/story-domain';
@@ -110,7 +110,7 @@ test('score-only initial values route without choices and preserve the whole wor
  await expect(page.getByRole('region',{name:'이야기 엔딩',exact:true})).toContainText('함께하는 결말');
  await editReadCut(page);
  expect((await exported(page,info.outputPath('score-only-after-first-route.knolstory'))).document.project).toEqual(imported);
- await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('score-join');await menu(page);await page.getByRole('button',{name:'이야기 점수',exact:true}).click();
+ await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('score-join');await enableEditing(page,'점수');await menu(page);await page.getByRole('button',{name:'이야기 점수',exact:true}).click();
  const settings=page.getByRole('region',{name:'이야기 점수 설정',exact:true}),initial=settings.getByLabel('점수 1 시작 값',{exact:true});await initial.fill('0');await initial.blur();await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();
  const changed=(await exported(page,info.outputPath('score-only-edited.knolstory'))).document.project as StoryProject;
  expect(changed).toEqual({...imported,updatedAt:changed.updatedAt,scores:imported.scores!.map(score=>score.id==='trust'?{...score,initial:0}:score)});

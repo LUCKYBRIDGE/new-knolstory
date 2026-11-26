@@ -14,7 +14,8 @@ export function assertCatalogOnlyMedia(value:unknown):void{
   if(typeof id!=='string'||resolveAsset(id)?.type!==type)throw denied();
  }
  function audio(value:unknown){
-  const source=record(value),cues=[source.music,source.ambience,...list(source.sounds)];
+  // A music or ambience sequence keeps its tracks in clips, which must pass the same catalog check.
+  const source=record(value),cues=[source.music,source.ambience,...list(source.sounds),...list(record(source.music).clips),...list(record(source.ambience).clips)];
   for(const cue of cues){const id=record(cue).assetId;if(id!==undefined&&(typeof id!=='string'||!resolveAudioAsset(id)&&!resolveExcludedAudioAsset(id)))throw denied();}
   // Raw project-level audio is not canonical but direct loader inputs still fail closed.
   if(source.assetId!==undefined&&(typeof source.assetId!=='string'||!resolveAudioAsset(source.assetId)&&!resolveExcludedAudioAsset(source.assetId)))throw denied();

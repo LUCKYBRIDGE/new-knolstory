@@ -57,3 +57,9 @@ it('retains historical exclusion recognition when tombstones are present',async(
  try{expect(()=>assertCatalogOnlyMedia({project:{audio:{assetId:'historical-excluded',music:{assetId:'historical-excluded'}}}})).not.toThrow();}
  finally{lookup.mockRestore();}
 });
+it('checks every track of a music or ambience sequence',()=>{
+ const sequence=(assetId:string)=>({project:{chapters:[{audio:{music:{action:'sequence',id:'s',clips:[{id:'c1',assetId,sourceEndMs:1000}]}}}]}});
+ expect(()=>assertCatalogOnlyMedia(sequence('https://example.com/x.mp3'))).toThrow();
+ expect(()=>assertCatalogOnlyMedia(sequence('audio:music:does-not-exist'))).toThrow();
+ expect(()=>assertCatalogOnlyMedia(sequence('audio:music:forest'))).not.toThrow();
+});

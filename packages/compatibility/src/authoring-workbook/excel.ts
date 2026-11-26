@@ -1,7 +1,7 @@
 import {fontRunText} from './font-runs';
 import assetCatalog from '../../../asset-registry/src/catalog.json';
 import {AUDIO_CATALOG,audioAssetCategory} from '../../../asset-registry/src/audio';
-import {createExcelWorkbook,checkExcelArchive} from '../excel';
+import {createExcelWorkbook,checkExcelArchive,excelCellText} from '../excel';
 import {TABLE_CELL_LIMIT,TABLE_MAX_BYTES} from '../story-table';
 import type {AuthoringArchive,AuthoringArchiveInput} from '../authoring-archive';
 import {exportAuthoringWorkbook,importAuthoringWorkbook,authoringWorkbookSpecs} from './index';
@@ -29,7 +29,7 @@ export async function exportAuthoringExcel(input:AuthoringArchiveInput|Authoring
  reference.columns=[{width:60},{width:40},{width:18},{width:24},{width:42}];reference.views=[{state:'frozen',ySplit:1}];reference.autoFilter={from:'A1',to:`E${reference.rowCount}`};reference.eachRow(row=>row.eachCell(cell=>{cell.numFmt='@';cell.alignment={vertical:'top',wrapText:true};}));reference.getRow(1).font={bold:true};reference.getCell('A1').note='서비스에 등록된 작품 자료의 참고 목록이에요. 이름을 찾아 ID를 복사하세요. 이 탭을 수정해 새 작품 자료를 등록할 수는 없어요. 등록된 그림 ID는 쪽·표지·무대에, 등록된 음원 ID는 장·컷 소리에 연결해요. 외부 그림·음원 업로드는 제공하지 않아요. 기존 저장 작품의 첨부 원본은 파일 보관 시 보존해요.';
  for(const spec of authoringWorkbookSpecs(authoring.workKind)){
   const table=authoring.tables[spec.key];cellLimit(spec,table.rows);
-  const sheet=book.addWorksheet(spec.title);sheet.addRow(spec.columns.map(c=>c.label));sheet.addRow(table.headers);for(const row of table.rows)sheet.addRow([...row]);
+  const sheet=book.addWorksheet(spec.title);sheet.addRow(spec.columns.map(c=>c.label));sheet.addRow(table.headers);for(const row of table.rows)sheet.addRow(row.map(excelCellText));
   sheet.views=[{state:'frozen',ySplit:2}];
   sheet.getRow(2).hidden=true;
   sheet.getRow(1).font={name:'Malgun Gothic',bold:true,color:{argb:'FFFFFFFF'}};sheet.getRow(1).height=Math.max(28,...spec.columns.map(column=>{const width=/본문|이야기|설명|노트|내용|글/.test(column.label)?48:/ID|키|시각/.test(column.label)?28:20;const units=[...column.label].reduce((sum,char)=>sum+(/[^\x00-\x7f]/.test(char)?2:1),0);return Math.ceil(units/(width-2))*14+8;}));

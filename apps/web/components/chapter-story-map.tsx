@@ -29,8 +29,8 @@ export function ChapterStoryMap({ project, graph, currentChapterId, onOpenChapte
   }, [byId, currentChapterId]);
   const forks = flow.nodes.filter(node => node.fork).length, merges = flow.nodes.filter(node => node.merge).length, endings = flow.nodes.filter(node => node.ending).length, loose = flow.nodes.filter(node => !node.reachable).length;
   return <section className={styles.section} aria-label="장 이야기 지도">
-    <p className={styles.summary}>{flow.nodes.length}장 · <span className={styles.key} data-kind="fork">◆ 갈림 {forks}</span> · <span className={styles.key} data-kind="merge">● 다시 만남 {merges}</span> · <span className={styles.key} data-kind="ending">■ 끝 {endings}</span>{loose > 0 && <> · <span className={styles.key} data-kind="loose">이어지지 않은 장 {loose}</span></>}</p>
-    <p className={styles.hint}>왼쪽에서 오른쪽으로 읽는 순서예요. 같은 세로줄은 같은 단계의 다른 갈래예요. 장을 누르면 그 장을 편집해요.</p>
+    <p className={styles.summary}>{flow.nodes.length}장 · <span className={styles.key} data-kind="fork">◆ 갈림길 {forks}</span> · <span className={styles.key} data-kind="merge">● 다시 만남 {merges}</span> · <span className={styles.key} data-kind="ending">■ 끝 {endings}</span>{loose > 0 && <> · <span className={styles.key} data-kind="loose">이어지지 않은 장 {loose}</span></>}</p>
+    <p className={styles.hint}>왼쪽에서 오른쪽으로 읽는 순서예요. 같은 세로줄은 같은 단계의 다른 갈래이고, 장 옆 글자는 앞 갈림길에서 고른 길이에요(A 첫째 선택지, B 둘째). 장을 누르면 그 장을 편집해요.</p>
     {arrangement && (arrangement.moved || arrangement.renamed ? <div className={styles.arrange} data-chapter-arrange>
       <p>{arrangement.moved > 0 && <>저장 순서가 읽는 순서와 다른 장 {arrangement.moved}개</>}{arrangement.moved > 0 && arrangement.renamed > 0 && " · "}{arrangement.renamed > 0 && <>읽는 단계와 번호가 다른 장 {arrangement.renamed}개</>}</p>
       {arrangement.renamed > 0 && <label><input type="checkbox" checked={renumber} onChange={event => setRenumber(event.target.checked)} /> 장 번호와 갈래 글자도 다시 매기기</label>}

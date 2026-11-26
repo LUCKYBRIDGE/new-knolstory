@@ -403,15 +403,16 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     // Each work task holds one work per student, so their number is bounded; old ones are deleted to make room.
     const tasks=num((await client.query('SELECT count(*) AS n FROM knolstory_class.assignments WHERE classroom_id=$1 AND created_at>=$2',[room.id,schoolYearStart(now())])).rows[0]?.n);
     if(tasks>=STORAGE_LIMITS.workTasks)throw new ClassroomError(409,'ASSIGNMENT_LIMIT');
-    const result=await client.query(`INSERT INTO knolstory_class.assignments AS a(id,classroom_id,title,description,story_key,format,open,created_at,share_url,due_at,edition,start_point,start_label,recipient_ids) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8,$9,$10,$11,$12,$13::uuid[]) RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,a.checks,a.target_amount,${STAGE_COLUMNS},${recipientNumbersSql('a')}`,
+    const result=await client.query(`INSERT INTO knolstory_class.assignments AS a(id,classroom_id,title,description,story_key,format,open,created_at,share_url,due_at,edition,start_point,start_label,recipient_ids) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8,$9,$10,$11,$12,$13::uuid[]) RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,a.checks,a.target_amount,${STAGE_COLUMNS},${recipientNumbersSql('a')},a.recipient_ids`,
      [randomUUID(),room.id,input.title,input.description,input.storyKey,now(),assignmentFormat(input.format===undefined?'knolstory':input.format),input.shareUrl??null,input.dueAt??null,input.storyKey?input.edition??null:null,input.storyKey&&input.startPoint?input.startPoint:null,input.storyKey&&input.startPoint?input.startLabel??null:null,recipients]);
     const made=result.rows[0]!;
     if(input.checks?.length||input.targetAmount){await client.query('UPDATE knolstory_class.assignments SET checks=$2::jsonb,target_amount=$3 WHERE id=$1',[made.id,JSON.stringify(input.checks??[]),input.targetAmount??null]);made.checks=input.checks??[];made.target_amount=input.targetAmount??null;}
     if(input.afterAssignmentId){
      // Only a ShortStory task of this classroom and school year can open a KnolStory task.
-     const earlier=(await client.query('SELECT id,title,format,created_at FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2',[input.afterAssignmentId,room.id])).rows[0];
+     const earlier=(await client.query('SELECT id,title,format,created_at,recipient_ids FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2',[input.afterAssignmentId,room.id])).rows[0];
      if(!earlier)throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
      if(earlier.format!=='shortstory'||made.format!=='knolstory'||num(earlier.created_at)<schoolYearStart(now()))throw new ClassroomError(422,'STAGE_NOT_ALLOWED');
+     if(!stageRecipientsFit(earlier.recipient_ids,made.recipient_ids))throw new ClassroomError(422,'STAGE_RECIPIENTS');
      await client.query('UPDATE knolstory_class.assignments SET after_assignment_id=$2 WHERE id=$1',[made.id,earlier.id]);made.after_assignment_id=earlier.id;made.after_title=earlier.title;
     }
     if(input.editScope){await client.query('UPDATE knolstory_class.assignments SET edit_scope=$2::jsonb WHERE id=$1',[made.id,JSON.stringify(input.editScope)]);made.edit_scope=input.editScope;}
@@ -429,11 +430,13 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   },
   async patchAssignment(teacherId:string,id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null;recipients?:readonly number[]|null;checks?:readonly string[];targetAmount?:number|null;editScope?:EditScope|null}>):Promise<AssignmentView>{
    return transaction(async client=>{
-    const room=await teacherRoom(client,teacherId),current=await teacherAssignment(client,room.id,id,true);
+    // Changing who gets a task is checked against its stages under the classroom lock, like creating one, so two tabs cannot both pass.
+    const room=await teacherRoom(client,teacherId,patch.recipients!==undefined),current=await teacherAssignment(client,room.id,id,true);
     if(patch.editScope!==undefined)await client.query('UPDATE knolstory_class.assignments SET edit_scope=$2::jsonb WHERE id=$1',[id,patch.editScope===null?null:JSON.stringify(patch.editScope)]);
     if(patch.checks!==undefined)await client.query('UPDATE knolstory_class.assignments SET checks=$2::jsonb WHERE id=$1',[id,JSON.stringify(patch.checks)]);
     if(patch.targetAmount!==undefined)await client.query('UPDATE knolstory_class.assignments SET target_amount=$2 WHERE id=$1',[id,patch.targetAmount]);
     const recipients=patch.recipients===undefined?current.recipient_ids??null:await recipientIds(client,room.id,patch.recipients);
+    if(patch.recipients!==undefined)await assertStageRecipients(client,id,recipients);
     const result=await client.query(`UPDATE knolstory_class.assignments AS a SET title=$2,description=$3,open=$4,share_url=$5,due_at=$6,recipient_ids=$7::uuid[] WHERE a.id=$1 RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,a.checks,a.target_amount,${STAGE_COLUMNS},${recipientNumbersSql('a')}`,
      [id,patch.title??current.title,patch.description??current.description,patch.open??current.open,patch.shareUrl===undefined?current.share_url??null:patch.shareUrl,patch.dueAt===undefined?current.due_at??null:patch.dueAt,recipients]);
     return assignment(result.rows[0]!,false);
@@ -607,18 +610,35 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(snapshot.content.format!==assignmentFormat(target.rows[0].format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
     try{await assertStudentTitle(client,accountId,snapshot);}catch{throw new ClassroomError(422,'STUDENT_NUMBER_TITLE');}
     // Homework is refused only for one oversized work or a pool already far past its limit.
-    const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
+    const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length,review_status FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
+    // A passed work is what the next stage is built from; replacing it would silently undo the teacher's pass.
+    if(previous.rows[0]?.review_status==='passed')throw new ClassroomError(409,'SUBMISSION_PASSED');
     const room=await assertCanSubmit(client,text(context.classroom_id),accountId,bytes-Number(previous.rows[0]?.byte_length??0),bytes);
     if(room==='work-too-large')throw new ClassroomError(413,'WORK_TOO_LARGE');
     if(room==='student-full')throw new ClassroomError(409,'SUBMISSION_STORAGE_FULL');
     if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
     const submittedAt=now();
     const {amount,chars}=ownAmount(workAmount(snapshot),written);
-    await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at,byte_length,amount,chars) VALUES($1,$2,$3::jsonb,$4,$5,$6,$7)
-     ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,byte_length=EXCLUDED.byte_length,amount=EXCLUDED.amount,chars=EXCLUDED.chars,review_status=NULL`,[id,accountId,JSON.stringify(snapshot),submittedAt,bytes,amount,chars]);
+    // The pass is checked again in the write itself (no extra row lock, so the capacity lock stays the only one taken first).
+    const saved=await client.query(`INSERT INTO knolstory_class.submissions AS s(assignment_id,student_account_id,document,submitted_at,byte_length,amount,chars) VALUES($1,$2,$3::jsonb,$4,$5,$6,$7)
+     ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,byte_length=EXCLUDED.byte_length,amount=EXCLUDED.amount,chars=EXCLUDED.chars,review_status=NULL
+     WHERE s.review_status IS DISTINCT FROM 'passed'`,[id,accountId,JSON.stringify(snapshot),submittedAt,bytes,amount,chars]);
+    if(!saved.rowCount)throw new ClassroomError(409,'SUBMISSION_PASSED');
     return {submittedAt};
    });
   },
  };
 }
+/** Every student of a KnolStory stage must also get the ShortStory task it follows, or that student stays locked out for good. */
+function stageRecipientsFit(earlier:unknown,later:unknown):boolean{
+ if(!Array.isArray(earlier))return true;if(!Array.isArray(later))return false;
+ const allowed=new Set(earlier);return later.every(id=>allowed.has(id));
+}
+async function assertStageRecipients(client:SqlClient,id:string,recipients:unknown):Promise<void>{
+ const before=(await client.query('SELECT e.recipient_ids FROM knolstory_class.assignments a JOIN knolstory_class.assignments e ON e.id=a.after_assignment_id WHERE a.id=$1',[id])).rows[0];
+ if(before&&!stageRecipientsFit(before.recipient_ids,recipients))throw new ClassroomError(422,'STAGE_RECIPIENTS');
+ const after=await client.query('SELECT recipient_ids FROM knolstory_class.assignments WHERE after_assignment_id=$1',[id]);
+ if(after.rows.some(row=>!stageRecipientsFit(recipients,row.recipient_ids)))throw new ClassroomError(422,'STAGE_RECIPIENTS');
+}
+
 export type ClassroomService=ReturnType<typeof createClassroomService>;

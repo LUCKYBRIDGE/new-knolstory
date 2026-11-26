@@ -34,7 +34,8 @@ it('does not repair an invalid choice reference or rewrite a plain-text cut refe
 it('keeps self-owned conditions, literal loop targets and original source provenance on split',()=>{
  const p=choiceManuscript(),source={kind:'baseEdition' as const,baseStoryId:'base',baseEditionId:'original',linearCreation:{mode:'continue' as const,sourceStartChoiceLineId:'a',writingStartLineId:'b',prefixLineIds:['a'],choices:[{lineId:'a',optionId:'yes',label:'원본 선택'}],sourceRevision:'1'}},project={...p,source,lines:p.lines.map(l=>l.id==='a'?{...l,audio:{sounds:[{id:'self',assetId:'audio:sound:chime',branchCondition:{sourceLineId:'a',choiceId:'yes'}}]},flow:{...l.flow!,type:'choice' as const,options:[{id:'yes',label:'처음으로',targetLineId:'a'},{id:'no',label:'다음',targetLineId:'b'}]}}:l)};
  const result=splitStoryCut(project,'a','second',6);expect(result.source).toEqual(source);
- for(const id of ['a','second'])expect(result.lines.find(l=>l.id===id)?.audio?.sounds?.[0].branchCondition).toEqual({sourceLineId:'second',choiceId:'yes'});
+ // The one-shot sound stays on the first half only; its choice condition follows the choice to the second half.
+ expect(result.lines.find(l=>l.id==='a')?.audio?.sounds?.[0].branchCondition).toEqual({sourceLineId:'second',choiceId:'yes'});expect(result.lines.find(l=>l.id==='second')?.audio).toBeUndefined();
  expect(result.lines.find(l=>l.id==='second')?.flow).toEqual(project.lines[0].flow);
 });
 it('explains external audio/effect range endpoints before removing a merged cut',()=>{
@@ -68,4 +69,21 @@ it('roundtrips moved conditions through current archive, workbook, actual XLSX a
   expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
   expect(await restoreJsonbSnapshot(await prepareJsonbSnapshot(archive))).toEqual(archive);
  }
+});
+
+it('plays one-shot cues once and keeps music and ranges across a split',()=>{
+ const p=createBlankStoryProject({id:'split-cues',chapterId:'ch',lineId:'a'}),project={...p,lines:p.lines.map(l=>l.id==='a'?{...l,text:'첫째 문장. 둘째 문장.',audio:{music:{action:'play' as const,assetId:'audio:music:calm'},sounds:[{id:'once',assetId:'audio:sound:chime'}]},presentation:{backgroundFit:'contain' as const,effects:[{id:'shake',type:'shake' as const,scope:'following' as const,endLineId:'a'}]}}:l)} as typeof p;
+ const result=splitStoryCut(project,'a','second',6),first=result.lines.find(l=>l.id==='a')!,second=result.lines.find(l=>l.id==='second')!;
+ expect(first.audio?.sounds).toHaveLength(1);expect(second.audio).toEqual({music:{action:'maintain'}});
+ expect(second.presentation).toEqual({backgroundFit:'contain'});
+ expect(first.presentation?.effects?.[0].endLineId).toBe('second');
+});
+it('keeps actor overrides on both halves and moves a chapter music range that ended at the split cut',()=>{
+ const p=createBlankStoryProject({id:'split-stage',chapterId:'ch',lineId:'a'});
+ const project={...p,chapters:p.chapters.map(c=>({...c,audio:{music:{action:'play' as const,assetId:'audio:music:calm',endLineId:'a'}}})),
+  lines:p.lines.map(l=>l.id==='a'?{...l,text:'첫째 문장. 둘째 문장.',presentation:{actors:{left:{opacity:0.25}}}}:l)} as typeof p;
+ const result=splitStoryCut(project,'a','second',6);
+ expect(result.lines.find(l=>l.id==='second')!.presentation?.actors).toEqual({left:{opacity:0.25}});
+ expect(result.lines.find(l=>l.id==='a')!.presentation?.actors).toEqual({left:{opacity:0.25}});
+ expect(result.chapters[0]!.audio?.music).toMatchObject({endLineId:'second'});
 });

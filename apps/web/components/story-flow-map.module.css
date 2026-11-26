@@ -56,3 +56,13 @@
 .viewTabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--paper);width:fit-content;max-width:100%}
 .viewTabs button{border:1px solid transparent;background:transparent;font-weight:700}
 .viewTabs button[aria-pressed=true]{background:var(--white);border-color:var(--mint-strong)}
+.mapBar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.toCurrent{min-height:44px;font-weight:700}
+.found{padding:12px;border:1px solid var(--line);border-radius:var(--radius-panel);background:var(--white);margin:12px 0}
+.found h3{margin:0 0 8px;font-size:var(--text-body)}
+.found ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.found li{display:grid;gap:4px;padding:8px;border:1px solid var(--line);border-radius:10px;min-width:0;overflow-wrap:anywhere;word-break:keep-all}
+.foundContext{font-size:var(--text-small);font-weight:700;color:#7a5414}
+.found .authoredText{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.foundActions{display:flex;flex-wrap:wrap;gap:8px}
+.foundActions button{min-height:44px}

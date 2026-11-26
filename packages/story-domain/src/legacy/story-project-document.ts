@@ -57,7 +57,7 @@ export function isStrictIsoUtcTimestamp(value: string) {
 
 function requireNonBlank(value: string, fieldName: string) {
   if (!value.trim()) {
-    throw new Error(`${fieldName} must not be blank.`);
+    throw new Error(`${fieldName} 값이 비어 있어요. 작품 파일이 손상되었을 수 있어요.`);
   }
 }
 
@@ -68,7 +68,7 @@ export function createStoryDocument({
   assetCatalogVersion,
 }: CreateStoryDocumentInput): StoryDocumentEnvelope {
   if (!isStrictIsoUtcTimestamp(savedAt)) {
-    throw new Error("savedAt must be a strict ISO 8601 UTC timestamp.");
+    throw new Error("작품 파일의 저장 시각(savedAt) 형식이 올바르지 않아요. 놀스토리에서 다시 저장한 파일을 사용해 주세요.");
   }
   requireNonBlank(appVersion, "appVersion");
   if (assetCatalogVersion !== undefined) {
@@ -133,11 +133,11 @@ function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 |
     issues.push({
       code: "invalid-value",
       path: "$.savedAt",
-      message: "savedAt must be a strict ISO 8601 UTC timestamp.",
+      message: "작품 파일의 저장 시각(savedAt) 형식이 올바르지 않아요. 놀스토리에서 다시 저장한 파일을 사용해 주세요.",
     });
   }
   if (typeof value.appVersion !== "string" || !value.appVersion.trim()) {
-    issues.push({ code: "invalid-value", path: "$.appVersion", message: "appVersion must not be blank." });
+    issues.push({ code: "invalid-value", path: "$.appVersion", message: "작품 파일의 앱 버전(appVersion)이 비어 있어요. 놀스토리에서 다시 저장한 파일을 사용해 주세요." });
   }
   if (
     value.assetCatalogVersion !== undefined &&
@@ -167,7 +167,7 @@ function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 |
   }
   if(version<7&&rawProject){
     const nodes=[...(Array.isArray(rawProject.lines)?rawProject.lines:[]),...((rawProject as {chapters?:unknown[]}).chapters??[])];
-    const hasRange=nodes.some(node=>{if(!node||typeof node!=='object')return false;const n=node as {presentation?:{effects?:{endLineId?:unknown}[]};audio?:{music?:{endLineId?:unknown};ambience?:{endLineId?:unknown}}};return n.presentation?.effects?.some(cue=>cue.endLineId!==undefined)||n.audio?.music?.endLineId!==undefined||n.audio?.ambience?.endLineId!==undefined;});
+    const hasRange=nodes.some(node=>{if(!node||typeof node!=='object')return false;const n=node as {presentation?:{effects?:{endLineId?:unknown}[]};audio?:{music?:{endLineId?:unknown};ambience?:{endLineId?:unknown}}};return n.presentation?.effects?.some(cue=>!!cue&&cue.endLineId!==undefined)||n.audio?.music?.endLineId!==undefined||n.audio?.ambience?.endLineId!==undefined;});
     if(hasRange)issues.push({code:'invalid-value',path:'$.project',message:'종료 컷 범위는 작품 문서 버전7에서 지원해요.'});
   }
   if(version<8&&rawProject){
@@ -206,7 +206,7 @@ export function parseStoryDocument(
   if (typeof input === "string") return parseStoryDocumentJson(input, legacyMetadata);
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     return failure([
-      { code: "invalid-type", path: "$", message: "Document input must be an object or JSON string." },
+      { code: "invalid-type", path: "$", message: "작품 파일 내용을 읽을 수 없어요. 놀스토리 작품 파일인지 확인해 주세요." },
     ]);
   }
   const value = input as Record<string, unknown>;
@@ -255,7 +255,7 @@ export function parseStoryDocumentJson(
     return parseStoryDocument(JSON.parse(raw), legacyMetadata);
   } catch {
     return failure([
-      { code: "invalid-json", path: "$", message: "Document JSON could not be parsed." },
+      { code: "invalid-json", path: "$", message: "작품 파일 내용을 읽을 수 없어요. 파일이 손상되었거나 놀스토리 작품 파일이 아니에요." },
     ]);
   }
 }

@@ -31,5 +31,5 @@ test('story reading from the library has no editing return',async({page})=>{
  await page.goto('/');await enterLibrary(page);await openBuiltinEdition(page,'seonnyeo','original','start');await beginSelectedBook(page);
  const menu=page.getByRole('button',{name:'읽기 메뉴',exact:true});await expect(menu).toBeVisible({timeout:30000});
  await expect(page.getByRole('button',{name:'편집으로 돌아가기',exact:true})).toHaveCount(0);
- await menu.click();await expect(page.getByRole('group',{name:'읽기 메뉴',exact:true}).getByRole('button',{name:'이 컷 편집하기',exact:true})).toHaveCount(0);
+ await menu.click();await expect(page.getByRole('group',{name:'읽기 메뉴',exact:true}).getByRole('button',{name:'편집으로 돌아가기',exact:true})).toHaveCount(0);
 });

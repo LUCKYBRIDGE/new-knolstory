@@ -84,6 +84,7 @@ export async function mockClassroom(page:Page,role:'teacher'|'student'){
   if(teacherDraft)return route.fulfill(ok({document:state.draftDocs[teacherDraft[1]!],savedAt:1_760_000_050_000}));
   const studentDraft=path.match(/^class\/classroom\/assignments\/(\w+)\/draft$/);
   if(studentDraft&&method==='PUT'){const item=state.assignments.find(entry=>entry.id===studentDraft[1])!;state.draftDocs[item.id]=body.document;(item as Record<string,unknown>).draftSavedAt=1_760_000_050_000;return route.fulfill(ok({savedAt:1_760_000_050_000}));}
+  if(studentDraft&&method==='GET'){const document=state.draftDocs[studentDraft[1]!];return document?route.fulfill(ok({document,savedAt:1_760_000_050_000,comment:'',commentedAt:null})):route.fulfill({status:404,json:{success:false,error:{code:'DRAFT_NOT_FOUND'}}});}
   const assignment=path.match(/^class\/classroom\/assignments\/(\w+)(?:\/(submissions|submission))?$/);
   if(assignment){
    const item=state.assignments.find(entry=>entry.id===assignment[1])!;

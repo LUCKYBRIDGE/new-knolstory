@@ -101,3 +101,5 @@ export * from './image-preload';
 export * from './branch-authoring';
 export * from './picturebook-chapters';
 export * from './story-structure';
+export * from './branch-numbering-sync';
+export * from './flow-loop-guard';

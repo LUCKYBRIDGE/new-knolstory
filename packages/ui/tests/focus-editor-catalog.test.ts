@@ -37,7 +37,7 @@ describe('focus editor A2UI catalog',()=>{
 
  it('keeps one way per job, one primary and four controls per group',()=>{
   const surface=basic();
-  surface.components.set('second-map',{id:'second-map',component:'Button',label:'지도',variant:'primary',action:{event:{name:'openMap'}}});
+  surface.components.set('second-map',{id:'second-map',component:'Button',label:'지도',variant:'primary',action:{event:{name:'openStoryMap'}}});
   surface.components.set('a',{id:'a',component:'Button',label:'가',variant:'primary',action:{event:{name:'a'}}});
   surface.components.set('b',{id:'b',component:'Button',label:'나',action:{event:{name:'b'}}});
   edit(surface,'cut-tools',{children:['new-cut','second-map','a','b','speaker']});
@@ -46,10 +46,14 @@ describe('focus editor A2UI catalog',()=>{
 
  it('allows the same job twice only when the devices never meet',()=>{
   const surface=basic();
-  surface.components.set('phone-map',{id:'phone-map',component:'Button',label:'지도',devices:['phone'],action:{event:{name:'openMap'}}});
-  edit(surface,'cut-tools',{devices:undefined,children:['new-cut','phone-map']});
+  // 이야기 나누기 sits in 컷 더보기 (tablet and up) and, on phones, in the folded 이야기 갈래: the two never meet.
   expect(validateSurface(surface)).toEqual([]);
-  expect(effectiveDevices(surface,'story-map')).toEqual(['tablet','desktop']);
+  expect(effectiveDevices(surface,'split-story')).toEqual(['tablet','desktop']);
+  expect(effectiveDevices(surface,'phone-split-story')).toEqual(['phone']);
+  // A third copy that phones also see is the same job twice.
+  surface.components.set('phone-split',{id:'phone-split',component:'Button',label:'나누기',devices:['phone'],action:{event:{name:'splitStory'}}});
+  edit(surface,'cut-tools',{devices:undefined,children:['new-cut','phone-split']});
+  expect(rules(surface)).toContain('one-way:phone-split');
  });
 
  it('keeps cut cards off phones and parents within allowedParents',()=>{

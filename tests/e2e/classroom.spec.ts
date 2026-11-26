@@ -245,7 +245,7 @@ test('a task on the original edition starts from the chapter the teacher chose',
  await page.goto('/teacher');
  await page.getByLabel('과제 제목',{exact:true}).fill('토끼의 꾀 다시 쓰기');
  await page.getByLabel('바탕 작품 (선택)',{exact:true}).selectOption('rabbit');
- await page.getByLabel('바탕 판본',{exact:true}).selectOption('original');
+ await page.getByLabel('바탕 이야기',{exact:true}).selectOption('original');
  const start=page.getByLabel('시작 지점',{exact:true});
  await expect(start.locator('option')).toHaveCount(5);
  await start.selectOption({index:3});
@@ -274,7 +274,7 @@ test('a task on the adaptation can give students one path to rewrite while the o
  await page.goto('/teacher');
  await page.getByLabel('과제 제목',{exact:true}).fill('토끼의 다른 선택');
  await page.getByLabel('바탕 작품 (선택)',{exact:true}).selectOption('rabbit');
- await page.getByLabel('바탕 판본',{exact:true}).selectOption('knolstory');
+ await page.getByLabel('바탕 이야기',{exact:true}).selectOption('knolstory');
  const start=page.getByLabel('시작 지점',{exact:true});
  await expect(start.locator('option').nth(1)).toBeAttached();
  await expect(page.getByLabel('쓸 갈래',{exact:true})).toHaveCount(0);
@@ -310,7 +310,7 @@ test('teacher chooses the assignment type and students start a picture book task
  const teacher=await mockClassroom(page,'teacher');
  teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
  await page.goto('/teacher');
- await page.getByLabel('과제 유형',{exact:true}).selectOption('shortstory');
+ await page.getByLabel('과제 종류',{exact:true}).selectOption('shortstory');
  await page.getByLabel('과제 제목',{exact:true}).fill('그림으로 새 이야기');
  await page.getByLabel('바탕 작품 (선택)',{exact:true}).selectOption('rabbit');
  await page.getByLabel('무엇을 하나요',{exact:true}).fill('이야기를 내 생각대로 써요.');await page.getByRole('button',{name:'과제 만들기',exact:true}).click();
@@ -446,7 +446,7 @@ test('classroom design keeps long titles and management usable across screen siz
   await page.getByRole('button',{name:'숏스토리 · 2',exact:true}).click();
   await expect(page.getByRole('heading',{name:'삽화를 섞어 만드는 나만의 그림책',exact:true})).toBeVisible();
   await compose(page,/^작품 쓰기 · 숏스토리/);
-  await expect(page.getByLabel('과제 유형',{exact:true})).toBeVisible();
+  await expect(page.getByLabel('과제 종류',{exact:true})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('link',{name:'학급 설정',exact:true}).click();
   const code=page.getByLabel('학급 코드',{exact:true});
@@ -741,7 +741,7 @@ test('one composer opens the right form for every kind of task',async({page})=>{
  await page.goto('/teacher');
  const composer=page.getByRole('region',{name:'새 과제 내기'});
  await composer.getByRole('button',{name:/^작품 쓰기 · 숏스토리/}).click();
- await expect(page.getByLabel('과제 유형',{exact:true})).toHaveValue('shortstory');
+ await expect(page.getByLabel('과제 종류',{exact:true})).toHaveValue('shortstory');
  await expect(page.locator('input[name="task-title"]')).toBeFocused();
  await composer.getByRole('button',{name:/^독후 활동지/}).click();
  await expect(page.locator('form[aria-label="과제 직접 만들기"]')).toBeVisible();
@@ -776,7 +776,7 @@ test('teacher writes a reading mission and must choose a work',async({page})=>{
  await expect(panel.getByRole('alert')).toHaveText('읽을 작품을 골라 주세요.');
  expect(state.calls).not.toContain('POST class/classroom/missions');
  await panel.getByLabel('읽을 작품',{exact:true}).selectOption('heungbu');
- await panel.getByLabel('읽을 판본',{exact:true}).selectOption('knolstory');
+ await panel.getByLabel('읽을 형식',{exact:true}).selectOption('knolstory');
  await panel.getByRole('button',{name:'과제 내기'}).click();
  await expect(panel.getByRole('heading',{name:'흥부와 놀부 읽기'})).toBeVisible();
  expect(state.bodies.at(-1)).toMatchObject({title:'흥부와 놀부 읽기',kind:'reading',storyKey:'heungbu',readingFormat:'knolstory',questions:[]});
@@ -1092,6 +1092,24 @@ test('on another device a student continues a task from the work they handed in'
  await page.goto('/student');
  await expect(page.getByRole('link',{name:'이어서 쓰기',exact:true})).toBeVisible();
  await expect(page.getByLabel('이어 쓸 작품')).toHaveCount(0);
+});
+
+test('on another device a student continues a task from the draft they shared with the teacher',async({page})=>{
+ const shared=await templateSnapshot('02_학교에서 쓰던 과제','학교에서 중간 저장한 문장이에요.');
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ (state.assignments[0] as Record<string,unknown>).draftSavedAt=1_760_000_050_000;state.draftDocs.a1=shared;
+ await page.goto('/student');
+ await page.getByText('다른 방법',{exact:true}).click();
+ const source=page.getByLabel('이어 쓸 작품');
+ await expect(source.locator('option')).toContainText(['선생님께 중간 저장한 작품']);
+ await expect(source.locator('option',{hasText:'내가 낸 작품'})).toHaveCount(0);
+ await source.selectOption({label:'선생님께 중간 저장한 작품'});
+ await page.getByRole('link',{name:'이 작품으로 이어 쓰기',exact:true}).click();
+ await expect(page).not.toHaveURL(/classTask|from=/);
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+ expect(saved.title).toBe('02_학교에서 쓰던 과제');
+ expect(JSON.stringify(saved.lines)).toContain('학교에서 중간 저장한 문장이에요.');
 });
 
 test('a teacher writes what to do, a checklist and an amount, and sees the student view first',async({page})=>{

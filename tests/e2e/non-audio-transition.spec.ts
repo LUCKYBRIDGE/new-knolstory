@@ -51,9 +51,8 @@ test('author controls confirm transition and look intensity without changing man
  // The native presenter positions the confirm action 56 logical pixels above the bottom.
  await page.mouse.click(bounds.x+bounds.width*.5,bounds.y+bounds.height*(height-56)/height);
  await expect(status).not.toContainText('전환 화면에서 계속을 눌러 주세요',{timeout:15000});
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
- await expect(page.getByRole('button',{name:'이 컷 편집하기',exact:true})).toBeVisible();
- await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await expect(page.getByRole('button',{name:'편집으로 돌아가기',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('flashback');
  await expect(frame).toHaveAttribute('data-transition-instance','original');
  await management(page);await openFileExchange(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=info.outputPath('confirm.knolstory');await(await download).saveAs(path);

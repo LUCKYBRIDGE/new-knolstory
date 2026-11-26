@@ -31,8 +31,23 @@ export function splitStoryCut(project:StoryProject,lineId:string,newId:string,po
  if(!boundary)throw new Error('글 안에서 나눌 위치를 골라 주세요. 한 글자나 이모지 중간에서는 나눌 수 없어요.');
  const first={...source,text:source.text.slice(0,position),flow:undefined,ending:undefined,
   ...(source.stageComposition ? {stageComposition:withoutActorExits(source.stageComposition)} : {})};
- const second={...structuredClone(source),id:newId,text:source.text.slice(position)};
- return replaceCuts(project,source.chapterId,ordered(project,source.chapterId).flatMap(line=>line.id===lineId?[first,second]:[line]),{source,to:newId});
+ // One-shot cues (sounds, effects, transitions, actor motion) belong to the moment the cut starts, so only the first half keeps them;
+ // the second half keeps any music or ambience playing, the background look and actor overrides.
+ const {audio:sourceAudio,presentation:sourcePresentation,...rest}=structuredClone(source);
+ const audio=sourceAudio?.music||sourceAudio?.ambience?{...(sourceAudio.music?{music:{action:'maintain' as const}}:{}),...(sourceAudio.ambience?{ambience:{action:'maintain' as const}}:{})}:undefined;
+ // Actor overrides (position, size, opacity) describe how the stage looks, so both halves keep them.
+ const {effects:_effects,transition:_transition,clearFollowingEffects:_clear,...look}=sourcePresentation??{};
+ const second:StoryLine={...rest,id:newId,text:source.text.slice(position),...(audio?{audio}:{}),...(Object.keys(look).length?{presentation:look}:{})};
+ // A range that ended at the source cut covered all of its text; keep covering both halves.
+ const extend=<T extends {endLineId?:string}>(cue:T):T=>cue.endLineId===lineId?{...cue,endLineId:newId}:cue;
+ const music=(cue:NonNullable<StoryLine['audio']>['music'])=>cue&&'endLineId' in cue?extend(cue):cue;
+ const lines=project.lines.map(line=>line.id===lineId?first:line).map(line=>({...line,
+  ...(line.presentation?.effects?{presentation:{...line.presentation,effects:line.presentation.effects.map(extend)}}:{}),
+  ...(line.audio?{audio:{...line.audio,...(line.audio.music?{music:music(line.audio.music)}:{}),...(line.audio.ambience?{ambience:music(line.audio.ambience)}:{})}}:{})}));
+ // A chapter's own music or ambience that ended at the source cut also goes on to the end of the second half.
+ const chapters=project.chapters.map(chapter=>chapter.audio&&(chapter.audio.music||chapter.audio.ambience)?{...chapter,audio:{...chapter.audio,...(chapter.audio.music?{music:music(chapter.audio.music)}:{}),...(chapter.audio.ambience?{ambience:music(chapter.audio.ambience)}:{})}}:chapter);
+ const extended={...project,chapters,lines};
+ return replaceCuts(extended,source.chapterId,ordered(extended,source.chapterId).flatMap(line=>line.id===lineId?[line,second]:[line]),{source,to:newId});
 }
 function targets(line:StoryLine,id:string):boolean {
  return line.flow?.type==='choice'?line.flow.options.some(option=>option.targetLineId===id):line.flow?.type==='goto'&&(line.flow.targetLineId===id||Boolean(line.flow.routes?.some(route=>route.targetLineId===id)));

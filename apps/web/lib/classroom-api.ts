@@ -38,9 +38,11 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['STUDENT_LIMIT','학생은 30명까지 만들 수 있어요.'],['STUDENT_NOT_FOUND','학생을 찾지 못했어요.'],
  ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],['SUBMISSION_CHANGED','학생이 그사이 다시 냈어요. 새 작품을 확인한 뒤 정해 주세요.'],['TEACHER_CODE_PAUSED','지금은 교사 등록을 잠시 멈췄어요. 관리자에게 문의해 주세요.'],['TEACHER_CODE_NOT_SET','먼저 교사 등록 코드를 정해 주세요.'],
  ['SEASON_ARCHIVED','지난 학년 자료는 보거나 내려받을 수 있어요.'],
- ['ASSIGNMENT_FORMAT_MISMATCH','과제 유형과 같은 작품을 선택해 주세요. 놀스토리·숏스토리를 확인해 주세요.'],['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
+ ['ASSIGNMENT_FORMAT_MISMATCH','과제 종류와 같은 작품을 선택해 주세요. 놀스토리·숏스토리를 확인해 주세요.'],['STAGE_RECIPIENTS','놀스토리로 이어 쓰기 과제를 받는 학생은 앞의 숏스토리 과제도 받아야 해요. 받는 학생을 맞춰 주세요.'],['SUBMISSION_PASSED','선생님이 이미 통과시킨 작품이라 다시 낼 수 없어요. 고칠 점이 있으면 선생님께 말씀해 주세요.'],['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
  ['INVALID_DOCUMENT','이 작품은 제출할 수 없어요. 서비스에 등록된 그림과 소리만 쓸 수 있어요.'],['INVALID_REQUEST','입력한 내용을 다시 확인해 주세요.'],
  ['QR_REISSUE_REQUIRED','이전에 만든 QR을 인쇄하려면 한 번 다시 만들어야 해요. 이전 QR은 더 이상 쓸 수 없어요.'],['CLASSROOM_UNAVAILABLE','학급 정보를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.'],
+ ['SUBMISSION_NOT_FOUND','제출한 작품을 찾지 못했어요. 화면을 새로 고친 뒤 다시 확인해 주세요.'],
+ ['INVALID_RESPONSE','학급 서비스의 응답을 읽지 못했어요. 잠시 뒤 다시 시도해 주세요.'],
  ['RATE_LIMITED','지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요.'],
  ['SERVER_BUSY','지금 제출하는 사람이 많아요. 잠시 뒤 다시 시도해 주세요.'],
  ['WORK_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
@@ -152,6 +154,11 @@ export const submissionOpen=(id:string,number:number,fetcher:Fetcher=fetch)=>obj
 type Written=Readonly<{amount:number;chars:number}>;
 export async function submissionPut(id:string,document:AuthoringJsonbSnapshot,csrf:string,fetcher:Fetcher=fetch,written?:Written):Promise<number>{try{assertUploadSize(document);}catch{throw new ClassroomError('WORK_TOO_LARGE',413);}const data=await obj(`/classroom/assignments/${seg(id)}/submission`,fetcher,{method:'PUT',csrf:csrfOf(csrf),body:{document,...(written?{written}:{})}});if(typeof data.submittedAt!=='number')throw new ClassroomError('INVALID_RESPONSE',502);return data.submittedAt;}
 /** Returns null when this student has not submitted yet. */
+/** The student's own mid-way draft (선생님께 중간 저장), or null when there is none. */
+export async function draftMine(id:string,fetcher:Fetcher=fetch):Promise<Readonly<{document:AuthoringJsonbSnapshot;savedAt:number}>|null>{
+ try{return await obj(`/classroom/assignments/${seg(id)}/draft`,fetcher) as unknown as {document:AuthoringJsonbSnapshot;savedAt:number};}
+ catch(issue){if(issue instanceof ClassroomError&&issue.status===404)return null;throw issue;}
+}
 export async function submissionMine(id:string,fetcher:Fetcher=fetch):Promise<SubmissionDocument|null>{
  try{return await obj(`/classroom/assignments/${seg(id)}/submission`,fetcher) as unknown as SubmissionDocument;}
  catch(issue){if(issue instanceof ClassroomError&&issue.status===404)return null;throw issue;}

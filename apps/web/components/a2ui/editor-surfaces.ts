@@ -89,9 +89,9 @@ export function topBarSurface({unified,title,open,disabled,scores,fullscreen,ful
   {id:'files',component:'ToolGroup',name:'파일·저장',labelVisible:true,children:['file-tools']},
   {id:'file-tools',component:'FileTools'},
   ...(unified?[
-   {id:'leave',component:'ToolGroup',name:'화면·나가기',labelVisible:true,children:['leave-tools','to-library']},
+   // The library is the always-visible icon in the bar; the drawer does not repeat it.
+   {id:'leave',component:'ToolGroup',name:'화면·나가기',labelVisible:true,children:['leave-tools']},
    {id:'leave-tools',component:'LeaveActions'},
-   {id:'to-library',component:'Button',label:'서재로',disabled:{path:'/disabled'},action:{event:{name:TOP_BAR_EVENTS.library}}},
    ...(fullscreenAvailable?[{id:'fullscreen',component:'IconButton',icon:fullscreen?'fullscreen-exit':'fullscreen',name:fullscreen?'편집 화면 전체 화면 해제':'편집 화면 전체 화면',title:fullscreen?'전체 화면 해제':'전체 화면',pressed:{path:'/fullscreen'},disabled:{path:'/shortcutDisabled'},action:{event:{name:TOP_BAR_EVENTS.fullscreen}}}]:[]),
    {id:'library',component:'IconButton',icon:'library',label:'서재',name:'서재 · 홈으로 이동',title:'서재로 이동',disabled:{path:'/shortcutDisabled'},action:{event:{name:TOP_BAR_EVENTS.library}}},
   ]:[]),
@@ -221,5 +221,59 @@ export function companionsSurface(lineId:string,views:CompanionView[]):Surface{
  return surfaceFrom(`companions-${lineId}`,[
   {id:'companions',component:'Column',element:'aside',name:'확인용 함께 보기',children:views.map(view=>`section-${view.kind}`)},
   ...views.flatMap(view=>[{id:`section-${view.kind}`,component:'Column',element:'section',title:view.title??'',children:[`part-${view.kind}`]},...companionParts(`part-${view.kind}`,view)]),
+ ],{});
+}
+
+export const CONNECTION_EVENTS={toggle:'toggleConnections',select:'selectConnectedCut',repair:'repairConnection',back:'returnToPreviousVisit',visit:'returnToVisit',map:'openStoryMap'} as const;
+export type ConnectionVisit=Readonly<{index:number;label:string;where:string}>;
+export type ConnectionWay=Readonly<{id:string;label:string;where:string;lineId:string}>;
+export type ConnectionFork=Readonly<{id:string;title:string;note?:string;ways:readonly ConnectionWay[]}>;
+export type ConnectionOut=Readonly<{id:string;label:string;where?:string;lineId?:string;notice?:{kind:'empty'|'warning';text:string;repair?:{choiceId?:string;kind:'pending'|'missing'}}}>;
+/**
+ * 쓰기: 이야기 연결 — the authored links around the current cut, kept open while the author moves between cuts.
+ * Nearest branch point first (more in a nested More), the ways in where several ways meet or a way has a condition,
+ * then the current cut and its ways out with their destinations. Reading only: nothing here changes the work.
+ */
+export function connectionsSurface({open,summary,upstream,incoming,here,marks,outgoing,back,visits=[],map,disabled}:{open:boolean;summary:string;upstream:readonly ConnectionFork[];incoming:readonly ConnectionWay[];here:string;marks?:string;outgoing:readonly ConnectionOut[];back?:{name:string};visits?:readonly ConnectionVisit[];map:boolean;disabled:boolean}):Surface{
+ const select=(way:{id:string;lineId:string})=>({event:{name:CONNECTION_EVENTS.select,context:{lineId:way.lineId,way:way.id}}});
+ const fork=(item:ConnectionFork):A2uiComponent[]=>[
+  {id:`fork-${item.id}`,component:'Fork',title:item.title,...(item.note?{note:item.note}:{}),children:item.ways.map(way=>`way-${way.id}`)},
+  ...item.ways.map(way=>({id:`way-${way.id}`,component:'PathChoice',label:way.label,where:way.where,disabled:{path:'/disabled'},select:select(way)})),
+ ];
+ const [nearest,...further]=upstream;
+ // Everything past the nearest way folds into one More: the other ways from branch points, and the ways in where several meet.
+ const more=further.reduce((sum,item)=>sum+item.ways.length,0)+incoming.length;
+ const tools=[...(back?['back']:[]),...(map?['map']:[])];
+ const components:A2uiComponent[]=[
+  {id:'connections',component:'More',summary,title:'앞 갈림길, 지금 컷, 다음 선택지와 도착 컷',open:{path:'/open'},toggle:{event:{name:CONNECTION_EVENTS.toggle}},
+   children:['trail']},
+  // Catalog rule: a Fork or a nested More sits in a Column, never straight in a More.
+  {id:'trail',component:'Column',gap:8,children:[...(nearest?['upstream']:[]),...(more?['other-ways']:[]),'fork-here',...(tools.length?['trail-tools']:[]),...(visits.length?['visits']:[])]},
+  ...(nearest?<A2uiComponent[]>[{id:'upstream',component:'Column',element:'section',name:'앞 갈림길',gap:8,children:[`fork-${nearest.id}`]},...fork(nearest)]:[]),
+  ...(more?<A2uiComponent[]>[{id:'other-ways',component:'More',summary:`다른 길 더 보기 · ${more}`,children:['other-ways-list']},
+   {id:'other-ways-list',component:'Column',gap:8,children:[...(incoming.length?['fork-in']:[]),...further.map(item=>`fork-${item.id}`)]},
+   ...(incoming.length?fork({id:'in',title:'여기로 오는 길',ways:incoming}):[]),...further.flatMap(fork)]:[]),
+  {id:'fork-here',component:'Fork',title:here,...(marks?{note:marks}:{}),children:outgoing.map(way=>`out-${way.id}`)},
+  ...outgoing.flatMap((way):A2uiComponent[]=>way.notice
+   ?[{id:`out-${way.id}`,component:'Notice',kind:way.notice.kind,text:way.notice.text,...(way.notice.repair?{actions:[`repair-${way.id}`]}:{})},
+    ...(way.notice.repair?<A2uiComponent[]>[{id:`repair-${way.id}`,component:'Button',label:'연결 정하기',name:`${way.label} 연결 정하기`,disabled:{path:'/disabled'},action:{event:{name:CONNECTION_EVENTS.repair,context:{way:way.id,choiceId:way.notice.repair.choiceId??'',kind:way.notice.repair.kind}}}}]:[])]
+   :[{id:`out-${way.id}`,component:'PathChoice',label:way.label,where:way.where??'',disabled:{path:'/disabled'},select:select({id:way.id,lineId:way.lineId??''})}]),
+  ...(tools.length?<A2uiComponent[]>[{id:'trail-tools',component:'ToolGroup',name:'이야기 연결 도구',children:tools},
+   ...(back?<A2uiComponent[]>[{id:'back',component:'Button',label:'← 방금 보던 컷',name:back.name,disabled:{path:'/disabled'},action:{event:{name:CONNECTION_EVENTS.back}}}]:[]),
+   ...(map?<A2uiComponent[]>[{id:'map',component:'Button',label:'이야기 지도',name:'이야기 지도 열기',disabled:{path:'/disabled'},action:{event:{name:CONNECTION_EVENTS.map}}}]:[])]:[]),
+  // 내 편집 이동 경로: the cuts the author moved through (not a reader's path); any earlier visit can be returned to.
+  ...(visits.length?<A2uiComponent[]>[{id:'visits',component:'More',summary:`내 편집 이동 경로 · ${visits.length}`,title:'내가 편집하며 이동한 컷이에요. 이야기 연결이나 독자의 진행은 바꾸지 않아요.',children:['visits-list']},
+   {id:'visits-list',component:'Column',gap:8,children:['fork-visits']},
+   {id:'fork-visits',component:'Fork',title:'편집하며 지나온 컷',children:visits.map(visit=>`visit-${visit.index}`)},
+   ...visits.map(visit=>({id:`visit-${visit.index}`,component:'PathChoice',label:visit.label,where:visit.where,disabled:{path:'/disabled'},select:{event:{name:CONNECTION_EVENTS.visit,context:{index:visit.index}}}}))]:[]),
+ ];
+ return surfaceFrom('connections',components,{open,disabled});
+}
+
+/** 이야기 흐름 지도 · 갈래 구조: the catalog fixes its place (a named section) and props; the map registers the drawing. */
+export function structureSurface({currentLineId,grouped}:{currentLineId:string;grouped:boolean}):Surface{
+ return surfaceFrom('story-structure',[
+  {id:'structure-place',component:'Column',element:'section',name:'갈래 구조',gap:12,children:['structure']},
+  {id:'structure',component:'StoryStructure',currentLineId,grouped},
  ],{});
 }

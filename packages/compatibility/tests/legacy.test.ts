@@ -93,7 +93,7 @@ describe('legacy schema boundaries', () => {
     expect(parseStoryDocument({ ...original, project: { ...original.project, lines: [...original.project.lines, line] } }).ok).toBe(false);
     expect(parseStoryDocument({ ...original, project: { ...original.project, lines: [{ ...line, chapterId: 'missing' }] } }).ok).toBe(false);
     expect(parseStoryDocument({ ...original, savedAt: 'yesterday' }).ok).toBe(false);
-    expect(parseStoryDocument('{')).toEqual({ ok: false, issues: [{ code: 'invalid-json', path: '$', message: 'Document JSON could not be parsed.' }] });
+    expect(parseStoryDocument('{')).toEqual({ ok: false, issues: [{ code: 'invalid-json', path: '$', message: '작품 파일 내용을 읽을 수 없어요. 파일이 손상되었거나 놀스토리 작품 파일이 아니에요.' }] });
   });
 });
 

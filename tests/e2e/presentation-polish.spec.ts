@@ -43,7 +43,7 @@ async function cut(page:Page,id:string){await page.getByLabel('현재 장과 컷
 async function playCut(page:Page){const scoped=currentCutPlay(page);await((await scoped.count())?scoped:page.getByRole('button',{name:'이 컷부터 재생',exact:true}).first()).click();}
 /** The selected cut's first character's 가로 위치 slider on the 인물 screen (‘N컷 인물 1 가로 위치’). */
 async function firstActorX(page:Page){return (await currentCutRow(page)).getByLabel(/^\d+컷 인물 1 가로 위치$/);}
-async function exitReading(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
+async function exitReading(page:Page){await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();}
 async function advance(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await button.focus();await button.press('Enter');}
 
 async function exported(page: Page) {

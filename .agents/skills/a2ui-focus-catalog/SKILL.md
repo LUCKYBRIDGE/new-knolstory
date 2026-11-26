@@ -11,3 +11,10 @@
 카탈로그 ID `https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json`은 호환을 깨는 변경 때만 v2로 올린다. 사양 출처: [google/A2UI](https://github.com/google/A2UI), [카탈로그 개념](https://a2ui.org/concepts/catalogs/), [v0.9 소개](https://developers.googleblog.com/a2ui-v0-9-generative-ui/).
 
 실제 화면에 카탈로그 부분을 직접 그릴 때는 [list-tools-surface.ts](../../../apps/web/components/a2ui/list-tools-surface.ts)처럼 A2UI 메시지를 만들고 `FocusSurface`(`rootId`로 부분만, `inline`으로 화면 배치에 맡김)로 그린 뒤 `onAction`의 이벤트 이름으로 실제 동작을 잇는다. 편집 셸의 단추·입력 규칙이 더 구체적이므로 크기는 렌더러 CSS의 `.inline` 규칙이 지킨다. 화면이 직접 그려야 하는 부분은 이름 있는 사용자 정의 컴포넌트(`x-host`)로 카탈로그에 정의하고 `custom`으로 구현을 등록하며, 기기별 CSS는 `skin`, 화면 속성은 `attrs`로 넘긴다(카탈로그에 `Slot`은 없다)([editor-surfaces.ts](../../../apps/web/components/a2ui/editor-surfaces.ts)). 실제 편집기는 모든 사용자 정의 컴포넌트를 등록해야 한다(비교 검사가 자리표시 0개를 확인).
+
+## 이야기 연결·갈래 구조 (2026-11-25)
+
+- 쓰기의 ‘이야기 연결’은 `connectionsSurface`로 만든다. `More`에는 `Column`만 직접 넣고, 그 안에 `Fork`(`PathChoice`·`Notice`)·접힌 `More`·`ToolGroup`을 둔다(카탈로그 허용 부모). `More` 요약은 16자 안이다.
+- 같은 컷으로 가는 서로 다른 선택·조건도 길마다 따로 두고, 이벤트 문맥에 길 id(`way`)를 넣어 ‘같은 일 두 번’ 규칙과 구분한다.
+- 흐름 지도의 갈래 구조는 사용자 정의 컴포넌트 `StoryStructure`(`structureSurface`)이고 지도가 구현을 등록한다.
+- 새 조각을 만들면 `validateSurface`로 검사하는 단위 테스트를 함께 둔다(`components/a2ui/focus-surface.test.ts`), 쓰기 설계도(`screens/basic.json`)의 `context`도 함께 고친다.

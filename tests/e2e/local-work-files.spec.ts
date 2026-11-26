@@ -57,7 +57,7 @@ test('file association survives work settings and delayed picker stops after lea
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true});await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고');
  await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toBeVisible();await page.locator('[data-work-menu]>summary').click();await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고');
  expect(await page.evaluate(()=>(window as unknown as {saveModel:{picks:number;writes:number}}).saveModel)).toEqual({picks:1,writes:2});
- await group.getByRole('button',{name:'다른 파일로 저장',exact:true}).click();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
+ await group.getByRole('button',{name:'다른 파일로 저장',exact:true}).click();await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await page.evaluate(()=>(window as unknown as {saveModel:{release:()=>void}}).saveModel.release());
  await expect.poll(()=>page.evaluate(()=>(window as unknown as {saveModel:{writes:number}}).saveModel.writes)).toBe(2);
 });
@@ -70,7 +70,7 @@ test('leaving the work while a writable file stream opens aborts before any new 
  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await page.locator('[data-work-menu]>summary').click();await page.locator('[data-local-file-actions]').getByRole('button',{name:'작품 파일 저장',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>(window as unknown as {streamGate:{opening:boolean}}).streamGate.opening)).toBe(true);
- await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await page.evaluate(()=>(window as unknown as {streamGate:{release:()=>void}}).streamGate.release());
  await expect.poll(()=>page.evaluate(()=>{const {writes,closes,aborts}=(window as unknown as {streamGate:{writes:number;closes:number;aborts:number}}).streamGate;return {writes,closes,aborts};})).toEqual({writes:0,closes:0,aborts:1});
 });

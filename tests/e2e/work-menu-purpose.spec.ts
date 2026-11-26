@@ -14,7 +14,7 @@ for(const width of [1440,768,390,844])test(`work menu groups purpose without ext
  await expect(settings.getByRole('button',{name:'작품 정보·표지',exact:true})).toBeVisible();
  // 편집 → 작품 설정 → 파일·저장 → 화면·나가기, each purpose in one group.
  expect(await menu.evaluate(node=>[...node.querySelectorAll('[role="group"]')].map(group=>group.getAttribute('aria-label')).filter(name=>['현재 컷과 편집 설정','작품 설정','파일·저장','화면·나가기'].includes(name!)))).toEqual(['현재 컷과 편집 설정','작품 설정','파일·저장','화면·나가기']);
- await expect(editing).toBeVisible();await expect(exit.getByRole('button',{name:'서재로',exact:true})).toBeVisible();
+ await expect(editing).toBeVisible();await expect(exit.getByRole('button',{name:'서재로',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true})).toBeVisible();
  // File exchange stays folded until it is needed.
  await expect(files.getByText('가져온 파일은 확인 후 내 사본으로 열어요.',{exact:true})).toBeVisible();await expect(files.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();
  await expect(files.getByRole('button',{name:'작품 파일 내보내기',exact:true})).toBeHidden();

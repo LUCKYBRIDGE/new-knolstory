@@ -4,7 +4,7 @@ import {enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry
 
 type Playback={lineId:string|null;path:string[];status:string;choiceHistory?:Array<{pathIndex:number;choiceId:string}>};
 type Edition={workId:string;edition:'original'|'knolstory';projectId:string;routes:Array<{id:string;finalState:Playback}>};
-const manifests=['manifest.json','manifest-rabbit.json','manifest-onggojib.json','manifest-seonnyeo-rainy-courtyard-selected.json'];
+const manifests=['manifest.json','manifest-rabbit.json','manifest-onggojib.json','manifest-seonnyeo-story-order-selected.json'];
 const editions=():Edition[]=>manifests.flatMap(file=>(JSON.parse(readFileSync(new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url),'utf8')) as {editions:Edition[]}).editions);
 
 /** A verified complete route of a built-in edition, stopped on its last cut instead of past it. */

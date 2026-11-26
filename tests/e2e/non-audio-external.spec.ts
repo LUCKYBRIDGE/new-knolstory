@@ -32,8 +32,7 @@ for(const app of ['excel','google'])test(`actual ${app} effect duration edit reo
   await expect(status).toContainText('연결됨',{timeout:90000});
   await expect.poll(()=>status.evaluate(node=>Number(node.getAttribute('data-rendered-revision'))>=0&&node.getAttribute('data-rendered-revision')===node.getAttribute('data-scene-revision')),{timeout:30000}).toBe(true);
   await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`${app}-native.png`)});
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
-  await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
   await expect(page.getByTestId('story-runtime-frame')).toHaveAttribute('data-direction-instance','original');
   await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(before.lines[0].id);
  }

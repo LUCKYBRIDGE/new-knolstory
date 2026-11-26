@@ -256,7 +256,7 @@ test('local library prepares three separate works and roundtrips preparation wit
     await library(fresh);await expect(fresh.getByTestId('story-runtime-frame')).toHaveAttribute('data-library-instance','same');const parked=await fresh.getByTestId('story-runtime-frame').boundingBox();expect(parked!.width).toBeGreaterThan(0);expect(parked!.height).toBeGreaterThan(0); await fresh.reload(); await library(fresh);
     await openShelfAction(fresh,card(fresh,'내 작품',forestTitle),'이어읽기');await ready(fresh);
     await expect(fresh.getByRole('region',{name:'이야기 무대',exact:true}).getByText('별빛 아래에서 길 잃은 친구를 만났다.',{exact:true})).toBeVisible();
-    // Reading opened from the shelf has no '이 컷 편집하기' (only editor playback does); edit the cut from the shelf instead.
+    // Reading opened from the shelf has no '편집으로 돌아가기' (only editor playback does); edit the cut from the shelf instead.
     const lineId=archive.project.lines.find((line:{text:string})=>line.text==='별빛 아래에서 길 잃은 친구를 만났다.')?.id;
     expect(lineId).toBeDefined();
     await library(fresh);await open(fresh,'내 작품',forestTitle,'편집하기');await selectCut(fresh,lineId!);

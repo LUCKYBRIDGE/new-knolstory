@@ -60,3 +60,5 @@ KNOL_CATALOG_BASE_URL=http://127.0.0.1:15410 KNOL_CATALOG_SEONNYEO_SCOPE=remaini
 ```
 
 실행 결과: 배포본(`pages-candidate-image-preload-20261103`, 원천 커밋 c2c49b18)을 정적 제공해 knolstory-1은 단독 4.1분, 나머지 49경로는 3.2시간에 모두 통과했다(실패·건너뜀 0). 합계 50경로·18,485컷별 검사다. 서재 화면 문구 도우미(`tests/e2e/library-entry.ts`)가 배포본 이후 바뀌었으므로 이 실행에서는 임시로 c2c49b18 시점의 도우미를 썼고 저장소에는 반영하지 않았다. 스펙 본문과 원고는 그 시점 이후 같다.
+
+2026-11-25 갈래 기준 장 번호·이야기 순서: 제공 작품의 장 번호·글자와 장 배열 순서가 바뀌어 작품 SHA만 달라졌다(컷 ID·본문·선택·경로는 같다). 흥부·별주부·옹고집 명세는 SHA를 갱신했고, 선녀 명세는 봉인 규칙에 따라 새 이름 `manifest-seonnyeo-story-order-{all,selected}.json`으로 만들었다(이전 `rainy-courtyard` 명세와 SHA 외 동일). 검사와 생성기의 기본값은 새 이름이다.

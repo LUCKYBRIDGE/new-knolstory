@@ -208,9 +208,11 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    </div>
   </details>;
  },
- AssetThumbnail:hostPart,CutTools:hostPart,ScenePreview:hostPart,SoundEditor:hostPart,DirectionEditor:hostPart,TextVariants:hostPart,StagingImport:hostPart,CutSettings:hostPart,FileTools:hostPart,LeaveActions:hostPart,HostPanel:hostPart,
+ AssetThumbnail:hostPart,CutTools:hostPart,StoryStructure:hostPart,ScenePreview:hostPart,SoundEditor:hostPart,DirectionEditor:hostPart,TextVariants:hostPart,StagingImport:hostPart,CutSettings:hostPart,FileTools:hostPart,LeaveActions:hostPart,HostPanel:hostPart,
  Notice:(c,ctx)=>{const {className,...rest}=ctx.attrs(c);
   // Inside a screen a Notice is one line of the host's own type (className given); in the catalog view it is a boxed notice.
+  // A host line with actions keeps them beside its text (e.g. 이야기 연결: ‘… · 도착 컷을 정해 주세요’ + 연결 정하기).
+  if(className!==undefined&&list(c.actions).length)return <div className={className} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'} {...rest}><p>{text(ctx,c.text)}</p>{list(c.actions).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}</div>;
   if(className!==undefined)return c.kind==='warning'?<div className={className} role="status" {...rest}>{text(ctx,c.text)}</div>:<p className={className} role={c.kind==='error'?'alert':undefined} {...rest}>{text(ctx,c.text)}</p>;
   return <div className={styles.notice} data-kind={String(c.kind)} role={c.kind==='error'?'alert':'status'}>
    <p>{text(ctx,c.text)}</p>

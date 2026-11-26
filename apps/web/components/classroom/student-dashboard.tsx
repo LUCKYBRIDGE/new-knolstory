@@ -1,5 +1,6 @@
 'use client';
 import {useCallback,useEffect,useState} from 'react';
+import {taskPermissions} from '../../lib/editing-permissions';
 import {assignmentList,draftPut,editScopeLabel,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
 import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWrittenAmount,localWorkSnapshot,snapshotWritten,type LocalWorkChoice} from '../../lib/classroom-local';
 import {TaskBrief} from './task-brief';
@@ -38,7 +39,7 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
  return <>
   <StudentTodo who={<div className={styles.studentBanner} role="group" aria-label="내 정보"><div className={styles.studentNumber} aria-hidden="true">{student.number}<small>번</small></div><div><h2>{student.className} {student.number}번 {student.name}</h2>
    {storage?.bytesLimit&&storage.submissions&&<p className={styles.hint} aria-label="내 온라인 공간">개인 {formatBytes(storage.bytes)} / {formatBytes(storage.bytesLimit)} · 제출 {formatBytes(storage.submissions.bytes)} / {formatBytes(storage.submissions.limit)}</p>}</div></div>} key={session.accountId} accountId={session.accountId} csrf={session.csrf} assignments={assignments} assignmentError={error} onReload={load}
-   card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} online={online.filter(work=>work.format===item.format)} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
+   card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} online={online.filter(work=>work.format===item.format)} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} canBranch={taskPermissions(student.permissions,item.editScope).choices} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
   {/* What to do comes first; the rules and the season's end date follow the tasks. */}
   <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
   <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것 · 작품 보관</summary>
@@ -49,7 +50,7 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
  </>;
 }
 type OnlineChoice=Readonly<{key:string;title:string;format:'knolstory'|'shortstory'}>;
-function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forcedStoryKey,accountId}:{assignment:Assignment;works:LocalWorkChoice[];online?:readonly OnlineChoice[];csrf:string;onDone:()=>Promise<void>;canCreate:boolean;forcedStoryKey:string|null;accountId:string}){
+function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,canBranch=false,forcedStoryKey,accountId}:{assignment:Assignment;works:LocalWorkChoice[];online?:readonly OnlineChoice[];csrf:string;onDone:()=>Promise<void>;canCreate:boolean;canBranch?:boolean;forcedStoryKey:string|null;accountId:string}){
  const [key,setKey]=useState(''),[busy,setBusy]=useState(false),[notice,setNotice]=useState(''),[error,setError]=useState('');
  const submitted=assignment.submittedAt;
  const [draftKey,setDraftKey]=useState('');
@@ -111,7 +112,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  const canStart=!locked&&!!(draftKey||canCreate||assignment.storyKey||assignment.template||assignment.after||forcedStoryKey);
  const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.after?'통과한 그림책으로 시작':assignment.template?'선생님이 준 작품으로 시작':'과제 쓰기';
  const brief=<TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={written?.amount??null} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>;
- const elsewhere=assignment.open&&!draftKey&&(!!submitted||online.length>0);
+ const elsewhere=assignment.open&&!draftKey&&(!!submitted||!!assignment.draftSavedAt||online.length>0);
  const moreWays=!!submitted||elsewhere||(!assignment.archived&&!!assignment.shareUrl);
  return <>
   <div className={styles.taskHeading}><h4>{assignment.title}</h4>{status}</div>
@@ -129,7 +130,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {/* The write action follows what to do; the scope and base work are reference lines under it. */}
   {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
   {assignment.editScope&&<p className={styles.hint} data-task-scope>이 과제에서 고칠 수 있는 것 · <b>{editScopeLabel(assignment.editScope)}</b></p>}
-  {assignment.after&&!locked&&phase==='working'&&!draftKey&&<p className={styles.hint}>통과한 그림책 ‘{assignment.after.title}’의 쪽마다 놀스토리 장이 하나씩 만들어져요. 장마다 ‘그림책 구상’(그 쪽의 글과 삽화)을 펼쳐 보며 대사와 장면을 써요.</p>}
+  {assignment.after&&!locked&&phase==='working'&&!draftKey&&<p className={styles.hint}>통과한 그림책 ‘{assignment.after.title}’의 쪽마다 놀스토리 장이 하나씩 만들어져요. 장마다 ‘그림책 구상’(그 쪽의 글과 삽화)을 펼쳐 보며 대사와 장면을 써요.{canBranch?' 이야기가 갈라지는 곳은 쓰기 화면의 ‘이야기 나누기’로 선택지를 만들어요.':''}</p>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
   {assignment.open&&phase!=='passed'&&phase!=='locked'&&(works.length===0&&online.length===0?(canStart?null:<p className={styles.hint}>제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.</p>)
    :<HandInFold folded={phase==='waiting'}><div className={styles.handIn}>
@@ -143,9 +144,9 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {notice&&<p className={styles.notice} role="status">{notice}</p>}{error&&<p className={styles.error} role="alert">{error}</p>}
   {moreWays&&<details className={styles.moreWays}><summary>다른 방법</summary>
    {submitted&&<div className={styles.row}><button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button><SubmissionImport assignmentId={assignment.id} accountId={accountId} csrf={csrf} disabled={busy}/></div>}
-   {elsewhere&&<div className={styles.continueElsewhere}><p className={styles.hint}>다른 기기에서 쓰던 작품이 있나요? 내가 낸 작품이나 내 온라인 작품에서 이어서 쓸 수 있어요.</p>
-    <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
-     <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div></div>}
+   {elsewhere&&<div className={styles.continueElsewhere}><p className={styles.hint}>다른 기기에서 쓰던 작품이 있나요? 내가 낸 작품, 선생님께 중간 저장한 작품이나 내 온라인 작품에서 이어서 쓸 수 있어요.</p>
+    <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{assignment.draftSavedAt&&<option value="draft">선생님께 중간 저장한 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
+     {from?<a className={`${styles.btn} ${styles.primary}`} href={taskHref(from)}>이 작품으로 이어 쓰기</a>:<button type="button" className={`${styles.btn} ${styles.primary}`} disabled title="이어 쓸 작품을 먼저 골라 주세요.">이 작품으로 이어 쓰기</button>}</div></div>}
    {!assignment.archived&&assignment.shareUrl&&<div className={styles.shareBox}><strong>선생님이 정한 제출 링크로 내기</strong>
     {works.length===0&&online.length===0&&<p className={styles.hint}>아직 이 기기에 낼 작품이 없어요. 먼저 ‘과제 쓰기’로 작품을 만든 뒤 여기서 파일로 저장해요.</p>}
     <ol><li>위에서 낼 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>

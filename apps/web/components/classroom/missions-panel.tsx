@@ -88,7 +88,7 @@ function MissionEditor({initial,origin,csrf,students,onCreated,onCancel}:{initia
  const [busy,setBusy]=useState(false),[error,setError]=useState(''),[due,setDue]=useState('');
  const lock=useRef(false);
  const filled=questions.map(prompt=>prompt.trim()).filter(Boolean);
- const problem=!title.trim()?'과제 제목을 써 주세요.':kind==='reading'&&!storyKey?'읽을 작품을 골라 주세요.':kind==='worksheet'&&!filled.length?'활동지 질문을 하나 넘게 써 주세요.':recipientProblem(recipients);
+ const problem=!title.trim()?'과제 제목을 써 주세요.':kind==='reading'&&!storyKey?'읽을 작품을 골라 주세요.':kind==='worksheet'&&!filled.length?'활동지 질문을 하나 이상 써 주세요.':recipientProblem(recipients);
  async function submit(event:FormEvent){
   event.preventDefault();if(lock.current)return;
   if(problem){setError(problem);return;}
@@ -106,14 +106,14 @@ function MissionEditor({initial,origin,csrf,students,onCreated,onCancel}:{initia
   <label className={shared.field}>과제 제목<input name="mission-title" value={title} maxLength={MISSION_LIMITS.title} onChange={event=>setTitle(event.target.value)}/></label>
   <div className={shared.row}>
    <label className={shared.field}>읽을 작품{kind==='reading'?'':' (선택)'}<select aria-label="읽을 작품" value={storyKey} onChange={event=>setStoryKey(event.target.value)}><option value="">정하지 않아요</option>{BUILTIN_WORKS.map(work=><option key={work.id} value={work.id}>{work.title}</option>)}</select></label>
-   {storyKey&&<label className={shared.field}>읽을 판본<select aria-label="읽을 판본" value={format} onChange={event=>setFormat(event.target.value as ReadingFormat)}>{(['original','knolstory','shortstory'] as const).map(value=><option key={value} value={value}>{readingFormatLabel(value)}{value==='original'?' · 옛이야기 그대로':value==='knolstory'?' · 선택지가 있는 이야기':' · 짧은 그림책'}</option>)}</select></label>}
+   {storyKey&&<label className={shared.field}>읽을 형식<select aria-label="읽을 형식" value={format} onChange={event=>setFormat(event.target.value as ReadingFormat)}>{(['original','knolstory','shortstory'] as const).map(value=><option key={value} value={value}>{readingFormatLabel(value)}{value==='original'?' · 옛이야기 그대로':value==='knolstory'?' · 선택지가 있는 이야기':' · 짧은 그림책'}</option>)}</select></label>}
   </div>
   <label className={shared.field}>학생에게 보일 안내<textarea value={description} maxLength={MISSION_LIMITS.text} onChange={event=>setDescription(event.target.value)} placeholder="무엇을 하면 되는지 알려 주세요."/></label>
   <label className={shared.field}>마감일 (선택)<input type="date" value={due} onChange={event=>setDue(event.target.value)}/></label>
   <RecipientPicker students={students} value={recipients} onChange={next=>{setRecipients(next);setError('');}}/>
   <label className={shared.field}>통과 기준<textarea value={criteria} maxLength={MISSION_LIMITS.text} onChange={event=>setCriteria(event.target.value)} placeholder="어떻게 하면 통과인지 알려 주세요."/></label>
   <div className={styles.questions} role="group" aria-label="활동지 질문">
-   <div className={styles.questionsHead}><strong>활동지 질문 <small>{kind==='worksheet'?'하나 넘게 필요해요':'없어도 돼요'}</small></strong><span>{questions.length} / {MISSION_LIMITS.questions}</span></div>
+   <div className={styles.questionsHead}><strong>활동지 질문 <small>{kind==='worksheet'?'하나 이상 필요해요':'없어도 돼요'}</small></strong><span>{questions.length} / {MISSION_LIMITS.questions}</span></div>
    {questions.map((prompt,index)=><div className={styles.questionRow} key={index}>
     <span aria-hidden="true">{index+1}</span>
     <textarea aria-label={`${index+1}번 질문`} rows={2} value={prompt} maxLength={MISSION_LIMITS.prompt} onChange={event=>setQuestions(current=>current.map((value,at)=>at===index?event.target.value:value))}/>

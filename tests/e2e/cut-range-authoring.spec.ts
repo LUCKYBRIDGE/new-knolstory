@@ -36,5 +36,5 @@ test('native presenter receives bounded effect through end then stops it without
  const cues=async()=>JSON.parse((await page.getByTestId('story-runtime-frame').getAttribute('data-scene'))!).presentation.effects;
  await rendered();const gate=page.frameLocator('[data-testid="story-runtime-frame"]').getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});if(await gate.count())await gate.press('Enter');await rendered();expect(await cues()).toHaveLength(2);await page.getByRole('button',{name:'다음으로',exact:true}).focus();await page.getByRole('button',{name:'다음으로',exact:true}).press('Enter');await rendered();expect(await cues()).toHaveLength(2);
  await page.getByRole('button',{name:'다음으로',exact:true}).focus();await page.getByRole('button',{name:'다음으로',exact:true}).press('Enter');await rendered();expect((await cues()).map((cue:{type:string})=>cue.type)).toEqual(['flash']);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(current(page).getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(current(page).getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeVisible();
 });

@@ -1,5 +1,7 @@
 import {chapterLabel,createStoryDocument,parseStoryDocument,resolveStageComposition,stageProjection,type Chapter,type StoryLine,type StoryProject} from '@knolstory/story-domain';
 import {analyzeStoryFlow} from './flow-analysis';
+import {syncBranchNumbering} from './branch-numbering-sync';
+import {assertNoNewLoop} from './flow-loop-guard';
 
 /**
  * Moving chapters and cuts, and putting new chapters between existing ones.
@@ -38,6 +40,7 @@ function cutLabel(project:StoryProject,lineId:string):string{
 }
 /** Refuse a change that leaves an existing cut unreachable, or new cuts nobody reads. */
 function assertReachable(before:StoryProject,after:StoryProject,added:readonly string[]=[]):StoryProject{
+ assertNoNewLoop(before,after);
  const was=new Set(analyzeStoryFlow(before).nodes.filter(node=>!node.reachable).map(node=>node.lineId));
  const lost=analyzeStoryFlow(after).nodes.filter(node=>!node.reachable&&!was.has(node.lineId));
  if(!lost.length)return after;
@@ -57,7 +60,7 @@ export function moveStoryChapter(project:StoryProject,chapterId:string,afterChap
  const at=afterChapterId===null?0:rest.indexOf(afterChapterId)+1;
  const ids=[...rest.slice(0,at),chapterId,...rest.slice(at)];
  if(ids.join('\n')===sortedChapters(project).map(chapter=>chapter.id).join('\n'))return project;
- return assertReachable(project,validate({...project,chapters:arrange(project,ids)}));
+ return assertReachable(project,validate(syncBranchNumbering(project,{...project,chapters:arrange(project,ids)})));
 }
 
 /** Place a cut after another cut of any chapter (null: first cut of that chapter). Its stage stays as it looked. */
@@ -77,7 +80,7 @@ export function moveStoryCutTo(project:StoryProject,lineId:string,chapterId:stri
  const sourceOrder=new Map(chapterCuts(project,selected.chapterId).filter(line=>line.id!==lineId).map((line,index)=>[line.id,index+1]));
  const lines=project.lines.map(line=>line.id===lineId?{...moved,order:order.get(lineId)!}:order.has(line.id)?{...line,order:order.get(line.id)!}:sourceOrder.has(line.id)?{...line,order:sourceOrder.get(line.id)!}:line);
  const continuation=project.continuation?.lineId===lineId?{continuation:{...project.continuation,chapterId}}:{};
- return assertReachable(project,validate({...project,lines,...continuation}));
+ return assertReachable(project,validate(syncBranchNumbering(project,{...project,lines,...continuation})));
 }
 
 export type StoryChapterAddition=Readonly<{chapters:readonly Chapter[];lines:readonly StoryLine[]}>;
@@ -94,7 +97,7 @@ export function insertStoryChapters(project:StoryProject,addition:StoryChapterAd
  const existing=sortedChapters(project).map(chapter=>chapter.id);
  const at=afterChapterId===null?0:existing.indexOf(afterChapterId)+1;
  const ids=[...existing.slice(0,at),...added.map(chapter=>chapter.id),...existing.slice(at)];
- const next=validate({...project,chapters:arrange(project,ids,added),lines:[...project.lines,...structuredClone(addition.lines) as StoryLine[]]});
+ const next=validate(syncBranchNumbering(project,{...project,chapters:arrange(project,ids,added),lines:[...project.lines,...structuredClone(addition.lines) as StoryLine[]]}));
  return assertReachable(project,next,addition.lines.map(line=>line.id));
 }
 

@@ -51,7 +51,7 @@ test('large manuscript native playback crosses chapter and returns to its curren
  const advance=page.getByRole('button',{name:'다음으로',exact:true});
  for(let i=0;i<20;i++){if(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)==='cut100')break;await advance.focus();await advance.press('Enter');await rendered();}
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('cut100');await rendered();
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('cut100');const current=page.getByTestId('editing-cut-cut100').locator('textarea[data-cut-id]');await expect(current).toHaveValue(project.lines[100].text);await expect(current).toBeFocused();
  const visible=await page.getByTestId('editing-cut-cut100').locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),area=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,areaTop:area.top,areaBottom:area.bottom};});expect(visible.top).toBeGreaterThanOrEqual(visible.areaTop-1);expect(visible.top).toBeLessThan(visible.areaBottom);
  expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await rendered();
@@ -66,7 +66,7 @@ for(const target of ['background','characters','audio','direction'])test(`advanc
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');
  const rendered=()=>expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision'),{timeout:120000}).toBe(true);await rendered();
  const advance=page.getByRole('button',{name:'다음으로',exact:true});await advance.focus();await advance.press('Enter');await rendered();await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('cut100');
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  const current=page.getByTestId('editing-cut-cut100');await expect(current).toHaveAttribute('aria-current','step');await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('cut100');
  const visible=await current.locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),area=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,areaTop:area.top,areaBottom:area.bottom};});expect(visible.top).toBeGreaterThanOrEqual(visible.areaTop-1);expect(visible.top).toBeLessThan(visible.areaBottom);
  await expect(current.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeFocused();expect(await stored(page)).toEqual(before);await page.screenshot({path:info.outputPath(`advanced-return-${target}-390.png`)});
@@ -77,5 +77,5 @@ test('same-cut closed detail preview preserves an already visible row position',
  const summary=row.getByText('51컷 음향 수정',{exact:true});await summary.click();const field=row.getByLabel('조정할 소리',{exact:true});await field.focus();await summary.click();
  const list=page.locator('[data-writer-scroll]').last();await list.evaluate(el=>{const header=el.querySelector('[aria-current="step"] header')!.getBoundingClientRect(),bounds=el.getBoundingClientRect();el.scrollTop+=header.top-bounds.top-90;});const before=await list.evaluate(el=>el.scrollTop),projectBefore=await stored(page);
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision'),{timeout:120000}).toBe(true);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(row.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeFocused();await expect(field).toBeHidden();await expect.poll(()=>list.evaluate(el=>el.scrollTop)).toBeCloseTo(before,0);expect(await stored(page)).toEqual(projectBefore);
+ await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await expect(row.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeFocused();await expect(field).toBeHidden();await expect.poll(()=>list.evaluate(el=>el.scrollTop)).toBeCloseTo(before,0);expect(await stored(page)).toEqual(projectBefore);
 });

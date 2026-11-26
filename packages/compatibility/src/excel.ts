@@ -6,10 +6,19 @@ export async function createExcelWorkbook() {
   const excel = await import('exceljs');
   return new excel.default.Workbook();
 }
+/**
+ * Excel files keep a line break as LF only: a CR is lost unless it is written as `_x000D_`, and text that already looks
+ * like such a code would be read back as a different character. An underscore before x and four hex digits is always
+ * escaped (even without its closing underscore), since a CR written right after it would otherwise complete a code. Write both in Excel's own escaped form so every cell
+ * comes back exactly as it was written.
+ */
+export function excelCellText(text:string):string{
+  return text.replace(/_(?=x[0-9A-Fa-f]{4})/gu,'_x005F_').replace(/\r/gu,'_x000D_');
+}
 export async function exportTableExcel(rows: readonly (readonly string[])[]):Promise<Uint8Array> {
   if(rows.some(row=>row.some(cell=>cell.length>TABLE_CELL_LIMIT)))throw new Error('Excel의 한 셀에는 30,000자 이하로 입력해 주세요.');
   const book=await createExcelWorkbook();const sheet=book.addWorksheet('KnolStory Next');
-  for(const row of rows)sheet.addRow([...row]);
+  for(const row of rows)sheet.addRow(row.map(excelCellText));
   sheet.getRow(2).font={bold:true};sheet.views=[{state:'frozen',ySplit:2}];
   sheet.columns=[{width:16},{width:30},{width:30},{width:10},{width:28},{width:22},{width:65}];
   return new Uint8Array(await book.xlsx.writeBuffer());

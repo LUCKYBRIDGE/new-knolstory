@@ -33,7 +33,7 @@ for(const width of [390,1280])test(`all ${recipes.length} expressions render thr
   const response=await page.request.get('/runtime/game/'+path);expect(response.ok()).toBe(true);
   expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(row.outputSha256);
   if(index===recipes.length-1||index%4===0)await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`${row.slug}-${width}.png`)});
-  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
+  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();
  }
  await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,path=info.outputPath('expressions.knolstory');await file.saveAs(path);
  expect(parseAuthoringFile(readFileSync(path,'utf8')).project).toEqual(imported);
