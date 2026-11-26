@@ -45,6 +45,7 @@ Ren'Py Web Runtime
 
 ## Before coding
 Read: `AGENTS.md` → `STATUS.md` → `docs/architecture/development-blueprint.md` → `DESIGN.md` when relevant → relevant ADR → relevant `.agents/skills/*/SKILL.md`.
+새 작업 폴더·긴 테스트·디스크 정리는 [개발·테스트 디스크 사용 스킬](.agents/skills/dev-disk/SKILL.md)을 따른다. 운영과 같은 Mac mini에서는 새 작업 폴더와 Playwright 출력을 내장 디스크에 두지 않는다.
 숏스토리 읽기·쪽 편집·보관·A4 작업은 [숏스토리 작업 스킬](.agents/skills/shortstory-workflow/SKILL.md)에서 해당 설계·저장 계약·검증 경로를 확인한다.
 Open questions listed in `STATUS.md` are not decided; do not implement around them silently.
 Read `docs/architecture/documentation-governance.md` when updating plans, instructions, contracts, skills or completion claims. Plans are revisable: preserve evidence, identify changed scope/dependencies and update the canonical owner in the same change. A newer explicit user decision governs its scope; do not silently turn a historical plan into a present requirement.
