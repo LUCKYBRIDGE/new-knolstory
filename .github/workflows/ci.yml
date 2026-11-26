@@ -35,6 +35,48 @@ jobs:
       # runtime are present. Full pnpm build retains its service-audio rights gate.
       - run: pnpm --filter @knolstory/web run build:source
 
+  classroom-db:
+    name: Classroom DB integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Throwaway database that lives only for this job. No repository secret or
+    # production host is used; the password below exists only inside the runner.
+    services:
+      postgres:
+        image: postgres:16-bookworm
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-throwaway-only
+          POSTGRES_DB: knolstory_next
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d knolstory_next"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: postgres
+      PGPASSWORD: ci-throwaway-only
+      PGDATABASE: knolstory_next
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      # Tests import shared packages from the workspace, so both installs are needed.
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir server install --ignore-workspace --frozen-lockfile
+      - name: Run classroom integration tests against the service database
+        working-directory: server
+        run: pnpm exec vitest run --config vitest.config.ts classroom/
+
   host-e2e:
     name: Host E2E (PR)
     if: github.event_name == 'pull_request'
