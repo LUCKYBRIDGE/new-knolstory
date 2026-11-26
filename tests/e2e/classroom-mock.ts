@@ -33,7 +33,7 @@ export async function compose(page:Page,name:RegExp){
 }
 /** In-memory stand-in for /api/v1/class. `role` and `signedIn` are mutable so one test can walk through a login. */
 export async function mockClassroom(page:Page,role:'teacher'|'student'){
- const state={accountId:'11111111-1111-4111-8111-111111111111',permissions:textOnly,signedIn:role==='teacher',classroom:null as null|{id:string;name:string;classCode:string;defaultPermissions:typeof all;students:Student[]},assignments:[] as Assignment[],submissions:{} as Record<string,unknown>,drafts:{} as Record<string,{savedAt:number;amount:number;chars:number;comment:string}>,draftDocs:{} as Record<string,unknown>,review:null as null|{reviewStatus:'passed'|'revise'|null;feedback:string},missions:[] as Mission[],missionRows:{} as Record<string,Record<number,MissionRow>>,missionRoster:[{number:2,name:'하늘'}],missionClock:1_770_000_000_000,calls:[] as string[],bodies:[] as unknown[],qrReady:{} as Record<number,string>,legacyQr:[] as number[]};
+ const state={accountId:'11111111-1111-4111-8111-111111111111',permissions:textOnly,signedIn:role==='teacher',classroom:null as null|{id:string;name:string;classCode:string;defaultPermissions:typeof all;students:Student[]},assignments:[] as Assignment[],submissions:{} as Record<string,unknown>,drafts:{} as Record<string,{savedAt:number;amount:number;chars:number;comment:string}>,draftDocs:{} as Record<string,unknown>,review:null as null|{reviewStatus:'passed'|'revise'|null;feedback:string},missions:[] as Mission[],missionRows:{} as Record<string,Record<number,MissionRow>>,missionRoster:[{number:2,name:'하늘'}],missionClock:1_770_000_000_000,missionHistory:{} as Record<string,{event:string;at:number;answers?:Record<string,string>;note?:string;feedback?:string}[]>,calls:[] as string[],bodies:[] as unknown[],qrReady:{} as Record<number,string>,legacyQr:[] as number[]};
  if(role==='student')state.classroom={id:'c1',name:'3반',classCode:'ABC234',defaultPermissions:textOnly,students:[]};
  if(role==='student')state.assignments=[{id:'a1',title:'내 이야기 쓰기',description:'세 컷을 써 보세요.',storyKey:null,open:true,createdAt:1,submittedAt:null}];
  await page.route('**/api/v1/**',async route=>{
@@ -93,6 +93,9 @@ export async function mockClassroom(page:Page,role:'teacher'|'student'){
    if(assignment[2]==='submission'&&method==='GET')return route.fulfill(ok({document:state.submissions[item.id],submittedAt:item.submittedAt}));
    if(assignment[2]==='submission'&&method==='PUT'){state.submissions[item.id]=body.document;item.submittedAt=1_760_000_000_000;return route.fulfill(ok({submittedAt:item.submittedAt}));}
   }
+  // 지난 기록: what a student handed in and what the teacher decided, kept per mission and student.
+  const historyPath=path.match(/^class\/classroom\/missions\/(\w+)\/(?:progress\/(\d+)\/)?history$/);
+  if(historyPath&&method==='GET')return route.fulfill(ok(state.missionHistory[`${historyPath[1]}:${historyPath[2]??2}`]??[]));
   const missionPath=path.match(/^class\/classroom\/missions(?:\/(\w+)(?:\/(submission|progress)(?:\/(\d+))?)?)?$/);
   if(missionPath){
    const [,id,sub,num]=missionPath,mission=id?state.missions.find(item=>item.id===id):undefined,rows=id?state.missionRows[id]??={}:{};
@@ -103,6 +106,7 @@ export async function mockClassroom(page:Page,role:'teacher'|'student'){
    if(sub==='submission'&&method==='PUT'){
     if(!mission.open)return route.fulfill(fail(409,'MISSION_CLOSED'));
     const row=rows[2]??=blankRow();Object.assign(row,{answers:body.answers,note:body.note,submittedAt:++state.missionClock,reviewStatus:null});
+    (state.missionHistory[`${id}:2`]??=[]).push({event:'submitted',at:row.submittedAt!,answers:body.answers,note:body.note});
     return route.fulfill(ok({submittedAt:row.submittedAt}));
    }
    if(sub==='progress'&&!num&&method==='GET')return route.fulfill(ok(state.missionRoster.map(item=>({...item,...(rows[item.number]??blankRow())}))));
@@ -110,6 +114,7 @@ export async function mockClassroom(page:Page,role:'teacher'|'student'){
     const row=rows[Number(num)]??=blankRow();
     if(body.expectedSubmittedAt!==row.submittedAt)return route.fulfill(fail(409,'MISSION_SUBMISSION_CHANGED'));
     Object.assign(row,{reviewStatus:body.reviewStatus,feedback:body.feedback,reviewedAt:body.reviewStatus?Date.now():null});
+    (state.missionHistory[`${id}:${num}`]??=[]).push({event:body.reviewStatus??'cleared',at:++state.missionClock,feedback:body.feedback});
     return route.fulfill(ok({...state.missionRoster.find(item=>item.number===Number(num))!,...row}));
    }
   }
