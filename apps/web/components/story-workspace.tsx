@@ -1035,7 +1035,13 @@ export function StoryWorkspace() {
           else if(!readTaskBaseline(editorLimits.accountId,taskId)){
             // Continued on another device: rebuild what the base story held (copies keep cut ids), so copied cuts still do not count.
             const origin=baseFixture(forced??task.storyKey);
-            if(origin)saveTaskBaseline(editorLimits.accountId,taskId,workItems(trimToStartPoint(structuredClone(origin.project),task.startPoint,()=>crypto.randomUUID()).project));
+            let items=origin?workItems(trimToStartPoint(structuredClone(origin.project),task.startPoint,()=>crypto.randomUUID()).project):null;
+            // A teacher's template keeps its cut ids in every copy too. (A picture-book stage gets new ids each time, so it cannot be rebuilt.)
+            if(!items&&task.template&&!task.after){
+              try{const base=await taskStartArchive(task,null,(input,init)=>fetch(input,{...init,signal:controller.signal}));if(base?.format==='knolstory')items=workItems(base.document.project);}
+              catch{/* Counting falls back to the whole work. */}
+            }
+            if(items&&!controller.signal.aborted)saveTaskBaseline(editorLimits.accountId,taskId,items);
           }
         }
         await openLibraryWork(key,'edit');

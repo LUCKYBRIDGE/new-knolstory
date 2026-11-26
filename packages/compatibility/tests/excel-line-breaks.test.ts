@@ -13,9 +13,9 @@ it('keeps CR, CRLF and text that looks like an Excel code exactly through the ed
  expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
 });
 it('reads the legacy table export back with the same text',async()=>{
- const rows=[['a\r\nb','c\rd','e_x000D_f','_x005F_x000D_']];
+ const rows=[['a\r\nb','c\rd','e_x000D_f','_x005F_x000D_','_x0041\r\n끝']];
  const book=await createExcelWorkbook();await book.xlsx.load((await exportTableExcel(rows)).buffer as ArrayBuffer);
  const row=book.getWorksheet('KnolStory Next')!.getRow(1);
- expect([1,2,3,4].map(index=>row.getCell(index).value)).toEqual(rows[0]);
+ expect([1,2,3,4,5].map(index=>row.getCell(index).value)).toEqual(rows[0]);
  expect(excelCellText('plain')).toBe('plain');
 });
