@@ -430,7 +430,8 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   },
   async patchAssignment(teacherId:string,id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null;recipients?:readonly number[]|null;checks?:readonly string[];targetAmount?:number|null;editScope?:EditScope|null}>):Promise<AssignmentView>{
    return transaction(async client=>{
-    const room=await teacherRoom(client,teacherId),current=await teacherAssignment(client,room.id,id,true);
+    // Changing who gets a task is checked against its stages under the classroom lock, like creating one, so two tabs cannot both pass.
+    const room=await teacherRoom(client,teacherId,patch.recipients!==undefined),current=await teacherAssignment(client,room.id,id,true);
     if(patch.editScope!==undefined)await client.query('UPDATE knolstory_class.assignments SET edit_scope=$2::jsonb WHERE id=$1',[id,patch.editScope===null?null:JSON.stringify(patch.editScope)]);
     if(patch.checks!==undefined)await client.query('UPDATE knolstory_class.assignments SET checks=$2::jsonb WHERE id=$1',[id,JSON.stringify(patch.checks)]);
     if(patch.targetAmount!==undefined)await client.query('UPDATE knolstory_class.assignments SET target_amount=$2 WHERE id=$1',[id,patch.targetAmount]);
@@ -609,7 +610,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(snapshot.content.format!==assignmentFormat(target.rows[0].format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
     try{await assertStudentTitle(client,accountId,snapshot);}catch{throw new ClassroomError(422,'STUDENT_NUMBER_TITLE');}
     // Homework is refused only for one oversized work or a pool already far past its limit.
-    const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length,review_status FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2 FOR UPDATE',[id,accountId]);
+    const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length,review_status FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
     // A passed work is what the next stage is built from; replacing it would silently undo the teacher's pass.
     if(previous.rows[0]?.review_status==='passed')throw new ClassroomError(409,'SUBMISSION_PASSED');
     const room=await assertCanSubmit(client,text(context.classroom_id),accountId,bytes-Number(previous.rows[0]?.byte_length??0),bytes);
@@ -618,8 +619,11 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
     const submittedAt=now();
     const {amount,chars}=ownAmount(workAmount(snapshot),written);
-    await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at,byte_length,amount,chars) VALUES($1,$2,$3::jsonb,$4,$5,$6,$7)
-     ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,byte_length=EXCLUDED.byte_length,amount=EXCLUDED.amount,chars=EXCLUDED.chars,review_status=NULL`,[id,accountId,JSON.stringify(snapshot),submittedAt,bytes,amount,chars]);
+    // The pass is checked again in the write itself (no extra row lock, so the capacity lock stays the only one taken first).
+    const saved=await client.query(`INSERT INTO knolstory_class.submissions AS s(assignment_id,student_account_id,document,submitted_at,byte_length,amount,chars) VALUES($1,$2,$3::jsonb,$4,$5,$6,$7)
+     ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,byte_length=EXCLUDED.byte_length,amount=EXCLUDED.amount,chars=EXCLUDED.chars,review_status=NULL
+     WHERE s.review_status IS DISTINCT FROM 'passed'`,[id,accountId,JSON.stringify(snapshot),submittedAt,bytes,amount,chars]);
+    if(!saved.rowCount)throw new ClassroomError(409,'SUBMISSION_PASSED');
     return {submittedAt};
    });
   },
