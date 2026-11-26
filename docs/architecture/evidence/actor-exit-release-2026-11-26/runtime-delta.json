@@ -1,0 +1,32 @@
+{
+  "prior": "docs/architecture/evidence/picturebook-release-2026-11-21/runtime-review.json",
+  "archiveMembers": 1356,
+  "newMembers": {
+    "directories": [],
+    "placeholders": 0
+  },
+  "changedMembers": [
+    "game/audio.rpyc",
+    "game/cache/build_info.json",
+    "game/cache/bytecode-312.rpyb",
+    "game/cache/py3analysis.rpyb",
+    "game/cache/screens.rpyb",
+    "game/image_preload.rpyc",
+    "game/presentation.rpy",
+    "game/presentation.rpyc",
+    "game/script.rpy",
+    "game/script.rpyc",
+    "game/tokens.rpyc"
+  ],
+  "categories": {
+    "directory": 55,
+    "project-exact": 64,
+    "sdk-build-metadata-exact": 2,
+    "sdk-root-launcher-exact": 2,
+    "sdk-exact": 366,
+    "sdk-bytecode-exact": 166,
+    "generated-placeholder": 700,
+    "generated-progressive-index": 1
+  },
+  "boundary": "Exact source/member/SDK/engine/transport/license comparison. New placeholders are tied to owner-authorized source images by SHA-256; their pixels were not independently regenerated. No hosting action or deployment."
+}

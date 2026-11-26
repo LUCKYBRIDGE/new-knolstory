@@ -10584,6 +10584,76 @@
         "docs/architecture/picturebook-image-production-requests.md"
       ],
       "creationMethodEvidence": "built-in image_gen reference edit and uniform canvas normalization; requested by project owner"
+    },
+    {
+      "file": "apps/web/public/app-icons/apple-touch-icon.png",
+      "sha256": "f8c38d57ab7757111c17f832ac353bd7d93d1a6172b0f2414af0363a708a7b00",
+      "assetIds": [],
+      "sourceKind": "derived-project",
+      "originalSource": "apps/web/public/assets/legacy-ui/knolstory-outline.png",
+      "originalSha256": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+      "lineageEvidence": [
+        "docs/architecture/evidence/actor-exit-release-2026-11-26/app-icons.md",
+        "new-knolstory@9d5357c5:apps/web/public/app-icons/apple-touch-icon.png"
+      ],
+      "creationMethodEvidence": "deterministic-local-transform",
+      "role": "web-app-icon"
+    },
+    {
+      "file": "apps/web/public/app-icons/favicon-48.png",
+      "sha256": "730964ae7bce035cf5bf76546ae359e1304c7dbab340dc83dff034567803ba85",
+      "assetIds": [],
+      "sourceKind": "derived-project",
+      "originalSource": "apps/web/public/assets/legacy-ui/knolstory-outline.png",
+      "originalSha256": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+      "lineageEvidence": [
+        "docs/architecture/evidence/actor-exit-release-2026-11-26/app-icons.md",
+        "new-knolstory@9d5357c5:apps/web/public/app-icons/favicon-48.png"
+      ],
+      "creationMethodEvidence": "deterministic-local-transform",
+      "role": "web-app-icon"
+    },
+    {
+      "file": "apps/web/public/app-icons/icon-192.png",
+      "sha256": "93a854d25b3835453fda79fb0751d6ce09cc874a5024ddb04477dc60096b4aa1",
+      "assetIds": [],
+      "sourceKind": "derived-project",
+      "originalSource": "apps/web/public/assets/legacy-ui/knolstory-outline.png",
+      "originalSha256": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+      "lineageEvidence": [
+        "docs/architecture/evidence/actor-exit-release-2026-11-26/app-icons.md",
+        "new-knolstory@9d5357c5:apps/web/public/app-icons/icon-192.png"
+      ],
+      "creationMethodEvidence": "deterministic-local-transform",
+      "role": "web-app-icon"
+    },
+    {
+      "file": "apps/web/public/app-icons/icon-512.png",
+      "sha256": "f115843ec8ed3961335ceb293930ab1059a6e3f08a52c489263469da12e89dc5",
+      "assetIds": [],
+      "sourceKind": "derived-project",
+      "originalSource": "apps/web/public/assets/legacy-ui/knolstory-outline.png",
+      "originalSha256": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+      "lineageEvidence": [
+        "docs/architecture/evidence/actor-exit-release-2026-11-26/app-icons.md",
+        "new-knolstory@9d5357c5:apps/web/public/app-icons/icon-512.png"
+      ],
+      "creationMethodEvidence": "deterministic-local-transform",
+      "role": "web-app-icon"
+    },
+    {
+      "file": "apps/web/public/app-icons/maskable-512.png",
+      "sha256": "b2d1da4b7b14d720bc938f02240328705b2d9785dfb5e2d528e06a1b24a49a21",
+      "assetIds": [],
+      "sourceKind": "derived-project",
+      "originalSource": "apps/web/public/assets/legacy-ui/knolstory-outline.png",
+      "originalSha256": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+      "lineageEvidence": [
+        "docs/architecture/evidence/actor-exit-release-2026-11-26/app-icons.md",
+        "new-knolstory@9d5357c5:apps/web/public/app-icons/maskable-512.png"
+      ],
+      "creationMethodEvidence": "deterministic-local-transform",
+      "role": "web-app-icon"
     }
   ]
 }
