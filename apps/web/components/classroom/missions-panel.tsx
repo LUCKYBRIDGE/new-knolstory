@@ -195,7 +195,7 @@ function StudentReview({mission,row,csrf,onSaved,onStale}:{mission:Mission;row:M
     {row.note&&<div className={styles.answer}><p className={styles.prompt}>{mission.questions.length?'선생님께 남긴 말':'읽고 남긴 말'}</p><p className={styles.reply}>{row.note}</p></div>}
     {!mission.questions.length&&!row.note&&<p className={shared.hint}>남긴 말 없이 확인을 요청했어요.</p>}
    </>:<p className={shared.hint}>온라인으로 낸 답변이 없어요. 종이 활동지나 교실 활동을 직접 확인했다면 바로 통과시킬 수 있어요.</p>}
-   {row.submittedAt&&<MissionHistory mission={mission} label={`${who} 지난 기록`} load={()=>missionHistoryFor(mission.id,row.number)}/>}
+   {row.submittedAt&&<MissionHistory mission={mission} label={`${who} 지난 기록`} version={`${row.submittedAt}-${row.reviewedAt??''}`} load={()=>missionHistoryFor(mission.id,row.number)}/>}
    {(mission.archived||!row.reviewStatus)&&row.feedback&&<div className={styles.answer}><p className={styles.prompt}>지난 피드백</p><p className={styles.reply}>{row.feedback}</p></div>}
    {!mission.archived&&<><label className={shared.field}>학생에게 남길 말 <textarea aria-label={`${who} 학생에게 남길 말`} rows={2} value={feedback} maxLength={MISSION_LIMITS.text} disabled={busy} onChange={event=>setFeedback(event.target.value)} placeholder="잘한 점이나 다시 쓸 점을 적어 주세요."/></label>
    <div className={styles.decide}>
