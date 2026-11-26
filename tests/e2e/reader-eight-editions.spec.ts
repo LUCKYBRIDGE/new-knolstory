@@ -3,13 +3,15 @@ import {test,expect,type Page} from '@playwright/test';
 import {builtinEditions,enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry';
 import {readerLibrary} from './native-reader';
 import {catalogBranchNarrativeChanges} from '../../packages/compatibility/src/catalog-branch-narrative';
+import {SEONNYEO_PROJECT_ID,seonnyeoPastTense} from '../../packages/compatibility/src/catalog-seonnyeo-tense';
 
 type TextEdit={projectId:string;lineId:string;after:string};
 type Project={id:string;lines:Array<{id:string;text:string;flow?:{type:string};ending?:{endsStory?:boolean}}>};
 const readEdits=(name:string)=>JSON.parse(readFileSync(new URL(`../../packages/compatibility/src/${name}.json`,import.meta.url),'utf8')) as TextEdit[];
 const additional=['rabbit','heungbu','seonnyeo','onggojib'].flatMap(id=>readEdits(`reader-edit-${id}`));
 // A later branch-aware rewrite (catalog-branch-narrative) supersedes the earlier correction of the same cut.
-const branchAware=(edit:TextEdit):TextEdit=>{const change=catalogBranchNarrativeChanges[edit.projectId]?.[edit.lineId];return change&&change[0]===edit.after?{...edit,after:change[1]}:edit;};
+// Reader text as the catalog shows it now: later branch edits, and 선녀's narration in the past tense.
+const branchAware=(edit:TextEdit):TextEdit=>{const change=catalogBranchNarrativeChanges[edit.projectId]?.[edit.lineId];const after=change&&change[0]===edit.after?change[1]:edit.after;return {...edit,after:edit.projectId===SEONNYEO_PROJECT_ID?seonnyeoPastTense(after):after};};
 const edits=[...readEdits('reader-text-rabbit-heungbu'),...readEdits('reader-text-seonnyeo-onggojib'),...additional].map(branchAware);
 const workspaceKey='knolstory-next-workspace-v1';
 
