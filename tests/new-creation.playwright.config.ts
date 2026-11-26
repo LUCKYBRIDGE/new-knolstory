@@ -1,4 +1,4 @@
-import {defineConfig} from '@playwright/test';
+import {defineConfig} from '@playwright/test';import {diskGuardSetup,testOutputDir} from './disk-guard';
 
 /** Reuse the verified static release; isolated contexts never use personal works. */
 export default defineConfig({
@@ -13,6 +13,6 @@ export default defineConfig({
     actionTimeout: 15000,
     trace: 'retain-on-failure',
   },
-  outputDir: '../test-results/new-creation-complete',
+  outputDir:testOutputDir(import.meta.dirname,'../test-results/new-creation-complete'),globalSetup:diskGuardSetup,
   reporter: [['list']],
 });

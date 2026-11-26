@@ -1,3 +1,3 @@
-import {defineConfig} from '@playwright/test';
+import {defineConfig} from '@playwright/test';import {diskGuardSetup,testOutputDir} from './disk-guard';
 const origin=process.env.KNOL_REMOTE_ORIGIN;
-export default defineConfig({testDir:'./e2e',testMatch:['library-return-recovery.spec.ts','reader-exit-recovery.spec.ts'],workers:1,timeout:45000,use:{baseURL:origin??'http://127.0.0.1:3000',browserName:'chromium',trace:'retain-on-failure'},outputDir:'../.cache/library-return-results',reporter:[['list']],...(!origin?{webServer:{command:'pnpm preview',url:'http://127.0.0.1:3000',reuseExistingServer:false}}:{})});
+export default defineConfig({testDir:'./e2e',testMatch:['library-return-recovery.spec.ts','reader-exit-recovery.spec.ts'],workers:1,timeout:45000,use:{baseURL:origin??'http://127.0.0.1:3000',browserName:'chromium',trace:'retain-on-failure'},outputDir:testOutputDir(import.meta.dirname,'../.cache/library-return-results'),globalSetup:diskGuardSetup,reporter:[['list']],...(!origin?{webServer:{command:'pnpm preview',url:'http://127.0.0.1:3000',reuseExistingServer:false}}:{})});

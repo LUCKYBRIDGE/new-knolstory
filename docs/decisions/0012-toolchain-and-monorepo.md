@@ -39,3 +39,12 @@
 
 작업 경로는 `/Users/wan/ai_dev/apps/new-knolstory`(주)와 `/Volumes/WAN2/apps/new-knolstory`(보조) 둘 다 쓸 수 있다.
 따라서 **문서·스크립트·설정에 절대 경로를 쓰지 않는다.** 모든 경로는 저장소 루트 기준 상대 경로다.
+
+2026-11-26 갱신: 운영·개발·테스트가 한 Mac mini에서 돌고, 2026-11-25 Playwright 출력이 내장 디스크를 채워 Docker Desktop과 운영 API가 멈췄다. 이 Mac mini에서는 새 작업 폴더와 테스트 출력을 외장 SSD에 둔다.
+
+| 변수 | 이 Mac mini의 값 |
+|---|---|
+| `KNOL_DEV_ROOT` | `/Volumes/WAN2/knolstory-dev` |
+| `KNOL_TEST_OUTPUT_ROOT` | `/Volumes/WAN2/knolstory-dev/test-output` |
+
+Docker 데이터는 `/Volumes/WAN2/DockerDesktop`, DB 백업은 `/Volumes/Toshiba`에만 둔다. 사용 규칙은 [개발·테스트 디스크 사용 스킬](../../.agents/skills/dev-disk/SKILL.md)을 따른다.
