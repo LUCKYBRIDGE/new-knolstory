@@ -12,6 +12,8 @@ test('fresh browser entry introduces existing books and explicit navigation ente
  const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro).toBeVisible();
  await expect(intro.locator('[data-intro-poster]')).toHaveCount(1);await expect(intro.getByRole('navigation',{name:'놀스토리 메인 메뉴'}).getByRole('button')).toHaveCount(2);
  await expect(page.getByTestId('story-runtime-frame')).toHaveCount(0);
+ // A first visit shows the title screen alone; the four-story list belongs to the library's ‘책 소개’.
+ await expect(page.getByRole('region',{name:'놀스토리의 네 이야기'})).toHaveCount(0);
  await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
  await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  await page.goto('/');await expect(intro).toBeVisible();
