@@ -270,7 +270,7 @@ export function connectionsSurface({open,summary,upstream,incoming,here,marks,ou
  return surfaceFrom('connections',components,{open,disabled});
 }
 
-/** 이야기 흐름 지도 · 갈래 구조: the catalog fixes its place (a named section) and props; the map registers the drawing. */
+/** 이야기 지도 · 갈래 구조: the catalog fixes its place (a named section) and props; the map registers the drawing. */
 export function structureSurface({currentLineId,grouped}:{currentLineId:string;grouped:boolean}):Surface{
  return surfaceFrom('story-structure',[
   {id:'structure-place',component:'Column',element:'section',name:'갈래 구조',gap:12,children:['structure']},

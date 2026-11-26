@@ -146,8 +146,8 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose, onA
       if (event.target === event.currentTarget && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) onClose();
     }}>
     <header className={styles.header}>
-      <div><p className={styles.eyebrow}>이야기의 길을 살펴보세요</p><h2 id={titleId}>이야기 흐름 지도</h2></div>
-      <button ref={closeRef} onClick={onClose} aria-label="전체 흐름 닫기">닫기</button>
+      <div><p className={styles.eyebrow}>이야기의 길을 살펴보세요</p><h2 id={titleId}>이야기 지도</h2></div>
+      <button ref={closeRef} onClick={onClose} aria-label="이야기 지도 닫기">닫기</button>
     </header>
     <div className={styles.body} ref={bodyRef} onScroll={event => { scrolled.current = event.currentTarget.scrollTop; }}>
       <div className={styles.mapBar}><div className={styles.viewTabs} role="group" aria-label="보는 방식"><button type="button" aria-pressed={view === "structure"} onClick={() => setView("structure")}>갈래 구조</button><button type="button" aria-pressed={view === "chapters"} onClick={() => setView("chapters")}>장 지도</button></div>
