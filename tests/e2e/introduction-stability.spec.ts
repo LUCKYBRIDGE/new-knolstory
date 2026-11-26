@@ -26,7 +26,7 @@ test('introduction waits for a choice and stays open across reloads and new navi
  await page.goto('/');await expect(intro).toBeVisible();
  await intro.getByRole('button',{name:'이야기 읽기',exact:true}).click();
  await expect(page.getByRole('main',{name:'책 표지와 소개',exact:true})).toBeVisible();
- await page.getByRole('button',{name:'서재로',exact:true}).click();
+ await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();
  await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await openShelfAction(page,builtinShelfCard(page,'seonnyeo'),'작품 준비');
  await expect(page.getByRole('region',{name:'작품 설정',exact:true})).toBeVisible();

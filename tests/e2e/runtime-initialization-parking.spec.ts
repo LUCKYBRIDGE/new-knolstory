@@ -8,7 +8,7 @@ for(const destination of ['text','library'] as const)test(`native engine initial
  try{
  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await expect.poll(()=>requested).toBe(true);const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-engine-identity','single-native'));
  const authored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);const before=await authored();const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();
- if(destination==='text')await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('text');else await page.getByRole('button',{name:'서재로',exact:true}).click();
+ if(destination==='text')await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('text');else await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true})).first().click();
  // Prove the engine's iframe document has a positive layout viewport BEFORE allowing any engine startup.
  expect(await frame.evaluate(node=>({width:(node as HTMLIFrameElement).clientWidth,height:(node as HTMLIFrameElement).clientHeight}))).toEqual({width:1280,height:720});await expect(frame).toHaveCount(1);await expect(frame).toHaveAttribute('data-engine-identity','single-native');
  if(destination==='text'){const parked=page.locator('[data-runtime-parked=true]');await expect(parked).toHaveAttribute('aria-hidden','true');expect(await parked.evaluate(node=>node.hasAttribute('inert'))).toBe(true);}

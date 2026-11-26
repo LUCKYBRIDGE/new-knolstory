@@ -69,7 +69,7 @@ test('흐름 지도 reads the structure first, keeps its place and shows which w
  await page.setViewportSize({width:390,height:844});await importWork(page,sample);
  const position=page.getByLabel('현재 장과 컷 이동',{exact:true});await position.selectOption('c4');const before=await stored(page);
  const panel=await openConnections(page);await panel.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();
- const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});const structure=map.getByTestId('story-structure');await expect(structure).toBeVisible();
+ const map=page.getByRole('dialog',{name:'이야기 지도',exact:true});const structure=map.getByTestId('story-structure');await expect(structure).toBeVisible();
  // 1장 2컷 갈림길 → 강 쪽으로 · 2장A 1~2컷 → 3장 1컷에서 다시 만나요 / 숲으로 → 2장B 1컷의 조건 갈림길, readable without sideways scrolling.
  const fork=map.locator('[id="structure-c2"]');await expect(fork).toContainText('A. ‘강 쪽으로 간다’');await expect(fork).toContainText('2장A 1~2컷 · 2컷 · 현재 편집');await expect(fork).toContainText('● 3장 1컷에서 다시 만나요');await expect(fork).toContainText('B. ‘숲으로 들어간다’');
  await expect(map.locator('[id="structure-c5"]')).toContainText('용기 2점 이상일 때');await expect(map.locator('[id="structure-c6"]')).toContainText('도착 컷을 정해 주세요 · 이 컷에서 수정');
@@ -92,7 +92,7 @@ test('긴 작품: the map folds by chapter and finds the current cut and a searc
  await page.setViewportSize({width:390,height:844});await importWork(page,{...source,id:'connections-long'});
  const position=page.getByLabel('현재 장과 컷 이동',{exact:true});await position.selectOption('C3-B-v74-3');
  const panel=await openConnections(page);await expect(panel).toContainText('갈림길');
- await panel.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});
+ await panel.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();const map=page.getByRole('dialog',{name:'이야기 지도',exact:true});
  const chapters=map.getByTestId('story-structure').locator(':scope>details');expect(await chapters.count()).toBeGreaterThan(5);
  await map.getByRole('button',{name:'현재 컷으로',exact:true}).click();const current=map.locator('[data-structure-cut="C3-B-v74-3"]');await expect(current).toBeInViewport();await expect(current).toHaveAttribute('aria-current','true');
  // A long way shows the cuts around the current one, not hundreds at once.
@@ -126,7 +126,7 @@ test('갈라진 채 이어지는 줄거리: each storyline reads on its own in t
  const panel=await openConnections(page);await expect(panel).toContainText('갈래 A · 갈림길');await expect(panel).toContainText('‘하늘로 돌아간다’ 고르면');
  await position.selectOption('e2');await expect(panel).toContainText('갈래 B · 갈림길');
  // The map groups blocks by storyline, each with its own branch points and endings.
- await panel.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});
+ await panel.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();const map=page.getByRole('dialog',{name:'이야기 지도',exact:true});
  await expect(map.locator('[data-storyline=""]>summary')).toContainText('공통 줄기');
  await expect(map.locator('[data-storyline="A"]>summary')).toContainText('갈래 A');await expect(map.locator('[data-storyline="A"]>summary')).toContainText('끝 2');
  await expect(map.locator('[data-storyline="B"]>summary')).toContainText('갈래 B');await expect(map.locator('[data-storyline="B"]>summary')).toContainText('끝 2');
