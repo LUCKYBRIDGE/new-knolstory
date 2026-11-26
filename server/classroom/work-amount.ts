@@ -9,6 +9,12 @@ export function workAmount(snapshot:unknown):{amount:number;chars:number}{
  const items=content?.format==='shortstory'?content.project?.pages:content?.document?.project?.lines;
  if(!Array.isArray(items))return {amount:0,chars:0};
  let amount=0,chars=0;
- for(const item of items){const text=typeof (item as {text?:unknown})?.text==='string'?((item as {text:string}).text).trim():'';if(text){amount++;chars+=[...text].length;}}
+ // A cut's words include its score-conditioned variants (textVariants): readers see one of them instead of the main text.
+ const words=(value:unknown)=>typeof value==='string'?value.trim():'';
+ for(const item of items){
+  const variants=Array.isArray((item as {textVariants?:unknown})?.textVariants)?((item as {textVariants:unknown[]}).textVariants).map(variant=>words((variant as {text?:unknown})?.text)):[];
+  const text=[words((item as {text?:unknown})?.text),...variants].filter(Boolean).join('\n');
+  if(text){amount++;chars+=[...text].length;}
+ }
  return {amount,chars};
 }
