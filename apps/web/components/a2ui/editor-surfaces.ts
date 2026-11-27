@@ -99,11 +99,20 @@ export function topBarSurface({unified,title,open,disabled,scores,fullscreen,ful
 }
 
 export const TEXT_EVENT='changeText';
-/** A cut's text box (쓰기 and 원고). */
-export function textBoxSurface({lineId,label,value,readOnly,disabled}:{lineId:string;label:string;value:string;readOnly:boolean;disabled:boolean}):Surface{
+export const MANUSCRIPT_EVENTS={split:'splitCutHere',join:'joinPreviousCut',speaker:'changeCutSpeaker'} as const;
+/** A cut's text box (쓰기 and 원고). On 원고 (writeOn) Enter twice starts the next cut and Backspace at the start joins the cut before. */
+export function textBoxSurface({lineId,label,value,readOnly,disabled,writeOn=false}:{lineId:string;label:string;value:string;readOnly:boolean;disabled:boolean;writeOn?:boolean}):Surface{
  return surfaceFrom(`text-${lineId}`,[
-  {id:'text',component:'TextArea',label,value:{path:'/value'},maxChars:20000,readOnly:{path:'/readOnly'},disabled:{path:'/disabled'},change:{event:{name:TEXT_EVENT,context:{lineId}}}},
+  {id:'text',component:'TextArea',label,value:{path:'/value'},maxChars:20000,readOnly:{path:'/readOnly'},disabled:{path:'/disabled'},change:{event:{name:TEXT_EVENT,context:{lineId}}},
+   ...(writeOn?{splitHere:{event:{name:MANUSCRIPT_EVENTS.split,context:{lineId}}},joinPrevious:{event:{name:MANUSCRIPT_EVENTS.join,context:{lineId}}}}:{})},
  ],{value,readOnly,disabled});
+}
+/** 원고: who speaks this cut — 해설 or one of the work's names. */
+export function cutSpeakerSurface({lineId,cut,value,options,disabled}:{lineId:string;cut:number;value:string;options:{value:string;label:string}[];disabled:boolean}):Surface{
+ return surfaceFrom(`speaker-${lineId}`,[
+  {id:'speaker-group',component:'ToolGroup',name:'화자 고르기',children:['speaker']},
+  {id:'speaker',component:'Choice',label:'화자',name:`${cut}컷 화자`,title:'해설 또는 말하는 인물',value:{path:'/value'},disabled:{path:'/disabled'},options,change:{event:{name:MANUSCRIPT_EVENTS.speaker,context:{lineId}}}},
+ ],{value,disabled});
 }
 
 export const NEIGHBOUR_EVENTS={select:'selectNeighbour',add:'addCutAfter',separate:'separatePath'} as const;

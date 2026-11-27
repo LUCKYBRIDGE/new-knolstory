@@ -59,4 +59,11 @@ describe('safe manuscript operations',()=>{
   const p=manuscript();expect(()=>splitStoryCut({...p,lines:[{...p.lines[0],type:'invalid'}]} as unknown as StoryProject,'a','b',7)).toThrow();
  });
 
+ it('joins cuts whose settings differ only in key order or an explicit inheritActors:false',()=>{
+  const p=splitStoryCut(manuscript(),'a','b',7);
+  const reordered:StoryProject={...p,lines:p.lines.map(l=>l.id==='b'?Object.fromEntries(Object.entries({...l,inheritActors:false}).reverse()) as typeof l:l)};
+  expect(mergeStoryCuts(reordered,'a','b').lines).toHaveLength(1);
+  const other:StoryProject={...p,lines:p.lines.map(l=>l.id==='b'?{...l,speakerName:'철수',type:'dialogue',speaker:'left'}:l)};
+  expect(()=>mergeStoryCuts(other,'a','b')).toThrow(/설정이 서로 달라/);
+ });
 });

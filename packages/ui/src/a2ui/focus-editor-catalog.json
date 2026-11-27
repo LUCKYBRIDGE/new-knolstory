@@ -1027,7 +1027,7 @@
     },
     "TextArea": {
       "type": "object",
-      "description": "Multi-line text of a cut (쓰기·원고). The label is for assistive tech. readOnly when the device only reviews (short landscape phone).",
+      "description": "Multi-line text of a cut (쓰기·원고). The label is for assistive tech. readOnly when the device only reviews (short landscape phone). 원고 writes on across cuts: splitHere fires when Enter is pressed twice (context value = the text without the blank line, position = where the next cut starts); joinPrevious fires on Backspace at the very start.",
       "allowedParents": [
         "Column",
         "CutItem"
@@ -1058,6 +1058,12 @@
         },
         "disabled": {
           "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "splitHere": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "joinPrevious": {
+          "$ref": "common_types.json#/$defs/Action"
         }
       },
       "required": [
