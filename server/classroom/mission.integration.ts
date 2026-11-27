@@ -45,6 +45,14 @@ describe('real PostgreSQL classroom missions',()=>{
   expect(await failure(service.submitMission(a.teacher,created.id,{answers:{q1:'x',q2:'y'},note:''}))).toBe('403 ROLE_NOT_ALLOWED');
  });
 
+ it('assigns the new story and reads it back through the student API',async()=>{
+  const {teacher,students}=await classroom(1);
+  const input={...reading,title:'박씨전 읽기',storyKey:'bakssi',readingFormat:'shortstory'};
+  const mission=await service.createMission(teacher,input);
+  expect(mission).toMatchObject(input);
+  expect((await service.listMissions(students[1]!,'student')).map(({id,storyKey,readingFormat})=>({id,storyKey,readingFormat}))).toEqual([{id:mission.id,storyKey:'bakssi',readingFormat:'shortstory'}]);
+ });
+
  it('walks submit → revise → resubmit → pass, guarding the answer the teacher read',async()=>{
   const {teacher,students}=await classroom(2),one=students[1]!,two=students[2]!;
   const mission=await service.createMission(teacher,worksheet);

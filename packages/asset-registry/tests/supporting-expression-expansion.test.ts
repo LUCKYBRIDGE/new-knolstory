@@ -21,7 +21,7 @@ it('adds two distinct searchable poses for each of sixteen supporting identities
 });
 it('preserves all 449 previous catalogue rows outside the reviewed picker tags and permits only reviewed new runtime paths',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
- const previous=rows.filter((row:{src:string;metadata:{generatedExpressionAsset?:boolean;shortStoryCollection?:string;generatedPicturebookStageAsset?:boolean}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedPicturebookStageAsset&&(!row.metadata.generatedExpressionAsset||row.src.startsWith('/assets/characters/expressions-v1/')));
+ const previous=rows.filter((row:{src:string;metadata:{generatedExpressionAsset?:boolean;shortStoryCollection?:string;generatedBakssiAsset?:boolean;generatedPicturebookStageAsset?:boolean}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedBakssiAsset&&!row.metadata.generatedPicturebookStageAsset&&(!row.metadata.generatedExpressionAsset||row.src.startsWith('/assets/characters/expressions-v1/')));
  expect(previous).toHaveLength(plan.before.catalogueRows);
  // Baseline from 37ed62e9 with only the reviewed picker fields removed.
  expect(stableCatalogDigest(previous)).toBe('496e2dde0b225a09fffb0f45cece7494b7863522f98cc6a630775d0d8cc65c99');

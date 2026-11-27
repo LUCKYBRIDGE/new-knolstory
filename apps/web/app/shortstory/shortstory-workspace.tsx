@@ -136,7 +136,7 @@ export function ShortStoryWorkspace() {
    const storage={getItem:(key:string)=>localStorage.getItem(key),setItem:(key:string,value:string)=>{writer.guard.current!.assertWritable();if(key===SHORTSTORY_LIBRARY_KEY)writer.guard.current!.setItem(key,value);else if(key===`${SHORTSTORY_LEGACY_KEY}-backup`)localStorage.setItem(key,value);else throw Error('허용되지 않은 저장 키예요.');}};
    const raw=localStorage.getItem(SHORTSTORY_LIBRARY_KEY),previous=localStorage.getItem(SHORTSTORY_LEGACY_KEY);
    let loaded=writer.status==='owned'?loadShortStoryLibrary(storage):raw!==null?parseShortStoryLibrary(raw):previous!==null?addShortStoryBook(emptyShortStoryLibrary(),decodeShortStory(previous)):emptyShortStoryLibrary();const params=new URLSearchParams(window.location.search),key=params.get('work');
-   if(key!==null&&!isShortStoryWorkKey(key))throw Error('지원하는 네 작품의 그림책 주소를 확인해 주세요.');
+   if(key!==null&&!isShortStoryWorkKey(key))throw Error('제공 그림책의 주소를 확인해 주세요.');
    let selected:Project|undefined=isShortStoryWorkKey(key)?getShortStoryOriginal(key):loaded.books.find(book=>book.id===loaded.activeId)??originalById(loaded.activeId);
    const read=isShortStoryWorkKey(key)&&params.get('mode')!=='edit';
    const browse=key===null&&params.get('mode')==='library';

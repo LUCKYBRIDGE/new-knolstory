@@ -6,8 +6,10 @@ import { describe, expect, it } from 'vitest';
 import { getRepresentativeStory, representativeStories } from '../src/index';
 import { normalizeChapterTitle, parseStoryDocument, serializeStoryDocument, updateStoryLine, storyFlowTargets, orderedStoryFlowLines } from '@knolstory/story-domain';
 
+const legacyStories=representativeStories.filter(story=>story.id!=='bakssi');
+
 describe('fixed legacy manuscript fidelity', () => {
-  for (const story of representativeStories) {
+  for (const story of legacyStories) {
     it(`${story.id} imports every line, branch and presentation and roundtrips edits`, () => {
       const document = getRepresentativeStory(story.id);
       expect(document.project.lines.length).toBeGreaterThan(10);
@@ -99,7 +101,7 @@ describe('legacy schema boundaries', () => {
 
 const sourceManuscripts = { seonnyeo: seonnyeoSource, heungbu: heungbuSource, onggojib: onggojibSource, rabbit: rabbitSource };
 describe('every authored baseline field is retained', () => {
-  for (const story of representativeStories) {
+  for (const story of legacyStories) {
     it(`${story.id} preserves every chapter, cut, text, branch, asset ID and cue`, () => {
       const project = getRepresentativeStory(story.id).project;
       const source = sourceManuscripts[story.id];

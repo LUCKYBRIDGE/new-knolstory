@@ -14,13 +14,13 @@ it('registers one character-free rainy evening cottage and makes it selectable b
  expect(ASSET_CATALOG.filter(a=>a.metadata.generatedWeatherAsset)).toHaveLength(1);
 });
 it('retains all 432 pre-weather rows outside the reviewed picker tags and transparency repairs',()=>{
- type Row={id:string;type:string;revision:string;metadata?:{generatedWeatherAsset?:boolean;generatedTransparencyRepair?:boolean;generatedExpressionAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}};
+ type Row={id:string;type:string;revision:string;metadata?:{generatedWeatherAsset?:boolean;generatedTransparencyRepair?:boolean;generatedExpressionAsset?:boolean;generatedBakssiAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}};
  type Repair={id:string;outputSha256:string;previousCatalogEntry:Row};
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as Row[];
  const receipt=JSON.parse(readFileSync('docs/architecture/evidence/transparency-repair-2026-11-11/generation.json','utf8')) as {assets:Repair[]};
  const repairs=new Map(receipt.assets.map(row=>[row.id,row]));
  expect([...repairs.keys()].sort()).toEqual(['heungbu.character.heungbu-pleading','heungbu.character.nolbu-working']);
- const previous=rows.filter(row=>!row.metadata?.generatedWeatherAsset&&!row.metadata?.generatedExpressionAsset&&!row.metadata?.generatedPicturebookStageAsset&&!row.metadata?.shortStoryCollection);expect(previous).toHaveLength(432);
+ const previous=rows.filter(row=>!row.metadata?.generatedWeatherAsset&&!row.metadata?.generatedExpressionAsset&&!row.metadata?.generatedBakssiAsset&&!row.metadata?.generatedPicturebookStageAsset&&!row.metadata?.shortStoryCollection);expect(previous).toHaveLength(432);
  const historical=previous.map(row=>{
   if(!row.metadata?.generatedTransparencyRepair){expect(repairs.has(row.id)).toBe(false);return row;}
   const repair=repairs.get(row.id);expect(repair).toBeDefined();expect(row.revision).toBe(repair!.outputSha256);

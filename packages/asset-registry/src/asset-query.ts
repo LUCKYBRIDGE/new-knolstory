@@ -69,7 +69,7 @@ export function facetLabel(key: FacetKey, value: string) {
     "onggojib-pixel-v2": "옹고집전 픽셀", "onggojib-watercolor-v2": "옹고집전 수채화",
     "onggojib-legacy-cover-v1": "옹고집전 이전 표지", "heungbu-traditional-picturebook": "흥부 전통 그림책",
     "seonnyeo-soft-picturebook": "선녀 부드러운 그림책", "seonnyeo-painted-v2": "선녀 회화",
-    "heungbu-ink-watercolor-v2": "흥부 먹선·수채화", "rabbit-shortstory-pixel-painterly-v1": "별주부전 완성 삽화",
+    "heungbu-ink-watercolor-v2": "흥부 먹선·수채화", "bakssi-watercolor-v1": "박씨전 먹선·수채화", "rabbit-shortstory-pixel-painterly-v1": "별주부전 완성 삽화",
   } as Record<string,string>)[value] ?? value;
   if (key === "storyPackIds") return ASSET_CATALOG.find(asset => strings(asset.metadata.storyPackIds).includes(value))?.story ?? value;
   if (key === "characterIds") return STORY_CHARACTERS.find(character => character.id === value)?.name ?? value;

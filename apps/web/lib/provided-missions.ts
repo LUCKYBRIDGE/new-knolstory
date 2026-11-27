@@ -1,4 +1,4 @@
-/** Missions 놀스토리 offers for the four provided works. A teacher copies one, edits it freely and assigns the copy. */
+/** Missions 놀스토리 offers for the provided works. A teacher copies one, edits it freely and assigns the copy. */
 import {BUILTIN_WORKS,type BuiltinWorkId} from './builtin-works';
 import type {MissionDraft} from './mission-api';
 import {PROVIDED_WORKSHEETS,type WorksheetFocus} from './provided-worksheets';
@@ -31,6 +31,12 @@ const copy:Record<BuiltinWorkId,WorkCopy>={
   otherPath:'흥부가 다친 제비를 그냥 지나쳤다면 이야기가 어떻게 달라졌을까요?',
   activityTitle:'내 박에서 나왔으면 하는 것 발표하기',
   activity:'내가 박을 탄다면 무엇이 나오면 좋을지, 그것을 누구와 나누고 싶은지 정해 친구들 앞에서 발표해요.',
+ },
+ bakssi:{
+  choice:'박씨는 말값으로 장만한 쌀을 피화당에 온 사람들과 나누었어요. 박씨가 그렇게 한 까닭을 앞뒤 장면에서 찾아 써 보세요.',
+  otherPath:'임금이 박씨가 보낸 경고를 듣고 미리 준비했다면, 피화당을 찾은 사람들에게 어떤 일이 달라졌을까요?',
+  activityTitle:'피화당에서 마주친 두 사람',
+  activity:'피화당에 도착한 사람과 문을 열어 준 사람의 역할을 나눠요. 어느 길로 왔는지, 지금 가장 필요한 것이 무엇인지 서로 묻고 짧은 장면으로 보여 주세요.',
  },
 };
 

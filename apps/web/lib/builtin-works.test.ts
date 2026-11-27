@@ -1,12 +1,12 @@
 import {describe,expect,it} from 'vitest';
 import {BUILTIN_WORKS,groupBuiltinWorks} from './builtin-works';
 const book=(key:string,id:string,kind:'original'|'example'|'own'|'imported'='example')=>({key,kind,project:{id,title:'같은 제목'},canResume:false});
-describe('four builtin works preserve independent edition identities',()=>{
- it('groups eight actual document IDs into four books without rewriting a manuscript',()=>{
+describe('five builtin works preserve independent edition identities',()=>{
+ it('groups ten actual document IDs into five books without rewriting a manuscript',()=>{
   const books=BUILTIN_WORKS.flatMap(work=>[book(`${work.id}-classic`,work.originalDocumentId,'original'),book(work.id,work.knolstoryDocumentId)]);
   const before=JSON.stringify(books),shelf=groupBuiltinWorks(books);
-  expect(shelf).toHaveLength(4);
-  expect(shelf.map(item=>item.builtin?.id)).toEqual(['rabbit','onggojib','seonnyeo','heungbu']);
+  expect(shelf).toHaveLength(5);
+  expect(shelf.map(item=>item.builtin?.id)).toEqual(['rabbit','onggojib','seonnyeo','heungbu','bakssi']);
   expect(shelf[0].builtin?.original?.key).toBe('rabbit-classic');
   expect(shelf[0].builtin?.knolstory?.key).toBe('rabbit');
   expect(JSON.stringify(books)).toBe(before);
@@ -23,15 +23,24 @@ describe('four builtin works preserve independent edition identities',()=>{
  });
 });
 
-import {representativeStories,classicStories} from '@knolstory/compatibility';
+import {representativeStories,classicStories,getClassicStory,getRepresentativeStory} from '@knolstory/compatibility';
 it('connects every shipped manuscript exactly once using the actual corpus identities',()=>{
  const corpus=[...classicStories.map(story=>({...book(story.id,story.project.id,'original'),project:story.project})),...representativeStories.map(story=>({...book(story.id,story.project.id),project:story.project}))];
  const shelf=groupBuiltinWorks(corpus);
- expect(shelf).toHaveLength(4);
+ expect(shelf).toHaveLength(5);
  const editions=shelf.flatMap(work=>[work.builtin?.original,work.builtin?.knolstory]);
- expect(editions).toHaveLength(8);expect(new Set(editions.map(work=>work?.project.id)).size).toBe(8);
+ expect(editions).toHaveLength(10);expect(new Set(editions.map(work=>work?.project.id)).size).toBe(10);
  expect(editions.every(work=>corpus.includes(work!))).toBe(true);
  for(const definition of BUILTIN_WORKS){const work=shelf.find(work=>work.builtin?.id===definition.id)!;expect(work.builtin!.original?.key).toBe(`${definition.id}-classic`);expect(work.builtin!.knolstory?.key).toBe(definition.id);}
+});
+
+it('opens independent 박씨전 editions through their public catalog selectors',()=>{
+ const original=getClassicStory('bakssi-classic');
+ const knolstory=getRepresentativeStory('bakssi');
+ expect(original.project).toMatchObject({id:'classic-bakssi-tale',title:'박씨전'});
+ expect(knolstory.project).toMatchObject({id:'bakssi-knolstory',title:'박씨전'});
+ expect(getClassicStory('bakssi-classic').project).not.toBe(original.project);
+ expect(getRepresentativeStory('bakssi').project).not.toBe(knolstory.project);
 });
 
 import {builtinShelfCoverProject} from './builtin-works';

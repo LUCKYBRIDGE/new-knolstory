@@ -160,7 +160,7 @@ test('local library prepares three separate works and roundtrips preparation wit
   await suppressFullscreenOffer(page);
   try {
     await page.goto('/'); await enterLibrary(page); await library(page);
-    await expect(page.getByRole('region', { name: '기본 작품', exact: true }).getByRole('article')).toHaveCount(4);
+    await expect(page.getByRole('region', { name: '기본 작품', exact: true }).getByRole('article')).toHaveCount(5);
     await create(page, '달빛 편지 준비'); await fillPreparation(page);
     for (const [width,height,name] of [[1280,900,'desktop'],[1024,768,'tablet'],[390,844,'phone']] as const) {
       await page.setViewportSize({width,height});
@@ -308,7 +308,7 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   test.skip(info.project.name !== 'host');
   await page.goto('/'); await enterLibrary(page); await library(page);
   await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(0);
-  await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
+  await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(5);
   await create(page,'기획 없이 시작한 이야기');
   const text=page.locator('[data-current-cut] textarea');
   await expect(page.getByRole('button',{name:'소리 편집',exact:true})).toBeHidden();
@@ -334,7 +334,7 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   await library(page);
   // New works start from the 내 작품 shelf, so the library returns there; the whole library still holds the four books.
   await page.getByLabel('책 분류',{exact:true}).selectOption('all');
-  await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
+  await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(5);
 });
 
 test('previous device workspace opens in library without changing its authored content or legacy keys', async ({page},info) => {

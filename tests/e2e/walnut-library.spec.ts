@@ -20,14 +20,14 @@ test('phone search closes its panel and leaves the matching book usable',async({
 test('owner-selected legacy honey oak finish keeps window wall clearance',async({page},info)=>{
  await page.setViewportSize({width:1200,height:900});await page.goto('/');await enterLibrary(page);
  const cabinet=page.locator('[data-cabinet-base]').locator('..');const oak=await cabinet.evaluate(node=>getComputedStyle(node).backgroundImage);expect(oak).toContain('152, 95, 48');expect(oak).toContain('99, 55, 22');expect(oak).not.toContain('80, 57, 43');
- const rect=await cabinet.boundingBox();expect(rect!.x-1200*.082).toBeGreaterThanOrEqual(24-1);await expect(page.locator('[data-shelf-book]')).toHaveCount(4);await page.screenshot({path:info.outputPath('legacy-honey-oak.png'),fullPage:true});
+ const rect=await cabinet.boundingBox();expect(rect!.x-1200*.082).toBeGreaterThanOrEqual(24-1);await expect(page.locator('[data-shelf-book]')).toHaveCount(5);await page.screenshot({path:info.outputPath('legacy-honey-oak.png'),fullPage:true});
 });
 for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]])test(`walnut cabinet supports the plant and books at ${width}x${height}`,async({browser})=>{
  const context=await browser.newContext({viewport:{width,height},hasTouch:width<900});const page=await context.newPage();await page.goto('/');await enterLibrary(page);
  const cabinet=page.locator('[data-cabinet-base]').locator('..');
  const contact=await cabinet.evaluate(c=>{const plant=c.querySelector<HTMLElement>('[class*=topPlant]')!;const p=plant.getBoundingClientRect(),box=c.getBoundingClientRect();const shadow=getComputedStyle(plant,'::before');return {potFoot:p.y+p.height*(514/900),top:box.y,shadow:shadow.backgroundImage,plantPointer:getComputedStyle(plant).pointerEvents,sidePointer:getComputedStyle(c,'::after').pointerEvents};});
  expect(contact.potFoot-contact.top).toBeGreaterThanOrEqual(0);expect(contact.potFoot-contact.top).toBeLessThan(3);expect(contact.shadow).toContain('radial-gradient');expect(contact.plantPointer).toBe('none');expect(contact.sidePointer).toBe('none');
- const books=page.locator('[data-shelf-book]');await expect(books).toHaveCount(4);
+ const books=page.locator('[data-shelf-book]');await expect(books).toHaveCount(5);
  const touching=await books.evaluateAll(nodes=>nodes.map(book=>Math.abs(book.querySelector('[data-shelf-cover]')!.getBoundingClientRect().bottom-book.querySelector('[class*=plank]')!.getBoundingClientRect().top)));expect(Math.max(...touching)).toBeLessThanOrEqual(2);
  const sideGaps=await cabinet.boundingBox();// Phones give the books the room first (2026-11-23): narrower outer margins, still clear of the window trim.
  expect(sideGaps!.x).toBeGreaterThanOrEqual(width>900?width*.07:width<=600?width*.082+23:20);expect(width-sideGaps!.x-sideGaps!.width).toBeGreaterThanOrEqual(width>900?width*.07:width<=600?8:20);
@@ -35,7 +35,7 @@ for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]
  await books.first().getByRole('button').click();await expect(page.getByRole('dialog').getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(books.first().getByRole('button')).toBeFocused();await context.close();
 });
 
-test('cabinet keeps two shelf rows with four books, a single match or an empty collection',async({page})=>{
+test('cabinet keeps two shelf rows with five books, a single match or an empty collection',async({page})=>{
  await page.setViewportSize({width:1365,height:900});await page.goto('/');await enterLibrary(page);
  const shelf=page.locator('[data-shelf-room]');await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);
  await page.getByLabel('책 분류',{exact:true}).selectOption('own');await expect(page.locator('[data-shelf-book]')).toHaveCount(0);await expect(shelf).toHaveAttribute('data-rows','2');await expect(page.locator('[data-cabinet-rail]')).toHaveCount(2);

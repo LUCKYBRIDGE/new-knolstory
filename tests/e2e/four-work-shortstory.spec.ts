@@ -4,10 +4,11 @@ import { test,expect } from '@playwright/test';
 import { mkdir,readFile,writeFile } from 'node:fs/promises';
 import {catalogImage} from './catalog-image-url';
 const packs=JSON.parse(await readFile('packages/compatibility/src/shortstory-originals-data.json','utf8')) as {worldId:string;title:string;description:string;packId:string;cover:{backgroundId:string;characterId:string;authorNote:string};scenes:{sourceSceneId:string;title:string;referenceText:string;art:{assetId:string}}[]}[];
-function getShortStoryOriginal(key:string){const pack=packs.find(pack=>pack.worldId===key)!;return {id:`shortstory-original-${key}`,title:pack.title,description:pack.description,authorDisplayName:'전래 이야기 · 놀퀴즈',source:{kind:'preset',presetId:pack.packId},cover:{backgroundId:pack.cover.backgroundId,characterId:pack.cover.characterId,authorNote:pack.cover.authorNote},pages:pack.scenes.map((scene,i)=>({id:scene.sourceSceneId,order:i+1,title:scene.title,text:scene.referenceText,backgroundId:scene.art.assetId,leftAssetId:'',rightAssetId:''})),updatedAt:'2026-10-06T00:00:00.000Z'};}
+const bakssi=JSON.parse(await readFile('packages/compatibility/src/bakssi-shortstory.json','utf8')) as import('../../packages/compatibility/src/shortstory').ShortStoryProject;
+function getShortStoryOriginal(key:string){if(key==='bakssi')return bakssi;const pack=packs.find(pack=>pack.worldId===key)!;return {id:`shortstory-original-${key}`,title:pack.title,description:pack.description,authorDisplayName:'전래 이야기 · 놀퀴즈',source:{kind:'preset',presetId:pack.packId},cover:{backgroundId:pack.cover.backgroundId,characterId:pack.cover.characterId,authorNote:pack.cover.authorNote},pages:pack.scenes.map((scene,i)=>({id:scene.sourceSceneId,order:i+1,title:scene.title,text:scene.referenceText,backgroundId:scene.art.assetId,leftAssetId:'',rightAssetId:''})),updatedAt:'2026-10-06T00:00:00.000Z'};}
 const encodeShortStory=(project:ReturnType<typeof getShortStoryOriginal>)=>JSON.stringify({manifest:{format:'shortstory',version:1,kind:'project'},project});
 const evidence=`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`;
-const works=['rabbit','onggojib','seonnyeo','heungbu'] as const;
+const works=['rabbit','onggojib','seonnyeo','heungbu','bakssi'] as const;
 for(const work of works)test(`actual ${work} picture book read, isolated position and complete A4 print`,async({page})=>{
  const original=getShortStoryOriginal(work);await page.goto(`/shortstory/?work=${work}&mode=read`);
  // Reading an original shows a book card, not read-only editing fields.

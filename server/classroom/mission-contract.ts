@@ -21,7 +21,7 @@ export function missionInput(value:unknown):MissionInput{
  const input=object(value,['title','description','criteria','kind','storyKey','readingFormat','questions'],['title','description','criteria','kind','readingFormat','questions']);
  if(!['reading','worksheet','custom'].includes(input.kind as string)||!['original','knolstory','shortstory'].includes(input.readingFormat as string))throw invalid();
  const storyKey=input.storyKey??null;
- if(storyKey!==null&&!['rabbit','onggojib','seonnyeo','heungbu'].includes(storyKey as string))throw invalid();
+ if(storyKey!==null&&!['rabbit','onggojib','seonnyeo','heungbu','bakssi'].includes(storyKey as string))throw invalid();
  if(!Array.isArray(input.questions)||input.questions.length>8||input.kind==='worksheet'&&!input.questions.length)throw invalid();
  const questions=input.questions.map(item=>{
   const row=object(item,['id','prompt']);if(typeof row.id!=='string'||!/^q[1-8]$/.test(row.id))throw invalid();

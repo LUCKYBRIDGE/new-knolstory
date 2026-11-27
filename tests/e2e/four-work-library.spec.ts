@@ -1,10 +1,10 @@
 import {openBook} from './shortstory-navigation';
 import {test,expect} from '@playwright/test';
 import {enterLibrary,fillShelfSearch,shelfCoverButton,openBookMore} from './library-entry';
-const works=[['rabbit','별주부전'],['onggojib','옹고집전'],['seonnyeo','선녀와 나무꾼'],['heungbu','흥부와 놀부']] as const;
+const works=[['rabbit','별주부전'],['onggojib','옹고집전'],['seonnyeo','선녀와 나무꾼'],['heungbu','흥부와 놀부'],['bakssi','박씨전']] as const;
 test('the default library groups eight manuscripts into four independent work choices',async({page})=>{
  await page.goto('/');await enterLibrary(page);
- await expect(page.locator('article[data-shelf-book]')).toHaveCount(4);
+ await expect(page.locator('article[data-shelf-book]')).toHaveCount(5);
  for(const [id,title] of works){
   const book=page.locator(`article[data-work-id="${id}"]`);
   await expect(book).toHaveAttribute('aria-label',`기본 작품 · ${title}`);
@@ -37,7 +37,7 @@ for(const [id,title] of works)for(const edition of ['원작','놀스토리'] as 
  await expect(page.getByTestId('story-runtime-frame')).toBeVisible();if(info.project.name==='stories-runtime'){const status=page.getByTestId('story-runtime-status');await expect.poll(()=>status.evaluate(n=>Number(n.getAttribute('data-rendered-revision'))>=0&&n.getAttribute('data-rendered-revision')===n.getAttribute('data-scene-revision')),{timeout:90000}).toBe(true);await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`${id}-${edition}-native.png`)});}
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();const confirm=page.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true});await expect(confirm).toBeVisible();await confirm.getByRole('button',{name:'보관하고 서재로',exact:true}).click();
  await expect(page.locator(`article[data-work-id="${id}"]`)).toBeVisible();
- await expect(page.locator('article[data-shelf-book]')).toHaveCount(4);
+ await expect(page.locator('article[data-shelf-book]')).toHaveCount(5);
 });
 
 test('all four shelf choices open their actual ShortStory and return to the same library',async({page})=>{
@@ -45,6 +45,6 @@ test('all four shelf choices open their actual ShortStory and return to the same
  for(const [id,title] of works){
   await page.locator(`article[data-work-id="${id}"]`).getByRole('button').click();await page.getByRole('dialog').getByRole('link',{name:'숏스토리 읽기',exact:true}).click();
   await expect(page).toHaveURL(new RegExp(`work=${id}&mode=read`));await expect(page.getByRole('region',{name:'이 그림책',exact:true}).getByRole('heading')).toHaveText(title);await openBook(page);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
-  await page.getByRole('link',{name:'놀스토리 서재로 돌아가기',exact:true}).click();await expect(page.locator('article[data-shelf-book]')).toHaveCount(4);await expect(page.locator(`article[data-work-id="${id}"]`)).toBeVisible();
+  await page.getByRole('link',{name:'놀스토리 서재로 돌아가기',exact:true}).click();await expect(page.locator('article[data-shelf-book]')).toHaveCount(5);await expect(page.locator(`article[data-work-id="${id}"]`)).toBeVisible();
  }
 });

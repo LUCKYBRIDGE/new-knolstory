@@ -64,6 +64,8 @@ if assets.exists():
     def ignore_service_assets(folder, names):
         # previews: Web card thumbnails built by scripts/build-image-previews.py; the runtime loads full images itself.
         web_only = {'cover-fonts', 'legacy-ui', 'loading', 'previews'}
+        if Path(folder) == assets / 'bakssi-v1':
+            web_only.update(name for name in names if name.startswith('bakssi-shortstory-page-'))
         if Path(folder) == assets / 'illustrations':
             web_only.add('shortstory-v1')
         return [name for name in names if name in web_only or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]

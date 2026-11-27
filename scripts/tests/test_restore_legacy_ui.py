@@ -140,7 +140,7 @@ class DerivedCharacterRestoreTests(unittest.TestCase):
 
 class GeneratedWeatherRestoreTests(unittest.TestCase):
     def test_transparency_repair_is_never_restored_from_legacy(self):
-        for flag, state in [(flag, state) for flag in ['generatedTransparencyRepair', 'generatedExpressionAsset'] for state in ['valid', 'missing', 'changed']]:
+        for flag, state in [(flag, state) for flag in ['generatedTransparencyRepair', 'generatedExpressionAsset', 'generatedBakssiAsset'] for state in ['valid', 'missing', 'changed']]:
             with self.subTest(flag=flag, state=state), tempfile.TemporaryDirectory() as folder:
                 root = Path(folder)
                 LegacyRoomRestoreTests().setup_root(root)

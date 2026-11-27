@@ -94,6 +94,9 @@ importers:
 
   packages/compatibility:
     dependencies:
+      '@knolstory/asset-registry':
+        specifier: workspace:*
+        version: link:../asset-registry
       '@knolstory/story-domain':
         specifier: workspace:*
         version: link:../story-domain

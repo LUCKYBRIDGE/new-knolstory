@@ -11,7 +11,7 @@ for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]
  await page.goto('/');const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro.locator('[data-intro-poster]')).toHaveCount(1);await expect(intro.getByRole('navigation',{name:'놀스토리 메인 메뉴'}).getByRole('button')).toHaveCount(2);
  const first=await intro.getByRole('region',{name:'놀스토리 소개'}).getByRole('heading',{level:2}).innerText();await intro.getByRole('button',{name:'다른 이야기 표지로 바꾸기',exact:true}).click();await expect(intro.getByRole('region',{name:'놀스토리 소개'}).getByRole('heading',{level:2})).not.toHaveText(first);
  await page.screenshot({path:`${evidence}/intro-${width}.png`,fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
- await enterLibrary(page);await selectShelfCollection(page,'example');await expect(page.locator('[data-shelf-book]')).toHaveCount(4);await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
+ await enterLibrary(page);await selectShelfCollection(page,'example');await expect(page.locator('[data-shelf-book]')).toHaveCount(5);await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
  await fillShelfSearch(page,'흥부');await expect(page.getByRole('main',{name:'놀스토리 서재'}).getByRole('article')).toHaveCount(1);await fillShelfSearch(page,'');await selectShelfCollection(page,'all');
  const card=builtinShelfCard(page,'seonnyeo');const opener=card.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-edition="knolstory"]')).toHaveCount(1);await page.screenshot({path:`${evidence}/focus-${width}.png`,fullPage:true});const title=await dialog.getByRole('heading').innerText();await dialog.getByRole('button',{name:'다음 책',exact:true}).click();await expect(dialog.getByRole('heading')).not.toHaveText(title);await page.keyboard.press('ArrowLeft');await expect(dialog.getByRole('heading')).toHaveText(title);await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();
  await page.screenshot({path:`${evidence}/library-${width}.png`,fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await context.close();
@@ -114,11 +114,11 @@ test('compact shelf keeps all four books and drawer near the first viewport',asy
   const drawer=page.getByLabel('책장 서랍',{exact:true});await expect.poll(async()=>{const rect=await drawer.boundingBox();return rect!.y+rect!.height;}).toBeLessThanOrEqual(height+48);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
- await page.setViewportSize({width:390,height:844});await expect(page.locator('[data-shelf-book]')).toHaveCount(4);
- expect(await page.locator('article[data-work-id]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-work-id')).sort())).toEqual(['heungbu','onggojib','rabbit','seonnyeo']);
+ await page.setViewportSize({width:390,height:844});await expect(page.locator('[data-shelf-book]')).toHaveCount(5);
+ expect(await page.locator('article[data-work-id]').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-work-id')).sort())).toEqual(['bakssi','heungbu','onggojib','rabbit','seonnyeo']);
  // One page of books: the drawer carries no paging controls (2026-11-23).
  await expect(page.getByRole('button',{name:'다음 선반',exact:true})).toHaveCount(0);
- await page.setViewportSize({width:1200,height:900});await expect(page.locator('[data-shelf-book]')).toHaveCount(4);
+ await page.setViewportSize({width:1200,height:900});await expect(page.locator('[data-shelf-book]')).toHaveCount(5);
 });
 
 test('cabinet joinery uses visible wood grain and preserves the book selection experience',async({page})=>{
@@ -149,7 +149,7 @@ test('branded library shows word-safe cover titles and opens cover editing direc
  for(const [width,height] of [[1500,1000],[1200,900],[820,1180],[390,844],[320,740],[844,390]]){
  await page.setViewportSize({width,height});await page.evaluate(()=>scrollTo(0,0));
  const cabinet=page.locator('[class*=bookcases]').first();await expect.poll(async()=>{const rect=await cabinet.boundingBox();return rect!.x-width*.082;}).toBeGreaterThanOrEqual(23);
- expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.locator('[data-shelf-book]')).toHaveCount(4);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.locator('[data-shelf-book]')).toHaveCount(5);
  await page.screenshot({path:info.outputPath(`library-${width}.png`),fullPage:true});
  }
  });

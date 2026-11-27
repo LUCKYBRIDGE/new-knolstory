@@ -21,7 +21,7 @@ it('fills four story packs with sixteen searchable individually selectable poses
 });
 it('preserves every previous catalogue row outside the reviewed picker tags and rejects unreviewed new runtime paths',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
- const previous=rows.filter((row:{metadata:{generatedExpressionAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedExpressionAsset&&!row.metadata.generatedPicturebookStageAsset);
+ const previous=rows.filter((row:{metadata:{generatedExpressionAsset?:boolean;generatedBakssiAsset?:boolean;generatedPicturebookStageAsset?:boolean;shortStoryCollection?:string}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedExpressionAsset&&!row.metadata.generatedBakssiAsset&&!row.metadata.generatedPicturebookStageAsset);
  expect(previous).toHaveLength(plan.before.catalogueRows);
  // Baseline from 37ed62e9 with only the reviewed picker fields removed.
  expect(stableCatalogDigest(previous)).toBe('fdcc3ecfd97e4eedc4fba1f70d4d2bbb41fd1adcd140380fadd1e01f6f08d889');

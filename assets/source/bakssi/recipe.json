@@ -1,0 +1,865 @@
+{
+  "version": 1,
+  "promptEvidence": "docs/reference/bakssi/art-production.md",
+  "assets": [
+    {
+      "id": "bakssi-character-bakssi",
+      "role": "character",
+      "label": "박씨",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.96,
+      "sizeReason": "성인 여성 기준. 변신 전후와 혼례복에 같은 체격을 적용",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed",
+      "role": "character",
+      "label": "박씨 · 허물을 벗은 뒤",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.96,
+      "sizeReason": "허물 전후 같은 인물의 키와 손·몸통 비례를 유지",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ],
+      "variant": "허물을 벗은 뒤"
+    },
+    {
+      "id": "bakssi-character-bakssi-wedding",
+      "role": "character",
+      "label": "박씨 · 혼례복",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.96,
+      "sizeReason": "몸 비례의 변화를 막기 위해 같은 상대 높이를 유지",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ],
+      "variant": "혼례복"
+    },
+    {
+      "id": "bakssi-character-gyehwa",
+      "role": "character",
+      "label": "계화",
+      "identity": "bakssi.gyehwa",
+      "characterName": "계화",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.89,
+      "sizeReason": "박씨보다 약간 작은 체격의 성인 여성",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-sibaek",
+      "role": "character",
+      "label": "이시백",
+      "identity": "bakssi.sibaek",
+      "characterName": "이시백",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.02,
+      "sizeReason": "젊은 성인 남성. 혼례복과 동일한 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-sibaek-wedding",
+      "role": "character",
+      "label": "이시백 · 혼례복",
+      "identity": "bakssi.sibaek",
+      "characterName": "이시백",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.02,
+      "sizeReason": "젊은 성인 남성. 평상복과 동일한 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ],
+      "variant": "혼례복"
+    },
+    {
+      "id": "bakssi-character-deukchun",
+      "role": "character",
+      "label": "이득춘",
+      "identity": "bakssi.deukchun",
+      "characterName": "이득춘",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.0,
+      "sizeReason": "등을 곧게 세운 연장자 성인 남성",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-park-cheosa",
+      "role": "character",
+      "label": "박 처사",
+      "identity": "bakssi.park-cheosa",
+      "characterName": "박 처사",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.01,
+      "sizeReason": "키가 큰 연장자 성인 남성",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-gihongdae",
+      "role": "character",
+      "label": "기홍대",
+      "identity": "bakssi.gihongdae",
+      "characterName": "기홍대",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.99,
+      "sizeReason": "움직임이 단단한 성인 여성",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-yonguldae",
+      "role": "character",
+      "label": "용울대",
+      "identity": "bakssi.yonguldae",
+      "characterName": "용울대",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.07,
+      "sizeReason": "성인 남성 기준보다 큰 체격의 장수",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-yonggoldae",
+      "role": "character",
+      "label": "용골대",
+      "identity": "bakssi.yonggoldae",
+      "characterName": "용골대",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.1,
+      "sizeReason": "용울대보다 약간 큰 체격의 장수",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-jajom",
+      "role": "character",
+      "label": "김자점",
+      "identity": "bakssi.jajom",
+      "characterName": "김자점",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.0,
+      "sizeReason": "성인 남성의 기본 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-sister-older",
+      "role": "character",
+      "label": "언니",
+      "identity": "bakssi.sister-older",
+      "characterName": "언니",
+      "referenceId": "heungbu.character.child-02",
+      "heightRatio": 1.12,
+      "sizeReason": "자매 가운데 나이가 많은 아이, 성인보다 낮음",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-sister-young",
+      "role": "character",
+      "label": "노란 댕기 아이",
+      "identity": "bakssi.sister-young",
+      "characterName": "노란 댕기 아이",
+      "referenceId": "heungbu.character.child-02",
+      "heightRatio": 0.9,
+      "sizeReason": "언니와 한 뼘가량 차이를 두는 아동의 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-seamstress",
+      "role": "character",
+      "label": "바느질댁",
+      "identity": "bakssi.seamstress",
+      "characterName": "바느질댁",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.94,
+      "sizeReason": "성인 여성의 기본 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-grandmother",
+      "role": "character",
+      "label": "우물집 할머니",
+      "identity": "bakssi.grandmother",
+      "characterName": "우물집 할머니",
+      "referenceId": "onggojib.character.classic-mother",
+      "heightRatio": 0.88,
+      "sizeReason": "허리가 굽은 연장자 여성의 보이는 높이",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-soldier",
+      "role": "character",
+      "label": "청군 병사",
+      "identity": "bakssi.soldier",
+      "characterName": "청군 병사",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 0.98,
+      "sizeReason": "보통 장정의 체격",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-horse",
+      "role": "character",
+      "label": "피화당의 말",
+      "identity": "bakssi.horse",
+      "characterName": "피화당의 말",
+      "referenceId": "seonnyeo.character.classic-celestial-horse",
+      "heightRatio": 0.52,
+      "sizeReason": "전체 옆모습의 폭을 살리며 성인과 섞을 때 고개가 어깨 부근에 오는 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-boy",
+      "role": "character",
+      "label": "바느질댁 아이",
+      "identity": "bakssi.boy",
+      "characterName": "바느질댁 아이",
+      "referenceId": "heungbu.character.child-02",
+      "heightRatio": 1.05,
+      "sizeReason": "청소년과 구분되는 아이의 체격",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-merchant",
+      "role": "character",
+      "label": "곡식 장수",
+      "identity": "bakssi.merchant",
+      "characterName": "곡식 장수",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.0,
+      "sizeReason": "성인 남성의 기본 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-potter",
+      "role": "character",
+      "label": "사기장이",
+      "identity": "bakssi.potter",
+      "characterName": "사기장이",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 0.96,
+      "sizeReason": "일하는 장년 성인의 체격",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-straw-weaver",
+      "role": "character",
+      "label": "짚 엮는 할머니",
+      "identity": "bakssi.straw-weaver",
+      "characterName": "짚 엮는 할머니",
+      "referenceId": "onggojib.character.classic-mother",
+      "heightRatio": 0.92,
+      "sizeReason": "우물집 할머니보다 허리를 더 편 연장자 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-gyehwa-mother",
+      "role": "character",
+      "label": "계화 어머니",
+      "identity": "bakssi.gyehwa-mother",
+      "characterName": "계화 어머니",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.9,
+      "sizeReason": "소매를 걷고 일하는 장년 여성의 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-mother",
+      "role": "character",
+      "label": "아기 어머니",
+      "identity": "bakssi.mother",
+      "characterName": "아기 어머니",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.95,
+      "sizeReason": "아기를 돌보며 서 있는 성인 여성의 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-soli",
+      "role": "character",
+      "label": "솔이",
+      "identity": "bakssi.soli",
+      "characterName": "솔이",
+      "referenceId": "heungbu.character.child-02",
+      "heightRatio": 0.96,
+      "sizeReason": "노란 댕기 아이보다 약간 큰 어린이의 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-carter",
+      "role": "character",
+      "label": "수레꾼",
+      "identity": "bakssi.carter",
+      "characterName": "수레꾼",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.01,
+      "sizeReason": "짐을 옮기는 장년 성인 체격",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-envoy",
+      "role": "character",
+      "label": "사신",
+      "identity": "bakssi.envoy",
+      "characterName": "사신",
+      "referenceId": "heungbu.character.heungbu-young",
+      "heightRatio": 1.11,
+      "sizeReason": "보통 성인 남성 크기에 맞춘 체격",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-character-neighbor-child",
+      "role": "character",
+      "label": "이웃 아이",
+      "identity": "bakssi.neighbor-child",
+      "characterName": "이웃 아이",
+      "referenceId": "heungbu.character.child-02",
+      "heightRatio": 0.93,
+      "sizeReason": "아직 머리를 한 번만 땋는 연령대의 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "heungbu.character.wife-heungbu",
+        "heungbu.character.heungbu-young",
+        "onggojib.scene.shortstory-classic-02"
+      ]
+    },
+    {
+      "id": "bakssi-stage-wedding-night",
+      "role": "stage",
+      "label": "금강산 신방",
+      "location": "금강산 신방",
+      "space": "indoor",
+      "time": "밤",
+      "season": "가을",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-mountain-road",
+      "role": "stage",
+      "label": "금강산 개울길",
+      "location": "금강산 산길",
+      "space": "outdoor",
+      "time": "해 질 무렵",
+      "season": "가을",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-main-hall",
+      "role": "stage",
+      "label": "이득춘 댁 대청",
+      "location": "이득춘 댁",
+      "space": "indoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-courtyard-day",
+      "role": "stage",
+      "label": "피화당 마당 · 낮",
+      "location": "피화당",
+      "space": "outdoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-courtyard-night",
+      "role": "stage",
+      "label": "피화당 마당 · 달밤",
+      "location": "피화당",
+      "space": "outdoor",
+      "time": "밤",
+      "weather": "맑음",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-stable-day",
+      "role": "stage",
+      "label": "피화당 마구간",
+      "location": "피화당 마구간",
+      "space": "outdoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-market-day",
+      "role": "stage",
+      "label": "한양 장터",
+      "location": "한양 장터",
+      "space": "outdoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-riverside-day",
+      "role": "stage",
+      "label": "나루터",
+      "location": "나루터",
+      "space": "outdoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-pottery-day",
+      "role": "stage",
+      "label": "사기 가마터",
+      "location": "사기 가마터",
+      "space": "outdoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-exam-day",
+      "role": "stage",
+      "label": "과거 시험장",
+      "location": "과거 시험장",
+      "space": "outdoor",
+      "time": "낮",
+      "season": "가을",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-court-day",
+      "role": "stage",
+      "label": "궐 안 조정",
+      "location": "궐 안 조정",
+      "space": "indoor",
+      "time": "낮",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-courtyard-rain",
+      "role": "stage",
+      "label": "피화당 마당 · 빗속",
+      "location": "피화당",
+      "space": "outdoor",
+      "time": "밤",
+      "season": "가을",
+      "weather": "비",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-courtyard-snow",
+      "role": "stage",
+      "label": "피화당 마당 · 겨울밤",
+      "location": "피화당",
+      "space": "outdoor",
+      "time": "밤",
+      "season": "겨울",
+      "weather": "눈",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-lane-snow",
+      "role": "stage",
+      "label": "한양 골목 · 겨울밤",
+      "location": "한양 골목",
+      "space": "outdoor",
+      "time": "밤",
+      "season": "겨울",
+      "weather": "눈",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-kiln-snow",
+      "role": "stage",
+      "label": "배나무 언덕의 기와 가마",
+      "location": "배나무 언덕",
+      "space": "outdoor",
+      "time": "밤",
+      "season": "겨울",
+      "weather": "눈",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-well-day",
+      "role": "stage",
+      "label": "한양 골목 우물가 · 아침",
+      "location": "한양 골목 우물가",
+      "space": "outdoor",
+      "time": "아침",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-well-snow",
+      "role": "stage",
+      "label": "한양 골목 우물가 · 겨울",
+      "location": "한양 골목 우물가",
+      "space": "outdoor",
+      "time": "저녁",
+      "season": "겨울",
+      "weather": "눈",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-stage-courtyard-spring",
+      "role": "stage",
+      "label": "피화당 마당 · 봄",
+      "location": "피화당",
+      "space": "outdoor",
+      "time": "낮",
+      "season": "봄",
+      "weather": "맑음",
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-cover",
+      "role": "cover",
+      "label": "박씨전 · 피화당의 등불",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-01",
+      "role": "page",
+      "label": "찻잔 두 개",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.sibaek"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-02",
+      "role": "page",
+      "label": "뒤뜰에 지은 집",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-03",
+      "role": "page",
+      "label": "빈 여물통",
+      "characters": [
+        "bakssi.gyehwa",
+        "bakssi.envoy",
+        "bakssi.horse"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-04",
+      "role": "page",
+      "label": "물 한 방울",
+      "characters": [
+        "bakssi.sibaek"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-05",
+      "role": "page",
+      "label": "마루 밑의 신발",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-06",
+      "role": "page",
+      "label": "한밤의 손님",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gihongdae"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-07",
+      "role": "page",
+      "label": "쌀자루를 여는 날",
+      "characters": [
+        "bakssi.gyehwa",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-08",
+      "role": "page",
+      "label": "문 하나를 사이에 두고",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-09",
+      "role": "page",
+      "label": "돌아가는 길",
+      "characters": [
+        "bakssi.yonggoldae",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-shortstory-page-10",
+      "role": "page",
+      "label": "버선발",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "seonnyeo.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03"
+      ]
+    }
+  ]
+}

@@ -33,6 +33,10 @@ def asset_provenance(asset):
   if asset['metadata'].get('picturebookStageDerivative'):
    return {**base,'provider':'local-derived-image','source':asset['sourcePath'],'generationPlan':'uniform stage canvas normalization of registered artwork; source and output hashes in the stage asset receipt'}
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; source hash and stage art normalization receipt for the picture-book bridge'}
+ if asset.get('metadata',{}).get('generatedBakssiAsset'):
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],
+          'referenceAssets':asset['metadata']['referenceAssets'],
+          'generationPlan':'built-in image_gen; reviewed original artwork and deterministic conversion in scripts/prepare-bakssi-assets.py'}
  if asset.get('metadata',{}).get('generatedExpressionAsset'):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; identity/pose/alpha review and uniform canvas conversion in scripts/prepare-expression-assets.py'}
  if asset.get('metadata',{}).get('generatedTransparencyRepair'):

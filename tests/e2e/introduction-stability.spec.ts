@@ -65,3 +65,17 @@ test('explicit ShortStory library return is consumed so later preparation surviv
  await page.goto('/shortstory/?work=rabbit&mode=read');const back=page.getByRole('link',{name:'놀스토리 서재로 돌아가기',exact:true});await expect(back).toHaveAttribute('href','/?view=library');await back.click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await openShelfAction(page,builtinShelfCard(page,'rabbit'),'작품 준비');await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');await expect.poll(()=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)??'null')?.view,workspaceKey)).toBe('prepare');await page.reload();await expect(page.getByRole('region',{name:'작품 설정',exact:true})).toBeVisible();
 });
+
+
+test('intro rotation presents 박씨전 with its artwork and opens the provided story',async({page})=>{
+ await page.goto('/');
+ const intro=page.getByRole('main',{name:'책 소개',exact:true});
+ const rotate=intro.getByRole('button',{name:'다른 이야기 표지로 바꾸기',exact:true});
+ for(let index=0;index<4;index++)await rotate.click();
+ await expect(intro.getByRole('heading',{name:'박씨전',exact:true})).toBeVisible();
+ const poster=intro.locator('img[data-intro-poster="bakssi"]');
+ await expect.poll(()=>poster.evaluate(image=>(image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+ await intro.getByRole('button',{name:'이야기 읽기',exact:true}).click();
+ const entry=page.getByRole('main',{name:'책 표지와 소개',exact:true});
+ await expect(entry.getByRole('heading',{name:'박씨전',exact:true})).toBeVisible();
+});

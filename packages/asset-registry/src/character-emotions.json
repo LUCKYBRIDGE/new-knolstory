@@ -524,6 +524,39 @@
         "sorrow": "heungbu.character.emotion-dokkaebi-sorrow-v3",
         "mirth": "heungbu.character.emotion-dokkaebi-mirth-v3"
       }
+    },
+    {
+      "characterId": "bakssi.gyehwa",
+      "name": "계화",
+      "slots": {
+        "neutral": "bakssi-character-gyehwa",
+        "joy": "bakssi-character-gyehwa-joy",
+        "anger": "bakssi-character-gyehwa-anger",
+        "sorrow": "bakssi-character-gyehwa-sorrow",
+        "mirth": "bakssi-character-gyehwa-mirth"
+      }
+    },
+    {
+      "characterId": "bakssi.sibaek",
+      "name": "이시백",
+      "slots": {
+        "neutral": "bakssi-character-sibaek",
+        "joy": "bakssi-character-sibaek-joy",
+        "anger": "bakssi-character-sibaek-anger",
+        "sorrow": "bakssi-character-sibaek-sorrow",
+        "mirth": "bakssi-character-sibaek-mirth"
+      }
+    },
+    {
+      "characterId": "bakssi.gihongdae",
+      "name": "기홍대",
+      "slots": {
+        "neutral": "bakssi-character-gihongdae",
+        "joy": "bakssi-character-gihongdae-joy",
+        "anger": "bakssi-character-gihongdae-anger",
+        "sorrow": "bakssi-character-gihongdae-sorrow",
+        "mirth": "bakssi-character-gihongdae-mirth"
+      }
     }
   ]
 }

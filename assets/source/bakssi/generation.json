@@ -1,0 +1,1665 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "bakssi-character-bakssi",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi.png",
+      "sourceSha256": "b14e01f3cb958b255bcc5cb217f4feb4a583d954b4a98cddb1dc698615304d6c",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi.webp",
+      "outputSha256": "354bfcdcfe25d3161f07a2e7f4207c44599cf2b8fa21197d38c00bd2f8938eff",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-revealed.png",
+      "sourceSha256": "283483bab2cdcdaa7920eb920d7b85f5fd46c0cd38ce8a31e90292652d15f192",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed.webp",
+      "outputSha256": "ecc829f32d438e2f65ee9f58d292cd87fba4f833a72ce60dea85c674f5195db7",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "ecc829f32d438e2f65ee9f58d292cd87fba4f833a72ce60dea85c674f5195db7"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-revealed-joy.png",
+      "sourceSha256": "c7fb8b9c193bfe32062616307b95396f00c1f9cf3401c2f347fa0db54a4ec2af",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed-joy.webp",
+      "outputSha256": "2c8b06c5b24606b7c5c60d0e4262204a38330a5df8d86b63bcf87ee232972737",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "ecc829f32d438e2f65ee9f58d292cd87fba4f833a72ce60dea85c674f5195db7"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-revealed-anger.png",
+      "sourceSha256": "81104f3348aca1b611b4bed2e1f3d1fe2d8781a1008c6d0b7259bfb4edb8e496",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed-anger.webp",
+      "outputSha256": "594af2e4fdb372b9b0ef79a947979ce7dee03b8e0346f28d384c2b3bc4b19bdc",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "ecc829f32d438e2f65ee9f58d292cd87fba4f833a72ce60dea85c674f5195db7"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-revealed-sorrow.png",
+      "sourceSha256": "5ca4e965c33d99384be6dc90d6e14501211318959736e283421a1c5ae00877ad",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed-sorrow.webp",
+      "outputSha256": "e222356f2c1100ab3b08d7b9cf38ca30945b989f0542f14c2bc5e0da7f6f009a",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "ecc829f32d438e2f65ee9f58d292cd87fba4f833a72ce60dea85c674f5195db7"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-revealed-mirth.png",
+      "sourceSha256": "6f1f3113495654c4b7176c3198c61dda3bdf342ff3ce73149264a6dd35ad8d8b",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed-mirth.webp",
+      "outputSha256": "c180ee35f8ccdba6fe8d6354648b858e2e1f00132519c125e8c18bea1ceb1a07",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-wedding",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-wedding.png",
+      "sourceSha256": "939f1889fed3112c63f5c115ec002036d87e1a24def0bd8dbaf9f685b14e1452",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-wedding.webp",
+      "outputSha256": "cb94b6594194ddc05759742a948e662a941bbfc3d9a728483cdff1abfb6ff240",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gyehwa",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gyehwa.png",
+      "sourceSha256": "c7a6afbbd77adf3cd40740cec2d34f743cd13ae193300812fad87a3737c7dfa0",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gyehwa.webp",
+      "outputSha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gyehwa-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gyehwa-joy.png",
+      "sourceSha256": "0e3d6f7ab9d1eac8aa66213964cf9baec7d3189b679e02f85e53d9953c3c596c",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gyehwa-joy.webp",
+      "outputSha256": "7786e017b7c7dac09ea8220550c672c453d4473470dc119bf86bb0f3cfd54d9e",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gyehwa-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gyehwa-anger.png",
+      "sourceSha256": "5f06b2292fd0c6c62d3712398f9bae47e3a6b0906477e4f57e536b647a24c800",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gyehwa-anger.webp",
+      "outputSha256": "2cf5da7c74ab5c38028612cb978e1ac9af587185e58140e276ec2bc84facf407",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gyehwa-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gyehwa-sorrow.png",
+      "sourceSha256": "c3db9d8bb28dfdffa2f47456a8e5b4c17ef4da96a426d8cfede557313634fe8e",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gyehwa-sorrow.webp",
+      "outputSha256": "d4fbaba41a53b2303672c42dbee97b4204c2c45aa85ca44a25e8733ac07dd1db",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gyehwa-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gyehwa-mirth.png",
+      "sourceSha256": "bbc22395aa867dcd5bed4b7add61e545c16a9f0813e6e3a6fa5603c5ddfbb3c3",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gyehwa-mirth.webp",
+      "outputSha256": "5885cc85262dc5af583a7ae06bf04e95e923b7ece8ddc0e922a09863b7088acd",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sibaek",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sibaek.png",
+      "sourceSha256": "9093a282c5d51486fd9be14470001dfc2b32f59178cb2540b11b4d12bec41767",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sibaek.webp",
+      "outputSha256": "d11c2bb4308d46cb8b7548b178ed27bf1bdd9e4fab37017447ef17073bf42a10",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sibaek-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sibaek",
+          "sha256": "d11c2bb4308d46cb8b7548b178ed27bf1bdd9e4fab37017447ef17073bf42a10"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sibaek-joy.png",
+      "sourceSha256": "0b21d0ab523b228c5f6dd77dc8869ffcfc1b4661efa8ce8d3b92261b37b985c2",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sibaek-joy.webp",
+      "outputSha256": "c59826e583346a699d81fe5b51bf52fe30c8011af28166e8147cd2a702047ddf",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sibaek-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sibaek",
+          "sha256": "d11c2bb4308d46cb8b7548b178ed27bf1bdd9e4fab37017447ef17073bf42a10"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sibaek-anger.png",
+      "sourceSha256": "700902e0783613ae70140b426a0e983ca2b5d15821caf8050b4ff8de6b41a185",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sibaek-anger.webp",
+      "outputSha256": "00c67f2e7607078b851cf044725cb741db37395c4fdff101ca8e5384af969f15",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sibaek-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sibaek",
+          "sha256": "d11c2bb4308d46cb8b7548b178ed27bf1bdd9e4fab37017447ef17073bf42a10"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sibaek-sorrow.png",
+      "sourceSha256": "22152b27f6c16430e5ca155931e2008e8b455914671937fc37d72db87d15e796",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sibaek-sorrow.webp",
+      "outputSha256": "f19fcaafad65dec068866ea13072a06eec1b1b4fd579a19241c7f5f4bc2fbbac",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sibaek-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sibaek",
+          "sha256": "d11c2bb4308d46cb8b7548b178ed27bf1bdd9e4fab37017447ef17073bf42a10"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sibaek-mirth.png",
+      "sourceSha256": "ba1d3cc26009839efe8dc074563f4c126c3703dbc8b00098105169a6e8d773f4",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sibaek-mirth.webp",
+      "outputSha256": "2b594ed591307e6dbf90c18566a4675bedd2d158134184a66eeabd9d1c2da881",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sibaek-wedding",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sibaek-wedding.png",
+      "sourceSha256": "f357ef69905603821d15850568bf0dcb699ca6b7ee40443ad659b7acde3ef797",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sibaek-wedding.webp",
+      "outputSha256": "b9de40497968e0fab7024d259141136beb83841f4397a25973e4deb1d600d741",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-deukchun",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-deukchun.png",
+      "sourceSha256": "a70ac44f16722c308212d2c56167c9a88817e7585757a3d1004d705f65786231",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-deukchun.webp",
+      "outputSha256": "ca224a77184238d6cc1ea9f1de4ff32d784d667aa8e33e6b444f782e71daf17f",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-park-cheosa",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-park-cheosa.png",
+      "sourceSha256": "eb1493e1b37b345d0b627e84c981b68d367e1a28c937f21faf9e30699f3a89cf",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-park-cheosa.webp",
+      "outputSha256": "f224c5103c184740af7a37559f8616fcdce1d6a933c83bf1238b86a5efe7cc7c",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gihongdae",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gihongdae.png",
+      "sourceSha256": "e37eac8f746c463976386fbbbf303bed2dc1f7e0b09ef5bc1ef5b04d35b0ae90",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gihongdae.webp",
+      "outputSha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gihongdae-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gihongdae-joy.png",
+      "sourceSha256": "1b29b45a9882650b8d36261fce7b016e22e02f1d6969a12ab3450c3bc2fa5d94",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gihongdae-joy.webp",
+      "outputSha256": "922d0fd15caeec40fb3098bfae89180a19209a3fd0282330e4d40ed2f4da7a1b",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gihongdae-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gihongdae-anger.png",
+      "sourceSha256": "6883e8fa148d1a46d7ba0e333ef78f0000d6735bc06c81478cea8cb54d2c5a7c",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gihongdae-anger.webp",
+      "outputSha256": "a2a8221f51aef5a31913fbc5daef874970b5f59a7f59a1c57ad03e50bbc98b13",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gihongdae-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gihongdae-sorrow.png",
+      "sourceSha256": "0fe61d2bd1626fd9970b6cf0f425cca7f7a7e8fee6e119fcb4d95bfd86ad222e",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gihongdae-sorrow.webp",
+      "outputSha256": "cfa68975aed0abf3e51bf66e972654ea2315e566d44f98552642e02e11134a25",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gihongdae-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gihongdae-mirth.png",
+      "sourceSha256": "8639a9e7cdf6a065801583d4b4000b56137eb9f1b47ac429509774869fc75520",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gihongdae-mirth.webp",
+      "outputSha256": "199e22a3ee0f845d8839885acfeb39dd5e679f18f20b8d41d61c472f9e7b5d40",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonguldae",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonguldae.png",
+      "sourceSha256": "f5d2ec1b65f51edcb52e4196496f14c06f3badd7cd594faae3418c8e5a9b5472",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonguldae.webp",
+      "outputSha256": "b76e36b7599632c9c5d5fbf1ab55b6c86f54a25dbf108ee42d003b2d0063168a",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonggoldae",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonggoldae.png",
+      "sourceSha256": "e86302438bb322dcb21e8823ae020ce8fd5bfb128bbad72ad54287ccfe09e9b5",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonggoldae.webp",
+      "outputSha256": "cac840e4c8995f8f26b62a9fb7252ab6765ad4a7a766c26a0636063fcef4b70b",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-jajom",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-jajom.png",
+      "sourceSha256": "83cbb7785cd6f649473052bcdb1738f738f2fb0eb52ce8c0d785be55a96e9af5",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-jajom.webp",
+      "outputSha256": "04f88cd5b5fa14ea97039c8f389f065874153cabe61fa4883d68a72eecc76c3f",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sister-older",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sister-older.png",
+      "sourceSha256": "7385a904d50989793a1ef786461593ab802bb13b83adf2355115e8e33d54ea24",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sister-older.webp",
+      "outputSha256": "4cb6f09e1c17878922c79fabbbb31c3950276ab32bb450124b85193a5fcf9d16",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-sister-young",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sister-young.png",
+      "sourceSha256": "37b7f252bb6df5d15645b991e21d6c543fb5e6e5b8fa76704de6a8bc1d653d1e",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sister-young.webp",
+      "outputSha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-seamstress",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-seamstress.png",
+      "sourceSha256": "bccff0b91e8e71b9ab071515696aef0131fdefc31e0c5a293cb28b3061729b9e",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-seamstress.webp",
+      "outputSha256": "7427157340cfdca9e8aeae7604251bd17844512183aefa4e4fb857eedccea5fd",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-grandmother",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-grandmother.png",
+      "sourceSha256": "d88a3391e4c7e1f026291dc6c5c1024157a86f0397c13d6a968cd71c7f461863",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-grandmother.webp",
+      "outputSha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-soldier",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-soldier.png",
+      "sourceSha256": "22167fbbfd1ecbf3ecda90401f50b9dd8ca2f042862bb9413a2ae7bec7446190",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-soldier.webp",
+      "outputSha256": "719b54bbce89e768f982d8e36c19a7e499986b98ce44da68658d9952231bd4f1",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-horse",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-horse.png",
+      "sourceSha256": "660fbddac8547484443fd3b2a50b2dd5cf6fa75d1be0a2b1e08219d0ea43c4b2",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-horse.webp",
+      "outputSha256": "6668f777967c5b951ff034a7c0a70e6a3f0dc2f0075c4b65cabec4d4e1b94ca0",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-boy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-boy.png",
+      "sourceSha256": "f140e7f8a5253648c96b8780095f03131c592e8084c235a4c4883694b9d67d81",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-boy.webp",
+      "outputSha256": "3823acadb5c1187575dd74d4eb960e2eb37b4fecdbae73e80c53fc04433846ad",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-merchant",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-merchant.png",
+      "sourceSha256": "e4b706afce353611f08429e9299b5b469873d49e5cdf0b552fe8d25a45b8e947",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-merchant.webp",
+      "outputSha256": "4d38c78ecc056ef25c0124b3f0db2c2fac9f81d7173ada350cb2a0557fdcfcd5",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-potter",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-potter.png",
+      "sourceSha256": "83e009d8cc22d4b322bf6515e9694c395188288e20239d634a716f59a1a72e5d",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-potter.webp",
+      "outputSha256": "f84a6b222b5d5c90d968ea7e72338842125e1d444cfe96bc39773aa807f06931",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-straw-weaver",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-straw-weaver.png",
+      "sourceSha256": "576af955cd38c708a165b5a5d9de9293ca0b1a5a7d007577493857fed17995cd",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-straw-weaver.webp",
+      "outputSha256": "df1c42ace5a3cd1f826b7a2b96843a413819c3a1f7a3488c1a4719fab02d5c49",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-gyehwa-mother",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-gyehwa-mother.png",
+      "sourceSha256": "6391591fb6669afce16fdfe9898654a08de2c479af94e04fcdaa50e30c5e04c1",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-gyehwa-mother.webp",
+      "outputSha256": "526fdd0fba48107c8263c50fde4445e3d9f6ff761c0febcee324b8beee368579",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-mother",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-mother.png",
+      "sourceSha256": "c38b3638132e0f5dc85b8be01b9af7505f1e6b55ee13399cf4ffae6a829a2a63",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-mother.webp",
+      "outputSha256": "2583d8dda6682898feee8b42a5351b05db658c3aec63b8437e1f5d346d1e2d6d",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-soli",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-soli.png",
+      "sourceSha256": "693641a9968a73633dd8eb327b9142c8724ddc6d6603d33c2a2e018e54c1e324",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-soli.webp",
+      "outputSha256": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-carter",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-carter.png",
+      "sourceSha256": "bcfc20a834b98bc609f7838f54c5e971bcba5be471974ed41ea6661916727a7a",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-carter.webp",
+      "outputSha256": "d56e325d9a5dab497d9fa84533e5ffc4d0186289f5f4ba38cbaafa018f8b26d6",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-envoy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-envoy.png",
+      "sourceSha256": "94dace52fd0145dfd0efe8f63bcbb958159ed7e592c0d2d984058eb1faef640f",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-envoy.webp",
+      "outputSha256": "fa6df42884e67d78036306f593814ea656192bf2692fb6f094dbac98270ec8f0",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-neighbor-child",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-neighbor-child.png",
+      "sourceSha256": "09dd0d2d31f173e03417d96429967e49f5c8db299f722148fbeda07dc5ebb948",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-neighbor-child.webp",
+      "outputSha256": "dc0374fadf18393dcbbbdc939acb68bbf1411e12c0d0e759856a3bdd2f22234a",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-stage-wedding-night",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-wedding-night.png",
+      "sourceSha256": "ba6bbe6b37f0f9210853660b1a4dff58f7a6514650faec3439e5cbacc5b501e5",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-wedding-night.webp",
+      "outputSha256": "c3f909a00a3e1eea5b12179cfc10573cc70814cc321b1fec3c7be77e8ba593d0",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-mountain-road",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-mountain-road.png",
+      "sourceSha256": "aebaba8ea5769b1e053cdef9885e36653418e97fa9973c5fcd7883519b06aabc",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-mountain-road.webp",
+      "outputSha256": "277cf9d40bdbd2017a0e9dcf5af92984863ccf11879bd140aea701e292575847",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-main-hall",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-main-hall.png",
+      "sourceSha256": "d87a7080b3f80ef979deb543c96b62b33c839c4cf5b6cf563db2491553788cb0",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-main-hall.webp",
+      "outputSha256": "19c51560af691ad538610fe137f23783eb0e8eb99b43c6f679e837586a8c67e8",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-courtyard-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-courtyard-day.png",
+      "sourceSha256": "7ba2a6dc556cc006dc37ff404b2f5a1343569b10700c9988cec6512c67929fdb",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-courtyard-day.webp",
+      "outputSha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-market-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-market-day.png",
+      "sourceSha256": "bdf396413fb6e3f07b1576640e8a865c35103cb7adb74f87679af7fd9a71024f",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-market-day.webp",
+      "outputSha256": "c0b65cda24a3b1d686188f80c24a617cf555c2b4efdd353a1a62246c2517a5ab",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-riverside-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-riverside-day.png",
+      "sourceSha256": "ed99d899dc3a59c6f5d1a1959802846317c7be8bc550cedbb1e35c61cdaaa55d",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-riverside-day.webp",
+      "outputSha256": "65bbb731a9b93a2f3cbedbd97f04bfcd3c59804e36582dc0253ffde75bf1cf20",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-exam-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-exam-day.png",
+      "sourceSha256": "a4a313044f53312ce8d69d83c847c133895e45c1d237908a9f199922f2686a63",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-exam-day.webp",
+      "outputSha256": "7180dbaaf25df9f7ed9954cd12bf03634e9e1f6e7360c9fb97252bac93805e79",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-lane-snow",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-lane-snow.png",
+      "sourceSha256": "63a4acbd6e431378a6870b4722171b524d512f9597187614a209f469f44da461",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-lane-snow.webp",
+      "outputSha256": "8c6ff92683b3c4092d313bbd434736860532ee324e30ce491cf3c461fce2058e",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-kiln-snow",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-kiln-snow.png",
+      "sourceSha256": "48b0e2f4c5f971c4ae606ea29ec4b42c275b0b611f7ce6bf9c740d7432ee29aa",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-kiln-snow.webp",
+      "outputSha256": "103e3ae94e055aca40b1b2f209b7ac3d4b45099fa3b8902fab94f24b4df929d9",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-well-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-well-day.png",
+      "sourceSha256": "7252e0f8e540092fbbab91d54be92593438db22badc6926091bd86eea395fee7",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-well-day.webp",
+      "outputSha256": "7ca87baeea15cdca36a2000947f42a432e2ecc3a8acc93d7b0164c3fa629d5d3",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-shortstory-cover",
+      "role": "cover",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-shortstory-cover.png",
+      "sourceSha256": "ff8ba44c7ce6ffd22f07beb4ec57a9c7ce305743810d1b1d1123eff6e34b8f86",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-cover.webp",
+      "outputSha256": "ef6e61d15a10249df5bd3d73740af433e997afa46df867cee0dbe65b59c01d5b",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-shortstory-page-01",
+      "role": "page",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-shortstory-page-01.png",
+      "sourceSha256": "eb2aaf4ca536855fc2075571999f7ece005e29196cae0ac921ca86a687e020bf",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-01.webp",
+      "outputSha256": "885cafb9b691971d7209da84ba6f97622155c881e9f10e1da85310517028612c",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-shortstory-page-03",
+      "role": "page",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.scene.shortstory-classic-02",
+          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        },
+        {
+          "id": "heungbu.scene.shortstory-classic-03",
+          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-shortstory-page-03.png",
+      "sourceSha256": "70627304dce4f1ba65a49411828e47486cb6a9516d5b79d73751d574fff94fc2",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-03.webp",
+      "outputSha256": "ce87bcaddc410344499226c19fe3286e8dd207a46b422f18272a21f45b54ebd7",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    }
+  ]
+}

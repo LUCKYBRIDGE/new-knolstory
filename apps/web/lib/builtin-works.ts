@@ -5,6 +5,7 @@ export const BUILTIN_WORKS = [
  {id:'onggojib',title:'옹고집전',originalDocumentId:'classic-onggojib-tale',knolstoryDocumentId:'pinky-review-main-003'},
  {id:'seonnyeo',title:'선녀와 나무꾼',originalDocumentId:'classic-seonnyeo-tale',knolstoryDocumentId:'pinky-review-main-004'},
  {id:'heungbu',title:'흥부와 놀부',originalDocumentId:'classic-heungbu-tale',knolstoryDocumentId:'heungbu-nolbu-nolstory'},
+ {id:'bakssi',title:'박씨전',originalDocumentId:'classic-bakssi-tale',knolstoryDocumentId:'bakssi-knolstory'},
 ] as const;
 export type BuiltinWorkId=typeof BUILTIN_WORKS[number]['id'];
 type EditionWork={key:string;kind:'original'|'example'|'own'|'imported';project:{id:string;title:string}};

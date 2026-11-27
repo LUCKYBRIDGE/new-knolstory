@@ -5,6 +5,10 @@ it('validates plain mission content and keeps multiline prose',()=>{
  expect(missionInput(create)).toEqual(create);
  for(const patch of [{title:' '},{kind:'score'},{storyKey:'other'},{readingFormat:'video'},{questions:[]},{questions:[{id:'__proto__',prompt:'x'}]},{extra:true}])expect(()=>missionInput({...create,...patch})).toThrow();
 });
+it('accepts 박씨전 as a provided reading or worksheet source',()=>{
+ const bakssi={...create,storyKey:'bakssi',readingFormat:'shortstory'};
+ expect(missionInput(bakssi)).toEqual(bakssi);
+});
 it('requires every response and rejects unrelated answer keys',()=>{
  expect(missionSubmission({answers:{q1:'근거\n문장'},note:''},create.questions)).toEqual({answers:{q1:'근거\n문장'},note:''});
  for(const value of [{answers:{},note:''},{answers:{q1:' '},note:''},{answers:{q1:'x',q2:'y'},note:''},{answers:{q1:'x'},note:'',passed:true}])expect(()=>missionSubmission(value,create.questions)).toThrow();

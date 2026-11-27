@@ -35,7 +35,7 @@ it('provides distinct everyday/joy/anger/sorrow/mirth images for every individua
 });
 it('preserves all 481 previous catalogue rows outside the reviewed picker tags and makes each new mood searchable by its character and emotional label',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
- const before=rows.filter((row:{metadata:{emotionBatch?:string;shortStoryCollection?:string;generatedPicturebookStageAsset?:boolean}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedPicturebookStageAsset&&row.metadata.emotionBatch!=='all-character-v3');
+ const before=rows.filter((row:{metadata:{emotionBatch?:string;shortStoryCollection?:string;generatedBakssiAsset?:boolean;generatedPicturebookStageAsset?:boolean}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedBakssiAsset&&!row.metadata.generatedPicturebookStageAsset&&row.metadata.emotionBatch!=='all-character-v3');
  expect(before).toHaveLength(plan.before.catalogueRows);
  // Baseline from 37ed62e9 with only the reviewed picker fields removed.
  expect(stableCatalogDigest(before)).toBe('21ddeebf1146e0f88ca37a5282f696c6a253e055a4859e8f81fcdf39b65a718d');

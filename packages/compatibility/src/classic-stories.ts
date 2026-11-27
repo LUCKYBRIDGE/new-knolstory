@@ -2,9 +2,10 @@ import seonnyeo from '../../../tests/fixtures/stories/seonnyeo-classic.json';
 import heungbu from '../../../tests/fixtures/stories/heungbu-classic.json';
 import onggojib from '../../../tests/fixtures/stories/onggojib-classic.json';
 import rabbit from '../../../tests/fixtures/stories/rabbit-classic.json';
+import { bakssiClassicStory, getBakssiClassicStory } from './bakssi-stories';
 import { parseStoryDocument, type StoryDocumentEnvelope, type StoryProject } from '@knolstory/story-domain';
 
-export type ClassicStoryId = 'seonnyeo-classic' | 'heungbu-classic' | 'onggojib-classic' | 'rabbit-classic';
+export type ClassicStoryId = 'seonnyeo-classic' | 'heungbu-classic' | 'onggojib-classic' | 'rabbit-classic' | 'bakssi-classic';
 
 // PRESERVE: getClassicReading() manuscripts extracted by scripts/extract-legacy-content.py
 // from story-maker@18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b, never the legacy checkout.
@@ -26,10 +27,14 @@ function loadOriginal(story: (typeof originals)[number]): StoryDocumentEnvelope 
 
 export const classicStories: readonly Readonly<{
   id: ClassicStoryId; label: string; project: StoryProject;
-}>[] = originals.map(story => ({ id: story.id, label: story.label, project: loadOriginal(story).project }));
+}>[] = [
+  ...originals.map(story => ({ id: story.id, label: story.label, project: loadOriginal(story).project })),
+  { id: 'bakssi-classic', label: bakssiClassicStory.title, project: bakssiClassicStory },
+];
 
 /** A validated, independent copy of the original manuscript, suitable for reading or editing. */
 export function getClassicStory(id: ClassicStoryId): StoryDocumentEnvelope {
+  if (id === 'bakssi-classic') return getBakssiClassicStory();
   const story = originals.find(story => story.id === id);
   if (!story) throw new Error('원작을 찾을 수 없어요.');
   return loadOriginal(story);

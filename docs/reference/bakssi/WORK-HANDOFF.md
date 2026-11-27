@@ -1,0 +1,55 @@
+# 박씨전 · ChatGPT Work에서 이어서 제작하기
+
+GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 **`codex/bakssi-work`**다. Work의 GitHub 연결에서 이 브랜치를 열고 저장소 루트의 [AGENTS.md](../../../AGENTS.md), [박씨전 제작 스킬](../../../.agents/skills/bakssi-production/SKILL.md), [그림 제작 기준](art-production.md)을 읽는다. 앞으로의 진행 기록과 이미지·검증을 이 브랜치 또는 여기서 분기한 브랜치에 이어서 남긴다.
+
+> **Work에 처음 줄 요청**
+>
+> `LUCKYBRIDGE/new-knolstory`의 `codex/bakssi-work`에서 `docs/reference/bakssi/WORK-HANDOFF.md`와 `.agents/skills/bakssi-production/SKILL.md`를 읽고 박씨전을 완성해 줘. 먼저 박씨 허물 전후 그림의 차이를 충분히 크게 만들고, 이미 제작된 원본을 목록과 대조해 등록해 줘. 남은 삽화·배경·표정을 같은 화풍과 인물 기준으로 채워 줘. 실제 서재에서 원작·놀스토리·숏스토리를 확인하고 작업과 검증 결과를 브랜치에 남겨 줘.
+
+## GitHub에 저장된 작업 상태
+
+- 박씨 얼굴 개정본은 [나란히 비교한 그림](bakssi-face-comparison.jpg)에서 확인할 수 있다. 왼쪽은 허물 전 평상복, 가운데는 허물 뒤, 오른쪽은 허물 전 혼례복이다. 세 전신 원본은 레시피에 등록했다.
+- 초기 그림책 1·3쪽 PNG는 그 이전 인물 시안을 참조해 만든 상태다. 두 그림을 버리지 말고 장면·연출 기준으로 활용하되 최종 후보에서는 허물 전 얼굴을 새 등록 기준과 대조하여 필요한 부분을 다시 생성한다.
+- 새 원고와 실제 앱 진입 코드, 표지·그림책·무대·인물 PNG/WebP, 자산 해시, 검증 코드가 체크인되어 있다. 미등록된 쪽에는 제작 중 미리보기에서 글이 먼저 표시된다. 완성 검사는 열 쪽 모두의 등록을 요구한다.
+- 이번 체크포인트는 **57개 등록**이다. 인물 및 표정 44개, 재생 배경 10개, 표지 1개, 그림책 내지 2개다. 정확한 목록은 원본 폴더의 [등록 영수증](../../../assets/source/bakssi/generation.json)에 있다.
+- 아직 필요한 그림책 내지는 `bakssi-shortstory-page-02`, `bakssi-shortstory-page-04`, `bakssi-shortstory-page-05`, `bakssi-shortstory-page-06`, `bakssi-shortstory-page-07`, `bakssi-shortstory-page-08`, `bakssi-shortstory-page-09`, `bakssi-shortstory-page-10`이다.
+- 아직 필요한 재생 배경는 `bakssi-stage-courtyard-night`, `bakssi-stage-stable-day`, `bakssi-stage-pottery-day`, `bakssi-stage-court-day`, `bakssi-stage-courtyard-rain`, `bakssi-stage-courtyard-snow`, `bakssi-stage-well-snow`, `bakssi-stage-courtyard-spring`이다.
+- 기본 그림 이외의 표정 추가, 숏스토리와 등록 인물의 얼굴 비교, 최종 공용 미디어와 실제 Ren’Py 전 경로 검증은 남아 있다.
+
+## 이어받은 파일
+
+| 소유 파일 | 이어서 할 일 |
+| --- | --- |
+| [원작 읽기](박씨전_원작.md), [놀스토리](박씨전_놀스토리.md), [숏스토리](박씨전_숏스토리.md) | 원작 91컷, 놀스토리 415개 고유 컷·8개 경로·4개 결말, 숏스토리 표지와 10쪽. 문장은 이 파일에서 편집하고 아래 생성기로 앱 원고를 갱신한다. |
+| [원고 생성기](../../../scripts/prepare-bakssi-manuscripts.py), [읽기 데이터](../../../packages/compatibility/src/bakssi-stories.ts), [무대 배정](../../../packages/compatibility/src/bakssi-staging.ts) | Stage의 대사와 인물·동작·배경을 검수한다. 내보내는 작품의 ID는 원작 `classic-bakssi-tale`, 놀스토리 `bakssi-knolstory`, 그림책 작품 키는 `bakssi`다. |
+| [자산 레시피](../../../assets/source/bakssi/recipe.json), [자산 등록기](../../../scripts/prepare-bakssi-assets.py) | PNG와 만든 WebP를 대조하고, 기존 그림 신규 등록과 빠진 자산 제작을 진행한다. 레시피는 예정 목록, `generation.json`은 실제 등록 목록이다. |
+| [서재 묶음](../../../apps/web/lib/builtin-works.ts), [그림책 제공판](../../../packages/compatibility/src/shortstory-originals.ts), [재생 E2E](../../../tests/e2e/bakssi-runtime.spec.ts) | 로컬 서재에서 각 판의 표지·첫 컷·마지막 컷을 확인한다. 박씨전 학급 미션의 작품 키는 기존 SQL 이력을 유지하는 추가 마이그레이션을 사용한다. |
+
+## 우선순위
+
+1. **박씨의 허물 전후 차이를 책과 재생 화면까지 유지한다.** 사용자는 허물 전 박씨를 실제로 눈에 띄게 못생기게, 허물 뒤를 확실히 예쁘게 그리기를 요청했다. 이목구비를 구체적으로 비교하고 혼례복과 같은 얼굴 갈래에 반영한다. 연출에서 외모로 사람을 판단한 책임은 시백에게 있다.
+2. 등록 목록과 도착한 그림을 비교한다. 완성된 표지와 PNG는 이 브랜치에서 바로 사용한다. 미등록 원본이나 다른 세션 결과는 파일의 출처를 확인한 뒤 이 브랜치의 원본 폴더로 가져온다. 개인 다운로드나 로컬 생성 경로에 의존하는 작품 파일은 만들지 않는다.
+3. 빠진 숏스토리 쪽, 피화당의 계절·시간 배경, 빠진 등장인물과 표정을 [그림 기준](art-production.md) 순서대로 채운다. 등록 레시피상 기본 자산 외에 인물마다 일상·기쁨·분노·슬픔·웃음의 구별되는 그림을 확인한다. 허물 전과 후의 표정을 잘못 섞지 않는다. 투명 여백, 발 기준선, 같은 인물의 키, 그림책의 페이지별 핵심 행동을 검수한다.
+4. 원작과 놀스토리에서 배경, 등장인물, 표정, 소품과 소리의 타이밍을 확인한다. 특히 원작과 A 갈래의 허물 벗는 컷, B 갈래에서 얼굴이 계속 같은 점, 피화당 눈보라·움직이는 등불, 국자와 물동이가 각 결말에서 이어지는 점을 본다.
+5. 등록·빌드·실제 로컬 읽기를 마치고, 확인한 화면과 검사의 범위를 기록한다. 저장소에 저장한 상태와 공개 서비스 반영은 각각 확인한다.
+
+## 이어서 실행할 검사
+
+```sh
+pnpm install --frozen-lockfile
+python3 scripts/prepare-bakssi-manuscripts.py --check
+python3 scripts/prepare-bakssi-assets.py
+python3 scripts/prepare-bakssi-assets.py --check --complete --require-emotions
+pnpm test:character-registration
+KNOL_BAKSSI_REQUIRE_ART=1 pnpm exec vitest run packages/runtime-core/tests/bakssi-story-paths.test.ts packages/compatibility/tests/shortstory-library.test.ts
+pnpm runtime:build
+pnpm build
+pnpm test:media-provenance
+pnpm docs:check
+pnpm test:docs
+pnpm test:e2e:registry
+pnpm exec playwright test tests/e2e/bakssi-runtime.spec.ts --project=stories-runtime
+pnpm exec playwright test tests/e2e/four-work-library.spec.ts tests/e2e/four-work-shortstory.spec.ts --project=stories-runtime
+```
+
+[README의 재현 명령](../../../README.md)을 먼저 확인한다. 공용 미디어나 SDK가 빠져 있으면 저장소의 [자산 준비 절차](../../../.agents/skills/asset-pipeline/SKILL.md)와 [Ren’Py 작업 절차](../../../.agents/skills/renpy-runtime/SKILL.md)에서 접근 가능한 복구 경로를 확인한다. 원작 91컷과 놀스토리 전체 경로는 독립된 실제 브라우저 보관함에서 검증한다. 가로와 390px 세로에서 인물 크기·잘림·가독성, 숏스토리 열 쪽 모두의 그림·글, 사본을 만든 뒤 다시 열기, A4 미리보기도 확인한다.

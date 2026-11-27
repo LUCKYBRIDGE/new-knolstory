@@ -73,7 +73,7 @@ export function ShortStoryIllustrationPicker({value, onSelect, onClose}: {
    setQuery('');
    setLimit(pageSize);
   }}><option value="">모든 사건</option>{seriesOptions.map(asset=><option key={asset.id} value={asset.id}>{assetDisplayName(asset)}</option>)}</select></label>}
-  {storyOptions.length > 1 && <label>작품<select value={story} onChange={event => {setStory(event.target.value); setLimit(pageSize);}}><option value="">네 작품 모두</option>{storyOptions.map(option => <option key={option} value={option}>{option}</option>)}</select></label>}
+  {storyOptions.length > 1 && <label>작품<select value={story} onChange={event => {setStory(event.target.value); setLimit(pageSize);}}><option value="">모든 작품</option>{storyOptions.map(option => <option key={option} value={option}>{option}</option>)}</select></label>}
   <label>삽화 검색<input autoFocus type="search" value={query} onChange={event => {setQuery(event.target.value); setLimit(pageSize);}}/></label>
   <p role="status" className={styles.toolHint}>{matches.length === 0 ? '찾은 삽화가 없어요.' : `삽화 ${matches.length}장`}</p>
   <div className={styles.illustrationGrid}>

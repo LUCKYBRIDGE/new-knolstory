@@ -64,6 +64,8 @@ Design and acceptance criteria: [Responsive Runtime Editor](docs/architecture/re
 
 저장 key/DB 이름은 `knolstory-next-workspace-v1`/`knolstory-audio-assets-v1`로 유지하고 내부 workspace payload/IndexedDB schema는 v2다. 문서 schemaVersion·파일 formatVersion·서버 payloadVersion과 저장 namespace를 혼동해 저장소를 재생성하지 않는다. 실제 API/DB·계정·학급 서비스는 아직 후속 단계다.
 
+박씨전 제작 브랜치를 이어받는 작업은 [ChatGPT Work 인수인계](docs/reference/bakssi/WORK-HANDOFF.md)에서 시작한다.
+
 문서/스킬 변경 확인: `pnpm docs:check` 및 `pnpm test:docs`. Runtime을 다시 만들 때는 `pnpm runtime:build` → `pnpm build` → 필요한 검증을 순서대로 수행한다.
 
 ## Test on another computer
