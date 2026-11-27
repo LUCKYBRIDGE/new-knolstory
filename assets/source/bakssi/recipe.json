@@ -79,9 +79,7 @@
       "sizeReason": "젊은 성인 남성. 혼례복과 동일한 키",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-bakssi"
       ]
     },
     {
@@ -95,9 +93,7 @@
       "sizeReason": "젊은 성인 남성. 평상복과 동일한 키",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-sibaek"
       ],
       "variant": "혼례복"
     },
@@ -112,9 +108,7 @@
       "sizeReason": "등을 곧게 세운 연장자 성인 남성",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-bakssi"
       ]
     },
     {
@@ -128,9 +122,7 @@
       "sizeReason": "키가 큰 연장자 성인 남성",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-bakssi"
       ]
     },
     {
@@ -160,9 +152,7 @@
       "sizeReason": "성인 남성 기준보다 큰 체격의 장수",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-bakssi"
       ]
     },
     {
@@ -176,9 +166,7 @@
       "sizeReason": "용울대보다 약간 큰 체격의 장수",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-bakssi"
       ]
     },
     {
@@ -192,9 +180,7 @@
       "sizeReason": "성인 남성의 기본 키",
       "emotionRole": "neutral",
       "artReferenceIds": [
-        "heungbu.character.wife-heungbu",
-        "heungbu.character.heungbu-young",
-        "onggojib.scene.shortstory-classic-02"
+        "bakssi-character-bakssi"
       ]
     },
     {
@@ -859,6 +845,57 @@
         "seonnyeo.scene.shortstory-classic-02",
         "onggojib.scene.shortstory-classic-02",
         "heungbu.scene.shortstory-classic-03"
+      ]
+    },
+    {
+      "id": "bakssi-character-sibaek-inkstone",
+      "role": "character",
+      "label": "이시백 · 연적 기울이기",
+      "identity": "bakssi.sibaek",
+      "characterName": "이시백",
+      "referenceId": "heungbu.character.heungbu-default",
+      "heightRatio": 1.02,
+      "sizeReason": "젊은 성인 남성. 혼례복과 동일한 키",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-sibaek"
+      ],
+      "variant": "연적 기울이기",
+      "actions": [
+        "연적 기울이기"
+      ]
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-crouch-shoes",
+      "role": "character",
+      "label": "박씨 · 쪼그려 헌 신 살피기",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.55444555,
+      "sizeReason": "기준 전신과 머리·손 및 몸통 폭을 대조한 자세별 높이",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-bakssi-revealed"
+      ],
+      "variant": "쪼그려 헌 신 살피기",
+      "actions": [
+        "쪼그려 앉기"
+      ]
+    },
+    {
+      "id": "bakssi-character-gyehwa-rice-sack",
+      "role": "character",
+      "label": "계화 · 쌀자루 내려놓기",
+      "identity": "bakssi.gyehwa",
+      "characterName": "계화",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.73426573,
+      "sizeReason": "기준 전신과 머리·손 및 몸통 폭을 대조한 자세별 높이",
+      "emotionRole": "neutral",
+      "variant": "쌀자루 내려놓기",
+      "actions": [
+        "몸 숙이기"
       ]
     }
   ]

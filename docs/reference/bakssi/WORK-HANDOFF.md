@@ -11,10 +11,10 @@ GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 
 - 박씨 얼굴 개정본은 [나란히 비교한 그림](bakssi-face-comparison.jpg)에서 확인할 수 있다. 왼쪽은 허물 전 평상복, 가운데는 허물 뒤, 오른쪽은 허물 전 혼례복이다. 세 전신 원본은 레시피에 등록했다.
 - 초기 그림책 1·3쪽 PNG는 그 이전 인물 시안을 참조해 만든 상태다. 두 그림을 버리지 말고 장면·연출 기준으로 활용하되 최종 후보에서는 허물 전 얼굴을 새 등록 기준과 대조하여 필요한 부분을 다시 생성한다.
 - 새 원고와 실제 앱 진입 코드, 표지·그림책·무대·인물 PNG/WebP, 자산 해시, 검증 코드가 체크인되어 있다. 미등록된 쪽에는 제작 중 미리보기에서 글이 먼저 표시된다. 완성 검사는 열 쪽 모두의 등록을 요구한다.
-- 이번 체크포인트는 **57개 등록**이다. 인물 및 표정 44개, 재생 배경 10개, 표지 1개, 그림책 내지 2개다. 정확한 목록은 원본 폴더의 [등록 영수증](../../../assets/source/bakssi/generation.json)에 있다.
+- 2026-11-28 사용자 승인본을 반영한 체크포인트는 **61개 등록**이다. 인물·표정·동작 48개, 재생 배경 10개, 표지 1개, 그림책 내지 2개다. 이시백·용울대·용골대·이득춘·박 처사·김자점 대표 전신과 이시백 혼례복을 교체하고, 이시백 연적·용골대 슬픔·박씨의 헌 신·계화의 쌀자루를 추가했다. [등록 영수증](../../../assets/source/bakssi/generation.json) · [인물 보정 전후](character-review-approved.jpg) · [표정·동작과 대표 전신 비교](character-review-variants.jpg)
 - 아직 필요한 그림책 내지는 `bakssi-shortstory-page-02`, `bakssi-shortstory-page-04`, `bakssi-shortstory-page-05`, `bakssi-shortstory-page-06`, `bakssi-shortstory-page-07`, `bakssi-shortstory-page-08`, `bakssi-shortstory-page-09`, `bakssi-shortstory-page-10`이다.
 - 아직 필요한 재생 배경은 `bakssi-stage-courtyard-night`, `bakssi-stage-stable-day`, `bakssi-stage-pottery-day`, `bakssi-stage-court-day`, `bakssi-stage-courtyard-rain`, `bakssi-stage-courtyard-snow`, `bakssi-stage-well-snow`, `bakssi-stage-courtyard-spring`이다.
-- 기본 그림 이외의 표정 추가, 숏스토리와 등록 인물의 얼굴 비교, 최종 공용 미디어와 실제 Ren’Py 전 경로 검증은 남아 있다. 이 체크포인트에서 원고 재생성 검사, 분기 계산, 등록 자산 해시, 투명 인물 44개 규격, Web·호환 모듈 타입 검사를 확인했다.
+- 기본 그림 이외의 표정 추가, 숏스토리와 등록 인물의 얼굴 비교, 최종 공용 미디어와 실제 Ren’Py 전 경로 검증은 남아 있다. 이번 승인본을 반영한 상태에서 원고 생성·분기·대상 컷 배정, 인물 스프라이트 48개의 등록 규격을 확인했다. Ren’Py 8.5.3에서 승인된 그림 11개가 쓰이는 검수 장면 13개를 가로와 폭 390px 세로로 각각 재생했다. 일부 장면에서는 보유한 확인용 배경을 사용했고, 승인 원본 음원이 필요한 전체 앱 빌드와 음원 재생은 남아 있다.
 
 ## 이어받은 파일
 

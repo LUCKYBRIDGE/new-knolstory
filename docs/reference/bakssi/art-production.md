@@ -1,5 +1,13 @@
 # 박씨전 그림 제작 기준
 
+## 2026-11-28 사용자 승인 보정본
+
+[대표 전신 비교판](character-review-approved.jpg)과 [표정·동작 비교판](character-review-variants.jpg)은 승인에 사용한 그림이다. ImageGen의 첫 참조로 이전 인물 전신을, 두 번째로 박씨의 전신을 지정해 먹선과 피부 명암의 가감 기준을 맞췄다. 이시백은 긴 목과 하체를 되잡고 갓 아래 얼굴이 읽히게 했다. 용울대는 넓은 어깨와 목을 따로 보이게 하고, 용골대·이득춘·박 처사·김자점은 얼굴의 잔주름과 광택을 줄였다. 두 번째 보정에서 이시백의 하체를 한 번 더 줄였고, 용골대의 수염과 주름을 한지 수채의 덩어리로 묶었다.
+
+- 이시백 혼례복과 연적은 승인한 평상복의 얼굴·어깨·허리·손발을 참조했다. 혼례복에는 남색 단령과 검은 사모를, 연적 장면에는 개구리 모양 청자 연적과 검은 벼루를 둔다. 보조 참조는 각 동작의 앞선 Work 시안이다. PNG SHA-256은 혼례복 `c8bb26f76faa09c33ba512a45607d4190b3768142bfdeea1ac46d66e7a4860c5`, 연적 `46e1abb569aa0eb0a38624e1bf96b6c8d8dbc3cff761deaeb2a924ad93806157`이다.
+- 용골대의 슬픔에는 승인한 용골대 전신과 이전 슬픔 시안(PNG SHA-256 `50ae068eeb94cd3978572e5e9b8d6b10125a03b0d096d77818e8e05daa4da6a0`)을 참조했다. 푸른 갑옷과 수염을 유지하고 고개와 눈을 조금 숙인다.
+- 박씨는 허물을 벗은 뒤의 전신을 참조해 발을 디딘 채 쪼그려 앉아 헌 짚신을 살피게 했다. 계화는 Work의 황토 저고리·살구빛 댕기 전신 시안(PNG SHA-256 `eec6aae707780dfbe5a237ef345f99efec654db8f68ffe5e3f15db27b0c3d15a`)으로 쌀자루를 내려놓는 손과 몸의 각도를 잡았다. [자세별 배율 비교판](character-review-poses.jpg)과 대조해 재생 높이를 각각 555px와 735px로 정했다.
+
 ## 같은 작품의 그림으로 보이게 하는 기준
 
 - 선녀와 나무꾼 2쪽에서 밝은 햇빛, 숲과 산의 깊이, 옹고집전 2쪽에서 기와·눈·나무 문, 흥부와 놀부 3쪽에서 얼굴·손·옷감·종이에 번진 색을 본다. 저장소 Asset ID는 각각 `seonnyeo.scene.shortstory-classic-02`, `onggojib.scene.shortstory-classic-02`, `heungbu.scene.shortstory-classic-03`이다. 준비된 공용 파일 위치는 `apps/web/public/assets/legacy-18da4fc/<id>.webp`다. 캐릭터 키와 비례는 `heungbu.character.wife-heungbu`, `heungbu.character.heungbu-young` 및 레시피별 기준을 확인한다. 참조 인물과 장면을 복제하지 않고 색과 표현 방식, 치수 기준만 가져온다.

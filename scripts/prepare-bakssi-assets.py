@@ -110,21 +110,26 @@ def asset_id_for_role(role, asset_id):
     return pattern is not None and re.fullmatch(pattern, asset_id) is not None
 
 
-def prepare_one(root, recipe, catalogue, prompt_evidence):
+def prepare_one(root, recipe, catalogue, prompt_evidence, prior_receipt=None):
     asset_id = recipe['id']
     role = recipe['role']
     source_path = SOURCE / (asset_id + '.png')
     source_bytes = (root / source_path).read_bytes()
+    source_hash = digest(source_bytes)
     prompt = recipe.get('prompt')
     if not prompt and not prompt_evidence:
         raise ValueError(f'{asset_id}: record the generation prompt before registration')
     prompt_fields = {'prompt': prompt} if prompt else {'promptEvidence': prompt_evidence}
-    refs = []
-    for reference_id in recipe.get('artReferenceIds', []):
-        reference = catalogue.get(reference_id)
-        if not reference:
-            raise ValueError(f'{asset_id}: unknown art reference {reference_id}')
-        refs.append({'id': reference_id, 'sha256': reference['revision']})
+    if prior_receipt and prior_receipt['sourceSha256'] == source_hash:
+        # Keep the references used to create these exact source bytes.
+        refs = prior_receipt['referenceAssets']
+    else:
+        refs = []
+        for reference_id in recipe.get('artReferenceIds', []):
+            reference = catalogue.get(reference_id)
+            if not reference:
+                raise ValueError(f'{asset_id}: unknown art reference {reference_id}')
+            refs.append({'id': reference_id, 'sha256': reference['revision']})
     if role == 'character':
         with Image.open(BytesIO(source_bytes)) as source:
             image, geometry, metadata = character_metadata(recipe, catalogue, source)
@@ -162,7 +167,7 @@ def prepare_one(root, recipe, catalogue, prompt_evidence):
     }
     receipt = {
         'id': asset_id, 'role': role, 'tool': 'built-in image_gen', **prompt_fields,
-        'referenceAssets': refs, 'source': source_path.as_posix(), 'sourceSha256': digest(source_bytes),
+        'referenceAssets': refs, 'source': source_path.as_posix(), 'sourceSha256': source_hash,
         'output': (PUBLIC / relative).as_posix(), 'outputSha256': revision,
         'dimensions': {'width': image.width, 'height': image.height},
     }
@@ -278,7 +283,7 @@ def prepare(root=ROOT, check=False, complete=False, require_emotions=False, repl
             continue
         if asset_id in prior and asset_id not in replacements and digest(source.read_bytes()) != prior[asset_id]['sourceSha256']:
             raise ValueError(f'{asset_id}: source changed; review and register a new versioned asset')
-        asset, receipt, contents = prepare_one(root, entry, catalogue_by_id, prompt_evidence)
+        asset, receipt, contents = prepare_one(root, entry, catalogue_by_id, prompt_evidence, prior.get(asset_id))
         catalogue_by_id[asset_id] = asset
         if asset_id in prior_assets and asset_id not in replacements and prior_assets[asset_id]['revision'] != asset['revision']:
             raise ValueError(f'{asset_id}: registered derivative changed; verify the source and encoder')

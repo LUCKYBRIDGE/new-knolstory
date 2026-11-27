@@ -251,12 +251,11 @@ function poseFor(actor: Actor, cut: string): StageActorEntry {
   const member = memberOf(actor);
   const key = characterKey(member);
   const motion = cut === 'O08' && member === 'sibaek' ? {type: 'exit-right', durationMs: 1400} as const : undefined;
-  const expression = expressionAtCut[cut];
+  const direction = actorDirectionAtCut[cut];
   const defaultImage = actorId(actor);
-  const expressionImage = expression?.actor === member && expression.emotion
-    ? resolveAsset(`${defaultImage}-${expression.emotion}`)
-    : undefined;
-  const assetId = expressionImage?.type === 'character' ? expressionImage.id : defaultImage;
+  const variant = direction?.actor === member ? direction.pose ?? direction.emotion : undefined;
+  const variantImage = variant ? resolveAsset(`${defaultImage}-${variant}`) : undefined;
+  const assetId = variantImage?.type === 'character' ? variantImage.id : defaultImage;
   return {key, characterKey: key, assetId, ...(motion ? {motion} : {})};
 }
 
@@ -305,18 +304,24 @@ const transitions: Readonly<Record<string, StoryPresentation['transition']>> = {
 const impactCuts = new Set(['O63', 'O79', 'Q03', 'X03']);
 
 type Emotion = 'joy' | 'anger' | 'sorrow' | 'mirth';
-const expressionAtCut: Readonly<Record<string, {actor: CastMember; note: string; emotion?: Emotion}>> = {
+type Pose = 'rice-sack' | 'inkstone' | 'crouch-shoes';
+const actorDirectionAtCut: Readonly<Record<string, {actor: CastMember; note: string; emotion?: Emotion; pose?: Pose}>> = {
   O06: {actor: 'bakssi', note: '조심스럽게 말문을 연다.'},
   O10: {actor: 'bakssi', note: '함께 마시려던 두 잔을 내려다보며 말을 삼킨다.', emotion: 'sorrow'},
   O22: {actor: 'deukchun', note: '입궐 걱정이 풀려 고마움을 드러낸다.', emotion: 'joy'},
   O27: {actor: 'gyehwa', note: '말 앞에서 서두르지 않고 기다린다.'},
+  O33: {actor: 'gyehwa', note: '빈 여물통 곁에 쌀자루를 내려놓는다.', pose: 'rice-sack'},
   O39: {actor: 'sibaek', note: '시험장에서 연적을 보고 긴장이 조금 풀린다.', emotion: 'mirth'},
+  O40: {actor: 'sibaek', note: '개구리 연적을 기울여 벼루에 물을 떨어뜨린다.', pose: 'inkstone'},
   O53: {actor: 'gyehwa', note: '비녀를 알아보고 놀라다가 반가워한다.', emotion: 'joy'},
+  O54: {actor: 'bakssi', note: '마루 앞에서 쪼그려 헌 신을 살핀다.', pose: 'crouch-shoes'},
   O62: {actor: 'bakssi', note: '기홍대와 시백 사이에 서서 단호하게 말한다.', emotion: 'anger'},
   O84: {actor: 'sister-young', note: '언니 손에서 힘을 빼며 긴장이 풀린다.', emotion: 'joy'},
   C05: {actor: 'sibaek', note: '박씨와 눈을 마주치지 않은 채 자리를 뜬다.'},
   C28: {actor: 'gyehwa', note: '말이 손바닥을 핥아 웃음이 튀어나온다.', emotion: 'mirth'},
+  D21: {actor: 'sibaek', note: '개구리 연적을 기울여 벼루에 물을 떨어뜨린다.', pose: 'inkstone'},
   A05: {actor: 'gyehwa', note: '낯선 얼굴을 보다가 평소의 비녀를 알아본다.', emotion: 'joy'},
+  A08: {actor: 'bakssi', note: '마루 앞에 모인 신발 사이에서 헌 신을 살핀다.', pose: 'crouch-shoes'},
   A32: {actor: 'bakssi', note: '더는 위협받지 않아도 된다는 듯 문 쪽으로 비켜선다.'},
   X11: {actor: 'yonggoldae', note: '명령 대신 아우의 이름을 부른다.', emotion: 'sorrow'},
   X27: {actor: 'bakssi', note: '혼례 날보다 더 서러웠다고 어려운 말을 꺼낸다.', emotion: 'sorrow'},
@@ -327,7 +332,7 @@ const expressionAtCut: Readonly<Record<string, {actor: CastMember; note: string;
   V28: {actor: 'mother', note: '아이를 만나 안도하면서도 먼저 젖은 발을 닦는다.', emotion: 'joy'},
 };
 
-export const bakssiCutEmotionNote = (id: string) => expressionAtCut[id]?.note ?? '';
+export const bakssiCutEmotionNote = (id: string) => actorDirectionAtCut[id]?.note ?? '';
 
 export function bakssiCutStage(id: string, speakerName: string): {
   backgroundId: string;

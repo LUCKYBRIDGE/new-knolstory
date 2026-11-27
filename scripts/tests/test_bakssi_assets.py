@@ -108,6 +108,24 @@ class BakssiAssetsTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'source changed'):
                 self.pipeline.prepare(self.root, check=check)
 
+    def test_preserves_expression_lineage_when_its_reference_draft_is_replaced(self):
+        self.record_recipe()
+        self.draw_sources()
+        joy_id = self.sprite_id + '-joy'
+        sprite = Image.new('RGBA', (384, 640))
+        ImageDraw.Draw(sprite).ellipse((92, 64, 291, 600), fill=(88, 24, 63, 254))
+        sprite.save(self.art / (joy_id + '.png'))
+        self.pipeline.prepare(self.root)
+        receipt = self.art / 'generation.json'
+        prior = {row['id']: row for row in json.loads(receipt.read_text())['assets']}
+
+        sprite.save(self.art / (self.sprite_id + '.png'))
+        self.pipeline.prepare(self.root, replace_drafts=[self.sprite_id])
+        current = {row['id']: row for row in json.loads(receipt.read_text())['assets']}
+        self.assertNotEqual(current[self.sprite_id]['outputSha256'], prior[self.sprite_id]['outputSha256'])
+        self.assertEqual(current[joy_id]['referenceAssets'], prior[joy_id]['referenceAssets'])
+        self.assertEqual(self.pipeline.prepare(self.root, check=True), 4)
+
     def test_replaces_only_requested_draft_after_checking_the_prior_output(self):
         self.record_recipe()
         self.draw_sources()

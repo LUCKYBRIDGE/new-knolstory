@@ -45,6 +45,24 @@ const missingStageImages = [...stageImageIds].filter(id => !resolveAsset(id));
 const requireArt = process.env.KNOL_BAKSSI_REQUIRE_ART === '1';
 
 describe('박씨전 제공 원고', () => {
+  it('shows the approved poses on their authored cuts and retains the default on adjacent cuts', () => {
+    const cues = [
+      [bakssiClassicStory, 'o33', 'gyehwa-rice-sack'],
+      [bakssiClassicStory, 'o40', 'sibaek-inkstone'],
+      [bakssiClassicStory, 'o41', 'sibaek'],
+      [bakssiClassicStory, 'o54', 'bakssi-revealed-crouch-shoes'],
+      [bakssiKnolStory, 'd21', 'sibaek-inkstone'],
+      [bakssiKnolStory, 'a08', 'bakssi-revealed-crouch-shoes'],
+      [bakssiKnolStory, 'x11', 'yonggoldae-sorrow'],
+    ] as const;
+    for (const [project, cut, suffix] of cues) {
+      const stage = project.lines.find(line => line.id === `bakssi-${cut}`)!.stageComposition!;
+      const assetId = `bakssi-character-${suffix}`;
+      expect([...stage.leftActors, ...stage.rightActors].map(actor => actor.assetId)).toContain(assetId);
+      expect(resolveAsset(assetId)?.runtimePath).toBe(`assets/bakssi-v1/${assetId}.webp`);
+    }
+  });
+
   it('opens the 91-cut original edition in authored order', () => {
     expect(bakssiClassicStory.id).toBe('classic-bakssi-tale');
     expect(bakssiClassicStory.chapters.map(chapter => chapter.chapterNumber)).toEqual([1,2,3,4,5,6,7,8]);
