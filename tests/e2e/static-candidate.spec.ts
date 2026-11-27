@@ -20,8 +20,9 @@ test('split static tiers keep one origin and eight native entries without an API
  const evidence=JSON.stringify({scope:'Eight entries and one advance each, not all branch endings; local split storage, not CDN/rights approval',records,bundles,progressive,errors},null,2);writeFileSync(info.outputPath('native-evidence.json'),evidence);await info.attach('split-static-native-evidence',{body:evidence,contentType:'application/json'});
 });
 
-// The loop runs 0–0.8s. A busy machine can read the position a little late, so allow 0.2s of slack:
-// still far below the track's length, so a loop that never wraps keeps failing (and the wrap count is checked too).
+// The loop runs 0–0.8s. Ren'Py web starts each next round only when the browser reports the previous one ended,
+// so while the page is busy the position keeps counting past 0.8s (measured up to ~0.1s). Allow 0.2s for that;
+// a loop that never wraps still fails, since the wrap count is checked too.
 const LOOP_END_SECONDS=.8,LOOP_READ_SLACK_SECONDS=.2;
 for(const audio of [{name:'OGG',id:'audio:music:score-calm',path:'story-score/score-calm.ogg'},{name:'MP3',id:'audio:music:cc0-oga-forest',path:'cc0/oga-forest.mp3'}])test(`progressive BGM ${audio.name} keeps playback across cuts while short effects remain available without an API`,async({page},info)=>{
  const {createBlankStoryProject}=await import('../../packages/runtime-core/src/authoring');const {confirmAuthoringImport}=await import('./authoring-file');
@@ -35,7 +36,7 @@ for(const audio of [{name:'OGG',id:'audio:music:score-calm',path:'story-score/sc
  let sampleIndex=0;const positions:number[]=[];
  const samplePosition=async()=>{const previousRevision=await status.getAttribute('data-scene-revision');await page.setViewportSize({width:1280+(sampleIndex++%2),height:800});await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==previousRevision&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');}).toBe(true);const raw=await status.getAttribute('data-music-position');return raw===null||raw===''?Number.NaN:Number(raw);};
  await expect.poll(samplePosition,{timeout:30000}).toBeGreaterThan(0);
- // Right as the loop restarts the runtime can report no position for a moment; read again (up to 3 times) instead of failing on that blank.
+ // At the very start of each round the position is exactly 0, and Ren'Py's get_pos reports 0 as "no position" (blank). Read again (up to 3 times) instead of failing on that blank.
  const readPosition=async()=>{for(let attempt=0;attempt<3;attempt++){const position=await samplePosition();if(Number.isFinite(position))return position;}return Number.NaN;};
  for(let index=0;index<16;index++){await page.waitForTimeout(200);positions.push(await readPosition());}
  const wraps=positions.slice(1).filter((position,index)=>position+.1<positions[index]!).length;expect(wraps,JSON.stringify(positions)).toBeGreaterThanOrEqual(2);expect(positions.every(position=>Number.isFinite(position)&&position>=0&&position<=LOOP_END_SECONDS+LOOP_READ_SLACK_SECONDS),`loop positions ${JSON.stringify(positions)}`).toBe(true);
