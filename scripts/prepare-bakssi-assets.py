@@ -227,7 +227,7 @@ def check_emotions(rows):
             raise ValueError(f'{identity}: each expression must use a distinct reviewed image')
 
 
-def prepare(root=ROOT, check=False, complete=False, require_emotions=False):
+def prepare(root=ROOT, check=False, complete=False, require_emotions=False, replace_drafts=()):
     registry = root / REGISTRY
     catalog_path = registry / 'catalog.json'
     sizes_path = registry / 'background-sizes.json'
@@ -251,6 +251,17 @@ def prepare(root=ROOT, check=False, complete=False, require_emotions=False):
     prior = {row['id']: row for row in load(receipt_path)['assets']} if receipt_path.exists() else {}
     if not (set(prior_assets) | set(prior)).issubset(ids):
         raise ValueError('A registered Bakssi asset recipe disappeared.')
+    replacements = set(replace_drafts)
+    if replacements and (check or not replacements.issubset(prior_assets.keys() & prior.keys())):
+        raise ValueError('Draft replacement requires exact IDs already present in both registration files.')
+    for asset_id in replacements:
+        previous = prior[asset_id]
+        expected_output = PUBLIC / DELIVERY / (asset_id + '.webp')
+        output = root / expected_output
+        if (previous['output'] != expected_output.as_posix() or not output.is_file()
+                or digest(output.read_bytes()) != previous['outputSha256']
+                or prior_assets[asset_id]['revision'] != previous['outputSha256']):
+            raise ValueError(f'{asset_id}: prior output must match the registered draft')
     catalogue = []
     receipts = []
     files = {}
@@ -265,16 +276,16 @@ def prepare(root=ROOT, check=False, complete=False, require_emotions=False):
             if (complete and not optional_emotion) or asset_id in prior_assets or asset_id in prior:
                 raise ValueError(f'{asset_id}: source PNG missing')
             continue
-        if asset_id in prior and digest(source.read_bytes()) != prior[asset_id]['sourceSha256']:
+        if asset_id in prior and asset_id not in replacements and digest(source.read_bytes()) != prior[asset_id]['sourceSha256']:
             raise ValueError(f'{asset_id}: source changed; review and register a new versioned asset')
         asset, receipt, contents = prepare_one(root, entry, catalogue_by_id, prompt_evidence)
         catalogue_by_id[asset_id] = asset
-        if asset_id in prior_assets and prior_assets[asset_id]['revision'] != asset['revision']:
+        if asset_id in prior_assets and asset_id not in replacements and prior_assets[asset_id]['revision'] != asset['revision']:
             raise ValueError(f'{asset_id}: registered derivative changed; verify the source and encoder')
         catalogue.append(asset)
         receipts.append(receipt)
         output = root / receipt['output']
-        if output.is_file() and output.read_bytes() != contents:
+        if asset_id not in replacements and output.is_file() and output.read_bytes() != contents:
             raise ValueError(f'{asset_id}: output differs; recover exact asset bytes')
         files[output] = contents
     if not catalogue:
@@ -329,9 +340,12 @@ if __name__ == '__main__':
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--complete', action='store_true', help='Require every planned base artwork.')
     parser.add_argument('--require-emotions', action='store_true', help='Require five distinct expressions for each identity.')
+    parser.add_argument('--replace-draft', action='append', default=[], metavar='ASSET_ID',
+                        help='Replace a reviewed asset on the unpublished production branch only.')
     args = parser.parse_args()
     try:
-        count = prepare(check=args.check, complete=args.complete, require_emotions=args.require_emotions)
+        count = prepare(check=args.check, complete=args.complete, require_emotions=args.require_emotions,
+                        replace_drafts=args.replace_draft)
     except (ValueError, OSError, KeyError) as error:
         raise SystemExit(str(error))
     print(f'Bakssi artwork: {count} registered assets.')

@@ -4,7 +4,7 @@ GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 
 
 > **Work에 처음 줄 요청**
 >
-> `LUCKYBRIDGE/new-knolstory`의 `codex/bakssi-work`에서 `docs/reference/bakssi/WORK-HANDOFF.md`와 `.agents/skills/bakssi-production/SKILL.md`를 읽고 박씨전을 완성해 줘. 먼저 박씨 허물 전후 그림의 차이를 충분히 크게 만들고, 이미 제작된 원본을 목록과 대조해 등록해 줘. 남은 삽화·배경·표정을 같은 화풍과 인물 기준으로 채워 줘. 실제 서재에서 원작·놀스토리·숏스토리를 확인하고 작업과 검증 결과를 브랜치에 남겨 줘.
+> `LUCKYBRIDGE/new-knolstory`의 `codex/bakssi-work`에서 `docs/reference/bakssi/WORK-HANDOFF.md`와 `.agents/skills/bakssi-production/SKILL.md`를 읽고 박씨전을 완성해 줘. 먼저 사용자가 고른 박씨의 허물 전후 기준 그림이 기존 시안과 새 그림에 이어지도록 하고, 이미 제작된 원본을 목록과 대조해 등록해 줘. 남은 삽화·배경·표정을 같은 화풍과 인물 기준으로 채워 줘. 실제 서재에서 원작·놀스토리·숏스토리를 확인하고 작업과 검증 결과를 브랜치에 남겨 줘.
 
 ## GitHub에 저장된 작업 상태
 
@@ -13,8 +13,8 @@ GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 
 - 새 원고와 실제 앱 진입 코드, 표지·그림책·무대·인물 PNG/WebP, 자산 해시, 검증 코드가 체크인되어 있다. 미등록된 쪽에는 제작 중 미리보기에서 글이 먼저 표시된다. 완성 검사는 열 쪽 모두의 등록을 요구한다.
 - 이번 체크포인트는 **57개 등록**이다. 인물 및 표정 44개, 재생 배경 10개, 표지 1개, 그림책 내지 2개다. 정확한 목록은 원본 폴더의 [등록 영수증](../../../assets/source/bakssi/generation.json)에 있다.
 - 아직 필요한 그림책 내지는 `bakssi-shortstory-page-02`, `bakssi-shortstory-page-04`, `bakssi-shortstory-page-05`, `bakssi-shortstory-page-06`, `bakssi-shortstory-page-07`, `bakssi-shortstory-page-08`, `bakssi-shortstory-page-09`, `bakssi-shortstory-page-10`이다.
-- 아직 필요한 재생 배경는 `bakssi-stage-courtyard-night`, `bakssi-stage-stable-day`, `bakssi-stage-pottery-day`, `bakssi-stage-court-day`, `bakssi-stage-courtyard-rain`, `bakssi-stage-courtyard-snow`, `bakssi-stage-well-snow`, `bakssi-stage-courtyard-spring`이다.
-- 기본 그림 이외의 표정 추가, 숏스토리와 등록 인물의 얼굴 비교, 최종 공용 미디어와 실제 Ren’Py 전 경로 검증은 남아 있다.
+- 아직 필요한 재생 배경은 `bakssi-stage-courtyard-night`, `bakssi-stage-stable-day`, `bakssi-stage-pottery-day`, `bakssi-stage-court-day`, `bakssi-stage-courtyard-rain`, `bakssi-stage-courtyard-snow`, `bakssi-stage-well-snow`, `bakssi-stage-courtyard-spring`이다.
+- 기본 그림 이외의 표정 추가, 숏스토리와 등록 인물의 얼굴 비교, 최종 공용 미디어와 실제 Ren’Py 전 경로 검증은 남아 있다. 이 체크포인트에서 원고 재생성 검사, 분기 계산, 등록 자산 해시, 투명 인물 44개 규격, Web·호환 모듈 타입 검사를 확인했다.
 
 ## 이어받은 파일
 
@@ -23,11 +23,11 @@ GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 
 | [원작 읽기](박씨전_원작.md), [놀스토리](박씨전_놀스토리.md), [숏스토리](박씨전_숏스토리.md) | 원작 91컷, 놀스토리 415개 고유 컷·8개 경로·4개 결말, 숏스토리 표지와 10쪽. 문장은 이 파일에서 편집하고 아래 생성기로 앱 원고를 갱신한다. |
 | [원고 생성기](../../../scripts/prepare-bakssi-manuscripts.py), [읽기 데이터](../../../packages/compatibility/src/bakssi-stories.ts), [무대 배정](../../../packages/compatibility/src/bakssi-staging.ts) | Stage의 대사와 인물·동작·배경을 검수한다. 내보내는 작품의 ID는 원작 `classic-bakssi-tale`, 놀스토리 `bakssi-knolstory`, 그림책 작품 키는 `bakssi`다. |
 | [자산 레시피](../../../assets/source/bakssi/recipe.json), [자산 등록기](../../../scripts/prepare-bakssi-assets.py) | PNG와 만든 WebP를 대조하고, 기존 그림 신규 등록과 빠진 자산 제작을 진행한다. 레시피는 예정 목록, `generation.json`은 실제 등록 목록이다. |
-| [서재 묶음](../../../apps/web/lib/builtin-works.ts), [그림책 제공판](../../../packages/compatibility/src/shortstory-originals.ts), [재생 E2E](../../../tests/e2e/bakssi-runtime.spec.ts) | 로컬 서재에서 각 판의 표지·첫 컷·마지막 컷을 확인한다. 박씨전 학급 미션의 작품 키는 기존 SQL 이력을 유지하는 추가 마이그레이션을 사용한다. |
+| [서재 묶음](../../../apps/web/lib/builtin-works.ts), [그림책 제공판](../../../packages/compatibility/src/shortstory-originals.ts), [재생 E2E](../../../tests/e2e/bakssi-runtime.spec.ts) | 로컬 서재에서 각 판의 표지·첫 컷·마지막 컷을 확인한다. 원작·놀스토리·숏스토리용 독후 활동지는 각각 두 장이다. 박씨전 학급 미션의 작품 키는 기존 SQL 이력을 유지하는 추가 마이그레이션을 사용한다. |
 
 ## 우선순위
 
-1. **박씨의 허물 전후 차이를 책과 재생 화면까지 유지한다.** 사용자는 허물 전 박씨를 실제로 눈에 띄게 못생기게, 허물 뒤를 확실히 예쁘게 그리기를 요청했다. 이목구비를 구체적으로 비교하고 혼례복과 같은 얼굴 갈래에 반영한다. 연출에서 외모로 사람을 판단한 책임은 시백에게 있다.
+1. **박씨의 허물 전후 차이를 책과 재생 화면까지 유지한다.** 비교 시안 중 사용자가 마지막에 고른 [박씨 얼굴 기준](bakssi-face-comparison.jpg)을 사용한다. 얼굴을 더 과장하지 않고 승인 PNG를 첫 번째 참조로 쓴다. 평상복과 혼례복, 원작과 놀스토리 B에서 허물 전 얼굴이 같은 사람으로 이어져야 한다. 연출에서 외모로 사람을 판단한 책임은 시백에게 있다.
 2. 등록 목록과 도착한 그림을 비교한다. 완성된 표지와 PNG는 이 브랜치에서 바로 사용한다. 미등록 원본이나 다른 세션 결과는 파일의 출처를 확인한 뒤 이 브랜치의 원본 폴더로 가져온다. 개인 다운로드나 로컬 생성 경로에 의존하는 작품 파일은 만들지 않는다.
 3. 빠진 숏스토리 쪽, 피화당의 계절·시간 배경, 빠진 등장인물과 표정을 [그림 기준](art-production.md) 순서대로 채운다. 등록 레시피상 기본 자산 외에 인물마다 일상·기쁨·분노·슬픔·웃음의 구별되는 그림을 확인한다. 허물 전과 후의 표정을 잘못 섞지 않는다. 투명 여백, 발 기준선, 같은 인물의 키, 그림책의 페이지별 핵심 행동을 검수한다.
 4. 원작과 놀스토리에서 배경, 등장인물, 표정, 소품과 소리의 타이밍을 확인한다. 특히 원작과 A 갈래의 허물 벗는 컷, B 갈래에서 얼굴이 계속 같은 점, 피화당 눈보라·움직이는 등불, 국자와 물동이가 각 결말에서 이어지는 점을 본다.

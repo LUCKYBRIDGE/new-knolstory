@@ -107,3 +107,19 @@ class BakssiAssetsTest(unittest.TestCase):
         for check in [False, True]:
             with self.assertRaisesRegex(ValueError, 'source changed'):
                 self.pipeline.prepare(self.root, check=check)
+
+    def test_replaces_only_requested_draft_after_checking_the_prior_output(self):
+        self.record_recipe()
+        self.draw_sources()
+        self.pipeline.prepare(self.root)
+        source = self.art / (self.page_id + '.png')
+        output = self.root / 'apps/web/public/assets/bakssi-v1' / (self.page_id + '.webp')
+        prior = output.read_bytes()
+        Image.new('RGB', (512, 288), 'green').save(source)
+        output.write_bytes(b'corrupt derivative')
+        with self.assertRaisesRegex(ValueError, 'prior output'):
+            self.pipeline.prepare(self.root, replace_drafts=[self.page_id])
+        output.write_bytes(prior)
+        self.pipeline.prepare(self.root, replace_drafts=[self.page_id])
+        self.assertNotEqual(output.read_bytes(), prior)
+        self.assertEqual(self.pipeline.prepare(self.root, check=True), 3)

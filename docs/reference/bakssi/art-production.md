@@ -4,7 +4,7 @@
 
 - 선녀와 나무꾼 2쪽에서 밝은 햇빛, 숲과 산의 깊이, 옹고집전 2쪽에서 기와·눈·나무 문, 흥부와 놀부 3쪽에서 얼굴·손·옷감·종이에 번진 색을 본다. 저장소 Asset ID는 각각 `seonnyeo.scene.shortstory-classic-02`, `onggojib.scene.shortstory-classic-02`, `heungbu.scene.shortstory-classic-03`이다. 준비된 공용 파일 위치는 `apps/web/public/assets/legacy-18da4fc/<id>.webp`다. 캐릭터 키와 비례는 `heungbu.character.wife-heungbu`, `heungbu.character.heungbu-young` 및 레시피별 기준을 확인한다. 참조 인물과 장면을 복제하지 않고 색과 표현 방식, 치수 기준만 가져온다.
 - 세밀한 갈색 먹선, 한지에 스민 수채·과슈, 조선 복식의 넓은 옷주름, 마음이 보이는 손과 눈. 색이 필요한 곳은 겨울 밤의 청보라와 등불의 옅은 황금빛처럼 장소의 이유로 정한다. 사진, 3D, 현대 물건, 생성 이미지 안의 글자와 워터마크는 피한다.
-- 허물 전후의 박씨는 **크고 분명한 외형 차이**가 기준이다. 전에는 넓고 삐뚤어진 무거운 턱, 서로 다른 높이의 두꺼운 눈썹과 작은 눈, 넓적하고 큰 코, 크게 비대칭인 입으로 단번에 못생겨 보이게 한다. 허물 뒤에는 갸름하고 대칭이 또렷한 얼굴, 고른 눈썹, 맑은 큰 눈과 작은 곧은 코로 확연히 아름다운 인상을 준다. 표정과 조명만 바꾸면 다시 만든다. 전후 모두 차분하고 지혜로운 사람으로 연기한다.
+- 2026-11-28 사용자가 고른 [박씨 얼굴 기준](bakssi-face-comparison.jpg)을 그대로 따른다. 허물 전에는 넓고 살짝 비대칭인 턱, 두꺼운 눈썹과 무거운 눈꺼풀을 유지한다. 허물 뒤에는 조금 더 가는 턱선과 또렷한 눈, 정돈된 눈썹과 이목구비로 바뀐다. 얼굴의 대비와 인상은 기준 그림에서 정해졌으므로 코·입·턱을 더 부풀리거나 새 얼굴로 해석하지 않는다. 변신 전후 모두 차분하고 지혜로운 사람으로 연기한다.
 - 허물 전후는 옅은 나무 비녀와 낮게 땋아 올린 검은 쪽머리, 흰 동정이 있는 말린 장밋빛 저고리와 짙은 청록 치마, 같은 키·어깨·몸통·손으로 연결한다. 혼례에는 같은 허물 전 얼굴에 붉은 원삼과 족두리를 더한다. 박씨 뒤의 배경과 주변 조명을 같게 두고 얼굴만 비교한다.
 - 계화는 황토빛 저고리, 붉은 흙빛 치마, 긴 댕기머리와 살구빛 끝. 시백은 쪽빛 도포와 갓, 혼례는 같은 눈·턱을 유지한 청색 관복과 사모. 어린 동생은 겨자색 노란 댕기와 쑥빛 저고리, 언니는 청회색 저고리다. 그림책과 원작·놀스토리에서 이 조합을 이어 쓴다.
 - 피화당은 정면에서 볼 때 왼쪽 감나무, 뒤쪽의 낮은 마루와 기와집, 오른쪽 초가 창고와 여물통, 손잡이를 낮춘 문이 반복된다. 낮 배경 하나를 같은 구도의 밤·비·눈·봄으로 바꿔서 쓰고, 같은 장면의 있던 문이 사라지거나 지붕·창고 위치가 뒤집히면 다시 맞춘다.
@@ -23,11 +23,12 @@
 1. 파일의 쓰임과 그림이 일치하는지 본다. 그림책과 표지는 인물 포함 삽화다. 재생 배경은 별도의 인물을 올릴 자리를 확보한다. 이미지 속 사람, 글씨, 잘린 발이나 그림자가 잘못 들어간 파일은 수정한다.
 2. 눈에 잘 띄는 인물 2~3명과 써야 할 장소의 기준 그림을 먼저 승인한다. 승인본과 같은 인물은 한 번에 표정이나 행동 한 가지를 바꾸면서 만든다. 접지 시트를 쓴 경우 잘려 나간 신발·갓·이웃 칸의 투명 잔상이 없는지 본 후 PNG를 분리한다.
 3. 파일을 `assets/source/bakssi/<asset-id>.png`에 둔다. 레시피와 기존 등록 ID가 맞는지 확인하고 `python3 scripts/prepare-bakssi-assets.py`를 실행한다. 결과는 `apps/web/public/assets/bakssi-v1/` 및 등록표에 들어간다. 장면과 해시·차원을 대조한 뒤 원본·WebP·등록 정보를 함께 커밋한다.
-4. 파생 그림에서 참조한 Asset ID와 생성 도구, 도구에 준 문장, 결과에서 어떤 장면을 승인했는지 이 문서에 덧붙인다. 공개 이야기에서 쓸 수 있는지와 원본 그림의 독립 배포 여부를 각각 본다. 로컬 변수·생성 캐시·개인 사진은 저장소에 넣지 않는다.
+4. 공개 전 제작 브랜치의 이미 등록한 시안을 바꿀 때는 기존 WebP와 등록 기록을 먼저 보존하고 새 PNG를 같은 경로에 넣는다. 예를 들어 `python3 scripts/prepare-bakssi-assets.py --replace-draft bakssi-shortstory-page-01 --replace-draft bakssi-shortstory-page-03`으로 검토한 두 ID만 바꾼다. 등록기는 이전 WebP 해시가 등록 기록과 일치할 때만 변경한다. 공개한 자산은 프로젝트의 자산 버전 절차를 따른다.
+5. 파생 그림에서 참조한 Asset ID와 생성 도구, 도구에 준 문장, 결과에서 어떤 장면을 승인했는지 이 문서에 덧붙인다. 공개 이야기에서 쓸 수 있는지와 원본 그림의 독립 배포 여부를 각각 본다. 로컬 변수·생성 캐시·개인 사진은 저장소에 넣지 않는다.
 
 ## 인물·표지 생성에 사용한 프롬프트
 
-다음은 내장 ImageGen에 준 프롬프트다. 용도가 겹치는 박씨 후보는 더 큰 허물 전후 차이를 검토하기 위한 시안을 포함한다. 승인한 원본은 레시피와 같은 이름으로 저장한다.
+다음은 내장 ImageGen에 준 프롬프트다. 박씨의 승인된 전신 세 장은 사용자 선택과 픽셀을 대조한 `bakssi-strong-contrast` 원본에서 분리했다. 아래 프롬프트 가운데 박씨의 후속 생성에는 승인 PNG를 첫 번째 이미지 참조로 사용한다.
 
 ### cast-main
 
@@ -105,10 +106,4 @@ Use case illustration-story. Two-by-two expression atlas for an existing full-bo
 
 ```text
 Create one polished 3-column comparison sheet, with three separate transparent full-body sprites for Korean Joseon tale Lady Bak. Use attached images for exact costume, age, body type, straight white collar, pale horizontal wooden hairpin through dark low braided bun, and soft textured watercolor gouache with controlled sepia linework, NOT their facial features. All three should have exactly same height and slim average adult build. LEFT and RIGHT are SAME noticeably unattractive enchantment face: wide heavy slightly crooked jaw, high projecting cheekbones with distinctly uneven cheeks, broad uneven bulbous nose, heavy low brows at visibly different heights, long upper lip and understated facial texture, small eyes, reassuring level calm gaze, human and dignified, visually striking even at thumbnail size and never grotesque, no injury or disease. CENTER is the revealed version, unmistakably very pretty: elegantly tapered oval, refined smaller even nose, gently arched dark brows and large balanced dark almond eyes, soft peach cheeks, poised and warm. Make the structural contrast clear, not simply a change in smile, lighting or cosmetics. LEFT and CENTER exact same dusty-rose jeogori, dark desaturated teal chima, pin and hairstyle; RIGHT matches LEFT facial features and wears muted crimson Joseon wonsam and a small jokduri as in second attached sprite. Simple standing neutral, quiet hands, each sprite wholly inside its third, show soles and headwear, ample space between them, no labels/text/grid/floor/shadows. Transparent alpha all around sprite characters. Landscape wide 3:2. Keep historical details natural.
-```
-
-### bakssi-dramatic-contrast
-
-```text
-Character-design atlas of a Korean adult woman's very real dramatic magical transformation for a Joseon illustrated folktale. Render three transparent full-body figures in one row, evenly centered on their thirds, all shoetips and headwear well away from edges. Left: Lady Bak with a **decidedly ugly, visually striking folktale face**. Give her an oversized heavy square jaw, broad protruding uneven cheeks, prominent flat bulbous nose that interrupts the facial silhouette, short and long mismatched dark eyebrows visibly low above very small eyes, and a distinctly wide lopsided mouth. This face should be plain to the point of startling even when seen as a small game sprite. Make it bold and unmistakable, human, intelligent, neutral expression. Draw it as a bespoke Korean folklore face with the same painterly finish as existing series. Middle: very beautiful version of the SAME woman, with very obvious tapered oval lissome face, balanced graceful brows, proportionate narrow nose and large bright almond eyes, the same calm thoughtful expression. Right: precisely the left character's very ugly face again, with crimson wedding wonsam and small jokduri headpiece. Left and middle exactly the same black low braided bun with pale wooden pin, rose jeogori and deep desaturated teal chima, white collar, straw shoes and adult body size. All three keep the same eye color, simple natural hands, approximate 6 heads high, subtle clean textured gouache watercolor and fine sepia linework from reference 3. Reference 1 is for established clothing, body and hair; reference 2 is only wedding wardrobe. No lettering, props, floor, frame, glow, grid, or shadows. True transparent background, landscape. The difference between the left and middle should be far more distinct than ordinary realistic face variation.
 ```

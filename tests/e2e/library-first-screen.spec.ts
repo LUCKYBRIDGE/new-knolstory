@@ -126,12 +126,12 @@ test('편집하기 on a built-in book asks for the edition in place and keeps th
  await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);
 });
 
-test('책 소개 lands on the four stories and returns to the library',async({page})=>{
+test('책 소개 lands on the provided stories and returns to the library',async({page})=>{
  await open(page,320,700);
  await page.getByRole('button',{name:'책 소개',exact:true}).click();
- const list=page.getByRole('region',{name:'놀스토리의 네 이야기'});
- await expect(list.getByRole('heading',{name:'놀스토리의 네 이야기'})).toBeFocused();
- await expect(list.getByRole('listitem')).toHaveCount(4);
+ const list=page.getByRole('region',{name:'놀스토리의 이야기'});
+ await expect(list.getByRole('heading',{name:'놀스토리의 이야기'})).toBeFocused();
+ await expect(list.getByRole('listitem')).toHaveCount(5);
  const box=(await list.boundingBox())!;expect(box.y).toBeLessThan(700);
  await list.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();
  await expect(library(page)).toBeVisible();
