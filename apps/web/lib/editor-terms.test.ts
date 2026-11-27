@@ -3,7 +3,7 @@ import {editorTerms,findEditorTerms} from './editor-terms';
 describe('editing terminology guide',()=>{
  it('finds canonical names through old aliases without losing category boundaries',()=>{
   expect(findEditorTerms('  환경음  ','전체').map(term=>term.name)).toEqual(['주변 소리']);
-  expect(findEditorTerms('화자','원고').map(term=>term.name)).toEqual(['말하는 인물','말하는 인물의 역할']);
+  expect(findEditorTerms('화자','원고').map(term=>term.name)).toEqual(['원고','원고 이어 쓰기','말하는 인물','말하는 인물의 역할']);
   expect(findEditorTerms('환경음','원고')).toEqual([]);
  });
  it('offers examples for all categories and an honest empty result',()=>{

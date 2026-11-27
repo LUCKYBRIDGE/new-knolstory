@@ -601,3 +601,7 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .workbench .body.body[data-cut-arrangement=stacked]:has(.nextSide>[data-story-connections=open]) .previewSlot{grid-row:1;grid-column:1}
 .workbench .body.body[data-cut-arrangement=stacked]:has(.nextSide>[data-story-connections=open]) .current{grid-row:2;grid-column:1}
 .workbench .body.body[data-cut-arrangement=stacked]:has(.nextSide>[data-story-connections=open]) .nextSide{grid-row:3;grid-column:1;min-height:0}
+/* 원고: who speaks the cut sits right above its text, small and on one line. */
+.cutSpeaker{display:flex;align-items:center;gap:8px;min-width:0;margin:0 0 4px}
+.cutSpeaker label{display:flex;align-items:center;gap:8px;min-width:0;font-size:var(--text-caption)}
+.cutSpeaker select{max-width:min(240px,100%)}

@@ -26,6 +26,7 @@ import {StoryWorkspaceInspector} from './story-workspace-inspector';
 import {StoryEditingWorkbench} from './story-editing-workbench';
 import {useAdjacentSceneThumbnails} from './use-adjacent-scene-thumbnails';
 import {StoryChapterSettings} from './story-chapter-settings';
+import {knownSpeakerNames,speakerPatch,speakerPrefix} from '../lib/manuscript-speaker';
 import {useEditorPreferences,type EditingScreen} from '../lib/editor-preferences';
 import {LocalWorkFileActions} from './local-work-file-actions';
 import {createLocalWorkFileSession} from '../lib/local-work-file';
@@ -762,6 +763,39 @@ export function StoryWorkspace() {
       requestAnimationFrame(()=>document.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea')?.focus({preventScroll:true}));
     }catch(issue){setSplitError(issueText(issue));}
   }
+  /** 원고: put the caret back into a cut's text box once the list shows the changed cuts. */
+  function focusCutText(lineId:string,caret:number){
+    requestAnimationFrame(()=>{const field=shell.current?.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${CSS.escape(lineId)}"]`);
+      if(!field||field.disabled||!field.checkVisibility())return;field.focus({preventScroll:true});field.setSelectionRange(caret,caret);field.scrollIntoView({block:'nearest'});});
+  }
+  /** 원고: Enter twice — the text after the caret becomes the next cut (same speaker unless it starts with ‘이름:’). Undo leaves a blank line instead. */
+  function splitCutHere(lineId:string,value:string,position:number){
+    if(stopForUnappliedInput())return;
+    const source=project.lines.find(cut=>cut.id===lineId);
+    if(!source)return;
+    const head=value.slice(0,position),tail=value.slice(position),blank=`${head}\n\n${tail}`;
+    try{
+      if(!tail&&source.flow?.type==='choice')throw new Error('선택지가 있는 컷 다음은 갈래에서 이어 써 주세요.');
+      const id=crypto.randomUUID(),typed=patchStoryLine(project,lineId,{text:value});
+      let next=tail?splitStoryCut(typed,lineId,id,position):patchStoryLine(insertStoryCut(typed,lineId,id),id,{type:source.type,speaker:source.speaker,speakerName:source.speakerName});
+      const named=speakerPrefix(tail,knownSpeakerNames(project)),speaker=named?speakerPatch(source,named.value):null;
+      if(named&&speaker)next=patchStoryLine(next,id,{...speaker,text:named.rest});
+      preflight(next);
+      setUndoStructure({before:patchStoryLine(project,lineId,{text:blank}),after:next,lineId,done:'다음 컷으로 나눴어요'});
+      applyProject(next,id);focusCutText(id,0);
+    }catch(issue){
+      // Keep what was typed (as a blank line) so nothing is lost, and say why the cut stayed whole.
+      try{applyProject(patchStoryLine(project,lineId,{text:blank}),lineId);focusCutText(lineId,head.length+2);}catch{/* the original text stays */}
+      setError(issueText(issue));
+    }
+  }
+  /** 원고: Backspace at the start of a cut joins it to the cut before in the same chapter. */
+  function joinPreviousCut(lineId:string){
+    const cuts=project.lines.filter(cut=>cut.chapterId===project.lines.find(item=>item.id===lineId)?.chapterId).sort((a,b)=>a.order-b.order);
+    const index=cuts.findIndex(cut=>cut.id===lineId),previous=cuts[index-1];
+    if(!previous)return;
+    if(structureEdit('앞 컷과 합쳤어요',()=>({project:mergeStoryCuts(project,previous.id,lineId),lineId:previous.id})))focusCutText(previous.id,previous.text.length);
+  }
   function separatePath(fromLineId:string){
     const id=crypto.randomUUID();
     structureEdit('이 길만 따로 쓰도록 컷을 나눴어요',()=>({project:separatePathCut(project,line.id,fromLineId,id),lineId:id}));
@@ -1452,7 +1486,7 @@ export function StoryWorkspace() {
       <div className={`${styles.grid} ${mode==='edit'?styles.workbenchGrid:''}`} data-editing-screen={mode==='edit'?editingScreen:undefined}>
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
-          <StoryEditingWorkbench chapterReference={chapter.picturebookSketch||(workTask?.after&&chapter.summary.trim())||Object.values(picturebookLinks.current).some(link=>link.sends.some(send=>send.workKey===storyId&&Object.values(send.pages).some(page=>page.chapterId===chapter.id)))?<PicturebookChapterReference key={`${project.id}/${chapter.id}`} chapter={chapter}/>:undefined} onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} connections={{graph:flowGraph,editingPath,canRepair:logic.choices||logic.branches,onReturnVisit:returnEditingVisit,onRepair:editFromFlow}} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'&&editPermissions.choices?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editPermissions} finishHint={workTask?'다 쓰면 위의 ‘과제’에서 선생님께 중간 저장하거나 내요.':undefined} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} onCutSteps={setCutSteps} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
+          <StoryEditingWorkbench chapterReference={chapter.picturebookSketch||(workTask?.after&&chapter.summary.trim())||Object.values(picturebookLinks.current).some(link=>link.sends.some(send=>send.workKey===storyId&&Object.values(send.pages).some(page=>page.chapterId===chapter.id)))?<PicturebookChapterReference key={`${project.id}/${chapter.id}`} chapter={chapter}/>:undefined} onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} connections={{graph:flowGraph,editingPath,canRepair:logic.choices||logic.branches,onReturnVisit:returnEditingVisit,onRepair:editFromFlow}} onSplitHere={mode==='edit'?openSplit:undefined} onSplitCut={mode==='edit'?splitCutHere:undefined} onJoinPrevious={mode==='edit'?joinPreviousCut:undefined} onSeparatePath={mode==='edit'&&editPermissions.choices?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editPermissions} finishHint={workTask?'다 쓰면 위의 ‘과제’에서 선생님께 중간 저장하거나 내요.':undefined} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} onCutSteps={setCutSteps} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
             onScreenChange={changeEditingScreen}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}

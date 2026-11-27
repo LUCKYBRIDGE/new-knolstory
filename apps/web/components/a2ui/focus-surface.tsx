@@ -44,6 +44,13 @@ const host=(ctx:Ctx,c:A2uiComponent,fallback:string|undefined)=>{const {classNam
 const changeWith=(ctx:Ctx,c:A2uiComponent,value:unknown)=>{const change=c.change as {event?:{context?:object}}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...(change.event.context??{}),value}}});};
 
 /** Default drawing of a custom (x-host) component when the screen has not registered one: a named placeholder. */
+const fireWith=(ctx:Ctx,c:A2uiComponent,action:unknown,extra:object)=>{const own=action as {event?:{context?:object}}|undefined;if(own?.event)ctx.fire(c.id,{event:{...own.event,context:{...(own.event.context??{}),...extra}}});};
+/** 원고: a line break typed right after another (Enter twice) asks to start the next cut at the caret. Blank lines at the seam are dropped. */
+export function doubleBreak(before:string,after:string,caret:number|null):{value:string;position:number}|null{
+ if(caret===null||caret<2||after.length!==before.length+1||after[caret-1]!=='\n'||after[caret-2]!=='\n'||after.slice(0,caret-1)+after.slice(caret)!==before)return null;
+ const head=after.slice(0,caret-1).replace(/\n+$/,''),tail=after.slice(caret).replace(/^\n+/,'');
+ return head?{value:head+tail,position:head.length}:null;
+}
 const hostPart:Renderer=(c)=><span className={styles.hostPart} data-host-part={c.component}>{c.component}</span>;
 
 export const focusRenderers:Record<FocusComponentName,Renderer>={
@@ -195,8 +202,13 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    onChange={event=>{const change=c.change as {event?:object}|undefined;if(change?.event)ctx.fire(c.id,{event:{...change.event,context:{...((change.event as {context?:object}).context??{}),value:event.currentTarget.checked}}});}}/>
   {text(ctx,c.label)}
  </label>,
- TextArea:(c,ctx)=><textarea aria-label={text(ctx,c.label)} value={text(ctx,c.value)} maxLength={typeof c.maxChars==='number'?c.maxChars:undefined} readOnly={value(ctx,c.readOnly)===true} disabled={value(ctx,c.disabled)===true}
-  onCompositionStart={()=>ctx.composing(true)} onCompositionEnd={()=>ctx.composing(false)} onChange={event=>changeWith(ctx,c,event.currentTarget.value)} {...host(ctx,c,styles.editor)}/>,
+ TextArea:(c,ctx)=>{const current=text(ctx,c.value);return <textarea aria-label={text(ctx,c.label)} value={current} maxLength={typeof c.maxChars==='number'?c.maxChars:undefined} readOnly={value(ctx,c.readOnly)===true} disabled={value(ctx,c.disabled)===true}
+  onCompositionStart={()=>ctx.composing(true)} onCompositionEnd={()=>ctx.composing(false)}
+  onChange={event=>{const next=event.currentTarget.value,split=c.splitHere!==undefined&&!(event.nativeEvent as InputEvent).isComposing?doubleBreak(current,next,event.currentTarget.selectionStart):null;
+   if(split)fireWith(ctx,c,c.splitHere,split);else changeWith(ctx,c,next);}}
+  onKeyDown={event=>{const field=event.currentTarget;if(c.joinPrevious===undefined||event.key!=='Backspace'||event.nativeEvent.isComposing||event.altKey||event.ctrlKey||event.metaKey||field.selectionStart!==0||field.selectionEnd!==0)return;
+   event.preventDefault();fireWith(ctx,c,c.joinPrevious,{});}}
+  {...host(ctx,c,styles.editor)}/>;},
  Drawer:(c,ctx)=>{
   const open=value(ctx,c.open)===true;
   return <details open={open} {...host(ctx,c,styles.more)} onToggle={event=>{const now=event.currentTarget.open;if(now!==open&&c.toggle&&typeof c.toggle==='object'&&'event' in c.toggle)ctx.fire(c.id,{event:{...(c.toggle as {event:{context?:object}}).event,context:{...((c.toggle as {event:{context?:object}}).event.context??{}),open:now}}});}}>
