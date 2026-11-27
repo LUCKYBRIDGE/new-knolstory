@@ -109,7 +109,7 @@ test('Pixabay audio is selected with source terms, exported as scene references 
    (window as unknown as Record<string,unknown>).__testStorySoundPaths=event.data.payload.audio?.sounds.map((sound:{audioPath:string})=>sound.audioPath);
   });
  });
- await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
+ await page.getByTestId(`editing-cut-${project.lines[0].id}`).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
  const status=await runtimeReady(page);
  const box=(await page.getByTestId('story-runtime-frame').boundingBox())!;
  await page.mouse.click(box.x+box.width*.5,box.y+box.height*.1);
