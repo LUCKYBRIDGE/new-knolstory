@@ -7,9 +7,8 @@ test('actual native reading retains menu focus and semantic advance at phone wid
  const wasmResponses:{path:string;status:number}[]=[];page.on('response',response=>{const path=new URL(response.url()).pathname;if(path.endsWith('.wasm'))wasmResponses.push({path,status:response.status()});});
  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await openBuiltinEdition(page,'seonnyeo','original','start');await beginSelectedBook(page);
+ // The fullscreen offer belongs to phone editing only (DESIGN 서재 결정): never over a story being read.
  const offer=page.getByRole('dialog',{name:'휴대폰 전체 화면 안내',exact:true});
- await expect(offer.getByRole('button',{name:'지금은 그대로',exact:true})).toBeFocused();
- await page.keyboard.press('Enter');
  await expect(offer).toHaveCount(0);
  const state=page.getByTestId('story-runtime-status');
  await expect.poll(async()=>{const rendered=await state.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);

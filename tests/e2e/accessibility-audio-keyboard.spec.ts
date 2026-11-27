@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {writeFile} from 'node:fs/promises';
-import {openBuiltinEdition} from './library-entry';
+import {builtinShelfCard} from './library-entry';
 for(const key of ['Enter','Space'])test(`actual native audio unlock by keyboard ${key}`,async({page},info)=>{
  test.setTimeout(150000);await page.setViewportSize({width:390,height:844});const events:unknown[]=[];
  await page.exposeFunction('recordNativeAudioEvent',(event:unknown)=>events.push(event));
@@ -11,13 +11,12 @@ for(const key of ['Enter','Space'])test(`actual native audio unlock by keyboard 
   if(Native)window.AudioContext=new Proxy(Native,{construct(target,args,newTarget){const context=Reflect.construct(target,args,newTarget) as AudioContext;observed.push(context);return context;}});
  });
  await page.addInitScript(()=>{window.addEventListener('message',event=>{if(event.data?.protocol===1&&(event.data?.audioState||/audio|presentation|scene/i.test(event.data?.type??'')))(window as unknown as {recordNativeAudioEvent:(value:unknown)=>void}).recordNativeAudioEvent({origin:event.origin,payload:event.data});});});
- await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await openBuiltinEdition(page,'seonnyeo','original','start');const start=page.getByRole('main',{name:'책 표지와 소개',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true});await start.focus();await expect(start).toBeFocused();await start.press('Enter');
- // The first phone visit intentionally traps Tab in the fullscreen offer.
+ await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');// The book dialog starts reading directly (2026-11-23 one reading action); start it from the keyboard too.
+ await builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const dialog=page.getByRole('dialog');await expect(dialog).toHaveAttribute('data-work-id','seonnyeo');const start=dialog.getByRole('button',{name:'원작 읽기',exact:true});await start.focus();await expect(start).toBeFocused();await start.press('Enter');
+ // The fullscreen offer belongs to phone editing only (DESIGN 서재 결정): never over a story being read.
  const offer=page.getByRole('dialog',{name:'휴대폰 전체 화면 안내',exact:true});
- await expect(offer.getByRole('button',{name:'지금은 그대로',exact:true})).toBeFocused();
- await page.keyboard.press('Enter');
- await expect(offer).toHaveCount(0);
  const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rendered=await status.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+ await expect(offer).toHaveCount(0);
  const snapshot=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:{...value.works,[value.storyId]:value.document},playback:value.playback};});
  const before=await snapshot(),frame=page.getByTestId('story-runtime-frame');const text=page.locator('[aria-live="polite"]>p').last(),initialText=await text.innerText();
  const tabAttempts=[];for(let attempt=0;attempt<20;attempt++){const canvasFocused=await frame.evaluate(node=>(node as HTMLIFrameElement).contentDocument?.activeElement?.id==='canvas');if(canvasFocused)break;await page.keyboard.press('Tab');tabAttempts.push(await frame.evaluate(node=>({hostActive:document.activeElement?.tagName,hostLabel:document.activeElement?.getAttribute('aria-label')??document.activeElement?.textContent?.trim().slice(0,80),frameActive:(node as HTMLIFrameElement).contentDocument?.activeElement?.tagName,frameActiveId:(node as HTMLIFrameElement).contentDocument?.activeElement?.id})));}
