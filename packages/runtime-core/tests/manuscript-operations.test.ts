@@ -67,3 +67,17 @@ describe('safe manuscript operations',()=>{
   expect(()=>mergeStoryCuts(other,'a','b')).toThrow(/설정이 서로 달라/);
  });
 });
+describe('joining cuts with the earlier cut’s settings',()=>{
+ it('keeps the first cut’s speaker, stage and cues and drops the later cut’s own',()=>{
+  const p=splitStoryCut(manuscript(),'a','b',7);
+  const differ={...p,lines:p.lines.map(l=>l.id==='a'?{...l,audio:{music:{action:'maintain' as const}}}:{...l,type:'dialogue' as const,speaker:'left' as const,speakerName:'철수',presentation:{effects:[]}})} as StoryProject;
+  expect(()=>mergeStoryCuts(differ,'a','b')).toThrow();
+  const n=mergeStoryCuts(differ,'a','b',{adoptFirst:true}),a=n.lines.find(l=>l.id==='a')!;
+  expect(n.lines).toHaveLength(1);expect(a.text).toBe(manuscript().lines[0]!.text);expect(a.type).toBe('narration');expect(a.audio).toEqual({music:{action:'maintain'}});expect(a.presentation).toBeUndefined();
+ });
+ it('still protects a later cut that something links into',()=>{
+  const p=addTypedStoryCut(splitStoryCut(manuscript(),'a','b',7),'b','z','narration');
+  const linked={...p,lines:p.lines.map(l=>l.id==='z'?{...l,flow:{type:'goto' as const,targetLineId:'b'}}:l)};
+  expect(()=>mergeStoryCuts(linked,'a','b',{adoptFirst:true})).toThrow(/들어오는 연결/);
+ });
+});

@@ -59,8 +59,10 @@ function settings(line:StoryLine):string {
   ?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable((value as Record<string,unknown>)[key])])):value;
  return JSON.stringify(stable({...rest,...(inheritActors?{inheritActors}:{})}));
 }
-/** Keep the earlier identity and append verbatim; reject any removed entry point or staging cue. */
-export function mergeStoryCuts(project:StoryProject,firstId:string,secondId:string):StoryProject {
+/** Keep the earlier identity and append verbatim; reject any removed entry point or staging cue.
+ * `adoptFirst`: the author agreed that the joined cut keeps the earlier cut's speaker, stage, sound and direction;
+ * the later cut's own settings and cues are dropped. Entry points, ranges and records are still protected. */
+export function mergeStoryCuts(project:StoryProject,firstId:string,secondId:string,options:{adoptFirst?:boolean}={}):StoryProject {
  if(project.lines.some(line=>(line.id===firstId||line.id===secondId)&&(line.visibility||line.textVariants?.length)))throw Error("조건별 글이 있는 컷은 먼저 조건별 글을 정리한 뒤 합쳐 주세요.");
  const first=requireCut(project,firstId),second=requireCut(project,secondId);
  const cuts=ordered(project,first.chapterId),index=cuts.findIndex(line=>line.id===firstId);
@@ -72,8 +74,8 @@ export function mergeStoryCuts(project:StoryProject,firstId:string,secondId:stri
  if(project.creativeMemos.some(memo=>memo.linkedLineId===secondId||memo.linkedLineIds?.includes(secondId)))throw new Error('뒤 컷에 연결된 창작 메모가 있어 합칠 수 없어요. 메모의 연결을 먼저 확인해 주세요.');
  const creation=project.source?.kind==='baseEdition'?project.source.linearCreation:undefined;
  if(creation&&(creation.writingStartLineId===secondId||creation.sourceStartChoiceLineId===secondId||creation.prefixLineIds.includes(secondId)||creation.choices.some(choice=>choice.lineId===secondId)))throw new Error('뒤 컷이 원작 이어쓰기 기록에 사용되어 합칠 수 없어요.');
- if(first.presentation||second.presentation||first.audio||second.audio)throw new Error('컷마다 재생되는 연출·오디오가 있어 합칠 수 없어요. 연출과 오디오를 먼저 확인해 주세요.');
- if(settings(first)!==settings(second))throw new Error('화자·무대·메모 설정이 서로 달라 합칠 수 없어요. 두 컷의 설정을 먼저 확인해 주세요.');
+ if(!options.adoptFirst&&(first.presentation||second.presentation||first.audio||second.audio))throw new Error('컷마다 재생되는 연출·오디오가 있어 합칠 수 없어요. 연출과 오디오를 먼저 확인해 주세요.');
+ if(!options.adoptFirst&&settings(first)!==settings(second))throw new Error('화자·무대·메모 설정이 서로 달라 합칠 수 없어요. 두 컷의 설정을 먼저 확인해 주세요.');
  if(first.text.length+second.text.length>20000)throw new Error('한 컷의 글은 20,000자 이내로 합칠 수 있어요.');
  const merged={...first,text:first.text+second.text,flow:second.flow,ending:second.ending};
  return replaceCuts(project,first.chapterId,cuts.flatMap(line=>line.id===firstId?[merged]:line.id===secondId?[]:[line]),{source:second,to:firstId});

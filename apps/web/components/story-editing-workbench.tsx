@@ -3,11 +3,11 @@
 import {FocusSurface,type FocusSurfaceAction} from './a2ui/focus-surface';
 import type {A2uiComponent} from '@knolstory/ui';
 import {listToolsSurface,LIST_TOOLS_EVENTS} from './a2ui/list-tools-surface';
-import {cutItemSurface,CUT_EVENTS,basicHeadSurface,BASIC_HEAD_EVENTS,type CutSteps,textBoxSurface,TEXT_EVENT,MANUSCRIPT_EVENTS,cutSpeakerSurface,backgroundDisplaySurface,BACKGROUND_DISPLAY_EVENTS,actorCardSurface,ACTOR_EVENTS,cutPanelSurface,PANEL_TOGGLE_EVENT,stagingImportSurface,textVariantsSurface,companionSurface,companionsSurface,type CompanionView,cutCardSurface,forkSurface,lineNoticeSurface,NEIGHBOUR_EVENTS,type ForkChoice} from './a2ui/editor-surfaces';
+import {cutItemSurface,CUT_EVENTS,basicHeadSurface,BASIC_HEAD_EVENTS,type CutSteps,textBoxSurface,TEXT_EVENT,MANUSCRIPT_EVENTS,cutSpeakerSurface,mergeAskSurface,backgroundDisplaySurface,BACKGROUND_DISPLAY_EVENTS,actorCardSurface,ACTOR_EVENTS,cutPanelSurface,PANEL_TOGGLE_EVENT,stagingImportSurface,textVariantsSurface,companionSurface,companionsSurface,type CompanionView,cutCardSurface,forkSurface,lineNoticeSurface,NEIGHBOUR_EVENTS,type ForkChoice} from './a2ui/editor-surfaces';
 import {knownSpeakerNames,speakerOptions,speakerPatch,speakerPrefix,speakerValue} from '../lib/manuscript-speaker';
 import {createPortal} from 'react-dom';
 import {usePhoneEditor} from './use-phone-editor';
-import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type ReactNode} from 'react';
+import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type FocusEvent as ReactFocusEvent, type KeyboardEvent as ReactKeyboardEvent, type ReactNode} from 'react';
 import {assetDisplayName,resolveAsset} from '@knolstory/asset-registry';
 import {activeStageSpeaker,chapterLabel,chaptersInStoryOrder,resolveStageComposition,presentationLabel,type StoryProject,type StoryLine,type StageComposition,type StageActorEntry} from '@knolstory/story-domain';
 import {ACTOR_MOTION_OPTIONS,actorMotionChoice} from '../lib/actor-motion-choice';
@@ -40,7 +40,7 @@ type Props={permissions?:EditingPermissions;/** 이야기 연결 (branching work
  chapterReference?:ReactNode;editingActive?:boolean;onAddCutAfter?:()=>void;adjacentThumbnails?:Readonly<Record<string,AdjacentSceneThumbnail>>;preferences:EditorPreferences;onPreferencesChange:(update:(current:EditorPreferences)=>EditorPreferences)=>void;settingsTarget?:HTMLElement|null;/** The top bar's ‹ › follow this screen: it reports their state; the top bar draws them (A2UI CutNavigator). */
  onCutSteps?:(steps:(CutSteps&{step:(direction:'previous'|'next')=>void})|null)=>void;preview?:ReactNode;playing?:boolean;additionalSettings?:ReactNode;chapterSettings?:ReactNode;additionalEditor?:ReactNode;project:StoryProject;lineId:string;screen:EditingScreen;onScreenChange:(screen:EditingScreen)=>void|boolean;onProjectChange:(project:StoryProject)=>void;onSelectCut:(id:string)=>void;onComposing:(value:boolean)=>void;basicTextDisabled:boolean;onBasicTextChange:(text:string)=>void;disabled:boolean;composing:boolean;onPreview:(id:string)=>void;onOpenMap?:()=>void;onSplitHere?:()=>void;onSeparatePath?:(fromLineId:string)=>void;
  /** 원고: Enter twice starts the next cut at `position` of `value`; Backspace at the start joins the cut before. */
- onSplitCut?:(lineId:string,value:string,position:number)=>void;onJoinPrevious?:(lineId:string)=>void};
+ onSplitCut?:(lineId:string,pieces:readonly string[],caret:number)=>void;onJoinPrevious?:(lineId:string,adoptEarlier?:boolean)=>'joined'|'ask'|'refused'};
 const STAGE_STRIP_KEY='knolstory-editor-stage-strip-v1';
 const screens:readonly [EditingScreen,string][]=[['basic','쓰기'],['text','원고'],['background','배경 편집'],['characters','인물 편집'],['audio','음향 편집'],['direction','연출 편집'],['audio-direction','음향·연출 함께 편집']];
 const names:Record<Companion,string>={text:'글',background:'배경',characters:'인물',audio:'음향',direction:'연출'};
@@ -69,6 +69,8 @@ export function StoryEditingWorkbench(p:Props){
  const [timelineSpace,setTimelineSpace]=useState(50);
  const [rangeUndo,setRangeUndo]=useState<CombinedRangeUndo|null>(null);
  const [expanded,setExpanded]=useState<Record<string,boolean>>({});
+ // 원고: the cut whose Backspace join needs the author’s word (its settings differ from the cut before).
+ const [mergeAsk,setMergeAsk]=useState<string|null>(null);
  const enabled=p.preferences.enabled;
  const phone=usePhoneEditor();
  // E2 (2026-11-24): on a portrait phone the 쓰기 stage starts as a thin strip (background and characters) so the text has room.
@@ -179,13 +181,14 @@ export function StoryEditingWorkbench(p:Props){
   const speaker=named?speakerPatch(line,named.value):null;
   patch(line,speaker&&named?{...speaker,text:named.rest}:{text:value});
  };
+ // 원고: one speaker choice, for the cut being written (each block shows its own speaker beside it).
  const cutSpeaker=(line:StoryLine,index:number)=><FocusSurface inline rootId="speaker-group" device={phone?'phone':'tablet'} surface={cutSpeakerSurface({lineId:line.id,cut:index+1,value:speakerValue(line),options:speakerOptions(speakerNames,line),disabled:busy||p.composing})}
   attrs={component=>component.id==='speaker-group'?{className:styles.cutSpeaker}:undefined}
   onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;if(event?.name!==MANUSCRIPT_EVENTS.speaker||typeof value!=='string')return;const change=speakerPatch(line,value);if(change)patch(line,change);}}/>;
  const textEditor=(line:StoryLine,index:number,basic=false)=><><label className={styles.text}><span className={styles.srOnly}>글상자 글</span>{/* A2UI: the text box is the catalog's TextArea (IME composition reaches the screen through onComposing). */}<FocusSurface inline rootId="text" device={phone?'phone':'tablet'} onComposing={p.onComposing}
    surface={textBoxSurface({lineId:line.id,label:`${index+1}컷 글`,value:line.text,readOnly:basic&&phone&&shortLandscape,disabled:basic?p.basicTextDisabled:busy,writeOn:!basic&&screen==='text'&&!!p.onSplitCut})}
    attrs={()=>({className:'','data-cut-id':line.id})}
-   onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;if(event?.name===MANUSCRIPT_EVENTS.split&&typeof value==='string'&&typeof event.context?.position==='number'){if(!busy)p.onSplitCut?.(line.id,value,event.context.position);return;}if(event?.name===MANUSCRIPT_EVENTS.join){if(!busy)p.onJoinPrevious?.(line.id);return;}if(event?.name!==TEXT_EVENT||typeof value!=='string')return;if(basic){if(!p.basicTextDisabled)p.onBasicTextChange(value);}else writeText(line,value);}}/>{basic&&phone&&shortLandscape&&<small>{requestedScreen==='basic'?'글을 수정하려면 휴대폰을 세로로 돌려 주세요.':'세부 편집은 휴대폰을 세로로 돌려 주세요.'}</small>}</label>{(p.preferences.logic.branches)&&<FocusSurface inline surface={textVariantsSurface(line.id)} rootId="variants" device="tablet" custom={{TextVariants:()=><>{p.preferences.logic.scores&&p.preferences.logic.branches&&<StoryTextVariants key={`${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} onComposing={p.onComposing} onChange={textVariants=>patch(line,{textVariants})}/>}{p.preferences.logic.branches&&<StorySceneVisibilityEditor key={`visibility/${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} scoresEnabled={p.preferences.logic.scores} onComposing={p.onComposing} onChange={visibility=>patch(line,{visibility})}/>}</>}}/>}</>;
+   onAction={({action})=>{const event='event' in action?action.event:undefined,value=event?.context?.value;const pieces=event?.context?.pieces;if(event?.name===MANUSCRIPT_EVENTS.split&&Array.isArray(pieces)&&pieces.every(piece=>typeof piece==='string')){if(!busy)p.onSplitCut?.(line.id,pieces as string[],typeof event.context?.caret==='number'?event.context.caret:0);return;}if(event?.name===MANUSCRIPT_EVENTS.join){if(!busy&&p.onJoinPrevious?.(line.id)==='ask')setMergeAsk(line.id);return;}if(event?.name!==TEXT_EVENT||typeof value!=='string')return;if(basic){if(!p.basicTextDisabled)p.onBasicTextChange(value);}else writeText(line,value);}}/>{basic&&phone&&shortLandscape&&<small>{requestedScreen==='basic'?'글을 수정하려면 휴대폰을 세로로 돌려 주세요.':'세부 편집은 휴대폰을 세로로 돌려 주세요.'}</small>}</label>{(p.preferences.logic.branches)&&<FocusSurface inline surface={textVariantsSurface(line.id)} rootId="variants" device="tablet" custom={{TextVariants:()=><>{p.preferences.logic.scores&&p.preferences.logic.branches&&<StoryTextVariants key={`${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} onComposing={p.onComposing} onChange={textVariants=>patch(line,{textVariants})}/>}{p.preferences.logic.branches&&<StorySceneVisibilityEditor key={`visibility/${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} scoresEnabled={p.preferences.logic.scores} onComposing={p.onComposing} onChange={visibility=>patch(line,{visibility})}/>}</>}}/>}</>;
  const basicSpeaker=(line:StoryLine)=>{
   const stage=resolveStageComposition(p.project.chapters.find(chapter=>chapter.id===line.chapterId),line,p.project);
   const primary=activeStageSpeaker(stage,line);
@@ -224,8 +227,18 @@ export function StoryEditingWorkbench(p:Props){
    onAction={({action})=>{const event='event' in action?action.event:undefined;if(event?.name===PANEL_TOGGLE_EVENT){const open=event.context?.open===true;setExpanded(prev=>({...prev,[key]:open}));}}}/>;
   return <>{draw('summary')}{draw('edit')}</>;
  };
+ const focusBlock=(lineId:string,caret:number|'end')=>{const field=root.current?.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${CSS.escape(lineId)}"]`);if(!field||field.disabled)return;field.focus({preventScroll:true});const at=caret==='end'?field.value.length:caret;field.setSelectionRange(at,at);field.scrollIntoView({block:'nearest'});};
+ // 원고: the blocks read as one document — the arrows cross into the cut before or after at a block's edge, and the cut being written is the current cut.
+ const manuscriptKeys=(event:ReactKeyboardEvent<HTMLDivElement>)=>{
+  const field=event.target as HTMLElement;if(screen!=='text'||!(field instanceof HTMLTextAreaElement)||!field.dataset.cutId||event.nativeEvent.isComposing||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||field.selectionStart!==field.selectionEnd)return;
+  const back=(event.key==='ArrowUp'||event.key==='ArrowLeft')&&field.selectionStart===0,forward=(event.key==='ArrowDown'||event.key==='ArrowRight')&&field.selectionEnd===field.value.length;
+  const index=rows.findIndex(line=>line.id===field.dataset.cutId),target=back?rows[index-1]:forward?rows[index+1]:undefined;
+  if(!target)return;event.preventDefault();focusBlock(target.id,back?'end':0);
+ };
+ const manuscriptFocus=(event:ReactFocusEvent<HTMLDivElement>)=>{const id=(event.target as HTMLElement).dataset?.cutId;if(screen==='text'&&id&&id!==p.lineId)p.onSelectCut(id);};
  const primary=(line:StoryLine,index:number)=>{
-  if(screen==='text')return <>{cutSpeaker(line,index)}{textEditor(line,index)}</>;
+  if(screen==='text')return <>{textEditor(line,index)}{mergeAsk===line.id&&<FocusSurface inline rootId="merge-ask" device={phone?'phone':'tablet'} surface={mergeAskSurface(line.id)} attrs={component=>component.id==='merge-ask'?{className:styles.mergeAsk}:undefined}
+   onAction={({action})=>{const event='event' in action?action.event:undefined;setMergeAsk(null);if(event?.name===MANUSCRIPT_EVENTS.adopt&&!busy)p.onJoinPrevious?.(line.id,true);else focusBlock(line.id,0);}}/>}</>;
   if(screen==='background')return backgroundEditor(line,index);
   if(screen==='characters')return <><CharacterEditors project={p.project} line={line} stage={stageFor(line)} index={index} onReset={key=>changeProject(resetActorPlacement(p.project,line.id,key))} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.characterAssetIds} onChange={stageComposition=>patch(line,{stageComposition})}/><FocusSurface inline surface={stagingImportSurface(line.id)} rootId="staging" device="tablet" custom={{StagingImport:()=><StoryStagingImport project={p.project} line={line} ordered={[...p.project.lines].sort((a,b)=>(p.project.chapters.find(c=>c.id===a.chapterId)?.order??0)-(p.project.chapters.find(c=>c.id===b.chapterId)?.order??0)||a.order-b.order)} onChange={changeProject}/>}}/></>;
   if(screen==='audio')return cutPanel('audio',line,index,audioSummary(line),<StoryAudioControls value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>);
@@ -340,11 +353,12 @@ export function StoryEditingWorkbench(p:Props){
      if(event?.name===LIST_TOOLS_EVENTS.reveal)findCurrentRow();
      if(event?.name===LIST_TOOLS_EVENTS.companion){const id=event.context?.task as Companion,on=event.context?.value===true;p.onPreferencesChange(prev=>({...prev,companions:{...prev.companions,[screen]:on?[...selected,id]:selected.filter(x=>x!==id)}}));}
     };
-    return <><FocusSurface inline surface={surface} rootId="list-tools" device={phone?'phone':'tablet'} onAction={onAction}/><FocusSurface inline surface={surface} rootId="companions" device={phone?'phone':'tablet'} onAction={onAction}/></>;
+    const writing=screen==='text'?rows.find(line=>line.id===p.lineId)??rows[0]:undefined;
+    return <><FocusSurface inline surface={surface} rootId="list-tools" device={phone?'phone':'tablet'} onAction={onAction}/>{writing&&cutSpeaker(writing,rows.indexOf(writing))}<FocusSurface inline surface={surface} rootId="companions" device={phone?'phone':'tablet'} onAction={onAction}/></>;
    })()}</div>
    {/* A2UI: each cut card (frame, head, text) is drawn from the focus editor catalog; this screen's tools are the custom CutTools. */}
-   <div className={styles.rows} data-writer-scroll>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<FocusSurface key={`${p.project.id}/${line.id}`} inline rootId="cut" device={phone?'phone':'tablet'}
-    surface={cutItemSurface({lineId:line.id,cut:index+1,speaker:line.speakerName??'',text:line.text.trim()||'아직 글이 없어요.',current:line.id===p.lineId,disabled:busy||p.composing,showText:screen!=='text',phoneShowsAll:!phoneSingle,task:screen})}
+   <div className={styles.rows} data-writer-scroll data-manuscript={screen==='text'||undefined} onKeyDown={manuscriptKeys} onFocus={manuscriptFocus}>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<FocusSurface key={`${p.project.id}/${line.id}`} inline rootId="cut" device={phone?'phone':'tablet'}
+    surface={cutItemSurface({lineId:line.id,cut:index+1,speaker:screen==='text'?(line.type==='narration'?'해설':line.speakerName.trim()||'대사'):line.speakerName??'',text:line.text.trim()||'아직 글이 없어요.',current:line.id===p.lineId,disabled:busy||p.composing,showText:screen!=='text',phoneShowsAll:!phoneSingle,task:screen})}
     skin={{cutItem:styles.row,cutSelect:styles.rowSelect,cutPlay:styles.rowPlay,cutText:styles.cutText}} attrs={component=>component.component==='CutItem'?{'data-testid':`editing-cut-${line.id}`}:undefined}
     custom={{CutTools:()=><><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phone&&selected.some(id=>id!=='text')&&<FocusSurface inline rootId="companions" device="tablet" surface={companionsSurface(line.id,selected.filter(id=>id!=='text').map(id=>({...companionView(id,line),title:names[id]})))} attrs={companionAttrs(id=>String(id).replace(/^(section|part)-/,'').split('-')[0]!)} custom={companionCustom}/>}</>}}
     onAction={({action})=>{const event='event' in action?action.event:undefined,lineId=event?.context?.lineId;if(typeof lineId!=='string')return;if(event?.name===CUT_EVENTS.select)p.onSelectCut(lineId);if(event?.name===CUT_EVENTS.play)p.onPreview(lineId);}}/>)}</div>

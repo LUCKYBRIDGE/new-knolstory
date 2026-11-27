@@ -99,7 +99,15 @@ export function topBarSurface({unified,title,open,disabled,scores,fullscreen,ful
 }
 
 export const TEXT_EVENT='changeText';
-export const MANUSCRIPT_EVENTS={split:'splitCutHere',join:'joinPreviousCut',speaker:'changeCutSpeaker'} as const;
+export const MANUSCRIPT_EVENTS={split:'splitCutHere',join:'joinPreviousCut',speaker:'changeCutSpeaker',adopt:'joinWithEarlierSettings',keep:'keepCutsApart'} as const;
+/** 원고: Backspace joined two cuts that differ — join them with the earlier cut’s settings, or keep them apart. */
+export function mergeAskSurface(lineId:string):Surface{
+ return surfaceFrom(`merge-ask-${lineId}`,[
+  {id:'merge-ask',component:'Notice',kind:'warning',text:'앞 컷과 설정이 달라요. 합치면 화자·무대는 앞 컷을 따르고 이 컷의 소리·연출은 빠져요.',actions:['merge-adopt','merge-keep']},
+  {id:'merge-adopt',component:'Button',label:'앞 컷 설정으로 합치기',action:{event:{name:MANUSCRIPT_EVENTS.adopt,context:{lineId}}}},
+  {id:'merge-keep',component:'Button',label:'따로 두기',variant:'quiet',action:{event:{name:MANUSCRIPT_EVENTS.keep,context:{lineId}}}},
+ ],{});
+}
 /** A cut's text box (쓰기 and 원고). On 원고 (writeOn) Enter twice starts the next cut and Backspace at the start joins the cut before. */
 export function textBoxSurface({lineId,label,value,readOnly,disabled,writeOn=false}:{lineId:string;label:string;value:string;readOnly:boolean;disabled:boolean;writeOn?:boolean}):Surface{
  return surfaceFrom(`text-${lineId}`,[
@@ -111,7 +119,7 @@ export function textBoxSurface({lineId,label,value,readOnly,disabled,writeOn=fal
 export function cutSpeakerSurface({lineId,cut,value,options,disabled}:{lineId:string;cut:number;value:string;options:{value:string;label:string}[];disabled:boolean}):Surface{
  return surfaceFrom(`speaker-${lineId}`,[
   {id:'speaker-group',component:'ToolGroup',name:'화자 고르기',children:['speaker']},
-  {id:'speaker',component:'Choice',label:'화자',name:`${cut}컷 화자`,title:'해설 또는 말하는 인물',value:{path:'/value'},disabled:{path:'/disabled'},options,change:{event:{name:MANUSCRIPT_EVENTS.speaker,context:{lineId}}}},
+  {id:'speaker',component:'Choice',label:`${cut}컷 화자`,name:`${cut}컷 화자`,title:'해설 또는 말하는 인물',value:{path:'/value'},disabled:{path:'/disabled'},options,change:{event:{name:MANUSCRIPT_EVENTS.speaker,context:{lineId}}}},
  ],{value,disabled});
 }
 
