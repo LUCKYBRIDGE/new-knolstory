@@ -12,6 +12,7 @@ from asset_versions import version_runtime_html
 from placeholders import shrink_placeholders
 from stage_font import write_stage_font
 from transport import embed_transfer_info, transfer_info, write_brotli_copies
+from web_audio import write_web_audio
 
 # Reviewed output of stage_font.py for the pinned source font and fontTools version.
 STAGE_FONT_SHA256 = 'f934737fbbde38eebe52d002c8fd898e830bfba1778676e38c3b0c4283fa94c9'
@@ -67,6 +68,8 @@ if assets.exists():
             web_only.add('shortstory-v1')
         return [name for name in names if name in web_only or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]
     shutil.copytree(assets, project / 'game/assets', ignore=ignore_service_assets)
+# Gapless loops: a reviewed patch of the SDK's web audio, found by Ren'Py's loader before renpy/common.
+write_web_audio(sdk, project / 'game')
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
 subprocess.run(['bash', str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
 # 64-colour placeholders (user decision 2026-11-01), before transfer sizes and content versions are read.

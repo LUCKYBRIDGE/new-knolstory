@@ -175,8 +175,13 @@ init python:
         knol_audio_pending = pending
 
     def knol_audio_state():
-        return {"unlocked": globals().get("knol_audio_unlocked", True), "musicPath": knol_audio_source_path(renpy.music.get_playing(channel="music")),
-            "musicPosition": renpy.music.get_pos(channel="music"),
+        music_path = knol_audio_source_path(renpy.music.get_playing(channel="music"))
+        # renpy.music.get_pos reports exactly 0 (the first moment of each loop round) as None.
+        music_position = renpy.music.get_pos(channel="music")
+        if music_position is None and music_path:
+            music_position = 0.0
+        return {"unlocked": globals().get("knol_audio_unlocked", True), "musicPath": music_path,
+            "musicPosition": music_position,
             "ambiencePath": knol_audio_source_path(renpy.music.get_playing(channel="knol_ambience")), "ambienceStartCount": knol_ambience_start_count,
             "musicStartCount": knol_music_start_count, "soundPlayCount": knol_sound_play_count,
             "soundPaths": [knol_audio_source_path(path) for path in [renpy.music.get_playing(channel="knol_sound_" + str(index)) for index in range(8)] if path]}
