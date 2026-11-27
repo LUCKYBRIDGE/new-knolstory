@@ -4,7 +4,7 @@ GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 
 
 > **Work에 처음 줄 요청**
 >
-> `LUCKYBRIDGE/new-knolstory`의 `codex/bakssi-work`에서 `docs/reference/bakssi/WORK-HANDOFF.md`와 `.agents/skills/bakssi-production/SKILL.md`를 읽고 박씨전을 완성해 줘. 먼저 사용자가 고른 박씨의 허물 전후 기준 그림이 기존 시안과 새 그림에 이어지도록 하고, 이미 제작된 원본을 목록과 대조해 등록해 줘. 남은 삽화·배경·표정을 같은 화풍과 인물 기준으로 채워 줘. 실제 서재에서 원작·놀스토리·숏스토리를 확인하고 작업과 검증 결과를 브랜치에 남겨 줘.
+> `LUCKYBRIDGE/new-knolstory`의 `codex/bakssi-work`에서 `docs/reference/bakssi/WORK-HANDOFF.md`와 `.agents/skills/bakssi-production/SKILL.md`를 읽고 박씨전을 완성해 줘. 먼저 [인물별 얼굴과 신체 비율](character-review.md)을 읽고, 서로 닮은 인물의 기본 그림부터 검토해 필요한 그림을 다시 그려 줘. 사용자 승인 박씨 얼굴을 유지하고, 포즈가 바뀌어도 인물별 머리·몸통·팔다리·손발의 크기를 기준 전신과 비교해 줘. 남은 삽화·배경·표정을 같은 화풍과 인물 기준으로 채워 줘. 실제 서재에서 원작·놀스토리·숏스토리를 확인하고 작업과 검증 결과를 브랜치에 남겨 줘.
 
 ## GitHub에 저장된 작업 상태
 
@@ -26,6 +26,8 @@ GitHub 저장소는 `LUCKYBRIDGE/new-knolstory`이고 인수인계 브랜치는 
 | [서재 묶음](../../../apps/web/lib/builtin-works.ts), [그림책 제공판](../../../packages/compatibility/src/shortstory-originals.ts), [재생 E2E](../../../tests/e2e/bakssi-runtime.spec.ts) | 로컬 서재에서 각 판의 표지·첫 컷·마지막 컷을 확인한다. 원작·놀스토리·숏스토리용 독후 활동지는 각각 두 장이다. 박씨전 학급 미션의 작품 키는 기존 SQL 이력을 유지하는 추가 마이그레이션을 사용한다. |
 
 ## 우선순위
+
+[인물별 얼굴과 신체 비율](character-review.md)에 현재 비교판과 재생성 우선순위, 자세별 크기 확인 방법을 정리했다. 새 표정과 삽화 제작 전에 필요한 기본 전신을 확정한다.
 
 1. **박씨의 허물 전후 차이를 책과 재생 화면까지 유지한다.** 비교 시안 중 사용자가 마지막에 고른 [박씨 얼굴 기준](bakssi-face-comparison.jpg)을 사용한다. 얼굴을 더 과장하지 않고 승인 PNG를 첫 번째 참조로 쓴다. 평상복과 혼례복, 원작과 놀스토리 B에서 허물 전 얼굴이 같은 사람으로 이어져야 한다. 연출에서 외모로 사람을 판단한 책임은 시백에게 있다.
 2. 등록 목록과 도착한 그림을 비교한다. 완성된 표지와 PNG는 이 브랜치에서 바로 사용한다. 미등록 원본이나 다른 세션 결과는 파일의 출처를 확인한 뒤 이 브랜치의 원본 폴더로 가져온다. 개인 다운로드나 로컬 생성 경로에 의존하는 작품 파일은 만들지 않는다.
