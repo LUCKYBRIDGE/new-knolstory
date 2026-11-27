@@ -105,6 +105,7 @@
      "gap": 12,
      "children": [
       "list-tools",
+      "speaker-group",
       "companions",
       "cut-list"
      ]
@@ -124,6 +125,43 @@
      "action": {
       "event": {
        "name": "revealCurrentCut"
+      }
+     }
+    },
+    {
+     "id": "speaker-group",
+     "component": "ToolGroup",
+     "name": "화자 고르기",
+     "children": [
+      "speaker"
+     ]
+    },
+    {
+     "id": "speaker",
+     "component": "Choice",
+     "label": "화자",
+     "name": "1컷 화자",
+     "title": "해설 또는 말하는 인물",
+     "value": {
+      "path": "/speakerChoice"
+     },
+     "options": [
+      {
+       "value": "narration",
+       "label": "해설"
+      },
+      {
+       "value": "name:선녀 1",
+       "label": "선녀 1"
+      },
+      {
+       "value": "name:막내 선녀",
+       "label": "막내 선녀"
+      }
+     ],
+     "change": {
+      "event": {
+       "name": "changeCutSpeaker"
       }
      }
     },
@@ -251,49 +289,8 @@
       }
      },
      "children": [
-      "speaker-group-1",
       "text-1"
      ]
-    },
-    {
-     "id": "speaker-group-1",
-     "component": "ToolGroup",
-     "children": [
-      "speaker-1"
-     ],
-     "name": "화자 고르기"
-    },
-    {
-     "id": "speaker-1",
-     "component": "Choice",
-     "label": "화자",
-     "name": "1컷 화자",
-     "title": "해설 또는 말하는 인물",
-     "value": {
-      "path": "/cuts/0/speakerChoice"
-     },
-     "options": [
-      {
-       "value": "narration",
-       "label": "해설"
-      },
-      {
-       "value": "name:선녀 1",
-       "label": "선녀 1"
-      },
-      {
-       "value": "name:막내 선녀",
-       "label": "막내 선녀"
-      }
-     ],
-     "change": {
-      "event": {
-       "name": "changeCutSpeaker",
-       "context": {
-        "cut": 1
-       }
-      }
-     }
     },
     {
      "id": "text-1",
@@ -359,49 +356,8 @@
       }
      },
      "children": [
-      "speaker-group-2",
       "text-2"
      ]
-    },
-    {
-     "id": "speaker-group-2",
-     "component": "ToolGroup",
-     "children": [
-      "speaker-2"
-     ],
-     "name": "화자 고르기"
-    },
-    {
-     "id": "speaker-2",
-     "component": "Choice",
-     "label": "화자",
-     "name": "2컷 화자",
-     "title": "해설 또는 말하는 인물",
-     "value": {
-      "path": "/cuts/1/speakerChoice"
-     },
-     "options": [
-      {
-       "value": "narration",
-       "label": "해설"
-      },
-      {
-       "value": "name:선녀 1",
-       "label": "선녀 1"
-      },
-      {
-       "value": "name:막내 선녀",
-       "label": "막내 선녀"
-      }
-     ],
-     "change": {
-      "event": {
-       "name": "changeCutSpeaker",
-       "context": {
-        "cut": 2
-       }
-      }
-     }
     },
     {
      "id": "text-2",
@@ -519,8 +475,7 @@
       "audio": "배경음 계곡의 평온 · 계곡 기본",
       "direction": "연출 없음",
       "effect": "none",
-      "transition": "cut",
-      "speakerChoice": "narration"
+      "transition": "cut"
      },
      {
       "cut": 2,
@@ -539,10 +494,10 @@
       "audio": "배경음 계곡의 평온 · 계곡 기본",
       "direction": "연출 없음",
       "effect": "none",
-      "transition": "cut",
-      "speakerChoice": "name:선녀 1"
+      "transition": "cut"
      }
-    ]
+    ],
+    "speakerChoice": "narration"
    }
   }
  }

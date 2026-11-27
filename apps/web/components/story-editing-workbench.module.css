@@ -605,3 +605,24 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .cutSpeaker{display:flex;align-items:center;gap:8px;min-width:0;margin:0 0 4px}
 .cutSpeaker label{display:flex;align-items:center;gap:8px;min-width:0;font-size:var(--text-caption)}
 .cutSpeaker select{max-width:min(240px,100%)}
+/* 원고 (2026-11-28 B-1): one document of seamless cut blocks. No box per cut; the cut number and speaker sit beside the writing,
+   the cut being written gets a thin mint line, and each block grows with its text. */
+.workbench .rows[data-manuscript]{gap:0;padding:12px 4px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+.workbench .rows[data-manuscript] .row{grid-template-columns:minmax(84px,112px) minmax(0,1fr);align-items:start;gap:0 12px;padding:2px 8px 2px 4px;border:0;border-radius:0;background:transparent;box-shadow:none}
+.workbench .rows[data-manuscript] .row>:not(header){grid-column:2}
+.workbench .rows[data-manuscript] .row>header{grid-column:1;grid-row:1/span 3;align-self:start;padding-top:4px;gap:2px}
+.workbench .rows[data-manuscript] .row>header>.rowSelect{height:32px;margin-left:0;padding:0 4px;font-size:var(--text-caption);font-weight:600;color:var(--ink-soft)}
+.workbench .rows[data-manuscript] .row>header>.rowSelect[aria-pressed=true]{color:var(--mint-strong)}
+.workbench .rows[data-manuscript] .row>header>.rowPlay{width:28px;height:28px;opacity:.55}
+.workbench .rows[data-manuscript] .row[aria-current=step]>header>.rowPlay,.workbench .rows[data-manuscript] .row>header>.rowPlay:is(:hover,:focus-visible){opacity:1}
+.workbench .rows[data-manuscript] .row[aria-current=step]{box-shadow:inset 3px 0 var(--mint-strong)}
+.workbench .rows[data-manuscript] .text textarea{min-height:2.2em;field-sizing:content;resize:none;padding:4px 0 10px;border:0;border-radius:0;background:transparent}
+.workbench .rows[data-manuscript] .text textarea:focus-visible{outline:none}
+.workbench .rows[data-manuscript] .row+.row{border-top:1px dashed color-mix(in srgb,var(--line) 70%,transparent)}
+.mergeAsk{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px;padding:8px 10px;border-radius:8px;background:var(--paper);font-size:var(--text-small)}
+.mergeAsk>p{flex:1 1 220px;margin:0}
+@media (max-width:600px){
+ .workbench .rows[data-manuscript] .row{grid-template-columns:minmax(0,1fr);padding:2px 4px}
+ .workbench .rows[data-manuscript] .row>:not(header),.workbench .rows[data-manuscript] .row>header{grid-column:1;grid-row:auto}
+ .workbench .rows[data-manuscript] .row>header{padding-top:6px}
+}

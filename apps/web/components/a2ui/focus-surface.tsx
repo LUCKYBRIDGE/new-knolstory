@@ -46,6 +46,12 @@ const changeWith=(ctx:Ctx,c:A2uiComponent,value:unknown)=>{const change=c.change
 /** Default drawing of a custom (x-host) component when the screen has not registered one: a named placeholder. */
 const fireWith=(ctx:Ctx,c:A2uiComponent,action:unknown,extra:object)=>{const own=action as {event?:{context?:object}}|undefined;if(own?.event)ctx.fire(c.id,{event:{...own.event,context:{...(own.event.context??{}),...extra}}});};
 /** 원고: a line break typed right after another (Enter twice) asks to start the next cut at the caret. Blank lines at the seam are dropped. */
+/** 원고: pasted writing with blank lines becomes several cuts. Only the pasted blank lines split; the box's own text stays around them. */
+export function pastePieces(value:string,start:number,end:number,pasted:string):string[]|null{
+ const parts=pasted.replace(/\r\n?/g,'\n').split(/\n(?:[ \t]*\n)+/);
+ if(parts.length<2)return null;
+ return [value.slice(0,start)+parts[0],...parts.slice(1,-1),parts.at(-1)+value.slice(end)];
+}
 export function doubleBreak(before:string,after:string,caret:number|null):{value:string;position:number}|null{
  if(caret===null||caret<2||after.length!==before.length+1||after[caret-1]!=='\n'||after[caret-2]!=='\n'||after.slice(0,caret-1)+after.slice(caret)!==before)return null;
  const head=after.slice(0,caret-1).replace(/\n+$/,''),tail=after.slice(caret).replace(/^\n+/,'');
@@ -205,7 +211,10 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  TextArea:(c,ctx)=>{const current=text(ctx,c.value);return <textarea aria-label={text(ctx,c.label)} value={current} maxLength={typeof c.maxChars==='number'?c.maxChars:undefined} readOnly={value(ctx,c.readOnly)===true} disabled={value(ctx,c.disabled)===true}
   onCompositionStart={()=>ctx.composing(true)} onCompositionEnd={()=>ctx.composing(false)}
   onChange={event=>{const next=event.currentTarget.value,split=c.splitHere!==undefined&&!(event.nativeEvent as InputEvent).isComposing?doubleBreak(current,next,event.currentTarget.selectionStart):null;
-   if(split)fireWith(ctx,c,c.splitHere,split);else changeWith(ctx,c,next);}}
+   if(split)fireWith(ctx,c,c.splitHere,{pieces:[split.value.slice(0,split.position),split.value.slice(split.position)],caret:0});else changeWith(ctx,c,next);}}
+  onPaste={event=>{const field=event.currentTarget;if(c.splitHere===undefined||field.readOnly)return;
+   const pieces=pastePieces(field.value,field.selectionStart,field.selectionEnd,event.clipboardData.getData('text/plain'));
+   if(!pieces)return;event.preventDefault();fireWith(ctx,c,c.splitHere,{pieces,caret:pieces.at(-1)!.length-(field.value.length-field.selectionEnd)});}}
   onKeyDown={event=>{const field=event.currentTarget;if(c.joinPrevious===undefined||event.key!=='Backspace'||event.nativeEvent.isComposing||event.altKey||event.ctrlKey||event.metaKey||field.selectionStart!==0||field.selectionEnd!==0)return;
    event.preventDefault();fireWith(ctx,c,c.joinPrevious,{});}}
   {...host(ctx,c,styles.editor)}/>;},

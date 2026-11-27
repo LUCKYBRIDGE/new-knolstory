@@ -57,7 +57,7 @@ for(const {device,width,height} of SIZES)test(`real focus screens match their A2
   await openEditingScreen(page,label);
   await expect(page.locator(`[data-screen="${task}"] article`).first()).toBeVisible();
   const surface=[...applyMessages(focusScreenBlueprints[task]).values()][0]!;
-  const expected=[...new Set(['list-tools','companions','cut-1'].flatMap(id=>controlNames(surface,device,id)).map(normal))];
+  const expected=[...new Set([...(task==='text'?['list-tools','speaker-group']:['list-tools']),'companions','cut-1'].flatMap(id=>controlNames(surface,device,id)).map(normal))];
   const real=(await realControlNames(page)).map(normal);
   await expect(page.locator('[data-host-part]')).toHaveCount(0);
   const extra=[...new Set(real.filter(name=>!expected.some(want=>name.endsWith(want))))];

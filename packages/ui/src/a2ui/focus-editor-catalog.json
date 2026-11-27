@@ -1027,7 +1027,7 @@
     },
     "TextArea": {
       "type": "object",
-      "description": "Multi-line text of a cut (쓰기·원고). The label is for assistive tech. readOnly when the device only reviews (short landscape phone). 원고 writes on across cuts: splitHere fires when Enter is pressed twice (context value = the text without the blank line, position = where the next cut starts); joinPrevious fires on Backspace at the very start.",
+      "description": "Multi-line text of a cut (쓰기·원고). The label is for assistive tech. readOnly when the device only reviews (short landscape phone). 원고 reads as one document of seamless cut blocks: splitHere fires when Enter is pressed twice or writing with blank lines is pasted (context pieces = the box's text cut at those blank lines, caret = where the caret lands in the last piece); joinPrevious fires on Backspace at the very start.",
       "allowedParents": [
         "Column",
         "CutItem"
