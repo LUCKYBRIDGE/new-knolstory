@@ -54,11 +54,11 @@ test('reading a picture book on a phone keeps the page in view and turns it with
  await page.goto('/shortstory?work=rabbit&mode=read');
  await openBook(page);
  const reading=page.getByRole('region',{name:'숏스토리 읽기',exact:true}),turn=page.getByRole('navigation',{name:'읽기 쪽 넘기기',exact:true});
- await expect(turn.locator('span')).toHaveText('1 / 8');
+ await expect(turn.locator('[data-read-place]')).toHaveText('1 / 8');
  expect(await turn.evaluate(nav=>nav.getBoundingClientRect().bottom<=innerHeight)).toBe(true);
  const swipe=(from:number,to:number)=>reading.evaluate((el,[x0,x1])=>{const y=el.getBoundingClientRect().top+120;const t=(x:number)=>new Touch({identifier:1,target:el,clientX:x,clientY:y});el.dispatchEvent(new TouchEvent('touchstart',{touches:[t(x0!)],changedTouches:[t(x0!)],bubbles:true}));el.dispatchEvent(new TouchEvent('touchend',{touches:[],changedTouches:[t(x1!)],bubbles:true}));},[from,to]);
- await swipe(320,60);await expect(turn.locator('span')).toHaveText('2 / 8');
- await swipe(60,320);await expect(turn.locator('span')).toHaveText('1 / 8');
+ await swipe(320,60);await expect(turn.locator('[data-read-place]')).toHaveText('2 / 8');
+ await swipe(60,320);await expect(turn.locator('[data-read-place]')).toHaveText('1 / 8');
  // Going back from the first page closes the book onto its cover, like turning back past page one.
  await swipe(60,320);await expect(page.getByRole('button',{name:'책 펼치기',exact:true})).toBeVisible();
  await context.close();

@@ -163,6 +163,7 @@
 .reading .art { width:min(100%, calc(min(46vh, 480px) * 16 / 9)); margin-inline:auto; }
 .reading .storyText { max-width:42em; margin:0 auto; }
 .readNav { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:20px; }
+.readNavRow { display:contents; }
 .readNav span { min-width:56px; text-align:center; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
 .readNav button { min-height:48px; padding:8px 18px; }
 .readNav .readNext { min-width:140px; font-weight:600; }
