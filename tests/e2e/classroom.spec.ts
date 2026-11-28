@@ -1354,3 +1354,23 @@ test('a failed QR login offers the class code login and a retry for passing prob
  await expect(gate.getByRole('button',{name:'다시 시도'})).toHaveCount(0);
  await expect(gate.getByRole('link',{name:'학급 코드로 들어가기'})).toBeVisible();
 });
+
+test('the teacher reads a branched work with each choice, its ways and where they go',async({page},info)=>{
+ // Seen 2026-11-28: 바로 보기 listed the chapters flat, so a branched work hid its choices and which chapter each way opens.
+ const project=JSON.parse(await readFile(new URL('../fixtures/stories/rabbit.json',import.meta.url),'utf8'));
+ const teacher=await mockClassroom(page,'teacher');
+ teacher.classroom={id:'c1',name:'3반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ teacher.assignments=[{format:'knolstory',id:'a1',title:'갈래 이야기',description:'갈래를 만들어 써요.',storyKey:null,open:true,createdAt:1,submittedCount:1}];
+ teacher.submissions.a1={content:{format:'knolstory',document:{project}}};
+ await page.goto('/teacher');
+ await page.getByRole('button',{name:'갈래 이야기 진행 보기'}).click();
+ await page.getByRole('button',{name:'2번 제출 작품 바로 보기'}).click();
+ const preview=page.getByRole('dialog');
+ await expect(preview).toContainText('글과 선택지를 보여 줘요.');
+ const first=preview.locator('[data-script-choices]').first();
+ await expect(first.getByRole('listitem')).toHaveCount(2);
+ await expect(first.getByRole('listitem').nth(0)).toContainText(/^A\. .+→ 2장/);
+ await expect(first.getByRole('listitem').nth(1)).toContainText(/^B\. .+→ 3장/);
+ await expect(preview.getByRole('heading',{name:/^2장 .*1장 선택지 A$/})).toBeVisible();
+ await first.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('branched-preview.png')});
+});

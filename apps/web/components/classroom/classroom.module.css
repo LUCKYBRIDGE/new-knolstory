@@ -377,6 +377,11 @@
 .script h3{margin:0 0 6px;font-size:var(--text-small);font-weight:600;color:var(--story-menu-ink)}
 .dialog .script p{margin:4px 0;color:var(--story-menu-ink);font-size:var(--text-body,1rem)}
 .script b{margin-right:8px;font-weight:600}
+.script h3 .scriptFrom{margin-left:8px;font-weight:400;color:var(--story-menu-muted)}
+/* A choice cut: its ways and where each goes, in one quiet box under the question. */
+.scriptChoices{list-style:none;margin:6px 0 8px;padding:8px 12px;border-left:3px solid var(--story-menu-accent);border-radius:6px;background:color-mix(in srgb,var(--story-menu-ink) 5%,transparent);display:grid;gap:4px}
+.scriptChoices li{display:flex;flex-wrap:wrap;gap:4px 10px;color:var(--story-menu-ink);font-size:var(--text-body,1rem)}
+.scriptChoices small{color:var(--story-menu-muted);font-size:var(--text-small)}
 
 /* The external hand-in link is a folded, secondary path (2026-11-18). */
 details.shareBox{display:block}
