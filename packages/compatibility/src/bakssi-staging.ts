@@ -302,6 +302,11 @@ const transitions: Readonly<Record<string, StoryPresentation['transition']>> = {
   V34: {type: 'dissolve', durationMs: 750},
 };
 const impactCuts = new Set(['O63', 'O79', 'Q03', 'X03']);
+const backgroundFocal: Partial<Record<Stage, NonNullable<StoryPresentation['backgroundFocal']>>> = {
+  'stable-day': {x: .72, y: .5},
+  'pottery-day': {x: .75, y: .5},
+  'well-snow': {x: .2, y: .5},
+};
 
 type Emotion = 'joy' | 'anger' | 'sorrow' | 'mirth';
 type Pose = 'rice-sack' | 'inkstone' | 'crouch-shoes';
@@ -353,6 +358,7 @@ export function bakssiCutStage(id: string, speakerName: string): {
   const rightActors = actors.slice(1).map(actor => poseFor(actor, id));
   const speakerActorKey = speakerActor ? characterKey(speakerActor) : undefined;
   const transition = transitions[id];
+  const focal = backgroundFocal[location];
   const effects = impactCuts.has(id)
     ? [{type: 'shake', intensity: 'soft', trigger: 'scene-enter', durationMs: 340, target: {kind: 'background'}}] satisfies StoryPresentation['effects']
     : undefined;
@@ -367,7 +373,11 @@ export function bakssiCutStage(id: string, speakerName: string): {
       ...(speakerActorKey ? {speakerActorKey} : {}),
     },
     speaker: speakerActorKey && leftActors.some(actor => actor.key === speakerActorKey) ? 'left' : 'right',
-    ...(transition || effects ? {presentation: {...(transition ? {transition} : {}), ...(effects ? {effects} : {})}} : {}),
+    ...(transition || effects || focal ? {presentation: {
+      ...(transition ? {transition} : {}),
+      ...(effects ? {effects} : {}),
+      ...(focal ? {backgroundFocal: focal} : {}),
+    }} : {}),
     ...(storyMusic || storyAmbience || soundName ? {
       audio: {
         ...(storyMusic ? {music: storyMusic} : {}),

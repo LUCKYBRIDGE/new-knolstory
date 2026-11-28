@@ -1683,6 +1683,186 @@
         "width": 800,
         "height": 1200
       }
+    },
+    {
+      "id": "bakssi-stage-courtyard-night",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nEdit referenced image 1 as the locked set exact same camera position and height, lens/vanishing point, horizon, framing, zoom, foreground yard distance, and silhouettes/positions of the large curving persimmon tree on the LEFT, gate in left midground, splendid but small tile-roof house and its raised low wood maru in the CENTER, two lattice door bays, low stone footing, and little thatched storage shed and crock on the RIGHT. Do not redesign, reverse, crop, move or add openings to the building. Hold the original outer 16:9 frame. Change only the weather, light, and seasonal vegetation as specified. Clear crisp autumn moonlight in rich indigo blue against a soft pale moon just above the tile roof. Retain a few persimmons and yellow-orange leaves readable against blue. Only a gentle amber line of light through one lattice door from a small lamp and a delicate cool cast onto the dry swept yard. No snow, rain, star field or luminous highlights all over. Image 2 is light color guidance only.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-courtyard-day",
+          "sha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448"
+        },
+        {
+          "id": "bakssi-stage-wedding-night",
+          "sha256": "c3f909a00a3e1eea5b12179cfc10573cc70814cc321b1fec3c7be77e8ba593d0"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-courtyard-night.png",
+      "sourceSha256": "d511a3ad1d92ff26b65efb2ee30a11bb9b642db30f42b06c889b51f551b2be06",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-courtyard-night.webp",
+      "outputSha256": "f67d92455a466378cf8a4a7dd7b8f74d22dc5128ee81d8baa0dcbd4cfd4e14d8",
+      "dimensions": {
+        "width": 1600,
+        "height": 901
+      }
+    },
+    {
+      "id": "bakssi-stage-courtyard-rain",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nEdit referenced image 1 as the locked set exact same camera position and height, lens/vanishing point, horizon, framing, zoom, foreground yard distance, and silhouettes/positions of the large curving persimmon tree on the LEFT, gate in left midground, splendid but small tile-roof house and its raised low wood maru in the CENTER, two lattice door bays, low stone footing, and little thatched storage shed and crock on the RIGHT. Do not redesign, reverse, crop, move or add openings to the building. Hold the original outer 16:9 frame. Change only the weather, light, and seasonal vegetation as specified. A rainy autumn night. Slate blue-gray clouds over the same house, some roof drips, diagonal fine rain mainly visible against the warm amber paper lattice and eaves. A wet dark packed-earth yard with shallow uneven puddles and muted amber reflections around the center-right, never a smooth polished stone floor. A few wet orange leaves on the tree and small leaf litter. No moon, snow, fog wall or downpour obscuring the main doors. Image 2 is light color guidance only.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-courtyard-day",
+          "sha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448"
+        },
+        {
+          "id": "bakssi-stage-wedding-night",
+          "sha256": "c3f909a00a3e1eea5b12179cfc10573cc70814cc321b1fec3c7be77e8ba593d0"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-courtyard-rain.png",
+      "sourceSha256": "233dc06adffad42de121acc3b0d33a5ace22706da9f19dbb0fd4e08c80155da2",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-courtyard-rain.webp",
+      "outputSha256": "3f98f82d61bed4ca91cad733806f6561f929c103bb21f491c72ea797baf5618e",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-courtyard-snow",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nEdit referenced image 1 as the locked set exact same camera position and height, lens/vanishing point, horizon, framing, zoom, foreground yard distance, and silhouettes/positions of the large curving persimmon tree on the LEFT, gate in left midground, splendid but small tile-roof house and its raised low wood maru in the CENTER, two lattice door bays, low stone footing, and little thatched storage shed and crock on the RIGHT. Do not redesign, reverse, crop, move or add openings to the building. Hold the original outer 16:9 frame. Change only the weather, light, and seasonal vegetation as specified. One deep blue winter evening, leafless persimmon with a few orange fruit, gathered snow on the same curved branches, old gray roof tiles and thatch, drifts on the perimeter and a lightly cleared path. Fine snowflakes in the background only, a small welcoming honey glow through the original lattice door, threshold and path clear. Do not insert people, horses, soldiers, effects, snowstorm wall or change the doors. Image 2 is the winter evening palette reference, not layout.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-courtyard-day",
+          "sha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448"
+        },
+        {
+          "id": "bakssi-stage-lane-snow",
+          "sha256": "8c6ff92683b3c4092d313bbd434736860532ee324e30ce491cf3c461fce2058e"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-courtyard-snow.png",
+      "sourceSha256": "8d8a50a88aaffbd0d9867a51541a27023e6b8e0b6b023f418dc2136d9f8cc3fa",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-courtyard-snow.webp",
+      "outputSha256": "aca5c0cb0909f83960e2130ea9d68d04b453dcaead7c73c4895069bdcaf82b17",
+      "dimensions": {
+        "width": 1600,
+        "height": 901
+      }
+    },
+    {
+      "id": "bakssi-stage-courtyard-spring",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nEdit referenced image 1 as the locked set exact same camera position and height, lens/vanishing point, horizon, framing, zoom, foreground yard distance, and silhouettes/positions of the large curving persimmon tree on the LEFT, gate in left midground, splendid but small tile-roof house and its raised low wood maru in the CENTER, two lattice door bays, low stone footing, and little thatched storage shed and crock on the RIGHT. Do not redesign, reverse, crop, move or add openings to the building. Hold the original outer 16:9 frame. Change only the weather, light, and seasonal vegetation as specified. Early spring calm after a hard winter. The original dark-barked persimmon tree has delicate pale green new leaf buds (no persimmon fruit, not cherry tree blossoms), low pale herbs at walls and tiny new grass near the border. Existing foothills soft in spring daylight, thin warm sunshine on the same swept gentle earth. Keep the existing open gate, center lattice bays, center raised porch and small right-hand shed. No overgrown lawn and no carpeting of flowers.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-courtyard-day",
+          "sha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-courtyard-spring.png",
+      "sourceSha256": "e48abc4a9a7b341298cf33e6d7159ed9711880ea4cb61746101172f3bc7990f9",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-courtyard-spring.webp",
+      "outputSha256": "fec09b3fd6a196268d3d8e806202821def3b5c668486dbb525dce2f35172a288",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-stable-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nA side view of the same small Pihwadang yard from three steps to the right of image 1, focused on its simple open-front thatched wooden livestock shed from the right of the reference, with rough recycled pine posts and straw, partly open timber stall gate and brick-and-stone footing, side of the matching Korean tile house at left as a location cue. An unmistakable low rectangular worn wooden feeding trough near the center-right midground, its top clearly visible above the bottom third. Modest water bucket at a post and one or two securely tied straw sacks tucked at the far right under eaves, leaving the center-left and foreground entirely open for separate character and horse sprites. Soft mid-morning autumn light. Absolutely NO HORSE, other animal, carriage, rider, saddle or person. Empty stall.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-courtyard-day",
+          "sha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-stable-day.png",
+      "sourceSha256": "608b9a6a085892ebff683ad800e3c8cd46a96f7191732097858f620f3196f435",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-stable-day.webp",
+      "outputSha256": "73791863a7f146f5fa472e78c667cd20e04c12f33e6d30d3af82d7a48c3644f8",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-pottery-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nA modest 17th-century Joseon working pottery yard at daylight in late autumn, earthy curved low brick-and-clay kiln with dark curved mouth just right of center, dry hillock and unpainted simple shed above it. Foreground leveled ochre soil and enough open stage, empty low worn potter's board with a small lump of unshaped clay set back on the left side midground, a few period practical gray and off-white glazed jars grouped in the back beside the kiln. Kiln and clay board both distinguishable across central portion of portrait crop. Image 1 is reference for historic kiln masonry and timber shelter mood only: distinct working kiln yard, no snow and no night, no Western chimney or modern tools. Image 2 for daytime palette and textured stage style.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-kiln-snow",
+          "sha256": "103e3ae94e055aca40b1b2f209b7ac3d4b45099fa3b8902fab94f24b4df929d9"
+        },
+        {
+          "id": "bakssi-stage-courtyard-day",
+          "sha256": "c802bffc7b7f505df2702fdf855b864a8d8ac4f6b562ecc127be2d4084ffd448"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-pottery-day.png",
+      "sourceSha256": "e2ac5e7be9a49838272aaee46e2151714991f3e7b693d1e26cc4813e5f4166a6",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-pottery-day.webp",
+      "outputSha256": "5a28bdf3425d63746157c3e9668b464b1b71caafcb188e2566badd854878644e",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-court-day",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nView from inside the early Joseon main audience hall during a formal morning assembly, eye-level wide view toward an empty low raised rear royal dais centered slightly above the middle, traditional compact unoccupied throne and tasteful folded Irworobongdo screen with simplified sun and moon and five peaks, well spaced muted burgundy wood columns, faded historically plausible dancheong overhead, Korean square doors with morning light from each side, muted warm wood and lime floor well open in the lower half for standing actor sprites. Wide uncluttered room, human scale. Repaint a distinct Korean palace setting with the brush texture and grounding of the reference main hall; no modern flag, excessive gold palace fantasy, banners, guards, extra humanoid ornament, or royal figure. No readable lettering.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-main-hall",
+          "sha256": "19c51560af691ad538610fe137f23783eb0e8eb99b43c6f679e837586a8c67e8"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-court-day.png",
+      "sourceSha256": "0fc6159efaf9540d0d1974e6aad4a307b674c230160a6035abe50d79637a85b8",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-court-day.webp",
+      "outputSha256": "369feea15685e297ed5e19a0aa10d6b104d3040cbcb01a7c645742357e5ef6c2",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "id": "bakssi-stage-well-snow",
+      "role": "stage",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nEdit image 1 as the same Hanyang neighborhood well, identical wide camera, perspective and places of its arch wood posts, pulley, rope and unobstructed waist-low round gray stone well just left of center, the small existing bucket next to well, tile wall behind, building and low platform on the right. Same positions and silhouettes, hold composition in the native wide 16:9 frame. Winter dusk: purple-blue clean ambient light, thin settled snow on gray stones, well rim, roof and branches, bare branch structure, a few small amber window lights at right. A patch of worn snow around the well and a quiet open apron in front, no frozen transparent glass effect. The well and its wood gear must read at the center when cropped vertically. The second reference is blue winter stage atmosphere only. No figures, horses, extra buildings, buckets blocking the stage, or blizzard.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-stage-well-day",
+          "sha256": "7ca87baeea15cdca36a2000947f42a432e2ecc3a8acc93d7b0164c3fa629d5d3"
+        },
+        {
+          "id": "bakssi-stage-lane-snow",
+          "sha256": "8c6ff92683b3c4092d313bbd434736860532ee324e30ce491cf3c461fce2058e"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-stage-well-snow.png",
+      "sourceSha256": "9f45f9ef019387adc88dee8bda7597d762072f6711a4c404ccb7e4265b44ddca",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-stage-well-snow.webp",
+      "outputSha256": "2ec5e9b2d3e514e59f8e5365ba47148e70c895f56e630159d855281695a9713e",
+      "dimensions": {
+        "width": 1600,
+        "height": 900
+      }
     }
   ]
 }
