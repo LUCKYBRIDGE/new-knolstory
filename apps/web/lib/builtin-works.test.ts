@@ -44,3 +44,13 @@ it('uses the work title only for pristine builtin thumbnails and preserves autho
  expect(builtinShelfCoverProject(grouped(project),[])).toEqual(project);
  const own={key:'new:mine',kind:'own' as const,project:title};expect(builtinShelfCoverProject(own,classicStories)).toEqual(title);
 });
+
+import {resolveProvidedCatalogStory} from '@knolstory/compatibility';
+it('keeps the work title on a refreshed provided edition with the 2026-11-28 catalog subtitle',()=>{
+ const original=classicStories.find(work=>work.id==='heungbu-classic')!.project,current=resolveProvidedCatalogStory(original);
+ expect(current.cover!.subtitle).not.toBe(original.cover!.subtitle);
+ const grouped=(p:typeof original)=>groupBuiltinWorks([{key:'heungbu-classic',kind:'original' as const,project:p}])[0];
+ const shelf=builtinShelfCoverProject(grouped(current),classicStories);
+ expect([shelf.title,shelf.cover?.subtitle]).toEqual(['흥부와 놀부','흥부전']);expect(current.cover?.subtitle).toBe('흥부와 놀부');
+ const authored={...current,cover:{...current.cover!,subtitle:'내가 쓴 부제'}};expect(builtinShelfCoverProject(grouped(authored),classicStories)).toEqual(authored);
+});

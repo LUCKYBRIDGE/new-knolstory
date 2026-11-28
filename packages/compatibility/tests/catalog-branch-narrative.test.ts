@@ -1,4 +1,5 @@
 import {currentCatalogVisuals} from './current-catalog-visuals';
+import {polishCatalogNames} from '../src/catalog-name-polish';
 import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
 import {describe,expect,it} from 'vitest';
 import {orderedStoryFlowLines,storyFlowTargets,type StoryProject} from '@knolstory/story-domain';
@@ -54,7 +55,7 @@ describe('reviewed catalog choice memory',()=>{
  },30000);
  it('changes only the reviewed cuts (22) and 선녀 past-tense narration, and preserves old official editions, authored works and both file formats',async()=>{
   let changed=0;for(const entry of [...representativeStories,...classicStories]){
-   const before=prior(entry.project),after=resolveProvidedCatalogStory(entry.project,before);changed+=after.lines.filter((l,i)=>l.text!==before.lines[i].text).length;
+   const before=prior(entry.project),after=resolveProvidedCatalogStory(entry.project,before);const named=polishCatalogNames(before);changed+=after.lines.filter((l,i)=>l.text!==named.lines[i].text).length;
    const edited={...before,title:before.title+' 내가 편집함'};expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);
    const document={documentType:'story-maker-project' as const,schemaVersion:9 as const,savedAt:'2026-11-01T00:00:00.000Z',appVersion:'test',project:after};
    const archive=await createAuthoringArchive({format:'knolstory',document});expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);

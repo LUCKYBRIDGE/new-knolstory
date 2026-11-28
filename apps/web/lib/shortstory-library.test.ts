@@ -73,3 +73,15 @@ describe('two tabs saving the same picture-book library',()=>{
   expect(()=>parseShortStoryLibrary(JSON.stringify(merged))).not.toThrow();
  });
 });
+
+import { getShortStoryOriginal } from '@knolstory/compatibility';
+describe('provided picture-book page names (2026-11-28)',()=>{
+ it('copies take the current page names once, then keep their own',()=>{
+  const original=getShortStoryOriginal('heungbu'),copy=copyShortStoryBook(emptyShortStoryLibrary(),original).books[0];
+  expect(copy.pages.map(page=>page.title)).toEqual(original.pages.map(page=>page.title));
+  expect(copy.pages[0].title).toBe('대문 밖의 가족');
+  const older={...copy,pages:copy.pages.map((page,i)=>i?page:{...page,title:'쫓겨난 흥부 가족'})};
+  const saved=parseShortStoryLibrary(JSON.stringify({version:1,books:[older],positions:{},deleted:[],activeId:older.id}));
+  expect(saved.books[0].pages[0].title).toBe('쫓겨난 흥부 가족');
+ });
+});

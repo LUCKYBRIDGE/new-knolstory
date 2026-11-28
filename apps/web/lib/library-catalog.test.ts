@@ -49,6 +49,13 @@ it('finds the grouped book by either edition title and author without changing s
  expect(findLibraryBooks([book],'서로의 몫')).toEqual([book]);expect(findLibraryBooks([book],'우리 반')).toEqual([book]);expect(JSON.stringify(book)).toBe(before);
 });
 
+it('finds a provided work by its edition subtitle (흥부와 놀부 · 서로의 몫, 2026-11-28)',()=>{
+ const original={project:{title:'흥부전',cover:{author:'전래 이야기',subtitle:'흥부와 놀부'}}};
+ const knolstory={project:{title:'흥부와 놀부',cover:{author:'전래 이야기 「흥부전」 각색',subtitle:'서로의 몫'}}};
+ const book={...original,builtin:{title:'흥부와 놀부',original,knolstory}};
+ expect(findLibraryBooks([book],'서로의 몫')).toEqual([book]);expect(findLibraryBooks([book],'대문 밖의 목소리')).toEqual([]);
+});
+
 import {isPersonalLibraryKind} from './library-catalog';
 it('finds local originals and online/file imports together in My Works without rewriting their kind',()=>{
  expect(['own','imported','original','example'].filter(isPersonalLibraryKind)).toEqual(['own','imported']);

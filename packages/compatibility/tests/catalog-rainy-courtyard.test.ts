@@ -1,4 +1,5 @@
 import {it,expect} from 'vitest';
+import {polishCatalogNames} from '../src/catalog-name-polish';
 import {representativeStories,resolveProvidedCatalogStory,refineProvidedStory,enhanceExistingStory} from '../src';
 import {connectCatalogPerspective} from '../src/catalog-perspective';
 import {connectCatalogChapterIdentity} from '../src/catalog-chapter-identity';
@@ -13,7 +14,7 @@ it('uses the same empty cottage in rainy evening only for the five actual reunio
  const previous=prior(),current=resolveProvidedCatalogStory(source,previous),changed=current.lines.filter((l,i)=>l.backgroundId!==previous.lines[i].backgroundId);
  expect(changed.map(l=>l.id)).toEqual([3,4,5,6,7].map(n=>'E3-5-v23-'+n));
  expect(changed.every(l=>l.backgroundId==='seonnyeo.background.cottage-rain-evening-v1')).toBe(true);
- expect({...current,lines:current.lines.map((l,i)=>({...l,backgroundId:previous.lines[i].backgroundId}))}).toEqual(previous);
+ expect({...current,lines:current.lines.map((l,i)=>({...l,backgroundId:previous.lines[i].backgroundId}))}).toEqual(polishCatalogNames(previous));
  for(const n of [1,2])expect(current.lines.find(l=>l.id==='E3-5-v23-'+n)).toEqual(previous.lines.find(l=>l.id==='E3-5-v23-'+n));
 });
 it('upgrades an exact published233weather edition while protecting any personal edit',()=>{

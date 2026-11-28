@@ -1,4 +1,5 @@
 import {directOnggojibGhostExit} from './catalog-ghost-exit';
+import {polishCatalogNames} from './catalog-name-polish';
 import {connectCatalogRainyCourtyard} from './catalog-rainy-courtyard';
 import {connectCatalogWeatherContinuity} from './catalog-weather-continuity';
 import {connectCatalogLayeredScenes} from './catalog-layered-scenes';
@@ -69,9 +70,11 @@ export function resolveProvidedCatalogStory(original: StoryProject, stored?: Sto
   const previousWeather=connectCatalogLayeredScenes(previousCards);
   const previousRainyCourtyard=connectCatalogWeatherContinuity(previousWeather);
   const previousCatalog=connectCatalogRainyCourtyard(previousRainyCourtyard);
-  const current=directOnggojibGhostExit(previousCatalog);
+  const previousGhostExit=directOnggojibGhostExit(previousCatalog);
+  // 2026-11-28 catalog names (titles, subtitles, chapter names) over the published ghost-exit edition.
+  const current=polishCatalogNames(previousGhostExit);
   // The confirm-card cue published until 2026-10-31 is a known version too, so it refreshes to the current one.
-  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,previousSeams,previousBranches,previousCards,previousWeather,previousRainyCourtyard,previousCatalog,current].map(catalogFingerprint));
+  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,previousSeams,previousBranches,previousCards,previousWeather,previousRainyCourtyard,previousCatalog,previousGhostExit,current].map(catalogFingerprint));
   versions={known,current};catalogVersions.set(original.id,versions);
  }
  if(stored&&!versions.known.has(catalogFingerprint(stored)))return stored;

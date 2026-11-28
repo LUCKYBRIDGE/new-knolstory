@@ -1,5 +1,6 @@
 /** Stable manuscript identities, independent of display titles and workspace aliases. */
 import type {StoryProject} from '@knolstory/story-domain';
+import {resolveProvidedCatalogStory} from '@knolstory/compatibility';
 export const BUILTIN_WORKS = [
  {id:'rabbit',title:'별주부전',originalDocumentId:'classic-rabbit-tale',knolstoryDocumentId:'pinky-review-main-002'},
  {id:'onggojib',title:'옹고집전',originalDocumentId:'classic-onggojib-tale',knolstoryDocumentId:'pinky-review-main-003'},
@@ -26,6 +27,10 @@ export function builtinShelfCoverProject<T extends EditionWork & {project:StoryP
  const project=work.builtin?.original?.project??work.project;
  if(!work.builtin)return project;
  const original=originals.find(item=>item.project.id===project.id)?.project;
- if(!original||project.title!==original.title||JSON.stringify(project.cover)!==JSON.stringify(original.cover))return project;
- return {...project,title:work.builtin.title};
+ // The provided edition may carry catalog-name updates (e.g. a shorter subtitle); either version is pristine.
+ const pristine=original&&[original,resolveProvidedCatalogStory(original)].some(edition=>project.title===edition.title&&JSON.stringify(project.cover)===JSON.stringify(edition.cover));
+ if(!pristine)return project;
+ // 흥부전's subtitle is the work title (흥부와 놀부); the cover then names the edition instead of repeating it.
+ const cover=project.cover&&project.cover.subtitle===work.builtin.title?{...project.cover,subtitle:project.title}:project.cover;
+ return {...project,title:work.builtin.title,cover};
 }

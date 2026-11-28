@@ -1,4 +1,5 @@
 import {it,expect} from 'vitest';
+import {polishCatalogNames} from '../src/catalog-name-polish';
 import {representativeStories,refineProvidedStory,enhanceExistingStory,resolveProvidedCatalogStory} from '../src';
 import {connectCatalogPerspective} from '../src/catalog-perspective';
 import {connectCatalogChapterIdentity} from '../src/catalog-chapter-identity';
@@ -18,5 +19,5 @@ it('upgrades an exact previously published layered edition but never an edited m
 });
 it('leaves the whole published manuscript identical apart from reviewed background references',()=>{
  const old=previous(),current=resolveProvidedCatalogStory(source);
- expect({...current,lines:current.lines.map((line,i)=>({...line,backgroundId:old.lines[i].backgroundId}))}).toEqual(old);
+ expect({...current,lines:current.lines.map((line,i)=>({...line,backgroundId:old.lines[i].backgroundId}))}).toEqual(polishCatalogNames(old));
 });

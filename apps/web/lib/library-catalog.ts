@@ -1,11 +1,11 @@
 /** Display-only catalog operations; never rewrite or reorder saved projects. */
-type SearchBook={project:{title:string;cover?:{author:string}}};
+type SearchBook={project:{title:string;cover?:{author:string;subtitle?:string}}};
 export function findLibraryBooks<T extends SearchBook & {builtin?:{title:string;original?:SearchBook;knolstory?:SearchBook}}>(works:readonly T[],query:string):T[]{
  const normalize=(value:string)=>value.normalize('NFC').replace(/\s+/g,' ').trim().toLocaleLowerCase('ko-KR');
  const needle=normalize(query);
  return works.filter(work=>{
   const editions=[work.project,work.builtin?.original?.project,work.builtin?.knolstory?.project];
-  const searchable=[work.builtin?.title,...editions.map(project=>project?`${project.title} ${project.cover?.author??''}`:'')].join(' ');
+  const searchable=[work.builtin?.title,...editions.map(project=>project?`${project.title} ${project.cover?.subtitle??''} ${project.cover?.author??''}`:'')].join(' ');
   return normalize(searchable).includes(needle);
  });
 }
