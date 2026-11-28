@@ -28,6 +28,14 @@ for(const viewport of [{width:1024,height:768},{width:390,height:844}])test(`one
  await expect(cuts(page).nth(1)).toBeFocused();
  await page.keyboard.type('해설: 밤이 깊었어요.');
  await expect(cuts(page).nth(1)).toHaveValue('밤이 깊었어요.');
+ // Typing on at once after Enter twice (no pause) still lands in the new cut.
+ // Keys go straight to the browser one after another, without waiting for a frame in between (fast typing on a slow device).
+ await page.keyboard.press('End');
+ const cdp=await page.context().newCDPSession(page),enter={key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'};
+ await Promise.all([cdp.send('Input.dispatchKeyEvent',{type:'keyDown',...enter}),cdp.send('Input.dispatchKeyEvent',{type:'keyUp',...enter}),cdp.send('Input.dispatchKeyEvent',{type:'keyDown',...enter}),cdp.send('Input.dispatchKeyEvent',{type:'keyUp',...enter}),cdp.send('Input.insertText',{text:'바로 이어 쓴 글'})]);
+ await expect(cuts(page)).toHaveCount(3);await expect(cuts(page).nth(2)).toHaveValue('바로 이어 쓴 글');await expect(cuts(page).nth(1)).toHaveValue('밤이 깊었어요.');
+ await caret(page,2,0);await page.keyboard.press('Backspace');await expect(cuts(page)).toHaveCount(2);
+ await cuts(page).nth(1).fill('밤이 깊었어요.');
  // One speaker choice, for the cut being written; every block shows its own speaker beside it.
  await expect(page.getByRole('combobox',{name:'2컷 화자',exact:true})).toHaveValue('narration');
  await expect(page.getByRole('button',{name:'2컷 · 해설 · 이 컷 선택',exact:true})).toBeVisible();

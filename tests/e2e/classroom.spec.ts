@@ -1245,6 +1245,26 @@ test('a KnolStory task opens after the picture book passes and starts from it, w
 });
 
 
+test('a stage task made from a picture book given to chosen students starts with the same students',async({page})=>{
+ const teacher=await mockClassroom(page,'teacher');
+ const kid=(number:number,name:string):Student=>({number,name,password:'1234',permissions:null,hasQr:false});
+ teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[kid(1,'가람'),kid(2,'하늘'),kid(3,'누리')]};
+ teacher.assignments=[{format:'shortstory',id:'a1',title:'나의 그림책',description:'두 쪽을 써요.',storyKey:null,open:true,createdAt:1,submittedCount:0,recipients:[1,3]}];
+ await page.goto('/teacher');
+ const writing=page.getByRole('region',{name:'작품 쓰기 과제'});
+ await page.getByRole('button',{name:'숏스토리 · 1',exact:true}).click();
+ const card=writing.locator('li').filter({has:page.getByRole('heading',{name:'나의 그림책',exact:true})});
+ await card.getByText('과제 설정 더보기',{exact:true}).click();
+ await card.getByRole('button',{name:'나의 그림책 통과 뒤 놀스토리로 이어 쓰는 과제 만들기'}).click();
+ // Seen on production 2026-11-28: the form used to start with the whole class, and the server refused it.
+ const picker=writing.getByRole('group',{name:'받는 학생'});
+ await expect(picker.getByRole('radio',{name:'골라서 주기'})).toBeChecked();
+ await expect(picker.getByRole('checkbox',{name:/1\s*가람/})).toBeChecked();await expect(picker.getByRole('checkbox',{name:/3\s*누리/})).toBeChecked();
+ await expect(picker.getByRole('checkbox',{name:/2\s*하늘/})).not.toBeChecked();
+ await writing.getByLabel('무엇을 하나요',{exact:true}).fill('통과한 그림책을 이어 써요.');await writing.getByRole('button',{name:'과제 만들기',exact:true}).click();
+ expect(teacher.bodies.at(-1)).toMatchObject({format:'knolstory',afterAssignmentId:'a1',recipients:[1,3]});
+});
+
 test('a KnolStory stage task from a picture book without pictures still shows each page as its 그림책 구상',async({page})=>{
  // Found on a real server run (2026-11-21): a text-only picture book left no 그림책 구상, so its pages vanished from view.
  await page.setViewportSize({width:390,height:844});

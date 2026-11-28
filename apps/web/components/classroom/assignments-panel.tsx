@@ -35,9 +35,11 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  // Task-level rules: the editing tools this task allows, and the ShortStory task a KnolStory task follows.
  const [scope,setScope]=useState<EditScope|null>(null),[after,setAfter]=useState('');
  const stageChoices=items?.filter(item=>item.format==='shortstory'&&!item.archived)??[];
+ const followStage=(id:string)=>{setAfter(id);setRecipients(stageChoices.find(item=>item.id===id)?.recipients??null);setRecipientError('');};
  const staged=format==='knolstory'&&!!after;
  /** Opens the form for a KnolStory task that follows this ShortStory task. */
- const continueFrom=useCallback((item:Assignment)=>{setFormat('knolstory');setAfter(item.id);setStoryKey('');setStart({value:'',label:''});setTitle(current=>current||`${item.title} · 놀스토리로 이어 쓰기`);setFormOpen(true);setFocusForm(Date.now());},[]);
+ // A stage task goes to the students of the picture-book task before it (the server refuses anyone else), so the form starts with them.
+ const continueFrom=useCallback((item:Assignment)=>{setFormat('knolstory');setAfter(item.id);setRecipients(item.recipients??null);setRecipientError('');setStoryKey('');setStart({value:'',label:''});setTitle(current=>current||`${item.title} · 놀스토리로 이어 쓰기`);setFormOpen(true);setFocusForm(Date.now());},[]);
  const [creating,setCreating]=useState(false),[loadFailed,setLoadFailed]=useState(false);
  const createLock=useRef(false);
  const currentCount=items?.filter(item=>!item.archived).length??0;
@@ -68,9 +70,9 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
     <legend>시작 방법</legend>
     <div className={styles.scopeChoices} role="radiogroup" aria-label="시작 방법">
      <label><input type="radio" name="task-stage" checked={!after} onChange={()=>setAfter('')}/>바로 놀스토리로 써요</label>
-     <label><input type="radio" name="task-stage" checked={!!after} disabled={!stageChoices.length} onChange={()=>setAfter(stageChoices[0]?.id??'')}/>숏스토리 과제를 통과한 뒤 이어 써요</label>
+     <label><input type="radio" name="task-stage" checked={!!after} disabled={!stageChoices.length} onChange={()=>followStage(stageChoices[0]?.id??'')}/>숏스토리 과제를 통과한 뒤 이어 써요</label>
     </div>
-    {after?<><label className={styles.field}>먼저 할 숏스토리 과제<select aria-label="먼저 할 숏스토리 과제" value={after} onChange={event=>setAfter(event.target.value)}>{stageChoices.map(item=><option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+    {after?<><label className={styles.field}>먼저 할 숏스토리 과제<select aria-label="먼저 할 숏스토리 과제" value={after} onChange={event=>followStage(event.target.value)}>{stageChoices.map(item=><option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
      <p className={styles.hint}>학생은 그 숏스토리 과제를 선생님이 ‘통과’시키면 이 과제를 열 수 있어요. 통과한 그림책의 쪽마다 놀스토리 장이 하나씩 만들어지고, 그림책 글과 삽화는 장 옆에 ‘그림책 구상’으로 보여요.</p></>
      :!stageChoices.length&&<p className={styles.hint}>숏스토리 과제를 먼저 만들면 ‘통과한 뒤 이어 쓰기’를 고를 수 있어요.</p>}
    </fieldset>}

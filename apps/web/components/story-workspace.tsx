@@ -764,11 +764,18 @@ export function StoryWorkspace() {
       requestAnimationFrame(()=>document.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea')?.focus({preventScroll:true}));
     }catch(issue){setSplitError(issueText(issue));}
   }
-  /** 원고: put the caret back into a cut's text box once the list shows the changed cuts. */
-  function focusCutText(lineId:string,caret:number){
-    requestAnimationFrame(()=>{const field=shell.current?.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${CSS.escape(lineId)}"]`);
-      if(!field||field.disabled||!field.checkVisibility())return;field.focus({preventScroll:true});field.setSelectionRange(caret,caret);field.scrollIntoView({block:'nearest'});});
-  }
+  /** 원고: put the caret into a cut's text box in the same commit that shows the changed cuts, so the next key typed
+   *  right after Enter twice already lands in the new cut (a frame later it would still reach the cut before). */
+  const [cutFocus,setCutFocus]=useState<{lineId:string;caret:number}|null>(null);
+  useLayoutEffect(()=>{
+    if(!cutFocus)return;
+    const field=shell.current?.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${CSS.escape(cutFocus.lineId)}"]`);
+    if(!field)return;
+    setCutFocus(null);
+    if(field.disabled||!field.checkVisibility())return;
+    field.focus({preventScroll:true});field.setSelectionRange(cutFocus.caret,cutFocus.caret);field.scrollIntoView({block:'nearest'});
+  },[cutFocus,project]);
+  function focusCutText(lineId:string,caret:number){setCutFocus({lineId,caret});}
   /** 원고: Enter twice or a pasted blank line — each later piece becomes the next cut (same speaker unless it starts with ‘이름:’). Undo keeps the writing as one cut. */
   function splitCutPieces(lineId:string,pieces:readonly string[],caret=0){
     if(stopForUnappliedInput()||pieces.length<2)return;
