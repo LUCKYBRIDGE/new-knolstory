@@ -21,4 +21,10 @@ describe('reading a handed-in work as a script',()=>{
   const script=submissionScript(await prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:book})));
   expect(script.sections[0]).toEqual({title:'1쪽',lines:[{speaker:'',text:'토끼가 달려요.'}]});
  });
+ it('keeps each picture-book page’s picture so the teacher sees it with the words',async()=>{
+  const book=newShortStory();book.pages[0]!.backgroundId='shortstory.background.creative-moon-pond-promise-v1';
+  const script=submissionScript(await prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:book})));
+  expect(script.format).toBe('shortstory');expect(script.empty).toBe(false);
+  expect(script.sections[0]).toEqual({title:'1쪽',lines:[],art:{backgroundId:'shortstory.background.creative-moon-pond-promise-v1',leftAssetId:'',rightAssetId:''}});
+ });
 });

@@ -1,4 +1,5 @@
 import {openShortStoryTools} from './shortstory-navigation';
+import {openEditingScreen} from './editor-screens';
 import {test,expect,type Page} from '@playwright/test';
 import axe from 'axe-core';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
@@ -381,7 +382,7 @@ test('picture book writers see their own page count in the assignment brief',asy
   expect(bounds!.x).toBeGreaterThanOrEqual(0);
   expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
  }
- await brief.getByRole('link',{name:'과제 화면에서 중간 저장·제출하기'}).click();
+ await brief.getByRole('link',{name:'과제 화면 열기'}).click();
  await page.getByRole('button',{name:'저장하지 않고 이동',exact:true}).click();
  await expect(page).toHaveURL(/\/student\/?$/);
  await page.getByRole('link',{name:'이어서 쓰기',exact:true}).click();
@@ -1067,6 +1068,24 @@ test('a student starts a writing task from the teacher template and keeps writin
  await page.goto('/student');
  await expect(page.getByRole('link',{name:'이어서 쓰기',exact:true})).toBeVisible();
 });
+test('a student shares and hands in the work from the editor’s 과제 without leaving it',async({page})=>{
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ await page.goto('/student');
+ await page.getByRole('link',{name:'과제 쓰기',exact:true}).first().click();
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const task=page.locator('[data-task-action]');
+ await task.locator('summary').click();
+ // 2026-11-28 사용자 결정: share and hand in right here; the task screen is only one more link.
+ await task.getByRole('button',{name:'선생님께 중간 저장',exact:true}).click();
+ await expect(task.getByRole('status')).toContainText('선생님께 중간 저장했어요');
+ await task.getByRole('button',{name:'제출',exact:true}).click();
+ await expect(task.getByRole('status')).toContainText('제출했어요');
+ expect(state.submissions[state.assignments[0]!.id]).toBeTruthy();
+ await expect(task.getByRole('button',{name:'고쳐서 다시 내기',exact:true})).toBeVisible();
+ await expect(page.getByRole('dialog',{name:'작업을 마치고 이동할까요?'})).toHaveCount(0);
+ await expect(page).toHaveURL(/view=editor/);
+});
+
 test('a teacher attaches one of their works as a task template and can remove it',async({page})=>{
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'3반',classCode:'ABC234',defaultPermissions:all,students:[]};
@@ -1286,6 +1305,13 @@ test('a KnolStory stage task from a picture book without pictures still shows ea
  const reference=page.locator('summary:visible',{hasText:'그림책 구상'}).first();
  await expect(reference).toBeVisible({timeout:30000});await reference.click();
  await expect(page.getByTestId('picturebook-chapter-reference').filter({visible:true})).toContainText('토끼는 꾀를 내어 용궁을 빠져나왔어요.');
+ // 원고 keeps the same page folded right above the chapter's document (2026-11-28).
+ await openEditingScreen(page,'원고');
+ const folded=page.locator('[data-screen="text"] details[data-picturebook-reference]');
+ await expect(folded).toBeVisible();await expect(folded).not.toHaveAttribute('open','');
+ await folded.locator('summary').click();
+ await expect(folded.getByTestId('picturebook-chapter-reference')).toContainText('토끼는 꾀를 내어 용궁을 빠져나왔어요.');
+ await expect(page.locator('details[data-picturebook-reference]').filter({visible:true})).toHaveCount(1);
 });
 
 test('a picture book task that allows text only blocks picture choosing from the first open',async({page})=>{

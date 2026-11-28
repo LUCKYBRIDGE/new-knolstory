@@ -8,3 +8,9 @@
 .taskAction>div>a{justify-self:start;color:#1f4f44;font-size:var(--text-small);font-weight:600;text-underline-offset:3px}
 .taskAction>summary::marker{content:""}
 .taskAction>summary::before,.taskAction>summary::after{content:none!important}
+.taskAction>div>[data-task-hand-in]{display:flex;flex-wrap:wrap;gap:8px}
+.taskAction>div>[data-task-hand-in]>button{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--white);font:inherit;font-size:var(--text-small);font-weight:600;cursor:pointer}
+.taskAction>div>[data-task-hand-in]>button[data-primary]{border-color:var(--mint-strong);background:var(--mint-strong);color:var(--white)}
+.taskAction>div>[data-task-hand-in]>button:disabled{opacity:.55;cursor:default}
+.taskAction>div>p[data-task-hint]{color:var(--ink-soft)}
+.taskAction>div>p[role=alert]{color:#9b2c1c;font-weight:600}
