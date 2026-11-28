@@ -120,7 +120,8 @@ describe('박씨전 제공 원고', () => {
     ]);
     expect(art('b02')).toContain('bakssi-character-bakssi');
     expect(art('x04')).toContain('bakssi-character-yonguldae');
-    expect(art('v12')).toContain('bakssi-character-soli');
+    expect(art('v12')).toContain('bakssi-character-soli-blue-jar');
+    expect(art('v13')).toContain('bakssi-character-soli');
   });
 
   it.skipIf(!requireArt && missingStageImages.length > 0)('compiles every cut with registered artwork in both Ren’Py layouts', () => {

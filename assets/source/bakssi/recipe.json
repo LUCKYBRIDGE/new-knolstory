@@ -908,6 +908,55 @@
         "bakssi-character-bakssi"
       ],
       "prompt": "Edit the first supplied full-bleed landscape 16:9 Joseon watercolor picture-book illustration. Preserve its actual hand-painted hanji palette, landscape size, viewpoint, character placement, period costumes, wooden architecture, softly drawn sepia textures, furniture, props, and light. Keep all existing people in the same places and preserve their scale, hands, body posture and detailed scene. The new face must blend naturally with the same unretouched illustration, with no pasted look, excessive texture, graphic lettering, borders or watermarks. Only edit the RIGHT woman's face very lightly, keeping the same total head size and angle of the crouching body. Lady Bak has just shed her disguise. Carefully match second ref's structural features now: a softly tapered oval, small symmetrical refined nose, appropriately open almond eyes with even soft brows, gentler jaw, same adult age and the same hairline around the low braid. Do not alter any of her dusty rose/teal clothes, horizontal pale wooden hairpin, hand position, body scale or shoes she is wearing. Lift her gaze just enough to make the eyes both legible as she recognizes the shoe in Gyehwa's hands. Gyehwa and the entire environment remain unchanged. Preserve the big frayed shoe in Gyehwa’s hands and the single matching frayed shoe behind them among visitors' tidy pairs. No additional person or object.\n\n이전 삽화 입력. bakssi-shortstory-page-05 PNG SHA-256 18a572ca31b082678adf693912572b58a13c430f4070f6ccda222c991c1354d9"
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-touch-cheeks",
+      "role": "character",
+      "label": "박씨 · 두 뺨을 만지기",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "seonnyeo.character.M01-earth-neutral",
+      "heightRatio": 0.96,
+      "sizeReason": "기준 전신과 같은 높이. 얼굴과 어깨·손의 크기를 유지한 서 있는 자세",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-bakssi-revealed",
+        "bakssi-character-bakssi"
+      ],
+      "variant": "두 뺨을 만지기",
+      "actions": [
+        "뺨 만지기",
+        "놀라기"
+      ],
+      "prompt": "Generate one fully isolated transparent RGBA portrait 2:3 sprite for our Korean Joseon-era illustrated folktale. First reference is the approved exact identity; keep size ratios between scalp to chin, visible face width, neck, shoulders, torso, limbs, hands, hips, shoes and headwear. Show the full standing silhouette without trimming, with genuine transparent negative space, no cast shadow, no floor, no text, no other person. Restrained hand-painted gouache and watercolor on hanji, soft sepia lines and gently stylized realistic human anatomy, avoid new costume designs, exaggerated motion and photorealism. Express the mood or action with the specific hands, brow, eyes and mouth described. A02, Lady Bak has just shed her disguise. The first image REVEALED face has soft oval jaw, clear almond eyes, finer nose, same tidy black braid and horizontal wooden pin. Second reference only confirms identical body, hair pin and all costume colors across versions. Keep a standing full-body pose. Both palms lightly touch lower cheeks with wrists angled naturally and fingers visible, eyes open in quiet wonder, shoulders stable, rose jeogori and teal skirt untouched. Keep her face legible between the two hands. Same adult head and hands scale as reference, no magical light or accessory.",
+      "searchTerms": [
+        "뺨 만지기",
+        "놀라기"
+      ]
+    },
+    {
+      "id": "bakssi-character-soli-blue-jar",
+      "role": "character",
+      "label": "솔이 · 파란 끈 물동이를 들기",
+      "identity": "bakssi.soli",
+      "characterName": "솔이",
+      "referenceId": "heungbu.character.child-02",
+      "heightRatio": 0.96,
+      "sizeReason": "기준 전신과 같은 높이. 얼굴과 어깨·손의 크기를 유지한 서 있는 자세",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-soli"
+      ],
+      "actions": [
+        "물동이 들기",
+        "물 나르기"
+      ],
+      "variant": "파란 끈 물동이를 들기",
+      "prompt": "Generate one fully isolated transparent RGBA portrait 2:3 sprite for our Korean Joseon-era illustrated folktale. First reference is the approved exact identity; keep size ratios between scalp to chin, visible face width, neck, shoulders, torso, limbs, hands, hips, shoes and headwear. Show the full standing silhouette without trimming, with genuine transparent negative space, no cast shadow, no floor, no text, no other person. Restrained hand-painted gouache and watercolor on hanji, soft sepia lines and gently stylized realistic human anatomy, avoid new costume designs, exaggerated motion and photorealism. Express the mood or action with the specific hands, brow, eyes and mouth described. A Korean girl Soli in the V branch, lighter small child build, exact pale blue slate jeogori, beige skirt, cream cuffs and socks, blue hair ribbon and tan straw shoes as first reference. Standing and lightly holding a small matte gray-brown earthenware water jar with two visible side ears around waist height, jar about the width of her upper body. A distinct cobalt blue worn fabric cord with two short tails is knotted only around one side ear, apart from her hair ribbon, visible on the facing side. Both hands support the small jar comfortably and do not hide the knot. Gaze toward her mother, lowered shoulders, hopeful. One girl with one water jar only. Keep clay pottery understated and no extra decor.\n\nPrecisely edit the attached full-body transparent watercolor character of Soli holding a little two-eared water jar. Preserve exact character scale, full shoes, water jar and cobalt cord, blue jacket and beige skirt, face, height, hands and composition. Fix the currently almost-white triangular artifact trapped between the back of her neck, shoulder and viewer-left long braid. It must be completely true alpha zero within that negative space, contiguous as a natural transparent cutout with softly antialiased hair and collar edges. Use the second model image to match her original hairstyle of one main braid in view; minimize any visible extra braid on the far side of the neck. All surrounding background including holes within the silhouette must be true transparent, no white or semi-opaque fill, no black matte or colored glow, no outlines outside the figure, no open floor or cast shadow. Same portrait 2:3 composition, same original hanji watercolor drawing and jar knot visible.\n초기 후보 PNG SHA-256 0494b7dde287ac4f03c33f95e01693b6668964a78195b3e8fd76589366db9ef2",
+      "searchTerms": [
+        "물동이 들기",
+        "물 나르기"
+      ]
     }
   ]
 }

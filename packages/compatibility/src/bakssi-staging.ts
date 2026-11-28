@@ -309,7 +309,7 @@ const backgroundFocal: Partial<Record<Stage, NonNullable<StoryPresentation['back
 };
 
 type Emotion = 'joy' | 'anger' | 'sorrow' | 'mirth';
-type Pose = 'rice-sack' | 'inkstone' | 'crouch-shoes';
+type Pose = 'rice-sack' | 'inkstone' | 'crouch-shoes' | 'touch-cheeks' | 'blue-jar';
 const actorDirectionAtCut: Readonly<Record<string, {actor: CastMember; note: string; emotion?: Emotion; pose?: Pose}>> = {
   O06: {actor: 'bakssi', note: '조심스럽게 말문을 연다.'},
   O10: {actor: 'bakssi', note: '함께 마시려던 두 잔을 내려다보며 말을 삼킨다.', emotion: 'sorrow'},
@@ -326,6 +326,8 @@ const actorDirectionAtCut: Readonly<Record<string, {actor: CastMember; note: str
   C07: {actor: 'bakssi', note: '혼례복을 입은 채 식은 찻잔을 포개며 시백을 보내고 남는다.', emotion: 'sorrow'},
   C28: {actor: 'gyehwa', note: '말이 손바닥을 핥아 웃음이 튀어나온다.', emotion: 'mirth'},
   D21: {actor: 'sibaek', note: '개구리 연적을 기울여 벼루에 물을 떨어뜨린다.', pose: 'inkstone'},
+  A02: {actor: 'bakssi', note: '허물을 벗은 박씨가 두 뺨에 손을 댄다.', pose: 'touch-cheeks'},
+  A03: {actor: 'park-cheosa', note: '딸의 어린 시절을 떠올리며 웃는다.', emotion: 'mirth'},
   A05: {actor: 'gyehwa', note: '낯선 얼굴을 보다가 평소의 비녀를 알아본다.', emotion: 'joy'},
   A08: {actor: 'bakssi', note: '마루 앞에 모인 신발 사이에서 헌 신을 살핀다.', pose: 'crouch-shoes'},
   A32: {actor: 'bakssi', note: '더는 위협받지 않아도 된다는 듯 문 쪽으로 비켜선다.'},
@@ -335,6 +337,7 @@ const actorDirectionAtCut: Readonly<Record<string, {actor: CastMember; note: str
   B23: {actor: 'bakssi', note: '자기 실수에 귀가 빨개지고 먹 자국을 수습한다.', emotion: 'sorrow'},
   N14: {actor: 'grandmother', note: '젖은 계화를 보고 버럭하는 듯하다가 웃음을 삼킨다.', emotion: 'mirth'},
   U23: {actor: 'grandmother', note: '아기가 국자에 얼굴을 비춰 보는 것을 보고 웃는다.', emotion: 'joy'},
+  V12: {actor: 'soli', note: '물동이 손잡이에 묶인 파란 끈을 만진다.', pose: 'blue-jar'},
   V28: {actor: 'mother', note: '아이를 만나 안도하면서도 먼저 젖은 발을 닦는다.', emotion: 'joy'},
 };
 

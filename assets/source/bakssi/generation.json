@@ -762,6 +762,102 @@
       }
     },
     {
+      "id": "bakssi-character-park-cheosa-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-park-cheosa",
+          "sha256": "8a686375a48bf73e119ee471d9509ac65b71a6c37c3cd0e2b81a233e93195371"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-park-cheosa-joy.png",
+      "sourceSha256": "13f03e33d08dd4e4fd105880e607909c33f42e4e88587f9e368767da35be59a1",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-park-cheosa-joy.webp",
+      "outputSha256": "5d76db435af80647786058c03e96b2be2fe4968d8f9b5bd9c277640a6332bcd2",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-park-cheosa-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-park-cheosa",
+          "sha256": "8a686375a48bf73e119ee471d9509ac65b71a6c37c3cd0e2b81a233e93195371"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-park-cheosa-anger.png",
+      "sourceSha256": "64a8e3099e60ce6399cb3af5c892608fbc827db5aa3e1ccc8e59fc4d891aeda3",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-park-cheosa-anger.webp",
+      "outputSha256": "c96e0e6bc9ef3ad09cc0e1806c141c7e231e2b4e3c7cc959df638ade5cd4ce58",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-park-cheosa-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-park-cheosa",
+          "sha256": "8a686375a48bf73e119ee471d9509ac65b71a6c37c3cd0e2b81a233e93195371"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-park-cheosa-sorrow.png",
+      "sourceSha256": "570c0f5d1a21469a7b79616b6262df45870d83a94df849b94c3c9d6730a602b2",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-park-cheosa-sorrow.webp",
+      "outputSha256": "62a544183b6a75217772361f1b77b1685a0edcc3f85abefde75479110a9437bc",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-park-cheosa-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-park-cheosa",
+          "sha256": "8a686375a48bf73e119ee471d9509ac65b71a6c37c3cd0e2b81a233e93195371"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-park-cheosa-mirth.png",
+      "sourceSha256": "466d8273aa1cd8e831dc67f0ab1c1712aa194e57964e4f1e66021a2ced1c01d6",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-park-cheosa-mirth.webp",
+      "outputSha256": "586067828d9e7cefbf38bc20291b3570291d814569887127465e71438cfa6965",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
       "id": "bakssi-character-gihongdae",
       "role": "character",
       "tool": "built-in image_gen",
@@ -932,6 +1028,102 @@
       "sourceSha256": "7f507ba5ee167964b004df31b4a946ea538297657aa38c0eb8ff3a427ec3a1d8",
       "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonguldae.webp",
       "outputSha256": "8300b808715ba785d229a3622a14b3e6dcb1e4e7e83b4d9b96a397995262e534",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonguldae-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonguldae",
+          "sha256": "8300b808715ba785d229a3622a14b3e6dcb1e4e7e83b4d9b96a397995262e534"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonguldae-joy.png",
+      "sourceSha256": "e56337a976c6231b6f8cbee7a16d934c75bacb6b04099a517ad0f205a4600fce",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonguldae-joy.webp",
+      "outputSha256": "41d10bd89b64e73b5ac25a2f11eda2ac4e1973e78d244649f16ebf18bfff3ea2",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonguldae-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonguldae",
+          "sha256": "8300b808715ba785d229a3622a14b3e6dcb1e4e7e83b4d9b96a397995262e534"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonguldae-anger.png",
+      "sourceSha256": "76c64cb91a6f89975dc3016eeab0ef7add68f9a107f52a6f0aa8ab97a1bb3ad0",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonguldae-anger.webp",
+      "outputSha256": "caab3f41d01bb20369297795afe101d12a19e8ca962e629163e58414867dabfa",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonguldae-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonguldae",
+          "sha256": "8300b808715ba785d229a3622a14b3e6dcb1e4e7e83b4d9b96a397995262e534"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonguldae-sorrow.png",
+      "sourceSha256": "307765b696634c2506243669ed7aa4807590e5474840de5dfba31252b3ebc78f",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonguldae-sorrow.webp",
+      "outputSha256": "c5e4e8fe73ffa7bceffd8d9fac6a3e5d2ecd4b0b556f2f4d3ffc7eeb00b938a1",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonguldae-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonguldae",
+          "sha256": "8300b808715ba785d229a3622a14b3e6dcb1e4e7e83b4d9b96a397995262e534"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonguldae-mirth.png",
+      "sourceSha256": "ca8b655a2718ce172fa3a6b2d8c443ea9c242c763c5dc1cc46cc5f02d4c21b04",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonguldae-mirth.webp",
+      "outputSha256": "e0fe9821a0ef4897ee0cb516cf94e205ef0372e00f2298ae1e7c5fdca41ed8cb",
       "dimensions": {
         "width": 800,
         "height": 1200
@@ -2490,6 +2682,50 @@
       "dimensions": {
         "width": 1600,
         "height": 901
+      }
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-touch-cheeks",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "prompt": "Generate one fully isolated transparent RGBA portrait 2:3 sprite for our Korean Joseon-era illustrated folktale. First reference is the approved exact identity; keep size ratios between scalp to chin, visible face width, neck, shoulders, torso, limbs, hands, hips, shoes and headwear. Show the full standing silhouette without trimming, with genuine transparent negative space, no cast shadow, no floor, no text, no other person. Restrained hand-painted gouache and watercolor on hanji, soft sepia lines and gently stylized realistic human anatomy, avoid new costume designs, exaggerated motion and photorealism. Express the mood or action with the specific hands, brow, eyes and mouth described. A02, Lady Bak has just shed her disguise. The first image REVEALED face has soft oval jaw, clear almond eyes, finer nose, same tidy black braid and horizontal wooden pin. Second reference only confirms identical body, hair pin and all costume colors across versions. Keep a standing full-body pose. Both palms lightly touch lower cheeks with wrists angled naturally and fingers visible, eyes open in quiet wonder, shoulders stable, rose jeogori and teal skirt untouched. Keep her face legible between the two hands. Same adult head and hands scale as reference, no magical light or accessory.",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-revealed-touch-cheeks.png",
+      "sourceSha256": "a740f8142358ec18d3eaa427472c1bd797ca93149aa8dd417d0d76c4df692b1c",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed-touch-cheeks.webp",
+      "outputSha256": "20f36efae6f0ed49f30819532a809ededd1855894b10f264a7b781f56b0c5d4b",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-soli-blue-jar",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "prompt": "Generate one fully isolated transparent RGBA portrait 2:3 sprite for our Korean Joseon-era illustrated folktale. First reference is the approved exact identity; keep size ratios between scalp to chin, visible face width, neck, shoulders, torso, limbs, hands, hips, shoes and headwear. Show the full standing silhouette without trimming, with genuine transparent negative space, no cast shadow, no floor, no text, no other person. Restrained hand-painted gouache and watercolor on hanji, soft sepia lines and gently stylized realistic human anatomy, avoid new costume designs, exaggerated motion and photorealism. Express the mood or action with the specific hands, brow, eyes and mouth described. A Korean girl Soli in the V branch, lighter small child build, exact pale blue slate jeogori, beige skirt, cream cuffs and socks, blue hair ribbon and tan straw shoes as first reference. Standing and lightly holding a small matte gray-brown earthenware water jar with two visible side ears around waist height, jar about the width of her upper body. A distinct cobalt blue worn fabric cord with two short tails is knotted only around one side ear, apart from her hair ribbon, visible on the facing side. Both hands support the small jar comfortably and do not hide the knot. Gaze toward her mother, lowered shoulders, hopeful. One girl with one water jar only. Keep clay pottery understated and no extra decor.\n\nPrecisely edit the attached full-body transparent watercolor character of Soli holding a little two-eared water jar. Preserve exact character scale, full shoes, water jar and cobalt cord, blue jacket and beige skirt, face, height, hands and composition. Fix the currently almost-white triangular artifact trapped between the back of her neck, shoulder and viewer-left long braid. It must be completely true alpha zero within that negative space, contiguous as a natural transparent cutout with softly antialiased hair and collar edges. Use the second model image to match her original hairstyle of one main braid in view; minimize any visible extra braid on the far side of the neck. All surrounding background including holes within the silhouette must be true transparent, no white or semi-opaque fill, no black matte or colored glow, no outlines outside the figure, no open floor or cast shadow. Same portrait 2:3 composition, same original hanji watercolor drawing and jar knot visible.\n초기 후보 PNG SHA-256 0494b7dde287ac4f03c33f95e01693b6668964a78195b3e8fd76589366db9ef2",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-soli",
+          "sha256": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-soli-blue-jar.png",
+      "sourceSha256": "5cda6c0a47be6ca9296026cec836008ac6212c4ff31bc1de396b255db5d59e30",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-soli-blue-jar.webp",
+      "outputSha256": "f42c95d58c8dfe1651f5853c63a55008ab44ec840c64b000942961ade1d37bb6",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
       }
     }
   ]
