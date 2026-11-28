@@ -92,6 +92,10 @@ function optionalChoice(value: unknown, values: readonly unknown[]): boolean {
 const REVIEWED_IMAGE_PATHS: ReadonlySet<string> = new Set([
   // BEGIN BAKSSI IMAGE PATHS
   "assets/bakssi-v1/bakssi-character-bakssi.webp",
+  "assets/bakssi-v1/bakssi-character-bakssi-joy.webp",
+  "assets/bakssi-v1/bakssi-character-bakssi-anger.webp",
+  "assets/bakssi-v1/bakssi-character-bakssi-sorrow.webp",
+  "assets/bakssi-v1/bakssi-character-bakssi-mirth.webp",
   "assets/bakssi-v1/bakssi-character-bakssi-revealed.webp",
   "assets/bakssi-v1/bakssi-character-bakssi-revealed-joy.webp",
   "assets/bakssi-v1/bakssi-character-bakssi-revealed-anger.webp",

@@ -591,34 +591,6 @@
       ]
     },
     {
-      "id": "bakssi-shortstory-page-01",
-      "role": "page",
-      "label": "찻잔 두 개",
-      "characters": [
-        "bakssi.bakssi",
-        "bakssi.sibaek"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-02",
-      "role": "page",
-      "label": "뒤뜰에 지은 집",
-      "characters": [
-        "bakssi.bakssi",
-        "bakssi.gyehwa"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
       "id": "bakssi-shortstory-page-03",
       "role": "page",
       "label": "빈 여물통",
@@ -626,107 +598,6 @@
         "bakssi.gyehwa",
         "bakssi.envoy",
         "bakssi.horse"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-04",
-      "role": "page",
-      "label": "물 한 방울",
-      "characters": [
-        "bakssi.sibaek"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-05",
-      "role": "page",
-      "label": "마루 밑의 신발",
-      "characters": [
-        "bakssi.bakssi",
-        "bakssi.gyehwa"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-06",
-      "role": "page",
-      "label": "한밤의 손님",
-      "characters": [
-        "bakssi.bakssi",
-        "bakssi.gihongdae"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-07",
-      "role": "page",
-      "label": "쌀자루를 여는 날",
-      "characters": [
-        "bakssi.gyehwa",
-        "bakssi.sister-young",
-        "bakssi.sister-older"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-08",
-      "role": "page",
-      "label": "문 하나를 사이에 두고",
-      "characters": [
-        "bakssi.bakssi",
-        "bakssi.sister-young",
-        "bakssi.sister-older"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-09",
-      "role": "page",
-      "label": "돌아가는 길",
-      "characters": [
-        "bakssi.yonggoldae",
-        "bakssi.sister-young",
-        "bakssi.sister-older"
-      ],
-      "artReferenceIds": [
-        "seonnyeo.scene.shortstory-classic-02",
-        "onggojib.scene.shortstory-classic-02",
-        "heungbu.scene.shortstory-classic-03"
-      ]
-    },
-    {
-      "id": "bakssi-shortstory-page-10",
-      "role": "page",
-      "label": "버선발",
-      "characters": [
-        "bakssi.bakssi",
-        "bakssi.sister-young",
-        "bakssi.sister-older"
       ],
       "artReferenceIds": [
         "seonnyeo.scene.shortstory-classic-02",
@@ -894,6 +765,149 @@
         "bakssi-stage-lane-snow"
       ],
       "prompt": "Use case: illustrated historical folktale, existing Bakssi-jeon reading stage asset. A single FULL-BLEED landscape 16:9 wide game background, target aspect ratio 1672 by 941, richly brushed warm sepia linework and textured watercolor/gouache on hanji, detailed hand-drawn period Korean wood and stone architecture and atmospheric depth, fidelity to the reference's medium. Clear simplified warm color design and restrained contrast; atmospheric without photo or 3D rendering. The existing wide art will also be center-framed in a narrow portrait scene, so keep a recognizable landmark near the center and keep the bottom 28% as usable quiet space for overlay characters and dialogue. Keep midground open and readable. Empty stage: absolutely no people, silhouettes, statues, animals, character shadows, text, markings, graphics, borders or watermarks. No modern items. The rendered weather is a stage background; keep foreground action space unobstructed.\nEdit image 1 as the same Hanyang neighborhood well, identical wide camera, perspective and places of its arch wood posts, pulley, rope and unobstructed waist-low round gray stone well just left of center, the small existing bucket next to well, tile wall behind, building and low platform on the right. Same positions and silhouettes, hold composition in the native wide 16:9 frame. Winter dusk: purple-blue clean ambient light, thin settled snow on gray stones, well rim, roof and branches, bare branch structure, a few small amber window lights at right. A patch of worn snow around the well and a quiet open apron in front, no frozen transparent glass effect. The well and its wood gear must read at the center when cropped vertically. The second reference is blue winter stage atmosphere only. No figures, horses, extra buildings, buckets blocking the stage, or blizzard."
+    },
+    {
+      "id": "bakssi-shortstory-page-02",
+      "role": "page",
+      "label": "뒤뜰에 지은 집",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "artReferenceIds": [
+        "bakssi-character-bakssi",
+        "bakssi-character-bakssi-wedding"
+      ],
+      "prompt": "Edit the first supplied full-bleed landscape 16:9 Joseon watercolor picture-book illustration. Preserve its actual hand-painted hanji palette, landscape size, viewpoint, character placement, period costumes, wooden architecture, softly drawn sepia textures, furniture, props, and light. Keep all existing people in the same places and preserve their scale, hands, body posture and detailed scene. The new face must blend naturally with the same unretouched illustration, with no pasted look, excessive texture, graphic lettering, borders or watermarks. The adult Korean woman Lady Bak at right is BEFORE removing a magical disguise. Use the provided approved pre-reveal portrait to clarify her specific structural characteristics at the actual reading size: lower less arched uneven brows with the right side subtly higher, heavier asymmetrically hooded and narrower eyes, broad uneven nose bridge and nose tip, prominent one-sided cheekbone, mildly uneven broad jaw, flattened chin, near-level small closed mouth. Remove any tapered pointed chin, cosmetically shaped high arches, sharp fashionable eyeliner and taut glamour look. Her features are distinctive yet dignified and humane. Preserve adult age, unchanged neck and shoulder widths, exact hairstyle and pin placement appropriate for the scene, no blemishes, scars, caricature, or exaggerated age. The before and after must differ in actual structure, beyond expression and lighting. Only edit the face and subtle tilt angle of the pink-jacket/teal-skirt woman on the RIGHT. Her eyes stay softly open as she tilts with Gyehwa checking the new sign, eyebrows one lower, lower face noticeably broad asymmetric with slightly flat chin, matching the approved neutral reference and wedding face. Keep the first picture's proportional moderately large head, braided hair and plain wooden pin. Keep Gyehwa exactly as she is; preserve her gentle round alert eyes, mustard jacket and braid. Maintain the blank timber plaque held with both women's hands and the sunlit open yard unchanged.\n\n이전 삽화 입력. bakssi-shortstory-page-02 PNG SHA-256 48ade49d65971d14f92f1aec33d5081f185144f8186867991f5f1ee448812002"
+    },
+    {
+      "id": "bakssi-shortstory-page-01",
+      "role": "page",
+      "label": "찻잔 두 개",
+      "characters": [
+        "bakssi.bakssi"
+      ],
+      "artReferenceIds": [
+        "bakssi-character-bakssi-wedding",
+        "bakssi-character-bakssi"
+      ],
+      "prompt": "Edit the first supplied full-bleed landscape 16:9 Joseon watercolor picture-book illustration. Preserve its actual hand-painted hanji palette, landscape size, viewpoint, character placement, period costumes, wooden architecture, softly drawn sepia textures, furniture, props, and light. Keep all existing people in the same places and preserve their scale, hands, body posture and detailed scene. The new face must blend naturally with the same unretouched illustration, with no pasted look, excessive texture, graphic lettering, borders or watermarks. The adult Korean woman Lady Bak at right is BEFORE removing a magical disguise. Use the provided approved pre-reveal portrait to clarify her specific structural characteristics at the actual reading size: lower less arched uneven brows with the right side subtly higher, heavier asymmetrically hooded and narrower eyes, broad uneven nose bridge and nose tip, prominent one-sided cheekbone, mildly uneven broad jaw, flattened chin, near-level small closed mouth. Remove any tapered pointed chin, cosmetically shaped high arches, sharp fashionable eyeliner and taut glamour look. Her features are distinctive yet dignified and humane. Preserve adult age, unchanged neck and shoulder widths, exact hairstyle and pin placement appropriate for the scene, no blemishes, scars, caricature, or exaggerated age. The before and after must differ in actual structure, beyond expression and lighting. Ref 2 is primary wedding face and headdress; refs 3 and 4 fix her shared pre-reveal anatomy across dress and angle. Change only the actual bride's face and her gaze to show both eyes in a gentle near-frontal three-quarter view toward the nearly shut lattice door on her right. Show the wide lower jaw clearly, avoid a beauty ideal, preserve the small round red jokduri, rich red wedding robe, two cups on a low table, faint steam from only one cup, empty opposite cushion, moonlight and unchanged hands.\n\n이전 삽화 입력. bakssi-shortstory-page-01 PNG SHA-256 9a27a1d4f935a914368d379942987589c8a5afb2e663eedc09c291b892777505, bakssi-shortstory-page-02 PNG SHA-256 48ade49d65971d14f92f1aec33d5081f185144f8186867991f5f1ee448812002"
+    },
+    {
+      "id": "bakssi-shortstory-page-04",
+      "role": "page",
+      "label": "물 한 방울",
+      "characters": [
+        "bakssi.sibaek"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-03",
+        "bakssi-character-sibaek-inkstone"
+      ],
+      "prompt": "Full-bleed 16:9 original Joseon picture-book illustration in lightly textured hanji watercolor and gouache. Preserve cast identity, full head and natural body proportions around six to six and a half heads, readable gestures and margins, and use no drawn writing or labels. In a sunny Joseon exam courtyard, indigo-clad Sibaek tips the frog-shaped clay water dropper above a shallow inkstone. Hold his other hand at the page and keep his face clear beneath the gat. Edit the exact first picture from the same originally painted Korean Joseon 16:9 picture-book series. Retain the exam compound, one young indigo-robed scholar, expression, careful hand turning the clay frog water-dropper, one visible water drop above the shallow inkstone and his other hand on the blank paper, and hanji watercolor. Improve his proportions and outer margin, shrinking ONLY the hat crown height and brim width a little, and lightly easing the framing back without reducing how readable his face and hands are. The top edge of the scholar's gauzy gat needs roughly 7 to 9 percent of the height in sky and negative space above it. His eyes, brow, jaw, youthful features and collar must match the second reference, and face remains clearly readable below the brim. Keep robe seated at desk, natural arm and fingers. No text. 16:9 full bleed."
+    },
+    {
+      "id": "bakssi-shortstory-page-06",
+      "role": "page",
+      "label": "한밤의 손님",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gihongdae"
+      ],
+      "artReferenceIds": [
+        "bakssi-character-bakssi-revealed",
+        "bakssi-character-gihongdae",
+        "bakssi-stage-courtyard-night"
+      ],
+      "prompt": "Full-bleed 16:9 original Joseon picture-book illustration in lightly textured hanji watercolor and gouache. Preserve cast identity, full head and natural body proportions around six to six and a half heads, readable gestures and margins, and use no drawn writing or labels. Moonlit Pihwadang threshold. Revealed Bakssi looks at Gihongdae as the night guest stops outside. Contrast cool moonlight outside and reflected amber lantern light inside."
+    },
+    {
+      "id": "bakssi-shortstory-page-07",
+      "role": "page",
+      "label": "쌀자루를 여는 날",
+      "characters": [
+        "bakssi.gyehwa",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-03",
+        "bakssi-character-gyehwa-rice-sack",
+        "bakssi-character-sister-older",
+        "bakssi-character-sister-young",
+        "bakssi-stage-courtyard-snow"
+      ],
+      "prompt": "Full-bleed 16:9 original Joseon picture-book illustration in lightly textured hanji watercolor and gouache. Preserve cast identity, full head and natural body proportions around six to six and a half heads, readable gestures and margins, and use no drawn writing or labels. Repeat the angle from page three in snowy twilight, keeping the old rectangular feeding trough empty. Gyehwa opens the rice sack, the shorter yellow-ribbon child and blue-clad sister arrive beside the warm cauldron."
+    },
+    {
+      "id": "bakssi-shortstory-page-08",
+      "role": "page",
+      "label": "문 하나를 사이에 두고",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.sister-young",
+        "bakssi.sister-older",
+        "bakssi.yonguldae"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-cover",
+        "bakssi-character-bakssi-revealed",
+        "bakssi-character-sister-older",
+        "bakssi-character-sister-young",
+        "bakssi-character-yonguldae"
+      ],
+      "prompt": "Full-bleed 16:9 original Joseon picture-book illustration in lightly textured hanji watercolor and gouache. Preserve cast identity, full head and natural body proportions around six to six and a half heads, readable gestures and margins, and use no drawn writing or labels. The sisters hold hands under lamplight inside the threshold. Revealed Bakssi lifts one sleeve as snow eddies outside with Yonguldae in rust armour at a distance."
+    },
+    {
+      "id": "bakssi-shortstory-page-09",
+      "role": "page",
+      "label": "돌아가는 길",
+      "characters": [
+        "bakssi.yonggoldae",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-cover",
+        "bakssi-character-sister-older",
+        "bakssi-character-sister-young",
+        "bakssi-character-yonggoldae-sorrow",
+        "bakssi-stage-courtyard-snow"
+      ],
+      "prompt": "Full-bleed 16:9 original Joseon picture-book illustration in lightly textured hanji watercolor and gouache. Preserve cast identity, full head and natural body proportions around six to six and a half heads, readable gestures and margins, and use no drawn writing or labels. Across the still snow, Yonggoldae lowers his plain banner. Reveal a legible path through the gate and the sisters loosening their clasp on the warmly lit porch."
+    },
+    {
+      "id": "bakssi-shortstory-page-10",
+      "role": "page",
+      "label": "버선발",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-cover",
+        "bakssi-character-bakssi-revealed-crouch-shoes",
+        "bakssi-character-sister-older",
+        "bakssi-character-sister-young",
+        "bakssi-stage-courtyard-spring"
+      ],
+      "prompt": "Full-bleed 16:9 original Joseon picture-book illustration in lightly textured hanji watercolor and gouache. Preserve cast identity, full head and natural body proportions around six to six and a half heads, readable gestures and margins, and use no drawn writing or labels. In spring the revealed Bakssi runs out in plain white beoseon, holding one hand of each girl. A blank scroll and worn straw shoes sit beside the open door."
+    },
+    {
+      "id": "bakssi-shortstory-page-05",
+      "role": "page",
+      "label": "마루 밑의 신발",
+      "characters": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "artReferenceIds": [
+        "bakssi-character-bakssi-revealed",
+        "bakssi-character-bakssi-revealed-crouch-shoes",
+        "bakssi-character-bakssi"
+      ],
+      "prompt": "Edit the first supplied full-bleed landscape 16:9 Joseon watercolor picture-book illustration. Preserve its actual hand-painted hanji palette, landscape size, viewpoint, character placement, period costumes, wooden architecture, softly drawn sepia textures, furniture, props, and light. Keep all existing people in the same places and preserve their scale, hands, body posture and detailed scene. The new face must blend naturally with the same unretouched illustration, with no pasted look, excessive texture, graphic lettering, borders or watermarks. Only edit the RIGHT woman's face very lightly, keeping the same total head size and angle of the crouching body. Lady Bak has just shed her disguise. Carefully match second ref's structural features now: a softly tapered oval, small symmetrical refined nose, appropriately open almond eyes with even soft brows, gentler jaw, same adult age and the same hairline around the low braid. Do not alter any of her dusty rose/teal clothes, horizontal pale wooden hairpin, hand position, body scale or shoes she is wearing. Lift her gaze just enough to make the eyes both legible as she recognizes the shoe in Gyehwa's hands. Gyehwa and the entire environment remain unchanged. Preserve the big frayed shoe in Gyehwa’s hands and the single matching frayed shoe behind them among visitors' tidy pairs. No additional person or object.\n\n이전 삽화 입력. bakssi-shortstory-page-05 PNG SHA-256 18a572ca31b082678adf693912572b58a13c430f4070f6ccda222c991c1354d9"
     }
   ]
 }

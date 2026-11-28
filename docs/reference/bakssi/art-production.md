@@ -123,3 +123,21 @@ Create one polished 3-column comparison sheet, with three separate transparent f
 [배경 비교판](stage-review-approved.jpg)의 8장을 등록했다. 피화당 마당의 네 시간대·계절은 감나무, 대문, 마루, 초가 창고의 위치를 기준으로 맞췄다. 축사·가마터·어전·겨울 우물에는 그 장소를 알아볼 수 있는 물건을 배치했다. [생성 기록](../../../assets/source/bakssi/generation.json)에 각 PNG와 WebP의 해시, 생성 지시문, 참조한 그림이 있다.
 
 원작과 놀스토리 506컷의 가로·세로 배경 경로를 확인했다. Ren’Py 8.5.3에서 신규 배경마다 대표 장면 하나를 가로와 폭 390px 세로에서 무음으로 재생했다. 세로에서는 축사와 가마터를 오른쪽으로, 겨울 우물을 왼쪽으로 조금 옮겨 여물통·가마·우물테가 잘리지 않게 했다.
+
+## 숏스토리 열 쪽 승인본
+
+[숏스토리 비교판](shortstory-review-approved.jpg)의 1·2·4~10쪽을 검토하고 등록했다. 1쪽은 신방의 찻상·찻잔 두 개·달빛 구도에서 허물 전 혼례복의 넓은 턱과 낮은 눈썹을 맞췄다. 2쪽의 평상복에서도 같은 얼굴형을 유지했고, 5쪽은 더 부드러운 타원형 턱과 눈매로 차이가 드러난다. 5·6·8·10쪽은 비녀와 머리 모양, 저고리와 치마를 이어 그렸다. [허물 전후 얼굴 확대](shortstory-face-continuity.jpg)에서 승인 기준과 함께 확인할 수 있다. 4쪽의 이시백은 갓과 얼굴의 크기, 갓 위 여백을 보정했다. 3·7쪽은 같은 여물통과 쌀자루, 5·10쪽은 같은 헌 짚신을 보여 준다. 7~10쪽의 자매는 키 차이와 옷, 막내의 노란 댕기로 알아볼 수 있다.
+
+[생성 기록](../../../assets/source/bakssi/generation.json)의 PNG·WebP 해시를 비교판 검토 묶음과 대조했다. 폭 1600px의 WebP가 읽기 화면에 열리는지 데스크톱과 폭 390px 세로에서 확인했다. 마지막 쪽 위치를 다시 열고 A4 12쪽 PDF의 쪽수와 용지 크기를 검사했다.
+
+## 허물 전 박씨의 표정
+
+[비교판](character-review-bakssi-pre-reveal.jpg)의 네 표정은 허물 전 평상복 대표 전신을 참조했다. 각 표정은 눈·입과 손짓을 바꿨고 얼굴형과 어깨·몸통·손발을 같은 배율에서 대조했다. 재생용 WebP는 800×1200px, 발 기준선은 y=1152px다. 각 장에는 아래 공통 지시와 해당 표정의 지시를 함께 사용했다.
+
+```text
+Create a single true transparent RGBA isolated full-body sprite for our Korean Joseon history folktale. The first attached PNG is the exact original Lady Bak BEFORE shedding her enchanted disguise. Keep the same appealing hanji watercolor and gouache, fine subdued sepia contours, same soft cloth shading, and the exact full-body character design from THIS reference. Preserve her asymmetric lower brows, wider uneven jaw and slightly offset cheekbones, narrower eyes and broad subtle nose. Her face is adult, dignified, recognizable, never comical. Keep exactly the same hairline, low woven braided black bun, one flat horizontal light wooden hairpin peeking on the right, dusty rose jeogori, cloth tie, white collar and cuffs, desaturated deep teal charcoal flared chima, white socks and tan historic shoes, garment hems. Preserve actual head height measured from scalp to chin, neck, shoulder width, torso and hip proportion, elbow and wrist positions, length and size of limbs and hands, shoes, and same scale as the source. About six heads in a natural human illustrated body. Keep the same three-quarter view and eye level. Eyes are well defined at sprite size. Entire human outline from hairstyle to soles within the canvas, with generous real alpha padding on four sides. Portrait 2:3 for one standing actor. No cast shadow, fog, gray backdrop, floor, text, props, duplicated arms, or decorative flourishes. Only the chosen expression and corresponding small natural motion should change.
+joy: Quiet relief and hope rather than laughter. Her eyelids open a little, her uneven brows lift softly, she smiles with mouth closed and one corner a little higher, shoulders loosen, one hand gently supports the opposite fingers near the waist. Both hands visible naturally.
+anger: Controlled firm indignation as she challenges an unfair decision. Her brows knit, mouth closes firmly, one bare hand lifts to mid-chest with a simple open palm to halt an interruption, the other rests low naturally. She stands neither in attack nor leaning. Preserve wide cheekbones and her distinctive short lower lip.
+sorrow: Hurt yet composed after being unfairly rejected. Head lowers only a few degrees while her eyes look down and slightly away, inner brows rise, lips loosen gently. Her posture and full standing height remain similar, shoulders soften, hands lightly hold one another around the lower waist instead of her old clasp. No crying droplet embellishments or distress effects.
+mirth: Brief sincere laugh at a small kind joke, clearly distinguish from closed-mouth hope. Slightly crescent narrowed eyes, softly open laughing mouth without broad visible teeth, one hand at the upper part of her chest below the chin without obscuring the face, the other near waist. Preserve adult expression and exact hair, face and limbs.
+```

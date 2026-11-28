@@ -10669,6 +10669,54 @@
       "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
     },
     {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-joy.webp",
+      "sha256": "d159b780919882ddcb89d1bebf66846a3299742616504c266777667ed4a3be85",
+      "assetIds": [
+        "bakssi-character-bakssi-joy"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-character-bakssi-joy"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-anger.webp",
+      "sha256": "b2feecb89501a0f093b181228466b6e1108b1cc10f464c944fe44e50ab6d9b8d",
+      "assetIds": [
+        "bakssi-character-bakssi-anger"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-character-bakssi-anger"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-sorrow.webp",
+      "sha256": "d5af2f0220c4b07fc8b195812dc8b1aa89057f5c423ecb3c60bc3c9a98c518f9",
+      "assetIds": [
+        "bakssi-character-bakssi-sorrow"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-character-bakssi-sorrow"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-mirth.webp",
+      "sha256": "0638f84a0bd88cc7d59b6743ab4013c49b52188af53f0a4b3cffa258893706fd",
+      "assetIds": [
+        "bakssi-character-bakssi-mirth"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-character-bakssi-mirth"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
       "file": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-revealed.webp",
       "sha256": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c",
       "assetIds": [
@@ -11329,18 +11377,6 @@
       "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
     },
     {
-      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-01.webp",
-      "sha256": "885cafb9b691971d7209da84ba6f97622155c881e9f10e1da85310517028612c",
-      "assetIds": [
-        "bakssi-shortstory-page-01"
-      ],
-      "sourceKind": "generated-project",
-      "lineageEvidence": [
-        "assets/source/bakssi/generation.json#bakssi-shortstory-page-01"
-      ],
-      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
-    },
-    {
       "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-03.webp",
       "sha256": "ce87bcaddc410344499226c19fe3286e8dd207a46b422f18272a21f45b54ebd7",
       "assetIds": [
@@ -11481,6 +11517,114 @@
       "sourceKind": "generated-project",
       "lineageEvidence": [
         "assets/source/bakssi/generation.json#bakssi-stage-well-snow"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-02.webp",
+      "sha256": "dc1990e08c919ad47c6d05fa059dc968dca3d8d01c74b392d7a6401d02729cb0",
+      "assetIds": [
+        "bakssi-shortstory-page-02"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-02"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-01.webp",
+      "sha256": "8fef3c507739673eb7bd366b0d2a35113ef103d03c980d998675d9e89e623d20",
+      "assetIds": [
+        "bakssi-shortstory-page-01"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-01"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-04.webp",
+      "sha256": "590fc2527f37044d83be2f485feece4c62d387c8db44fec5ba24759e5d460f8a",
+      "assetIds": [
+        "bakssi-shortstory-page-04"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-04"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-06.webp",
+      "sha256": "48a131e0733144001b75123d989d0e3619e827b858bdc54eb98e2b364191a34a",
+      "assetIds": [
+        "bakssi-shortstory-page-06"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-06"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-07.webp",
+      "sha256": "e314a75f2d6fe75431775fd30ec78c48144b6c970c12272721e854fcbcd280a4",
+      "assetIds": [
+        "bakssi-shortstory-page-07"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-07"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-08.webp",
+      "sha256": "a0b43e6086386fafe40fcad913d115ed6bd9ab1f15e01aaecfa7b360653fe934",
+      "assetIds": [
+        "bakssi-shortstory-page-08"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-08"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-09.webp",
+      "sha256": "3167804d2dc4f3b4a35ff3b87fae5b357355e2c1773d326abde53f4c9f63610c",
+      "assetIds": [
+        "bakssi-shortstory-page-09"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-09"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-10.webp",
+      "sha256": "5f266643ae15f09bc12ead24370d6d9c4fe4b58b046dc8dbd905f5470ac6ef2e",
+      "assetIds": [
+        "bakssi-shortstory-page-10"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-10"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
+    },
+    {
+      "file": "apps/web/public/assets/bakssi-v1/bakssi-shortstory-page-05.webp",
+      "sha256": "6ed7bb2510e248fb3901d5dbe9161e72d7400bb8bc6cc6677811a95dce332448",
+      "assetIds": [
+        "bakssi-shortstory-page-05"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "assets/source/bakssi/generation.json#bakssi-shortstory-page-05"
       ],
       "creationMethodEvidence": "built-in image_gen; project owner requested style-matched Bakssi production and KnolStory service use"
     }

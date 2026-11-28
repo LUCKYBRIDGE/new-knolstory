@@ -52800,6 +52800,310 @@
     }
   },
   {
+    "id": "bakssi-character-bakssi-joy",
+    "displayName": "박씨 · 기쁨",
+    "label": "박씨 · 기쁨",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-joy.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-joy",
+    "copyright": "놀퀴즈",
+    "revision": "d159b780919882ddcb89d1bebf66846a3299742616504c266777667ed4a3be85",
+    "geometry": {
+      "left": 0.22625,
+      "right": 0.77375,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "박씨 · 기쁨"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "기쁨"
+      ],
+      "emotionRole": "joy",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M01-earth-neutral",
+        "referenceRevision": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+        "heightRatio": 0.96,
+        "reason": "성인 여성 기준. 변신 전후와 혼례복에 같은 체격을 적용"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-bakssi-anger",
+    "displayName": "박씨 · 분노",
+    "label": "박씨 · 분노",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-anger.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-anger",
+    "copyright": "놀퀴즈",
+    "revision": "b2feecb89501a0f093b181228466b6e1108b1cc10f464c944fe44e50ab6d9b8d",
+    "geometry": {
+      "left": 0.225,
+      "right": 0.77625,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "박씨 · 분노"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "분노"
+      ],
+      "emotionRole": "anger",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M01-earth-neutral",
+        "referenceRevision": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+        "heightRatio": 0.96,
+        "reason": "성인 여성 기준. 변신 전후와 혼례복에 같은 체격을 적용"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-bakssi-sorrow",
+    "displayName": "박씨 · 슬픔",
+    "label": "박씨 · 슬픔",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-sorrow.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-sorrow",
+    "copyright": "놀퀴즈",
+    "revision": "d5af2f0220c4b07fc8b195812dc8b1aa89057f5c423ecb3c60bc3c9a98c518f9",
+    "geometry": {
+      "left": 0.22875,
+      "right": 0.77125,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "박씨 · 슬픔"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "슬픔"
+      ],
+      "emotionRole": "sorrow",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M01-earth-neutral",
+        "referenceRevision": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+        "heightRatio": 0.96,
+        "reason": "성인 여성 기준. 변신 전후와 혼례복에 같은 체격을 적용"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-bakssi-mirth",
+    "displayName": "박씨 · 즐거움",
+    "label": "박씨 · 즐거움",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-mirth.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-mirth",
+    "copyright": "놀퀴즈",
+    "revision": "0638f84a0bd88cc7d59b6743ab4013c49b52188af53f0a4b3cffa258893706fd",
+    "geometry": {
+      "left": 0.2275,
+      "right": 0.77375,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "박씨 · 즐거움"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "즐거움"
+      ],
+      "emotionRole": "mirth",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M01-earth-neutral",
+        "referenceRevision": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+        "heightRatio": 0.96,
+        "reason": "성인 여성 기준. 변신 전후와 혼례복에 같은 체격을 적용"
+      }
+    }
+  },
+  {
     "id": "bakssi-character-bakssi-revealed",
     "displayName": "박씨 · 허물을 벗은 뒤",
     "label": "박씨 · 허물을 벗은 뒤",
@@ -56530,57 +56834,6 @@
     }
   },
   {
-    "id": "bakssi-shortstory-page-01",
-    "displayName": "찻잔 두 개",
-    "label": "찻잔 두 개",
-    "story": "박씨전",
-    "type": "background",
-    "group": "작품 속 장면 삽화",
-    "backgroundRole": "scene",
-    "src": "/assets/bakssi-v1/bakssi-shortstory-page-01.webp",
-    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-01",
-    "copyright": "놀퀴즈",
-    "revision": "885cafb9b691971d7209da84ba6f97622155c881e9f10e1da85310517028612c",
-    "geometry": null,
-    "tags": [
-      "박씨전",
-      "찻잔 두 개"
-    ],
-    "metadata": {
-      "generatedBakssiAsset": true,
-      "artFamily": "bakssi-watercolor-v1",
-      "storyPackIds": [
-        "bakssi"
-      ],
-      "qualityStatus": "approved",
-      "pickerVisibility": "secondary",
-      "referenceAssets": [
-        {
-          "id": "seonnyeo.scene.shortstory-classic-02",
-          "sha256": "4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
-        },
-        {
-          "id": "onggojib.scene.shortstory-classic-02",
-          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
-        },
-        {
-          "id": "heungbu.scene.shortstory-classic-03",
-          "sha256": "37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
-        }
-      ],
-      "searchTerms": [],
-      "placementRole": "background-slot",
-      "kind": "scene-illustration",
-      "containsCharacters": true,
-      "containedCharacterIds": [
-        "bakssi.bakssi",
-        "bakssi.sibaek"
-      ],
-      "shortStoryCollection": "story",
-      "storyRelation": "provided-story-event"
-    }
-  },
-  {
     "id": "bakssi-shortstory-page-03",
     "displayName": "빈 여물통",
     "label": "빈 여물통",
@@ -57182,6 +57435,488 @@
         "season": "겨울",
         "weather": "눈"
       }
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-02",
+    "displayName": "뒤뜰에 지은 집",
+    "label": "뒤뜰에 지은 집",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-02.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-02",
+    "copyright": "놀퀴즈",
+    "revision": "dc1990e08c919ad47c6d05fa059dc968dca3d8d01c74b392d7a6401d02729cb0",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "뒤뜰에 지은 집"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        },
+        {
+          "id": "bakssi-character-bakssi-wedding",
+          "sha256": "5d7e00fd1fd8139127093fa17d0e0dd1130de393bc5e45775b5768ad00ad5252"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-01",
+    "displayName": "찻잔 두 개",
+    "label": "찻잔 두 개",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-01.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-01",
+    "copyright": "놀퀴즈",
+    "revision": "8fef3c507739673eb7bd366b0d2a35113ef103d03c980d998675d9e89e623d20",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "찻잔 두 개"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-wedding",
+          "sha256": "5d7e00fd1fd8139127093fa17d0e0dd1130de393bc5e45775b5768ad00ad5252"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.bakssi"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-04",
+    "displayName": "물 한 방울",
+    "label": "물 한 방울",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-04.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-04",
+    "copyright": "놀퀴즈",
+    "revision": "590fc2527f37044d83be2f485feece4c62d387c8db44fec5ba24759e5d460f8a",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "물 한 방울"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-03",
+          "sha256": "ce87bcaddc410344499226c19fe3286e8dd207a46b422f18272a21f45b54ebd7"
+        },
+        {
+          "id": "bakssi-character-sibaek-inkstone",
+          "sha256": "917e4342d0e2e8295a43e12637ef018f0e689af8efc6bf7bc1a1dd73fde1736d"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.sibaek"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-06",
+    "displayName": "한밤의 손님",
+    "label": "한밤의 손님",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-06.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-06",
+    "copyright": "놀퀴즈",
+    "revision": "48a131e0733144001b75123d989d0e3619e827b858bdc54eb98e2b364191a34a",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "한밤의 손님"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c"
+        },
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        },
+        {
+          "id": "bakssi-stage-courtyard-night",
+          "sha256": "f67d92455a466378cf8a4a7dd7b8f74d22dc5128ee81d8baa0dcbd4cfd4e14d8"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.bakssi",
+        "bakssi.gihongdae"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-07",
+    "displayName": "쌀자루를 여는 날",
+    "label": "쌀자루를 여는 날",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-07.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-07",
+    "copyright": "놀퀴즈",
+    "revision": "e314a75f2d6fe75431775fd30ec78c48144b6c970c12272721e854fcbcd280a4",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "쌀자루를 여는 날"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-03",
+          "sha256": "ce87bcaddc410344499226c19fe3286e8dd207a46b422f18272a21f45b54ebd7"
+        },
+        {
+          "id": "bakssi-character-gyehwa-rice-sack",
+          "sha256": "0c81e84c41551eb1f7870cc15f9c383cfca507cf1e82d735e2e2b6e9d3c239e0"
+        },
+        {
+          "id": "bakssi-character-sister-older",
+          "sha256": "4cb6f09e1c17878922c79fabbbb31c3950276ab32bb450124b85193a5fcf9d16"
+        },
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        },
+        {
+          "id": "bakssi-stage-courtyard-snow",
+          "sha256": "aca5c0cb0909f83960e2130ea9d68d04b453dcaead7c73c4895069bdcaf82b17"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.gyehwa",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-08",
+    "displayName": "문 하나를 사이에 두고",
+    "label": "문 하나를 사이에 두고",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-08.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-08",
+    "copyright": "놀퀴즈",
+    "revision": "a0b43e6086386fafe40fcad913d115ed6bd9ab1f15e01aaecfa7b360653fe934",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "문 하나를 사이에 두고"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-cover",
+          "sha256": "ef6e61d15a10249df5bd3d73740af433e997afa46df867cee0dbe65b59c01d5b"
+        },
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c"
+        },
+        {
+          "id": "bakssi-character-sister-older",
+          "sha256": "4cb6f09e1c17878922c79fabbbb31c3950276ab32bb450124b85193a5fcf9d16"
+        },
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        },
+        {
+          "id": "bakssi-character-yonguldae",
+          "sha256": "8300b808715ba785d229a3622a14b3e6dcb1e4e7e83b4d9b96a397995262e534"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.bakssi",
+        "bakssi.sister-young",
+        "bakssi.sister-older",
+        "bakssi.yonguldae"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-09",
+    "displayName": "돌아가는 길",
+    "label": "돌아가는 길",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-09.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-09",
+    "copyright": "놀퀴즈",
+    "revision": "3167804d2dc4f3b4a35ff3b87fae5b357355e2c1773d326abde53f4c9f63610c",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "돌아가는 길"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-cover",
+          "sha256": "ef6e61d15a10249df5bd3d73740af433e997afa46df867cee0dbe65b59c01d5b"
+        },
+        {
+          "id": "bakssi-character-sister-older",
+          "sha256": "4cb6f09e1c17878922c79fabbbb31c3950276ab32bb450124b85193a5fcf9d16"
+        },
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        },
+        {
+          "id": "bakssi-character-yonggoldae-sorrow",
+          "sha256": "8ab802e29fa1115275f308bb9dc3a32403fc798f065613d880fd5b8635071d72"
+        },
+        {
+          "id": "bakssi-stage-courtyard-snow",
+          "sha256": "aca5c0cb0909f83960e2130ea9d68d04b453dcaead7c73c4895069bdcaf82b17"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.yonggoldae",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-10",
+    "displayName": "버선발",
+    "label": "버선발",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-10.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-10",
+    "copyright": "놀퀴즈",
+    "revision": "5f266643ae15f09bc12ead24370d6d9c4fe4b58b046dc8dbd905f5470ac6ef2e",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "버선발"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-cover",
+          "sha256": "ef6e61d15a10249df5bd3d73740af433e997afa46df867cee0dbe65b59c01d5b"
+        },
+        {
+          "id": "bakssi-character-bakssi-revealed-crouch-shoes",
+          "sha256": "234b2b9126ef80e06ac9e1c781ad3ba8f71e4b71cfd1bc9ac633d9590d94f171"
+        },
+        {
+          "id": "bakssi-character-sister-older",
+          "sha256": "4cb6f09e1c17878922c79fabbbb31c3950276ab32bb450124b85193a5fcf9d16"
+        },
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        },
+        {
+          "id": "bakssi-stage-courtyard-spring",
+          "sha256": "fec09b3fd6a196268d3d8e806202821def3b5c668486dbb525dce2f35172a288"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.bakssi",
+        "bakssi.sister-young",
+        "bakssi.sister-older"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "bakssi-shortstory-page-05",
+    "displayName": "마루 밑의 신발",
+    "label": "마루 밑의 신발",
+    "story": "박씨전",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-shortstory-page-05.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-shortstory-page-05",
+    "copyright": "놀퀴즈",
+    "revision": "6ed7bb2510e248fb3901d5dbe9161e72d7400bb8bc6cc6677811a95dce332448",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "마루 밑의 신발"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c"
+        },
+        {
+          "id": "bakssi-character-bakssi-revealed-crouch-shoes",
+          "sha256": "234b2b9126ef80e06ac9e1c781ad3ba8f71e4b71cfd1bc9ac633d9590d94f171"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.bakssi",
+        "bakssi.gyehwa"
+      ],
+      "shortStoryCollection": "story",
+      "storyRelation": "provided-story-event"
     }
   }
 ]
