@@ -54424,6 +54424,74 @@
     }
   },
   {
+    "id": "bakssi-character-deukchun-joy",
+    "displayName": "이득춘 · 기쁨",
+    "label": "이득춘 · 기쁨",
+    "story": "박씨전",
+    "type": "character",
+    "group": "이득춘",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-deukchun-joy.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-deukchun-joy",
+    "copyright": "놀퀴즈",
+    "revision": "5eae7bf12c224a9df1ac9dbdc52fe503473c111ca96f57f8d1d64e24c5c0a4ad",
+    "geometry": {
+      "left": 0.1875,
+      "right": 0.81125,
+      "top": 0.1275,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "이득춘 · 기쁨"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-deukchun",
+          "sha256": "629f3c9e38e365916111aa21533a8e0d386ef20dd0054d97d6bc3eff98d23a05"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.deukchun"
+      ],
+      "primaryCharacterId": "bakssi.deukchun",
+      "expressions": [
+        "기쁨"
+      ],
+      "emotionRole": "joy",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-default",
+        "referenceRevision": "03e7ce726f147c600b896f8fe319727517a0a2f059e47d9c8c8c9146e579bb6c",
+        "heightRatio": 1.0,
+        "reason": "등을 곧게 세운 연장자 성인 남성"
+      }
+    }
+  },
+  {
     "id": "bakssi-character-park-cheosa",
     "displayName": "박 처사",
     "label": "박 처사",
@@ -55268,6 +55336,82 @@
     }
   },
   {
+    "id": "bakssi-character-sister-young-joy",
+    "displayName": "노란 댕기 아이 · 기쁨",
+    "label": "노란 댕기 아이 · 기쁨",
+    "story": "박씨전",
+    "type": "character",
+    "group": "노란 댕기 아이",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-sister-young-joy.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-sister-young-joy",
+    "copyright": "놀퀴즈",
+    "revision": "cf5780f887dd2fe3c096dfc5eaebe938133c0c81ff19689a43827b5ba47129f9",
+    "geometry": {
+      "left": 0.3225,
+      "right": 0.67875,
+      "top": 0.4425,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "노란 댕기 아이 · 기쁨"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.sister-young"
+      ],
+      "primaryCharacterId": "bakssi.sister-young",
+      "expressions": [
+        "기쁨"
+      ],
+      "emotionRole": "joy",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "heungbu.character.child-02",
+        "referenceRevision": "b11fb084b6b81bfd599730e1e0c1d8622bd06959d4be40d1da3072f208a3faca",
+        "heightRatio": 0.9,
+        "reason": "언니와 한 뼘가량 차이를 두는 아동의 키"
+      }
+    }
+  },
+  {
     "id": "bakssi-character-seamstress",
     "displayName": "바느질댁",
     "label": "바느질댁",
@@ -55399,6 +55543,82 @@
         "일상"
       ],
       "emotionRole": "neutral",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "onggojib.character.classic-mother",
+        "referenceRevision": "ac3b5c7721d5a2aef6a3ac2aa5cf99c629bb36e51f808e1ae511e815e9a24b36",
+        "heightRatio": 0.88,
+        "reason": "허리가 굽은 연장자 여성의 보이는 높이"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-grandmother-mirth",
+    "displayName": "우물집 할머니 · 즐거움",
+    "label": "우물집 할머니 · 즐거움",
+    "story": "박씨전",
+    "type": "character",
+    "group": "우물집 할머니",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-grandmother-mirth.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-grandmother-mirth",
+    "copyright": "놀퀴즈",
+    "revision": "7335740847fd9217348934ef00fb85ae034fbb3dc08482b1c5c9b6cd3bc52e83",
+    "geometry": {
+      "left": 0.2,
+      "right": 0.8,
+      "top": 0.23416666666666666,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "우물집 할머니 · 즐거움"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-grandmother",
+          "sha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.grandmother"
+      ],
+      "primaryCharacterId": "bakssi.grandmother",
+      "expressions": [
+        "즐거움"
+      ],
+      "emotionRole": "mirth",
       "actions": [
         "서 있기"
       ],

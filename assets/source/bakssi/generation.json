@@ -686,6 +686,30 @@
       }
     },
     {
+      "id": "bakssi-character-deukchun-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-deukchun",
+          "sha256": "629f3c9e38e365916111aa21533a8e0d386ef20dd0054d97d6bc3eff98d23a05"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-deukchun-joy.png",
+      "sourceSha256": "db483f63965631d79c70ea76db1f567cd76e7e7500343187415ef38db47b5408",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-deukchun-joy.webp",
+      "outputSha256": "5eae7bf12c224a9df1ac9dbdc52fe503473c111ca96f57f8d1d64e24c5c0a4ad",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
       "id": "bakssi-character-park-cheosa",
       "role": "character",
       "tool": "built-in image_gen",
@@ -1002,6 +1026,38 @@
       }
     },
     {
+      "id": "bakssi-character-sister-young-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-sister-young-joy.png",
+      "sourceSha256": "43df2ee3152e01f2d36ced198f2ce187f792684ebe8adf492648e123e291e894",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-sister-young-joy.webp",
+      "outputSha256": "cf5780f887dd2fe3c096dfc5eaebe938133c0c81ff19689a43827b5ba47129f9",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
       "id": "bakssi-character-seamstress",
       "role": "character",
       "tool": "built-in image_gen",
@@ -1052,6 +1108,38 @@
       "sourceSha256": "d88a3391e4c7e1f026291dc6c5c1024157a86f0397c13d6a968cd71c7f461863",
       "output": "apps/web/public/assets/bakssi-v1/bakssi-character-grandmother.webp",
       "outputSha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-grandmother-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-grandmother",
+          "sha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-grandmother-mirth.png",
+      "sourceSha256": "e188a576058d9a95d11a8b247a0d61543466f1f9535aec100884b5b3c1da1629",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-grandmother-mirth.webp",
+      "outputSha256": "7335740847fd9217348934ef00fb85ae034fbb3dc08482b1c5c9b6cd3bc52e83",
       "dimensions": {
         "width": 800,
         "height": 1200
