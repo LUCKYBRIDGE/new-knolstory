@@ -1206,7 +1206,7 @@
     },
     "PathChoice": {
       "type": "object",
-      "description": "One way through a fork: its label (A. 선택지 →, ← 이 길에서 왔어요) and where it leads. separate: copy the cut for this way only (이 길만 따로 쓰기).",
+      "description": "One way through a fork: its label (A. 선택지 →, ← 이 길에서 왔어요) and where it leads. separate: copy the cut for this way only (이 길만 따로 쓰기). peek: the way's cuts as short lines (‘화자: 글’), folded under 펼쳐 보기 — read only. current: the way being written now (select is then disabled).",
       "allowedParents": [
         "Fork"
       ],
@@ -1233,6 +1233,17 @@
           "$ref": "common_types.json#/$defs/DynamicString"
         },
         "separateDisabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        },
+        "peek": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "maxItems": 12
+        },
+        "current": {
           "$ref": "common_types.json#/$defs/DynamicBoolean"
         }
       },

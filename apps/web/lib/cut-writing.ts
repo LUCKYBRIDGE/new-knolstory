@@ -16,7 +16,7 @@ export function splitCutInto(project:StoryProject,lineId:string,pieces:readonly 
   try{
    if(head&&rest)next=splitStoryCut(patchStoryLine(next,last,{text:head+rest}),last,id,head.length);
    else{
-    if(source.flow?.type==='choice')throw Error('선택지가 있는 컷 다음은 갈래에서 이어 써 주세요.');
+    if(source.flow?.type==='choice')throw Error('선택지 컷 다음은 아래 갈래 줄에서 갈래를 골라 이어 써 주세요.');
     next=patchStoryLine(insertStoryCut(patchStoryLine(next,last,{text:head}),last,id),id,{type:source.type,speaker:source.speaker,speakerName:source.speakerName,text:rest});
    }
    ids.push(id);

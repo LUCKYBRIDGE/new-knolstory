@@ -108,6 +108,24 @@ export function mergeAskSurface(lineId:string):Surface{
   {id:'merge-keep',component:'Button',label:'따로 두기',variant:'quiet',action:{event:{name:MANUSCRIPT_EVENTS.keep,context:{lineId}}}},
  ],{});
 }
+export const BRANCH_EVENTS={open:'openBranch',write:'writeBranch'} as const;
+export type StripWay=Readonly<{optionId:string;mark:string;lineId?:string;where?:string;leadsTo?:string;peek:readonly string[]}>;
+const shortMark=(mark:string)=>mark.length>34?`${mark.slice(0,33)}…`:mark;
+/** 원고 · 갈래 줄: every way out of a choice at once. Under the choice cut (`origin` absent) or at the top of a way's chapter
+ * (`origin`: where it came from; the way being written is marked current and the others open in its place). */
+export function branchStripSurface({choiceLineId,ways,note,origin,disabled,canWrite=true}:{choiceLineId:string;ways:readonly StripWay[];note?:string;origin?:{from:string;optionId:string};disabled:boolean;canWrite?:boolean}):Surface{
+ const way=(item:StripWay):A2uiComponent[]=>item.lineId
+  ?[{id:`way-${item.optionId}`,component:'PathChoice',label:origin?.optionId===item.optionId?`${shortMark(item.mark)} · 지금 쓰는 갈래`:`${shortMark(item.mark)} →`,
+    where:[item.where,item.leadsTo].filter(Boolean).join(' · '),...(item.peek.length?{peek:item.peek.slice(0,12)}:{}),
+    ...(origin?.optionId===item.optionId?{current:true}:{}),disabled:{path:'/disabled'},select:{event:{name:BRANCH_EVENTS.open,context:{lineId:item.lineId}}}}]
+  :[{id:`way-${item.optionId}`,component:'Notice',kind:'empty',text:`${shortMark(item.mark)} · 아직 비어 있어요`,...(canWrite?{actions:[`write-${item.optionId}`]}:{})},
+    ...(canWrite?[{id:`write-${item.optionId}`,component:'Button',label:'이 갈래 쓰기',disabled:{path:'/disabled'},action:{event:{name:BRANCH_EVENTS.write,context:{lineId:choiceLineId,optionId:item.optionId}}}}]:[])];
+ const back:A2uiComponent[]=origin?[{id:'way-origin',component:'PathChoice',label:'← 선택지 컷으로',where:origin.from,disabled:{path:'/disabled'},select:{event:{name:BRANCH_EVENTS.open,context:{lineId:choiceLineId}}}}]:[];
+ return surfaceFrom(`branch-strip-${choiceLineId}${origin?'-origin':''}`,[
+  {id:'fork',component:'Fork',title:origin?`갈래 · ${origin.from} 선택지에서 왔어요`:'갈래 · 어느 길을 이어서 쓸까요?',...(note?{note}:{}),children:[...back.map(item=>item.id),...ways.map(item=>`way-${item.optionId}`)]},
+  ...back,...ways.flatMap(way),
+ ],{disabled});
+}
 /** A cut's text box (쓰기 and 원고). On 원고 (writeOn) Enter twice starts the next cut and Backspace at the start joins the cut before. */
 export function textBoxSurface({lineId,label,value,readOnly,disabled,writeOn=false}:{lineId:string;label:string;value:string;readOnly:boolean;disabled:boolean;writeOn?:boolean}):Surface{
  return surfaceFrom(`text-${lineId}`,[

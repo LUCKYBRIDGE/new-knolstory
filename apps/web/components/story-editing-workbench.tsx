@@ -3,11 +3,12 @@
 import {FocusSurface,type FocusSurfaceAction} from './a2ui/focus-surface';
 import type {A2uiComponent} from '@knolstory/ui';
 import {listToolsSurface,LIST_TOOLS_EVENTS} from './a2ui/list-tools-surface';
-import {cutItemSurface,CUT_EVENTS,basicHeadSurface,BASIC_HEAD_EVENTS,type CutSteps,textBoxSurface,TEXT_EVENT,MANUSCRIPT_EVENTS,cutSpeakerSurface,mergeAskSurface,backgroundDisplaySurface,BACKGROUND_DISPLAY_EVENTS,actorCardSurface,ACTOR_EVENTS,cutPanelSurface,PANEL_TOGGLE_EVENT,stagingImportSurface,textVariantsSurface,companionSurface,companionsSurface,type CompanionView,cutCardSurface,forkSurface,lineNoticeSurface,NEIGHBOUR_EVENTS,type ForkChoice} from './a2ui/editor-surfaces';
+import {cutItemSurface,CUT_EVENTS,basicHeadSurface,BASIC_HEAD_EVENTS,type CutSteps,textBoxSurface,TEXT_EVENT,MANUSCRIPT_EVENTS,cutSpeakerSurface,mergeAskSurface,branchStripSurface,BRANCH_EVENTS,backgroundDisplaySurface,BACKGROUND_DISPLAY_EVENTS,actorCardSurface,ACTOR_EVENTS,cutPanelSurface,PANEL_TOGGLE_EVENT,stagingImportSurface,textVariantsSurface,companionSurface,companionsSurface,type CompanionView,cutCardSurface,forkSurface,lineNoticeSurface,NEIGHBOUR_EVENTS,type ForkChoice} from './a2ui/editor-surfaces';
+import {branchOrigin,branchStrip,type BranchOrigin,type BranchStrip} from '../lib/manuscript-branches';
 import {knownSpeakerNames,speakerOptions,speakerPatch,speakerPrefix,speakerValue} from '../lib/manuscript-speaker';
 import {createPortal} from 'react-dom';
 import {usePhoneEditor} from './use-phone-editor';
-import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type FocusEvent as ReactFocusEvent, type KeyboardEvent as ReactKeyboardEvent, type ReactNode} from 'react';
+import {Fragment,useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type FocusEvent as ReactFocusEvent, type KeyboardEvent as ReactKeyboardEvent, type ReactNode} from 'react';
 import {assetDisplayName,resolveAsset} from '@knolstory/asset-registry';
 import {activeStageSpeaker,chapterLabel,chaptersInStoryOrder,resolveStageComposition,presentationLabel,type StoryProject,type StoryLine,type StageComposition,type StageActorEntry} from '@knolstory/story-domain';
 import {ACTOR_MOTION_OPTIONS,actorMotionChoice} from '../lib/actor-motion-choice';
@@ -40,7 +41,9 @@ type Props={permissions?:EditingPermissions;/** 이야기 연결 (branching work
  chapterReference?:ReactNode;editingActive?:boolean;onAddCutAfter?:()=>void;adjacentThumbnails?:Readonly<Record<string,AdjacentSceneThumbnail>>;preferences:EditorPreferences;onPreferencesChange:(update:(current:EditorPreferences)=>EditorPreferences)=>void;settingsTarget?:HTMLElement|null;/** The top bar's ‹ › follow this screen: it reports their state; the top bar draws them (A2UI CutNavigator). */
  onCutSteps?:(steps:(CutSteps&{step:(direction:'previous'|'next')=>void})|null)=>void;preview?:ReactNode;playing?:boolean;additionalSettings?:ReactNode;chapterSettings?:ReactNode;additionalEditor?:ReactNode;project:StoryProject;lineId:string;screen:EditingScreen;onScreenChange:(screen:EditingScreen)=>void|boolean;onProjectChange:(project:StoryProject)=>void;onSelectCut:(id:string)=>void;onComposing:(value:boolean)=>void;basicTextDisabled:boolean;onBasicTextChange:(text:string)=>void;disabled:boolean;composing:boolean;onPreview:(id:string)=>void;onOpenMap?:()=>void;onSplitHere?:()=>void;onSeparatePath?:(fromLineId:string)=>void;
  /** 원고: Enter twice starts the next cut at `position` of `value`; Backspace at the start joins the cut before. */
- onSplitCut?:(lineId:string,pieces:readonly string[],caret:number)=>void;onJoinPrevious?:(lineId:string,adoptEarlier?:boolean)=>'joined'|'ask'|'refused'};
+ onSplitCut?:(lineId:string,pieces:readonly string[],caret:number)=>void;onJoinPrevious?:(lineId:string,adoptEarlier?:boolean)=>'joined'|'ask'|'refused';
+ /** 원고 · 갈래 줄: write the first cut of a choice's way that has none yet. */
+ onWriteBranch?:(sourceLineId:string,optionId:string)=>void};
 const STAGE_STRIP_KEY='knolstory-editor-stage-strip-v1';
 const screens:readonly [EditingScreen,string][]=[['basic','쓰기'],['text','원고'],['background','배경 편집'],['characters','인물 편집'],['audio','음향 편집'],['direction','연출 편집'],['audio-direction','음향·연출 함께 편집']];
 const names:Record<Companion,string>={text:'글',background:'배경',characters:'인물',audio:'음향',direction:'연출'};
@@ -292,6 +295,16 @@ export function StoryEditingWorkbench(p:Props){
  };
  const singleNext=(line:StoryLine)=>{if(!paths)return rows[currentIndex+1]?.id;const step=paths.next(line.id);return step.kind==='next'?step.lineId:undefined;};
  const singlePrevious=(line:StoryLine)=>{if(!paths)return rows[currentIndex-1]?.id;const previous=paths.previous(line.id);return previous.length===1?previous[0]:undefined;};
+ // 원고 · 갈래 줄: under a choice cut, every way out of it; at the top of a way's chapter, where it came from and the other ways.
+ const origin:BranchOrigin|null=screen==='text'&&paths&&rows[0]?branchOrigin(p.project,rows[0].id,paths):null;
+ const branchAction=({action}:FocusSurfaceAction)=>{const event='event' in action?action.event:undefined,lineId=event?.context?.lineId,optionId=event?.context?.optionId;
+  if(busy||p.composing||typeof lineId!=='string')return;
+  if(event?.name===BRANCH_EVENTS.open)p.onSelectCut(lineId);
+  if(event?.name===BRANCH_EVENTS.write&&typeof optionId==='string')p.onWriteBranch?.(lineId,optionId);};
+ const branchSurface=(strip:BranchStrip,from?:BranchOrigin)=><FocusSurface key={`strip-${strip.choiceLineId}${from?'-origin':''}`} inline rootId="fork" device={phone?'phone':'tablet'} onAction={branchAction}
+  surface={branchStripSurface({...strip,...(from?{origin:{from:from.from,optionId:from.optionId}}:{}),disabled:busy||p.composing,canWrite:!!p.onWriteBranch})}
+  attrs={component=>component.component==='Fork'?{className:styles.branchStrip,'data-branch-strip':from?'origin':'choice','data-choice-line':strip.choiceLineId}:component.component==='Notice'?{className:styles.pathPending}:undefined}
+  skin={{pathChoice:styles.pathChoice,pathWay:styles.branchWay,pathPeek:styles.branchPeek}}/>;
  // ‹ › in the top bar (every screen): story paths when the story branches, otherwise the manuscript order across chapters.
  const manuscript=useMemo(()=>chaptersInStoryOrder(p.project).flatMap(chapter=>p.project.lines.filter(line=>line.chapterId===chapter.id).sort((a,b)=>a.order-b.order)),[p.project]);
  const manuscriptIndex=manuscript.findIndex(line=>line.id===p.lineId);
@@ -359,11 +372,11 @@ export function StoryEditingWorkbench(p:Props){
    {/* A2UI: each cut card (frame, head, text) is drawn from the focus editor catalog; this screen's tools are the custom CutTools. */}
    {/* 원고 (2026-11-28 사용자 결정): the chapter's picture-book page sits folded right above the document. */}
    {screen==='text'&&p.chapterReference&&<details data-picturebook-reference className={styles.manuscriptReference}><summary>그림책 구상</summary>{p.chapterReference}</details>}
-   <div className={styles.rows} data-writer-scroll data-manuscript={screen==='text'||undefined} onKeyDown={manuscriptKeys} onFocus={manuscriptFocus}>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<FocusSurface key={`${p.project.id}/${line.id}`} inline rootId="cut" device={phone?'phone':'tablet'}
+   <div className={styles.rows} data-writer-scroll data-manuscript={screen==='text'||undefined} onKeyDown={manuscriptKeys} onFocus={manuscriptFocus}>{origin&&branchSurface(origin.strip,origin)}{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<Fragment key={`${p.project.id}/${line.id}`}><FocusSurface inline rootId="cut" device={phone?'phone':'tablet'}
     surface={cutItemSurface({lineId:line.id,cut:index+1,speaker:screen==='text'?(line.type==='narration'?'해설':line.speakerName.trim()||'대사'):line.speakerName??'',text:line.text.trim()||'아직 글이 없어요.',current:line.id===p.lineId,disabled:busy||p.composing,showText:screen!=='text',phoneShowsAll:!phoneSingle,task:screen})}
     skin={{cutItem:styles.row,cutSelect:styles.rowSelect,cutPlay:styles.rowPlay,cutText:styles.cutText}} attrs={component=>component.component==='CutItem'?{'data-testid':`editing-cut-${line.id}`}:undefined}
     custom={{CutTools:()=><><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phone&&selected.some(id=>id!=='text')&&<FocusSurface inline rootId="companions" device="tablet" surface={companionsSurface(line.id,selected.filter(id=>id!=='text').map(id=>({...companionView(id,line),title:names[id]})))} attrs={companionAttrs(id=>String(id).replace(/^(section|part)-/,'').split('-')[0]!)} custom={companionCustom}/>}</>}}
-    onAction={({action})=>{const event='event' in action?action.event:undefined,lineId=event?.context?.lineId;if(typeof lineId!=='string')return;if(event?.name===CUT_EVENTS.select)p.onSelectCut(lineId);if(event?.name===CUT_EVENTS.play)p.onPreview(lineId);}}/>)}</div>
+    onAction={({action})=>{const event='event' in action?action.event:undefined,lineId=event?.context?.lineId;if(typeof lineId!=='string')return;if(event?.name===CUT_EVENTS.select)p.onSelectCut(lineId);if(event?.name===CUT_EVENTS.play)p.onPreview(lineId);}}/>{screen==='text'&&paths&&(()=>{const strip=branchStrip(p.project,line.id,paths);return strip&&branchSurface(strip);})()}</Fragment>)}</div>
   </>}
   </div>
   </div>

@@ -633,3 +633,16 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .manuscriptReference>section{padding:0 0 12px}
 .manuscriptReference>section>strong:first-child{display:none}
 @media (min-width:701px){.manuscriptReference>section{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);align-items:start;gap:12px}}
+/* 원고 · 갈래 줄: every way out of a choice cut (or, at the top of a way, where it came from). Ways sit side by side when there is room. */
+.branchStrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px;margin:4px 0 12px;padding:12px;border:1px solid #efd9b0;border-radius:var(--radius-panel,12px);background:#fffaf0}
+.branchStrip>strong,.branchStrip>small{grid-column:1/-1}
+.branchStrip>strong{font-size:var(--text-small);color:#7a5414}.branchStrip>small{font-size:var(--text-caption);color:var(--ink-soft)}
+.branchStrip>.pathChoice,.branchWay>.pathChoice{min-height:44px;border:1px solid var(--line);background:var(--white)}
+.branchWay{display:grid;gap:4px;align-content:start}
+.branchWay>.pathChoice[aria-current]{border-color:var(--mint-strong,#2f7d6d);background:#eef8f4;color:inherit;opacity:1}
+.branchPeek{font-size:var(--text-caption);color:var(--ink-soft)}
+.branchPeek>summary{display:flex;align-items:center;min-height:44px;padding:0 12px;cursor:pointer;border-radius:8px}
+.branchPeek>summary:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.branchPeek>ol{display:grid;gap:4px;margin:0;padding:4px 12px 8px 28px;word-break:keep-all;overflow-wrap:anywhere}
+.branchStrip>.pathPending{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 12px;border:1px dashed var(--line);border-radius:10px;background:var(--white)}
+.branchStrip>.pathPending>p{flex:1 1 160px;margin:0}
