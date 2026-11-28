@@ -1,0 +1,17 @@
+{
+  "filename": "new-knolstory-cc0-audio-2026-10-13.zip",
+  "bytes": 914129933,
+  "sha256": "255d7662b11c5bbd37c46c7ce8182e25d5ff5f2f95bae6cdb1bc27d3ccb62c43",
+  "entries": 1191,
+  "assetCount": 490,
+  "zipCrcVerification": "pass",
+  "publicationRedactions": [
+    {
+      "path": "assets/licenses/audio/audit-2026-10-13/oga-editor-beach/original-freesound-page.html",
+      "originalSha256": "914554b34b9ea888d92df82c9321d3d638521100bc59d5b4748da1d96255a6d9",
+      "publishedSha256": "f64b3dbac76667ba88a546325231fec1b22de7d26449cf81b78f9bedc335e4bb",
+      "replacements": 1,
+      "reason": "Third-party website Mapbox token removed from publication; local acquisition HTML retained."
+    }
+  ]
+}

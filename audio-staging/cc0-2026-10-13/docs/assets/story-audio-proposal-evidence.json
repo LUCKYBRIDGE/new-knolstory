@@ -1,0 +1,1358 @@
+{
+  "checkedOn": "2026-10-13",
+  "repository": "LUCKYBRIDGE/story-maker",
+  "readCommit": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "headCommitOnCheck": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "readMethod": "Authenticated GitHub API via gh; raw file content read at fixed commit",
+  "generatedExamplesSourceCommit": "804fe9f7cbf28d500d4ffbcd7d980958c7452d6a",
+  "proposalOnly": true,
+  "auditionStatus": "pending",
+  "storyDocumentsModified": false,
+  "audioAssetsModified": false,
+  "sources": [
+    {
+      "path": "app/story-library-editions.ts",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-library-editions.ts",
+      "sha256": "b26d8a6d7a19f577af4f6cb6316656a3767896c953caf827ffd5c661e91983c3"
+    },
+    {
+      "path": "app/story-examples.ts",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-examples.ts",
+      "sha256": "82aa04a68ccb89a159712ccf8d805ac35b591bac4994b30ca8535b5fce29e872"
+    },
+    {
+      "path": "app/story-classic-heungbu.ts",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-classic-heungbu.ts",
+      "sha256": "bd2a4688bccf93c734bf92c647e20ec4cfbb327430fcc677dc0dda96b4735a84"
+    },
+    {
+      "path": "app/story-classic-onggojib.ts",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-classic-onggojib.ts",
+      "sha256": "b53b43e107480b607f030705f782977890640b96aab3036aa5ac82c8500fc87e"
+    },
+    {
+      "path": "app/story-classic-readings.ts",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-classic-readings.ts",
+      "sha256": "f8afc487c96f51031e7aadbe55a7779c6fe87dbf288f7f9563a7f8c9f309ddad"
+    },
+    {
+      "path": "app/story-classic-seonnyeo.ts",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-classic-seonnyeo.ts",
+      "sha256": "71e06a507132e16e75eb8d8c4c623a9e7379543750e63cf3e5e4225c515daa11"
+    },
+    {
+      "path": "app/story-heungbu.seed.json",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-heungbu.seed.json",
+      "sha256": "a77e13a4b481f018e682d87dfc958e9afc371d6e0a7446bfd605d6c493c44fde"
+    },
+    {
+      "path": "app/story-examples.generated.json",
+      "url": "https://github.com/LUCKYBRIDGE/story-maker/blob/18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b/app/story-examples.generated.json",
+      "sha256": "301b75ca424ac3112bdd6be4b82cdc42e36b8fe1a27a43f4bb4f0c1eee62e002"
+    }
+  ],
+  "books": [
+    {
+      "theme": "heungbu",
+      "edition": "original",
+      "sourceFile": "app/story-classic-heungbu.ts",
+      "chapterCount": 7,
+      "chapters": [
+        {
+          "id": "classic-heungbu-1",
+          "title": "쫓겨난 흥부",
+          "cutCount": 14
+        },
+        {
+          "id": "classic-heungbu-2",
+          "title": "빈 쌀독",
+          "cutCount": 16
+        },
+        {
+          "id": "classic-heungbu-3",
+          "title": "다친 제비",
+          "cutCount": 17
+        },
+        {
+          "id": "classic-heungbu-4",
+          "title": "흥부가 박을 타다",
+          "cutCount": 18
+        },
+        {
+          "id": "classic-heungbu-5",
+          "title": "놀부와 제비",
+          "cutCount": 19
+        },
+        {
+          "id": "classic-heungbu-6",
+          "title": "놀부가 박을 타다",
+          "cutCount": 22
+        },
+        {
+          "id": "classic-heungbu-7",
+          "title": "다시 만난 형제",
+          "cutCount": 19
+        }
+      ]
+    },
+    {
+      "theme": "onggojib",
+      "edition": "original",
+      "sourceFile": "app/story-classic-onggojib.ts",
+      "chapterCount": 6,
+      "chapters": [
+        {
+          "id": "classic-onggojib-1",
+          "title": "닫힌 대문",
+          "cutCount": 11
+        },
+        {
+          "id": "classic-onggojib-2",
+          "title": "또 하나의 옹고집",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-onggojib-3",
+          "title": "두 옹고집",
+          "cutCount": 13
+        },
+        {
+          "id": "classic-onggojib-4",
+          "title": "누가 진짜인가",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-onggojib-5",
+          "title": "쫓겨난 옹고집",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-onggojib-6",
+          "title": "다시 열린 대문",
+          "cutCount": 11
+        }
+      ]
+    },
+    {
+      "theme": "rabbit",
+      "edition": "original",
+      "sourceFile": "app/story-classic-readings.ts",
+      "chapterCount": 5,
+      "chapters": [
+        {
+          "id": "classic-rabbit-1",
+          "title": "용궁에 닥친 근심",
+          "cutCount": 11
+        },
+        {
+          "id": "classic-rabbit-2",
+          "title": "육지에서 만난 토끼",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-rabbit-3",
+          "title": "바닷속 용궁으로",
+          "cutCount": 11
+        },
+        {
+          "id": "classic-rabbit-4",
+          "title": "토끼가 낸 꾀",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-rabbit-5",
+          "title": "다시 밟은 육지",
+          "cutCount": 10
+        }
+      ]
+    },
+    {
+      "theme": "seonnyeo",
+      "edition": "original",
+      "sourceFile": "app/story-classic-seonnyeo.ts",
+      "chapterCount": 6,
+      "chapters": [
+        {
+          "id": "classic-seonnyeo-1",
+          "title": "사슴의 보은",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-seonnyeo-2",
+          "title": "연못의 날개옷",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-seonnyeo-3",
+          "title": "다시 나타난 날개옷",
+          "cutCount": 11
+        },
+        {
+          "id": "classic-seonnyeo-4",
+          "title": "하늘로 떠난 가족",
+          "cutCount": 12
+        },
+        {
+          "id": "classic-seonnyeo-5",
+          "title": "두레박 너머 하늘나라",
+          "cutCount": 13
+        },
+        {
+          "id": "classic-seonnyeo-6",
+          "title": "돌아오지 못한 길",
+          "cutCount": 23
+        }
+      ]
+    },
+    {
+      "theme": "heungbu",
+      "edition": "knolstory",
+      "title": "흥부와 놀부, 서로의 몫",
+      "sourceFile": "app/story-heungbu.seed.json",
+      "chapterCount": 14,
+      "cutCount": 277,
+      "chapters": [
+        {
+          "id": "chapter-1",
+          "title": "반쪽짜리 떡",
+          "cutCount": 13
+        },
+        {
+          "id": "chapter-2",
+          "title": "곳간 앞의 두 형제",
+          "cutCount": 13
+        },
+        {
+          "id": "chapter-3",
+          "title": "각자의 몫",
+          "cutCount": 16
+        },
+        {
+          "id": "chapter-4",
+          "title": "겨울 문턱",
+          "cutCount": 23
+        },
+        {
+          "id": "chapter-5a",
+          "title": "빌린 곡식",
+          "cutCount": 19
+        },
+        {
+          "id": "chapter-5b",
+          "title": "빈손의 겨울",
+          "cutCount": 17
+        },
+        {
+          "id": "chapter-6",
+          "title": "제비가 머문 집",
+          "cutCount": 15
+        },
+        {
+          "id": "chapter-7",
+          "title": "박이 열리던 날",
+          "cutCount": 18
+        },
+        {
+          "id": "chapter-8",
+          "title": "놀부에게 생긴 불편한 마음",
+          "cutCount": 11
+        },
+        {
+          "id": "chapter-9",
+          "title": "같아 보이는 방법",
+          "cutCount": 13
+        },
+        {
+          "id": "chapter-10",
+          "title": "다른 박",
+          "cutCount": 19
+        },
+        {
+          "id": "chapter-11",
+          "title": "뒤바뀐 문 앞",
+          "cutCount": 28
+        },
+        {
+          "id": "chapter-12a",
+          "title": "함께 짓는 밭",
+          "cutCount": 39
+        },
+        {
+          "id": "chapter-12b",
+          "title": "두 집 사이의 길",
+          "cutCount": 33
+        }
+      ]
+    },
+    {
+      "theme": "rabbit",
+      "edition": "knolstory",
+      "title": "별주부전",
+      "sourceFile": "app/story-examples.generated.json",
+      "chapterCount": 10,
+      "cutCount": 292,
+      "chapters": [
+        {
+          "id": "review-main-002:start",
+          "title": "1막: 용궁 대청",
+          "cutCount": 58
+        },
+        {
+          "id": "review-main-002:obey-route",
+          "title": "첫마디: 용궁 잔치",
+          "cutCount": 15
+        },
+        {
+          "id": "review-main-002:hesitate-route",
+          "title": "첫마디: 도움 요청",
+          "cutCount": 15
+        },
+        {
+          "id": "review-main-002:sea-route",
+          "title": "바닷속 길",
+          "cutCount": 11
+        },
+        {
+          "id": "review-main-002:palace",
+          "title": "2막: 초대가 함정으로 바뀌는 순간",
+          "cutCount": 53
+        },
+        {
+          "id": "review-main-002:ending-1",
+          "title": "진실을 말한 자라",
+          "cutCount": 16
+        },
+        {
+          "id": "review-main-002:shield-route",
+          "title": "확인하러 가겠다는 말",
+          "cutCount": 28
+        },
+        {
+          "id": "review-main-002:shoreAfterShield",
+          "title": "3막: 육지 모래톱",
+          "cutCount": 38
+        },
+        {
+          "id": "review-main-002:ending-2",
+          "title": "돌아가지 않은 길",
+          "cutCount": 15
+        },
+        {
+          "id": "review-main-002:ending-3",
+          "title": "돌아온 자라",
+          "cutCount": 43
+        }
+      ]
+    },
+    {
+      "theme": "onggojib",
+      "edition": "knolstory",
+      "title": "옹고집전: 옹고집의 속죄",
+      "sourceFile": "app/story-examples.generated.json",
+      "chapterCount": 28,
+      "cutCount": 453,
+      "chapters": [
+        {
+          "id": "review-main-003:start",
+          "title": "아내의 대답",
+          "cutCount": 9
+        },
+        {
+          "id": "review-main-003:real-route",
+          "title": "돌아온 옹고집",
+          "cutCount": 9
+        },
+        {
+          "id": "review-main-003:real-loop-testimony",
+          "title": "되풀이된 판정",
+          "cutCount": 18
+        },
+        {
+          "id": "review-main-003:fake-first-verdict",
+          "title": "첫 번째 판결",
+          "cutCount": 7
+        },
+        {
+          "id": "review-main-003:fake-repeat-verdict",
+          "title": "두 번째 판결",
+          "cutCount": 8
+        },
+        {
+          "id": "review-main-003:fake-route",
+          "title": "쫓겨난 옹고집",
+          "cutCount": 66
+        },
+        {
+          "id": "review-main-003:b-meal-act",
+          "title": "돌아온 뒤",
+          "cutCount": 3
+        },
+        {
+          "id": "review-main-003:b-meal-slip",
+          "title": "돌아온 뒤",
+          "cutCount": 2
+        },
+        {
+          "id": "review-main-003:b-after-meal-days",
+          "title": "돌아온 뒤",
+          "cutCount": 2
+        },
+        {
+          "id": "review-main-003:b-child-scene",
+          "title": "돌아온 뒤",
+          "cutCount": 3
+        },
+        {
+          "id": "review-main-003:b-vase-care",
+          "title": "돌아온 뒤",
+          "cutCount": 2
+        },
+        {
+          "id": "review-main-003:b-vase-care-after-harsh",
+          "title": "돌아온 뒤",
+          "cutCount": 6
+        },
+        {
+          "id": "review-main-003:b-vase-stick",
+          "title": "돌아온 뒤",
+          "cutCount": 4
+        },
+        {
+          "id": "review-main-003:b-fake-warning",
+          "title": "갈라진 순간",
+          "cutCount": 14
+        },
+        {
+          "id": "review-main-003:b-before-confession-days",
+          "title": "돌아온 뒤",
+          "cutCount": 2
+        },
+        {
+          "id": "review-main-003:b-final-acts",
+          "title": "옹고집의 고백",
+          "cutCount": 18
+        },
+        {
+          "id": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+          "title": "대문 앞 사내",
+          "cutCount": 40
+        },
+        {
+          "id": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+          "title": "돌아온 옹고집",
+          "cutCount": 9
+        },
+        {
+          "id": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+          "title": "되풀이된 판정",
+          "cutCount": 18
+        },
+        {
+          "id": "review-main-003:fake-first-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+          "title": "첫 번째 판결",
+          "cutCount": 7
+        },
+        {
+          "id": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+          "title": "두 번째 판결",
+          "cutCount": 8
+        },
+        {
+          "id": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+          "title": "쫓겨난 옹고집",
+          "cutCount": 57
+        },
+        {
+          "id": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+          "title": "대문 앞 사내",
+          "cutCount": 41
+        },
+        {
+          "id": "review-main-003:real-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+          "title": "돌아온 옹고집",
+          "cutCount": 9
+        },
+        {
+          "id": "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+          "title": "되풀이된 판정",
+          "cutCount": 18
+        },
+        {
+          "id": "review-main-003:fake-first-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+          "title": "첫 번째 판결",
+          "cutCount": 7
+        },
+        {
+          "id": "review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+          "title": "두 번째 판결",
+          "cutCount": 8
+        },
+        {
+          "id": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+          "title": "쫓겨난 옹고집",
+          "cutCount": 58
+        }
+      ]
+    },
+    {
+      "theme": "seonnyeo",
+      "edition": "knolstory",
+      "title": "선녀와 나무꾼",
+      "sourceFile": "app/story-examples.generated.json",
+      "chapterCount": 166,
+      "cutCount": 1613,
+      "chapters": [
+        {
+          "id": "P1-v166",
+          "title": "계곡",
+          "cutCount": 15
+        },
+        {
+          "id": "P2-v165",
+          "title": "폭풍",
+          "cutCount": 14
+        },
+        {
+          "id": "P3-v164",
+          "title": "빗속의 하늘길",
+          "cutCount": 11
+        },
+        {
+          "id": "1-v163",
+          "title": "나무꾼의 등장",
+          "cutCount": 9
+        },
+        {
+          "id": "C1-v162",
+          "title": "어떻게 도울까?",
+          "cutCount": 1
+        },
+        {
+          "id": "C1-A-v106",
+          "title": "선택 1-A 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "2-v105",
+          "title": "작은 집",
+          "cutCount": 8
+        },
+        {
+          "id": "3-v104",
+          "title": "첫 식사",
+          "cutCount": 17
+        },
+        {
+          "id": "4-v103",
+          "title": "정체",
+          "cutCount": 20
+        },
+        {
+          "id": "5-v102",
+          "title": "옷을 찾는 날들",
+          "cutCount": 17
+        },
+        {
+          "id": "6-v101",
+          "title": "한 달 뒤",
+          "cutCount": 9
+        },
+        {
+          "id": "C2-v100",
+          "title": "계속 찾을까?",
+          "cutCount": 1
+        },
+        {
+          "id": "C2-A-v83",
+          "title": "선택 2-A 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "7-v82",
+          "title": "첫눈",
+          "cutCount": 13
+        },
+        {
+          "id": "8-v81",
+          "title": "서로의 생활",
+          "cutCount": 12
+        },
+        {
+          "id": "9-v80",
+          "title": "마음을 확인하다",
+          "cutCount": 16
+        },
+        {
+          "id": "10-v79",
+          "title": "선녀의 선택",
+          "cutCount": 16
+        },
+        {
+          "id": "11-v78",
+          "title": "약속",
+          "cutCount": 15
+        },
+        {
+          "id": "12-v77",
+          "title": "평범한 부부",
+          "cutCount": 9
+        },
+        {
+          "id": "13-v76",
+          "title": "기러기",
+          "cutCount": 6
+        },
+        {
+          "id": "C3-v75",
+          "title": "선녀의 그리움 앞에서",
+          "cutCount": 1
+        },
+        {
+          "id": "C3-A-v53",
+          "title": "선택 3-A 반응",
+          "cutCount": 18
+        },
+        {
+          "id": "14-v52",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C4-v51",
+          "title": "선녀옷을 어떻게 할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "R1-v13",
+          "title": "보자기",
+          "cutCount": 23
+        },
+        {
+          "id": "R2-v12",
+          "title": "돌려준 날 밤",
+          "cutCount": 6
+        },
+        {
+          "id": "R3-v11",
+          "title": "둘째 날",
+          "cutCount": 6
+        },
+        {
+          "id": "R4-v10",
+          "title": "선녀 자신의 고민",
+          "cutCount": 8
+        },
+        {
+          "id": "C5R-v9",
+          "title": "선녀의 선택을 어떻게 마주할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "E1-1-v4",
+          "title": "서로 확인하다",
+          "cutCount": 6
+        },
+        {
+          "id": "E1-2-v3",
+          "title": "올라가는 날",
+          "cutCount": 9
+        },
+        {
+          "id": "E1-3-v2",
+          "title": "남은 마당",
+          "cutCount": 3
+        },
+        {
+          "id": "E1-4-v1",
+          "title": "존중과 이별",
+          "cutCount": 3
+        },
+        {
+          "id": "E2-1-v8",
+          "title": "남고 싶은 삶",
+          "cutCount": 9
+        },
+        {
+          "id": "E2-2-v7",
+          "title": "남기로 한 밤",
+          "cutCount": 7
+        },
+        {
+          "id": "E2-3-v6",
+          "title": "시간이 흐른다",
+          "cutCount": 7
+        },
+        {
+          "id": "E2-4-v5",
+          "title": "지상에서의 약속",
+          "cutCount": 7
+        },
+        {
+          "id": "H1-v50",
+          "title": "장작 창고",
+          "cutCount": 6
+        },
+        {
+          "id": "H2-v49",
+          "title": "첫날 저녁",
+          "cutCount": 9
+        },
+        {
+          "id": "H3-v48",
+          "title": "다음 날 아침",
+          "cutCount": 5
+        },
+        {
+          "id": "C4H-v47",
+          "title": "다음 날 아침의 선택",
+          "cutCount": 1
+        },
+        {
+          "id": "HA1-v22",
+          "title": "이튿날의 고백",
+          "cutCount": 19
+        },
+        {
+          "id": "HA2-v21",
+          "title": "생각할 시간",
+          "cutCount": 5
+        },
+        {
+          "id": "R4-v20",
+          "title": "선녀 자신의 고민",
+          "cutCount": 8
+        },
+        {
+          "id": "C5R-v19",
+          "title": "선녀의 선택을 어떻게 마주할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "E1-1-v16",
+          "title": "서로 확인하다",
+          "cutCount": 6
+        },
+        {
+          "id": "E1-2-v15",
+          "title": "올라가는 날",
+          "cutCount": 9
+        },
+        {
+          "id": "E1-3-v14",
+          "title": "남은 마당",
+          "cutCount": 5
+        },
+        {
+          "id": "E2-1-v18",
+          "title": "남고 싶은 삶",
+          "cutCount": 9
+        },
+        {
+          "id": "E2-2-v17",
+          "title": "남기로 한 밤",
+          "cutCount": 10
+        },
+        {
+          "id": "HB1-v46",
+          "title": "둘째 날",
+          "cutCount": 10
+        },
+        {
+          "id": "HB2-v45",
+          "title": "셋째 날",
+          "cutCount": 8
+        },
+        {
+          "id": "HB3-v44",
+          "title": "직접 묻는 선녀",
+          "cutCount": 8
+        },
+        {
+          "id": "C5H-v43",
+          "title": "진실을 말할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "E3-1-v30",
+          "title": "꺼내 놓은 옷",
+          "cutCount": 30
+        },
+        {
+          "id": "E3-2-v29",
+          "title": "거리 두기",
+          "cutCount": 7
+        },
+        {
+          "id": "E3-3-v28",
+          "title": "떠날 준비",
+          "cutCount": 8
+        },
+        {
+          "id": "C6C-v27",
+          "title": "마지막으로 무엇을 말할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "C6C-A-v25",
+          "title": "마지막 선택 A",
+          "cutCount": 4
+        },
+        {
+          "id": "E3-4-v24",
+          "title": "하늘로",
+          "cutCount": 7
+        },
+        {
+          "id": "E3-5-v23",
+          "title": "늦은 고백과 다시 내린 비",
+          "cutCount": 7
+        },
+        {
+          "id": "C6C-B-v26",
+          "title": "마지막 선택 B",
+          "cutCount": 6
+        },
+        {
+          "id": "E4-1-v42",
+          "title": "직접적인 거짓말",
+          "cutCount": 5
+        },
+        {
+          "id": "E4-2-v41",
+          "title": "더 깊이 숨기다",
+          "cutCount": 6
+        },
+        {
+          "id": "E4-3-v40",
+          "title": "달빛",
+          "cutCount": 11
+        },
+        {
+          "id": "E4-4-v39",
+          "title": "마주하다",
+          "cutCount": 25
+        },
+        {
+          "id": "E4-5-v38",
+          "title": "떠나지 않은 밤",
+          "cutCount": 4
+        },
+        {
+          "id": "E4-6-v37",
+          "title": "다음 날",
+          "cutCount": 6
+        },
+        {
+          "id": "E4-7-v36",
+          "title": "짐을 챙기다",
+          "cutCount": 11
+        },
+        {
+          "id": "C6L-v35",
+          "title": "마지막 순간",
+          "cutCount": 1
+        },
+        {
+          "id": "C6L-A-v33",
+          "title": "마지막 선택 A",
+          "cutCount": 8
+        },
+        {
+          "id": "E4-8-v32",
+          "title": "문을 나서다",
+          "cutCount": 7
+        },
+        {
+          "id": "E4-9-v31",
+          "title": "영원히 닫힌 문",
+          "cutCount": 9
+        },
+        {
+          "id": "C6L-B-v34",
+          "title": "마지막 선택 B",
+          "cutCount": 5
+        },
+        {
+          "id": "C3-B-v74",
+          "title": "선택 3-B 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "14-v73",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C4-v72",
+          "title": "선녀옷을 어떻게 할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "R1-v61",
+          "title": "보자기",
+          "cutCount": 23
+        },
+        {
+          "id": "R2-v60",
+          "title": "돌려준 날 밤",
+          "cutCount": 6
+        },
+        {
+          "id": "R3-v59",
+          "title": "둘째 날",
+          "cutCount": 6
+        },
+        {
+          "id": "R4-v58",
+          "title": "선녀 자신의 고민",
+          "cutCount": 8
+        },
+        {
+          "id": "C5R-v57",
+          "title": "선녀의 선택을 어떻게 마주할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "E2-1-v56",
+          "title": "남고 싶은 삶",
+          "cutCount": 9
+        },
+        {
+          "id": "E2-2-v55",
+          "title": "남기로 한 밤",
+          "cutCount": 7
+        },
+        {
+          "id": "E2-3-v54",
+          "title": "시간이 흐른다",
+          "cutCount": 6
+        },
+        {
+          "id": "H1-v71",
+          "title": "장작 창고",
+          "cutCount": 6
+        },
+        {
+          "id": "H2-v70",
+          "title": "첫날 저녁",
+          "cutCount": 9
+        },
+        {
+          "id": "H3-v69",
+          "title": "다음 날 아침",
+          "cutCount": 5
+        },
+        {
+          "id": "C4H-v68",
+          "title": "다음 날 아침의 선택",
+          "cutCount": 1
+        },
+        {
+          "id": "HA1-v67",
+          "title": "이튿날의 고백",
+          "cutCount": 19
+        },
+        {
+          "id": "HA2-v66",
+          "title": "생각할 시간",
+          "cutCount": 5
+        },
+        {
+          "id": "R4-v65",
+          "title": "선녀 자신의 고민",
+          "cutCount": 8
+        },
+        {
+          "id": "C5R-v64",
+          "title": "선녀의 선택을 어떻게 마주할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "E2-1-v63",
+          "title": "남고 싶은 삶",
+          "cutCount": 9
+        },
+        {
+          "id": "E2-2-v62",
+          "title": "남기로 한 밤",
+          "cutCount": 10
+        },
+        {
+          "id": "C2-B-v99",
+          "title": "선택 2-B 반응",
+          "cutCount": 7
+        },
+        {
+          "id": "7-v98",
+          "title": "첫눈",
+          "cutCount": 13
+        },
+        {
+          "id": "8-v97",
+          "title": "서로의 생활",
+          "cutCount": 12
+        },
+        {
+          "id": "9-v96",
+          "title": "마음을 확인하다",
+          "cutCount": 16
+        },
+        {
+          "id": "10-v95",
+          "title": "선녀의 선택",
+          "cutCount": 16
+        },
+        {
+          "id": "11-v94",
+          "title": "약속",
+          "cutCount": 15
+        },
+        {
+          "id": "12-v93",
+          "title": "평범한 부부",
+          "cutCount": 9
+        },
+        {
+          "id": "13-v92",
+          "title": "기러기",
+          "cutCount": 6
+        },
+        {
+          "id": "C3-v91",
+          "title": "선녀의 그리움 앞에서",
+          "cutCount": 1
+        },
+        {
+          "id": "C3-A-v85",
+          "title": "선택 3-A 반응",
+          "cutCount": 18
+        },
+        {
+          "id": "14-v84",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C3-B-v90",
+          "title": "선택 3-B 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "14-v89",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C4-v88",
+          "title": "선녀옷을 어떻게 할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "R1-v86",
+          "title": "보자기",
+          "cutCount": 23
+        },
+        {
+          "id": "H1-v87",
+          "title": "장작 창고",
+          "cutCount": 6
+        },
+        {
+          "id": "C1-B-v161",
+          "title": "선택 1-B 반응",
+          "cutCount": 10
+        },
+        {
+          "id": "2-v160",
+          "title": "작은 집",
+          "cutCount": 8
+        },
+        {
+          "id": "3-v159",
+          "title": "첫 식사",
+          "cutCount": 17
+        },
+        {
+          "id": "4-v158",
+          "title": "정체",
+          "cutCount": 20
+        },
+        {
+          "id": "5-v157",
+          "title": "옷을 찾는 날들",
+          "cutCount": 17
+        },
+        {
+          "id": "6-v156",
+          "title": "한 달 뒤",
+          "cutCount": 9
+        },
+        {
+          "id": "C2-v155",
+          "title": "계속 찾을까?",
+          "cutCount": 1
+        },
+        {
+          "id": "C2-A-v139",
+          "title": "선택 2-A 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "7-v138",
+          "title": "첫눈",
+          "cutCount": 13
+        },
+        {
+          "id": "8-v137",
+          "title": "서로의 생활",
+          "cutCount": 12
+        },
+        {
+          "id": "9-v136",
+          "title": "마음을 확인하다",
+          "cutCount": 16
+        },
+        {
+          "id": "10-v135",
+          "title": "선녀의 선택",
+          "cutCount": 16
+        },
+        {
+          "id": "11-v134",
+          "title": "약속",
+          "cutCount": 15
+        },
+        {
+          "id": "12-v133",
+          "title": "평범한 부부",
+          "cutCount": 9
+        },
+        {
+          "id": "13-v132",
+          "title": "기러기",
+          "cutCount": 6
+        },
+        {
+          "id": "C3-v131",
+          "title": "선녀의 그리움 앞에서",
+          "cutCount": 1
+        },
+        {
+          "id": "C3-A-v123",
+          "title": "선택 3-A 반응",
+          "cutCount": 18
+        },
+        {
+          "id": "14-v122",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C4-v121",
+          "title": "선녀옷을 어떻게 할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "R1-v107",
+          "title": "보자기",
+          "cutCount": 23
+        },
+        {
+          "id": "H1-v120",
+          "title": "장작 창고",
+          "cutCount": 6
+        },
+        {
+          "id": "H2-v119",
+          "title": "첫날 저녁",
+          "cutCount": 9
+        },
+        {
+          "id": "H3-v118",
+          "title": "다음 날 아침",
+          "cutCount": 5
+        },
+        {
+          "id": "C4H-v117",
+          "title": "다음 날 아침의 선택",
+          "cutCount": 1
+        },
+        {
+          "id": "HB1-v116",
+          "title": "둘째 날",
+          "cutCount": 10
+        },
+        {
+          "id": "HB2-v115",
+          "title": "셋째 날",
+          "cutCount": 8
+        },
+        {
+          "id": "HB3-v114",
+          "title": "직접 묻는 선녀",
+          "cutCount": 8
+        },
+        {
+          "id": "C5H-v113",
+          "title": "진실을 말할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "E3-1-v108",
+          "title": "꺼내 놓은 옷",
+          "cutCount": 31
+        },
+        {
+          "id": "E4-1-v112",
+          "title": "직접적인 거짓말",
+          "cutCount": 5
+        },
+        {
+          "id": "E4-2-v111",
+          "title": "더 깊이 숨기다",
+          "cutCount": 6
+        },
+        {
+          "id": "E4-3-v110",
+          "title": "달빛",
+          "cutCount": 11
+        },
+        {
+          "id": "E4-4-v109",
+          "title": "마주하다",
+          "cutCount": 26
+        },
+        {
+          "id": "C3-B-v130",
+          "title": "선택 3-B 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "14-v129",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C4-v128",
+          "title": "선녀옷을 어떻게 할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "H1-v127",
+          "title": "장작 창고",
+          "cutCount": 6
+        },
+        {
+          "id": "H2-v126",
+          "title": "첫날 저녁",
+          "cutCount": 9
+        },
+        {
+          "id": "H3-v125",
+          "title": "다음 날 아침",
+          "cutCount": 5
+        },
+        {
+          "id": "C4H-v124",
+          "title": "다음 날 아침의 선택",
+          "cutCount": 1
+        },
+        {
+          "id": "C2-B-v154",
+          "title": "선택 2-B 반응",
+          "cutCount": 7
+        },
+        {
+          "id": "7-v153",
+          "title": "첫눈",
+          "cutCount": 13
+        },
+        {
+          "id": "8-v152",
+          "title": "서로의 생활",
+          "cutCount": 12
+        },
+        {
+          "id": "9-v151",
+          "title": "마음을 확인하다",
+          "cutCount": 16
+        },
+        {
+          "id": "10-v150",
+          "title": "선녀의 선택",
+          "cutCount": 16
+        },
+        {
+          "id": "11-v149",
+          "title": "약속",
+          "cutCount": 15
+        },
+        {
+          "id": "12-v148",
+          "title": "평범한 부부",
+          "cutCount": 9
+        },
+        {
+          "id": "13-v147",
+          "title": "기러기",
+          "cutCount": 6
+        },
+        {
+          "id": "C3-v146",
+          "title": "선녀의 그리움 앞에서",
+          "cutCount": 1
+        },
+        {
+          "id": "C3-A-v143",
+          "title": "선택 3-A 반응",
+          "cutCount": 18
+        },
+        {
+          "id": "14-v142",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        },
+        {
+          "id": "C4-v141",
+          "title": "선녀옷을 어떻게 할까?",
+          "cutCount": 1
+        },
+        {
+          "id": "H1-v140",
+          "title": "장작 창고",
+          "cutCount": 6
+        },
+        {
+          "id": "C3-B-v145",
+          "title": "선택 3-B 반응",
+          "cutCount": 11
+        },
+        {
+          "id": "14-v144",
+          "title": "두 번째 폭풍",
+          "cutCount": 20
+        }
+      ]
+    }
+  ],
+  "audioAliases": {
+    "M1": "audio.cc0.oga-jrpg-calm.calm2-childhood-friends",
+    "M2": "audio.cc0.oga-jrpg-calm.calm1-a-place-i-call-home",
+    "M3": "audio.cc0.oga-jrpg-calm.calm3-peaceful-days",
+    "M4": "audio.cc0.oga-piano-emotional.pianoemo139-0",
+    "M5": "audio.cc0.oga-first-light.first-light-particles-0",
+    "M6": "audio.cc0.oga-rising-moon.rising-moon-0",
+    "M7": "audio.cc0.oga-new-sunrise.new-sunrise",
+    "E1": "audio.cc0.oga-park.park-ambience-wind",
+    "E2": "audio.cc0.oga-park.park-ambience-birds",
+    "E3": "audio.cc0.oga-park.park-ambience-river",
+    "E4": "audio.cc0.oga-rain.1",
+    "E5": "audio.cc0.oga-rain-thunder.dark-rainy-night-ambience",
+    "S1": "audio.cc0.kenney-rpg.dooropen-1",
+    "S2": "audio.cc0.kenney-rpg.doorclose-1",
+    "S3": "audio.cc0.kenney-rpg.cloth1",
+    "S4": "audio.cc0.kenney-rpg.handlecoins",
+    "S5": "audio.cc0.kenney-rpg.bookflip1"
+  },
+  "catalog": "assets/metadata/audio/cc0-library.json"
+}
