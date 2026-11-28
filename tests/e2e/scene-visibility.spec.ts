@@ -16,7 +16,8 @@ for(const show of [true,false])test(`conditional cut actual score choice ${show}
  await setup(page);const authored=(await state(page)).document.project;await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);await page.getByRole('button',{name:show?'도와준다':'지나간다',exact:true}).focus();await page.keyboard.press('Enter');await expect.poll(async()=>(await state(page)).playback.lineId).toBe(show?'optional':'common');await rendered(page);
  const frame=page.getByTestId('story-runtime-frame'),gate=frame.contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});if(show&&await gate.count())await gate.press('Enter');
  expect((await state(page)).playback.path).toEqual(show?['decision','optional']:['decision','optional','common']);
- if(!show){await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-sound-play-count','0');await page.getByRole('button',{name:'지난기록',exact:true}).click();const history=page.getByRole('dialog');await expect(history).not.toContainText('조건에서만 보이는 장면');await page.keyboard.press('Escape');}
+ if(!show){await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-sound-play-count','0');// The quick bar steps aside while the stage's text panel holds focus (the keyboard choice leaves it there); leave it first, as a reader would.
+ await page.evaluate(()=>(document.activeElement as HTMLElement|null)?.blur());await page.getByRole('button',{name:'지난기록',exact:true}).click();const history=page.getByRole('dialog');await expect(history).not.toContainText('조건에서만 보이는 장면');await page.keyboard.press('Escape');}
  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`visibility-${show}.png`)});await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();expect((await state(page)).document.project).toEqual(authored);
 });
 test('all hidden cuts end without rendering hidden content or sound',async({page})=>{

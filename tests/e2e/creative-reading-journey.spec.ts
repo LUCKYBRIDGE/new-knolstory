@@ -80,7 +80,7 @@ async function author(page:Page){
  await settings(page);await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await tool(page,'연출 편집');await page.getByLabel('조정할 연출',{exact:true}).selectOption('effects');await page.getByLabel('효과',{exact:true}).selectOption('shake');await page.getByRole('dialog',{name:'화면 흔들림',exact:true}).getByRole('button',{name:'사용',exact:true}).click();await page.getByLabel('효과 대상').selectOption('background');await page.getByLabel('효과 적용 범위').selectOption('following');await page.getByLabel('효과 강도').selectOption('soft');
  await select(page,groups[1]![0]!);await tool(page,'연출 편집');await page.getByLabel('조정할 연출',{exact:true}).selectOption('effects');await page.getByLabel('이어지는 효과 끝내기').check();await saved(page);await shot(page,'authoring-scope');
  for(const cuts of groups){await select(page,cuts[1]!);await tool(page,'배경·인물 편집');await pick(page,'2컷 인물 추가',actor);await tool(page,'원고');await openEditorDetails(page,'말하는 인물 상세 설정');const speaker=page.getByLabel('말하는 인물 그림',{exact:true});const actorKey=await speaker.locator('option').nth(1).getAttribute('value');expect(actorKey).toBeTruthy();await speaker.selectOption(actorKey!);await page.keyboard.press('Escape');}
- await select(page,groups[1]![2]!);await tool(page,'선택지 편집');await shot(page,'authoring-choice-links');await settings(page);await page.getByRole('button',{name:'전체 흐름 보기',exact:true}).click();await shot(page,'authored-flow');await page.keyboard.press('Escape');
+ await select(page,groups[1]![2]!);await tool(page,'선택지 편집');await shot(page,'authoring-choice-links');await settings(page);await page.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();await shot(page,'authored-flow');await page.keyboard.press('Escape');
  return groups;
 }
 

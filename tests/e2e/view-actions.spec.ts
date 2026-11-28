@@ -25,10 +25,10 @@ for(const width of [1440,768,390,844])test(`view settings contain view controls 
  // The whole-flow map belongs to the 분기조건 rule in the 설정 menu.
  await enableEditing(page,'분기조건');
  if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
- await menu.getByRole('button',{name:'전체 흐름 보기',exact:true}).click();
- await expect(page.getByRole('dialog',{name:/흐름/})).toBeVisible();
+ await menu.getByRole('button',{name:'이야기 지도 열기',exact:true}).click();
+ await expect(page.getByRole('dialog',{name:'이야기 지도',exact:true})).toBeVisible();
  await page.keyboard.press('Escape');
- await expect(page.getByRole('dialog',{name:/흐름/})).toHaveCount(0);
+ await expect(page.getByRole('dialog',{name:'이야기 지도',exact:true})).toHaveCount(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('starting native reading respects composition and failed saves',async({page})=>{

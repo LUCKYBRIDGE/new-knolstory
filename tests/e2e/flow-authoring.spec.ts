@@ -55,7 +55,7 @@ async function createNestedStory(page: Page) {
 }
 async function openMap(page: Page) {
   await menu(page);await openEditorDetails(page,'편집 설정');await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();
-  await page.getByRole('button', { name: '전체 흐름 보기', exact: true }).click({ timeout: 10000 });
+  await page.getByRole('button', { name: '이야기 지도 열기', exact: true }).click({ timeout: 10000 });
   const dialog = page.getByRole('dialog', { name: '이야기 지도',exact:true });await expect(dialog).toBeVisible();return dialog;
 }
 
