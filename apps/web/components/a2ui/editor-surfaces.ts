@@ -113,11 +113,11 @@ export type StripWay=Readonly<{optionId:string;mark:string;lineId?:string;where?
 const shortMark=(mark:string)=>mark.length>34?`${mark.slice(0,33)}…`:mark;
 /** 원고 · 갈래 줄: every way out of a choice at once. Under the choice cut (`origin` absent) or at the top of a way's chapter
  * (`origin`: where it came from; the way being written is marked current and the others open in its place). */
-export function branchStripSurface({choiceLineId,ways,note,origin,disabled,canWrite=true}:{choiceLineId:string;ways:readonly StripWay[];note?:string;origin?:{from:string;optionId:string};disabled:boolean;canWrite?:boolean}):Surface{
+export function branchStripSurface({choiceLineId,ways,note,origin,disabled,canWrite=true}:{choiceLineId:string;ways:readonly StripWay[];note?:string;origin?:{from:string;lineId:string};disabled:boolean;canWrite?:boolean}):Surface{
  const way=(item:StripWay):A2uiComponent[]=>item.lineId
-  ?[{id:`way-${item.optionId}`,component:'PathChoice',label:origin?.optionId===item.optionId?`${shortMark(item.mark)} · 지금 쓰는 갈래`:`${shortMark(item.mark)} →`,
+  ?[{id:`way-${item.optionId}`,component:'PathChoice',label:origin?.lineId===item.lineId?`${shortMark(item.mark)} · 지금 쓰는 갈래`:`${shortMark(item.mark)} →`,
     where:[item.where,item.leadsTo].filter(Boolean).join(' · '),...(item.peek.length?{peek:item.peek.slice(0,12)}:{}),
-    ...(origin?.optionId===item.optionId?{current:true}:{}),disabled:{path:'/disabled'},select:{event:{name:BRANCH_EVENTS.open,context:{lineId:item.lineId}}}}]
+    ...(origin?.lineId===item.lineId?{current:true}:{}),disabled:{path:'/disabled'},select:{event:{name:BRANCH_EVENTS.open,context:{lineId:item.lineId}}}}]
   :[{id:`way-${item.optionId}`,component:'Notice',kind:'empty',text:`${shortMark(item.mark)} · 아직 비어 있어요`,...(canWrite?{actions:[`write-${item.optionId}`]}:{})},
     ...(canWrite?[{id:`write-${item.optionId}`,component:'Button',label:'이 갈래 쓰기',disabled:{path:'/disabled'},action:{event:{name:BRANCH_EVENTS.write,context:{lineId:choiceLineId,optionId:item.optionId}}}}]:[])];
  const back:A2uiComponent[]=origin?[{id:'way-origin',component:'PathChoice',label:'← 선택지 컷으로',where:origin.from,disabled:{path:'/disabled'},select:{event:{name:BRANCH_EVENTS.open,context:{lineId:choiceLineId}}}}]:[];

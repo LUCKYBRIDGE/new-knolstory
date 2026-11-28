@@ -41,7 +41,7 @@ for(const viewport of [{width:1280,height:800},{width:390,height:844}])test(`갈
  const origin=originStrip(page);
  await expect(origin).toBeVisible();
  await expect(origin.getByText(/선택지에서 왔어요$/)).toBeVisible();
- await expect(origin.getByRole('button',{name:new RegExp(`^${first.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')} · 지금 쓰는 갈래`)})).toHaveAttribute('aria-current','step');
+ await expect(origin.getByRole('button',{name:new RegExp(`^${first.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')} · 지금 쓰는 갈래`)})).toHaveAttribute('aria-current','true');
  await expect(page.locator('[data-screen="text"] textarea[data-cut-id]').first()).toBeEditable();
  // Switch to way B straight from here.
  await origin.getByRole('button',{name:new RegExp(`^${second.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')} →`)}).click();

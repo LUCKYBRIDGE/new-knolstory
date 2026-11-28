@@ -56,7 +56,7 @@ describe('원고 갈래 줄',()=>{
   expect(surface.components.get('write-b')).toMatchObject({label:'이 갈래 쓰기',action:{event:{name:BRANCH_EVENTS.write,context:{lineId:'c',optionId:'b'}}}});
  });
  it('at the top of a way: where it came from, the way being written and the way back',()=>{
-  const surface=branchStripSurface({choiceLineId:'c',ways,origin:{from:'1장 · 4컷',optionId:'a'},disabled:false});
+  const surface=branchStripSurface({choiceLineId:'c',ways,origin:{from:'1장 · 4컷',lineId:'a1'},disabled:false});
   expect(fragment(surface)).toEqual([]);
   expect(surface.components.get('fork')).toMatchObject({title:'갈래 · 1장 · 4컷 선택지에서 왔어요',children:['way-origin','way-a','way-b']});
   expect(surface.components.get('way-a')).toMatchObject({label:'A. 잔치 손님으로 · 지금 쓰는 갈래',current:true});

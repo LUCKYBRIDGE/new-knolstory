@@ -302,7 +302,7 @@ export function StoryEditingWorkbench(p:Props){
   if(event?.name===BRANCH_EVENTS.open)p.onSelectCut(lineId);
   if(event?.name===BRANCH_EVENTS.write&&typeof optionId==='string')p.onWriteBranch?.(lineId,optionId);};
  const branchSurface=(strip:BranchStrip,from?:BranchOrigin)=><FocusSurface key={`strip-${strip.choiceLineId}${from?'-origin':''}`} inline rootId="fork" device={phone?'phone':'tablet'} onAction={branchAction}
-  surface={branchStripSurface({...strip,...(from?{origin:{from:from.from,optionId:from.optionId}}:{}),disabled:busy||p.composing,canWrite:!!p.onWriteBranch})}
+  surface={branchStripSurface({...strip,...(from?{origin:{from:from.from,lineId:from.lineId}}:{}),disabled:busy||p.composing,canWrite:!!p.onWriteBranch})}
   attrs={component=>component.component==='Fork'?{className:styles.branchStrip,'data-branch-strip':from?'origin':'choice','data-choice-line':strip.choiceLineId}:component.component==='Notice'?{className:styles.pathPending}:undefined}
   skin={{pathChoice:styles.pathChoice,pathWay:styles.branchWay,pathPeek:styles.branchPeek}}/>;
  // ‹ › in the top bar (every screen): story paths when the story branches, otherwise the manuscript order across chapters.

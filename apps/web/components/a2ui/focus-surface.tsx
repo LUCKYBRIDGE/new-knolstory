@@ -135,7 +135,7 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
  </div>,
  PathChoice:(c,ctx)=>{
   const current=value(ctx,c.current)===true;
-  const choice=<button type="button" className={ctx.skin.pathChoice} aria-current={current?'step':undefined} disabled={current||value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)}><b>{text(ctx,c.label)}</b><span>{text(ctx,c.where)}</span></button>;
+  const choice=<button type="button" className={ctx.skin.pathChoice} aria-current={current?'true':undefined} disabled={current||value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)}><b>{text(ctx,c.label)}</b><span>{text(ctx,c.where)}</span></button>;
   // 펼쳐 보기: the way's cuts, read only — open the way to write in it.
   const peek=Array.isArray(c.peek)?c.peek.filter((line):line is string=>typeof line==='string'):[];
   if(peek.length)return <div className={ctx.skin.pathWay} data-current={current||undefined}>{choice}
