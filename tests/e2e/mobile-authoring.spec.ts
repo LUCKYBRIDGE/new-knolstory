@@ -138,10 +138,10 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
   await page.keyboard.press('Escape');
   await expect(page.locator('[data-work-menu]')).not.toHaveAttribute('open', '');
   await expect(page.getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false})).toBeVisible();
-  // 전체 흐름 보기 belongs to 분기조건 편집.
+  // 이야기 지도 열기 belongs to 분기조건 편집.
   await enableEditing(page, '분기조건');
   await management(page);
-  await page.getByRole('button', { name: '전체 흐름 보기', exact: true }).click({ timeout: 10000 });
+  await page.getByRole('button', { name: '이야기 지도 열기', exact: true }).click({ timeout: 10000 });
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);

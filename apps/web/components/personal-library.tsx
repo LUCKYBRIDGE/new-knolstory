@@ -54,7 +54,7 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  </div>:null;
  // Above the shelf only what needs the reader: a nearly full storage, and the result of an online action.
  const warning=owner&&summary?.warn?`${summary.text}${summary.full?(storage?.classroom&&storage.classroom.bytes>=storage.classroom.limit&&classroom.role==='student'?' · 학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요.':' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.'):' · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.'}`:'';
- const header=<div className={styles.statusBar} aria-label="작품 보관 알림">
+ const header=<div className={styles.statusBar} role="group" aria-label="작품 보관 알림">
   {warning&&<p className={styles.storageUsage} data-warn={summary?.warn} role="status">{warning}</p>}
   {online.busy&&<p className={styles.quiet} role="status">온라인 작품을 확인하고 있어요.</p>}
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}

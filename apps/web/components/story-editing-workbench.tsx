@@ -145,10 +145,12 @@ export function StoryEditingWorkbench(p:Props){
   snapshots.current[snapshotKey]={cutId:textarea?.dataset.cutId??previous?.cutId,start:textarea?.selectionStart??previous?.start??0,end:textarea?.selectionEnd??previous?.end??0,direction:textarea?.selectionDirection??previous?.direction??"none",top:textarea?.scrollTop??previous?.top??0,left:textarea?.scrollLeft??previous?.left??0,scroll:area?.scrollTop??0,windowScroll:window.scrollY};
  };
  const previousEditingActive=useRef(p.editingActive),restoredContext=useRef<string|null>(null);
+ // The screen whose saved place was just put back: opening it must not then jump to the current cut.
+ const restoredPlace=useRef<string|null>(null);
  const previousSelection=useRef({projectId:p.project.id,lineId:p.lineId});
  useLayoutEffect(()=>{
   const context=JSON.stringify([p.project.id,screen,p.editingActive,p.lineId]);
-  if(restoredContext.current===context)return;restoredContext.current=context;
+  if(restoredContext.current===context)return;restoredContext.current=context;restoredPlace.current=null;
   const returning=previousEditingActive.current===false&&p.editingActive!==false;previousEditingActive.current=p.editingActive;
   const selectionChanged=previousSelection.current.projectId!==p.project.id||previousSelection.current.lineId!==p.lineId;
   previousSelection.current={projectId:p.project.id,lineId:p.lineId};
@@ -158,7 +160,7 @@ export function StoryEditingWorkbench(p:Props){
   const textarea=Array.from(root.current?.querySelectorAll<HTMLTextAreaElement>('textarea[data-cut-id]')??[]).find(field=>field.dataset.cutId===snapshot.cutId);
   if(textarea&&!textarea.disabled){textarea.focus({preventScroll:true});textarea.setSelectionRange(snapshot.start,snapshot.end,snapshot.direction);textarea.scrollTop=snapshot.top;textarea.scrollLeft=snapshot.left;}
   const area=root.current?.querySelector<HTMLElement>('[data-writer-scroll]');
-  if(area)area.scrollTop=snapshot.scroll;
+  if(area){area.scrollTop=snapshot.scroll;restoredPlace.current=`${p.project.id}/${screen}`;}
   window.scrollTo({top:snapshot.windowScroll,behavior:'instant'});
  },[p.project.id,screen,p.editingActive,p.lineId]);
  const current=p.project.lines.find(l=>l.id===p.lineId);
@@ -167,7 +169,7 @@ export function StoryEditingWorkbench(p:Props){
  const selected=p.preferences.companions[screen]??[];
  const findCurrentRow=()=>{const list=root.current?.querySelector<HTMLElement>('[data-writer-scroll]'),row=list?.querySelector<HTMLElement>('[aria-current=step]');if(!list||!row)return;const item=row.getBoundingClientRect(),bounds=list.getBoundingClientRect();list.scrollTop+=item.top-bounds.top-2;};
  // Opening a multi-cut screen (원고·배경·인물…) starts at the cut being edited, matching the stage, instead of the chapter's first cut.
- useEffect(()=>{if(screen==='basic'||screen==='audio-direction')return;const frame=requestAnimationFrame(()=>findCurrentRow());return()=>cancelAnimationFrame(frame);
+ useEffect(()=>{if(screen==='basic'||screen==='audio-direction')return;if(restoredPlace.current===`${p.project.id}/${screen}`){restoredPlace.current=null;return;}const frame=requestAnimationFrame(()=>findCurrentRow());return()=>cancelAnimationFrame(frame);
   // eslint-disable-next-line react-hooks/exhaustive-deps -- only when the screen (or work) changes, never while choosing cuts in the list
  },[screen,p.project.id]);
  const showRanges=screen==='audio-direction'||screen==='audio'||screen==='direction'||selected.includes('audio')||selected.includes('direction');
