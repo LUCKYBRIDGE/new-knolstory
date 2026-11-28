@@ -1,4 +1,5 @@
 import {chaptersInStoryOrder} from '@knolstory/story-domain';
+import {polishCatalogNames} from '../src/catalog-name-polish';
 import {currentCatalogVisuals} from './current-catalog-visuals';
 import {simplifyCatalogPerspectiveCard as previousCard} from '../src/catalog-perspective-card';
 import {connectCatalogLayeredScenes} from '../src/catalog-layered-scenes';
@@ -30,7 +31,7 @@ it('keeps disconnected Onggojib manuscripts explicitly marked and every original
  expect(p.chapters.filter(c=>c.title==='돌아온 뒤')).toHaveLength(0);
 });
 it('keeps originals unchanged and does not rewrite any personally edited chapter',()=>{
- for(const entry of classicStories)expect(resolveProvidedCatalogStory(entry.project).chapters).toEqual(connectCatalogLayeredScenes(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))).chapters);
+ for(const entry of classicStories)expect(resolveProvidedCatalogStory(entry.project).chapters).toEqual(polishCatalogNames(connectCatalogLayeredScenes(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project))))).chapters);
  for(const entry of representativeStories){const current=resolveProvidedCatalogStory(entry.project);const edited={...current,chapters:current.chapters.map((c,i)=>i?c:{...c,chapterNumber:77,title:'내가 고친 장'})};expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);}
 });
 it('changes chapter presentation only: preserves every cut, runtime order and all other authored fields',()=>{
