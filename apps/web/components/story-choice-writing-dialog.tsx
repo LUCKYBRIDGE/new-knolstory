@@ -1,11 +1,19 @@
 'use client';
-import {useEffect,useRef} from 'react';
+import {useEffect,useMemo,useRef} from 'react';
 import {trapDialogTab} from '../lib/dialog-keyboard';
-import styles from './authoring-import-dialog.module.css';
+import {FocusSurface} from './a2ui/focus-surface';
+import {BRANCH_DIALOG_EVENTS,newBranchDialogSurface} from './a2ui/branch-dialog-surfaces';
+import {branchDialogSkin} from './story-split-dialog';
+import base from './authoring-import-dialog.module.css';
+import surface from './story-dialog-surface.module.css';
+import styles from './story-split-dialog.module.css';
 type Props={label:string;sourceLabel:string;closesLinearTail:boolean;error:string;onCancel:()=>void;onCreate:()=>void};
-/** Optional branch creation is previewed without touching the current manuscript. */
+/** Optional branch creation is previewed without touching the current manuscript. Drawn from the A2UI catalog (Dialog). */
 export function StoryChoiceWritingDialog(p:Props){
  const ref=useRef<HTMLDialogElement>(null);
- useEffect(()=>{const element=ref.current,opener=document.activeElement as HTMLElement|null;element?.showModal();element?.querySelector<HTMLElement>('button')?.focus();return()=>{element?.close();if(opener?.isConnected)opener.focus();};},[]);
- return <dialog ref={ref} className={styles.dialog} aria-label="새 갈래 작성" onCancel={event=>{event.preventDefault();event.stopPropagation();p.onCancel();}} onKeyDown={event=>trapDialogTab(event,ref.current)}><h2>새 갈래 작성</h2><p>{p.sourceLabel}의 선택지에 빈 첫 컷을 연결해요.</p><p className={styles.title}>{p.label}</p><p>지금 장의 자료와 인물 배치를 이어받아 새 컷의 글을 바로 써요. 다른 선택지와 기존 원고는 그대로예요. 다 쓴 뒤에는 ‘이야기 연결’의 ‘← 방금 보던 컷’으로 돌아갈 수 있어요.</p>{p.closesLinearTail&&<p>새 갈래가 기존 원고 뒤에 붙으므로, 순서대로 이어지던 기존 원고의 마지막은 이야기 끝으로 명시해요. 기존 글이 새 갈래로 저절로 이어지지 않아요.</p>}{p.error&&<p role="alert">{p.error}</p>}<div className={styles.actions}><button type="button" onClick={p.onCancel}>취소</button><button className={styles.primary} type="button" onClick={p.onCreate}>새 갈래 만들고 글쓰기</button></div></dialog>;
+ useEffect(()=>{const element=ref.current,opener=document.activeElement as HTMLElement|null;element?.showModal();element?.querySelector<HTMLElement>('[data-close-icon]')?.focus();return()=>{element?.close();if(opener?.isConnected)opener.focus();};},[]);
+ const view=useMemo(()=>newBranchDialogSurface({label:p.label,sourceLabel:p.sourceLabel,closesLinearTail:p.closesLinearTail,error:p.error}),[p.label,p.sourceLabel,p.closesLinearTail,p.error]);
+ return <dialog ref={ref} className={`${base.dialog} ${surface.surface} ${styles.dialog}`} aria-label="새 갈래 작성" onCancel={event=>{event.preventDefault();event.stopPropagation();p.onCancel();}} onKeyDown={event=>trapDialogTab(event,ref.current)}>
+  <FocusSurface surface={view} device="desktop" inline skin={branchDialogSkin} onAction={({action})=>{const name=(action as {event?:{name?:string}}).event?.name;if(name===BRANCH_DIALOG_EVENTS.close)p.onCancel();if(name===BRANCH_DIALOG_EVENTS.confirm)p.onCreate();}}/>
+ </dialog>;
 }

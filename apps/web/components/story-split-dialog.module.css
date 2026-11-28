@@ -19,3 +19,9 @@
 .preview li + li { margin: 0; }
 .preview li b { color: var(--story-menu-accent); grid-row: span 2; }
 .preview li small, .preview > small { color: var(--story-menu-muted); }
+/* A2UI Dialog (2026-11-28): the preview's ways are PathChoice buttons that take you to that way's words. */
+.dialog [data-a2ui-dialog] [role=group][aria-label='만들어질 갈래 미리보기']{display:grid;gap:6px;padding:12px;border:1px dashed var(--story-menu-line);border-radius:5px;background:transparent}
+.dialog [data-a2ui-dialog] [role=group][aria-label='만들어질 갈래 미리보기']>small,.dialog [data-a2ui-dialog] [data-kind]>p{color:var(--story-menu-muted)}
+.way{display:grid;justify-items:start;gap:2px;width:100%;padding:8px 10px;text-align:left;font:inherit}
+.way b{color:var(--story-menu-accent)}
+.way span{color:var(--story-menu-muted);font-size:var(--text-small)}

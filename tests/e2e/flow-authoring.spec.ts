@@ -228,9 +228,9 @@ test('split the story here, write one path on its own and arrange chapters by re
   await page.getByLabel('현재 장과 컷 이동').selectOption(ids[1]!);
   await page.getByRole('button',{name:'이야기 나누기',exact:true}).click();
   const split=page.getByRole('dialog',{name:'여기서 이야기 나누기',exact:true});await expect(split).toBeVisible();
-  await expect(split.getByRole('button',{name:'선택지 문구를 모두 적어 주세요',exact:true})).toBeDisabled();
+  await expect(split.getByRole('button',{name:'나누고 첫 갈래 쓰기',exact:true})).toBeDisabled();
   await split.getByLabel('선택지 A 문구',{exact:true}).fill('숲으로 간다');await split.getByLabel('선택지 B 문구',{exact:true}).fill('강으로 간다');
-  await expect(split.getByRole('radio',{name:/다시 만나요/})).toBeChecked();
+  await expect(split.getByRole('combobox',{name:'갈래가 끝나면',exact:true})).toHaveValue('rejoin');
   await expect(split.getByLabel('만들어질 갈래 미리보기')).toContainText('새 장 2장A');
   await split.getByRole('button',{name:'나누고 첫 갈래 쓰기',exact:true}).click();await expect(split).toHaveCount(0);
   await expect(page.getByRole('status').filter({hasText:'이야기를 나눴어요'})).toBeVisible();

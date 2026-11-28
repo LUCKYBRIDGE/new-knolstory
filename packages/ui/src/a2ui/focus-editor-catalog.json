@@ -3,7 +3,7 @@
   "catalogId": "https://knolstory.app/a2ui/catalogs/focus-editor/v1/catalog.json",
   "title": "KnolStory 집중 편집 화면 카탈로그",
   "description": "A2UI v0.9 catalog for KnolStory's focus editing screens. Screens are composed only from these components. Source rules: DESIGN.md '집중 편집 화면 규칙 — 2026-11-24'.",
-  "instructions": "Compose one FocusScreen per editing task. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Components marked x-host are custom catalog components: the catalog fixes their place and props; the screen registers how they are drawn. Every part of a screen is either a catalog component or one of these named custom components.",
+  "instructions": "Compose one FocusScreen per editing task; a short modal step outside it (나누기, 새 갈래) is its own surface whose root is a Dialog. 쓰기 is a single-cut screen (CurrentCut); the other tasks are list screens (a CutList of CutItems in work) (basic=쓰기, text=원고, background=배경, characters=인물, audio=음향, direction=연출). The skeleton is fixed: topBar (CutNavigator + WorkTabs) → stage (only when the task needs the scene) → current (the current cut's speaker and text, always visible) → work (the task's tools: choose/change first, remove last) → more (rarely used tools, collapsed). There is no free Text component: standing explanations are not allowed. Speak only through Notice, and only for an empty state, an error or an irreversible action. Put terms and how-to in an IconButton(help) or the Button title. One way per job: two controls with the same action on one screen are rejected unless their devices never overlap. Only one Button may be variant=primary. A ToolGroup holds at most 4 controls. Spacing is chosen from 4/8/12/16/24 only; the renderer owns sizes (visible controls 32–36px, touch targets 44px). Closing is IconButton(icon=close) with a name like '… 닫기', never a text '닫기' button. CutCard (previous/next cut with a scene preview) is tablet/desktop context only. Labels are short Korean in 해요체 where a sentence is needed. Components marked x-host are custom catalog components: the catalog fixes their place and props; the screen registers how they are drawn. Every part of a screen is either a catalog component or one of these named custom components.",
   "$defs": {
     "Device": {
       "type": "string",
@@ -81,6 +81,41 @@
         "task",
         "topBar",
         "work"
+      ]
+    },
+    "Dialog": {
+      "type": "object",
+      "description": "A short modal step outside the focus screen that asks for a few values or confirms a story change (e.g. 여기서 이야기 나누기, 새 갈래 작성). Must be the component with id 'root' of its own surface. A title, an × close (closeName ‘… 닫기’; Escape does the same), its parts, and one action row (actions: a ToolGroup with the one primary Button). There is no text 취소 button: × is the way out. Sentences only through Notice; a preview of the ways is a Fork.",
+      "allowedParents": [],
+      "properties": {
+        "component": {
+          "const": "Dialog"
+        },
+        "title": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "closeName": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "close": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "children": {
+          "$ref": "common_types.json#/$defs/ChildList",
+          "minItems": 1
+        },
+        "actions": {
+          "$ref": "common_types.json#/$defs/ComponentId"
+        }
+      },
+      "required": [
+        "component",
+        "title",
+        "closeName",
+        "close",
+        "children",
+        "actions"
       ]
     },
     "TopBar": {
@@ -438,6 +473,7 @@
       "allowedParents": [
         "Column",
         "CutItem",
+        "Dialog",
         "Drawer",
         "FocusScreen",
         "More"
@@ -755,6 +791,7 @@
       "allowedParents": [
         "Column",
         "CutItem",
+        "Dialog",
         "FocusScreen",
         "Fork",
         "More"
@@ -1177,8 +1214,9 @@
       "type": "object",
       "description": "Where the story branches or joins around the current cut: a title, an optional one-line note, and the ways to go (PathChoice) or a Notice for a way that has no cut yet.",
       "allowedParents": [
-        "FocusScreen",
-        "Column"
+        "Column",
+        "Dialog",
+        "FocusScreen"
       ],
       "properties": {
         "component": {
