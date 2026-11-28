@@ -104,6 +104,13 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
    onClick={()=>{if(task!==c.selected&&c.change&&typeof c.change==='object'&&'event' in c.change)ctx.fire(c.id,{event:{...(c.change as {event:object}).event,context:{task}}});}}>
    {TASK_LABELS[task as keyof typeof TASK_LABELS]}</button>)}
  </nav>,
+ // Tabs inside a task (숏스토리 쪽 쓰기: 글 · 그림 · 쪽): a tablist whose tabs control the host's panels by id.
+ Tabs:(c,ctx)=>{const selected=text(ctx,c.selected),prefix=String(c.panels);
+  return <div role="tablist" aria-label={text(ctx,c.name)} {...host(ctx,c,styles.tabs)}>
+   {list(c.tabs).map(tab=>{const {value:tabValue,label}=tab as {value:string;label:string};
+    return <button key={tabValue} type="button" role="tab" id={`${prefix}-tab-${tabValue}`} aria-selected={tabValue===selected} aria-controls={`${prefix}-panel-${tabValue}`} disabled={value(ctx,c.disabled)===true}
+     onClick={()=>changeWith(ctx,c,tabValue)}>{label}</button>;})}
+  </div>;},
  Stage:(c,ctx)=>{
   const strip=c.phoneStrip===true&&ctx.device==='phone';
   return <div className={styles.stageWrap} data-stage-strip={strip?'strip':undefined}>

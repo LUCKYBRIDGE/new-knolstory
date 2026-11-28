@@ -19,3 +19,4 @@
 - 흐름 지도의 갈래 구조는 사용자 정의 컴포넌트 `StoryStructure`(`structureSurface`)이고 지도가 구현을 등록한다.
 - 새 조각을 만들면 `validateSurface`로 검사하는 단위 테스트를 함께 둔다(`components/a2ui/focus-surface.test.ts`), 쓰기 설계도(`screens/basic.json`)의 `context`도 함께 고친다.
 - 편집 화면 밖의 짧은 단계(갈래 나누기·새 갈래 작성, 2026-11-28)는 루트가 `Dialog`인 별도 화면이다(`components/a2ui/branch-dialog-surfaces.ts`). 검사기는 `Dialog` 루트에도 주 단추 하나·같은 일 두 번 금지를 적용한다. 대화상자 요소(showModal·초점·Esc)는 화면 코드가 맡고, `Dialog`는 제목·× 닫기·부분·`actions` 줄만 그린다.
+- 작업 안의 탭(숏스토리 ‘글 · 그림 · 쪽’, 2026-11-29)은 카탈로그 `Tabs`다. 편집 화면의 작업 탭(`WorkTabs`)과 다르며, 탭 id는 `<panels>-tab-<value>`, 패널 id는 `<panels>-panel-<value>`이다.
