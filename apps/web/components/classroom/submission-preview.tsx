@@ -20,11 +20,12 @@ export function SubmissionPreview({item,row,draft=false}:{item:Assignment;row:Re
  return <>
   <button className={draft?styles.btn:`${styles.btn} ${styles.primary}`} aria-label={`${row.number}번 ${draft?'중간 저장본':'제출 작품'} 바로 보기`} onClick={()=>void show()}>{draft?'중간본 보기':'바로 보기'}</button>
   {open&&<ClassroomDialog wide title={`${row.number}번 ${row.name||''} · ${script?.title??item.title}`.replace(/\s+·/,' ·')} onClose={()=>setOpen(false)}>
-   <p>{draft?`${formatSubmittedAt(row.savedAt)} 중간 저장 · 아직 낸 작품이 아니에요.`:`${formatSubmittedAt(row.submittedAt)} 제출`}{item.format==='shortstory'?' · 쪽마다 삽화와 글을 보여 줘요.':` · 글만 보여 줘요.${draft?'':' 장면·소리까지 보려면 ‘서재에서 열기’를 눌러요.'}`}</p>
+   <p>{draft?`${formatSubmittedAt(row.savedAt)} 중간 저장 · 아직 낸 작품이 아니에요.`:`${formatSubmittedAt(row.submittedAt)} 제출`}{item.format==='shortstory'?' · 쪽마다 삽화와 글을 보여 줘요.':` · 글과 선택지를 보여 줘요.${draft?'':' 장면·소리까지 보려면 ‘서재에서 열기’를 눌러요.'}`}</p>
    {busy&&<p role="status">작품을 읽고 있어요.</p>}{error&&<p role="alert">{error}</p>}
-   {script&&(script.empty?<p>아직 쓴 글이 없어요.</p>:<div className={styles.script}>{script.sections.filter(section=>section.lines.length||section.art).map((section,index)=><section key={index}><h3>{section.title}</h3>
+   {script&&(script.empty?<p>아직 쓴 글이 없어요.</p>:<div className={styles.script}>{script.sections.filter(section=>section.lines.length||section.art).map((section,index)=><section key={index}><h3>{section.title}{section.from&&<small className={styles.scriptFrom}>{section.from}</small>}</h3>
     {section.art&&<div className={styles.scriptArt}><PicturebookArt {...section.art} label={`${section.title} 삽화`}/></div>}
-    {section.lines.map((line,lineIndex)=><p key={lineIndex}>{line.speaker&&<b>{line.speaker}</b>}{line.text}</p>)}</section>)}</div>)}
+    {section.lines.map((line,lineIndex)=><div key={lineIndex}>{line.text.trim()&&<p>{line.speaker&&<b>{line.speaker}</b>}{line.text}</p>}
+     {line.choices&&<ul className={styles.scriptChoices} aria-label="선택지" data-script-choices>{line.choices.map(choice=><li key={choice.mark}><span>{choice.mark}</span><small>→ {choice.to}</small></li>)}</ul>}</div>)}</section>)}</div>)}
    <div className={styles.dialogActions}><button className={styles.btn} onClick={()=>setOpen(false)}>닫기</button></div>
   </ClassroomDialog>}
  </>;
