@@ -1,4 +1,5 @@
 import {openShortStoryTools} from './shortstory-navigation';
+import {openEditingScreen} from './editor-screens';
 import {test,expect,type Page} from '@playwright/test';
 import axe from 'axe-core';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
@@ -381,7 +382,7 @@ test('picture book writers see their own page count in the assignment brief',asy
   expect(bounds!.x).toBeGreaterThanOrEqual(0);
   expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
  }
- await brief.getByRole('link',{name:'과제 화면에서 중간 저장·제출하기'}).click();
+ await brief.getByRole('link',{name:'과제 화면 열기'}).click();
  await page.getByRole('button',{name:'저장하지 않고 이동',exact:true}).click();
  await expect(page).toHaveURL(/\/student\/?$/);
  await page.getByRole('link',{name:'이어서 쓰기',exact:true}).click();
@@ -1067,6 +1068,24 @@ test('a student starts a writing task from the teacher template and keeps writin
  await page.goto('/student');
  await expect(page.getByRole('link',{name:'이어서 쓰기',exact:true})).toBeVisible();
 });
+test('a student shares and hands in the work from the editor’s 과제 without leaving it',async({page})=>{
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ await page.goto('/student');
+ await page.getByRole('link',{name:'과제 쓰기',exact:true}).first().click();
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const task=page.locator('[data-task-action]');
+ await task.locator('summary').click();
+ // 2026-11-28 사용자 결정: share and hand in right here; the task screen is only one more link.
+ await task.getByRole('button',{name:'선생님께 중간 저장',exact:true}).click();
+ await expect(task.getByRole('status')).toContainText('선생님께 중간 저장했어요');
+ await task.getByRole('button',{name:'제출',exact:true}).click();
+ await expect(task.getByRole('status')).toContainText('제출했어요');
+ expect(state.submissions[state.assignments[0]!.id]).toBeTruthy();
+ await expect(task.getByRole('button',{name:'고쳐서 다시 내기',exact:true})).toBeVisible();
+ await expect(page.getByRole('dialog',{name:'작업을 마치고 이동할까요?'})).toHaveCount(0);
+ await expect(page).toHaveURL(/view=editor/);
+});
+
 test('a teacher attaches one of their works as a task template and can remove it',async({page})=>{
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'3반',classCode:'ABC234',defaultPermissions:all,students:[]};
@@ -1245,6 +1264,26 @@ test('a KnolStory task opens after the picture book passes and starts from it, w
 });
 
 
+test('a stage task made from a picture book given to chosen students starts with the same students',async({page})=>{
+ const teacher=await mockClassroom(page,'teacher');
+ const kid=(number:number,name:string):Student=>({number,name,password:'1234',permissions:null,hasQr:false});
+ teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[kid(1,'가람'),kid(2,'하늘'),kid(3,'누리')]};
+ teacher.assignments=[{format:'shortstory',id:'a1',title:'나의 그림책',description:'두 쪽을 써요.',storyKey:null,open:true,createdAt:1,submittedCount:0,recipients:[1,3]}];
+ await page.goto('/teacher');
+ const writing=page.getByRole('region',{name:'작품 쓰기 과제'});
+ await page.getByRole('button',{name:'숏스토리 · 1',exact:true}).click();
+ const card=writing.locator('li').filter({has:page.getByRole('heading',{name:'나의 그림책',exact:true})});
+ await card.getByText('과제 설정 더보기',{exact:true}).click();
+ await card.getByRole('button',{name:'나의 그림책 통과 뒤 놀스토리로 이어 쓰는 과제 만들기'}).click();
+ // Seen on production 2026-11-28: the form used to start with the whole class, and the server refused it.
+ const picker=writing.getByRole('group',{name:'받는 학생'});
+ await expect(picker.getByRole('radio',{name:'골라서 주기'})).toBeChecked();
+ await expect(picker.getByRole('checkbox',{name:/1\s*가람/})).toBeChecked();await expect(picker.getByRole('checkbox',{name:/3\s*누리/})).toBeChecked();
+ await expect(picker.getByRole('checkbox',{name:/2\s*하늘/})).not.toBeChecked();
+ await writing.getByLabel('무엇을 하나요',{exact:true}).fill('통과한 그림책을 이어 써요.');await writing.getByRole('button',{name:'과제 만들기',exact:true}).click();
+ expect(teacher.bodies.at(-1)).toMatchObject({format:'knolstory',afterAssignmentId:'a1',recipients:[1,3]});
+});
+
 test('a KnolStory stage task from a picture book without pictures still shows each page as its 그림책 구상',async({page})=>{
  // Found on a real server run (2026-11-21): a text-only picture book left no 그림책 구상, so its pages vanished from view.
  await page.setViewportSize({width:390,height:844});
@@ -1266,6 +1305,13 @@ test('a KnolStory stage task from a picture book without pictures still shows ea
  const reference=page.locator('summary:visible',{hasText:'그림책 구상'}).first();
  await expect(reference).toBeVisible({timeout:30000});await reference.click();
  await expect(page.getByTestId('picturebook-chapter-reference').filter({visible:true})).toContainText('토끼는 꾀를 내어 용궁을 빠져나왔어요.');
+ // 원고 keeps the same page folded right above the chapter's document (2026-11-28).
+ await openEditingScreen(page,'원고');
+ const folded=page.locator('[data-screen="text"] details[data-picturebook-reference]');
+ await expect(folded).toBeVisible();await expect(folded).not.toHaveAttribute('open','');
+ await folded.locator('summary').click();
+ await expect(folded.getByTestId('picturebook-chapter-reference')).toContainText('토끼는 꾀를 내어 용궁을 빠져나왔어요.');
+ await expect(page.locator('details[data-picturebook-reference]').filter({visible:true})).toHaveCount(1);
 });
 
 test('a picture book task that allows text only blocks picture choosing from the first open',async({page})=>{

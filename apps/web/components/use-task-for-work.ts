@@ -9,6 +9,8 @@ export function bindTaskWork(accountId:string,taskId:string,workKey:string){
  localStorage.setItem(`${PREFIX}${accountId}:${taskId}`,workKey);
  window.dispatchEvent(new Event(BOUND_EVENT));
 }
+/** Ask open editors to read their task again (after a hand-in from the editor). */
+export function refreshTaskForWork(){window.dispatchEvent(new Event(BOUND_EVENT));}
 /** The task this device's work belongs to, if the student started it from a task. */
 export function boundTaskId(accountId:string,workKey:string):string|null{
  try{

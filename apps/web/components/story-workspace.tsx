@@ -764,11 +764,18 @@ export function StoryWorkspace() {
       requestAnimationFrame(()=>document.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea')?.focus({preventScroll:true}));
     }catch(issue){setSplitError(issueText(issue));}
   }
-  /** 원고: put the caret back into a cut's text box once the list shows the changed cuts. */
-  function focusCutText(lineId:string,caret:number){
-    requestAnimationFrame(()=>{const field=shell.current?.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${CSS.escape(lineId)}"]`);
-      if(!field||field.disabled||!field.checkVisibility())return;field.focus({preventScroll:true});field.setSelectionRange(caret,caret);field.scrollIntoView({block:'nearest'});});
-  }
+  /** 원고: put the caret into a cut's text box in the same commit that shows the changed cuts, so the next key typed
+   *  right after Enter twice already lands in the new cut (a frame later it would still reach the cut before). */
+  const [cutFocus,setCutFocus]=useState<{lineId:string;caret:number}|null>(null);
+  useLayoutEffect(()=>{
+    if(!cutFocus)return;
+    const field=shell.current?.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${CSS.escape(cutFocus.lineId)}"]`);
+    if(!field)return;
+    setCutFocus(null);
+    if(field.disabled||!field.checkVisibility())return;
+    field.focus({preventScroll:true});field.setSelectionRange(cutFocus.caret,cutFocus.caret);field.scrollIntoView({block:'nearest'});
+  },[cutFocus,project]);
+  function focusCutText(lineId:string,caret:number){setCutFocus({lineId,caret});}
   /** 원고: Enter twice or a pasted blank line — each later piece becomes the next cut (same speaker unless it starts with ‘이름:’). Undo keeps the writing as one cut. */
   function splitCutPieces(lineId:string,pieces:readonly string[],caret=0){
     if(stopForUnappliedInput()||pieces.length<2)return;
@@ -1325,7 +1332,7 @@ export function StoryWorkspace() {
     ?<EditorOnlineSave className={styles.onlineSave} workKey={storyId} project={project} accountId={editorLimits.accountId} disabled={composing||importBusy} onNotice={setError}
       snapshotOf={onlineSnapshot} save={()=>saveOnlinePersonalWork(storyId,editorLimits.accountId!,editorLimits.csrf!,()=>true)}/>:null;
   const taskAction=onlineEnabled&&view==='editor'&&mode==='edit'&&editorLimits.role==='student'&&editorLimits.accountId&&isPersonalWork(storyId)
-    ?<TaskAction className={styles.taskAction} accountId={editorLimits.accountId} workKey={storyId} project={project}/>:null;
+    ?<TaskAction className={styles.taskAction} accountId={editorLimits.accountId} workKey={storyId} project={project} csrf={editorLimits.csrf??undefined} snapshot={()=>onlineSnapshot(project)} disabled={composing||!loadComplete}/>:null;
   const workHeader=(children:ReactNode)=><WorkspaceManagement onlineAction={<>{taskAction}{onlineAction}</>} fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장하지 않은 변경이 있어서 편집 화면에 머물렀어요. 작품 파일이 저장됐는지 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}{mode==='edit'&&project.chapters.length>1&&<button disabled={composing||!loadComplete} onClick={()=>{if(stopForUnappliedInput())return;setManageOpen(false);setChapterOrder(project);}}>장 순서 바꾸기</button>}<div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong><EditorTermGuide/>
             <p>컷 미리보기는 가로 16:9로 고정돼요. 읽기 화면에서는 16:9와 9:16 중에서 고를 수 있어요.</p>
           <button aria-pressed={reducedMotion || motionOverride} onClick={() => { setMotionOverride(value => !value); setRevision(value => value + 1); }} disabled={reducedMotion}>동작 줄이기</button>

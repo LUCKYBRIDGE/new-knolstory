@@ -599,3 +599,4 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
 .storageUsers>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:var(--text-small);color:var(--class-muted)}
 /* Landscape phones: the storage numbers under the student's name step aside for the first task. */
 @media(max-height:500px) and (orientation:landscape){.todoHead>.studentBanner .hint{display:none}}
+.scriptArt{max-width:min(100%,360px);margin:0 0 8px;border-radius:10px;overflow:hidden}

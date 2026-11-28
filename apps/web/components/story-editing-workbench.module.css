@@ -626,3 +626,10 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
  .workbench .rows[data-manuscript] .row>:not(header),.workbench .rows[data-manuscript] .row>header{grid-column:1;grid-row:auto}
  .workbench .rows[data-manuscript] .row>header{padding-top:6px}
 }
+.manuscriptReference{margin:0 0 8px;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+.manuscriptReference>summary{display:flex;align-items:center;min-height:44px;cursor:pointer;font-size:var(--text-small);font-weight:600}
+.manuscriptReference>summary::after{content:'▾';margin-left:auto;padding-left:8px;color:var(--ink-soft)}
+.manuscriptReference[open]>summary::after{content:'▴'}
+.manuscriptReference>section{padding:0 0 12px}
+.manuscriptReference>section>strong:first-child{display:none}
+@media (min-width:701px){.manuscriptReference>section{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);align-items:start;gap:12px}}
