@@ -163,3 +163,9 @@ Generate one transparent RGBA full-body sprite for a Korean Joseon historical fo
 ```text
 Generate one transparent RGBA full-body sprite for a Korean Joseon historical folktale, based on the exact approved first reference. Same individual, face structure, age, pose scale, neck and shoulder width, identifiable costume, hair style, accessories, feet and full shoes, no posture change that changes torso or leg height. Entire actor isolated with generous transparent padding, no opaque background, no writing, no props, no floor or shadow. Draw fine sepia contours and soft textured watercolor gouache on warm hanji, modest detail, same original proportions across scalp-to-chin size, neck, shoulders, hands, hips and limbs. Never overextend sleeves, slim the torso, shrink the face or add shine. One standing actor, 2:3 portrait. The old well-house grandmother teases Gyehwa about accidentally wetting her sleeves. Reference exact close-cropped graying bun, round cheeks and softly stooped short build, cranberry jeogori, brown skirt, and tiny shoes. Keep the same small rounded stature and baseline hunched pose while standing. Open her mouth a little in a suppressed sideways chuckle, cheek lines subtly lift, one palm angles outward at waist height like a gentle mock reprimand; other arm stays tucked back. Distinguish the gesture and merry eyes from the resting slight smile. Retain the wrinkles, real neck and arm proportions. No jug, bucket or water.
 ```
+
+## 전체 장면의 가로·세로 렌더링
+
+원작 91컷과 놀스토리 415개 고유 컷을 Ren’Py 8.5.3에 무음으로 보내 가로 1024px와 세로 390px에서 총 1,012개 장면 응답을 확인했다. 원작 1개 경로와 놀스토리 8개 경로를 원고 데이터에서 순회했고, 놀스토리 결말 4개의 마지막 컷이 두 방향에서 표시됐다. 이번에 등록한 세 표정은 O22·O84·N14의 장면 데이터에 배정됐고 가로 재생에서 각각 확인했다.
+
+서재에서 들어가 선택지를 고르고 처음부터 끝까지 넘기는 별도 검사에서는 로컬 환경에서 무대 응답 지연과 일부 브라우저 종료가 발생했다. 음원과 함께 재생하는 전체 읽기 검증은 승인 원본 복원 뒤 계속한다.
