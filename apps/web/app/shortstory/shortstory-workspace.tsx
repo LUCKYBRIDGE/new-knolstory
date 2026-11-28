@@ -51,6 +51,7 @@ import {BookClosing,BookOpening} from './book-moments';
 import {AssetPreviewImage} from '../../components/asset-preview-image';
 import {FocusSurface} from '../../components/a2ui/focus-surface';
 import {PAGE_TOOL_EVENTS,pageToolsSurface} from '../../components/a2ui/shortstory-page-tools-surface';
+import {READ_NAV_EVENTS,readNavSurface} from '../../components/a2ui/shortstory-read-nav-surface';
 type Project=ShortStoryProject;
 type Page=Project['pages'][number];
 const loadingProject=getShortStoryOriginal('rabbit');
@@ -431,7 +432,9 @@ export function ShortStoryWorkspace() {
       attrs={component=>component.component==='Column'?{className:styles.pageToolRows}:component.component==='ToolGroup'?{className:component.id==='remove-group'?styles.dangerGroup:''}:component.id==='remove'?{className:styles.danger}:component.component==='Button'||component.component==='Choice'?{className:''}:undefined}
       onAction={({action})=>pageTool((action as {event?:{name?:string;context?:{value?:unknown}}}).event)}/></div></fieldset>:<><p className={styles.storyText}>{current.text||'아직 글이 없는 쪽이에요.'}</p>
      {/* Reading: the next page is where the eye ends, under the text (←·→ keys work too). */}
-     {project.pages.length>1&&<nav className={styles.readNav} aria-label="읽기 쪽 넘기기"><button aria-label={index===0?'표지로':'이전 쪽'} onClick={()=>turn(index-1)}>{index===0?'‹ 표지':'‹ 이전 쪽'}</button><span>{index+1} / {project.pages.length}</span><button aria-label={index===project.pages.length-1?'책 덮기':'다음 쪽'} className={styles.readNext} onClick={()=>turn(index+1)}>{index===project.pages.length-1?'책 덮기 ›':'다음 쪽 ›'}</button></nav>}</>}</div>
+     {project.pages.length>1&&<nav className={styles.readNav} aria-label="읽기 쪽 넘기기"><FocusSurface surface={readNavSurface({index,count:project.pages.length})} device="desktop" inline
+      attrs={component=>component.component==='ToolGroup'?{className:styles.readNavRow}:component.id==='next'?{className:styles.readNext}:component.id==='place'?{className:'','data-read-place':''}:{className:''}}
+      onAction={({action})=>{const name=(action as {event?:{name?:string}}).event?.name;if(name===READ_NAV_EVENTS.previous)turn(index-1);if(name===READ_NAV_EVENTS.next)turn(index+1);}}/></nav>}</>}</div>
    </section>
   </div>);
  return <main className={styles.shell} data-reading={!editing&&!libraryView||undefined} onCompositionStartCapture={()=>{composing.current=true;onlineGeneration.current++;setCompositionActive(true);}} onCompositionEndCapture={()=>{composing.current=false;onlineGeneration.current++;setCompositionActive(false);}}>
