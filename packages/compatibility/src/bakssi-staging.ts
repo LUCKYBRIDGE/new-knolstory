@@ -323,6 +323,7 @@ const actorDirectionAtCut: Readonly<Record<string, {actor: CastMember; note: str
   O62: {actor: 'bakssi', note: '기홍대와 시백 사이에 서서 단호하게 말한다.', emotion: 'anger'},
   O84: {actor: 'sister-young', note: '언니 손에서 힘을 빼며 긴장이 풀린다.', emotion: 'joy'},
   C05: {actor: 'sibaek', note: '박씨와 눈을 마주치지 않은 채 자리를 뜬다.'},
+  C07: {actor: 'bakssi', note: '혼례복을 입은 채 식은 찻잔을 포개며 시백을 보내고 남는다.', emotion: 'sorrow'},
   C28: {actor: 'gyehwa', note: '말이 손바닥을 핥아 웃음이 튀어나온다.', emotion: 'mirth'},
   D21: {actor: 'sibaek', note: '개구리 연적을 기울여 벼루에 물을 떨어뜨린다.', pose: 'inkstone'},
   A05: {actor: 'gyehwa', note: '낯선 얼굴을 보다가 평소의 비녀를 알아본다.', emotion: 'joy'},

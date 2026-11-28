@@ -342,6 +342,38 @@
       }
     },
     {
+      "id": "bakssi-character-bakssi-wedding-sorrow",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-wedding",
+          "sha256": "5d7e00fd1fd8139127093fa17d0e0dd1130de393bc5e45775b5768ad00ad5252"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-bakssi-wedding-sorrow.png",
+      "sourceSha256": "d3695efd1f4739111491149032aa7f4f0c7baa8d2a94283ce60c1ecd5e702ee7",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-bakssi-wedding-sorrow.webp",
+      "outputSha256": "86c32c9b74b6357304967a23ae8edbbe1adfd9fdd74c419259abce3ef505ac8f",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
       "id": "bakssi-character-gyehwa",
       "role": "character",
       "tool": "built-in image_gen",
@@ -926,6 +958,54 @@
       }
     },
     {
+      "id": "bakssi-character-yonggoldae-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonggoldae",
+          "sha256": "e66d1cc31049b7b4e981166548bf2f3ea059416aa5de0009554884c7c0d2c2ee"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonggoldae-joy.png",
+      "sourceSha256": "e498ef953e18e12bb39ceb3486901059e0da9431c95f4d035b77b87ab461e5ed",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonggoldae-joy.webp",
+      "outputSha256": "799611ad6f41db7533511f3dd271fe71164bbec67f010b2de5ecf9b76f305098",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonggoldae-anger",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonggoldae",
+          "sha256": "e66d1cc31049b7b4e981166548bf2f3ea059416aa5de0009554884c7c0d2c2ee"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonggoldae-anger.png",
+      "sourceSha256": "6d3f05a02143c3e321fc14223b94ef1a99934c703816d8cc88d9398010abbbe6",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonggoldae-anger.webp",
+      "outputSha256": "0fd75b29f4b77f48a3cc6331d425b372d9fdb7da9676d6c9a3fe38041017ba0a",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
       "id": "bakssi-character-yonggoldae-sorrow",
       "role": "character",
       "tool": "built-in image_gen",
@@ -944,6 +1024,30 @@
       "sourceSha256": "4956cded2bb75fe5310785f8c2cb8e45396979a44e37e58080e40a7c7ffdd7d8",
       "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonggoldae-sorrow.webp",
       "outputSha256": "8ab802e29fa1115275f308bb9dc3a32403fc798f065613d880fd5b8635071d72",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-yonggoldae-mirth",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonggoldae",
+          "sha256": "e66d1cc31049b7b4e981166548bf2f3ea059416aa5de0009554884c7c0d2c2ee"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-yonggoldae-mirth.png",
+      "sourceSha256": "5c31b70f8a50d97349ec2b104071937b827a3d5d12a72e90cbf3cb44eb87281b",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-yonggoldae-mirth.webp",
+      "outputSha256": "061e7cc36eaff118195fa32d159a35b31bcf53555d92c0fca88e1dc7d0134aa3",
       "dimensions": {
         "width": 800,
         "height": 1200
@@ -1108,6 +1212,38 @@
       "sourceSha256": "d88a3391e4c7e1f026291dc6c5c1024157a86f0397c13d6a968cd71c7f461863",
       "output": "apps/web/public/assets/bakssi-v1/bakssi-character-grandmother.webp",
       "outputSha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-grandmother-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-grandmother",
+          "sha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-grandmother-joy.png",
+      "sourceSha256": "db4e90789db986b0915a04150cf8a3217c3b4b49c11def481a2bf5a540306cc0",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-grandmother-joy.webp",
+      "outputSha256": "23a691bb918de3ce05fab0add5cad64baf1448a6563e1feddcf51756dea76ad6",
       "dimensions": {
         "width": 800,
         "height": 1200
@@ -1364,6 +1500,38 @@
       "sourceSha256": "c38b3638132e0f5dc85b8be01b9af7505f1e6b55ee13399cf4ffae6a829a2a63",
       "output": "apps/web/public/assets/bakssi-v1/bakssi-character-mother.webp",
       "outputSha256": "2583d8dda6682898feee8b42a5351b05db658c3aec63b8437e1f5d346d1e2d6d",
+      "dimensions": {
+        "width": 800,
+        "height": 1200
+      }
+    },
+    {
+      "id": "bakssi-character-mother-joy",
+      "role": "character",
+      "tool": "built-in image_gen",
+      "promptEvidence": "docs/reference/bakssi/art-production.md",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-mother",
+          "sha256": "2583d8dda6682898feee8b42a5351b05db658c3aec63b8437e1f5d346d1e2d6d"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "source": "assets/source/bakssi/bakssi-character-mother-joy.png",
+      "sourceSha256": "92a839d003f1d4e531118401763bfabb95b765e679894fe79475b7f9eb6fdf4e",
+      "output": "apps/web/public/assets/bakssi-v1/bakssi-character-mother-joy.webp",
+      "outputSha256": "51ae8df06874dfad93716afa4adc0ba968079ac82ce086d3981be8c928a7319a",
       "dimensions": {
         "width": 800,
         "height": 1200

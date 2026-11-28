@@ -53552,6 +53552,82 @@
     }
   },
   {
+    "id": "bakssi-character-bakssi-wedding-sorrow",
+    "displayName": "박씨 · 혼례복 · 슬픔",
+    "label": "박씨 · 혼례복 · 슬픔",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-wedding-sorrow.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-wedding-sorrow",
+    "copyright": "놀퀴즈",
+    "revision": "86c32c9b74b6357304967a23ae8edbbe1adfd9fdd74c419259abce3ef505ac8f",
+    "geometry": {
+      "left": 0.2225,
+      "right": 0.7775,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "박씨 · 혼례복 · 슬픔"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-wedding",
+          "sha256": "5d7e00fd1fd8139127093fa17d0e0dd1130de393bc5e45775b5768ad00ad5252"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "슬픔"
+      ],
+      "emotionRole": "sorrow",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "혼례복",
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M01-earth-neutral",
+        "referenceRevision": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+        "heightRatio": 0.96,
+        "reason": "몸 비례의 변화를 막기 위해 같은 상대 높이를 유지"
+      }
+    }
+  },
+  {
     "id": "bakssi-character-gyehwa",
     "displayName": "계화",
     "label": "계화",
@@ -55060,6 +55136,142 @@
     }
   },
   {
+    "id": "bakssi-character-yonggoldae-joy",
+    "displayName": "용골대 · 기쁨",
+    "label": "용골대 · 기쁨",
+    "story": "박씨전",
+    "type": "character",
+    "group": "용골대",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-yonggoldae-joy.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-yonggoldae-joy",
+    "copyright": "놀퀴즈",
+    "revision": "799611ad6f41db7533511f3dd271fe71164bbec67f010b2de5ecf9b76f305098",
+    "geometry": {
+      "left": 0.2425,
+      "right": 0.7575,
+      "top": 0.04416666666666667,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "용골대 · 기쁨"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonggoldae",
+          "sha256": "e66d1cc31049b7b4e981166548bf2f3ea059416aa5de0009554884c7c0d2c2ee"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.yonggoldae"
+      ],
+      "primaryCharacterId": "bakssi.yonggoldae",
+      "expressions": [
+        "기쁨"
+      ],
+      "emotionRole": "joy",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-default",
+        "referenceRevision": "03e7ce726f147c600b896f8fe319727517a0a2f059e47d9c8c8c9146e579bb6c",
+        "heightRatio": 1.1,
+        "reason": "용울대보다 약간 큰 체격의 장수"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-yonggoldae-anger",
+    "displayName": "용골대 · 분노",
+    "label": "용골대 · 분노",
+    "story": "박씨전",
+    "type": "character",
+    "group": "용골대",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-yonggoldae-anger.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-yonggoldae-anger",
+    "copyright": "놀퀴즈",
+    "revision": "0fd75b29f4b77f48a3cc6331d425b372d9fdb7da9676d6c9a3fe38041017ba0a",
+    "geometry": {
+      "left": 0.235,
+      "right": 0.76375,
+      "top": 0.04416666666666667,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "용골대 · 분노"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonggoldae",
+          "sha256": "e66d1cc31049b7b4e981166548bf2f3ea059416aa5de0009554884c7c0d2c2ee"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.yonggoldae"
+      ],
+      "primaryCharacterId": "bakssi.yonggoldae",
+      "expressions": [
+        "분노"
+      ],
+      "emotionRole": "anger",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-default",
+        "referenceRevision": "03e7ce726f147c600b896f8fe319727517a0a2f059e47d9c8c8c9146e579bb6c",
+        "heightRatio": 1.1,
+        "reason": "용울대보다 약간 큰 체격의 장수"
+      }
+    }
+  },
+  {
     "id": "bakssi-character-yonggoldae-sorrow",
     "displayName": "용골대 · 슬픔",
     "label": "용골대 · 슬픔",
@@ -55115,6 +55327,74 @@
         "슬픔"
       ],
       "emotionRole": "sorrow",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "heungbu.character.heungbu-default",
+        "referenceRevision": "03e7ce726f147c600b896f8fe319727517a0a2f059e47d9c8c8c9146e579bb6c",
+        "heightRatio": 1.1,
+        "reason": "용울대보다 약간 큰 체격의 장수"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-yonggoldae-mirth",
+    "displayName": "용골대 · 즐거움",
+    "label": "용골대 · 즐거움",
+    "story": "박씨전",
+    "type": "character",
+    "group": "용골대",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-yonggoldae-mirth.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-yonggoldae-mirth",
+    "copyright": "놀퀴즈",
+    "revision": "061e7cc36eaff118195fa32d159a35b31bcf53555d92c0fca88e1dc7d0134aa3",
+    "geometry": {
+      "left": 0.2425,
+      "right": 0.7575,
+      "top": 0.04416666666666667,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "용골대 · 즐거움"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-yonggoldae",
+          "sha256": "e66d1cc31049b7b4e981166548bf2f3ea059416aa5de0009554884c7c0d2c2ee"
+        },
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.yonggoldae"
+      ],
+      "primaryCharacterId": "bakssi.yonggoldae",
+      "expressions": [
+        "즐거움"
+      ],
+      "emotionRole": "mirth",
       "actions": [
         "서 있기"
       ],
@@ -55543,6 +55823,82 @@
         "일상"
       ],
       "emotionRole": "neutral",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "onggojib.character.classic-mother",
+        "referenceRevision": "ac3b5c7721d5a2aef6a3ac2aa5cf99c629bb36e51f808e1ae511e815e9a24b36",
+        "heightRatio": 0.88,
+        "reason": "허리가 굽은 연장자 여성의 보이는 높이"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-grandmother-joy",
+    "displayName": "우물집 할머니 · 기쁨",
+    "label": "우물집 할머니 · 기쁨",
+    "story": "박씨전",
+    "type": "character",
+    "group": "우물집 할머니",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-grandmother-joy.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-grandmother-joy",
+    "copyright": "놀퀴즈",
+    "revision": "23a691bb918de3ce05fab0add5cad64baf1448a6563e1feddcf51756dea76ad6",
+    "geometry": {
+      "left": 0.23375,
+      "right": 0.76625,
+      "top": 0.23416666666666666,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "우물집 할머니 · 기쁨"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-grandmother",
+          "sha256": "f2e3510cd7916ba096a0322310bb7081b8119fb90b85682e14915d234ce2d800"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.grandmother"
+      ],
+      "primaryCharacterId": "bakssi.grandmother",
+      "expressions": [
+        "기쁨"
+      ],
+      "emotionRole": "joy",
       "actions": [
         "서 있기"
       ],
@@ -56195,6 +56551,82 @@
         "일상"
       ],
       "emotionRole": "neutral",
+      "actions": [
+        "서 있기"
+      ],
+      "variantId": "평상복",
+      "placementReview": {
+        "referenceId": "seonnyeo.character.M01-earth-neutral",
+        "referenceRevision": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+        "heightRatio": 0.95,
+        "reason": "아기를 돌보며 서 있는 성인 여성의 키"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-mother-joy",
+    "displayName": "아기 어머니 · 기쁨",
+    "label": "아기 어머니 · 기쁨",
+    "story": "박씨전",
+    "type": "character",
+    "group": "아기 어머니",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-mother-joy.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-mother-joy",
+    "copyright": "놀퀴즈",
+    "revision": "51ae8df06874dfad93716afa4adc0ba968079ac82ce086d3981be8c928a7319a",
+    "geometry": {
+      "left": 0.22875,
+      "right": 0.77125,
+      "top": 0.1675,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "아기 어머니 · 기쁨"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-mother",
+          "sha256": "2583d8dda6682898feee8b42a5351b05db658c3aec63b8437e1f5d346d1e2d6d"
+        },
+        {
+          "id": "heungbu.character.wife-heungbu",
+          "sha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca"
+        },
+        {
+          "id": "heungbu.character.heungbu-young",
+          "sha256": "65105e2c7387e01cbb3f66c077e3de82ea1a8cfa637fbae428ae8d81bb6a55ab"
+        },
+        {
+          "id": "onggojib.scene.shortstory-classic-02",
+          "sha256": "92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      ],
+      "searchTerms": [],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.mother"
+      ],
+      "primaryCharacterId": "bakssi.mother",
+      "expressions": [
+        "기쁨"
+      ],
+      "emotionRole": "joy",
       "actions": [
         "서 있기"
       ],
