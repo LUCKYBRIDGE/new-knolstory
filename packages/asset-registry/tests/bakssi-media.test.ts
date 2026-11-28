@@ -6,7 +6,7 @@ import {getBackgroundSize, isSelectableAsset, resolveAsset, searchAssets} from '
 
 type Generation = {
   id: string;
-  role: 'character' | 'stage' | 'cover' | 'page';
+  role: 'character' | 'stage' | 'cover' | 'page' | 'creative';
   source: string;
   sourceSha256: string;
   output: string;
@@ -29,7 +29,7 @@ it('resolves each reviewed Bakssi illustration, original and versioned runtime d
     expect(asset!.revision).toBe(row.outputSha256);
     expect(digest(row.source)).toBe(row.sourceSha256);
     expect(digest(row.output)).toBe(row.outputSha256);
-    expect(isRuntimeImagePath(asset!.runtimePath)).toBe(row.role !== 'page');
+    expect(isRuntimeImagePath(asset!.runtimePath)).toBe(row.role !== 'page' && row.role !== 'creative');
 
     if (row.role === 'character') {
       expect(asset!.geometry).toMatchObject({width: 800, height: 1200, bottom: .96});
@@ -39,6 +39,10 @@ it('resolves each reviewed Bakssi illustration, original and versioned runtime d
       expect(asset!.metadata.containsCharacters).toBe(row.role !== 'stage');
       expect(isSelectableAsset(asset)).toBe(row.role === 'stage');
       expect(isSelectableAsset(asset, true)).toBe(true);
+      if (row.role === 'creative') {
+        expect(asset!.metadata.shortStoryCollection).toBe('creative');
+        expect(asset!.metadata.storyRelation).toBe('independent-event');
+      }
     }
   }
 

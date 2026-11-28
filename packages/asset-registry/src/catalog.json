@@ -59258,5 +59258,855 @@
         "reason": "기준 전신과 같은 높이. 얼굴과 어깨·손의 크기를 유지한 서 있는 자세"
       }
     }
+  },
+  {
+    "id": "bakssi-character-gyehwa-reed-basket",
+    "displayName": "계화 · 바구니를 받쳐 들기",
+    "label": "계화 · 바구니를 받쳐 들기",
+    "story": "박씨전",
+    "type": "character",
+    "group": "계화",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-gyehwa-reed-basket.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-gyehwa-reed-basket",
+    "copyright": "놀퀴즈",
+    "revision": "cdf012133640cc8bef2d5f16be30dfd570a2ee2923fd74a7132928af96f755df",
+    "geometry": {
+      "left": 0.255,
+      "right": 0.74625,
+      "top": 0.21833333333333332,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "계화 · 바구니를 받쳐 들기",
+      "바구니",
+      "들기",
+      "옮기기"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        }
+      ],
+      "searchTerms": [
+        "바구니",
+        "들기",
+        "옮기기"
+      ],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.gyehwa"
+      ],
+      "primaryCharacterId": "bakssi.gyehwa",
+      "expressions": [
+        "일상"
+      ],
+      "emotionRole": "neutral",
+      "actions": [
+        "바구니 들기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "variantId": "바구니 들기",
+      "placementReview": {
+        "referenceId": "bakssi-character-gyehwa",
+        "referenceRevision": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2",
+        "heightRatio": 1.0,
+        "reason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-gihongdae-listen",
+    "displayName": "기홍대 · 귀 기울이기",
+    "label": "기홍대 · 귀 기울이기",
+    "story": "박씨전",
+    "type": "character",
+    "group": "기홍대",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-gihongdae-listen.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-gihongdae-listen",
+    "copyright": "놀퀴즈",
+    "revision": "8637d308605b9686d0e6f03b679384471779c921d6db7ba1cf8c198d01aeb42d",
+    "geometry": {
+      "left": 0.245,
+      "right": 0.75625,
+      "top": 0.13416666666666666,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "기홍대 · 귀 기울이기",
+      "귀 기울이기",
+      "듣기",
+      "수상한 소리"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        }
+      ],
+      "searchTerms": [
+        "귀 기울이기",
+        "듣기",
+        "수상한 소리"
+      ],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.gihongdae"
+      ],
+      "primaryCharacterId": "bakssi.gihongdae",
+      "expressions": [
+        "일상"
+      ],
+      "emotionRole": "neutral",
+      "actions": [
+        "귀 기울이기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "variantId": "귀 기울이기",
+      "placementReview": {
+        "referenceId": "bakssi-character-gihongdae",
+        "referenceRevision": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc",
+        "heightRatio": 1.0,
+        "reason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-sibaek-unfold-paper",
+    "displayName": "이시백 · 종이를 펼치기",
+    "label": "이시백 · 종이를 펼치기",
+    "story": "박씨전",
+    "type": "character",
+    "group": "이시백",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-sibaek-unfold-paper.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-sibaek-unfold-paper",
+    "copyright": "놀퀴즈",
+    "revision": "07687c0a7db9d20846aad2872a704cd9d2210cae70d99c3307debb323007fd89",
+    "geometry": {
+      "left": 0.235,
+      "right": 0.76375,
+      "top": 0.11083333333333334,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "이시백 · 종이를 펼치기",
+      "종이",
+      "펼치기",
+      "읽기"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-sibaek",
+          "sha256": "36fa47dbfac003ba764f75c62a8ecea1e6d5360fcc13df15aee54d41646c5519"
+        }
+      ],
+      "searchTerms": [
+        "종이",
+        "펼치기",
+        "읽기"
+      ],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.sibaek"
+      ],
+      "primaryCharacterId": "bakssi.sibaek",
+      "expressions": [
+        "일상"
+      ],
+      "emotionRole": "neutral",
+      "actions": [
+        "종이 펼치기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "variantId": "종이 펼치기",
+      "placementReview": {
+        "referenceId": "bakssi-character-sibaek",
+        "referenceRevision": "36fa47dbfac003ba764f75c62a8ecea1e6d5360fcc13df15aee54d41646c5519",
+        "heightRatio": 1.0,
+        "reason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-bakssi-hold-cloth",
+    "displayName": "허물 전 박씨 · 천을 펼치기",
+    "label": "허물 전 박씨 · 천을 펼치기",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-hold-cloth.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-hold-cloth",
+    "copyright": "놀퀴즈",
+    "revision": "fa453596f7b64d673edd779454b033ec8dd7a5c17f4543a5a4d6c982f488ffc9",
+    "geometry": {
+      "left": 0.22875,
+      "right": 0.77125,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "허물 전 박씨 · 천을 펼치기",
+      "천",
+      "건네기",
+      "내밀기",
+      "허물 전"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi",
+          "sha256": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc"
+        }
+      ],
+      "searchTerms": [
+        "천",
+        "건네기",
+        "내밀기",
+        "허물 전"
+      ],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "일상"
+      ],
+      "emotionRole": "neutral",
+      "actions": [
+        "천 내밀기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "variantId": "천 내밀기",
+      "placementReview": {
+        "referenceId": "bakssi-character-bakssi",
+        "referenceRevision": "d29b873db2bfdc308e14d3d2212f996592a3f83065ce521bc0f406636ce3debc",
+        "heightRatio": 1.0,
+        "reason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-bakssi-revealed-lift-lantern",
+    "displayName": "허물 뒤 박씨 · 등불을 들어 살피기",
+    "label": "허물 뒤 박씨 · 등불을 들어 살피기",
+    "story": "박씨전",
+    "type": "character",
+    "group": "박씨",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-bakssi-revealed-lift-lantern.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-bakssi-revealed-lift-lantern",
+    "copyright": "놀퀴즈",
+    "revision": "fe7b9c1c989164e535a5976fc79a6536b4fcc495f58400148fa4ad66c562b98d",
+    "geometry": {
+      "left": 0.22,
+      "right": 0.78,
+      "top": 0.15916666666666668,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "허물 뒤 박씨 · 등불을 들어 살피기",
+      "등불",
+      "들기",
+      "살피기",
+      "허물 뒤"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-bakssi-revealed",
+          "sha256": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c"
+        }
+      ],
+      "searchTerms": [
+        "등불",
+        "들기",
+        "살피기",
+        "허물 뒤"
+      ],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.bakssi"
+      ],
+      "primaryCharacterId": "bakssi.bakssi",
+      "expressions": [
+        "일상"
+      ],
+      "emotionRole": "neutral",
+      "actions": [
+        "등불 들기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "variantId": "등불 들기",
+      "placementReview": {
+        "referenceId": "bakssi-character-bakssi-revealed",
+        "referenceRevision": "3fe644a0551872fde53044171356890bb82072f49b6f95f7df7be8debce1957c",
+        "heightRatio": 1.0,
+        "reason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작"
+      }
+    }
+  },
+  {
+    "id": "bakssi-character-soli-point",
+    "displayName": "솔이 · 길을 가리키기",
+    "label": "솔이 · 길을 가리키기",
+    "story": "박씨전",
+    "type": "character",
+    "group": "솔이",
+    "framing": "전신",
+    "src": "/assets/bakssi-v1/bakssi-character-soli-point.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-character-soli-point",
+    "copyright": "놀퀴즈",
+    "revision": "f6a68a8ed84efa1f09603836c252915e1bd183176cff76e516c436bdd08173c5",
+    "geometry": {
+      "left": 0.3075,
+      "right": 0.6925,
+      "top": 0.4083333333333333,
+      "bottom": 0.96,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "박씨전",
+      "솔이 · 길을 가리키기",
+      "길",
+      "가리키기",
+      "안내하기"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-character-soli",
+          "sha256": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a"
+        }
+      ],
+      "searchTerms": [
+        "길",
+        "가리키기",
+        "안내하기"
+      ],
+      "kind": "character",
+      "placementRole": "character-slot",
+      "framing": "full",
+      "bodyFraming": "full",
+      "composition": "single",
+      "characterIds": [
+        "bakssi.soli"
+      ],
+      "primaryCharacterId": "bakssi.soli",
+      "expressions": [
+        "일상"
+      ],
+      "emotionRole": "neutral",
+      "actions": [
+        "가리키기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "variantId": "가리키기",
+      "placementReview": {
+        "referenceId": "bakssi-character-soli",
+        "referenceRevision": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a",
+        "heightRatio": 1.0,
+        "reason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작"
+      }
+    }
+  },
+  {
+    "id": "bakssi-creative-loose-wind-chime",
+    "displayName": "나무 아래의 풍경",
+    "label": "나무 아래의 풍경",
+    "story": "박씨전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-creative-loose-wind-chime.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-creative-loose-wind-chime",
+    "copyright": "놀퀴즈",
+    "revision": "c01cb7d05cf8e4baa10a90f91c6cd24404af2d16b46112a252499df6736d1d90",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "나무 아래의 풍경",
+      "발견",
+      "이상한 소리",
+      "풍경",
+      "솔이",
+      "계화",
+      "감나무"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-03",
+          "sha256": "ce87bcaddc410344499226c19fe3286e8dd207a46b422f18272a21f45b54ebd7"
+        },
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "bakssi-character-soli",
+          "sha256": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a"
+        }
+      ],
+      "searchTerms": [
+        "발견",
+        "이상한 소리",
+        "풍경",
+        "솔이",
+        "계화",
+        "감나무"
+      ],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.gyehwa",
+        "bakssi.soli"
+      ],
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "description": "계화와 솔이가 감나무 아래에서 파란 끈이 묶인 풍경을 발견한다.",
+      "sequenceOrder": 1
+    }
+  },
+  {
+    "id": "bakssi-creative-loose-plank",
+    "displayName": "개울 위의 느슨한 널빤지",
+    "label": "개울 위의 느슨한 널빤지",
+    "story": "박씨전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-creative-loose-plank.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-creative-loose-plank",
+    "copyright": "놀퀴즈",
+    "revision": "6aee69424145eaa4c4b17368f5ca25e94608dbed89d71b97ee54a98596da3a1f",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "개울 위의 느슨한 널빤지",
+      "협력",
+      "널빤지",
+      "개울",
+      "솔이",
+      "박 처사"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-10",
+          "sha256": "5f266643ae15f09bc12ead24370d6d9c4fe4b58b046dc8dbd905f5470ac6ef2e"
+        },
+        {
+          "id": "bakssi-character-park-cheosa",
+          "sha256": "8a686375a48bf73e119ee471d9509ac65b71a6c37c3cd0e2b81a233e93195371"
+        },
+        {
+          "id": "bakssi-character-soli",
+          "sha256": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a"
+        }
+      ],
+      "searchTerms": [
+        "협력",
+        "널빤지",
+        "개울",
+        "솔이",
+        "박 처사"
+      ],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.park-cheosa",
+        "bakssi.soli"
+      ],
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "description": "박 처사가 느슨한 널빤지를 누르고 솔이가 발을 옮겨 본다."
+    }
+  },
+  {
+    "id": "bakssi-creative-two-envelopes",
+    "displayName": "상 위에 놓인 봉투 두 장",
+    "label": "상 위에 놓인 봉투 두 장",
+    "story": "박씨전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-creative-two-envelopes.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-creative-two-envelopes",
+    "copyright": "놀퀴즈",
+    "revision": "b221ec14690ab8506a74e9b7541a3c600eaf094655f705f58feb17cbecce3f13",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "상 위에 놓인 봉투 두 장",
+      "갈등",
+      "편지",
+      "봉투",
+      "기홍대",
+      "이시백",
+      "다른 생각"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-02",
+          "sha256": "dc1990e08c919ad47c6d05fa059dc968dca3d8d01c74b392d7a6401d02729cb0"
+        },
+        {
+          "id": "bakssi-character-gihongdae",
+          "sha256": "dbb92bcb440351e560434b7548ec02271d355f3d699f391f7aa1452b12761ffc"
+        },
+        {
+          "id": "bakssi-character-sibaek",
+          "sha256": "36fa47dbfac003ba764f75c62a8ecea1e6d5360fcc13df15aee54d41646c5519"
+        }
+      ],
+      "searchTerms": [
+        "갈등",
+        "편지",
+        "봉투",
+        "기홍대",
+        "이시백",
+        "다른 생각"
+      ],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.gihongdae",
+        "bakssi.sibaek"
+      ],
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "description": "기홍대와 이시백이 상 위의 서로 다른 봉투에 손을 향한다."
+    }
+  },
+  {
+    "id": "bakssi-creative-leaf-print",
+    "displayName": "그릇에 찍힌 잎 자국",
+    "label": "그릇에 찍힌 잎 자국",
+    "story": "박씨전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-creative-leaf-print.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-creative-leaf-print",
+    "copyright": "놀퀴즈",
+    "revision": "eebb1ad566f05e650544387d9289e100f89d94db3c1c5ce97dfb7e149598c54f",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "그릇에 찍힌 잎 자국",
+      "실수",
+      "잎 자국",
+      "그릇",
+      "계화",
+      "사기장이",
+      "진흙"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-03",
+          "sha256": "ce87bcaddc410344499226c19fe3286e8dd207a46b422f18272a21f45b54ebd7"
+        },
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "bakssi-character-potter",
+          "sha256": "f84a6b222b5d5c90d968ea7e72338842125e1d444cfe96bc39773aa807f06931"
+        }
+      ],
+      "searchTerms": [
+        "실수",
+        "잎 자국",
+        "그릇",
+        "계화",
+        "사기장이",
+        "진흙"
+      ],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.gyehwa",
+        "bakssi.potter"
+      ],
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "description": "계화가 젖은 그릇에서 나뭇잎을 들어 올리고 사기장이가 지켜본다."
+    }
+  },
+  {
+    "id": "bakssi-creative-reed-boat-race",
+    "displayName": "개울에 띄운 풀잎 배",
+    "label": "개울에 띄운 풀잎 배",
+    "story": "박씨전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-creative-reed-boat-race.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-creative-reed-boat-race",
+    "copyright": "놀퀴즈",
+    "revision": "d257567aac26538cd86ec61916da6f0fbe41e30bded470351440390bee7bcaf1",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "개울에 띄운 풀잎 배",
+      "경쟁",
+      "풀잎 배",
+      "개울",
+      "노란 댕기",
+      "언니",
+      "동생",
+      "달리기"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-shortstory-page-10",
+          "sha256": "5f266643ae15f09bc12ead24370d6d9c4fe4b58b046dc8dbd905f5470ac6ef2e"
+        },
+        {
+          "id": "bakssi-character-sister-older",
+          "sha256": "4cb6f09e1c17878922c79fabbbb31c3950276ab32bb450124b85193a5fcf9d16"
+        },
+        {
+          "id": "bakssi-character-sister-young",
+          "sha256": "9cbfb70c3d611c4023404e35232aa87cd0ab704fe4f1ff61a653610ec5a21861"
+        }
+      ],
+      "searchTerms": [
+        "경쟁",
+        "풀잎 배",
+        "개울",
+        "노란 댕기",
+        "언니",
+        "동생",
+        "달리기"
+      ],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.sister-older",
+        "bakssi.sister-young"
+      ],
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "description": "두 자매가 나란히 떠가는 풀잎 배를 따라간다."
+    }
+  },
+  {
+    "id": "bakssi-creative-wind-chime-door",
+    "displayName": "풍경을 들어 올린 문턱",
+    "label": "풍경을 들어 올린 문턱",
+    "story": "박씨전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/bakssi-v1/bakssi-creative-wind-chime-door.webp",
+    "sourcePath": "assets/source/bakssi/generation.json#bakssi-creative-wind-chime-door",
+    "copyright": "놀퀴즈",
+    "revision": "b93357d82165cb2f86becc11d3c8022e90cd060bf71e2863db059fa25a2b621b",
+    "geometry": null,
+    "tags": [
+      "박씨전",
+      "풍경을 들어 올린 문턱",
+      "탐색",
+      "풍경",
+      "파란 끈",
+      "이어지는 장면",
+      "솔이",
+      "계화",
+      "문턱"
+    ],
+    "metadata": {
+      "generatedBakssiAsset": true,
+      "artFamily": "bakssi-watercolor-v1",
+      "storyPackIds": [
+        "bakssi"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "referenceAssets": [
+        {
+          "id": "bakssi-creative-loose-wind-chime",
+          "sha256": "c01cb7d05cf8e4baa10a90f91c6cd24404af2d16b46112a252499df6736d1d90"
+        },
+        {
+          "id": "bakssi-character-gyehwa",
+          "sha256": "7ce719e3795f33bb073723815bd6223159a40d3b4e14c54cf4093f8131cae9c2"
+        },
+        {
+          "id": "bakssi-character-soli",
+          "sha256": "238322101ce5c880d1c4f3962ab7e458de22b69ea1bedb6159148137af43962a"
+        }
+      ],
+      "searchTerms": [
+        "탐색",
+        "풍경",
+        "파란 끈",
+        "이어지는 장면",
+        "솔이",
+        "계화",
+        "문턱"
+      ],
+      "placementRole": "background-slot",
+      "kind": "scene-illustration",
+      "containsCharacters": true,
+      "containedCharacterIds": [
+        "bakssi.gyehwa",
+        "bakssi.soli"
+      ],
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "description": "솔이가 같은 풍경을 들어 보고, 계화가 문안에 귀를 기울인다.",
+      "seriesId": "bakssi-creative-loose-wind-chime",
+      "parentEventId": "bakssi-creative-loose-wind-chime",
+      "sequenceOrder": 2
+    }
   }
 ]

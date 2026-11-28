@@ -181,6 +181,12 @@ const REVIEWED_IMAGE_PATHS: ReadonlySet<string> = new Set([
   "assets/bakssi-v1/bakssi-stage-well-snow.webp",
   "assets/bakssi-v1/bakssi-character-bakssi-revealed-touch-cheeks.webp",
   "assets/bakssi-v1/bakssi-character-soli-blue-jar.webp",
+  "assets/bakssi-v1/bakssi-character-gyehwa-reed-basket.webp",
+  "assets/bakssi-v1/bakssi-character-gihongdae-listen.webp",
+  "assets/bakssi-v1/bakssi-character-sibaek-unfold-paper.webp",
+  "assets/bakssi-v1/bakssi-character-bakssi-hold-cloth.webp",
+  "assets/bakssi-v1/bakssi-character-bakssi-revealed-lift-lantern.webp",
+  "assets/bakssi-v1/bakssi-character-soli-point.webp",
   // END BAKSSI IMAGE PATHS
   "assets/characters/picturebook-v1/heungbu-picturebook-heungbu-swallow-seed-v1.webp",
   "assets/characters/picturebook-v1/seonnyeo-classic-wing-robe-staged-v1.webp",

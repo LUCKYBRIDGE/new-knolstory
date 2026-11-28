@@ -81,6 +81,7 @@ def character_metadata(recipe, catalogue, source):
         'bodyFraming': 'full', 'composition': 'single', 'characterIds': [identity],
         'primaryCharacterId': identity, 'expressions': [mood], 'emotionRole': recipe['emotionRole'],
         'actions': recipe.get('actions', ['서 있기']),
+        **({'storyUses': recipe['storyUses']} if 'storyUses' in recipe else {}),
         'variantId': recipe.get('variant', '평상복'),
         'placementReview': {
             'referenceId': reference['id'], 'referenceRevision': reference['revision'],
@@ -93,6 +94,14 @@ def background_metadata(recipe):
     if recipe['role'] == 'stage':
         setting = {key: recipe[key] for key in ('location', 'space', 'time', 'season', 'weather') if key in recipe}
         return {'kind': 'background', 'containsCharacters': False, 'background': setting}
+    if recipe['role'] == 'creative':
+        sequence = {key: recipe[key] for key in ('seriesId', 'parentEventId', 'sequenceOrder') if key in recipe}
+        return {
+            'kind': 'scene-illustration', 'containsCharacters': True,
+            'containedCharacterIds': recipe['characters'], 'shortStoryCollection': 'creative',
+            'generationMethod': 'imagegen', 'storyRelation': 'independent-event',
+            'description': recipe['description'], **sequence,
+        }
     return {
         'kind': 'scene-illustration', 'containsCharacters': True,
         'containedCharacterIds': recipe['characters'], 'shortStoryCollection': 'story',
@@ -106,6 +115,7 @@ def asset_id_for_role(role, asset_id):
         'stage': r'bakssi-stage-[a-z][a-z0-9-]*',
         'page': r'bakssi-shortstory-page-(0[1-9]|10)',
         'cover': r'bakssi-shortstory-cover',
+        'creative': r'bakssi-creative-[a-z][a-z0-9-]*',
     }.get(role)
     return pattern is not None and re.fullmatch(pattern, asset_id) is not None
 
@@ -141,11 +151,13 @@ def prepare_one(root, recipe, catalogue, prompt_evidence, prior_receipt=None):
             image = source.convert('RGB')
         if role != 'cover' and image.width <= image.height:
             raise ValueError(f'{asset_id}: stage and page artwork must be landscape')
+        if role == 'creative' and abs((image.width / image.height) / (16 / 9) - 1) > .0025:
+            raise ValueError(f'{asset_id}: creative illustration must be 16:9')
         image.thumbnail((1600, 1600), Image.Resampling.LANCZOS)
         geometry = None
         metadata = {'placementRole': 'background-slot', **background_metadata(recipe)}
-        extra = {'backgroundRole': {'stage': 'scenery', 'page': 'scene', 'cover': 'cover'}[role]}
-        group = {'stage': recipe.get('location', recipe['label']), 'page': '작품 속 장면 삽화', 'cover': '표지'}[role]
+        extra = {'backgroundRole': {'stage': 'scenery', 'page': 'scene', 'cover': 'cover', 'creative': 'scene'}[role]}
+        group = {'stage': recipe.get('location', recipe['label']), 'page': '작품 속 장면 삽화', 'cover': '표지', 'creative': '자유 창작 삽화'}[role]
         options = {'quality': 92}
     output = BytesIO()
     image.save(output, 'WEBP', method=6, **options)
@@ -161,7 +173,7 @@ def prepare_one(root, recipe, catalogue, prompt_evidence, prior_receipt=None):
         'tags': [STORY, label, *recipe.get('searchTerms', [])],
         'metadata': {
             'generatedBakssiAsset': True, 'artFamily': ART_FAMILY, 'storyPackIds': ['bakssi'],
-            'qualityStatus': 'approved', 'pickerVisibility': 'secondary' if role in ('cover', 'page') else 'primary',
+            'qualityStatus': 'approved', 'pickerVisibility': 'secondary' if role in ('cover', 'page', 'creative') else 'primary',
             'referenceAssets': refs, 'searchTerms': recipe.get('searchTerms', []), **metadata,
         },
     }
@@ -317,7 +329,7 @@ def prepare(root=ROOT, check=False, complete=False, require_emotions=False, repl
     }
     paths, found = PATH_SECTION.subn(
         lambda match: match[1] + ''.join(
-            f'  "{Path(r["output"]).relative_to(PUBLIC).as_posix()}",\n' for r in receipts if r['role'] != 'page'
+            f'  "{Path(r["output"]).relative_to(PUBLIC).as_posix()}",\n' for r in receipts if r['role'] not in ('page', 'creative')
         ) + match[2], contract_path.read_text()
     )
     if found != 1:

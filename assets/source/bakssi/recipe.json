@@ -957,6 +957,319 @@
         "물동이 들기",
         "물 나르기"
       ]
+    },
+    {
+      "id": "bakssi-character-gyehwa-reed-basket",
+      "role": "character",
+      "label": "계화 · 바구니를 받쳐 들기",
+      "identity": "bakssi.gyehwa",
+      "characterName": "계화",
+      "referenceId": "bakssi-character-gyehwa",
+      "heightRatio": 1.0,
+      "sizeReason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-gyehwa"
+      ],
+      "variant": "바구니 들기",
+      "actions": [
+        "바구니 들기"
+      ],
+      "searchTerms": [
+        "바구니",
+        "들기",
+        "옮기기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "prompt": "One original full-body, upright Korean Joseon folktale actor sprite, portrait 2:3, true transparent RGBA including the gaps between limbs, extra margin on four sides, all shoes and headwear visible. First PNG is the actual exact identity: copy hairstyle, facial structure, neck, body, limb and hand size, age, garment colors and silhouette. Same hand painted soft hanji gouache and watercolor and fine sepia contours; maintain the degree of illustration and anatomical proportions with no widening headwear or shrinking the face. Preserve stance scale and shoe baseline. No cast shadow, scenery, ground, letter, label or unrelated prop. Gyehwa, same single dark braid and ochre jeogori over russet skirt. Standing upright in a natural three-quarter view, she braces one light round woven willow basket against the left hip with the near hand and the other open hand on its lip. A few slender reed ends in the basket, no other objects. Her alert calm expression remains recognizable."
+    },
+    {
+      "id": "bakssi-character-gihongdae-listen",
+      "role": "character",
+      "label": "기홍대 · 귀 기울이기",
+      "identity": "bakssi.gihongdae",
+      "characterName": "기홍대",
+      "referenceId": "bakssi-character-gihongdae",
+      "heightRatio": 1.0,
+      "sizeReason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-gihongdae"
+      ],
+      "variant": "귀 기울이기",
+      "actions": [
+        "귀 기울이기"
+      ],
+      "searchTerms": [
+        "귀 기울이기",
+        "듣기",
+        "수상한 소리"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "prompt": "One original full-body, upright Korean Joseon folktale actor sprite, portrait 2:3, true transparent RGBA including the gaps between limbs, extra margin on four sides, all shoes and headwear visible. First PNG is the actual exact identity: copy hairstyle, facial structure, neck, body, limb and hand size, age, garment colors and silhouette. Same hand painted soft hanji gouache and watercolor and fine sepia contours; maintain the degree of illustration and anatomical proportions with no widening headwear or shrinking the face. Preserve stance scale and shoe baseline. No cast shadow, scenery, ground, letter, label or unrelated prop. Gihongdae in deep jade wrap and charcoal trousers, same purposeful face and tied long hair. She looks to one side to catch a faint sound, one open hand lifted beside but not covering her ear. Lower the opposite hand naturally. No dagger or object. Keep shoulders, hips and boots from reference."
+    },
+    {
+      "id": "bakssi-character-sibaek-unfold-paper",
+      "role": "character",
+      "label": "이시백 · 종이를 펼치기",
+      "identity": "bakssi.sibaek",
+      "characterName": "이시백",
+      "referenceId": "bakssi-character-sibaek",
+      "heightRatio": 1.0,
+      "sizeReason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-sibaek"
+      ],
+      "variant": "종이 펼치기",
+      "actions": [
+        "종이 펼치기"
+      ],
+      "searchTerms": [
+        "종이",
+        "펼치기",
+        "읽기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "prompt": "One original full-body, upright Korean Joseon folktale actor sprite, portrait 2:3, true transparent RGBA including the gaps between limbs, extra margin on four sides, all shoes and headwear visible. First PNG is the actual exact identity: copy hairstyle, facial structure, neck, body, limb and hand size, age, garment colors and silhouette. Same hand painted soft hanji gouache and watercolor and fine sepia contours; maintain the degree of illustration and anatomical proportions with no widening headwear or shrinking the face. Preserve stance scale and shoe baseline. No cast shadow, scenery, ground, letter, label or unrelated prop. Slim Yi Sibaek in indigo, same face, visible beneath the original low modest transparent horsehair gat. Standing, catches an unfolded blank pale hanji sheet by the two top corners at chest height, eyes calmly lowered; both arms and fingers convincing. The small sheet does not obscure his face or sash and contains no marking."
+    },
+    {
+      "id": "bakssi-character-bakssi-hold-cloth",
+      "role": "character",
+      "label": "허물 전 박씨 · 천을 펼치기",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "bakssi-character-bakssi",
+      "heightRatio": 1.0,
+      "sizeReason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-bakssi"
+      ],
+      "variant": "천 내밀기",
+      "actions": [
+        "천 내밀기"
+      ],
+      "searchTerms": [
+        "천",
+        "건네기",
+        "내밀기",
+        "허물 전"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "prompt": "One original full-body, upright Korean Joseon folktale actor sprite, portrait 2:3, true transparent RGBA including the gaps between limbs, extra margin on four sides, all shoes and headwear visible. First PNG is the actual exact identity: copy hairstyle, facial structure, neck, body, limb and hand size, age, garment colors and silhouette. Same hand painted soft hanji gouache and watercolor and fine sepia contours; maintain the degree of illustration and anatomical proportions with no widening headwear or shrinking the face. Preserve stance scale and shoe baseline. No cast shadow, scenery, ground, letter, label or unrelated prop. Lady Bak BEFORE the disguise leaves, exact broad uneven lower jaw and asymmetric low brows with smaller eyes and broad nose from first model. Same rose and teal garment and plain horizontal wood pin. She offers a clean folded off-white piece of cloth with both hands around mid-waist height as if handing it to an arriving guest. Quiet inquiring gaze. Use the exact same neck, shoulders and skirt width."
+    },
+    {
+      "id": "bakssi-character-bakssi-revealed-lift-lantern",
+      "role": "character",
+      "label": "허물 뒤 박씨 · 등불을 들어 살피기",
+      "identity": "bakssi.bakssi",
+      "characterName": "박씨",
+      "referenceId": "bakssi-character-bakssi-revealed",
+      "heightRatio": 1.0,
+      "sizeReason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-bakssi-revealed"
+      ],
+      "variant": "등불 들기",
+      "actions": [
+        "등불 들기"
+      ],
+      "searchTerms": [
+        "등불",
+        "들기",
+        "살피기",
+        "허물 뒤"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "prompt": "One original full-body, upright Korean Joseon folktale actor sprite, portrait 2:3, true transparent RGBA including the gaps between limbs, extra margin on four sides, all shoes and headwear visible. First PNG is the actual exact identity: copy hairstyle, facial structure, neck, body, limb and hand size, age, garment colors and silhouette. Same hand painted soft hanji gouache and watercolor and fine sepia contours; maintain the degree of illustration and anatomical proportions with no widening headwear or shrinking the face. Preserve stance scale and shoe baseline. No cast shadow, scenery, ground, letter, label or unrelated prop. Lady Bak AFTER reveal, recognizable soft oval, even brows, almond eyes, natural same rose and teal body and wooden pin. Standing, one hand holds a small traditional square amber paper lantern by a simple handle at shoulder level, gazing past it. Empty other hand at waist, this lantern must have no outer haze or shadow effect. Keep costume shape and body scale."
+    },
+    {
+      "id": "bakssi-character-soli-point",
+      "role": "character",
+      "label": "솔이 · 길을 가리키기",
+      "identity": "bakssi.soli",
+      "characterName": "솔이",
+      "referenceId": "bakssi-character-soli",
+      "heightRatio": 1.0,
+      "sizeReason": "기준 전신과 동일한 높이로 맞추고 얼굴·어깨·손을 같은 배율에서 비교한 서 있는 동작",
+      "emotionRole": "neutral",
+      "artReferenceIds": [
+        "bakssi-character-soli"
+      ],
+      "variant": "가리키기",
+      "actions": [
+        "가리키기"
+      ],
+      "searchTerms": [
+        "길",
+        "가리키기",
+        "안내하기"
+      ],
+      "storyUses": [
+        "creative"
+      ],
+      "prompt": "One original full-body, upright Korean Joseon folktale actor sprite, portrait 2:3, true transparent RGBA including the gaps between limbs, extra margin on four sides, all shoes and headwear visible. First PNG is the actual exact identity: copy hairstyle, facial structure, neck, body, limb and hand size, age, garment colors and silhouette. Same hand painted soft hanji gouache and watercolor and fine sepia contours; maintain the degree of illustration and anatomical proportions with no widening headwear or shrinking the face. Preserve stance scale and shoe baseline. No cast shadow, scenery, ground, letter, label or unrelated prop. Young girl Soli, same blue ribbon on her single visible braid and pale slate blue jacket with cream skirt. Full standing figure. She notices something and points one index finger diagonally upward slightly outward, eyes following; other hand holding skirt lightly. Same child head size waist, short balanced legs, hands and shoes, no extra braids or ribbon. Transparent throughout."
+    },
+    {
+      "id": "bakssi-creative-loose-wind-chime",
+      "role": "creative",
+      "label": "나무 아래의 풍경",
+      "characters": [
+        "bakssi.gyehwa",
+        "bakssi.soli"
+      ],
+      "description": "계화와 솔이가 감나무 아래에서 파란 끈이 묶인 풍경을 발견한다.",
+      "searchTerms": [
+        "발견",
+        "이상한 소리",
+        "풍경",
+        "솔이",
+        "계화",
+        "감나무"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-03",
+        "bakssi-character-gyehwa",
+        "bakssi-character-soli"
+      ],
+      "prompt": "One full-bleed landscape 16:9 illustration for a Korean Joseon folktale picture book, original incident kids can write about. Match the soft textured watercolor/gouache on hanji and subdued sepia linework of the supplied page, modest expression, familiar proportional faces, tender clear staging with visual storytelling. Use supplied actor references to preserve exact identities, hair, body scale and clothing. Every main gesture and prop reads inside central safe area, though environment fills all edges. Distinct foreground, middle and distant shapes; no printed or invented letters or words, borders, watermarks, Western modern objects or photorealism. Early autumn dawn in a lightly misty orchard courtyard, same original Joseon world. Gyehwa in ochre and russet stops with a nearly empty reed basket while young Soli in blue and beige kneels and points to a detached small palm-sized dark brass BELL on a flat stone at the trunk of a persimmon tree. Bell is distinctive as a smooth five-sided bell body with a single blue-indigo fabric tail tied at its arch top and a loop with one loose end. No object in the child's hand. Face of each seen in warm-side light and both look at the exact bell. Let orchard and short wooden fence add atmosphere. Show a clear curiosity and a discovery.",
+      "sequenceOrder": 1
+    },
+    {
+      "id": "bakssi-creative-loose-plank",
+      "role": "creative",
+      "label": "개울 위의 느슨한 널빤지",
+      "characters": [
+        "bakssi.park-cheosa",
+        "bakssi.soli"
+      ],
+      "description": "박 처사가 느슨한 널빤지를 누르고 솔이가 발을 옮겨 본다.",
+      "searchTerms": [
+        "협력",
+        "널빤지",
+        "개울",
+        "솔이",
+        "박 처사"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-10",
+        "bakssi-character-park-cheosa",
+        "bakssi-character-soli"
+      ],
+      "prompt": "One full-bleed landscape 16:9 illustration for a Korean Joseon folktale picture book, original incident kids can write about. Match the soft textured watercolor/gouache on hanji and subdued sepia linework of the supplied page, modest expression, familiar proportional faces, tender clear staging with visual storytelling. Use supplied actor references to preserve exact identities, hair, body scale and clothing. Every main gesture and prop reads inside central safe area, though environment fills all edges. Distinct foreground, middle and distant shapes; no printed or invented letters or words, borders, watermarks, Western modern objects or photorealism. A very shallow clear brook in spring with a loose short wooden plank bridging two stone edges. Elder Bak Cheosa in gray wrapped hat and oatmeal robe, one knee bent as he presses the left end of the broad plank steadily with a hand, staying on a stone. Soli in pale blue and beige steps onto the farther part slowly and holds her arms out for balance. Water no deeper than an ankle, safe everyday challenge, warm natural expressions. Both complete figures, repaired wooden footbridge need not be resolved."
+    },
+    {
+      "id": "bakssi-creative-two-envelopes",
+      "role": "creative",
+      "label": "상 위에 놓인 봉투 두 장",
+      "characters": [
+        "bakssi.gihongdae",
+        "bakssi.sibaek"
+      ],
+      "description": "기홍대와 이시백이 상 위의 서로 다른 봉투에 손을 향한다.",
+      "searchTerms": [
+        "갈등",
+        "편지",
+        "봉투",
+        "기홍대",
+        "이시백",
+        "다른 생각"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-02",
+        "bakssi-character-gihongdae",
+        "bakssi-character-sibaek"
+      ],
+      "prompt": "One full-bleed landscape 16:9 illustration for a Korean Joseon folktale picture book, original incident kids can write about. Match the soft textured watercolor/gouache on hanji and subdued sepia linework of the supplied page, modest expression, familiar proportional faces, tender clear staging with visual storytelling. Use supplied actor references to preserve exact identities, hair, body scale and clothing. Every main gesture and prop reads inside central safe area, though environment fills all edges. Distinct foreground, middle and distant shapes; no printed or invented letters or words, borders, watermarks, Western modern objects or photorealism. In a warmly lit Joseon storeroom after light rain, Gihongdae in dark jade and Yi Sibaek in indigo and his moderate dark gat sit on opposing sides of one low wood table. Exactly two handmade folded plain envelopes with no marks or writing sit clearly separated at the center. Gihongdae indicates one with an open palm, while Sibaek looks toward the other, hand gently raised in question. Quiet disagreement and an unanswered choice, no hostility, scene naturally spaced."
+    },
+    {
+      "id": "bakssi-creative-leaf-print",
+      "role": "creative",
+      "label": "그릇에 찍힌 잎 자국",
+      "characters": [
+        "bakssi.gyehwa",
+        "bakssi.potter"
+      ],
+      "description": "계화가 젖은 그릇에서 나뭇잎을 들어 올리고 사기장이가 지켜본다.",
+      "searchTerms": [
+        "실수",
+        "잎 자국",
+        "그릇",
+        "계화",
+        "사기장이",
+        "진흙"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-03",
+        "bakssi-character-gyehwa",
+        "bakssi-character-potter"
+      ],
+      "prompt": "One full-bleed landscape 16:9 illustration for a Korean Joseon folktale picture book, original incident kids can write about. Match the soft textured watercolor/gouache on hanji and subdued sepia linework of the supplied page, modest expression, familiar proportional faces, tender clear staging with visual storytelling. Use supplied actor references to preserve exact identities, hair, body scale and clothing. Every main gesture and prop reads inside central safe area, though environment fills all edges. Distinct foreground, middle and distant shapes; no printed or invented letters or words, borders, watermarks, Western modern objects or photorealism. Bright morning at a tiny potter's open-air workbench. Gyehwa in ochre and rust leans over a broad pale wet clay bowl stunned by a real leaf accidentally fallen half into the wet clay lip. She carefully lifts an edge of the leaf leaving one clean asymmetrical leaf impression beside it. Robust artisan with ochre apron and sage shirt watches, poised with hands clear, one clay-marked palm open. A few matte earthenware bowls and loose leaves elsewhere to place the main bowl in context. Charming mishap, its fate open."
+    },
+    {
+      "id": "bakssi-creative-reed-boat-race",
+      "role": "creative",
+      "label": "개울에 띄운 풀잎 배",
+      "characters": [
+        "bakssi.sister-older",
+        "bakssi.sister-young"
+      ],
+      "description": "두 자매가 나란히 떠가는 풀잎 배를 따라간다.",
+      "searchTerms": [
+        "경쟁",
+        "풀잎 배",
+        "개울",
+        "노란 댕기",
+        "언니",
+        "동생",
+        "달리기"
+      ],
+      "artReferenceIds": [
+        "bakssi-shortstory-page-10",
+        "bakssi-character-sister-older",
+        "bakssi-character-sister-young"
+      ],
+      "prompt": "One full-bleed landscape 16:9 illustration for a Korean Joseon folktale picture book, original incident kids can write about. Match the soft textured watercolor/gouache on hanji and subdued sepia linework of the supplied page, modest expression, familiar proportional faces, tender clear staging with visual storytelling. Use supplied actor references to preserve exact identities, hair, body scale and clothing. Every main gesture and prop reads inside central safe area, though environment fills all edges. Distinct foreground, middle and distant shapes; no printed or invented letters or words, borders, watermarks, Western modern objects or photorealism. Early summer in a shallow gently flowing stream bordered by reeds. The two sisters identifiable in slate blue/russet and green/pink with the smaller child's yellow hair ribbon. On safe bank, they lean or take a quick step following two small distinct folded wide plant leaf boats, one olive broad leaf and one narrow tan stalk raft, gliding neck and neck. Hands open in different poses; both playful focus. Preserve established height and footwear, no straight-on portrait."
+    },
+    {
+      "id": "bakssi-creative-wind-chime-door",
+      "role": "creative",
+      "label": "풍경을 들어 올린 문턱",
+      "characters": [
+        "bakssi.gyehwa",
+        "bakssi.soli"
+      ],
+      "description": "솔이가 같은 풍경을 들어 보고, 계화가 문안에 귀를 기울인다.",
+      "searchTerms": [
+        "탐색",
+        "풍경",
+        "파란 끈",
+        "이어지는 장면",
+        "솔이",
+        "계화",
+        "문턱"
+      ],
+      "artReferenceIds": [
+        "bakssi-creative-loose-wind-chime",
+        "bakssi-character-gyehwa",
+        "bakssi-character-soli"
+      ],
+      "prompt": "Paint one finished 16:9 landscape Joseon watercolor/gouache picture-book illustration as the very next incident after the FIRST full illustration. Same quiet autumn orchard courtyard and tile cottage, from a different angle closer to its open wood door. Show the EXACT SAME small dark brass five-sided bell with short blue cloth tail, same characters faces and costumes including Gyehwa's ochre jacket and russet skirt, Soli's blue jacket, beige skirt and blue ribbon. Gyehwa keeps the same round woven basket set on the porch nearby. Standing outside at the threshold, young Soli now lifts that exact bronze bell by its blue tied cloth at waist level and watches it closely; Gyehwa steadies the half-open wooden door with one hand and listens inside with a quiet curious look. Warm later morning light, path and persimmon tree glimpsed behind them. The visual link to the discovery should read clearly. Scene is open-ended; no unrelated people, words, signs, modern objects, dramatic magic or watermarks. Soft hanji paper, rich hand-drawn warm sepia linework and subdued proportions matching first image. Preserve safe breathing room at edges.",
+      "sequenceOrder": 2,
+      "seriesId": "bakssi-creative-loose-wind-chime",
+      "parentEventId": "bakssi-creative-loose-wind-chime"
     }
   ]
 }
