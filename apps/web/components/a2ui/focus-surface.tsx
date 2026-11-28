@@ -10,7 +10,7 @@ import styles from './focus-surface.module.css';
 export type FocusSurfaceAction={surfaceId:string;sourceComponentId:string;action:A2uiAction};
 /** rootId draws one sub-tree (a real screen embeds catalog parts); inline lets the parts sit in the host's own layout. */
 /** A host screen keeps its tuned CSS (skin: class per part) and adds its own attributes (attrs); custom components are registered with `custom`. */
-export type FocusSkin=Partial<Record<'pickerLabel'|'pickerButton'|'srOnly'|'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText'|'cutPosition'|'cutPositionLabel'|'cutShort'|'drawerPanel'|'drawerHead'|'groupLabel'|'cardAdd'|'excerpt'|'pathChoice'|'pathFrom'|'pathSeparate',string>>;
+export type FocusSkin=Partial<Record<'pickerLabel'|'pickerButton'|'srOnly'|'workTabs'|'cutItem'|'cutSelect'|'cutPlay'|'cutText'|'cutPosition'|'cutPositionLabel'|'cutShort'|'drawerPanel'|'drawerHead'|'groupLabel'|'cardAdd'|'excerpt'|'pathChoice'|'pathFrom'|'pathSeparate'|'pathWay'|'pathPeek',string>>;
 type Props={surface:Surface;device:Device;onAction?:(action:FocusSurfaceAction)=>void;rootId?:string;inline?:boolean;skin?:FocusSkin;attrs?:(component:A2uiComponent)=>Record<string,string|undefined>|undefined;
  /** Korean IME composition in a TextField: the host must know at once (it guards navigation and saving). */
  onComposing?:(composing:boolean)=>void;
@@ -134,7 +134,12 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
  </div>,
  PathChoice:(c,ctx)=>{
-  const choice=<button type="button" className={ctx.skin.pathChoice} disabled={value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)}><b>{text(ctx,c.label)}</b><span>{text(ctx,c.where)}</span></button>;
+  const current=value(ctx,c.current)===true;
+  const choice=<button type="button" className={ctx.skin.pathChoice} aria-current={current?'true':undefined} disabled={current||value(ctx,c.disabled)===true} onClick={()=>ctx.fire(c.id,c.select)}><b>{text(ctx,c.label)}</b><span>{text(ctx,c.where)}</span></button>;
+  // 펼쳐 보기: the way's cuts, read only — open the way to write in it.
+  const peek=Array.isArray(c.peek)?c.peek.filter((line):line is string=>typeof line==='string'):[];
+  if(peek.length)return <div className={ctx.skin.pathWay} data-current={current||undefined}>{choice}
+   <details className={ctx.skin.pathPeek}><summary>펼쳐 보기</summary><ol>{peek.map((line,index)=><li key={index}>{line}</li>)}</ol></details></div>;
   if(c.separate===undefined)return choice;
   return <div className={ctx.skin.pathFrom}>{choice}<button type="button" className={ctx.skin.pathSeparate} disabled={value(ctx,c.separateDisabled)===true} onClick={()=>ctx.fire(c.id,c.separate)}
    aria-label={text(ctx,c.separateName)} title="이 컷을 복사해 이 길에서만 보이게 해요. 다음 컷부터는 다시 같은 이야기예요.">이 길만 따로 쓰기</button></div>;
