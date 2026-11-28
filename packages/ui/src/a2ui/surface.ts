@@ -112,10 +112,11 @@ export function validateSurface(surface:Surface,catalog:A2uiCatalog=focusEditorC
  }
  const root=surface.components.get('root');
  if(!root)add(surface.surfaceId,'root','id가 root인 컴포넌트가 없어요');
- else if(root.component!=='FocusScreen')add('root','root','root는 FocusScreen이어야 해요');
+ else if(root.component!=='FocusScreen'&&root.component!=='Dialog')add('root','root','root는 FocusScreen이나 Dialog여야 해요');
  for(const id of surface.components.keys())if(id!=='root'&&!parents.has(id))add(id,'orphan','어디에도 들어 있지 않아요');
  if(root)checkCycles(surface,catalog,add);
  if(root?.component==='FocusScreen')checkScreenRules(surface,root,catalog,add);
+ if(root?.component==='Dialog')checkActionRules(surface,catalog,add);
  return issues;
 }
 
@@ -259,6 +260,12 @@ function checkScreenRules(surface:Surface,root:A2uiComponent,catalog:A2uiCatalog
  if(root.current!==undefined&&lists.length)add('root','current-cut','현재 컷은 한 곳에만 둬요: current와 CutList를 함께 쓰지 않아요');
  // Rule 4: a neighbour card with a scene preview is tablet/desktop context only.
  for(const card of all.filter(component=>component.component==='CutCard'&&(component.kind??'cut')==='cut'))if(effectiveDevices(surface,card.id).some(device=>device==='phone'||device==='phoneLandscape'))add(card.id,'cut-card-devices','장면 미리보기가 있는 이전·다음 컷 카드는 태블릿 이상에서만 둬요');
+ checkActionRules(surface,catalog,add);
+}
+
+/** One primary Button and one way per job: on a focus screen and in a dialog alike. */
+function checkActionRules(surface:Surface,catalog:A2uiCatalog,add:Add){
+ const all=[...surface.components.values()];
  const primaries=all.filter(component=>component.component==='Button'&&component.variant==='primary');
  if(primaries.length>1)primaries.slice(1).forEach(button=>add(button.id,'one-primary','색을 채운 주 단추는 한 화면에 하나예요'));
  // One way per job: the same action twice on a screen, on any shared device, is a duplicate.
@@ -296,6 +303,7 @@ export function controlNames(surface:Surface,device:Device,fromId='root'):string
     if(c.editable===true)names.push(`${read(c.cut)}컷 글`);
     return;
    case 'IconButton':names.push(read(c.name));break;
+   case 'Dialog':names.push(read(c.closeName));break;
    case 'Toggle':names.push(read(c.name??c.label));break;
    case 'AssetPicker':{const field=read(c.label);names.push(`${field.endsWith('이미지')?`${field} 찾기`:`${field} 이미지 찾기`} · ${read(c.value)}`);break;}
    case 'More':names.push(read(c.summary));return;

@@ -68,6 +68,13 @@ export const focusRenderers:Record<FocusComponentName,Renderer>={
   <div className={styles.work}>{ctx.render(c.work)}</div>
   {c.more!==undefined&&ctx.render(c.more)}
  </section>,
+ // A modal step: the host keeps the <dialog> element (showModal, focus, Escape); this draws its title, × close, parts and action row.
+ Dialog:(c,ctx)=><div {...host(ctx,c,styles.dialog)} data-a2ui-dialog>
+  <header className={styles.dialogHead}><h2>{text(ctx,c.title)}</h2>
+   <button type="button" className={styles.icon} aria-label={text(ctx,c.closeName)} title={text(ctx,c.closeName)} data-close-icon onClick={()=>ctx.fire(c.id,c.close)}>{iconSvg('close')}</button></header>
+  {list(c.children).map(id=><Fragment key={String(id)}>{ctx.render(id)}</Fragment>)}
+  <div className={styles.dialogActions}>{ctx.render(c.actions)}</div>
+ </div>,
  TopBar:(c,ctx)=><header className={styles.topBar} data-a2ui-top-bar>
   <button type="button" className={styles.icon} aria-label="설정" title="설정" onClick={()=>ctx.fire(c.id,c.settings)}>☰</button>
   {ctx.render(c.navigator)}
