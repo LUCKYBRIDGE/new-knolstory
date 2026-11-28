@@ -30,6 +30,9 @@ for(const viewport of [{width:1280,height:800},{width:390,height:844}])test(`갈
  expect(await ways.count()).toBeGreaterThan(1);
  const first=(await ways.nth(0).locator('b').textContent())!.replace(/ →$/,''),second=(await ways.nth(1).locator('b').textContent())!.replace(/ →$/,'');
  await expect(ways.nth(0)).toContainText(/장.* · \d+컷/);
+ // The ways share the strip's width instead of narrow fixed columns.
+ const share=await strip.evaluate(node=>{const ways=[...node.querySelectorAll(':scope>[data-current], :scope>div:has(>button)')];return ways.reduce((sum,way)=>sum+way.getBoundingClientRect().width,0)/node.clientWidth;});
+ expect(share).toBeGreaterThan(.85);
  // 펼쳐 보기: the way's cuts, read only.
  const peek=strip.locator('details').first();
  await peek.locator('summary').click();
