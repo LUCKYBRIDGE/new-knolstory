@@ -287,6 +287,69 @@
         "change"
       ]
     },
+    "Tabs": {
+      "type": "object",
+      "description": "Tabs for one kind of work at a time inside a task (e.g. 숏스토리 쪽 쓰기: 글 · 그림 · 쪽). A tablist with a short visible label per tab; `selected` is the open tab; `panels` is the id prefix the host gives its tab panels (tab `<panels>-tab-<value>` controls `<panels>-panel-<value>`). Not the editor's task tabs (WorkTabs).",
+      "allowedParents": [
+        "Column",
+        "FocusScreen"
+      ],
+      "properties": {
+        "component": {
+          "const": "Tabs"
+        },
+        "devices": {
+          "$ref": "#/$defs/Devices"
+        },
+        "name": {
+          "$ref": "common_types.json#/$defs/DynamicString",
+          "maxLength": 24
+        },
+        "tabs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 6
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "selected": {
+          "$ref": "common_types.json#/$defs/DynamicString"
+        },
+        "panels": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "change": {
+          "$ref": "common_types.json#/$defs/Action"
+        },
+        "disabled": {
+          "$ref": "common_types.json#/$defs/DynamicBoolean"
+        }
+      },
+      "required": [
+        "component",
+        "name",
+        "tabs",
+        "selected",
+        "panels",
+        "change"
+      ]
+    },
     "Stage": {
       "type": "object",
       "description": "The single Ren'Py scene for the current cut. Only on tasks that need the scene. With phoneStrip, a portrait phone starts with a 96px strip (background and characters) and one toggle opens or closes it; the choice is remembered on the device.",
